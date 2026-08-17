@@ -1,0 +1,58 @@
+# Python environments and bytecode
+/.venv/
+/venv/
+/env/
+__pycache__/
+*.py[cod]
+
+# Tooling caches and build outputs
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+/build/
+/dist/
+
+# Local credentials, agent sessions and editor settings
+.env
+.env.*
+!.env.example
+/.agents/
+/.vscode/
+/.idea/
+
+# Reproducible experiment outputs
+/results/*
+!/results/README.md
+
+# Local report workspaces and duplicate PDF export
+/report_overleaf/
+/report_thuat_toan/
+/SO_TAY_THUAT_TOAN_XLA_UTC.pdf
+
+# LaTeX intermediate files; keep sources and published PDFs
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*.tmp
+*.swp
