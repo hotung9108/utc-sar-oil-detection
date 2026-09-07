@@ -126,3 +126,35 @@ Trọng tâm học phần là công thức, cài NumPy, đối chiếu thư vi�
 ### 2.6. Những điều mọi thành viên phải nói đúng
 
 Một phép toán khớp thư viện không bảo đảm đúng nhãn dầu. Một ảnh đẹp không bảo đảm giữ đúng chi tiết. Một vùng lớn không bảo đảm là vật thể cần tìm. Một chỉ số tốt không thay thế ảnh đối chứng. Không có mask chuẩn thì chưa báo được IoU/Dice theo ground truth pixel. Không có nguồn độ phân giải phù hợp thì không tự đổi pixel sang km².
+
+**Câu hỏi tổng hợp:** Tắt CLAHE mà số vùng vẫn có thể giống nhau, vì sao? Một khả năng là quy tắc đã chọn ảnh sau Lee làm ảnh phân ngưỡng; một khả năng khác là các vùng nhỏ bị loại ở bước sau. Muốn kết luận phải kiểm tra tham số, ảnh trung gian và nhánh điều kiện, không suy đoán từ ảnh cuối.
+
+## 3. Kiến trúc phần mềm: nối các phép toán thành một hệ thống
+
+### 3.1. Module, hàm và trách nhiệm là gì?
+
+Module là một file Python tập hợp các hàm có liên quan. Hàm là một thao tác nhận đầu vào và trả đầu ra. Ta chia module để mỗi phần có một trách nhiệm rõ: TV3 biến đổi cường độ, TV4 tìm biên/vùng, TV5 đo kết quả; TV1 nối các phần và cung cấp giao diện. Cách chia này giúp tìm lỗi theo vị trí, không phải đoán trong một file rất dài.
+
+`src/tv3/filters.py` chứa triển khai thật. File `src/filters.py` chỉ chuyển tiếp import để mã cũ vẫn dùng được. Vì vậy nếu sửa `src/filters.py` bằng cách chép thêm một bản thuật toán, có thể tạo hai phiên bản khác nhau mà giao diện và thí nghiệm gọi khác chỗ. Trưởng nhóm phải biết đâu là nguồn triển khai duy nhất.
+
+**Tình huống:** TV3 sửa Lee nhưng bảng thực nghiệm không đổi. Trước khi kết luận bộ lọc không tác dụng, kiểm tra file vừa sửa có được import thật không, process đã được khởi động lại chưa, và bảng đang xem thuộc lần chạy nào. Đây là lý do kiến trúc và nguồn dữ liệu quan trọng bằng công thức.
+
+### 3.2. Pipeline là gì, vì sao không viết thuật toán ngay trong giao diện?
+
+Pipeline là chuỗi xử lý có thứ tự và có các đầu ra trung gian. Hàm trung tâm ở đây là `process_image(image, config)`. Nó không cần biết Streamlit, HTTP hay nút bấm. Cùng một hàm được gọi từ demo và từ thí nghiệm, nhờ đó một cấu hình có cùng ý nghĩa ở hai nơi.
+
+Nếu thuật toán nằm trực tiếp trong handler của một nút giao diện, chương trình batch có thể dùng một bản cũ khác. Khi đó slide, CSV và demo sẽ không nhất quán. Tách lõi khỏi giao diện cũng giúp thử một ma trận 5×5 mà không mở trình duyệt.
+
+Hãy xem mỗi bước như một hợp đồng: đầu vào ảnh xám 2D, đầu ra đúng kích thước, ý nghĩa khóa rõ ràng. Không được tự đổi `mask` thành bản đồ biên chỉ vì cả hai đều có 0 và 255. Hai ma trận giống kiểu dữ liệu vẫn có thể khác ý nghĩa.
+
+### 3.3. Theo dấu một ảnh qua từng biến
+
+Giả sử người dùng chọn `class_1_00013.jpg`. Giao diện đọc byte, giải mã xám và chuẩn hóa kích thước demo 400×400. Sau đó `raw` nhận ảnh hợp lệ; Lee tạo `filtered`; CLAHE tạo `enhanced`. Nếu bật unsharp, `displayed` đổi; nếu không, `displayed` là bản sao của `enhanced`.
+
+Nhánh morphology nhận `enhanced` và `reference_image=filtered`. Bên trong nhánh này, quy tắc có thể chuyển ảnh phân ngưỡng về reference nếu ảnh CLAHE không phù hợp theo các tiêu chí đã cài. Vì vậy sơ đồ Lee→ CLAHE →Otsu là mô tả tổng quát; giải thích sâu phải nhắc tới việc chọn ảnh phân ngưỡng và ảnh đo tương phản.
+
+Cuối cùng `mask` dùng để đếm diện tích, `boundary` dùng để vẽ viền, `overlay` dùng để đặt viền lên ảnh gốc. `metrics` được tính giữa `raw` và `displayed`, nên khi bật làm nét một số chỉ số ảnh có thể đổi dù mask vẫn giữ nguyên. Đây là một câu hỏi vấn đáp dễ gây nhầm.
+
+### 3.4. Bản đồ đầu ra phải thuộc lòng theo ý nghĩa
+
+| Khóa | Nó là gì và dùng để làm gì |
