@@ -125,3 +125,35 @@ Trọng tâm học phần là công thức, cài NumPy, đối chiếu thư vi�
 
 ### 2.6. Những điều mọi thành viên phải nói đúng
 
+Một phép toán khớp thư viện không bảo đảm đúng nhãn dầu. Một ảnh đẹp không bảo đảm giữ đúng chi tiết. Một vùng lớn không bảo đảm là vật thể cần tìm. Một chỉ số tốt không thay thế ảnh đối chứng. Không có mask chuẩn thì chưa báo được IoU/Dice theo ground truth pixel. Không có nguồn độ phân giải phù hợp thì không tự đổi pixel sang km².
+
+**Câu hỏi tổng hợp:** Tắt CLAHE mà số vùng vẫn có thể giống nhau, vì sao? Một khả năng là quy tắc đã chọn ảnh sau Lee làm ảnh phân ngưỡng; một khả năng khác là các vùng nhỏ bị loại ở bước sau. Muốn kết luận phải kiểm tra tham số, ảnh trung gian và nhánh điều kiện, không suy đoán từ ảnh cuối.
+
+## 3. Kiểm chứng là gì và đang kiểm chứng điều gì?
+
+### 3.1. Ba câu hỏi khác nhau: chạy được, tính đúng, giải quyết tốt
+
+“Chạy được” nghĩa chương trình kết thúc mà không báo lỗi. “Tính đúng” nghĩa đầu ra đáp ứng định nghĩa toán học và quy ước đã chọn. “Giải quyết tốt” nghĩa kết quả có ích cho bài toán trên dữ liệu thực tế. Ba câu không tương đương: code có thể chạy nhưng sai padding; code đúng phép Otsu nhưng vẫn nhận nhầm nền tối là dầu.
+
+Vai trò TV2 tập trung vào tính đúng của triển khai và độ tin cậy của bằng chứng. Bạn phải nêu rõ phép đối chiếu đang kiểm cái gì. So custom Gaussian với OpenCV không trả lời trực tiếp câu hỏi “ảnh này có dầu không”. Nó trả lời liệu bộ lọc tự cài có gần kết quả tham chiếu dưới cùng cấu hình hay không.
+
+### 3.2. Oracle: đáp án để so đến từ đâu?
+
+Oracle là nguồn đáp án kỳ vọng trong kiểm thử. Một ví dụ tính tay nhỏ có thể là oracle độc lập. Một hàm thư viện đáng tin cậy cũng có thể là tham chiếu, nhưng phải kiểm tra hai bên có cùng tham số, kiểu dữ liệu và quy tắc biên. Không được gọi chính hàm custom để tạo expected rồi so custom với expected: nếu cả hai cùng sai thì vẫn “đạt”.
+
+Trong `src/tv2/verification.py`, expected của năm ví dụ là hằng số đã tính trước; actual lấy từ hàm triển khai. Đây là lý do phải hiểu phép tính trên giấy, không chỉ chạy script nhìn chữ PASS.
+
+### 3.3. Ba loại đối chiếu trong registry
+
+**Direct**: có API thư viện tương ứng, ví dụ median, HE, CLAHE. Vẫn cần khớp định nghĩa; tên giống nhau chưa đủ. Ví dụ CLAHE cần cùng số tile, clip, padding và quy tắc làm tròn.
+
+**Composition**: không giả định có API chuẩn trực tiếp cho thuật toán đang dùng. Ta ghép các primitive thư viện như lọc trung bình hoặc FFT vào công thức đã chọn. Lee đối chiếu moment cục bộ từ SciPy rồi dùng công thức Lee; điều này kiểm cách tính moment và phép kết hợp, nhưng hai bên có thể chia sẻ cùng giả định sai về mô hình.
+
+**Variant**: hai cài đặt khác biến thể hoặc rời rạc hóa nên chỉ mô tả sai khác. Bilateral tự cài dùng cửa sổ vuông trong khi tham chiếu OpenCV có footprint khác; Canny có khác biệt ở các bước làm mịn/NMS/quy ước. Không áp một ngưỡng tương đương giả rồi gọi tất cả PASS.
+
+**Câu hỏi:** Vì sao 36 DESCRIPTIVE không được cộng vào 558 PASS? Vì DESCRIPTIVE chưa phải kết luận đáp ứng một tiêu chí tương đương. Nó là thông tin so sánh có giới hạn, không phải thất bại mặc định và cũng không phải thành công mặc định.
+
+### 3.4. Sai số tuyệt đối, MAE, MSE và tỷ lệ trùng
+
+Cho hai đầu ra x và y cùng kích thước. Delta=x−y; max_abs_error là giá trị lớn nhất của |delta|; MAE là trung bình |delta|; MSE là trung bình delta². Tỷ lệ trùng đếm phần tử bằng nhau chính xác. Mỗi chỉ số nhấn mạnh một kiểu sai khác.
+
