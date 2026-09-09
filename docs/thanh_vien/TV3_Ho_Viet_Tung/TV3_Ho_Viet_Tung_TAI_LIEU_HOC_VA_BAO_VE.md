@@ -134,3 +134,37 @@ Một phép toán khớp thư viện không bảo đảm đúng nhãn dầu. M�
 ### 3.1. Box filter: thay pixel bằng trung bình lân cận
 
 Box filter dùng trọng số bằng nhau trong cửa sổ. Với k×k pixel, đầu ra là tổng cửa sổ chia k². Nó làm giảm dao động ngẫu nhiên khi các pixel lân cận phản ánh cùng một vùng, nhưng cũng trộn cường độ ở hai phía đường biên. Đó là đánh đổi giữa làm mượt và giữ chi tiết.
+
+Ví dụ cửa sổ có tám ô 100 và tâm 200 cho mean 111,11; sau round là 111. Nếu điểm 200 là nhiễu, đây có thể là tác dụng mong muốn. Nếu đó là một mục tiêu nhỏ thật, lọc đã làm suy yếu mục tiêu. Mục đích không quyết định bản chất của từng pixel; bộ lọc chỉ thực hiện phép toán đã chọn.
+
+Trong `_box_filter_2d`, ảnh tích lũy lưu tổng từ gốc tới từng vị trí. Tổng hình chữ nhật tính bằng bốn giá trị D+A−B−C, tránh cộng lại k² phần tử ở mỗi pixel. Sau khi dựng bảng tích lũy, mỗi tổng cửa sổ có chi phí hằng số; không được nói toàn thuật toán có độ phức tạp O(1), vì vẫn phải đọc và xử lý toàn ảnh, xấp xỉ O (HW) với padding phù hợp.
+
+**Tại sao cần float?** Tổng nhiều pixel và bình phương cường độ dùng ở Lee có thể vượt 255. Tích lũy trong uint8 sẽ không biểu diễn được các tổng ấy đúng cách.
+
+### 3.2. Gaussian: láng giềng gần có trọng số lớn hơn
+
+Gaussian dùng trọng số exp(−x²/(2 σ²)) cho khoảng cách 1 chiều, sau đó chuẩn hóa để tổng bằng 1. Với cửa sổ 3 và σ=1, các trọng số gần [0,274; 0,452; 0,274]. Pixel giữa có trọng số lớn hơn hai bên; so với box, sự thay đổi trọng số mềm hơn.
+
+Trong hai chiều, kernel Gaussian hình vuông là tích của hai kernel 1D. Vì vậy code lọc theo hàng rồi theo cột, gọi là tính tách được. Thay vì khoảng k² phép nhân mỗi pixel, hai lượt dùng khoảng 2 k. Đây là lý do thuật toán nhanh hơn cách duyệt mọi ô kernel 2D, với cùng kernel tách được đã chuẩn hóa.
+
+σ lớn hơn thường trải trọng số rộng hơn, nhưng nếu cửa sổ vẫn rất nhỏ thì phần đuôi Gaussian bị cắt. Không nói tăng σ vô hạn trong kernel 3×3 sẽ tương đương dùng một Gaussian rộng trên toàn ảnh. Muốn khảo sát phải ghi cả window và sigma.
+
+**Hỏi:** Vì sao ảnh hằng phải giữ nguyên qua Gaussian đã chuẩn hóa? Vì tổng trọng số bằng 1, nên C×tổng_trọng_số=C; sai ở mép có thể do padding hoặc lượng tử hóa.
+
+### 3.3. Median: chọn giá trị giữa, không lấy trung bình
+
+Median sắp thứ tự các giá trị trong cửa sổ và lấy trung vị. Với tám số 100 và một số 200, giá trị giữa là 100. Nó bền hơn trung bình trước một số giá trị cực đoan, nên hữu ích với nhiễu xung. Tuy nhiên nó có thể xóa chi tiết thật mảnh hoặc nhỏ hơn cửa sổ.
+
+Median là phép phi tuyến: median của tổng hai ảnh không nhất thiết bằng tổng hai median. Nó không được biểu diễn bằng một kernel trọng số cố định như box. Trong code, `sliding_window_view` tạo cách nhìn các cửa sổ, rồi `np.median` tính theo hai trục cửa sổ.
+
+**Tại sao vẫn phải quan tâm RAM?** View không sao chép ngay toàn bộ pixel, nhưng các phép tiếp theo và xử lý thống kê có thể tạo dữ liệu trung gian. Cửa sổ lớn làm khối tính toán tăng nhanh; vector hóa không tự đảm bảo ít bộ nhớ.
+
+### 3.4. Bilateral: gần vị trí và gần cường độ mới được trộn mạnh
+
+Bilateral nhân hai trọng số. Trọng số không gian giảm theo khoảng cách pixel; trọng số cường độ giảm theo chênh lệch mức xám so với tâm. Đầu ra là tổng có trọng số chia tổng trọng số, để vẫn nằm trong thang đo hợp lý.
+
+```text
+w_space = exp(-distance^2 / (2*sigma_s^2))
+w_range = exp(-(neighbor-center)^2 / (2*sigma_r^2))
+w = w_space * w_range
+output = sum(w * neighbor) / sum(w)
