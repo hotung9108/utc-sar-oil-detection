@@ -132,3 +132,37 @@ Một phép toán khớp thư viện không bảo đảm đúng nhãn dầu. M�
 ## 3. Đạo hàm, làm nét và các toán tử biên cơ bản
 
 ### 3.1. Đạo hàm trong ảnh nghĩa là gì?
+
+Đạo hàm đo sự thay đổi. Với dãy mức xám [100,100,100,200,200], hiệu giữa hai vị trí lân cận gần 0 ở vùng phẳng và lớn ở chỗ chuyển 100→200. Trong ảnh2D, ta đo thay đổi theo ngang Gx và dọc Gy. Gradient là cặp (Gx, Gy); độ lớn thường là sqrt (Gx²+Gy²); hướng lấy từ atan 2 (Gy, Gx).
+
+Vì sao cần? Một cạnh thường đi kèm thay đổi cường độ, nên gradient giúp định vị cạnh. Nhưng nhiễu cũng làm thay đổi cường độ; gradient không biết nguyên nhân vật lý. Cạnh của một đốm nền được CLAHE khuếch đại vẫn có thể cho đáp ứng lớn.
+
+Độ lớn không âm nhưng Gx/Gy có thể âm. Dùng uint8 cho đạo hàm làm mất thông tin dấu và miền giá trị. Hướng còn phụ thuộc quy ước tọa độ; trong ảnh, hàng tăng xuống dưới. Không học một sơ đồ góc trong sách rồi áp mà không kiểm quy ước code.
+
+### 3.2. Roberts, Prewitt và Sobel
+
+Roberts lấy chênh lệch theo hai đường chéo của cửa sổ 2×2. Ví dụ[[10,10],[10,110]] cho gx=10−110=−100, gy=10−10=0, magnitude 100. Nó đơn giản nhưng cửa sổ nhỏ ít làm mượt, nên dễ phản ứng với dao động cục bộ.
+
+Prewitt 3×3 so tổng bên phải với bên trái và tổng dưới với trên, trọng số các hàng/cột bằng nhau. Sobel cũng 3×3 nhưng trọng số hướng vuông góc là 1,2,1. Với Gx, hàng giữa nặng hơn, tạo tác dụng làm mượt nhẹ theo chiều vuông góc với đạo hàm.
+
+```text
+Sobel Kx = [-1  0  1]     Sobel Ky = [-1 -2 -1]
+           [-2  0  2]                [ 0  0  0]
+           [-1  0  1]                [ 1  2  1]
+```
+
+Trong ví dụ tâm của[[0,0,0],[0,100,100],[0,100,100]], Gx=300, Gy=300, magnitude≈424,264. Hàm trả bản magnitude uint8 để hiển thị nhưng vẫn trả Gx/Gy float; Canny dùng chúng để tính lại độ lớn thực. Ngưỡng 90 của magnitude không có cùng ý nghĩa với ngưỡng mức xám 90.
+
+### 3.3. Unsharp và high-boost: tại sao làm nét có thể tạo viền?
+
+Unsharp đầu tiên làm mờ ảnh f thành b, lấy chi tiết m=f−b, rồi cộng f+k×m. Dù tên có chữ “ unsharp ”, mục tiêu cuối là làm nét nhờ cộng lại thành phần khác giữa ảnh và ảnh mờ. k=1 là lựa chọn thông dụng trong code; k>1 được gọi high-boost theo cách triển khai này.
+
+Nếu pixel gốc 100 và bản mờ 90, chi tiết 10; k 1 cho 110, k 2 cho 120. Nếu pixel gốc 80 nhưng bản mờ 90, chi tiết−10; k 1 cho 70. Vì vậy hai phía cạnh có thể sáng hơn/tối hơn, tạo halo. Nhiễu tần số cao cũng có thể bị tăng.
+
+**Vì sao tách khỏi phân đoạn?** Làm nét thay cường độ theo mục đích quan sát. Đưa ảnh đó vào threshold có thể tạo thêm vùng giả hoặc đổi diện tích chỉ vì tham số hiển thị. Pipeline hiện tách `displayed` khỏi mask để giảm sự lẫn lộn này.
+
+### 3.4. Laplacian sharpening và LoG không phải một thứ
+
+Laplacian là đạo hàm bậc hai. Kernel 4 láng giềng tâm−4 cho đáp ứng L=trên+dưới+trái+phải−4×tâm. Làm nét dùng f−alpha×L. Nếu tâm 120, bốn láng giềng 100, L=400−480=−80; alpha 0,5 cho 160. Dấu trong công thức phụ thuộc kernel tâm âm hay dương; không đổi dấu tùy ý.
+
+LoG là Laplacian of Gaussian, dùng đạo hàm bậc hai đã gắn với làm mượt Gaussian để tìm điểm đổi dấu. Code tạo kernel theo sigma, trừ mean để tổng gần 0, tính đáp ứng rồi tìm các cặp láng giềng đối diện có tích âm và chênh lệch vượt threshold. Đây là đầu ra biên, không phải ảnh làm nét.
