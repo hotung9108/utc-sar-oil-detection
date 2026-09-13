@@ -130,3 +130,36 @@ Một phép toán khớp thư viện không bảo đảm đúng nhãn dầu. M�
 **Câu hỏi tổng hợp:** Tắt CLAHE mà số vùng vẫn có thể giống nhau, vì sao? Một khả năng là quy tắc đã chọn ảnh sau Lee làm ảnh phân ngưỡng; một khả năng khác là các vùng nhỏ bị loại ở bước sau. Muốn kết luận phải kiểm tra tham số, ảnh trung gian và nhánh điều kiện, không suy đoán từ ảnh cuối.
 
 ## 3. Dataset, nhãn và phạm vi bằng chứng
+
+### 3.1. Dataset là gì, nhãn là gì?
+
+Dataset là tập dữ liệu được dùng có hệ thống cho thực nghiệm. Trong repo, ảnh chính nằm ở `kaggle/data/Class_0` và `Class_1`. Theo metadata đi kèm, Class_0 biểu diễn không dầu/biển sạch hoặc lookalike; Class_1 biểu diễn ảnh có dầu. Nhãn này gắn với toàn ảnh, không chỉ ra chính xác pixel nào thuộc dầu.
+
+Nhãn cấp ảnh có thể dùng để kiểm một quy tắc báo “có ứng viên hay không”. Muốn kiểm đường biên hoặc diện tích pixel, cần mask chuẩn được gán riêng. Không được tự biến tên thư mục thành một mask bằng threshold rồi dùng mask ấy làm ground truth để đánh giá chính threshold.
+
+### 3.2. Nguồn dữ liệu và giấy phép để làm gì?
+
+Metadata cục bộ nêu bộ CSIRO Sentinel-1 SAR của David Blondeau-Patissier, DOI 10.25919/4v55-dn16. File license đi kèm ghi CC BY-SA 4.0. Hồ sơ nguồn giúp biết dữ liệu là gì, nhãn được hiểu ra sao và cách ghi công khi sử dụng. Sổ tay này dựa vào hồ sơ trong repo, không tự khẳng định đã tải lại và xác minh toàn bộ bộ gốc từ máy chủ nguồn.
+
+Tên dataset có cụm “for machine learning (Deep Learning)” nói tới mục đích có thể sử dụng của bộ ảnh. Nó không bắt buộc chương trình phải dùng ML / DL. Dự án chỉ đọc ảnh, áp công thức xử lý và đánh giá đầu ra; không train mô hình.
+
+### 3.3. Vì sao có ba con số 5.630, 5.538 và 5.548?
+
+Metadata công bố 5.630 ảnh: 3.725 lớp 0 và 1.905 lớp 1. Hai thư mục chính trong repo có 5.538 ảnh: 3.695 lớp 0 và 1.843 lớp 1, ít hơn 30+62=92 ảnh. Chưa có checksum bộ gốc để giải thích nguyên nhân chênh; không được tự nói đó là 92 ảnh lỗi đã loại nếu không có bằng chứng.
+
+Kiểm kê đệ quy thấy thêm 10 file ở `kaggle/data/sample/`, đều trùng SHA-256 với ảnh chính. Vì vậy tổng có 5.548 đường dẫn nhưng 5.538 ảnh khác byte. Thống kê chính không đếm lặp 10 bản sao này. Mười ảnh demo ở `data/sample/` cũng trùng byte với một số ảnh chính.
+
+### 3.4. SHA-256, trùng byte và độc lập dữ liệu
+
+Hash là một dấu vân tay nội dung dùng để đối chiếu file. Nếu hai file có cùng SHA-256 trong kiểm kê, ta có bằng chứng rất mạnh rằng byte giống nhau. Nhưng hai ảnh có hash khác vẫn có thể là hai crop chồng lấn của cùng cảnh, hoặc một ảnh đã nén lại. Khác hash không chứng minh độc lập về nội dung.
+
+Chưa có scene ID đầy đủ nên chưa kết luận các chip độc lập. Mười ảnh demo đã dùng để quan sát/chọn tham số không được coi là một tập kiểm thử độc lập. Không có train mô hình vẫn có thiên lệch khi chỉ chọn ảnh thuận lợi hoặc chỉnh tham số sau khi xem kết quả.
+
+### 3.5. Chuẩn hóa đầu vào và điều gì đã mất
+
+Ảnh chính 400×400 được lưu RGB, pipeline đọc xám. JPEG 8 bit là dữ liệu đã xử lý, không giữ mọi thông tin hiệu chuẩn bức xạ và độ phân giải mặt đất trong quy trình hiện tại. Đổi sáng/resize có thể thay ý nghĩa chỉ số theo pixel.
+
+TV5 cần ghi kích thước, số ảnh, nhãn, nguồn, bản sao và thiếu hụt trước khi báo hiệu năng. Một bảng có hàng nghìn số nhưng không biết những hàng ấy thuộc dữ liệu nào chưa phải bằng chứng có thể tái lập.
+
+## 4. Sáu chỉ số xử lý ảnh: định nghĩa, ví dụ và giới hạn
+
