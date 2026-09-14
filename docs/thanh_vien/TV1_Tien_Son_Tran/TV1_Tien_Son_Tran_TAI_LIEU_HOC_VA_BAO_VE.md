@@ -158,3 +158,35 @@ Cuối cùng `mask` dùng để đếm diện tích, `boundary` dùng để vẽ
 ### 3.4. Bản đồ đầu ra phải thuộc lòng theo ý nghĩa
 
 | Khóa | Nó là gì và dùng để làm gì |
+| --- | --- |
+| `raw`| Ảnh xám đầu vào sau kiểm tra; mốc so sánh |
+| `filtered`| Ảnh giảm dao động; dùng làm tham chiếu trước CLAHE |
+| `enhanced`| Ảnh tăng tương phản; có thể dùng phân ngưỡng |
+| `displayed`| Ảnh để quan sát sau lựa chọn làm nét; ảnh được dùng cho nhóm metrics |
+| `mask`| Vùng ứng viên đặc; None ở chế độ chỉ tìm biên |
+| `boundary`| Pixel biên; không đồng nghĩa toàn bộ diện tích vùng |
+| `overlay`| Hình màu giúp quan sát vị trí biên trên raw |
+| `stats`| Đặc trưng vùng; rỗng khi không có phân đoạn vùng |
+| `metrics`| Sáu chỉ số ảnh: ENL, SSI, RMS, entropy, AMBE, EPI |
+| `config`| Bản mô tả tham số để người khác tái lập |
+
+**Câu hỏi:** Nếu người xem thấy “số vùng=0” khi đang chọn Sobel, có nên hiển thị như một kết luận không có dầu? Không. Nhánh này không thực hiện quyết định vùng; thiết kế hiện tại trả stats rỗng để tránh diễn giải đó.
+
+## 4. Cấu hình và giao diện: từ lựa chọn của người dùng đến phép tính
+
+### 4.1. PipelineConfig và dataclass là gì?
+
+`PipelineConfig` là một bản ghi tập hợp tham số. `dataclass` giúp tạo đối tượng dữ liệu mà không phải tự viết mọi phần khởi tạo. `frozen=True` ngăn gán lại trường của đối tượng sau khi tạo, nhằm giảm việc thay cấu hình giữa chừng mà không nhận ra. Nó không tự biến mọi mảng NumPy thành chỉ đọc và không tự kiểm chứng ý nghĩa toán học của tham số.
+
+Các tên nên được truyền bằng từ khóa, ví dụ `PipelineConfig(filter_name="lee", min_area=300)`. Viết theo tên dễ đọc và an toàn hơn khi thêm trường. Giao diện hiện tại xây cấu hình theo thứ tự trường; nếu sửa dataclass cần kiểm tra lại chỗ tạo đối tượng, tránh đẩy nhầm giá trị sang trường kế tiếp.
+
+### 4.2. Ý nghĩa những tham số phải giải thích được
+
+`window_size=5` là chiều cửa sổ lọc, không phải số lần lọc. `num_looks=4` là L dùng trong ước lượng nhiễu của Lee/Kuan; với JPEG này ta không xác nhận đó là số look vật lý gốc. `clip_limit=2` điều khiển giới hạn histogram CLAHE, không chặn pixel ở mức sáng 2. `tile_grid=8` là 8×8 tile, không phải tile kích thước 8×8 pixel.
+
+`min_area=300` loại vùng nhỏ hơn 300 pixel sau các bước hình thái. `min_contrast=0.10` đòi hỏi chênh lệch tương phản vùng/nền theo công thức C_R đạt mức tối thiểu. `closing_radius=4` tạo phần tử cấu trúc đĩa trong khung 9×9. `adaptive_otsu` bật quy tắc điều chỉnh ngưỡng khi vùng tối ban đầu quá rộng. `manual_threshold` thay ngưỡng tự động bằng ngưỡng người dùng.
+
+Ngưỡng Canny là ngưỡng độ lớn gradient, không phải ngưỡng mức xám Otsu. Không thể dùng cùng một lời giải thích “pixel dưới 90 là dầu” cho cả hai. Thay tham số chỉ tác động phương pháp đang sử dụng nó; đổi L khi chọn median không có ý nghĩa như khi chọn Lee.
+
+### 4.3. Streamlit chạy như thế nào?
+
