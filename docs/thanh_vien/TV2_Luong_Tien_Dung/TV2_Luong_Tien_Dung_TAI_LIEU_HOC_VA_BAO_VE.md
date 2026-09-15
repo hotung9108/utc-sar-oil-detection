@@ -157,3 +157,35 @@ Trong `src/tv2/verification.py`, expected của năm ví dụ là hằng số đ
 
 Cho hai đầu ra x và y cùng kích thước. Delta=x−y; max_abs_error là giá trị lớn nhất của |delta|; MAE là trung bình |delta|; MSE là trung bình delta². Tỷ lệ trùng đếm phần tử bằng nhau chính xác. Mỗi chỉ số nhấn mạnh một kiểu sai khác.
 
+Ví dụ x=[0,0,0,100], y=[0,0,0,90]. Delta=[0,0,0,10]; max error=10; MAE=2,5; MSE=25; tỷ lệ trùng=75%. MSE không bằng MAE và có đơn vị bình phương mức xám. Nếu chỉ nhìn trung bình trên một ảnh lớn, một điểm sai lớn có thể bị pha loãng; max error giúp thấy điểm đó.
+
+Ngược lại, nếu mọi pixel lệch đúng 1 mức xám, tỷ lệ trùng có thể là 0% nhưng sai số vẫn chỉ 1. Tùy quy ước lượng tử hóa, điều đó có thể nằm trong tolerance đã đặt. Không chọn chỉ số chỉ vì nó làm bản cài trông tốt hơn.
+
+## 4. Năm ví dụ tính tay phải hiểu từ đầu đến cuối
+
+### 4.1. HE 4×4: histogram thành bảng ánh xạ
+
+Xét ảnh có bốn mức 0,1,2,3; mỗi mức xuất hiện bốn lần. Tổng N=16. Histogram tại bốn mức là [4,4,4,4], CDF là [4,8,12,16]. Phiên bản HE đang cài trừ CDF dương đầu tiên bằng 4, rồi chia N−CDF_min=12 và nhân 255.
+
+```text
+LUT(0) = round((4 - 4) / 12 * 255) = 0
+LUT(1) = round((8 - 4) / 12 * 255) = 85
+LUT(2) = round((12 - 4) / 12 * 255) = 170
+LUT(3) = round((16 - 4) / 12 * 255) = 255
+```
+
+LUT là bảng tra: pixel đầu vào 2 được thay bằng 170. Không cần tìm lại histogram cho từng pixel. Mục đích là trải các mức đang dùng ra dải sáng rộng hơn. Ảnh hằng là trường hợp riêng; chương trình giữ nguyên để tránh mẫu số bằng 0 và tránh tạo tương phản giả.
+
+**Hỏi sâu:** Vì sao công thức HE cơ bản trong sách đôi khi không trừ CDF_min? Có nhiều quy ước ánh xạ. Kiểm chứng phải bám đúng biến thể đã cài; không trộn một công thức với expected của công thức khác.
+
+### 4.2. Lee: tâm 200 giữa tám pixel 100
+
+Tạo ảnh 5×5 đều 100, tâm bằng 200; xét cửa sổ 3×3 quanh tâm. Tổng=8×100+200=1000, nên μ=1000/9≈111,111. Tổng bình phương=8×10000+40000=120000; E[I²]=120000/9. Phương sai v=E[I²]−μ²=80000/81≈987,654.
+
+Với L=4, nhiễu ước lượng μ²/L≈3086,420, lớn hơn v. Công thức K=clip(1−noise_var/v,0,1) cho K=0. Kết quả tâm μ+K×(200−μ)=μ, làm tròn thành 111.
+
+Đây là ví dụ cho thấy bộ lọc coi dao động trong cửa sổ là phần nên làm mượt theo giả định đã chọn. Không suy ra mọi xung 200 trong mọi ngữ cảnh đều là nhiễu. Nếu đó là một điểm sáng thật cần giữ, bộ lọc có thể làm mất nó.
+
+**Hỏi sâu:** Nếu hai bản cùng cho 111 ở tâm, đã chứng minh toàn ảnh đúng chưa? Chưa. Mép ảnh dùng cửa sổ có padding, và các cửa sổ khác có thống kê khác; cần thêm ca biên và nhiều kiểu ảnh.
+
+### 4.3. Sobel: từ hai đạo hàm đến độ lớn gradient
