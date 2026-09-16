@@ -168,3 +168,37 @@ w_space = exp(-distance^2 / (2*sigma_s^2))
 w_range = exp(-(neighbor-center)^2 / (2*sigma_r^2))
 w = w_space * w_range
 output = sum(w * neighbor) / sum(w)
+```
+
+Với tâm 100, sigma_r=25, hàng xóm 102 có w_range≈0,9968, hàng xóm 200 có w_range≈0,000335. Nếu cùng khoảng cách không gian, pixel 200 được trộn rất ít hơn, nên biên sáng–tối có thể giữ tốt hơn Gaussian. Đây là cơ chế “giữ biên”, không phải bảo đảm nhận ra biên dầu thật.
+
+sigma_r rất lớn khiến chênh lệch cường độ ít bị phạt; bilateral gần với lọc không gian hơn. sigma_r rất nhỏ giữ pixel khác tâm rất yếu, có thể giữ cả nhiễu. Bản custom dùng cửa sổ vuông; đối chứng OpenCV là biến thể có footprint khác, nên kết quả được đánh dấu DESCRIPTIVE.
+
+## 4. Lee, Kuan và Frost: thích nghi với thống kê cục bộ
+
+### 4.1. Lee là gì, dùng để làm gì?
+
+Lee là bộ lọc ước lượng cường độ dựa trên mean và variance trong cửa sổ. Ý tưởng là trộn mean cục bộ với pixel gốc: nếu dao động quan sát chủ yếu được giải thích bởi nhiễu theo mô hình, kéo pixel về mean; nếu còn biến thiên đáng kể, giữ lại nhiều hơn giá trị gốc.
+
+Trong code, μ là mean, v=max (E[I²]−μ²,0), L là `num_looks`, noise_var=μ²/L. Trọng số K bị chặn trong [0,1], rồi đầu ra bằng μ+K×(I−μ). K=0 cho mean; K=1 cho pixel gốc. Phần bảo vệ mẫu số nhỏ tránh chia 0.
+
+```text
+noise_var = mu^2 / L
+K = clip(1 - noise_var / max(v, epsilon), 0, 1)
+filtered = mu + K * (input - mu)
+```
+
+Đây là công thức triển khai của dự án, không phải khẳng định mọi phần mềm gọi “Lee” đều có cùng bước ước lượng nhiễu. Nên đọc `custom_lee_filter` để giải thích đúng biến thể đang bảo vệ.
+
+### 4.2. Ví dụ Lee chi tiết và ảnh hưởng của L
+
+Cửa sổ 3×3 có tám 100 và tâm 200: μ=1000/9≈111,111; E[I²]=120000/9; v=80000/81≈987,654. L=4 cho noise_var≈3086,420, nên K=0 và đầu ra tâm 111. Kết quả này được kiểm trong ví dụ số thật của repo.
+
+Ví dụ thống kê minh họa khác: giả sử một cửa sổ có μ=100, v=10000, L=4 và pixel đang xét 200. noise_var=2500, K=0,75; đầu ra 100+0,75×100=175. Khi v tăng tương đối so với nhiễu ước lượng, bộ lọc giữ nhiều pixel gốc hơn.
+
+Giữ μ, v cố định, tăng L làm μ²/L nhỏ đi, thường làm K lớn hơn và giảm mức kéo về mean. Vì vậy nói “tăng L thì luôn làm mượt hơn” là ngược với công thức đang cài. Với JPEG này, L là tham số mô hình được đặt, chưa được xác nhận là số look vật lý của dữ liệu gốc.
+
+### 4.3. Kuan khác Lee ở đâu?
+
+Kuan cũng phối hợp mean và pixel gốc nhưng dùng hệ số biến thiên. Code đặt Cu²=1/L, Ci²=v/max (μ², epsilon); W=clip((1−Cu²/max (Ci², epsilon))/(1+Cu²),0,1). Đầu ra là μ+W×(I−μ).
+
