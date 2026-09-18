@@ -166,3 +166,36 @@ Nếu pixel gốc 100 và bản mờ 90, chi tiết 10; k 1 cho 110, k 2 cho 120
 Laplacian là đạo hàm bậc hai. Kernel 4 láng giềng tâm−4 cho đáp ứng L=trên+dưới+trái+phải−4×tâm. Làm nét dùng f−alpha×L. Nếu tâm 120, bốn láng giềng 100, L=400−480=−80; alpha 0,5 cho 160. Dấu trong công thức phụ thuộc kernel tâm âm hay dương; không đổi dấu tùy ý.
 
 LoG là Laplacian of Gaussian, dùng đạo hàm bậc hai đã gắn với làm mượt Gaussian để tìm điểm đổi dấu. Code tạo kernel theo sigma, trừ mean để tổng gần 0, tính đáp ứng rồi tìm các cặp láng giềng đối diện có tích âm và chênh lệch vượt threshold. Đây là đầu ra biên, không phải ảnh làm nét.
+
+Ví dụ hai đáp ứng−6 và+7 cho tích âm, chênh 13; nếu threshold 4 thì đạt. Hai đáp ứng−0,00000000001 và+0,00000000001 có thể chỉ do sai số; code ép đáp ứng có trị tuyệt đối<1e−9 về 0 để tránh coi đó là biên vật lý. Hai số cùng dấu dù chênh lớn chưa đáp ứng điều kiện zero-crossing này.
+
+## 4. Canny: tại sao cần nhiều bước thay vì chỉ threshold Sobel?
+
+### 4.1. Làm mịn rồi tính gradient
+
+Canny kết hợp giảm nhiễu, định hướng biên, làm mảnh và nối biên có điều kiện. Trong hàm hiện tại, ảnh được làm mịn Gaussian 5×5 với sigma mặc định 1,2 trước Sobel. Bước này giảm đáp ứng do dao động nhỏ nhưng cũng có thể làm yếu biên mảnh; sigma là một đánh đổi.
+
+Hàm tính magnitude bằng `np.hypot(gx,gy)` từ đạo hàm float. Nếu chặn về 255 trước bước sau, hai độ lớn 300 và 600 đều thành 255, làm mất quan hệ cần dùng để xác định điểm mạnh nhất và threshold.
+
+### 4.2. Non-maximum suppression là gì?
+
+NMS chỉ giữ điểm có magnitude không nhỏ hơn hai láng giềng dọc theo hướng gradient. Gradient chỉ hướng thay đổi nhanh nhất, thường vuông góc với đường biên; so theo hướng đó giúp giảm một dải đáp ứng dày về các điểm cực đại.
+
+Ví dụ magnitude theo hướng đang xét là [10,30,20]. Điểm 30 được giữ; điểm 20 sẽ bị loại nếu láng giềng 30 mạnh hơn. Nếu hai điểm bằng nhau, code dùng >= nên có thể giữ cả điểm bằng nhau trong một plateau; đừng hứa mọi biên luôn mảnh đúng 1 pixel trong mọi trường hợp.
+
+Code lượng tử hóa góc thành bốn nhóm. Với quy ước Gx/Gy hiện tại, nhóm 0 so trái/phải,90 so trên/dưới,45 so trên-trái/dưới-phải,135 so trên-phải/dưới-trái. Nên đối chiếu các mảng trong thân hàm; một chú thích cũ có thể không đủ làm bằng chứng về cặp thực sự được dùng.
+
+### 4.3. Ngưỡng kép và hysteresis dùng để làm gì?
+
+Ngưỡng cao xác định biên mạnh; ngưỡng thấp giữ các điểm yếu có khả năng là phần tiếp nối của biên mạnh. Chỉ threshold cao sẽ làm đứt cạnh; chỉ threshold thấp sẽ giữ nhiều nhiễu. Hysteresis giữ điểm yếu nếu nối được tới một điểm mạnh qua các điểm yếu/mạnh theo 8 hướng.
+
+Ví dụ high 90, low 35: đoạn magnitude [100,60,50] liên thông có một điểm mạnh rồi hai điểm yếu, nên có thể giữ cả chuỗi. Một đốm 60 đứng riêng không nối tới điểm mạnh sẽ bị loại. Các con số là magnitude sau NMS, không phải mức xám của ảnh ban đầu.
+
+Code dùng hàng đợi BFS: đưa tất cả điểm mạnh vào queue, lấy từng điểm ra và thêm láng giềng yếu chưa thăm. `visited` ngăn duyệt lặp/vòng lặp. Đây là thuật toán đồ thị cổ điển, không phải học mô hình.
+
+### 4.4. Các trường hợp biên phải kiểm
+
+Ảnh hằng có magnitude 0. Khi low=high=0, điều kiện chỉ `>=0` sẽ nhận mọi pixel; code còn yêu cầu nms>0 nên ảnh hằng không biến thành toàn biên. Hàm từ chối low>high vì khi đó khái niệm yếu/mạnh không còn phù hợp.
+
+Hàm có nhánh tự chọn threshold từ trung vị nếu truyền None; nhưng pipeline / demo mặc định truyền 35 và 90. Vì vậy không được nói mặc định demo đang “tự học ngưỡng Canny theo mỗi ảnh”. Ngay cả nhánh tự tính ngưỡng cũng chỉ là quy tắc thống kê, không phải ML.
+
