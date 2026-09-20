@@ -163,3 +163,36 @@ TV5 cần ghi kích thước, số ảnh, nhãn, nguồn, bản sao và thiếu 
 
 ## 4. Sáu chỉ số xử lý ảnh: định nghĩa, ví dụ và giới hạn
 
+### 4.1. ROI và ENL
+
+ROI là vùng quan tâm được chọn để đo. ENL =μ²/v, với μ là mean và v là variance trong ROI. Nếu ROI là vùng tương đối đồng nhất, dao động thấp hơn so với mean có thể gợi ý speckle đã giảm. Nó không đếm trực tiếp số look vật lý của JPEG.
+
+Ví dụ ROI mean 100, variance 400 cho ENL 25. Sau lọc, nếu mean vẫn 100 và variance 100 thì ENL 100. Tuy nhiên một bộ lọc xóa hết cả chi tiết cũng có thể làm variance rất nhỏ và ENL rất lớn. Vì vậy ENL cao chỉ có ý nghĩa khi ROI và mục tiêu giữ chi tiết được kiểm.
+
+Mặc định code lấy hàng 20:80, cột 20:80 nếu ảnh đủ lớn, tức ROI 60×60 trên ảnh 400×400. Đây là tọa độ cố định, không phải một bước tự nhận diện biển sạch. Nếu kích thước nhỏ<=20, code dùng toàn ảnh. Khi variance <1e−8, trả 999 như giá trị quy ước, không phải số đo vật lý chính xác 999 look. ROI tự truyền phải hợp lệ và không rỗng; không quảng cáo mọi ROI đều tự được kiểm.
+
+### 4.2. SSI: tỷ lệ biến thiên trước và sau lọc
+
+Hệ số biến thiên CV = std / mean. SSI = CV_sau/ CV_trước. Nếu mean trước/sau 100, std trước 20 và std sau 10, thì CV trước 0,2, CV sau 0,1, SSI 0,5. Nó nói mức dao động tương đối giảm một nửa theo cách đo, không nói 50% pixel nhiễu đã được loại chính xác.
+
+SSI <1 có thể phù hợp với làm mượt, nhưng cũng có thể do mất cấu trúc thật. Nó được tính trên toàn ảnh trong hàm hiện tại, nên biên/vệt cũng ảnh hưởng std. Nếu mean hoặc std ban đầu quá nhỏ, code trả 1 để tránh chia không ổn định; số 1 khi đó không phải bằng chứng lọc không có tác dụng.
+
+### 4.3. RMS contrast
+
+RMS contrast trong repo là độ lệch chuẩn mức xám: căn của trung bình (I−μ)². Dãy [80,120] mean 100 cho RMS 20; dãy [90,110] cho RMS 10. Nó đo mức trải cường độ toàn cục.
+
+Tăng RMS có thể làm chi tiết dễ phân biệt hơn, nhưng nhiễu cũng tăng RMS. Giảm RMS có thể là lọc thành công hoặc mất tương phản vệt. Không kết luận cứ lớn hơn là tốt hơn nếu chưa xác định đang đánh giá tăng cường hay khử nhiễu và ảnh nào được đo.
+
+### 4.4. Entropy histogram
+
+Entropy H=−sum (p_i× log2 (p_i)), trong đó p_i là tỷ lệ pixel mức i; bỏ các p_i=0 để tránh log 0. Ảnh hằng chỉ có một mức với xác suất 1 nên H 0. Hai mức xuất hiện bằng nhau có H 1 bit. Histogram đều trên 256 mức có H 8 bit.
+
+Entropy mô tả độ đa dạng của mức xám, không hiểu vị trí hoặc ý nghĩa. Ảnh nhiễu ngẫu nhiên có thể entropy cao nhưng không hữu ích hơn. Hai ảnh hoán vị pixel có cùng histogram/ entropy trong khi cấu trúc khác hoàn toàn. Không gọi entropy tăng là “thông tin dầu tăng” nếu chưa có bằng chứng khác.
+
+### 4.5. AMBE: khác biệt mean
+
+AMBE =| mean_sau− mean_trước|, đo mức thay đổi độ sáng trung bình. Ví dụ mean 100→110 cho AMBE 10. AMBE 0 chỉ nói hai mean bằng nhau. Hai dãy [80,120] và [0,200] đều mean 100 nhưng tương phản/chi tiết thay đổi mạnh; AMBE vẫn 0.
+
+Chỉ số này hữu ích khi muốn theo dõi độ sáng chung sau tăng cường, không phải độ giống ảnh ở từng pixel. Khi CLAHE làm mean đổi, cần giải thích đó là tác dụng biến đổi histogram, không mặc định coi mọi thay đổi mean là lỗi cài đặt.
+
+### 4.6. EPI: tổng đáp ứng Laplacian trước/sau
