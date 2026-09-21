@@ -190,3 +190,36 @@ Ngưỡng Canny là ngưỡng độ lớn gradient, không phải ngưỡng mứ
 
 ### 4.3. Streamlit chạy như thế nào?
 
+Streamlit chạy file Python để tạo giao diện. Khi một widget thay đổi, script thường chạy lại từ trên xuống. Vì vậy biến được tạo trong lần chạy không tự là nơi lưu lâu dài. `st.sidebar` bố trí điều khiển, `st.selectbox` nhận lựa chọn, `st.image` trình bày ảnh và `st.download_button` cung cấp byte để trình duyệt tải xuống.
+
+Mã hiện tại đọc ảnh, xử lý ảnh được chọn và vẽ kết quả trong lượt chạy. Nó không huấn luyện mô hình và không mặc nhiên chạy cả dataset khi đổi một slider. Các lựa chọn Kaggle liệt kê file trong Class_0 / Class_1 để người dùng có thể chọn bất kỳ ảnh nào.
+
+**Điểm quan trọng:** Nếu có file upload, chương trình ưu tiên byte upload thay vì file đang chọn trong selectbox. Muốn quay lại ảnh Kaggle phải xóa upload. Nếu không biết quy tắc này, người trình bày có thể tưởng đổi tên ảnh nhưng hình không đổi do thuật toán bị lỗi.
+
+### 4.4. Vì sao cần lưu cả cấu hình, không chỉ ảnh đẹp?
+
+Hai ảnh kết quả khác nhau có thể do input khác, bộ lọc khác, ngưỡng khác hoặc phiên bản code khác. PNG một mình không nói được nguyên nhân. JSON từ demo lưu `config`, `metrics`, `stats` giúp biết các giá trị đã dùng. Khi so sánh, phải giữ các yếu tố còn lại cố định và thay đúng một biến.
+
+Demo hiện có nút tải `enhanced.png`, `boundary.png`, `mask.png` khi có mask, và `sar_result.json`. `overlay` được hiển thị nhưng chưa có nút tải riêng trong mã hiện tại. Những file tải về do trình duyệt quyết định thư mục đích; không tự ghi vào `results/` của repo.
+
+### 4.5. Bài thực hành có thể tự chạy
+
+Từ gốc repo, mở Python sau khi cài môi trường và chạy đoạn sau. Mục đích là tách thuật toán khỏi UI để kiểm tra một tính chất của thiết kế.
+
+```python
+import numpy as np
+from src.pipeline import PipelineConfig, process_image
+from src.utils import load_sar_image
+a = load_sar_image("kaggle/data/Class_1/class_1_00013.jpg")
+r0 = process_image(a, PipelineConfig(sharpening_name="none"))
+r1 = process_image(a, PipelineConfig(sharpening_name="unsharp"))
+print(np.array_equal(r0["mask"], r1["mask"]))
+```
+
+Kết quả mong đợi là True vì nhánh phân đoạn tách khỏi sharpening. Hãy kiểm thêm `displayed` và các metrics: chúng có thể khác. Nếu mask khác, kiểm các tham số và code trước khi sửa đáp án mong đợi của bài thử.
+
+## 5. Kiểm tra đầu vào và xử lý lỗi
+
+### 5.1. Vì sao validation là một phần của thuật toán thực tế?
+
+Công thức thường giả định ảnh có kích thước hợp lệ và giá trị hữu hạn. Phần mềm phải kiểm tra giả định ấy. Một mảng 3 chiều, ảnh rỗng hoặc chứa NaN có thể làm phép tính trả giá trị vô nghĩa mà không dừng đúng nơi gây lỗi. Báo lỗi sớm giúp người dùng biết phải sửa đầu vào, không nhận một mask tưởng là hợp lệ.
