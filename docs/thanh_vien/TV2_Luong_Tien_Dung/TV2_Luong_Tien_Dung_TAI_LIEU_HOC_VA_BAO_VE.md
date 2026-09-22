@@ -189,3 +189,35 @@ Với L=4, nhiễu ước lượng μ²/L≈3086,420, lớn hơn v. Công thức
 **Hỏi sâu:** Nếu hai bản cùng cho 111 ở tâm, đã chứng minh toàn ảnh đúng chưa? Chưa. Mép ảnh dùng cửa sổ có padding, và các cửa sổ khác có thống kê khác; cần thêm ca biên và nhiều kiểu ảnh.
 
 ### 4.3. Sobel: từ hai đạo hàm đến độ lớn gradient
+
+Xét ma trận 3×3 sau và tính tại tâm theo kernel Sobel trong code.
+
+```text
+0    0    0
+0  100  100
+0  100  100
+Gx = (0 + 2*100 + 100) - (0 + 2*0 + 0) = 300
+Gy = (0 + 2*100 + 100) - (0 + 2*0 + 0) = 300
+```
+
+Độ lớn thực là sqrt(300 ²+300 ²)≈424,264. Điều này giải thích tại sao gradient cần số thực và vì sao 255 không phải giới hạn toán học của đạo hàm. Ảnh độ lớn để hiển thị có thể clip về 255; Canny phải giữ/recompute độ lớn từ Gx, Gy trước NMS.
+
+**Hỏi sâu:** Đổi dấu cả Gx và Gy có giữ độ lớn không? Có. Nhưng hướng cần hiểu theo quy ước góc và hệ tọa độ; so signed derivative khác với so magnitude. Kiểm thử không được vô tình bỏ qua một dấu sai khi mục tiêu đang kiểm đạo hàm có hướng.
+
+### 4.4. Hình thái: khối 4×4 trong ảnh 8×8
+
+Đặt một khối vuông đặc 4×4 ở giữa ảnh nhị phân 8×8. Với phần tử cấu trúc vuông 3×3, erosion chỉ giữ những pixel có toàn cửa sổ nằm trong khối. Khối còn 2×2, tức 4 pixel. Dilation mở rộng mỗi phía một pixel, thành 6×6, tức 36 pixel.
+
+Biên trong được tính A−erode (A). Diện tích A là 16; phần lõi là 4; số pixel biên là 12. Đây là cách kiểm chứng trực tiếp rằng biên không phải diện tích vùng. Khối đặt giữa ảnh tránh phụ thuộc mép; muốn kiểm padding phải thêm một khối chạm mép.
+
+### 4.5. Otsu: hai mức 50 và 200
+
+Tạo ảnh 8×8, nửa pixel bằng 50, nửa bằng 200. Với ngưỡng t từ 50 đến 199, lớp tối có trọng số 0,5 và mean =50; lớp sáng có trọng số 0,5 và mean =200. Phương sai giữa lớp là 0,5×0,5×(200−50)²=5625.
+
+Mean toàn ảnh=125, phương sai toàn ảnh cũng bằng 5625, nên η=1. Code quét từ 0 lên và chỉ cập nhật khi có giá trị lớn hơn, nên ngưỡng đầu tiên tối ưu là 50. Dùng điều kiện I<=50 mới giữ đúng nửa tối; nếu dùng I<50 sẽ không giữ pixel nào trong ví dụ này.
+
+**Hỏi sâu:** η=1 có chứng minh ảnh dầu được phân đúng tuyệt đối không? Không. Nó chỉ nói hai nhóm mức xám tách tốt theo tiêu chí đang tính. Nhãn vật lý không xuất hiện trong công thức.
+
+## 5. Tại sao hai cài đặt cùng tên vẫn khác nhau?
+
+### 5.1. Padding và vùng nội thất
