@@ -202,3 +202,37 @@ Giữ μ, v cố định, tăng L làm μ²/L nhỏ đi, thường làm K lớn 
 
 Kuan cũng phối hợp mean và pixel gốc nhưng dùng hệ số biến thiên. Code đặt Cu²=1/L, Ci²=v/max (μ², epsilon); W=clip((1−Cu²/max (Ci², epsilon))/(1+Cu²),0,1). Đầu ra là μ+W×(I−μ).
 
+Với ví dụ μ=100, v=10000, L=4, ta có Ci²=1, Cu²=0,25; W=(1−0,25)/1,25=0,6. Pixel 200 thành 160, khác Lee 175. Khác biệt mẫu số 1+Cu² làm mức giữ chi tiết khác, dù hai bộ lọc cùng dùng moment cục bộ.
+
+**Tại sao tồn tại nhiều bộ lọc?** Chúng biểu diễn các giả định/ước lượng và đánh đổi khác nhau. Tên “thích nghi” không nói một phương pháp luôn tốt nhất; phải so trên cùng input và nêu tiêu chí.
+
+### 4.4. Frost trong repo là biến thể trọng số mũ
+
+Code Frost tính hệ số biến thiên CV =σ/max (μ, epsilon). Với damping=d, khoảng cách không gian r, trọng số là exp(−d× CV ×r), rồi chuẩn hóa trong cửa sổ. Vùng có CV nhỏ có trọng số trải rộng hơn; vùng biến thiên mạnh có trọng số suy giảm theo khoảng cách nhanh hơn.
+
+Ví dụ CV =1, d=2: tâm có trọng số chưa chuẩn hóa 1; pixel cách 1 có e^(−2)≈0,1353; cách 2 có e^(−4)≈0,0183. Sau chuẩn hóa, pixel gần tâm giữ vai trò lớn hơn. Đây là một biến thể dùng CV đúng như code, không tự đồng nhất với mọi công thức Frost khác có thể dùng CV ² hoặc ước lượng khác.
+
+Damping lớn có thể giữ gần tâm nhiều hơn, nghĩa là có thể giữ cả nhiễu ở tâm. Không nói tham số lớn luôn khử nhiễu mạnh hơn. Nếu so tham chiếu, phải dùng cùng công thức trọng số và cùng cửa sổ.
+
+### 4.5. Vì sao cả ba vẫn có thể làm sai mục tiêu ứng dụng?
+
+Mean/ variance không gắn nhãn vật lý cho pixel. Vùng có biên thật và vùng có nhiễu mạnh đều có thể cho variance lớn. Một vệt nhỏ bị trộn vào nền có thể mất sau lọc, còn một vùng lookalike lớn vẫn tồn tại. Bộ lọc giảm dao động không tự giải quyết việc phân biệt dầu.
+
+**Bài suy luận:** Tạo một dải tối rộng 1 pixel trên nền sáng rồi tăng window 3→9. Dự đoán tín hiệu dải sẽ yếu đi ở nhiều bộ lọc; kiểm bằng lát cắt ngang. Đừng chỉ xem thumbnail vì mắt dễ bỏ qua sự mất chi tiết mảnh.
+
+## 5. Log, HE và CLAHE: tăng tương phản không phải tạo thông tin vật lý
+
+### 5.1. Biến đổi log là gì?
+
+Log là phép đổi từng pixel theo s=c× log (1+r). Dấu +1 giúp r=0 có giá trị hữu hạn. Khi c tự động, code chọn c=255/ log (1+max (r_max,1)). Hàm log tăng nhanh tương đối ở vùng nhỏ rồi chậm dần, nên có thể làm vùng tối dễ phân biệt hơn và nén vùng sáng.
+
+Đây là phép biến đổi điểm: một pixel không cần nhìn hàng xóm để tính output, ngoài việc dùng r_max của toàn ảnh khi c tự chọn. Nó không phải bộ lọc speckle. Nếu nhiễu nằm trong vùng tối, log có thể làm nhiễu dễ thấy hơn cùng với tín hiệu.
+
+### 5.2. HE: CDF tạo ánh xạ toàn ảnh
+
+HE đếm histogram, cộng dồn thành CDF rồi tạo LUT. Với code hiện tại, s=round((CDF (r)−CDF_min)/(N−CDF_min)×255). Ảnh hằng có nhánh riêng giữ nguyên. Vì cùng một LUT dùng toàn ảnh, cùng mức r luôn cho cùng mức s bất kể vị trí.
+
+Ví dụ bốn mức 0,1,2,3 có số lượng bằng nhau cho LUT [0,85,170,255]. HE mở rộng khoảng sử dụng mức xám, nhưng không bảo đảm histogram đầu ra phẳng hoàn toàn vì dữ liệu rời rạc và nhiều pixel phải cùng ánh xạ. Nó cũng có thể thay đổi độ sáng trung bình.
+
+**Tại sao HE có hạn chế?** Nếu hai vùng có ánh sáng nền khác nhau, một ánh xạ toàn cục có thể không làm rõ chi tiết của cả hai. Những phần chiếm nhiều pixel có ảnh hưởng lớn lên histogram; chi tiết nhỏ có thể không được cải thiện như mong muốn.
+
