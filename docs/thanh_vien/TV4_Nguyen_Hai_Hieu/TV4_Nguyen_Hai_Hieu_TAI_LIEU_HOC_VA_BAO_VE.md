@@ -199,3 +199,37 @@ Code dùng hàng đợi BFS: đưa tất cả điểm mạnh vào queue, lấy t
 
 Hàm có nhánh tự chọn threshold từ trung vị nếu truyền None; nhưng pipeline / demo mặc định truyền 35 và 90. Vì vậy không được nói mặc định demo đang “tự học ngưỡng Canny theo mỗi ảnh”. Ngay cả nhánh tự tính ngưỡng cũng chỉ là quy tắc thống kê, không phải ML.
 
+### 4.5. Canny chưa tạo diện tích vùng dầu
+
+Biên có thể đứt, có lỗ hoặc thuộc kết cấu nền. Lấp mọi đường bao Canny thành một vùng là một quyết định bổ sung cần thiết kế và kiểm chứng riêng. Pipeline hiện không làm điều đó; nó trả `mask=None` khi chọn Canny. Giới hạn này giúp tránh một phép đo diện tích không có cơ sở.
+
+## 5. Otsu và quy tắc chọn ảnh phân ngưỡng
+
+### 5.1. Phân ngưỡng là gì?
+
+Phân ngưỡng gán pixel vào hai nhóm theo một số T. Vì mục tiêu là vùng tối, ta dùng I<=T làm foreground. T thấp hơn thường giữ ít pixel tối hơn trên cùng ảnh. Phân ngưỡng không biết hình dạng hoặc bản chất dầu; nó chỉ chia cường độ.
+
+Ngưỡng thủ công là số do người dùng đặt. Otsu tìm số đó bằng một tiêu chí histogram: tối đa hóa mức tách trung bình giữa hai nhóm, có tính đến tỷ lệ pixel mỗi nhóm. Ưu điểm là không phải chọn T bằng mắt cho từng ảnh; hạn chế là tiêu chí mức xám không phải tiêu chí nhãn dầu.
+
+### 5.2. Công thức Otsu và từng ký hiệu
+
+Tại mỗi t, w0 là tỷ lệ pixel<=t, w1=1−w0. μ0 và μ1 là mean của hai nhóm. Điểm giữa lớp là B (t)=w0×w1×(μ0−μ1)². Chọn t có B lớn nhất. Trọng số giúp tránh chỉ chọn một pixel cực đoan có mean rất khác nhưng đại diện quá ít ảnh.
+
+Code tạo histogram 256 bin, CDF xác suất và CDF tổng mức xám, rồi quét 256 ngưỡng. Nó bỏ các ngưỡng làm một nhóm gần rỗng để tránh chia 0. η=max (B)/ variance_toàn_ảnh mô tả khả tách mức xám; ảnh hằng có variance gần 0 được trả(0,0).
+
+### 5.3. Ví dụ hai mức và điểm dễ sai ở endpoint
+
+Ảnh có một nửa 50, một nửa 200: mean 125, variance 5625. Với t 50..199, hai nhóm đều 0,5 và chênh mean 150; B=5625, η 1. Code giữ ngưỡng tối ưu đầu tiên là 50. Điều kiện <=50 giữ đúng nửa tối; <50 làm mất hết nửa đó.
+
+η 1 chỉ nói histogram có hai nhóm rõ, không chứng minh một nhóm là dầu. Một hình vẽ đen–trắng không liên quan biển cũng có thể cho khả tách cao.
+
+### 5.4. Vì sao dự án có reference_image?
+
+CLAHE có thể đổi histogram làm vùng tối bị mở rộng. Hàm nhận cả ảnh enhanced và ảnh filtered làm reference. Nếu tỷ lệ tối của enhanced>30% trong khi reference<=30%, hoặc η_reference lớn hơn η_enhanced hơn 0,05, code chọn reference làm ảnh phân ngưỡng; nếu không chọn enhanced. Đây là quy tắc dự án, không phải một định lý của Otsu.
+
+Trong chế độ tự động, nếu vùng tối ban đầu của ảnh đã chọn>35%, code giảm T một lượng delta=max (round(0,10×(mean_sáng− mean_tối)),3), không xuống dưới 1. Mục đích là thu hẹp vùng tối quá rộng; mặt trái là có thể bỏ vùng dầu thật rộng hoặc mờ. Khi dùng ngưỡng thủ công, bước giảm tự động này không áp dụng.
+
+Với manual threshold, ảnh để threshold là enhanced, còn ảnh đo tương phản vẫn ưu tiên reference. Cần phân biệt ảnh dùng để tạo mask và ảnh dùng để đo C_R. Một câu “tất cả tính trên CLAHE” là sai với pipeline hiện tại.
+
+## 6. Hình thái học và liên thông: từ pixel rời đến vùng
+
