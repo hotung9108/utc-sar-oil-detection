@@ -196,3 +196,37 @@ AMBE =| mean_sau− mean_trước|, đo mức thay đổi độ sáng trung bìn
 Chỉ số này hữu ích khi muốn theo dõi độ sáng chung sau tăng cường, không phải độ giống ảnh ở từng pixel. Khi CLAHE làm mean đổi, cần giải thích đó là tác dụng biến đổi histogram, không mặc định coi mọi thay đổi mean là lỗi cài đặt.
 
 ### 4.6. EPI: tổng đáp ứng Laplacian trước/sau
+
+Code tính Laplacian 5 điểm của ảnh gốc và ảnh xử lý, lấy tổng trị tuyệt đối mỗi ảnh rồi lấy tỷ số sau/trước. Nếu tổng trước 1000, sau 800 thì EPI 0,8. Nó gợi ý tổng mức đáp ứng tần số cao/biên đã giảm, nhưng không so vị trí từng đường biên.
+
+Hai ảnh có cạnh ở chỗ khác nhau vẫn có thể cùng tổng Laplacian và EPI 1. Nhiễu mới cũng có thể bù tổng đáp ứng bị mất ở vệt. Vì vậy EPI gần 1 không chứng minh biên dầu được giữ đúng. Nếu mẫu số gần 0, code trả 1; đây cũng là quy ước bảo vệ cần nói rõ.
+
+Padding của phép Laplacian trong metrics là symmetric để khớp reference SciPy. Không tự thay thành reflect vì thấy các bộ lọc khác dùng reflect: đó là một thay đổi định nghĩa ở mép cần kiểm lại.
+
+### 4.7. Chỉ số đang đo ảnh nào?
+
+Trong pipeline, metrics so `raw` với `displayed`, là ảnh sau lựa chọn làm nét. Do đó bật unsharp có thể làm entropy / RMS / EPI đổi dù mask không đổi. Trong thí nghiệm so lọc, enhancement được đặt none để tập trung vào đầu ra lọc. Đọc config và entrypoint trước khi gắn tên “chất lượng bộ lọc” cho một cột.
+
+Mean/ std /count trong bảng summary là thống kê qua nhiều hàng ảnh, không phải mean / variance pixel bên trong công thức ENL /Lee. Hai cấp thống kê này có ý nghĩa khác nhau. Pandas std tổng hợp dùng quy ước mẫu mặc định, còn `np.var`/`np.std` trên ảnh trong các hàm đang dùng quy ước chia N.
+
+## 5. Thiết kế thí nghiệm để câu trả lời có căn cứ
+
+### 5.1. Biến độc lập, biến đo và yếu tố giữ cố định
+
+Biến độc lập là thứ ta chủ động thay, như loại lọc hoặc clip. Biến đo là kết quả ta ghi, như ENL, diện tích hay thời gian. Yếu tố giữ cố định gồm ảnh, kích thước, code và các tham số còn lại. Nếu thay nhiều thứ cùng lúc, không thể biết nguyên nhân riêng của thay đổi.
+
+Thí nghiệm so lọc hiện dùng 8 lựa chọn kể cả none trên 10 ảnh, tổng 80 hàng. Khảo sát CLAHE dùng 5 clip×3 grid×10 ảnh=150 hàng. Nhiễu dùng 4 mức sigma kể cả 0×6 phương pháp biên×10 ảnh=240 hàng. Ca lỗi dùng 00013 và 5 ảnh biển, có/không CLAHE, tổng 12 hàng. Các số hàng phải phù hợp thiết kế, không chỉ nhìn CSV tồn tại.
+
+### 5.2. Seed và nhiễu tổng hợp
+
+Seed 2026 giúp lặp lại chuỗi số giả ngẫu nhiên trong cùng quy trình. Mỗi ảnh/mức sigma tạo một ảnh nhiễu cộng Gaussian rồi các phương pháp biên dùng cùng ảnh đó, giúp so công bằng hơn ở điều kiện ấy. Tuy nhiên chỉ có một realization cho mỗi trường hợp; chưa có đủ lặp để mô tả đầy đủ độ biến thiên theo nhiễu.
+
+Nhiễu Gaussian cộng không thay thế hoàn toàn speckle nhân của SAR. Thí nghiệm kiểm độ nhạy khi có dao động bổ sung, không chứng minh khả năng khử mọi speckle vật lý. Sau cộng nhiễu có clipping và làm tròn về 8 bit, nên phân bố cuối cũng chịu ảnh hưởng các bước này.
+
+### 5.3. Per-image trước, summary sau
+
+Hàng theo ảnh giúp tìm ca nào tốt/xấu, kiểm số mẫu và tái tính tổng hợp. Summary giúp nhìn xu hướng nhưng có thể che một số ca hỏng nặng. Luôn giữ bảng chi tiết thay vì chỉ chụp một con số trung bình.
+
+Một độ lệch chuẩn lớn nghĩa các hàng khác nhau nhiều trong phép đo; không tự chứng minh code không ổn định. Có thể ảnh có cấu trúc khác nhau. Muốn tách biến thiên do máy chạy và do ảnh, cần thiết kế lặp phù hợp, không trộn hai nguyên nhân.
+
+### 5.4. Ca thất bại cần được giữ lại
