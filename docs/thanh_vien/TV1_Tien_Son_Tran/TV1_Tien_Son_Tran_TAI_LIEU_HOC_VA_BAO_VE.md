@@ -223,3 +223,35 @@ Kết quả mong đợi là True vì nhánh phân đoạn tách khỏi sharpenin
 ### 5.1. Vì sao validation là một phần của thuật toán thực tế?
 
 Công thức thường giả định ảnh có kích thước hợp lệ và giá trị hữu hạn. Phần mềm phải kiểm tra giả định ấy. Một mảng 3 chiều, ảnh rỗng hoặc chứa NaN có thể làm phép tính trả giá trị vô nghĩa mà không dừng đúng nơi gây lỗi. Báo lỗi sớm giúp người dùng biết phải sửa đầu vào, không nhận một mask tưởng là hợp lệ.
+
+`gray_image` kiểm tra 2 chiều, không rỗng, mọi giá trị hữu hạn và trong [0,255], rồi đổi sang uint8. Hàm này không tự cân bằng sáng, không tự chuẩn hóa một ảnh 16 bit, và việc ép float sang uint8 có thể cắt phần thập phân. Không được quảng cáo nó là bộ nhập mọi loại ảnh khoa học.
+
+`odd_window` từ chối cửa sổ âm, chẵn hoặc không nguyên. `positive` kiểm tra một số thực hữu hạn lớn hơn 0. Những kiểm tra này bảo vệ các trường hợp phổ biến; không có nghĩa toàn bộ tổ hợp tham số bất thường của mọi hàm trong dự án đều đã được chứng minh an toàn.
+
+### 5.2. Lỗi đọc ảnh khác lỗi xử lý ảnh
+
+File không tồn tại là lỗi đường dẫn. File có tồn tại nhưng không giải mã được là lỗi nội dung/định dạng. File đọc được nhưng shape không phù hợp là lỗi hợp đồng đầu vào. Bộ lọc chạy xong nhưng phát hiện nhầm là lỗi chất lượng phương pháp, không phải lỗi mở file. Trưởng nhóm cần phân loại được để giao đúng người xử lý.
+
+Ví dụ `cv2.imdecode` có thể trả None khi byte không phải ảnh hợp lệ. Demo kiểm tra và hiển thị thông báo. Không nên chữa bằng cách biến None thành ảnh đen rồi tiếp tục: người dùng sẽ nhận một kết quả giả là đã xử lý ảnh của họ.
+
+### 5.3. Resize, tọa độ và đơn vị
+
+Demo dùng `INTER_AREA` khi resize; hàm `load_sar_image` dùng `INTER_LINEAR` nếu cần đổi kích thước. Dataset chính vốn 400×400 nên khác biệt này không ảnh hưởng lượt đánh giá hiện tại, nhưng ảnh upload kích thước khác có thể cho pixel đầu vào khác. Muốn so demo với batch trên ảnh ngoài dataset phải thống nhất bước đọc/resize.
+
+Ngưỡng diện tích tính bằng pixel phụ thuộc độ phân giải. Một vùng hình học có thể thành 100 pixel sau thu nhỏ dù trước đó có 400 pixel. Không kết luận cùng min_area=300 áp dụng công bằng cho mọi kích thước ảnh. Hãy lưu kích thước thực sự đã xử lý cùng cấu hình khi mở rộng ứng dụng.
+
+### 5.4. Mảng, bản sao và tác dụng phụ
+
+Mảng NumPy là đối tượng có thể thay đổi. Nếu một hàm sửa ảnh đầu vào tại chỗ, bước sau hoặc ảnh gốc để đối chiếu có thể bị ảnh hưởng. Khi kiểm thử, có thể tạo `before = image.copy()`, gọi hàm rồi so `image` với `before`. Một số phép slice tạo view chia sẻ dữ liệu, không phải bản sao độc lập.
+
+**Ví dụ suy luận:** Gán `b=a` không sao chép ảnh; sửa b có thể sửa a. Gán `b=a.copy()` tạo dữ liệu riêng. `frozen=True` của config không giải quyết việc alias mảng. Đây là hai khái niệm khác nhau.
+
+## 6. Tích hợp, kiểm thử và tìm nguyên nhân sai
+
+### 6.1. Unit test, integration test và kiểm tra ứng dụng
+
+Unit test kiểm một phần nhỏ, ví dụ Sobel trên ma trận biết đáp án. Integration test kiểm sự nối các phần, ví dụ đổi sharpening không làm đổi mask. Kiểm tra ứng dụng dùng Streamlit AppTest để chạy file giao diện, đổi chế độ và kiểm kết quả. Cả ba đều hữu ích nhưng không thay thế nhau.
+
+Một hàm lọc đúng không ngăn giao diện truyền sai tham số. Một demo mở thành công không chứng minh phép toán đúng. Một ảnh 00013 hợp lý không chứng minh không có false positive trên Class_0. Vì vậy trưởng nhóm cần nói rõ một lần kiểm chứng bảo vệ điều gì.
+
+### 6.2. Quy trình tìm lỗi theo ảnh trung gian
