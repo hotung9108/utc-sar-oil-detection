@@ -221,3 +221,34 @@ Mean toàn ảnh=125, phương sai toàn ảnh cũng bằng 5625, nên η=1. Cod
 ## 5. Tại sao hai cài đặt cùng tên vẫn khác nhau?
 
 ### 5.1. Padding và vùng nội thất
+
+Nếu sai khác chỉ tập trung ở viền ảnh, hãy kiểm quy tắc đệm trước. `np.pad(..., mode="reflect")` tương ứng cách phản xạ không lặp pixel biên; trong các đối chứng của dự án, SciPy `mirror` và OpenCV `BORDER_REFLECT_101` được chọn khi phù hợp. EPI dùng `symmetric` để khớp cách SciPy reflect của phép Laplacian tham chiếu. Không đổi tên mode theo cảm giác vì tên giữa thư viện không hoàn toàn thống nhất.
+
+Một cách chẩn đoán là so vùng giữa ảnh và toàn ảnh riêng. Nếu giữa khớp nhưng mép lệch, đó là dấu hiệu cần xem padding; chưa đủ để khẳng định nguyên nhân duy nhất. Cuối cùng vẫn phải đọc code và thiết lập đúng hợp đồng, không bỏ mép chỉ để giảm sai số báo cáo.
+
+### 5.2. Dtype, rounding và clipping
+
+Một thư viện có thể trả float còn hàm custom trả uint8. So trực tiếp mà không thống nhất đầu ra có thể đo cả khác biệt lượng tử hóa lẫn khác biệt công thức. Registry chuyển các đầu ra về số thực trước phép trừ để tránh tràn; trong từng reference, việc lượng tử hóa được thiết kế theo phép toán cụ thể.
+
+Ví dụ 100,49 và 100,51 khác nhau 0,02 ở số thực nhưng có thể thành 100 và 101 sau làm tròn. Ngược lại, hai số thực khác nhau có thể cùng làm tròn thành 100. Vì vậy tỷ lệ trùng uint8 không thể thay thế toàn bộ kiểm tra trên đại lượng trung gian khi cần.
+
+### 5.3. Kernel, normalization và footprint
+
+Gaussian cần cùng sigma, kích thước kernel và cách chuẩn hóa. Một kernel bị quên chia tổng trọng số có thể đổi cả độ sáng ảnh hằng. Bilateral cần cùng sigma_s/sigma_r và tập láng giềng; dùng cùng tham số nhưng một bên đĩa, một bên vuông vẫn có thể khác.
+
+Sobel magnitude có thể dùng chuẩn L 1 là |Gx|+|Gy| hoặc L 2 là sqrt (Gx²+Gy²). Với Gx=Gy=3, L 1=6, L 2≈4,243. Đây là khác định nghĩa, không phải sai số số học nhỏ. Khi giải thích reference của Canny, phải biết tham số liên quan đến chuẩn gradient và các bước làm mịn.
+
+### 5.4. Tolerance phải có lý do trước khi xem kết quả
+
+Tolerance là mức sai khác được chấp nhận cho phép kiểm tương đương cụ thể. Một số phép toán nguyên và cùng quy tắc có thể yêu cầu max error=0; một số phép có lượng tử hóa/interpolation cho phép chênh một mức xám. Gradient float hoặc chỉ số thực có thể dùng ngưỡng nhỏ khác. Không có một tolerance đúng cho mọi kiểu đầu ra.
+
+Nếu đang FAIL, quy trình là kiểm đầu vào/tham số/padding/dtype, tìm ca nhỏ tái hiện và giải thích khác biệt. Không tăng tolerance tới mức vừa đủ để hết đỏ rồi gọi là sửa thuật toán. Nếu thực sự là hai biến thể, phải chuyển cách trình bày sang DESCRIPTIVE có lý do, không âm thầm thay chuẩn.
+
+## 6. Đọc và vận hành bộ đối chiếu của dự án
+
+### 6.1. Registry là gì và tại sao hữu ích?
+
+Registry là danh sách mô tả mỗi phép đối chiếu: tên, hàm custom, hàm reference, lời giải thích, nhóm direct/composition/variant và giới hạn sai số. Vòng chạy chung nhận từng mô tả để tạo bảng. Cách này giúp tránh viết 33 đoạn kiểm tra rời rạc với tiêu chí không nhất quán.
+
+Khi đọc một hàng registry, hãy tự phát biểu thành câu: “Tôi đang so đầu ra X của hàm A với đầu ra Y của thư viện B, cùng tham số..., chấp nhận max error..., vì...”. Nếu không thể nói đủ, bạn chưa hiểu phép kiểm mà mình bảo vệ.
+

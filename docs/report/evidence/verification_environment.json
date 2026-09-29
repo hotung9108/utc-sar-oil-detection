@@ -1,0 +1,8 @@
+{
+  "python": "3.13.5",
+  "numpy": "2.5.4",
+  "opencv": "5.0.0",
+  "scipy": "1.18.1",
+  "seed": 2026,
+  "scope": "8 synthetic fixtures + 10 demo images; not dataset segmentation accuracy"
+}
