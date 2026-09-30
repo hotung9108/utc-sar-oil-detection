@@ -236,3 +236,37 @@ Ví dụ bốn mức 0,1,2,3 có số lượng bằng nhau cho LUT [0,85,170,255
 
 **Tại sao HE có hạn chế?** Nếu hai vùng có ánh sáng nền khác nhau, một ánh xạ toàn cục có thể không làm rõ chi tiết của cả hai. Những phần chiếm nhiều pixel có ảnh hưởng lớn lên histogram; chi tiết nhỏ có thể không được cải thiện như mong muốn.
 
+### 5.3. CLAHE gồm những bước nào và vì sao cần từng bước?
+
+CLAHE dùng histogram cục bộ theo tile. Chia tile để mỗi vùng có ánh xạ phù hợp với phân bố của nó; giới hạn histogram để giảm mức khuếch đại quá mạnh; phân phối phần vượt để giữ tổng số đếm; tạo LUT bằng CDF; cuối cùng nội suy giữa các LUT để tránh đường ranh cứng giữa tile.
+
+Với ảnh 400×400 và grid 8×8, mỗi tile 50×50 có 2500 pixel. `clip_limit=2` tạo ngưỡng đếm max (int(2×2500/256),1)=19 cho bước clipping. Con số 2 không phải mức xám và 19 không phải số pixel được phép giữ trong mask dầu.
+
+Phần dư sau clipping được chia đều theo thương và phân phối số lẻ còn lại ở các bin cách nhau. Sau phân phối, một bin có thể lại vượt ngưỡng clip ban đầu; ngưỡng đó điều khiển bước cắt, không phải lời hứa histogram cuối có mọi ô<=ngưỡng.
+
+### 5.4. Ví dụ CLAHE nhỏ để hiểu phép đếm
+
+Để học nguyên lý, dùng histogram đồ chơi 4 bin với 8 pixel: [4,2,1,1], đặt ngưỡng đếm 2. Đây không phải cấu hình 256 bin thật của hàm. Cắt histogram được [2,2,1,1], phần vượt=2. Nếu phân số dư ở bin 0 và 2 theo bước đều, histogram thành [3,2,2,1], vẫn có tổng 8.
+
+CDF mới là [3,5,7,8]. Với thang đồ chơi 0..3, ánh xạ round (CDF×3/8) cho [1,2,3,3]. Phép này cho thấy phân phối phần vượt ảnh hưởng LUT; nó không thể được thay bằng thao tác đơn giản “chặn mọi pixel lớn hơn 2”.
+
+### 5.5. Nội suy LUT là gì?
+
+Một pixel gần ranh tile được ánh xạ bằng sự kết hợp LUT của các tile lân cận. Giả sử cùng mức xám của pixel được bốn LUT ánh xạ thành 40,80,60,100, theo thứ tự trên-trái/trên-phải/dưới-trái/dưới-phải. Với trọng số ngang wx=0,25, hàng trên cho 50, hàng dưới cho 70. Với wy=0,5, đầu ra là 60.
+
+Như vậy kết quả thay đổi mềm theo vị trí thay vì nhảy đột ngột ở đường chia tile. Nội suy không xóa hết nhiễu; nó chỉ tránh một loại hiện tượng không mong muốn do ghép các ánh xạ cục bộ. Code dùng float32 ở các phép nội suy để bám quy ước tham chiếu OpenCV.
+
+### 5.6. Grid, clipping và padding tác động thế nào?
+
+Grid lớn hơn nghĩa nhiều tile hơn và tile nhỏ hơn trên cùng ảnh, chứ không phải mỗi tile rộng hơn. Tile nhỏ thích nghi cục bộ mạnh nhưng thống kê ít pixel hơn, có thể nhạy với nhiễu. Clip lớn thường cho phép histogram tập trung hơn trước tái phân phối, nhưng quan hệ tới số vùng dầu không đơn điệu vì còn Otsu/hình thái/lọc vùng phía sau.
+
+Nếu kích thước không chia hết grid, code dùng padding phản xạ để tạo tile đều. Tuple của custom là (rows, columns); tuple của OpenCV là (columns, rows), cần đảo khi so lưới không vuông. Với grid 8×8, lỗi đảo chiều có thể bị che vì hai số bằng nhau.
+
+**Câu hỏi dừng lại:** Tại sao mắt thấy một vệt nhưng CLAHE làm nhiều đốm nổi lên? Nền không hằng, Lee chưa loại hết biến thiên, CLAHE khuếch đại chênh lệch cục bộ. Đây không phải bằng chứng tạo thêm dầu; cần đo/kiểm vùng ở các bước sau.
+
+## 6. Lọc đồng hình: log, Fourier và tần số không gian
+
+### 6.1. Tần số không gian là gì?
+
+Tần số không gian mô tả mức thay đổi theo vị trí trong ảnh. Vùng sáng thay đổi chậm thuộc thành phần tần số thấp; cạnh sắc hoặc mẫu xen kẽ nhanh có nhiều thành phần tần số cao. “Cao” ở đây nói về tốc độ thay đổi, không có nghĩa pixel sáng hơn. Một đường biên đen–trắng và nhiễu hạt đều có thể chứa tần số cao.
+
