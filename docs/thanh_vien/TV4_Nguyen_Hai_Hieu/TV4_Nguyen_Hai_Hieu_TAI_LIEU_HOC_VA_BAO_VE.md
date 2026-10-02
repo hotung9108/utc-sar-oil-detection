@@ -233,3 +233,37 @@ Với manual threshold, ảnh để threshold là enhanced, còn ảnh đo tươ
 
 ## 6. Hình thái học và liên thông: từ pixel rời đến vùng
 
+### 6.1. Phần tử cấu trúc là gì?
+
+Phần tử cấu trúc B là mẫu nhỏ quy định những vị trí lân cận tham gia phép hình thái. `disk_kernel(r)` giữ các ô có x²+y²<=r² trong khung(2 r+1)×(2 r+1). Đĩa bán kính 2 nằm trong khung 5×5 nhưng không phải cả 25 ô đều bằng 1. Kernel vuông giữ mọi ô; chữ thập chỉ giữ hàng/cột giữa.
+
+Chọn B là chọn thang và hình dạng chi tiết muốn tác động. Kernel lớn có thể loại gai nhỏ/lấp khe rộng hơn, đồng thời làm mất hoặc gộp cấu trúc thật. Không có một kernel “phù hợp nhất” cho mọi vệt chỉ vì hình đĩa nhìn tự nhiên.
+
+### 6.2. Erosion và dilation bằng logic
+
+Erosion giữ pixel nếu tất cả vị trí được B chọn đều thuộc foreground. Với mask nhị phân, đó là AND của các mảng dịch tương ứng. Dilation giữ pixel nếu có ít nhất một vị trí được B chọn là foreground, tương ứng OR trong cài đặt dùng các kernel đối xứng này.
+
+Ví dụ khối 4×4 giữa ảnh 8×8, kernel vuông 3×3: erosion còn 2×2=4 pixel; dilation thành 6×6=36 pixel. Một pixel đứng riêng bị erosion xóa, nhưng dilation biến nó thành một cụm. Vì vậy chỉ dùng dilation để “nối vệt” cũng sẽ làm nhiễu to hơn.
+
+Padding phải khớp mục đích. Code erosion thông thường dùng ngoại vi True như giá trị trung tính, dilation dùng False. Riêng trích biên dùng erosion ngoại vi 0 để thể hiện cả ranh giới chạm khung ảnh. Không áp mặc định của OpenCV mà bỏ qua sự khác biệt này khi đối chiếu.
+
+### 6.3. Opening và closing vì sao không đổi chỗ được?
+
+Opening=erosion rồi dilation. Bước co loại các cấu trúc không chứa được kernel; bước giãn phục hồi một phần kích thước những cấu trúc còn lại. Nó thường loại đốm/gai nhỏ nhưng có thể xóa vệt thật hẹp. Dilation sau đó không thể khôi phục một vùng đã bị xóa sạch ở erosion.
+
+Closing=dilation rồi erosion. Bước giãn có thể nối khe/lấp lỗ nhỏ; bước co thu lại vùng mở rộng. Nếu hai vệt gần nhau bị nối thành một, erosion sau không nhất thiết tách lại. Vì vậy closing không có nghĩa chỉ “vá những chỗ sai” đã biết.
+
+Pipeline mặc định opening bằng đĩa r=2 rồi closing bằng đĩa r=4. Đổi closing_radius về 0 làm closing gần phép đồng nhất với kernel 1×1, nhưng opening r=2 vẫn tồn tại. Đây là lý do có thể còn mất đốm nhỏ dù đã đặt closing 0.
+
+### 6.4. Liên thông 4 và liên thông 8
+
+Hai pixel liên thông 4 nếu có thể đi giữa chúng bằng các bước trên/dưới/trái/phải qua foreground. Liên thông 8 còn cho phép chéo. Với mask[[1,0],[0,1]], có hai vùng nếu dùng 4, một vùng nếu dùng 8. Dự án chọn 8, nên chạm chéo có thể gộp vùng.
+
+Gán nhãn đặt một số nguyên cho mỗi vùng. Số nhãn 1 hay 7 chỉ là tên nhóm, không phải thứ hạng hoặc mức tin cậy. Khi so với thư viện, cần so phân hoạch pixel thành vùng, không đòi số nhãn giống hệt nếu thứ tự đánh số khác.
+
+### 6.5. Run-length union-find hoạt động ra sao?
+
+Run là một đoạn foreground liên tiếp trên một hàng, ví dụ các cột 3..8. Code tìm điểm bắt đầu/kết thúc đoạn từ biến thiên 0→1 và 1→0. Mỗi đoạn được một nhãn tạm; so với các đoạn ở hàng trước. Với liên thông 8, hai khoảng cột cách nhau không quá 1 cũng cần hợp nhất vì có thể chạm chéo.
+
+Union-find quản lý quan hệ các nhãn cùng nhóm. `root` tìm đại diện và nén đường đi để lần sau tìm nhanh hơn; union gộp hai đại diện. Sau khi quét, code quy nhãn tạm về đại diện và đánh số vùng liên tục.
+
