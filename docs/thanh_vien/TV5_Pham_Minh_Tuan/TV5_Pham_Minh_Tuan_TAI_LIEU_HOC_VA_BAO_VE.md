@@ -230,3 +230,36 @@ Hàng theo ảnh giúp tìm ca nào tốt/xấu, kiểm số mẫu và tái tín
 Một độ lệch chuẩn lớn nghĩa các hàng khác nhau nhiều trong phép đo; không tự chứng minh code không ổn định. Có thể ảnh có cấu trúc khác nhau. Muốn tách biến thiên do máy chạy và do ảnh, cần thiết kế lặp phù hợp, không trộn hai nguyên nhân.
 
 ### 5.4. Ca thất bại cần được giữ lại
+
+00013 là ví dụ dễ giải thích vệt chính; sea_surface_01 là ví dụ cho thấy vùng tối không phải dầu vẫn có thể qua quy tắc. Không xóa ca xấu khỏi báo cáo để tăng điểm. Phân tích lỗi cho biết giới hạn nào cần cải tiến: threshold toàn cục, ROI nền, kích thước kernel, ngưỡng vùng hay dữ liệu không đủ.
+
+Khi thay thuật toán, cần chạy lại cả hai lớp để xem giảm FP có làm FN tăng không. Chỉ chạy lại đúng ảnh từng bị sai có thể tạo một sửa phù hợp cục bộ nhưng hỏng nhiều ảnh khác.
+
+## 6. Đánh giá quy tắc vùng tối mà không dùng học máy
+
+### 6.1. Từ mask đến một quyết định cấp ảnh
+
+Sau khi `process_image` kết thúc, hàm `evaluate_one` đặt prediction=1 nếu `slicks_count>0`, ngược lại 0. Đây là quy tắc xác định bằng tay, không phải mô hình được train. Nhãn thư mục đi cùng đường dẫn chỉ được dùng để đối chiếu sau đó, không được truyền vào bộ lọc để học.
+
+Quy tắc này bỏ qua nhiều chi tiết của mask: một pixel vùng ở sai vị trí nhưng vẫn tạo thành phần đạt điều kiện có thể làm ảnh được báo dương. Vì vậy kết quả cấp ảnh không chứng minh đường biên hoặc vùng dầu trong ảnh được tìm đúng vị trí.
+
+### 6.2. Confusion matrix là bảng đếm gì?
+
+| Trường hợp | Ý nghĩa trong bài |
+| --- | --- |
+| TP | Ảnh Class_1 và quy tắc có ứng viên |
+| FN | Ảnh Class_1 nhưng quy tắc không giữ ứng viên |
+| FP | Ảnh Class_0 nhưng quy tắc giữ ứng viên |
+| TN | Ảnh Class_0 và quy tắc không giữ ứng viên |
+
+“Đúng/sai” ở bảng này được hiểu là đối chiếu với nhãn nguồn đã cung cấp, không phải nhóm đã xác minh thực địa từng ảnh. Lượt toàn tập có TP 1639, FN 204, FP 2885, TN 810. Tổng 5538; TP + FN 1843 đúng số ảnh Class_1; FP + TN 3695 đúng số Class_0. Đây là hai kiểm tra cộng phải tự làm được.
+
+### 6.3. Precision và recall trả lời hai câu hỏi khác nhau
+
+Precision= TP /(TP + FP)=1639/4524≈36,23%. Nó trả lời: trong các ảnh bị quy tắc báo có ứng viên dầu, bao nhiêu mang nhãn có dầu? Recall= TP /(TP + FN)=1639/1843≈88,93%. Nó trả lời: trong các ảnh mang nhãn có dầu, có bao nhiêu được quy tắc tìm ứng viên?
+
+Recall cao cùng precision thấp nghĩa quy tắc ít bỏ sót tương đối nhưng báo nhầm nhiều. Đây là thước đo đầu ra của bất kỳ hệ quyết định phù hợp, kể cả ngưỡng cổ điển. Việc dùng phép chia hai số đếm không khiến thuật toán thành ML. Trọng tâm BTL vẫn là xử lý ảnh; hai chỉ số này chỉ giúp nhìn giới hạn của quy tắc ứng viên.
+
+### 6.4. F1, specificity và accuracy
+
+F1=2 TP /(2 TP + FP + FN)≈51,48%, tổng hợp precision / recall theo dạng trung bình điều hòa. Specificity= TN /(TN + FP)≈21,92%, cho biết tỷ lệ ảnh không dầu được giữ đúng âm. Accuracy =(TP + TN)/N≈44,22%.
