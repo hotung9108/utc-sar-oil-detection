@@ -255,3 +255,35 @@ Unit test kiểm một phần nhỏ, ví dụ Sobel trên ma trận biết đáp
 Một hàm lọc đúng không ngăn giao diện truyền sai tham số. Một demo mở thành công không chứng minh phép toán đúng. Một ảnh 00013 hợp lý không chứng minh không có false positive trên Class_0. Vì vậy trưởng nhóm cần nói rõ một lần kiểm chứng bảo vệ điều gì.
 
 ### 6.2. Quy trình tìm lỗi theo ảnh trung gian
+
+Nếu kết quả có nhiều vùng lạ, trước tiên ghi input và config; mở raw để chắc đúng ảnh; xem filtered để đánh giá lọc; xem enhanced để thấy tác động CLAHE; kiểm ngưỡng và ảnh phân ngưỡng; xem mask trước/sau hình thái nếu đang phân tích bằng mã; cuối cùng xem điều kiện area/contrast. Mỗi bước phải trả lời: hiện tượng bắt đầu từ đâu?
+
+Đừng tăng tất cả slider cùng lúc để làm ảnh đẹp rồi gọi là đã sửa lỗi. Cách đó phá khả năng biết nguyên nhân. Một sửa hợp lý phải có ca tái hiện, giải thích thay đổi, kiểm tra lại ca đó và kiểm các tính chất liên quan không bị hỏng.
+
+### 6.3. Thêm một phương pháp đúng cách
+
+Cần có hàm lõi với input / output rõ ràng, thêm tên vào danh sách phương pháp, thêm lựa chọn gọi trong pipeline, làm đối chiếu thư viện hoặc giải thích không có API trực tiếp, rồi cập nhật tài liệu và ca thử phù hợp. Không chỉ thêm một nhãn vào selectbox.
+
+Nếu thay mã trong `src/`, số liệu cũ không tự thành số liệu của thuật toán mới. Hash nguồn sẽ đổi; phải chạy lại thực nghiệm và dựng lại báo cáo khi sử dụng số mới. Chỉ sửa tài liệu học không làm thuật toán thay đổi, nên không cần chạy toàn dataset chỉ để đổi chữ trong PDF.
+
+### 6.4. Hiệu năng phải được giải thích theo phạm vi
+
+UI xử lý một ảnh, còn batch xử lý nhiều ảnh bằng nhiều process. Thời gian đo gồm đọc ảnh và pipeline trong hàm đánh giá, không chỉ Lee. Lần chạy song song có tranh chấp CPU /bộ nhớ; không đem số đó so trực tiếp với một benchmark đơn luồng rồi kết luận tối ưu hơn bao nhiêu lần.
+
+Tối ưu trước hết phải giữ cùng kết quả trong phạm vi đã kiểm. Vector hóa giảm vòng lặp Python nhưng có thể tạo mảng trung gian rất lớn, ví dụ cửa sổ H×W×k×k. Không thể nói “dùng NumPy thì luôn ít RAM”.
+
+## 7. Vai trò trưởng nhóm trong báo cáo và bảo vệ
+
+### 7.1. Báo cáo phải nối được mục tiêu, phép toán và bằng chứng
+
+Một luận điểm tốt có chuỗi: muốn cải thiện điều gì → chọn phép toán vì cơ chế nào → cài ở đâu → kiểm đúng công thức bằng cách nào → kết quả trên nhiều ảnh ra sao → giới hạn còn gì. Nếu chỉ có công thức ở chương 2 và ảnh đẹp ở chương 4 nhưng không nối chúng, người nghe không biết đóng góp của nhóm.
+
+Nguồn chính của báo cáo hiện tại là `docs/report/`; những file tổng quan cũ chỉ là tham khảo lịch sử. PDF 42 trang và slide 18 trang đã có trong repo, nhưng số trang không chứng minh nhóm đã hiểu hoặc mọi yêu cầu hành chính đã hoàn tất. MSSV, chữ ký, đánh giá thật và video còn là phần cần nhóm xử lý theo kế hoạch.
+
+### 7.2. Git, phân công và bằng chứng đóng góp
+
+Commit ghi một trạng thái thay đổi cùng metadata. Tài khoản có quyền collaborator chỉ chứng minh quyền truy cập hiện tại; nó không chứng minh người đó đã viết một phần mã trong quá khứ. Vai trò TV1–TV5 là phân công trách nhiệm học và thực hiện hiện tại.
+
+Nhật ký hồi cứu có thể tập hợp file gốc, chat, bản nháp hoặc commit thật. Phải ghi ngày bổ sung thật. Không gán tác giả hoặc ngày giả để biến bảng mới lập thành lịch sử tám tuần. Số commit cũng không tự là tỷ lệ đóng góp: một commit sửa nhiều lỗi có thể quan trọng hơn nhiều commit chỉnh chữ.
+
+### 7.3. Điều phối câu hỏi chéo
