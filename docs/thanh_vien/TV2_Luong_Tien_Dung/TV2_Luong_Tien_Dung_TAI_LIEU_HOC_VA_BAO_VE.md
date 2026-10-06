@@ -252,3 +252,35 @@ Registry là danh sách mô tả mỗi phép đối chiếu: tên, hàm custom, 
 
 Khi đọc một hàng registry, hãy tự phát biểu thành câu: “Tôi đang so đầu ra X của hàm A với đầu ra Y của thư viện B, cùng tham số..., chấp nhận max error..., vì...”. Nếu không thể nói đủ, bạn chưa hiểu phép kiểm mà mình bảo vệ.
 
+### 6.2. Vì sao có 18 ca?
+
+Có tám ảnh tổng hợp: đen, hằng 127, trắng, ramp, bàn cờ, đường chéo, nhiễu có seed và xung đơn; cộng mười ảnh demo. 33 phép toán/chỉ số nhân 18 ca thành 594 hàng. Các ca tổng hợp không nhằm giống mọi cảnh biển; chúng làm nổi bật tính chất cụ thể khó kiểm từ ảnh thật.
+
+Ảnh hằng kiểm gradient/chia 0; ramp kiểm hướng và tỷ lệ đạo hàm; đường chéo kiểm NMS/liên thông; bàn cờ gây nhiều thay đổi nhanh; xung đơn cho thấy đáp ứng kernel; ảnh nhiễu kích thước 63×67 kiểm cả trường hợp không chia hết lưới. Mười ảnh thật kiểm hành vi trên dữ liệu đang dùng nhưng không thay cho kiểm chứng toàn bộ không gian đầu vào.
+
+### 6.3. Các cột kết quả và cách truy vết
+
+`algorithm` và `case` xác định phép toán/ảnh. `reference` mô tả hàm đối chứng; `kind` nói mức tương đương. `max_abs_error`, `mae`, `mse`, `agreement_pct` mô tả sai khác. `limit` là giới hạn được dùng; `verdict` là kết luận theo giới hạn đó. `custom_ms` và `reference_ms` là thời gian đo trong lần chạy.
+
+Một số bản đồ biên có `edge_f1_exact`: đây là độ trùng pixel giữa hai cài đặt, không phải F1 với mask dầu chuẩn. Dịch một biên đi một pixel có thể làm điểm exact thấp dù mắt nhìn gần nhau. Với hai bản đồ rỗng, quy ước mẫu số bảo vệ trong code cũng cần được hiểu; không suy ra chất lượng ứng dụng chỉ từ một số.
+
+`summary.csv` gộp theo thuật toán và nhóm, còn `per_case.csv` mới cho biết lỗi nằm ở ảnh nào. TV2 phải biết mở hàng chi tiết, không chỉ đọc bảng trung bình cuối cùng.
+
+### 6.4. Chạy đối chiếu thế nào?
+
+```powershell
+uv run python -m src.verification
+uv run python -m src.library_comparison
+uv run --extra dev python -m pytest tests/test_core.py -q
+```
+
+Lệnh đầu chạy cả ví dụ tay và registry; lệnh thứ hai chỉ chạy registry. Đầu ra nằm trong `results/verification/`. Lệnh thoát khác 0 khi có FAIL ở nhóm có giới hạn; phải đọc log và bảng chi tiết trước khi đưa số vào báo cáo.
+
+## 7. Tư duy khoa học khi diễn giải kết quả
+
+### 7.1. Không dùng “khớp thư viện” thay cho chứng minh mọi thứ
+
+Thư viện là đối chứng hữu ích, không phải sự thật vật lý của cảnh biển. Hai cách cài cùng công thức có thể cùng không phù hợp với dữ liệu. Phép ghép reference Lee chia sẻ công thức với custom, nên không độc lập hoàn toàn về lựa chọn mô hình. Ví dụ tay, đối chiếu và phân tích ca lỗi bổ sung cho nhau.
+
+### 7.2. Phản ví dụ giúp hiểu sâu hơn ảnh thành công
+
