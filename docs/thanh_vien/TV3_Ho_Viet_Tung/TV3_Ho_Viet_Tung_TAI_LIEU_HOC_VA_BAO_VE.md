@@ -270,3 +270,37 @@ Nếu kích thước không chia hết grid, code dùng padding phản xạ đ�
 
 Tần số không gian mô tả mức thay đổi theo vị trí trong ảnh. Vùng sáng thay đổi chậm thuộc thành phần tần số thấp; cạnh sắc hoặc mẫu xen kẽ nhanh có nhiều thành phần tần số cao. “Cao” ở đây nói về tốc độ thay đổi, không có nghĩa pixel sáng hơn. Một đường biên đen–trắng và nhiễu hạt đều có thể chứa tần số cao.
 
+Fourier biểu diễn ảnh thành tổ hợp các mẫu dao động. FFT là thuật toán tính biến đổi Fourier nhanh. Dự án dùng primitive `np.fft.fft2`, không tự viết toàn bộ FFT. Tự cài bộ lọc ở đây là xây mặt nạ tần số, áp dụng các bước và chuẩn hóa theo công thức; không phải tuyên bố mọi phép toán số nền tảng đều tự viết.
+
+### 6.2. Vì sao lấy log trước FFT?
+
+Với mô hình nhân đơn giản I=R×η, log có thể chuyển tích thành tổng. Điều đó gợi ý xử lý các thành phần bằng một bộ lọc miền tần số rồi biến đổi ngược. Code thực tế dùng log1p (I), tức log (1+I), để xử lý mức 0 ổn định. Do có+1, JPEG 8 bit và các biến đổi trước đó, không được trình bày đây là một phép tách hoàn hảo R và η.
+
+Các bước: đổi sang float → log1p → FFT2 → fftshift đưa tần số 0 về giữa → nhân H → ifftshift → IFFT2 → lấy phần thực → expm1 → chuẩn hóa min-max về [0,255]. Mỗi bước có vai trò; quên ifftshift làm cách sắp xếp tần số không khớp với biến đổi ngược.
+
+### 6.3. Hiểu mặt nạ H đang cài
+
+```text
+H(D) = (gamma_h - gamma_l) * (1 - exp(-c*D^2/d0^2))
+       + gamma_l
+```
+
+D là khoảng cách tới tâm phổ. Mặc định gamma_l=0,5, gamma_h=1,5, c=1, d0=30. Tại D=0, H=0,5; khi D rất lớn, H tiến tới 1,5. Tại D=d0, H≈1,132. Nghĩa là thành phần thay đổi chậm bị giảm tương đối, thành phần nhanh được nhấn mạnh.
+
+d0 là một thang khoảng cách trên lưới tần số, không phải diện tích dầu hoặc kích thước cửa sổ không gian. Nó phụ thuộc cách biểu diễn phổ và kích thước ảnh. Khi thay kích thước, cùng d0 có thể mang ý nghĩa tương đối khác.
+
+### 6.4. Giới hạn không được bỏ qua
+
+Nếu cả chi tiết thật lẫn nhiễu đều có tần số cao, tăng gain cao cũng tăng nhiễu. Chuẩn hóa min-max cuối làm mất khả năng so độ sáng tuyệt đối với ảnh gốc theo kiểu một đơn vị vẫn giữ cùng ý nghĩa. Trong code, ảnh có khoảng min-max gần 0 được trả về ảnh 0; đó là quy ước của hàm, khác nhánh ảnh hằng của HE giữ nguyên.
+
+**Câu hỏi:** Có thể gọi đồng hình là bộ khử mọi nhiễu nhân không? Không. Nó là phương pháp dựa trên một mô hình và lựa chọn gain; khả năng cải thiện phải được đánh giá trên ảnh/chỉ số/ca lỗi cụ thể.
+
+## 7. So sánh và giải thích tác động của bộ lọc
+
+### 7.1. Đổi một yếu tố để hiểu nguyên nhân
+
+Để so Lee với median, giữ ảnh, kích thước, các bước sau và tham số không liên quan như nhau. Nếu vừa đổi bộ lọc, vừa tăng CLAHE, vừa tăng min_area thì ảnh cuối khác nhưng không thể quy tác dụng riêng cho Lee. Khảo sát có/không một thành phần thường gọi là ablation; trong bài này hiểu đơn giản là bỏ hoặc thay một bước để xem nó thực sự đóng góp gì.
+
+So lọc cần nhìn cả nền lẫn vệt; dùng cùng thang xám khi hiển thị để tránh một ảnh tự được kéo sáng hơn chỉ vì phần mềm vẽ. Lát cắt là dãy cường độ theo một hàng/cột, cho thấy bộ lọc làm giảm dao động nền và làm thay đổi độ sâu/độ rộng vệt ra sao.
+
+### 7.2. Đọc các chỉ số ảnh đúng mức
