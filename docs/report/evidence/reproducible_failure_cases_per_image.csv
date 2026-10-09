@@ -1,0 +1,13 @@
+﻿image,enhancement,candidates,area_pct,contrast
+kaggle/data/Class_1/class_1_00013.jpg,none,1,2.08,0.52
+kaggle/data/Class_1/class_1_00013.jpg,clahe,1,2.08,0.52
+data/sample/sea_surface/sea_surface_01.jpg,none,2,19.31,0.37
+data/sample/sea_surface/sea_surface_01.jpg,clahe,2,19.31,0.37
+data/sample/sea_surface/sea_surface_02.jpg,none,3,31.72,0.282
+data/sample/sea_surface/sea_surface_02.jpg,clahe,3,31.72,0.282
+data/sample/sea_surface/sea_surface_03.jpg,none,0,0.0,0.0
+data/sample/sea_surface/sea_surface_03.jpg,clahe,0,0.0,0.0
+data/sample/sea_surface/sea_surface_04.jpg,none,0,0.0,0.0
+data/sample/sea_surface/sea_surface_04.jpg,clahe,0,0.0,0.0
+data/sample/sea_surface/sea_surface_05.jpg,none,7,15.08,0.112
+data/sample/sea_surface/sea_surface_05.jpg,clahe,4,16.38,0.115

@@ -267,3 +267,36 @@ Run là một đoạn foreground liên tiếp trên một hàng, ví dụ các c
 
 Union-find quản lý quan hệ các nhãn cùng nhóm. `root` tìm đại diện và nén đường đi để lần sau tìm nhanh hơn; union gộp hai đại diện. Sau khi quét, code quy nhãn tạm về đại diện và đánh số vùng liên tục.
 
+**Ví dụ:** Hàng 0 có đoạn [2,3], hàng 1 có đoạn [4,5]. Chúng chạm chéo qua cột 3→4, nên cùng vùng 8. Nếu hàng 1 bắt đầu 5, khoảng cách từ 3 đến 5 là 2, không liên thông trực tiếp giữa hai đoạn này.
+
+Hàm trả tổng số thành phần, ảnh nhãn và danh sách đặc trưng. `min_area` lọc danh sách đặc trưng, không xóa nhãn nhỏ khỏi ảnh nhãn trả về hoặc thay tổng số vùng đã phát hiện. Đây là hợp đồng phải hiểu khi tích hợp.
+
+### 6.6. Trích biên hình thái khác mask thế nào?
+
+Biên trong β (A)=A−erosion (A, B). Với vuông 4×4 vàB 3×3, βcó 12 pixel còn A có 16. Nếu A có lỗ bên trong, biên có thể xuất hiện quanh lỗ chứ không chỉ đường bao ngoài. Độ dày và hình dạng phụ thuộc kernel, raster và cấu trúc; không hứa mọi đường biên trơn/khép kín đúng 1 pixel trong mọi ảnh.
+
+## 7. Lọc vùng bằng diện tích và tương phản
+
+### 7.1. Diện tích là gì và tại sao dùng min_area?
+
+Diện tích pixel là số ô foreground thuộc một thành phần liên thông. `min_area=300` nhằm loại những vùng nhỏ khó phân biệt với đốm; đây là quy tắc thiết kế trên kích thước 400×400. Nó không biết vùng nhỏ nào là dầu thật. Tăng ngưỡng có thể giảm báo nhầm và tăng bỏ sót cùng lúc.
+
+Tỷ lệ diện tích=100×tổng_pixel_được_giữ/(H×W). Ví dụ một mask có 3328 pixel trong 400×400 cho 2,08%. Đây là ví dụ tính phần trăm, không phải đổi sang đơn vị mặt đất. Kết quả hiển thị được làm tròn nên không dùng phần trăm đã làm tròn để khôi phục chính xác số pixel.
+
+### 7.2. Ring nền và C_R là gì?
+
+Ring là phần xung quanh vùng: giãn mask vùng bằng kernel vuông 15×15 rồi bỏ chính mask ấy. Mean của ring được dùng làm μ_nền; mean bên trong là μ_vùng. Với pipeline mặc định, hai mean được đo trên ảnh filtered trước CLAHE để hạn chế việc tự dùng tương phản vừa khuếch đại làm bằng chứng.
+
+C_R=(μ_nền−μ_vùng)/μ_nền khi μ_nền>0,001; nếu nền quá gần 0 thì code gán 0. Nếu ring không có pixel hợp lệ, vùng bị bỏ qua vì không đo được tương phản cục bộ. C_R là tương phản, không phải độ tròn, xác suất dầu hay độ chính xác.
+
+Ví dụ μ_nền 100, μ_vùng 80 cho C_R 0,20, đạt min_contrast 0,10. μ_vùng 95 cho 0,05, không đạt dù diện tích rất lớn. Mọi vùng đều phải qua điều kiện tương phản; diện tích lớn không tạo ngoại lệ.
+
+### 7.3. Một ví dụ quyết định đầy đủ
+
+Giả sử sau opening/closing có vùngA 350 pixel, C_R 0,20; vùngB 200 pixel, C_R 0,40; vùngC 10000 pixel, C_R 0,05. Với min_area 300, min_contrast 0,10: A được giữ, B bị loại do diện tích, C bị loại do tương phản. Chưa có bước nào xác nhận A thực sự là dầu; A chỉ đáp ứng các điều kiện thiết kế.
+
+Nếu tăng min_area 400, cả A cũng mất. Nếu giảm min_contrast 0,04, C có thể được giữ và làm diện tích tăng mạnh. Đó là lý do không đổi nhiều tham số cùng lúc khi muốn giải thích tác dụng.
+
+### 7.4. Những nguồn sai còn tồn tại
+
+Ring có thể chứa vùng tối khác, nên μ_nền không chắc đại diện biển sạch. Vùng chạm mép có ring bị giới hạn. Tham số cố định có thể không phù hợp mọi cảnh. Otsu toàn cục khó với nền không đồng đều. Opening xóa vùng nhỏ thật, closing gộp hai vùng, liên thông 8 gộp chạm chéo. Kết luận ứng viên vẫn có false positive/false negative.
