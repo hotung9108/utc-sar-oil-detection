@@ -263,3 +263,36 @@ Recall cao cùng precision thấp nghĩa quy tắc ít bỏ sót tương đối 
 ### 6.4. F1, specificity và accuracy
 
 F1=2 TP /(2 TP + FP + FN)≈51,48%, tổng hợp precision / recall theo dạng trung bình điều hòa. Specificity= TN /(TN + FP)≈21,92%, cho biết tỷ lệ ảnh không dầu được giữ đúng âm. Accuracy =(TP + TN)/N≈44,22%.
+
+Không có một số nào tự tóm hết chất lượng. Quy tắc “luôn báo có” có recall 100% nhưng báo nhầm mọi Class_0. Quy tắc “luôn báo không” có accuracy 3695/5538≈66,72% trên tập lệch lớp này nhưng recall 0. Accuracy của một quy tắc không tìm được dầu vẫn có thể cao hơn 44,22%; điều đó buộc ta mô tả giới hạn thật, không chọn chỉ số có vẻ đẹp nhất.
+
+### 6.5. Vì sao chưa báo IoU/Dice của dầu?
+
+IoU so phần giao mask dự đoán và mask chuẩn chia phần hợp; Dice dùng 2 giao chia tổng diện tích hai mask. Cả hai cần ground truth theo pixel để nói về chất lượng phân đoạn dầu. Repo chưa có bộ mask chuẩn đó. Tự lấy mask từ Otsu làm “chuẩn” để đánh giá Otsu là kiểm vòng, không phải chứng minh đúng vật lý.
+
+Có thể đo độ trùng với một hàm thư viện để kiểm cách cài, nhưng phải gọi đúng tên phép đối chiếu. Không lấy edge F1 giữa hai cài đặt ở TV2 để thay cho F1 với nhãn dầu chuẩn.
+
+### 6.6. Đọc summary theo lớp phải cẩn thận
+
+`dataset_summary.csv` tổng hợp các cột số theo label. Trung bình cột prediction ở Class_1 bằng tỷ lệ báo dương trong ảnh có dầu, tức recall theo quy tắc này. Ở Class_0, nó là tỷ lệ báo dương nhầm, không phải accuracy. Nếu thấy prediction_mean cao rồi gọi cả hai lớp “đạt cao” là đọc sai ý nghĩa cột.
+
+## 7. Tái lập: từ lệnh chạy đến manifest
+
+### 7.1. Tái lập là gì và tại sao cần?
+
+Tái lập nghĩa người khác có thể xác định input, code, tham số và môi trường đã tạo ra kết quả, rồi chạy lại trong điều kiện tương ứng. Chỉ có ảnh chụp màn hình đẹp không đủ vì thiếu những thông tin này. Một thay đổi nhỏ ở threshold hoặc padding có thể làm mask khác.
+
+`reproduce.py` viết manifest trạng thái in_progress, chạy ví dụ/đối chiếu, khảo sát mẫu và toàn dataset, rồi mới ghi completed_scope = full. Nếu dùng `--samples-only`, phạm vi là samples. Trình dựng báo cáo kiểm phạm vi full và source hash, nên không dùng một lượt mẫu để xác nhận toàn tập.
+
+### 7.2. Source hash khác Git SHA thế nào?
+
+Git SHA xác định một commit. Nếu có thay đổi chưa commit lúc đo, SHA đó chưa mô tả hết working tree. `code_digest()` băm các file Python trong src, cùng reproduce.py, pyproject.toml, uv.lock để lưu dấu nội dung lõi/môi trường đang đo. Manifest còn có git_dirty cho biết có thay đổi chưa commit.
+
+Hash này không tự bao phủ mọi byte của dataset và mọi script tài liệu. Kiểm kê dữ liệu là bằng chứng bổ sung. Trong lần cập nhật sổ tay này, thuật toán lõi không đổi; sửa MD / PDF không có nghĩa vừa sinh ra một thuật toán mới hoặc một lần đánh giá mới.
+
+### 7.3. Worker và Windows
+
+Batch dùng ProcessPoolExecutor để xử lý nhiều ảnh bằng các process. Worker không phải một thành viên nhóm và không phải một mô hình ML; nó là tiến trình thực thi hàm trên các ảnh khác nhau. Mặc định 4 worker, được giới hạn theo CPU. Trong worker, OpenCV được giới hạn một luồng để giảm cạnh tranh luồng.
+
+Trên Windows, tiến trình con cần cơ chế khởi tạo phù hợp; entrypoint đặt trong `if __name__ == "__main__"` để không tự khởi tạo batch lặp khi import. Hàm chạy trên worker cần có thể được truyền/khởi tạo đúng; không tùy tiện chuyển nó thành một closure khó serialize rồi mong vẫn chạy.
+
