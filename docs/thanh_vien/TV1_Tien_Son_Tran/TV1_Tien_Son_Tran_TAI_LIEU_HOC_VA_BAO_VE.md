@@ -287,3 +287,35 @@ Commit ghi một trạng thái thay đổi cùng metadata. Tài khoản có quy�
 Nhật ký hồi cứu có thể tập hợp file gốc, chat, bản nháp hoặc commit thật. Phải ghi ngày bổ sung thật. Không gán tác giả hoặc ngày giả để biến bảng mới lập thành lịch sử tám tuần. Số commit cũng không tự là tỷ lệ đóng góp: một commit sửa nhiều lỗi có thể quan trọng hơn nhiều commit chỉnh chữ.
 
 ### 7.3. Điều phối câu hỏi chéo
+
+Trưởng nhóm cần biết đủ cơ chế Lee/ CLAHE, Canny/hình thái và các chỉ số để không chỉ nói “phần này bạn khác làm”. Có thể nhờ người phụ trách bổ sung chi tiết sau khi tự trả lời ý chính. Tập bảo vệ bằng cách đổi người trình bày một đoạn code, rồi yêu cầu người nghe nêu một trường hợp phương pháp thất bại.
+
+**Mức đạt:** Bạn phải tự mở repo, chạy demo, truy được từ widget tới hàm lõi, tìm được CSV thực nghiệm và giải thích vì sao một ví dụ không đủ chứng minh nhận diện dầu. Nếu chỉ đọc được tên module thì chưa đạt.
+
+## 8. Kết quả chạy thuật toán được lưu ở đâu và đọc thế nào?
+
+### 8.1. Phân biệt mã, dữ liệu, kết quả và tài liệu
+
+Mã nguồn nằm trong `src/` và các entrypoint. Dữ liệu đầu vào chính nằm trong `kaggle/data/Class_0`, `Class_1`. Kết quả thực nghiệm đang dùng nằm trong `results/reproducible/` và `results/verification/`. Báo cáo, slide và bản bằng chứng đóng băng nằm trong `docs/`. Không tìm ảnh đầu ra trong folder thuật toán rồi kết luận chương trình chưa chạy.
+
+Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. Các đường dẫn tiếp theo được tính từ gốc này. Manifest kiểm tra khi biên soạn ghi lượt toàn tập hoàn tất lúc 21:36:42 ngày 11/11/2026, múi giờ +07:00. Việc sửa sổ tay không tự là một lượt chạy thuật toán mới; cần đọc manifest nếu muốn xác định lần đo.
+
+### 8.2. Những file kết quả hiện có
+
+| Đường dẫn | Nội dung và cách sử dụng |
+| --- | --- |
+| `results/reproducible/dataset_per_image.csv`| 5.538 hàng ảnh: input, label, prediction, số vùng, area_pct, contrast, runtime; dùng truy từng ca |
+| `results/reproducible/confusion.json`| Tổng TP/FP/FN/TN và chỉ số cấp ảnh; không phải model hoặc mask |
+| `results/reproducible/dataset_summary.csv`| Thống kê gộp theo lớp; phải hiểu ý nghĩa mỗi cột |
+| `results/reproducible/manifest.json`| Cấu hình, hash nguồn, môi trường, thời điểm và phạm vi full/samples |
+| `results/reproducible/filters_per_image.csv`| So bộ lọc trên 10 ảnh mẫu, tắt tăng tương phản |
+| `results/reproducible/clahe_per_image.csv`| Khảo sát clip/grid trên tập mẫu |
+| `results/reproducible/edge_noise_per_image.csv`| Các phương pháp biên dưới các mức nhiễu khảo sát |
+| `results/reproducible/failure_cases_per_image.csv`| 00013 và 5 ảnh biển, có/không CLAHE |
+| `results/verification/hand_examples.json`| Kết quả mong đợi, kết quả thực tế và phép tính của 5 ví dụ tay |
+| `results/verification/per_case.csv`| 594 đối chiếu chi tiết; đọc kind/limit/verdict cùng sai số |
+| `results/verification/summary.csv`| Bảng đối chiếu gộp theo phép toán và nhóm tham chiếu |
+
+CSV là văn bản bảng, có thể mở bằng Excel hoặc Pandas. JSON lưu cặp tên–giá trị/cấu trúc lồng nhau, phù hợp cấu hình và thống kê. Không sửa tay các giá trị đo chỉ để bảng đẹp; nếu cần sửa cách đo, sửa mã và chạy lại, đồng thời ghi nguồn gốc lần đo mới.
+
+### 8.3. Những PNG đã được lưu tự động
