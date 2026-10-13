@@ -284,3 +284,35 @@ Thư viện là đối chứng hữu ích, không phải sự thật vật lý c
 
 ### 7.2. Phản ví dụ giúp hiểu sâu hơn ảnh thành công
 
+Nếu HE làm một ảnh rõ hơn, hãy hỏi ảnh hằng sẽ thế nào, ảnh có nền rất sáng nhỏ sẽ thế nào, và histogram có thể khác dù hình dạng giống nhau không. Nếu erosion xóa nhiễu nhỏ, hãy hỏi nó có xóa vệt thật nhỏ không. Một phản ví dụ có giải thích cho thấy bạn hiểu điều kiện áp dụng hơn là khẳng định phương pháp luôn tốt.
+
+### 7.3. Khảo sát tham số không được làm đẹp kết luận
+
+Chọn clip/grid sau khi xem kết quả trên mười ảnh có thể tạo thiên lệch về bộ mẫu đó. Không có ML không đồng nghĩa không có thiên lệch chọn tham số. Khi báo cáo, nêu rõ ảnh nào dùng khảo sát, ảnh nào dùng đánh giá, và không gọi các mẫu đã xem là kiểm thử độc lập.
+
+Tương tự, không so thời gian hai hàm khi một bên bao gồm đọc ảnh còn bên kia không. Một số runtime nhỏ dễ chịu ảnh hưởng khởi động, luồng và tải máy. Sai số số học và hiệu năng là hai câu hỏi khác nhau.
+
+### 7.4. Tài liệu tham khảo phải phục vụ lập luận
+
+Nguồn gốc công thức, định nghĩa tham số và khác biệt biến thể cần được ghi theo tài liệu nhóm thực sự đọc. Sổ tay này giải thích triển khai đang có trong repo; không khẳng định đã kiểm chứng mọi biến thể từ mọi bài báo cùng tên. Trước bảo vệ, TV2 cần mở các nguồn được trích trong báo cáo, xác nhận chúng hỗ trợ đúng câu đang dùng, và ghi lại phần chưa hiểu để hỏi giảng viên/nhóm.
+
+## 8. Kết quả chạy thuật toán được lưu ở đâu và đọc thế nào?
+
+### 8.1. Phân biệt mã, dữ liệu, kết quả và tài liệu
+
+Mã nguồn nằm trong `src/` và các entrypoint. Dữ liệu đầu vào chính nằm trong `kaggle/data/Class_0`, `Class_1`. Kết quả thực nghiệm đang dùng nằm trong `results/reproducible/` và `results/verification/`. Báo cáo, slide và bản bằng chứng đóng băng nằm trong `docs/`. Không tìm ảnh đầu ra trong folder thuật toán rồi kết luận chương trình chưa chạy.
+
+Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. Các đường dẫn tiếp theo được tính từ gốc này. Manifest kiểm tra khi biên soạn ghi lượt toàn tập hoàn tất lúc 21:36:42 ngày 11/11/2026, múi giờ +07:00. Việc sửa sổ tay không tự là một lượt chạy thuật toán mới; cần đọc manifest nếu muốn xác định lần đo.
+
+### 8.2. Những file kết quả hiện có
+
+| Đường dẫn | Nội dung và cách sử dụng |
+| --- | --- |
+| `results/reproducible/dataset_per_image.csv`| 5.538 hàng ảnh: input, label, prediction, số vùng, area_pct, contrast, runtime; dùng truy từng ca |
+| `results/reproducible/confusion.json`| Tổng TP/FP/FN/TN và chỉ số cấp ảnh; không phải model hoặc mask |
+| `results/reproducible/dataset_summary.csv`| Thống kê gộp theo lớp; phải hiểu ý nghĩa mỗi cột |
+| `results/reproducible/manifest.json`| Cấu hình, hash nguồn, môi trường, thời điểm và phạm vi full/samples |
+| `results/reproducible/filters_per_image.csv`| So bộ lọc trên 10 ảnh mẫu, tắt tăng tương phản |
+| `results/reproducible/clahe_per_image.csv`| Khảo sát clip/grid trên tập mẫu |
+| `results/reproducible/edge_noise_per_image.csv`| Các phương pháp biên dưới các mức nhiễu khảo sát |
+| `results/reproducible/failure_cases_per_image.csv`| 00013 và 5 ảnh biển, có/không CLAHE |
