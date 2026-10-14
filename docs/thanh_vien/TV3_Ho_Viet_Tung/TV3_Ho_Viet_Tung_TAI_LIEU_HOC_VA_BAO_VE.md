@@ -304,3 +304,37 @@ Nếu cả chi tiết thật lẫn nhiễu đều có tần số cao, tăng gain
 So lọc cần nhìn cả nền lẫn vệt; dùng cùng thang xám khi hiển thị để tránh một ảnh tự được kéo sáng hơn chỉ vì phần mềm vẽ. Lát cắt là dãy cường độ theo một hàng/cột, cho thấy bộ lọc làm giảm dao động nền và làm thay đổi độ sâu/độ rộng vệt ra sao.
 
 ### 7.2. Đọc các chỉ số ảnh đúng mức
+
+ENL có thể tăng khi ROI phẳng hơn; SSI <1 cho thấy hệ số biến thiên giảm. Tuy nhiên làm mờ mạnh cũng có thể tạo những hiệu ứng đó trong khi mất biên. RMS / entropy tăng có thể do nhiễu; AMBE nhỏ chỉ nói mean gần nhau; EPI gần 1 chỉ nói tổng đáp ứng Laplacian gần nhau.
+
+Vì vậy không xếp một bộ lọc “tốt nhất” chỉ bằng một chỉ số. Hãy nói tiêu chí cụ thể: làm nền bớt dao động ở ROI đã kiểm, giữ một vệt mảnh trong ví dụ nào, và thất bại ở trường hợp nào. TV5 sẽ trình bày công thức sâu hơn, nhưng TV3 phải hiểu để không đọc sai bảng khảo sát.
+
+### 7.3. Độ phức tạp và bộ nhớ
+
+Box với integral image có chi phí tuyến tính theo số pixel sau padding. Gaussian tách được có chi phí xấp xỉ O (HWk). Bilateral/Frost tính trọng số cho nhiều phần tử cửa sổ nên chi phí và dữ liệu trung gian tăng theo k². Median cần thao tác chọn/sắp xếp các giá trị cửa sổ; không đánh đồng chi phí với trung bình. FFT thường có chi phí xấp xỉ O (N log N) với N=HW.
+
+Đây là ước lượng thuật toán, không thay thời gian đo. Mảng broadcast H×W×k×k có thể tốn RAM lớn dù viết bằng vài dòng NumPy. Chỉ tối ưu sau khi có ca kiểm chứng để bảo vệ kết quả.
+
+### 7.4. Phân tích 00013 và một ca nền biển
+
+Với 00013, giữ Lee 5×5/L 4 rồi đổi CLAHE none →clip 2/grid 8. Quan sát vệt chính và nền ở cùng vị trí; ghi JSON để biết cấu hình. Nếu thấy đốm tăng, giải thích bằng histogram cục bộ và gradient, không nói “ CLAHE sinh dầu”.
+
+Sau đó mở `class_0_00001.jpg` hoặc mẫu sea_surface_01. Ảnh này có vùng tối mà pipeline vẫn có thể giữ. Nó cho thấy area/contrast chưa phân biệt mọi lookalike. Tài liệu cần nêu cả hai ca để người học không chỉ nhớ một hình thành công.
+
+## 8. Kết quả chạy thuật toán được lưu ở đâu và đọc thế nào?
+
+### 8.1. Phân biệt mã, dữ liệu, kết quả và tài liệu
+
+Mã nguồn nằm trong `src/` và các entrypoint. Dữ liệu đầu vào chính nằm trong `kaggle/data/Class_0`, `Class_1`. Kết quả thực nghiệm đang dùng nằm trong `results/reproducible/` và `results/verification/`. Báo cáo, slide và bản bằng chứng đóng băng nằm trong `docs/`. Không tìm ảnh đầu ra trong folder thuật toán rồi kết luận chương trình chưa chạy.
+
+Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. Các đường dẫn tiếp theo được tính từ gốc này. Manifest kiểm tra khi biên soạn ghi lượt toàn tập hoàn tất lúc 21:36:42 ngày 11/11/2026, múi giờ +07:00. Việc sửa sổ tay không tự là một lượt chạy thuật toán mới; cần đọc manifest nếu muốn xác định lần đo.
+
+### 8.2. Những file kết quả hiện có
+
+| Đường dẫn | Nội dung và cách sử dụng |
+| --- | --- |
+| `results/reproducible/dataset_per_image.csv`| 5.538 hàng ảnh: input, label, prediction, số vùng, area_pct, contrast, runtime; dùng truy từng ca |
+| `results/reproducible/confusion.json`| Tổng TP/FP/FN/TN và chỉ số cấp ảnh; không phải model hoặc mask |
+| `results/reproducible/dataset_summary.csv`| Thống kê gộp theo lớp; phải hiểu ý nghĩa mỗi cột |
+| `results/reproducible/manifest.json`| Cấu hình, hash nguồn, môi trường, thời điểm và phạm vi full/samples |
+| `results/reproducible/filters_per_image.csv`| So bộ lọc trên 10 ảnh mẫu, tắt tăng tương phản |
