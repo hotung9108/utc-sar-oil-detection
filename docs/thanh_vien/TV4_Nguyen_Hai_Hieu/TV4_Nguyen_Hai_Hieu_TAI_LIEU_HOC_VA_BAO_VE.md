@@ -300,3 +300,37 @@ Nếu tăng min_area 400, cả A cũng mất. Nếu giảm min_contrast 0,04, C 
 ### 7.4. Những nguồn sai còn tồn tại
 
 Ring có thể chứa vùng tối khác, nên μ_nền không chắc đại diện biển sạch. Vùng chạm mép có ring bị giới hạn. Tham số cố định có thể không phù hợp mọi cảnh. Otsu toàn cục khó với nền không đồng đều. Opening xóa vùng nhỏ thật, closing gộp hai vùng, liên thông 8 gộp chạm chéo. Kết luận ứng viên vẫn có false positive/false negative.
+
+Trong thống kê, `mean_contrast_ratio` là trung bình C_R theo vùng được giữ, không có trọng số diện tích. Nếu hai vùng có diện tích rất khác, trung bình đơn giản này không bằng tương phản của tất cả pixel gộp lại. TV4 cần giải thích điều đó khi bàn giao số liệu cho TV5.
+
+### 7.5. Bất biến và phản ví dụ để tự kiểm tra
+
+Ảnh hằng phải không tạo ứng viên tối; mask chỉ chứa 0/255; số pixel biên không được dùng thay area; thay sharpening không đổi mask; Canny chỉ giữ điểm yếu nối được tới mạnh. Phản ví dụ cho quy tắc “vùng lớn là dầu” là một mảng biển tối tự nhiên rộng. Phản ví dụ cho “vùng nhỏ là nhiễu” là một vệt dầu nhỏ thật.
+
+Các bất biến kiểm tính nhất quán của phần mềm, không chứng minh mọi quyết định vùng đều đúng với thực địa. Hãy trình bày cả điều đã kiểm và điều chưa có ground truth để kiểm.
+
+## 8. Kết quả chạy thuật toán được lưu ở đâu và đọc thế nào?
+
+### 8.1. Phân biệt mã, dữ liệu, kết quả và tài liệu
+
+Mã nguồn nằm trong `src/` và các entrypoint. Dữ liệu đầu vào chính nằm trong `kaggle/data/Class_0`, `Class_1`. Kết quả thực nghiệm đang dùng nằm trong `results/reproducible/` và `results/verification/`. Báo cáo, slide và bản bằng chứng đóng băng nằm trong `docs/`. Không tìm ảnh đầu ra trong folder thuật toán rồi kết luận chương trình chưa chạy.
+
+Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. Các đường dẫn tiếp theo được tính từ gốc này. Manifest kiểm tra khi biên soạn ghi lượt toàn tập hoàn tất lúc 21:36:42 ngày 11/11/2026, múi giờ +07:00. Việc sửa sổ tay không tự là một lượt chạy thuật toán mới; cần đọc manifest nếu muốn xác định lần đo.
+
+### 8.2. Những file kết quả hiện có
+
+| Đường dẫn | Nội dung và cách sử dụng |
+| --- | --- |
+| `results/reproducible/dataset_per_image.csv`| 5.538 hàng ảnh: input, label, prediction, số vùng, area_pct, contrast, runtime; dùng truy từng ca |
+| `results/reproducible/confusion.json`| Tổng TP/FP/FN/TN và chỉ số cấp ảnh; không phải model hoặc mask |
+| `results/reproducible/dataset_summary.csv`| Thống kê gộp theo lớp; phải hiểu ý nghĩa mỗi cột |
+| `results/reproducible/manifest.json`| Cấu hình, hash nguồn, môi trường, thời điểm và phạm vi full/samples |
+| `results/reproducible/filters_per_image.csv`| So bộ lọc trên 10 ảnh mẫu, tắt tăng tương phản |
+| `results/reproducible/clahe_per_image.csv`| Khảo sát clip/grid trên tập mẫu |
+| `results/reproducible/edge_noise_per_image.csv`| Các phương pháp biên dưới các mức nhiễu khảo sát |
+| `results/reproducible/failure_cases_per_image.csv`| 00013 và 5 ảnh biển, có/không CLAHE |
+| `results/verification/hand_examples.json`| Kết quả mong đợi, kết quả thực tế và phép tính của 5 ví dụ tay |
+| `results/verification/per_case.csv`| 594 đối chiếu chi tiết; đọc kind/limit/verdict cùng sai số |
+| `results/verification/summary.csv`| Bảng đối chiếu gộp theo phép toán và nhóm tham chiếu |
+
+CSV là văn bản bảng, có thể mở bằng Excel hoặc Pandas. JSON lưu cặp tên–giá trị/cấu trúc lồng nhau, phù hợp cấu hình và thống kê. Không sửa tay các giá trị đo chỉ để bảng đẹp; nếu cần sửa cách đo, sửa mã và chạy lại, đồng thời ghi nguồn gốc lần đo mới.
