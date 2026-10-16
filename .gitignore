@@ -5,6 +5,7 @@ __pycache__/
 *.so
 
 # Caches and temporary outputs
+data/
 outputs/
 outputs_slide_full/
 outputs_slide_matlab/
