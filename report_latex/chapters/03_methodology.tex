@@ -46,7 +46,7 @@ Trong cài đặt cơ bản, việc duyệt 2 vòng lặp qua toàn bộ $M \tim
     \item Thay vì thực hiện sắp xếp toàn phần với độ phức tạp $O(K^2 \log K^2)$, hàm áp dụng thuật toán phân hoạch QuickSelect thông qua \texttt{np.partition} tại vị trí trung vị $mid = K^2 // 2$ trên trục cuối. Độ phức tạp tính toán trung bình giảm xuống $O(K^2)$ trên mỗi pixel, được biên dịch và thực thi hoàn toàn trong mã máy C của NumPy.
 \end{itemize}
 
-\begin{lstlisting}[language=Python, caption={Cài đặt Bộ lọc trung vị 2D tối ưu hóa vector hóa bằng NumPy thuần}]
+\begin{lstlisting}[language=Python, caption={{Cài đặt Bộ lọc trung vị 2D tối ưu hóa vector hóa bằng NumPy thuần}}]
 import numpy as np
 
 def custom_median_filter(image: np.ndarray, ksize: int = 5, mode: str = 'reflect') -> np.ndarray:
@@ -110,7 +110,7 @@ def custom_median_filter(image: np.ndarray, ksize: int = 5, mode: str = 'reflect
     Dựa trên đặc trưng vật lý suy giảm tán xạ ngược của vệt dầu, mặt nạ nhị phân đốm tối được tạo bằng thao tác logic: gán 255 cho các pixel có mức xám $I(x, y) \le T^*$ và 0 cho nền biển sáng.
 \end{enumerate}
 
-\begin{lstlisting}[language=Python, caption={Cài đặt Phân ngưỡng Otsu tối ưu và Hệ số khả tách eta thuần NumPy}]
+\begin{lstlisting}[language=Python, caption={{Cài đặt Phân ngưỡng Otsu tối ưu và Hệ số khả tách eta thuần NumPy}}]
 def custom_otsu_threshold(image: np.ndarray) -> tuple[int, float, np.ndarray]:
     """
     Phan nguong Otsu toi uu va he so kha tach eta chuan Slide Chuong 7 P48-55.
@@ -230,7 +230,7 @@ Theo bài giảng của TS. Phan Thanh Toàn (Slide Chương 6, Trang 16 \cite{t
 \end{equation}
 trong đó $B$ là phần tử cấu trúc $3 \times 3$. Phép co $(A \ominus B)$ bóc đi lớp vỏ ngoài cùng có độ dày 1 pixel của tập hợp $A$. Khi lấy $A$ trừ đi $(A \ominus B)$, phần thân bên trong bị triệt tiêu hoàn toàn, chỉ giữ lại một dải đường viền bao ngoài khép kín có độ dày đúng 1 pixel:
 
-\begin{lstlisting}[language=Python, caption={Cài đặt Toán tử Trích biên hình thái học beta(A) và Co/Dãn thuần NumPy}]
+\begin{lstlisting}[language=Python, caption={{Cài đặt Toán tử Trích biên hình thái học beta(A) và Co/Dãn thuần NumPy}}]
 import numpy as np
 
 def custom_erode(mask: np.ndarray, ksize: int = 3) -> np.ndarray:

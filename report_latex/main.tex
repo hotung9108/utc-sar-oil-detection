@@ -1,10 +1,47 @@
 \documentclass[12pt,a4paper,oneside]{report}
 
 % ==============================================================================
-% GÓI THƯ VIỆN & CẤU HÌNH NGÔN NGỮ TIẾNG VIỆT
+% GÓI THƯ VIỆN & CẤU HÌNH NGÔN NGỮ TIẾNG VIỆT & PHÔNG CHỮ ĐA TRÌNH BIÊN DỊCH
 % ==============================================================================
-\usepackage[utf8]{inputenc}
-\usepackage[vietnamese]{babel}
+\usepackage{iftex}
+
+\ifPDFTeX
+    % Cấu hình tối ưu cho pdfLaTeX (mặc định trên Overleaf và TeX Live)
+    \usepackage[utf8]{inputenc}
+    \usepackage[T5]{fontenc}        % BẮT BUỘC: Bảng mã T5 chứa toàn bộ dấu tiếng Việt (VnTeX)
+    \usepackage[vietnamese]{babel}  % Tự động dịch "Chương", "Bảng", "Hình", "Mục lục"...
+    \usepackage{mathptmx}           % Phông chữ Times New Roman chuẩn quy định Luận văn UTC
+    
+    % Hỗ trợ tự động các ký tự Unicode nếu xuất hiện trong văn bản
+    \usepackage{newunicodechar}
+    \newunicodechar{—}{\textemdash}
+    \newunicodechar{–}{\textendash}
+    \newunicodechar{…}{\dots}
+    \newunicodechar{“}{``}
+    \newunicodechar{”}{''}
+    \newunicodechar{‘}{`}
+    \newunicodechar{’}{'}
+    \newunicodechar{±}{\ensuremath{\pm}}
+    \newunicodechar{≥}{\ensuremath{\ge}}
+    \newunicodechar{≤}{\ensuremath{\le}}
+    \newunicodechar{×}{\ensuremath{\times}}
+    \newunicodechar{→}{\ensuremath{\rightarrow}}
+\else
+    % Cấu hình hiện đại cho XeLaTeX hoặc LuaLaTeX
+    \usepackage{fontspec}
+    \usepackage[vietnamese]{babel}
+    \defaultfontfeatures{Ligatures=TeX}
+    \IfFontExistsTF{Times New Roman}{
+        \setmainfont{Times New Roman}
+    }{
+        \IfFontExistsTF{TeX Gyre Termes}{
+            \setmainfont{TeX Gyre Termes}
+        }{
+            % Giữ phông serif mặc định nếu không tìm thấy Times New Roman
+        }
+    }
+\fi
+
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -46,7 +83,7 @@
 ]{hyperref}
 
 % ==============================================================================
-% CẤU HÌNH TRÌNH BÀY MÃ NGUỒN (LISTINGS)
+% CẤU HÌNH TRÌNH BÀY MÃ NGUỒN (LISTINGS) AN TOÀN VỚI TIẾNG VIỆT
 % ==============================================================================
 \usepackage{listings}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -71,7 +108,9 @@
     showstringspaces=false,
     showtabs=false,                  
     tabsize=4,
-    frame=single
+    frame=single,
+    inputencoding=utf8,
+    extendedchars=true
 }
 \lstset{style=pythonstyle}
 
@@ -80,9 +119,9 @@
 % ==============================================================================
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textit{BTL Xử lý ảnh (UTC) — Đề tài 18: Phát hiện vết dầu tràn từ ảnh SAR}}
+\fancyhead[L]{\small\textit{BTL Xử lý ảnh (UTC) --- Đề tài 18: Phát hiện vết dầu tràn từ ảnh SAR}}
 \fancyhead[R]{\small\thepage}
-\fancyfoot[C]{\small Trường Đại học Giao thông Vận tải — Khoa Công nghệ Thông tin}
+\fancyfoot[C]{\small Trường Đại học Giao thông Vận tải --- Khoa Công nghệ Thông tin}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.3pt}
 
