@@ -157,14 +157,16 @@ Sắp xếp tăng dần: $\{10, 12, 13, 14, \mathbf{15}, 16, 16, 18, 19\}$.\\
 Giá trị trung vị đầu ra tại tâm: $\hat{I}(2, 2) = 15$. (Nhiễu đốm cực trị 10 đã được loại bỏ mượt mà).
 
 \textbf{Bước 2: Phân ngưỡng Otsu tính tay:}\\
-- Tổng số điểm ảnh $N_T = 25$. Mức xám trung bình nền biển $\mu_1 \approx 86.2$, trung bình vết tối $\mu_0 \approx 14.8$.\\
+- Tổng số điểm ảnh $N_T = 25$. Mức xám trung bình nền biển $\mu_1 = 1380 / 16 = 86.25$, trung bình vết tối $\mu_0 = 133 / 9 \approx 14.78$.\\
 - Trọng số lớp đối tượng: $\omega_0 = 9/25 = 0.36$; trọng số nền: $\omega_1 = 16/25 = 0.64$.\\
-- Trung bình toàn cục: $\mu_T = 0.36 \times 14.8 + 0.64 \times 86.2 = 60.5$.\\
+- Trung bình toàn cục: $\mu_T = 0.36 \times 14.78 + 0.64 \times 86.25 = 60.52$.\\
+- Phương sai toàn cục: $\sigma_T^2 = \sum_{i=0}^{L-1} (i - \mu_T)^2 p_i = 1181.61$.\\
 - Phương sai liên lớp cực đại:
 \begin{equation}
-    \sigma_B^2 = 0.36 \times (14.8 - 60.5)^2 + 0.64 \times (86.2 - 60.5)^2 = 752.1 + 422.7 = 1174.8
+    \sigma_B^2 = 0.36 \times (14.78 - 60.52)^2 + 0.64 \times (86.25 - 60.52)^2 = 753.25 + 423.70 = 1176.95
 \end{equation}
-Ngưỡng tối ưu tìm được nằm chính xác ở giữa khoảng phân ly: $T^* = 50$.
+- Miền giá trị cực đại hóa nằm trong khoảng không có pixel nào $[19, 82]$, ngưỡng tối ưu điểm chính giữa là: $T^* = \text{round}(50.5) = 50$.\\
+- Hệ số khả tách: $\eta = \sigma_B^2(T^*) / \sigma_T^2 = 1176.95 / 1181.61 = 0.9961$ ($99.61\%$, phân ly 2 lớp gần như tuyệt đối).
 
 \textbf{Bước 3: Trích biên hình thái học $\beta(A)$ tính tay:}\\
 Mặt nạ nhị phân $A$ cho vùng tối ($I \le 50$) là hình vuông kích thước $3 \times 3$ tại trung tâm.\\
@@ -188,4 +190,14 @@ Mặt nạ nhị phân $A$ cho vùng tối ($I \le 50$) là hình vuông kích t
     0 & 0 & 0 & 0 & 0
     \end{bmatrix}
 \end{equation}
-Đúng chính xác là một đường bao khép kín độ dày 1 pixel bao quanh vết tối, pixel tâm $(2, 2)$ rỗng bằng 0. Kết quả tính tay khẳng định tính đúng đắn tuyệt đối của mô hình lý thuyết.
+Đúng chính xác là một đường bao khép kín độ dày 1 pixel bao quanh vết tối, pixel tâm $(2, 2)$ rỗng bằng 0.
+
+\textbf{Bước 4: Đạo hàm vi phân Sobel và Xác nhận đặc trưng vật lý:}\\
+Áp dụng toán tử đạo hàm Sobel hai chiều với cơ chế phản xạ đối xứng biên \texttt{reflect\_101}:
+\begin{itemize}
+    \item Độ dốc gradient tại 8 pixel trên đường biên $\beta(A)$ đạt giá trị rất lớn (dao động từ $294.0$ đến $315.4$).
+    \item Độ dốc gradient trung bình mép dầu: $\overline{G}_{\text{border}} = 304.79 \gg 6.0$.
+    \item Độ tương phản mức xám giữa biển và dầu: $\Delta \mu = \mu_1 - \mu_0 = 86.25 - 14.78 = 71.47 \ge 12.0$.
+    \item Tỉ số suy giảm tán xạ (\textit{Damping Ratio}): $\mu_1 / \mu_0 = 86.25 / 14.78 = 5.84 \ge 1.25$.
+\end{itemize}
+Toàn bộ các phép tính tay hoàn toàn trùng khớp với kết quả thực thi của tập lệnh \texttt{tests/numerical\_toy\_example.py}, khẳng định tính đúng đắn và tính khả thi tuyệt đối của mô hình lý thuyết trước khi triển khai hệ thống quy mô lớn.

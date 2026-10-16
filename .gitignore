@@ -7,9 +7,12 @@ __pycache__/
 # Caches and temporary outputs
 data/
 outputs/
+outputs_slide/
 outputs_slide_full/
 outputs_slide_matlab/
 *.log
+*.pdf
+*.docx
 
 # LaTeX temporary compilation files
 *.aux

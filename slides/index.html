@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTL Xử lý ảnh (UTC) - Đề tài 18: Phát hiện vết dầu tràn từ ảnh SAR Sentinel-1</title>
+    <style>
+        :root {
+            --bg-color: #0d1b2a;
+            --card-bg: #1b263b;
+            --text-color: #e0e1dd;
+            --accent-color: #00b4d8;
+            --danger-color: #e63946;
+            --highlight-color: #ffd166;
+            --success-color: #06d6a0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Presentation Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(13, 27, 42, 0.95);
+            border-bottom: 1px solid #415a77;
+            font-size: 14px;
+        }
+        .header .title { font-weight: 600; color: var(--accent-color); }
+        .header .timer {
+            font-family: monospace;
+            font-size: 16px;
+            background: #2b3a4a;
+            padding: 4px 12px;
+            border-radius: 4px;
+            color: var(--highlight-color);
+        }
+        /* Slide Container */
+        .slide-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            height: 85%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #415a77;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .slide.active { display: flex; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Typography */
+        h1 { font-size: 32px; color: #ffffff; margin-bottom: 12px; border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; }
+        h2 { font-size: 24px; color: var(--accent-color); margin-bottom: 20px; }
+        h3 { font-size: 20px; color: var(--highlight-color); margin-bottom: 15px; }
+        p, li { font-size: 18px; line-height: 1.6; color: #e0e1dd; margin-bottom: 10px; }
+        ul { margin-left: 25px; }
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        .badge-tv1 { background: #0077b6; color: #fff; }
+        .badge-tv2 { background: #7209b7; color: #fff; }
+        .badge-tv3 { background: #38b000; color: #fff; }
+        .badge-tv4 { background: #f77f00; color: #fff; }
+        .badge-tv5 { background: #e63946; color: #fff; }
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            border: 1px solid #415a77;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        th { background: #0d1b2a; color: var(--accent-color); }
+        tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .highlight { color: var(--danger-color); font-weight: bold; }
+        .success { color: var(--success-color); font-weight: bold; }
+        /* Code blocks */
+        pre {
+            background: #0d1b2a;
+            border: 1px solid #415a77;
+            border-radius: 6px;
+            padding: 14px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            color: #a9d6e5;
+        }
+        /* Footer Controls */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(13, 27, 42, 0.95);
+            border-top: 1px solid #415a77;
+        }
+        .nav-btn {
+            background: var(--accent-color);
+            color: #0d1b2a;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn:hover { background: #90e0ef; }
+        .progress-bar-container {
+            flex: 1;
+            height: 6px;
+            background: #415a77;
+            border-radius: 3px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 5.5%;
+            transition: width 0.3s;
+        }
+        .slide-counter { font-size: 14px; font-weight: 600; color: #a9d6e5; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="title">BTL XỬ LÝ ẢNH (UTC) — ĐỀ TÀI SỐ 18: PHÁT HIỆN VẾT DẦU TRÀN TỪ ẢNH SAR SENTINEL-1</div>
+        <div class="timer" id="timer">12:00</div>
+    </div>
+
+    <div class="slide-container">
+
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div>
+                <span class="badge badge-tv1">Trình bày: TV1 (Trưởng nhóm, Tích hợp)</span>
+                <h1>ĐỀ TÀI SỐ 18: PHÁT HIỆN VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH SAR SENTINEL-1</h1>
+                <h2>Ứng dụng giám sát bờ biển miền Trung Việt Nam & Chuẩn đầu ra CDIO</h2>
+                <div style="margin-top: 25px;">
+                    <p><strong>Giảng viên hướng dẫn:</strong> TS. Phan Thanh Toàn</p>
+                    <p><strong>Bộ môn:</strong> Khoa học Máy tính — Khoa Công nghệ Thông tin — ĐH Giao thông Vận tải (UTC)</p>
+                    <div style="margin-top: 20px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+                        <p><strong>Cơ cấu nhóm 5 sinh viên:</strong></p>
+                        <p>• <strong>TV1 (PM, Tích hợp):</strong> Quản lý tiến độ, Git, Kiến trúc, App Streamlit Demo</p>
+                        <p>• <strong>TV2 (Lý thuyết):</strong> Dẫn xuất mô hình toán, tính tay 5x5, kiểm chứng so với OpenCV</p>
+                        <p>• <strong>TV3 (Thuật toán 1):</strong> Cài đặt Lọc trung vị & Phân ngưỡng Otsu thuần NumPy</p>
+                        <p>• <strong>TV4 (Thuật toán 2):</strong> Cài đặt Hình thái học, trích biên và 4 đặc trưng phân loại</p>
+                        <p>• <strong>TV5 (Thực nghiệm):</strong> Quản trị dữ liệu 5,630 ảnh, benchmark định lượng CDIO</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: right; font-size: 14px; color: #8d99ae;">Phím ➔ hoặc Space để xem tiếp slide</div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv1">Trình bày: TV1 (PM)</span>
+                <h1>1. BỐI CẢNH THỰC TIỄN TẠI VÙNG BIỂN MIỀN TRUNG</h1>
+                <ul>
+                    <li><strong>Hiện tượng dầu vón cục (Tarballs):</strong> Hàng năm, dải bờ biển các tỉnh Hà Tĩnh, Quảng Bình, Thừa Thiên Huế, Đà Nẵng, Quảng Nam, Quảng Ngãi liên tục xuất hiện các vệt dầu trôi dạt vào bờ.</li>
+                    <li><strong>Tác động nặng nề:</strong> Tàn phá các rạn san hô, làm chết cá tôm trong lồng bè của ngư dân, gây ô nhiễm các bãi tắm du lịch trọng điểm (Mỹ Khê, Cửa Đại, Lăng Cô).</li>
+                    <li><strong>Nguồn xả thải trộm:</strong> Do các tàu chở dầu quốc tế súc rửa bồn trái phép ban đêm ngoài khơi xa hoặc sự cố tai nạn hàng hải.</li>
+                    <li><strong>Yêu cầu cấp bách:</strong> Cần phát hiện <span class="highlight">sớm ngoài khơi xa</span> (trước 24--48 giờ) bằng ảnh vệ tinh viễn thám để kịp thời triển khai phao quây ngăn chặn.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv1">Trình bày: TV1 (PM)</span>
+                <h1>2. TẠI SAO SỬ DỤNG ẢNH RADAR KHẨU ĐỘ TỔNG HỢP (SAR)?</h1>
+                <table>
+                    <tr>
+                        <th>Tiêu chí so sánh</th>
+                        <th>Vệ tinh Quang học (Optical)</th>
+                        <th>Vệ tinh Radar SAR (Sentinel-1)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Khả năng xuyên mây</strong></td>
+                        <td>Bất lực (bị che phủ > 65% thời gian)</td>
+                        <td class="success">Xuyên mây 100% (bước sóng vi ba 5.6 cm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giám sát ban đêm</strong></td>
+                        <td>Không hoạt động trong bóng tối</td>
+                        <td class="success">Hoạt động 24/7 (cảm biến phát sóng chủ động)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nhạy cảm với màng dầu</strong></td>
+                        <td>Dễ nhầm với màu nước, ánh nắng mặt trời</td>
+                        <td class="success">Nhạy cảm cao với độ gồ ghề mặt sóng mao dẫn</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv2">Trình bày: TV2 (Lý thuyết)</span>
+                <h1>3. ĐẶC TRƯNG VẬT LÝ SAR & THÁCH THỨC LOOK-ALIKES</h1>
+                <ul>
+                    <li><strong>Cơ chế hình thành đốm tối (Dark Spots):</strong>
+                        <p>Dầu tràn làm giảm sức căng bề mặt $\rightarrow$ triệt tiêu hoàn toàn sóng mao dẫn (capillary waves). Mặt biển có dầu trở nên nhẵn phẳng như gương $\rightarrow$ phản xạ gương (specular reflection), không có tín hiệu tán xạ ngược (backscatter) trở về vệ tinh $\rightarrow$ hình thành <strong>vệt màu tối</strong>.</p>
+                    </li>
+                    <li><strong>Thách thức đốm tối giả (Look-alikes):</strong>
+                        <p>Vùng gió lặng ($v < 2.5$ m/s), màng sinh học thực vật phù du, dòng chảy biển cũng tạo ra vết tối tương tự.</p>
+                    </li>
+                    <li><strong>Giải pháp phân biệt:</strong> Dựa trên đặc trưng hình học (độ thuôn dài), gradient độ dốc đường biên và độ tương phản với nền biển lân cận.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv2">Trình bày: TV2 (Lý thuyết)</span>
+                <h1>4. MÔ HÌNH TOÁN HỌC TRỌNG TÂM (TS. PHAN THANH TOÀN)</h1>
+                <ul>
+                    <li><strong>Mô hình nhiễu đốm nhân tính:</strong> $I(x, y) = R(x, y) \cdot u(x, y)$ (Chương 3).</li>
+                    <li><strong>Lọc trung vị bảo toàn biên:</strong> $\hat{I}(x,y) = \text{median}\{I(x+i, y+j) \mid (i,j) \in W\}$ (Slide Chương 3 P104).</li>
+                    <li><strong>Phân ngưỡng Otsu tối ưu:</strong> Tối đa hóa phương sai giữa hai lớp:
+                        $$\sigma_B^2(t) = \frac{[\mu_T \omega_0(t) - \mu(t)]^2}{\omega_0(t)(1 - \omega_0(t))}, \quad T^* = \arg\max \sigma_B^2(t)$$
+                    </li>
+                    <li><strong>Hệ số khả tách (Slide Chương 7 P52):</strong>
+                        $$\eta = \frac{\sigma_B^2(T^*)}{\sigma_T^2} \ge 0.10 \quad \text{(Loại trừ mặt biển đồng nhất / biển sạch)}$$
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv2">Trình bày: TV2 (Lý thuyết)</span>
+                <h1>5. VÍ DỤ SỐ TÍNH TAY MINH HỌA TRÊN MA TRẬN 5x5</h1>
+                <p>Khẳng định tính đúng đắn toán học trước khi lập trình:</p>
+                <ul>
+                    <li><strong>Lọc trung vị 3x3:</strong> Điểm nhiễu cực trị tại tâm có giá trị 10 được thay thế bằng trung vị 15 của 9 điểm lân cận $\rightarrow$ loại bỏ nhiễu mà không làm méo hình.</li>
+                    <li><strong>Phân ngưỡng Otsu:</strong> Tính toán từng mức xám, xác định phương sai liên lớp cực đại $\sigma_B^2 = 1174.8$ tại ngưỡng tối ưu $T^* = 50$.</li>
+                    <li><strong>Trích biên hình thái học $\beta(A) = A - (A \ominus B)$ (Slide C6 P16):</strong>
+                        <p>Sau phép co $A \ominus B$, khối $3 \times 3$ co lại thành đúng 1 pixel tâm $(2,2)$. Hiệu tập hợp $\beta(A)$ tạo ra đường biên hoàn hảo độ dày đúng <strong>1 pixel</strong> bao quanh đốm tối.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv3">Trình bày: TV3 (Thuật toán 1)</span>
+                <h1>6. SƠ ĐỒ KHỐI PIPELINE 4 BƯỚC TUẦN TỰ</h1>
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; font-family: monospace; font-size: 16px; line-height: 1.8;">
+                    [Ảnh SAR Gốc Sentinel-1: 400x400]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                    <strong>[BƯỚC 1: Tiền xử lý - Chương 3]</strong> ➔ Lọc trung vị NumPy (k=5) khử nhiễu đốm speckle<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                    <strong>[BƯỚC 2: Phân vùng - Chương 7]</strong> ➔ Phân ngưỡng Otsu NumPy + Hệ số khả tách eta >= 0.10<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                    <strong>[BƯỚC 3: Hình thái học - Chương 6]</strong> ➔ Phép Mở + Phép Đóng + Trích biên beta(A)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                    <strong>[BƯỚC 4: Phân tích biên - Chương 5]</strong> ➔ Gradient Sobel + Đo tương phản vành đai<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                    <strong>[KẾT QUẢ ĐẦU RA]</strong> ➔ Vẽ đường viền ĐỎ ôm sát vết dầu tràn
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv3">Trình bày: TV3 (Thuật toán 1)</span>
+                <h1>7. CÀI ĐẶT NUMPY BƯỚC 1: LỌC TRUNG VỊ BẢO TOÀN BIÊN</h1>
+                <ul>
+                    <li><strong>100% NumPy thuần:</strong> Không gọi hàm thư viện <code>cv2.medianBlur</code>.</li>
+                    <li><strong>Xử lý biên an toàn:</strong> Sử dụng kỹ thuật đệm phản xạ đối xứng <code>np.pad(mode='reflect')</code>.</li>
+                </ul>
+                <pre>def custom_median_filter(image: np.ndarray, ksize: int = 5) -> np.ndarray:
+    pad = ksize // 2
+    padded = np.pad(image, pad, mode='reflect')
+    h, w = image.shape
+    filtered = np.zeros_like(image)
+    for r in range(h):
+        for c in range(w):
+            filtered[r, c] = np.median(padded[r:r+ksize, c:c+ksize])
+    return filtered</pre>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv3">Trình bày: TV3 (Thuật toán 1)</span>
+                <h1>8. CÀI ĐẶT NUMPY BƯỚC 2: PHÂN NGƯỠNG OTSU TỐI ƯU</h1>
+                <ul>
+                    <li><strong>Vector hóa bằng NumPy:</strong> Tính đồng thời phương sai liên lớp $\sigma_B^2(k)$ cho cả 256 mức xám:</li>
+                </ul>
+                <pre>hist, _ = np.histogram(image.ravel(), bins=256, range=(0, 256))
+p = hist / image.size
+omega = np.cumsum(p)
+mu = np.cumsum(p * np.arange(256))
+sigma_b_sq = (mu[-1] * omega - mu)**2 / (omega * (1.0 - omega))
+optimal_t = int(np.argmax(sigma_b_sq))
+eta = sigma_b_sq[optimal_t] / sigma_t_sq</pre>
+                <p>• <strong>Cơ chế ngắt sớm:</strong> Nếu $\eta < 0.10 \rightarrow$ Dừng pipeline ngay lập tức, kết luận ảnh biển sạch, không sinh báo động giả.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv4">Trình bày: TV4 (Thuật toán 2)</span>
+                <h1>9. CÀI ĐẶT NUMPY BƯỚC 3: HÌNH THÁI HỌC & TRÍCH BIÊN</h1>
+                <ul>
+                    <li><strong>Phép Co (`custom_erode`) & Phép Dãn (`custom_dilate`):</strong> Cài đặt theo lý thuyết tập hợp với ma trận phần tử cấu trúc $B$.</li>
+                    <li><strong>Phép Mở ($A \circ B$):</strong> Xóa sạch bọt sóng biển li ti.</li>
+                    <li><strong>Phép Đóng ($A \bullet B$):</strong> Hàn gắn thân vệt dầu bị sóng biển chém đứt khúc.</li>
+                    <li><strong>Trích biên hình thái học đơn pixel:</strong>
+                        $$\beta(A) = A - (A \ominus B) \quad \text{(Slide Chương 6 Trang 16)}$$
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv4">Trình bày: TV4 (Thuật toán 2)</span>
+                <h1>10. TRÍCH XUẤT 4 ĐẶC TRƯNG & BỘ LỌC HEURISTIC VẬT LÝ</h1>
+                <table>
+                    <tr>
+                        <th>Tên đặc trưng</th>
+                        <th>Công thức tính</th>
+                        <th>Ngưỡng vật lý</th>
+                        <th>Ý nghĩa thực tiễn</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Độ thuôn dài</strong></td>
+                        <td>$E = \text{Major} / \text{Minor}$</td>
+                        <td>$E \ge 2.0$</td>
+                        <td>Vết dầu xả theo đuôi tàu thường kéo dài dạng dải</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Độ phức tạp biên</strong></td>
+                        <td>$C = P^2 / (4\pi \cdot A)$</td>
+                        <td>$C \ge 1.8$</td>
+                        <td>Biên dầu bị vò nát bởi sóng biển có tính gấp khúc cao</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gradient biên Sobel</strong></td>
+                        <td>$\overline{G}_{\text{border}} = \frac{1}{|\beta|} \sum M(x,y)$</td>
+                        <td>$\overline{G} \ge 6.0$</td>
+                        <td>Sức căng bề mặt tạo ranh giới sắc nét với nước biển</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tương phản vành đai</strong></td>
+                        <td>$\Delta \mu = \mu_{\text{sea}} - \mu_{\text{oil}}$</td>
+                        <td>$\Delta \mu \ge 12.0$</td>
+                        <td>Tín hiệu phản xạ của dầu suy giảm mạnh so với biển lân cận</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 12 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv5">Trình bày: TV5 (Thực nghiệm)</span>
+                <h1>11. TẬP DỮ LIỆU THỰC NGHIỆM CSIRO DATA61</h1>
+                <ul>
+                    <li><strong>Nguồn dữ liệu:</strong> Bộ dữ liệu viễn thám chuẩn quốc tế từ vệ tinh Sentinel-1 SAR do CSIRO Data61 & ESA công bố.</li>
+                    <li><strong>Kích thước ảnh:</strong> $400 \times 400$ pixel, đơn kênh mức xám (Grayscale).</li>
+                    <li><strong>Tổng quy mô: 5,630 ảnh radar SAR:</strong>
+                        <ul>
+                            <li><strong>Class 0 (Look-alikes & Clean Sea):</strong> 3,725 ảnh không chứa dầu (gió lặng, màng sinh học, biển sạch).</li>
+                            <li><strong>Class 1 (Oil Slicks):</strong> 1,905 ảnh có chứa vết dầu tràn thực tế.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 13 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv5">Trình bày: TV5 (Thực nghiệm)</span>
+                <h1>12. KẾT QUẢ ĐÁNH GIÁ ĐỊNH LƯỢNG (CHUẨN CDIO)</h1>
+                <table>
+                    <tr>
+                        <th>Chỉ số hiệu năng</th>
+                        <th>Giá trị đo đạc</th>
+                        <th>Đánh giá kỹ thuật</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Độ chính xác (Accuracy)</strong></td>
+                        <td class="success">88.15%</td>
+                        <td>Phân loại chuẩn xác trên 5,630 ảnh</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Độ chuẩn xác (Precision)</strong></td>
+                        <td>77.66%</td>
+                        <td>Lọc bỏ phần lớn các vùng gió lặng diện tích rộng</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Độ nhạy / Thu hồi (Recall)</strong></td>
+                        <td class="highlight">91.23%</td>
+                        <td><strong>Ưu tiên cao nhất: Không bỏ sót vết dầu nguy hiểm</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Điểm F1 tổng hòa</strong></td>
+                        <td class="success">83.89%</td>
+                        <td>Hiệu năng vượt trội đối với thuật toán xử lý ảnh thuần túy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời gian xử lý trung bình</strong></td>
+                        <td class="success">46.2 ms / ảnh</td>
+                        <td><strong>~21.6 FPS (Đáp ứng yêu cầu trực tuyến thời gian thực)</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv5">Trình bày: TV5 (Thực nghiệm)</span>
+                <h1>13. PHÂN TÍCH CA THÀNH CÔNG & NGUYÊN NHÂN LỖI</h1>
+                <ul>
+                    <li><strong>Ca thành công xuất sắc:</strong>
+                        <p>Hệ thống tự động phát hiện chính xác các vệt dầu dạng dải hẹp, vẽ viền đỏ ôm khít mép ngoài. Loại trừ 100% báo động giả trên biển sạch nhờ hệ số $\eta$.</p>
+                    </li>
+                    <li><strong>Phân tích các ca dự đoán sai:</strong>
+                        <p>• <strong>Báo động giả (False Positive - 500 ảnh):</strong> Do vùng gió lặng cục bộ ven đảo có gradient biên chuyển tiếp khá gắt do địa hình chắn gió.</p>
+                        <p>• <strong>Bỏ sót (False Negative - 167 ảnh):</strong> Do vệt dầu quá loãng ($\Delta \mu < 12.0$) hoặc bị sóng biển đánh tan thành các mảnh vụn nhỏ hơn 150 pixel.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 15 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv2">Trình bày: TV2 (Kiểm chứng)</span>
+                <h1>14. KIỂM CHỨNG TÍNH ĐÚNG (NUMPY VS OPENCV)</h1>
+                <p>Khẳng định 100% tính đúng đắn của mã nguồn tự viết:</p>
+                <table>
+                    <tr>
+                        <th>Thuật toán tự lập trình</th>
+                        <th>Hàm OpenCV đối chiếu</th>
+                        <th>Max Absolute Error</th>
+                        <th>MSE</th>
+                    </tr>
+                    <tr>
+                        <td>Lọc trung vị 2D (5x5)</td>
+                        <td><code>cv2.medianBlur</code></td>
+                        <td class="success">0.00</td>
+                        <td class="success">0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Phân ngưỡng Otsu tối ưu</td>
+                        <td><code>cv2.threshold(..., OTSU)</code></td>
+                        <td class="success">0</td>
+                        <td class="success">0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Phép Co & Phép Dãn</td>
+                        <td><code>cv2.erode</code> & <code>dilate</code></td>
+                        <td class="success">0.00</td>
+                        <td class="success">0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Trích biên $\beta(A)$</td>
+                        <td><code>A - cv2.erode(A)</code></td>
+                        <td class="success">0.00</td>
+                        <td class="success">0.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 16 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv1">Trình bày: TV1 (PM)</span>
+                <h1>15. ỨNG DỤNG DEMO TƯƠNG TÁC (STREAMLIT WEB APP)</h1>
+                <ul>
+                    <li><strong>Tính năng giao diện thời gian thực:</strong>
+                        <p>• Tải ảnh SAR từ máy tính hoặc chọn ảnh mẫu từ kho dữ liệu Class 0 / Class 1.</p>
+                        <p>• Thanh trượt Sliders trực quan: Tinh chỉnh kích thước kernel, ngưỡng diện tích, độ tương phản và gradient theo thời gian thực.</p>
+                        <p>• Hiển thị đồng thời 4 khung ảnh quy trình xử lý song song.</p>
+                        <p>• Tự động tính toán diện tích vết dầu, độ tương phản và gắn nhãn cảnh báo nguy hiểm.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 17 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv1">Trình bày: TV1 (PM)</span>
+                <h1>16. KẾT LUẬN & HƯỚNG PHÁT TRIỂN THỰC TIỄN</h1>
+                <ul>
+                    <li><strong>Kết luận:</strong>
+                        <p>Nhóm đã hoàn thành xuất sắc 5 chuẩn đầu ra CDIO, tự lập trình 100% thuật toán lõi bằng NumPy từ số 0 với tính minh bạch toán học tuyệt đối.</p>
+                    </li>
+                    <li><strong>Ý tưởng mở rộng thực tế tiếp theo:</strong>
+                        <p>1. <strong>Mô phỏng trôi dầu Lagrangian:</strong> Kết hợp trường gió ERA5 và mô hình hải lưu dự báo đường đi của vệt dầu dạt vào bờ biển miền Trung.</p>
+                        <p>2. <strong>Tích hợp hệ thống định danh tàu biển AIS:</strong> Đối soát tọa độ và thời gian vệ tinh chụp để truy vết đích danh tàu thuyền xả trộm dầu ngoài khơi.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 18 -->
+        <div class="slide">
+            <div>
+                <span class="badge badge-tv1">Trình bày: Cả nhóm</span>
+                <h1>XIN CHÂN THÀNH CẢM ƠN THẦY VÀ HỘI ĐỒNG!</h1>
+                <h2>Nhóm sẵn sàng bước vào phần Demo ứng dụng (3 phút) và Vấn đáp (5 phút)</h2>
+                <div style="margin-top: 35px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px;">
+                    <p><strong>Thông tin liên hệ & Mã nguồn dự án:</strong></p>
+                    <p>• Kho lưu trữ Git: <code>https://github.com/HoTung/BTL_XLA_De18_SAR_Oil_Spill</code></p>
+                    <p>• Báo cáo kỹ thuật: <code>report_latex/main.pdf</code> (Chuẩn CDIO - ĐH Giao thông Vận tải)</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Presentation Footer Controls -->
+    <div class="footer">
+        <button class="nav-btn" onclick="prevSlide()">◀ Trang trước</button>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="slide-counter" id="slideCounter">Slide 1 / 18</span>
+        <button class="nav-btn" onclick="nextSlide()">Trang sau ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            currentSlide = index;
+            progressBar.style.width = ((index + 1) / totalSlides * 100) + '%';
+            slideCounter.textContent = `Slide ${index + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+            else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+            else if (e.key === 'Home') showSlide(0);
+            else if (e.key === 'End') showSlide(totalSlides - 1);
+            else if (e.key === 'f' || e.key === 'F') {
+                if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+                else document.exitFullscreen();
+            }
+        });
+
+        // 12-minute presentation countdown timer
+        let timeLeft = 12 * 60;
+        const timerEl = document.getElementById('timer');
+        setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+                const secs = String(timeLeft % 60).padStart(2, '0');
+                timerEl.textContent = `${mins}:${secs}`;
+                if (timeLeft < 120) timerEl.style.color = '#e63946'; // red warning last 2 mins
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
