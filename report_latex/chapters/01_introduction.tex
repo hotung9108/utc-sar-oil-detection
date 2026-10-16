@@ -1,0 +1,55 @@
+\chapter{MỞ ĐẦU VÀ TỔNG QUAN BÀI TOÁN}
+\label{ch:introduction}
+
+\section{Bối cảnh thực tiễn tại vùng biển và bờ biển miền Trung Việt Nam}
+\label{sec:vietnam_context}
+Việt Nam sở hữu đường bờ biển dài hơn 3.260 km, trải dọc từ Bắc chí Nam với vùng đặc quyền kinh tế biển rộng trên 1 triệu km$^2$. Biển Đông là một trong những tuyến hàng hải quốc tế nhộn nhịp nhất thế giới, nối liền Thái Bình Dương và Ấn Độ Dương, với hàng chục nghìn lượt tàu chở dầu tải trọng lớn qua lại mỗi năm. 
+
+Tuy nhiên, trong những năm gần đây, dải ven biển các tỉnh miền Trung (đặc biệt là Hà Tĩnh, Quảng Bình, Quảng Trị, Thừa Thiên Huế, Đà Nẵng, Quảng Nam, Quảng Ngãi và Bình Định) liên tục phải gánh chịu các sự cố dầu tràn bí ẩn và hiện tượng dầu vón cục (tarballs) dạt vào bờ biển. Dầu vón cục có thành phần là cặn dầu nặng, asphaltene và tạp chất hydrocacbon nguy hại, trôi nổi trên biển trong thời gian dài dưới tác động của nắng gió và sóng biển. Khi trôi dạt vào các bãi tắm du lịch nổi tiếng (như Mỹ Khê, Cửa Đại, Lăng Cô, Nhật Lệ) và các vùng bãi triều nuôi trồng thủy sản, lớp dầu này gây ô nhiễm nghiêm trọng, làm chết hàng loạt cá tôm, phá hủy rạn san hô và làm tê liệt ngành kinh tế du lịch địa phương.
+
+Nguyên nhân của hiện tượng này chủ yếu xuất phát từ:
+\begin{enumerate}
+    \item Các vụ tai nạn va chạm hoặc đắm tàu chở dầu ngoài khơi xa.
+    \item Hành vi súc rửa bồn chứa dầu (tank washing) và xả trộm nước la-gông (bilge water) trái phép của các tàu biển thương mại quốc tế vào ban đêm để tránh bị phát hiện.
+\end{enumerate}
+
+Để giảm thiểu thiệt hại, yêu cầu cấp bách đặt ra là phải \textbf{phát hiện sớm các vệt dầu loang ngay từ ngoài khơi xa} (cách bờ từ vài chục đến hàng trăm hải lý), từ đó kích hoạt hệ thống phao quây thấm dầu và điều động lực lượng ứng cứu trước khi vệt dầu kịp trôi dạt vào vùng bờ biển nhạy cảm.
+
+\section{Giám sát viễn thám biển bằng Radar khẩu độ tổng hợp (SAR)}
+\label{sec:sar_overview}
+Trong công tác giám sát biển diện rộng, các phương pháp tuần tra truyền thống bằng máy bay hoặc tàu cứu hộ bị hạn chế nghiêm trọng về tầm bao phủ và chi phí vận hành. Giám sát viễn thám bằng vệ tinh quang học (như Landsat, Sentinel-2, MODIS) cung cấp hình ảnh màu trực quan nhưng lại gặp phải rào cản chí mạng:
+\begin{itemize}
+    \item \textbf{Mây mù che phủ:} Vùng biển nhiệt đới gió mùa Việt Nam thường xuyên có mây dày đặc (trung bình hơn 60--70\% thời gian trong năm có mây), khiến cảm biến quang học không thể nhìn thấy bề mặt đại dương.
+    \item \textbf{Giới hạn ban đêm:} Cảm biến quang học hoàn toàn bất lực vào ban đêm, trong khi các hành vi xả thải trộm của tàu thuyền lại chủ yếu diễn ra trong bóng tối.
+\end{itemize}
+
+Công nghệ \textbf{Radar khẩu độ tổng hợp (SAR -- Synthetic Aperture Radar)} trên chùm vệ tinh Sentinel-1 của Cơ quan Vũ trụ Châu Âu (ESA) và NASA hoạt động ở băng tần C (bước sóng $\lambda \approx 5.6$ cm) mang lại giải pháp đột phá. SAR là cảm biến chủ động, tự phát tín hiệu vi ba xuống mặt đất và thu nhận sóng phản xạ trở lại. Do bước sóng dài hơn nhiều so với hạt sương và mây, tín hiệu SAR \textbf{xuyên qua mọi lớp mây mù, hoạt động bất kể ngày đêm} và không phụ thuộc vào điều kiện thời tiết \cite{brekke2005oil, solberg2007sar}.
+
+\section{Đặc trưng vật lý của vệt dầu và thách thức đốm tối tương tự (Look-alikes)}
+\label{sec:physical_principles}
+
+\subsection{Cơ chế hình thành đốm tối trên ảnh SAR}
+Sóng radar vi ba phản xạ từ mặt biển về máy thu phụ thuộc vào độ gồ ghề của bề mặt (surface roughness). Khi có gió thổi trên biển, các sóng mao dẫn và sóng trọng lực ngắn (capillary-gravity waves, bước sóng vài xentimet) được tạo ra. Các sóng nhỏ này đóng vai trò như một mạng nhiễu xạ Bragg, tạo ra hiện tượng tán xạ ngược (backscatter) mạnh mẽ về máy thu vệ tinh, thể hiện bằng các vùng xám sáng trên ảnh SAR.
+
+Khi dầu bị đổ tràn ra biển, một màng dầu mỏng (oil film) trải rộng trên bề mặt. Màng dầu này làm tăng độ nhớt động học và làm giảm đáng kể sức căng bề mặt của nước biển, dẫn đến việc \textbf{dập tắt hoàn toàn các sóng mao dẫn}. Bề mặt nước biển có dầu trở nên nhẵn phẳng như gương. Khi tín hiệu radar chiếu xuống, nó bị phản xạ gương (specular reflection) đi theo hướng khác thay vì quay về máy thu \cite{topouzelis2008oil}. Kết quả là mức tín hiệu thu được cực kỳ yếu, tạo thành các \textbf{đốm tối màu dị biệt (dark spots)} trên nền biển sáng xung quanh.
+
+\subsection{Thách thức đốm tối giả (Look-alikes)}
+Mặc dù vệt dầu thể hiện bằng đốm tối, nhưng không phải mọi đốm tối trên ảnh SAR đều là dầu tràn. Trong tự nhiên tồn tại nhiều hiện tượng vật lý và khí tượng cũng làm phẳng mặt biển, tạo ra các đốm tối rất giống dầu (thường được gọi là \textbf{Look-alikes}):
+\begin{itemize}
+    \item \textbf{Vùng gió lặng (Low wind zones):} Khi vận tốc gió bề mặt thấp hơn khoảng 2--3 m/s, gió không đủ mạnh để kích hoạt sóng mao dẫn, khiến mặt biển phẳng lặng và tối màu.
+    \item \textbf{Màng sinh học (Biogenic slicks):} Các vệt chất hữu cơ bài tiết từ sinh vật phù du (phytoplankton) hoặc tảo nở hoa trên biển.
+    \item \textbf{Tế bào mưa (Rain cells):} Mưa lớn đè phẳng mặt sóng hoặc hấp thụ tín hiệu vi ba.
+    \item \textbf{Dòng xoáy hải lưu và bóng núi ven bờ:} Vùng nước khuất gió sau các hòn đảo ven bờ.
+\end{itemize}
+Sự nhầm lẫn giữa dầu tràn thực tế và các hiện tượng Look-alikes là nguyên nhân chính dẫn đến tỉ lệ báo động giả (False Alarm Rate) rất cao nếu chỉ dùng phân ngưỡng độ sáng đơn thuần.
+
+\section{Mục tiêu đề tài và Định hướng chuẩn CDIO}
+\label{sec:cdio_goals}
+Đề tài số 18: \textit{"Phát hiện vết dầu tràn trên biển từ ảnh SAR (★★★) -- NASA \#6"} được nhóm triển khai nhằm đạt các mục tiêu trọng tâm:
+\begin{enumerate}
+    \item \textbf{Nghiên cứu mô hình toán học và xử lý ảnh thuần túy:} Ứng dụng toàn diện các thuật toán được giảng dạy trong học phần Xử lý ảnh của TS. Phan Thanh Toàn \cite{toan2024xla} (Lọc trung vị khử nhiễu đốm speckle, phân ngưỡng Otsu tối ưu phân lập đối tượng, biến đổi hình thái học co/dãn/mở/đóng, trích biên $\beta(A)$ và đạo hàm Sobel).
+    \item \textbf{Cài đặt 100\% mã nguồn bằng NumPy:} Tự hiện thực hóa toàn bộ các thuật toán cốt lõi từ số 0 bằng ma trận NumPy, không sử dụng các hàm đen (black-box) của thư viện ngoài.
+    \item \textbf{Kiểm chứng định lượng nghiêm ngặt:} Xây dựng ví dụ số tính tay $5 \times 5$ và kiểm thử tính đúng so với thư viện chuẩn OpenCV.
+    \item \textbf{Đánh giá trên bộ dữ liệu lớn chuẩn quốc tế:} Thực nghiệm trên 5,630 ảnh SAR của CSIRO Data61 \cite{csiro2020sar}, đo đạc các chỉ số Precision, Recall, F1-score và ma trận nhầm lẫn.
+    \item \textbf{Xây dựng sản phẩm hoàn thiện:} Phát triển ứng dụng Web tương tác Streamlit và đề xuất mô hình mở rộng truy vết tàu xả thải bằng hệ thống định danh AIS.
+\end{enumerate}

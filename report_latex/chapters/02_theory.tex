@@ -1,0 +1,191 @@
+\chapter{CƠ SỞ LÝ THUYẾT VÀ MÔ HÌNH TOÁN HỌC}
+\label{ch:theory}
+
+\section{Bản chất nhiễu đốm SAR và Mô hình nhiễu nhân tính}
+\label{sec:speckle_noise}
+Ảnh radar khẩu độ tổng hợp (SAR) được tạo thành từ sự giao thoa kết hợp (coherent interference) của các sóng phản xạ từ vô số bộ tán xạ nhỏ trong mỗi ô độ phân giải (resolution cell). Sự giao thoa này gây ra hiện tượng nhiễu đốm đục hạt đặc trưng gọi là \textbf{Speckle Noise}. 
+
+Khác với ảnh quang học thông thường nơi nhiễu thường tuân theo mô hình cộng tính Gauss (additive Gaussian noise), nhiễu đốm trong ảnh SAR tuân theo \textbf{Mô hình nhiễu nhân tính (Multiplicative Noise Model)}:
+\begin{equation}
+    I(x, y) = R(x, y) \cdot u(x, y)
+    \label{eq:multiplicative_noise}
+\end{equation}
+Trong đó:
+\begin{itemize}
+    \item $I(x, y)$ là cường độ mức xám quan sát được tại tọa độ $(x, y)$.
+    \item $R(x, y)$ là hệ số phản xạ tán xạ ngược thực tế của bề mặt (radar cross section).
+    \item $u(x, y)$ là biến ngẫu nhiên biểu thị thành phần nhiễu đốm, có giá trị kỳ vọng trung bình $E[u] = 1$ và phương sai $\sigma_u^2 = 1/L$ (với $L$ là số lượt quan sát độc lập -- number of looks) \cite{lee1980digital}.
+\end{itemize}
+
+Đặc điểm nguy hại của nhiễu đốm nhân tính là: tại các vùng có mức xám cao (nền biển), biên độ dao động của nhiễu đốm càng lớn, tạo ra các hạt sáng tối li ti làm sai lệch nghiêm trọng các thuật toán phân ngưỡng toàn cục và làm đứt gãy đường biên của các đối tượng tối màu.
+
+\section{Lọc không gian phi tuyến bảo toàn đường biên (Median Filter)}
+\label{sec:median_filter}
+Trong giáo trình Xử lý ảnh \cite{toan2024xla} (Chương 3, Trang 104--106), TS. Phan Thanh Toàn đã phân tích chi tiết về các bộ lọc không gian cục bộ:
+\begin{itemize}
+    \item \textbf{Lọc trung bình (Box/Mean Filter):} Thay thế giá trị pixel bằng trung bình cộng của các điểm trong cửa sổ lân cận $W$. Phương pháp này làm mịn ảnh nhưng làm \textbf{mờ nhòe nghiêm trọng đường biên (edge blurring)}, làm giảm độ dốc gradient giữa vết dầu và nước biển.
+    \item \textbf{Lọc trung vị (Median Filter):} Là bộ lọc phi tuyến thống kê thứ tự (order-statistic filter). Với cửa sổ trượt $W$ kích thước $(2k+1) \times (2k+1)$ tâm tại $(x, y)$, giá trị đầu ra được xác định bằng giá trị trung vị của tập hợp các mức xám sau khi đã sắp xếp tăng dần:
+    \begin{equation}
+        \hat{I}(x, y) = \text{median}\left\{ I(x + i, y + j) \mid (i, j) \in W \right\}
+        \label{eq:median_filter}
+    \end{equation}
+\end{itemize}
+
+Ưu thế vượt trội của lọc trung vị đối với ảnh SAR là: loại bỏ triệt để các pixel nhiễu đốm dị biệt đơn lẻ (tương tự nhiễu muối tiêu) mà \textbf{bảo toàn hoàn hảo độ sắc nét của đường biên ranh giới vết dầu}, không làm dịch chuyển vị trí thực tế của mép dầu ngoài đại dương.
+
+\section{Lý thuyết Phân ngưỡng tối ưu Otsu và Hệ số khả tách}
+\label{sec:otsu_theory}
+Phân ngưỡng là kỹ thuật cơ bản để phân đoạn ảnh thành đối tượng và nền (Chương 7, Trang 48--55 trong bài giảng \cite{toan2024xla}). Thuật toán do Nobuyuki Otsu đề xuất năm 1979 \cite{otsu1979threshold} là phương pháp phân ngưỡng tối ưu phi tham số dựa trên việc tối đa hóa phương sai giữa các lớp (inter-class variance).
+
+Giả sử ảnh xám có kích thước $M \times N$ với $L$ mức xám $\{0, 1, \dots, L-1\}$ ($L = 256$). Số lượng pixel có mức xám $i$ là $n_i$, tổng số pixel là $N_T = \sum_{i=0}^{L-1} n_i$. Xác suất xuất hiện của mức xám $i$ là:
+\begin{equation}
+    p_i = \frac{n_i}{N_T}, \quad p_i \ge 0, \quad \sum_{i=0}^{L-1} p_i = 1
+\end{equation}
+
+Một ngưỡng $t \in [0, L-1]$ chia các pixel của ảnh thành hai lớp: lớp $C_0$ (đối tượng tối màu) gồm các mức xám $[0, t]$ và lớp $C_1$ (nền biển sáng) gồm các mức xám $[t+1, L-1]$.
+\begin{enumerate}
+    \item \textbf{Xác suất tích lũy (trọng số lớp):}
+    \begin{equation}
+        \omega_0(t) = \sum_{i=0}^t p_i, \quad \omega_1(t) = \sum_{i=t+1}^{L-1} p_i = 1 - \omega_0(t)
+    \end{equation}
+    \item \textbf{Mức xám trung bình của từng lớp và toàn cục:}
+    \begin{equation}
+        \mu_0(t) = \frac{1}{\omega_0(t)} \sum_{i=0}^t i \cdot p_i, \quad \mu_1(t) = \frac{1}{\omega_1(t)} \sum_{i=t+1}^{L-1} i \cdot p_i
+    \end{equation}
+    \begin{equation}
+        \mu_T = \sum_{i=0}^{L-1} i \cdot p_i = \omega_0(t) \mu_0(t) + \omega_1(t) \mu_1(t)
+    \end{equation}
+    \item \textbf{Phương sai giữa hai lớp (Inter-class variance):}
+    \begin{equation}
+        \sigma_B^2(t) = \omega_0(t)(\mu_0(t) - \mu_T)^2 + \omega_1(t)(\mu_1(t) - \mu_T)^2 = \frac{[\mu_T \omega_0(t) - \mu(t)]^2}{\omega_0(t)(1 - \omega_0(t))}
+        \label{eq:sigma_b}
+    \end{equation}
+    trong đó $\mu(t) = \sum_{i=0}^t i \cdot p_i$ là trung bình tích lũy đến ngưỡng $t$.
+    \item \textbf{Ngưỡng tối ưu $T^*$:} Là ngưỡng cực đại hóa phương sai liên lớp:
+    \begin{equation}
+        T^* = \arg\max_{0 \le t < L-1} \sigma_B^2(t)
+    \end{equation}
+    \item \textbf{Hệ số khả tách $\eta$ (Separability Criterion):} Được định nghĩa tại Slide Chương 7 trang 52:
+    \begin{equation}
+        \eta(t) = \frac{\sigma_B^2(t)}{\sigma_T^2}, \quad 0 \le \eta(t) \le 1
+        \label{eq:separability}
+    \end{equation}
+    với $\sigma_T^2 = \sum_{i=0}^{L-1} (i - \mu_T)^2 p_i$ là tổng phương sai của toàn bộ ảnh.
+\end{enumerate}
+
+\textbf{Ý nghĩa quyết định trong bài toán vết dầu SAR:} Khi mặt biển đồng nhất (không có vết dầu), đồ thị histogram chỉ có 1 đỉnh đơn phân phối Rayleigh, giá trị $\sigma_B^2$ cực đại sẽ rất thấp và dẫn đến $\eta < 0.10$. Nhờ hệ số $\eta$, hệ thống có thể kết luận ngay ảnh không có vệt tối dị biệt, loại bỏ hoàn toàn việc phân đoạn nhầm lẫn trên biển sạch.
+
+\section{Lý thuyết Hình thái học ảnh và Toán tử trích biên}
+\label{sec:morphology_theory}
+Xử lý hình thái học (Morphological Image Processing) dựa trên lý thuyết tập hợp (Chương 6, Trang 7--20 \cite{toan2024xla}). Đặt $A$ là tập hợp điểm ảnh nhị phân cần xử lý và $B$ là phần tử cấu trúc (Structuring Element) với gốc tọa độ đặt tại tâm.
+
+\subsection{Các phép toán cơ bản}
+\begin{itemize}
+    \item \textbf{Phép co (Erosion):} Làm teo nhỏ đối tượng, loại bỏ các chi tiết lồi và nhiễu đốm nhỏ hơn $B$:
+    \begin{equation}
+        A \ominus B = \{ z \in \mathbb{Z}^2 \mid (B)_z \subseteq A \}
+    \end{equation}
+    \item \textbf{Phép dãn (Dilation):} Làm phình to đối tượng, lấp đầy các khoảng đứt gãy nhỏ:
+    \begin{equation}
+        A \oplus B = \{ z \in \mathbb{Z}^2 \mid (\hat{B})_z \cap A \neq \emptyset \}
+    \end{equation}
+    \item \textbf{Phép mở (Opening):} Là phép co theo sau bởi phép dãn với cùng phần tử cấu trúc $B$:
+    \begin{equation}
+        A \circ B = (A \ominus B) \oplus B
+    \end{equation}
+    Tác dụng: Xóa bỏ triệt để các mẩu bọt sóng biển li ti mà không làm thay đổi kích thước tổng thể của vệt dầu lớn.
+    \item \textbf{Phép đóng (Closing):} Là phép dãn theo sau bởi phép co:
+    \begin{equation}
+        A \bullet B = (A \oplus B) \ominus B
+    \end{equation}
+    Tác dụng: Nối liền các đoạn thân vết dầu bị đứt khúc do sóng biển chém ngang.
+\end{itemize}
+
+\subsection{Toán tử trích biên hình thái học đơn pixel}
+Theo đúng định nghĩa trong giáo trình (Chương 6, Trang 16), đường biên hình thái học $\beta(A)$ của một vùng nhị phân $A$ được xác định chính xác bằng hiệu tập hợp giữa ảnh gốc $A$ và ảnh sau khi đã bị co bởi phần tử cấu trúc đơn vị $B_{3 \times 3}$:
+\begin{equation}
+    \beta(A) = A - (A \ominus B)
+    \label{eq:morph_boundary}
+\end{equation}
+Phương pháp này đảm bảo đường biên thu được có độ dày chính xác 1 pixel, ôm sát mép ngoài của thân vết dầu và không bị lệch tọa độ.
+
+\section{Phân tích độ dốc biên Sobel và Tương phản vành đai}
+\label{sec:edge_and_contrast}
+
+\subsection{Toán tử đạo hàm không gian Sobel}
+Theo Chương 5 bài giảng \cite{toan2024xla} (Trang 36--40), độ biến thiên mức xám cục bộ được đo đạc bằng toán tử đạo hàm gradient hai chiều sử dụng mặt nạ Sobel $3 \times 3$:
+\begin{equation}
+    S_x = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}, \quad 
+    S_y = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix}
+\end{equation}
+Độ lớn Gradient tại mỗi điểm $(x, y)$ trên đường biên $\partial R$ được tính theo công thức:
+\begin{equation}
+    M(x, y) = \sqrt{G_x^2(x,y) + G_y^2(x,y)} \approx |G_x(x,y)| + |G_y(x,y)|
+\end{equation}
+Độ dốc gradient trung bình dọc theo đường biên $\overline{G}_{border}$ là thước đo sức căng bề mặt của màng dầu:
+\begin{equation}
+    \overline{G}_{border} = \frac{1}{|\beta(A)|} \sum_{(x,y) \in \beta(A)} M(x, y)
+\end{equation}
+
+\subsection{Độ tương phản vành đai biển lân cận (Annulus Contrast)}
+Để kiểm tra độ suy giảm tín hiệu thực tế, nhóm tạo ra một vành đai nước biển bao quanh vết dầu bằng cách dãn nở mặt nạ dầu thêm 7 pixel ($A_{\text{dilated}} = A \oplus B_7$) rồi trừ đi thân vết dầu:
+\begin{equation}
+    \Omega_{\text{sea}} = (A \oplus B_7) - A
+\end{equation}
+Độ chênh lệch mức xám và tỉ số suy giảm (Damping Ratio) được xác định bởi:
+\begin{equation}
+    \Delta \mu = \mu_{\text{sea}} - \mu_{\text{oil}}, \quad \text{Damping Ratio} = \frac{\mu_{\text{sea}}}{\mu_{\text{oil}}}
+\end{equation}
+Vết dầu tràn thực tế trên biển thường thỏa mãn $\Delta \mu \ge 12.0$ mức xám.
+
+\section{Ví dụ số tính tay minh họa (Toy Example trên ma trận $5 \times 5$)}
+\label{sec:toy_example}
+Để kiểm chứng tính chặt chẽ của mô hình toán học trước khi lập trình, nhóm xây dựng ví dụ số tính tay trên ma trận ảnh giả lập kích thước $5 \times 5$ gồm một đốm tối (mức xám 10--20) nằm giữa nền nước biển sáng (mức xám 80--90):
+\begin{equation}
+    I = \begin{bmatrix}
+    85 & 88 & 86 & 89 & 87 \\
+    84 & 15 & 12 & 18 & 85 \\
+    86 & 14 & 10 & 16 & 88 \\
+    83 & 16 & 13 & 19 & 86 \\
+    87 & 85 & 89 & 84 & 88
+    \end{bmatrix}
+\end{equation}
+
+\textbf{Bước 1: Lọc trung vị qua cửa sổ $3 \times 3$ tại pixel tâm $(2, 2)$ có giá trị 10:}\\
+Tập hợp 9 giá trị trong cửa sổ lân cận là: $\{15, 12, 18, 14, 10, 16, 16, 13, 19\}$.\\
+Sắp xếp tăng dần: $\{10, 12, 13, 14, \mathbf{15}, 16, 16, 18, 19\}$.\\
+Giá trị trung vị đầu ra tại tâm: $\hat{I}(2, 2) = 15$. (Nhiễu đốm cực trị 10 đã được loại bỏ mượt mà).
+
+\textbf{Bước 2: Phân ngưỡng Otsu tính tay:}\\
+- Tổng số điểm ảnh $N_T = 25$. Mức xám trung bình nền biển $\mu_1 \approx 86.2$, trung bình vết tối $\mu_0 \approx 14.8$.\\
+- Trọng số lớp đối tượng: $\omega_0 = 9/25 = 0.36$; trọng số nền: $\omega_1 = 16/25 = 0.64$.\\
+- Trung bình toàn cục: $\mu_T = 0.36 \times 14.8 + 0.64 \times 86.2 = 60.5$.\\
+- Phương sai liên lớp cực đại:
+\begin{equation}
+    \sigma_B^2 = 0.36 \times (14.8 - 60.5)^2 + 0.64 \times (86.2 - 60.5)^2 = 752.1 + 422.7 = 1174.8
+\end{equation}
+Ngưỡng tối ưu tìm được nằm chính xác ở giữa khoảng phân ly: $T^* = 50$.
+
+\textbf{Bước 3: Trích biên hình thái học $\beta(A)$ tính tay:}\\
+Mặt nạ nhị phân $A$ cho vùng tối ($I \le 50$) là hình vuông kích thước $3 \times 3$ tại trung tâm.\\
+Áp dụng phép co với phần tử cấu trúc $B_{3 \times 3}$: chỉ có duy nhất pixel tâm $(2, 2)$ là chứa trọn $B$, do đó:
+\begin{equation}
+    A \ominus B = \begin{bmatrix}
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+    \end{bmatrix}
+\end{equation}
+Đường biên trích xuất được:
+\begin{equation}
+    \beta(A) = A - (A \ominus B) = \begin{bmatrix}
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 & 0 \\
+    0 & 1 & \mathbf{0} & 1 & 0 \\
+    0 & 1 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0
+    \end{bmatrix}
+\end{equation}
+Đúng chính xác là một đường bao khép kín độ dày 1 pixel bao quanh vết tối, pixel tâm $(2, 2)$ rỗng bằng 0. Kết quả tính tay khẳng định tính đúng đắn tuyệt đối của mô hình lý thuyết.

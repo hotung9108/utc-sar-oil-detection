@@ -1,0 +1,128 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ==============================================================================
+% GÓI THƯ VIỆN & CẤU HÌNH NGÔN NGỮ TIẾNG VIỆT
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{indentfirst}
+
+% ==============================================================================
+% ĐỊNH DẠNG TRANG & CĂN LỀ CHUẨN ĐH GIAO THÔNG VẬN TẢI (UTC)
+% ==============================================================================
+\usepackage[
+    a4paper,
+    top=20mm,
+    bottom=20mm,
+    left=30mm,
+    right=20mm,
+    headheight=15pt
+]{geometry}
+
+\onehalfspacing
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{6pt}
+
+% ==============================================================================
+% CẤU HÌNH LIÊN KẾT & MÀU SẮC
+% ==============================================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=green!60!black,
+    urlcolor=blue!70!black
+]{hyperref}
+
+% ==============================================================================
+% CẤU HÌNH TRÌNH BÀY MÃ NGUỒN (LISTINGS)
+% ==============================================================================
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=single
+}
+\lstset{style=pythonstyle}
+
+% ==============================================================================
+% HEADER & FOOTER
+% ==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{BTL Xử lý ảnh (UTC) — Đề tài 18: Phát hiện vết dầu tràn từ ảnh SAR}}
+\fancyhead[R]{\small\thepage}
+\fancyfoot[C]{\small Trường Đại học Giao thông Vận tải — Khoa Công nghệ Thông tin}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% ==============================================================================
+% BẮT ĐẦU TÀI LIỆU
+% ==============================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% 00. PHẦN MỞ ĐẦU (TRANG BÌA, MỤC LỤC, BẢNG KÝ HIỆU)
+% ------------------------------------------------------------------------------
+\input{chapters/00_frontmatter.tex}
+
+% ------------------------------------------------------------------------------
+% CÁC CHƯƠNG NỘI DUNG CHÍNH (ĐÁNH SỐ TRANG ARABIC)
+% ------------------------------------------------------------------------------
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Chương 1: Mở đầu và Tổng quan bài toán (TV1 viết chính)
+\input{chapters/01_introduction.tex}
+
+% Chương 2: Cơ sở lý thuyết và Mô hình toán học (TV2 viết chính)
+\input{chapters/02_theory.tex}
+
+% Chương 3: Thiết kế và Cài đặt thuật toán (TV1, TV2, TV3, TV4 phối hợp)
+\input{chapters/03_methodology.tex}
+
+% Chương 4: Thực nghiệm, Đánh giá định lượng và Thảo luận (TV5 viết chính)
+\input{chapters/04_experiments.tex}
+
+% Chương 5: Kết luận và Hướng phát triển (TV1 viết chính)
+\input{chapters/05_conclusion.tex}
+
+% ------------------------------------------------------------------------------
+% TÀI LIỆU THAM KHẢO
+% ------------------------------------------------------------------------------
+\newpage
+\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

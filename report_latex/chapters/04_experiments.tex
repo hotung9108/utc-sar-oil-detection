@@ -1,0 +1,104 @@
+\chapter{THỰC NGHIỆM, ĐÁNH GIÁ ĐỊNH LƯỢNG VÀ THẢO LUẬN}
+\label{ch:experiments}
+
+\section{Môi trường thực nghiệm và Bộ dữ liệu chuẩn CSIRO}
+\label{sec:dataset_and_env}
+
+\subsection{Cấu hình phần cứng và môi trường chạy thử}
+Toàn bộ các thực nghiệm và kiểm thử tự động được thực hiện trên cấu hình:
+\begin{itemize}
+    \item \textbf{Phần cứng:} Vi xử lý Intel Core i7, 16GB RAM, ổ cứng SSD NVMe.
+    \item \textbf{Môi trường phần mềm:} Hệ điều hành Windows/Linux, Python 3.10+, thư viện tính toán \texttt{NumPy 1.24+}, \texttt{OpenCV 4.8+}, \texttt{SciPy 1.11+}, \texttt{Matplotlib 3.7+}.
+\end{itemize}
+
+\subsection{Tổng quan bộ dữ liệu CSIRO Sentinel-1 SAR}
+Nhóm sử dụng bộ dữ liệu chuẩn quốc tế do cơ quan nghiên cứu CSIRO Data61 (Úc) công bố \cite{csiro2020sar}, gồm tổng cộng \textbf{5,630 ảnh chip SAR} kích thước chuẩn $400 \times 400$ pixel, đơn kênh mức xám (8-bit grayscale), thu nhận từ chùm vệ tinh Sentinel-1 trên nhiều vùng đại dương khác nhau:
+\begin{itemize}
+    \item \textbf{Class 0 (Look-alikes \& Clean Sea):} Gồm \textbf{3,725 ảnh} không chứa dầu loang, đại diện cho các hiện tượng tự nhiên tương tự dầu (vùng biển lặng gió, màng sinh học thực vật phù du, dòng chảy biển và mặt biển sạch).
+    \item \textbf{Class 1 (Oil Slicks):} Gồm \textbf{1,905 ảnh} chụp các sự cố tràn dầu thực tế từ tàu thuyền xả thải hoặc tai nạn hàng hải.
+\end{itemize}
+
+\section{Phương pháp và Các chỉ số đánh giá định lượng}
+\label{sec:metrics}
+Để đánh giá toàn diện hiệu năng của hệ thống theo chuẩn CDIO, nhóm sử dụng các chỉ số thống kê đánh giá phân loại nhị phân ở mức đối tượng ảnh:
+\begin{itemize}
+    \item \textbf{True Positive (TP):} Số ảnh chứa vết dầu thực tế được hệ thống phát hiện chính xác.
+    \item \textbf{False Positive (FP):} Số ảnh vùng biển sạch / gió lặng bị hệ thống báo động nhầm là có dầu tràn.
+    \item \textbf{True Negative (TN):} Số ảnh không có dầu được hệ thống phân loại đúng là an toàn.
+    \item \textbf{False Negative (FN):} Số ảnh có dầu tràn thực tế nhưng hệ thống bỏ sót không phát hiện được.
+\end{itemize}
+
+Các công thức toán học tính toán chỉ số hiệu năng:
+\begin{equation}
+    \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{FP} + \text{TN} + \text{FN}}
+\end{equation}
+\begin{equation}
+    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+\end{equation}
+\begin{equation}
+    \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\end{equation}
+\begin{equation}
+    \text{F1-score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+\section{Kết quả thực nghiệm trên toàn bộ 5,630 ảnh SAR}
+\label{sec:benchmark_results}
+
+Bảng \ref{tab:quantitative_results} tổng hợp kết quả chạy thử nghiệm tự động hàng loạt trên toàn bộ dữ liệu mẫu kiểm thử đại diện:
+
+\begin{table}[H]
+\centering
+\caption{Bảng tổng hợp kết quả đánh giá định lượng của hệ thống.}
+\label{tab:quantitative_results}
+\begin{tabular}{lc}
+\toprule
+\textbf{Chỉ số đánh giá} & \textbf{Giá trị đạt được} \\
+\midrule
+Tổng số mẫu kiểm thử & 5,630 ảnh ($400 \times 400$) \\
+Số mẫu dầu phát hiện đúng (TP) & 1,738 ảnh \\
+Số mẫu dầu bị bỏ sót (FN) & 167 ảnh \\
+Số mẫu không dầu phân loại đúng (TN) & 3,225 ảnh \\
+Số mẫu báo động giả (FP) & 500 ảnh \\
+\midrule
+\textbf{Độ chính xác toàn cục (Accuracy)} & \textbf{88.15\%} \\
+\textbf{Độ chuẩn xác (Precision)} & \textbf{77.66\%} \\
+\textbf{Độ nhạy / Thu hồi (Recall)} & \textbf{91.23\%} \\
+\textbf{Điểm F1 tổng hòa (F1-score)} & \textbf{83.89\%} \\
+\midrule
+\textbf{Thời gian xử lý trung bình mỗi ảnh} & \textbf{46.2 ms / ảnh ($\approx$ 21.6 FPS)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ma trận nhầm lẫn (Confusion Matrix)}
+Ma trận nhầm lẫn thể hiện phân bố dự đoán của mô hình:
+
+\begin{table}[H]
+\centering
+\caption{Ma trận nhầm lẫn (Confusion Matrix) trên tập kiểm thử.}
+\label{tab:confusion_matrix}
+\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Dự đoán của Hệ thống}} \\
+& & \textbf{Dự đoán Có Dầu (1)} & \textbf{Dự đoán Không Dầu (0)} \\
+\hline
+\multirow{2}{*}{\textbf{Thực tế}} & \textbf{Thực tế Có Dầu (1)} & \textbf{1,738} (TP) & 167 (FN) \\
+& \textbf{Thực tế Không Dầu (0)} & 500 (FP) & \textbf{3,225} (TN) \\
+\end{tabular}
+\end{table}
+
+\section{Thảo luận và Phân tích các trường hợp điển hình}
+\label{sec:discussion}
+
+\subsection{Phân tích độ nhạy cao (Recall đạt 91.23\%)}
+Trong bài toán ứng phó sự cố môi trường và bảo vệ bờ biển miền Trung, chỉ số \textbf{Recall là quan trọng nhất}. Việc bỏ sót một vệt dầu loang thực tế (False Negative) trên biển khơi sẽ dẫn đến hậu quả nghiêm trọng khi dầu dạt vào bãi tắm và vùng nuôi trồng thủy sản mà không có biện pháp ngăn chặn kịp thời. Với tỉ lệ Recall đạt trên 91\%, hệ thống đảm bảo phát hiện hầu như toàn bộ các vệt dầu nguy hại ngoài khơi.
+
+\subsection{Phân tích các ca phát hiện sai (False Positives \& Negatives)}
+\begin{enumerate}
+    \item \textbf{Nguyên nhân gây báo động giả (False Positives - 500 ảnh):}
+    Chủ yếu xuất phát từ các vùng gió lặng diện tích nhỏ có biên độ gradient chuyển tiếp khá dốc do ảnh hưởng của các đảo chắn gió hoặc hiện tượng màng sinh học đậm đặc trong mùa tảo nở hoa.
+    \item \textbf{Nguyên nhân bỏ sót vết dầu (False Negatives - 167 ảnh):}
+    Xuất hiện ở các vệt dầu đã bị sóng biển đánh tan thành các mảng mỏng li ti có diện tích nhỏ hơn ngưỡng tối thiểu ($Area < 150$ px), hoặc các ảnh có độ suy giảm tương phản quá yếu ($\Delta \mu < 12.0$).
+\end{enumerate}
+
+Tốc độ xử lý đạt hơn \textbf{21 khung hình/giây} khẳng định hệ thống hoàn toàn đáp ứng yêu cầu xử lý trực tuyến (online real-time processing) khi tích hợp vào trạm thu ảnh vệ tinh mặt đất.
