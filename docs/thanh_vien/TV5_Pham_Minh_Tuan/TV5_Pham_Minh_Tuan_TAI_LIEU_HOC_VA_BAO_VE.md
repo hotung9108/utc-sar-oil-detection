@@ -296,3 +296,36 @@ Batch dùng ProcessPoolExecutor để xử lý nhiều ảnh bằng các process
 
 Trên Windows, tiến trình con cần cơ chế khởi tạo phù hợp; entrypoint đặt trong `if __name__ == "__main__"` để không tự khởi tạo batch lặp khi import. Hàm chạy trên worker cần có thể được truyền/khởi tạo đúng; không tùy tiện chuyển nó thành một closure khó serialize rồi mong vẫn chạy.
 
+### 7.4. Thời gian đo gồm gì?
+
+Trong `evaluate_one`, đồng hồ bắt đầu trước đọc ảnh và dừng sau pipeline; số pipeline_ms bao gồm đọc/xử lý theo hàm này. Nhiều ảnh chạy song song nên tổng mọi pipeline_ms không bằng thời gian chờ thực tế của toàn batch. Khởi tạo process, ghi file và tranh chấp máy cũng tác động thời gian.
+
+Nếu mục tiêu là so tốc độ thuật toán, cần cùng input /cấu hình/điều kiện luồng và phạm vi đo; có thể cần warm-up và lặp nhiều lần. Không lấy một con số của máy khác rồi khẳng định phần mềm nhanh hơn mà không thống nhất cách đo.
+
+### 7.5. Thực nghiệm lỗi phải dừng hoặc được ghi rõ
+
+Đường đọc ảnh hiện báo lỗi nếu không mở được; không có quy trình âm thầm bỏ file hỏng rồi vẫn tuyên bố đủ dataset. Khi kiểm hoàn tất, so tập đường dẫn CSV với tập ảnh chính và kiểm 5538 hàng duy nhất. Nếu lượt chạy bị ngắt, phải đọc completed_scope và log trước khi gọi kết quả là full.
+
+Những file cũ vẫn có thể nằm trong results. Tồn tại trên ổ đĩa không có nghĩa chúng thuộc cùng lần chạy. TV5 cần phân biệt thư mục hiện hành với các thư mục di sản như tables, figures, edge_evaluation_output và dùng manifest để truy nguồn.
+
+## 8. Kết quả chạy thuật toán được lưu ở đâu và đọc thế nào?
+
+### 8.1. Phân biệt mã, dữ liệu, kết quả và tài liệu
+
+Mã nguồn nằm trong `src/` và các entrypoint. Dữ liệu đầu vào chính nằm trong `kaggle/data/Class_0`, `Class_1`. Kết quả thực nghiệm đang dùng nằm trong `results/reproducible/` và `results/verification/`. Báo cáo, slide và bản bằng chứng đóng băng nằm trong `docs/`. Không tìm ảnh đầu ra trong folder thuật toán rồi kết luận chương trình chưa chạy.
+
+Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. Các đường dẫn tiếp theo được tính từ gốc này. Manifest kiểm tra khi biên soạn ghi lượt toàn tập hoàn tất lúc 21:36:42 ngày 11/11/2026, múi giờ +07:00. Việc sửa sổ tay không tự là một lượt chạy thuật toán mới; cần đọc manifest nếu muốn xác định lần đo.
+
+### 8.2. Những file kết quả hiện có
+
+| Đường dẫn | Nội dung và cách sử dụng |
+| --- | --- |
+| `results/reproducible/dataset_per_image.csv`| 5.538 hàng ảnh: input, label, prediction, số vùng, area_pct, contrast, runtime; dùng truy từng ca |
+| `results/reproducible/confusion.json`| Tổng TP/FP/FN/TN và chỉ số cấp ảnh; không phải model hoặc mask |
+| `results/reproducible/dataset_summary.csv`| Thống kê gộp theo lớp; phải hiểu ý nghĩa mỗi cột |
+| `results/reproducible/manifest.json`| Cấu hình, hash nguồn, môi trường, thời điểm và phạm vi full/samples |
+| `results/reproducible/filters_per_image.csv`| So bộ lọc trên 10 ảnh mẫu, tắt tăng tương phản |
+| `results/reproducible/clahe_per_image.csv`| Khảo sát clip/grid trên tập mẫu |
+| `results/reproducible/edge_noise_per_image.csv`| Các phương pháp biên dưới các mức nhiễu khảo sát |
+| `results/reproducible/failure_cases_per_image.csv`| 00013 và 5 ảnh biển, có/không CLAHE |
+| `results/verification/hand_examples.json`| Kết quả mong đợi, kết quả thực tế và phép tính của 5 ví dụ tay |
