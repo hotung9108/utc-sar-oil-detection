@@ -316,3 +316,35 @@ Trên máy hiện tại, gốc dự án là `D:\Codin\utc-code\HK4_1\XLA\BTL`. C
 | `results/reproducible/clahe_per_image.csv`| Khảo sát clip/grid trên tập mẫu |
 | `results/reproducible/edge_noise_per_image.csv`| Các phương pháp biên dưới các mức nhiễu khảo sát |
 | `results/reproducible/failure_cases_per_image.csv`| 00013 và 5 ảnh biển, có/không CLAHE |
+| `results/verification/hand_examples.json`| Kết quả mong đợi, kết quả thực tế và phép tính của 5 ví dụ tay |
+| `results/verification/per_case.csv`| 594 đối chiếu chi tiết; đọc kind/limit/verdict cùng sai số |
+| `results/verification/summary.csv`| Bảng đối chiếu gộp theo phép toán và nhóm tham chiếu |
+
+CSV là văn bản bảng, có thể mở bằng Excel hoặc Pandas. JSON lưu cặp tên–giá trị/cấu trúc lồng nhau, phù hợp cấu hình và thống kê. Không sửa tay các giá trị đo chỉ để bảng đẹp; nếu cần sửa cách đo, sửa mã và chạy lại, đồng thời ghi nguồn gốc lần đo mới.
+
+### 8.3. Những PNG đã được lưu tự động
+
+Trong `results/reproducible/`, `class_1_00013_clahe.png` và `class_1_00013_none.png` là ảnh so sánh nhiều ô: input, filtered, enhanced và overlay. `roi_00013.png` so vùng cắt của ảnh gốc/lọc/tăng cường. Các file `sea_surface_01_clahe.png` tới các mẫu biển tương ứng minh họa ca lỗi; hậu tố `none` cho phiên bản không CLAHE.
+
+**Toàn tập hiện lưu số liệu từng ảnh, chưa lưu 5.538 bộ ảnh PNG trung gian/mask.** Vì vậy không có một folder chứa mask riêng của mọi ảnh đã chạy batch. Muốn xem một ảnh cụ thể, chọn nó trong demo với đúng cấu hình hoặc tự gọi pipeline rồi lưu đầu ra. Không được nói mỗi hàng CSV đồng nghĩa một PNG đã được xuất.
+
+### 8.4. File tải từ demo nằm ở đâu?
+
+Nút Streamlit tạo dữ liệu để trình duyệt tải xuống. Thư mục đích do trình duyệt/người dùng chọn, thường là Downloads nhưng có thể khác; code không đặt một đường dẫn tải cố định trong repo. Demo hiện cho tải `enhanced.png`, `boundary.png`, `mask.png` khi có mask và `sar_result.json`. Ảnh overlay được hiển thị nhưng chưa có nút tải riêng.
+
+Khi tải nhiều lần, trình duyệt có thể thêm hậu tố vào tên file. Để so sánh, nên đặt lại tên theo ảnh và cấu hình, đồng thời giữ JSON tương ứng. Ví dụ `00013_lee5_clahe2_mask.png` đi với JSON của đúng lượt đó; không dùng JSON mặc định để giải thích PNG được tạo bằng ngưỡng thủ công.
+
+### 8.5. Cách tự lưu một bộ ảnh kết quả vào repo
+
+Đây là ví dụ học cách xuất một ảnh, chưa phải lời khẳng định chương trình đã tự xuất mọi ảnh. Chạy đoạn Python này từ gốc dự án nếu cần tạo bộ kết quả riêng. Nó chỉ ghi vào `results/manual_00013/`, không sửa dữ liệu gốc.
+
+```python
+import json
+from pathlib import Path
+import cv2
+from src.pipeline import PipelineConfig, process_image
+from src.utils import load_sar_image
+
+source = "kaggle/data/Class_1/class_1_00013.jpg"
+result = process_image(load_sar_image(source), PipelineConfig())
+out = Path("results/manual_00013")
