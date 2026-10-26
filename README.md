@@ -30,14 +30,12 @@ Dự án này nghiên cứu và hiện thực hóa hệ thống phát hiện v�
 
 ## 3. CẨM NANG DÀNH CHO NHÓM TRONG THƯ MỤC `docs/`
 
-Toàn bộ tài liệu quy chuẩn và kế hoạch điều hành của Project Manager (TV1) được lưu trữ chi tiết:
+Toàn bộ tài liệu quy chuẩn, cơ sở toán học và hướng dẫn của dự án được phân nhóm gọn gàng tại thư mục [**`docs/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/README.md):
 
-- 📑 [`docs/00_TONG_QUAN_VA_CHI_THI_PM.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/00_TONG_QUAN_VA_CHI_THI_PM.md): Tổng quan chiến lược, checklist từng giai đoạn và lời khuyên đạt điểm A+.
-- 📅 [`docs/01_KE_HOACH_3_TUAN_PM_ROADMAP.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_KE_HOACH_3_TUAN_PM_ROADMAP.md): Lộ trình 3 tuần (21 ngày) chi tiết theo ngày (Agile Scrum rút gọn), tiêu chí nghiệm thu (DoD), quản trị rủi ro.
-- 👥 [`docs/02_PHAN_CONG_NHIEM_VU_5_THANH_VIEN.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/02_PHAN_CONG_NHIEM_VU_5_THANH_VIEN.md): Ma trận phân công chi tiết công việc, chiến lược đào tạo chéo và biểu mẫu đánh giá thành viên.
-- 🌿 [`docs/03_GIT_WORKFLOW_VA_QUY_CHUAN_CODE.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/03_GIT_WORKFLOW_VA_QUY_CHUAN_CODE.md): Chiến lược phân nhánh Git Flow, chuẩn Conventional Commits và tiêu chuẩn code NumPy thuần không dùng hộp đen thư viện.
-- 📖 [`docs/04_DE_CUONG_BAO_CAO_30_60_TRANG.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/04_DE_CUONG_BAO_CAO_30_60_TRANG.md): Khung đề cương báo cáo kỹ thuật 5 chương (45-55 trang) chuẩn CDIO, phân bổ số trang và hướng dẫn trình bày.
-- 🎤 [`docs/05_KE_HOACH_DEMO_SLIDE_VIDEO_VAN_DAP.md`](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/05_KE_HOACH_DEMO_SLIDE_VIDEO_VAN_DAP.md): Thiết kế ứng dụng demo Streamlit, kịch bản video demo 6 phút, cấu trúc 18 slide thuyết trình và ngân hàng 15 câu hỏi vấn đáp cốt lõi kèm đáp án mẫu.
+- 📑 [**`docs/01_quan_ly_du_an/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_quan_ly_du_an/): Tổng quan chiến lược PM, kế hoạch 3 tuần chi tiết theo ngày, phân công 5 thành viên CDIO và quy chuẩn Git.
+- 📐 [**`docs/02_ly_thuyet_thuat_toan_cv/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/02_ly_thuyet_thuat_toan_cv/): Cơ chế phân biệt Class 0 vs Class 1 (chứng minh True Negative không phải lỗi), công thức toán học 4 chương giáo trình UTC, đặc tả bộ dữ liệu CSIRO.
+- 🌐 [**`docs/03_ung_dung_web/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/03_ung_dung_web/): Hướng dẫn khởi động Web Workstation (`run_web.bat`) và hướng dẫn cắm thuật toán tùy chỉnh vào hệ thống.
+- 📖 [**`docs/04_bao_cao_va_thuyet_trinh/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/04_bao_cao_va_thuyet_trinh/): Khung đề cương báo cáo LaTeX 5 chương, hướng dẫn biên dịch Overleaf XeLaTeX, kịch bản thuyết trình bảo vệ 12 phút và bộ 15 câu hỏi phản biện vấn đáp.
 
 ---
 
@@ -58,6 +56,36 @@ flowchart TD
 
 ```
 BTL/
+├── web/                               # GIAO DIỆN WEB WORKSTATION (STREAMLIT)
+│   ├── app.py                         # Ứng dụng web chính (Minimalist Luxury, chữ to)
+│   ├── run_web.bat                    # Kích hoạt nhanh web app trong thư mục web
+│   └── README.md                      # Hướng dẫn nhanh cho phần Web
+│
+├── docs/                              # TOÀN BỘ TÀI LIỆU DỰ ÁN (ĐÃ PHÂN FOLDER)
+│   ├── 01_quan_ly_du_an/              # Kế hoạch PM, phân công 5 người, Git flow
+│   ├── 02_ly_thuyet_thuat_toan_cv/    # Lý thuyết toán, cơ chế Class 0 vs 1, dữ liệu CSIRO
+│   ├── 03_ung_dung_web/               # Hướng dẫn chạy web, cắm thuật toán mới
+│   ├── 04_bao_cao_va_thuyet_trinh/    # Đề cương báo cáo LaTeX, slide, kịch bản vấn đáp
+│   └── README.md                      # Bản đồ tra cứu tổng thể tài liệu
+│
+├── src/                               # THUẬT TOÁN COMPUTER VISION THUẦN TÚY (PURE CV)
+│   ├── pipeline_modular.py            # Pipeline tuần tự 4 bước
+│   ├── custom_algorithms.py           # Điểm cắm thuật toán tùy chỉnh cho người dùng
+│   ├── preprocessing/                 # Lọc speckle, Otsu tối ưu, Sauvola, CLAHE
+│   ├── morphology/                    # Opening, Closing, Fill holes, trích biên beta(A)
+│   └── features/                      # Đo diện tích, độ thuôn dài, gradient Sobel
+│
+├── data/                              # DỮ LIỆU SAR SENTINEL-1 GỐC (5,630 ẢNH)
+│   ├── Class_0/                       # 3,725 ảnh không chứa dầu / Look-alikes
+│   ├── Class_1/                       # 1,905 ảnh có vết dầu tràn thực tế
+│   └── sample/                        # Ảnh mẫu kiểm thử nhanh cho Class 0 và Class 1
+│
+├── report_latex/                      # MÃ NGUỒN BÁO CÁO LATEX (OVERLEAF)
+├── slides/                            # MÃ NGUỒN SLIDE THUYẾT TRÌNH BẢO VỆ
+├── RUN_WEB.md                         # Hướng dẫn vận hành Web chi tiết
+├── run_web.bat                        # File 1-Click khởi động Web ở thư mục gốc
+└── run_web.ps1                        # File PowerShell khởi động Web ở thư mục gốc
+```
 ├── docs/                                  # HỆ THỐNG TÀI LIỆU QUẢN TRỊ DỰ ÁN CỦA PM
 │   ├── 00_TONG_QUAN_VA_CHI_THI_PM.md
 │   ├── 01_KE_HOACH_3_TUAN_PM_ROADMAP.md
