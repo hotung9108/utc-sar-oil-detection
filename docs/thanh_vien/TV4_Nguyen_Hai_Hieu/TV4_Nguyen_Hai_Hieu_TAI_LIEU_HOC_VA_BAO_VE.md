@@ -368,3 +368,36 @@ for name in ["raw", "filtered", "enhanced", "boundary", "mask"]:
         if not ok:
             raise OSError("Cannot write " + name)
 payload = {"input": source, "config": result["config"],
+           "stats": result["stats"], "metrics": result["metrics"]}
+(out / "result.json").write_text(
+    json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+```
+
+PNG giữ các giá trị ảnh đã xuất không qua nén mất mát kiểu JPEG. Điều đó không làm ảnh đã xử lý trở thành ground truth; nó chỉ tránh thêm một nguồn biến đổi do định dạng xuất. Mẫu code không tự xuất overlay màu để tránh nhầm thứ tự kênh RGB/BGR khi ghi bằng OpenCV; muốn thêm phải kiểm quy ước màu của hàm tạo overlay.
+
+### 8.6. Bản đưa lên GitHub nằm ở đâu?
+
+`results/` được Git bỏ qua vì có nhiều file tái tạo được, ngoại trừ file hướng dẫn. Vì thế người khác clone repo có thể chưa có CSV/PNG ở đó cho đến khi chạy thực nghiệm. Các CSV/JSON đã dùng trong báo cáo được đóng băng ở `docs/report/evidence/`, có tiền tố như `reproducible_dataset_per_image.csv`, `reproducible_manifest.json`, `verification_per_case.csv` và `checksums.json`.
+
+Một số hình đưa vào báo cáo nằm ở `docs/report/assets/`. PDF báo cáo là `docs/report/BAO_CAO_BTL_XLA.pdf`; nguồn Word/LaTeX cùng thư mục. File được commit là bản được chọn lưu trong Git, không phải mọi đầu ra tạm trên máy. Cũng đừng gọi các thư mục cũ `results/tables`, `figures`, `edge_evaluation_output` là đầu ra hiện tại nếu chưa kiểm phiên bản.
+
+### 8.7. Lệnh chạy và phạm vi của từng lệnh
+
+```powershell
+uv run streamlit run streamlit_app.py
+uv run python -m src.verification
+uv run python reproduce.py --workers 4
+uv run python reproduce.py --samples-only
+```
+
+Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm chứng. Lệnh reproduce không có `--samples-only` chạy kiểm chứng, khảo sát mẫu và toàn tập rồi ghi manifest với phạm vi `full`. Lựa chọn `--samples-only` bỏ phần toàn tập và ghi phạm vi thiếu phần đó. Các lệnh thực nghiệm có thể ghi đè đầu ra cùng tên; lưu bản có nhãn/cấu hình/phiên bản rõ nếu cần so hai lần chạy.
+
+**Câu hỏi phải trả lời:** Một ảnh PNG mới hơn CSV có chắc được tạo bằng cùng mã/cấu hình không? Không. Phải đối chiếu đầu vào, cấu hình JSON và manifest. Chỉ nhìn thời gian sửa file không đủ chứng minh cùng thí nghiệm.
+
+## 9. Câu hỏi ôn tập có gợi ý trả lời cho TV4
+
+**Câu 1 — Gradient là gì?** Cặp đạo hàm ngang/dọc. Magnitude đo mức thay đổi, hướng chỉ chiều thay đổi; cả hai không mang nhãn dầu.
+
+**Câu 2 — Gx 300, Gy 300 cho magnitude bao nhiêu?** sqrt 180000≈424,264. Không ép thành 255 trước NMS nếu cần giữ quan hệ độ lớn.
+
+**Câu 3 — Unsharp có thể làm nhiễu mạnh hơn vì sao?** Nhiễu cũng nằm trong phần khác giữa ảnh gốc và ảnh mờ; cộng lại phần đó có thể tăng nhiễu.
