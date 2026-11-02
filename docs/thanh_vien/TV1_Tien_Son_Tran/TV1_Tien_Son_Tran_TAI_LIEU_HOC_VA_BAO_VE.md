@@ -383,3 +383,35 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 
 **Câu 1 — Ảnh xám uint8 400×400 chứa bao nhiêu phần tử?** 160.000. Dữ liệu mảng raw khoảng 160.000 byte, chưa tính đối tượng Python hoặc ảnh màu trung gian. float64 cần 8 byte mỗi phần tử, nên cùng kích thước có bộ nhớ dữ liệu lớn hơn tám lần.
 
+**Câu 2 — Vì sao không gọi hàm thư viện trực tiếp ngay trong nút bấm?** Tách pipeline giúp demo và batch gọi cùng triển khai, kiểm thử không cần trình duyệt, và giữ thuật toán lõi đúng yêu cầu tự cài. Thư viện vẫn có vai trò I/O và đối chứng.
+
+**Câu 3 — `None` ở mask có giống mask toàn 0 không?** Không. None nghĩa nhánh hiện tại không tạo phân đoạn vùng; mask toàn 0 nghĩa đã thực hiện phân đoạn nhưng không giữ pixel nào. Hai trạng thái phải được trình bày khác nhau.
+
+**Câu 4 — Đổi sharpen làm metrics đổi nhưng area không đổi có mâu thuẫn không?** Không. Metrics dùng displayed; area tính trên mask từ nhánh trước sharpen. Hai đại lượng mô tả hai đầu ra khác nhau.
+
+**Câu 5 — Tại sao raw vẫn cần giữ lại?** Nó là mốc đối chiếu không tăng cường, nền overlay và đầu vào của các chỉ số so sánh. Nếu ghi đè raw bằng enhanced, không còn cơ sở thấy chương trình đã thay đổi ảnh ra sao.
+
+**Câu 6 — `frozen=True` có làm pipeline thuần hàm tuyệt đối không?** Không. Nó ngăn gán trường config; không ngăn sửa mảng, đọc file hay mọi tác dụng phụ. Tính chất của hàm cần được kiểm tra riêng.
+
+### 9.2. Tình huống thao tác và tìm lỗi
+
+**Câu 7 — Chọn Class_0 nhưng ảnh vẫn là ảnh upload, có phải lỗi dữ liệu?** Trước hết kiểm upload còn tồn tại không. Mã ưu tiên upload. Xóa upload rồi chọn lại trước khi kết luận có lỗi.
+
+**Câu 8 — Đầu ra của demo khác batch trên ảnh lớn có thể do đâu?** Kiểm bộ đọc, chuyển xám, resize, tham số và phiên bản. INTER_AREA và INTER_LINEAR có thể tạo ảnh đầu vào khác; dataset 400×400 không đại diện tình huống resize khác kích thước.
+
+**Câu 9 — Cửa sổ 4×4 sao bị từ chối?** Thiết kế bộ lọc này dùng một ô tâm và bán kính nguyên đối xứng. Chẵn không đáp ứng hợp đồng đang cài; không phải mọi bộ lọc trong toàn bộ xử lý ảnh đều cấm kernel chẵn.
+
+**Câu 10 — Ảnh hằng phải có Canny rỗng, vì sao?** Không có thay đổi cường độ nên gradient bằng 0. Nếu ngưỡng 0 vô tình giữ mọi pixel, cần kiểm điều kiện magnitude>0 chứ không chỉ >=threshold.
+
+**Câu 11 — Bảng CSV cũ vẫn mở được sau khi sửa mã, có dùng báo cáo được không?** Chỉ khi chứng minh nó ứng với phiên bản cần báo cáo. Manifest và source hash giúp phát hiện lệch; việc file tồn tại không có nghĩa file còn đại diện mã mới.
+
+**Câu 12 — Nút tải PNG có lưu vào results không?** Không trong demo hiện tại. Nó gửi byte cho trình duyệt; thư mục đích do trình duyệt/người dùng quyết định. Batch mới ghi các đường dẫn results được định nghĩa trong code.
+
+### 9.3. Câu hỏi chéo và câu hỏi khó
+
+**Câu 13 — Lee thích nghi có phải ML?** Không; trọng số tính theo công thức từ thống kê cửa sổ ảnh hiện tại. Không có mô hình học từ nhãn. Muốn trả lời sâu, nêu được K=clip(1−μ²/(L×v),0,1) với bảo vệ mẫu số.
+
+**Câu 14 — CLAHE có thể làm biên nhiễu mạnh hơn không?** Có. Nó khuếch đại tương phản cục bộ còn sót; đầu ra đẹp hơn cho mắt không đồng nghĩa đúng nhãn hơn.
+
+**Câu 15 — C_R có phải độ tròn không?** Không. Trong repo C_R=(μ_nền−μ_vùng)/μ_nền, có điều kiện bảo vệ nền gần 0. Độ tròn là đặc trưng hình học khác, không được thay thế định nghĩa.
+
