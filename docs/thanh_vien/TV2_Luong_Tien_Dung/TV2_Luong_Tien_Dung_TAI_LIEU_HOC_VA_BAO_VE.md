@@ -380,3 +380,35 @@ uv run python reproduce.py --samples-only
 Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm chứng. Lệnh reproduce không có `--samples-only` chạy kiểm chứng, khảo sát mẫu và toàn tập rồi ghi manifest với phạm vi `full`. Lựa chọn `--samples-only` bỏ phần toàn tập và ghi phạm vi thiếu phần đó. Các lệnh thực nghiệm có thể ghi đè đầu ra cùng tên; lưu bản có nhãn/cấu hình/phiên bản rõ nếu cần so hai lần chạy.
 
 **Câu hỏi phải trả lời:** Một ảnh PNG mới hơn CSV có chắc được tạo bằng cùng mã/cấu hình không? Không. Phải đối chiếu đầu vào, cấu hình JSON và manifest. Chỉ nhìn thời gian sửa file không đủ chứng minh cùng thí nghiệm.
+
+## 9. Câu hỏi ôn tập có gợi ý trả lời cho TV2
+
+**Câu 1 — Tại sao expected không được sinh bằng hàm custom?** Vì hai bên sẽ chia sẻ cùng lỗi; so một hàm với chính nó không kiểm chứng độc lập. Dùng phép tính tay hoặc reference có quy ước rõ.
+
+**Câu 2 — Với delta=[0,0,0,10], MSE bằng bao nhiêu?** (0+0+0+100)/4=25. MAE=2,5; max error=10. Hãy giải thích chứ không chỉ đọc số.
+
+**Câu 3 — Tỷ lệ trùng 0% có luôn chứng minh sai lớn?** Không. Tất cả pixel lệch một mức xám cũng cho 0%; cần đọc độ lớn sai khác và tolerance.
+
+**Câu 4 — Tại sao Gaussian và median không dùng cùng reference?** Chúng là hai phép toán khác: tổ hợp có trọng số và chọn trung vị. Tên chung “lọc nhiễu” không làm chúng tương đương.
+
+**Câu 5 — HE ví dụ có ánh xạ mức 1 thành bao nhiêu?** CDF tại 1 là 8; trừ CDF_min=4, chia 12 và nhân 255 được 85. Nếu trả lời 64 là đang dùng quy ước khác, cần chỉ ra khác công thức.
+
+**Câu 6 — Tại sao tâm Lee ví dụ thành 111?** v nhỏ hơn μ²/L nên K bị chặn 0; đầu ra là mean 1000/9, rồi round. Không phải Lee luôn thay tâm bằng trung bình.
+
+**Câu 7 — Sobel vượt 255 có nghĩa ảnh đầu vào lỗi không?** Không; đạo hàm là tổ hợp có trọng số, có miền giá trị khác cường độ. Cần float để giữ nó.
+
+**Câu 8 — Vì sao Otsu chọn 50 thay vì 125 ở ví dụ hai mức?** Nhiều ngưỡng 50–199 cùng cực đại; code giữ ngưỡng đầu tiên. Nhãn phân lớp vẫn giống nhau nếu dùng điều kiện phù hợp.
+
+**Câu 9 — Nếu dùng `<t` thay `<=t` có khác không?** Có ở mức đúng bằng t; ví dụ t=50 sẽ mất toàn bộ nửa tối nếu dùng <50. Đây là lỗi endpoint có thể lớn dù chỉ khác một ký tự.
+
+**Câu 10 — Erosion của vuông 4×4 bằng kernel 3×3 còn bao nhiêu?** Bỏ một lớp viền mỗi phía, còn 2×2=4; chỉ đúng cho hình đặt đủ xa biên và quy ước đang nêu.
+
+**Câu 11 — Thấy sai ở mép thì làm gì trước?** Kiểm padding, anchor, kernel và dtype; tách sai vùng nội thất để chẩn đoán. Không xóa mép khỏi báo cáo mà không giải thích.
+
+**Câu 12 — Direct có độc lập tuyệt đối không?** Không. Nó độc lập hơn về triển khai, nhưng vẫn có giả định tham số/biến thể và có thể cùng không phù hợp với mục tiêu vật lý.
+
+**Câu 13 — Composition Lee kiểm được điều gì?** Moment cục bộ và việc kết hợp theo công thức đã chọn; nó không chứng minh công thức này là lựa chọn tối ưu cho mọi ảnh SAR.
+
+**Câu 14 — Vì sao Bilateral là variant?** Footprint và các chi tiết rời rạc hóa giữa custom và reference khác nhau; cùng tên/sigma chưa đủ đảm bảo cùng toán tử.
+
+**Câu 15 — 594 gồm những gì?** 33 mục×18 ca; 18 ca gồm 8 tổng hợp+10 demo. Kết quả hiện tại 558 PASS,36 DESCRIPTIVE,0 FAIL.
