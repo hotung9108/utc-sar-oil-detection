@@ -406,3 +406,37 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 
 **Câu hỏi phải trả lời:** Một ảnh PNG mới hơn CSV có chắc được tạo bằng cùng mã/cấu hình không? Không. Phải đối chiếu đầu vào, cấu hình JSON và manifest. Chỉ nhìn thời gian sửa file không đủ chứng minh cùng thí nghiệm.
 
+## 9. Câu hỏi ôn tập có gợi ý trả lời cho TV3
+
+**Câu 1 — Box khác Gaussian ở đâu?** Box cho trọng số bằng nhau; Gaussian giảm trọng số theo khoảng cách. Cả hai có thể làm mờ biên; Gaussian tách được cho cách tính hai lượt1D.
+
+**Câu 2 — Tám 100 và một 200 cho mean /median bao nhiêu?** Mean 1000/9≈111,11, median 100. Phân biệt kết quả của hai phép toán trước khi so khả năng giữ chi tiết.
+
+**Câu 3 — Box integral có O(1) toàn ảnh không?** Không. O(1) là truy vấn tổng một cửa sổ sau tiền xử lý; dựng bảng và tính mọi pixel vẫn cần công việc theo kích thước ảnh.
+
+**Câu 4 — Bilateral cần chia tổng trọng số vì sao?** Để chuẩn hóa tổ hợp; nếu không, độ sáng phụ thuộc tổng trọng số thay đổi theo vùng, không còn phép trung bình có trọng số mong muốn.
+
+**Câu 5 — sigma_r rất lớn thì sao?** Trọng số cường độ gần 1 cho nhiều láng giềng, bộ lọc ít phân biệt biên cường độ và gần hơn với lọc trọng số không gian.
+
+**Câu 6 — Lee K=0 và K=1 nghĩa gì?** K 0 lấy mean; K 1 giữ pixel gốc. Đây là mức trộn theo công thức, không phải xác suất dầu hay xác suất pixel sạch.
+
+**Câu 7 — Tăng L có tăng làm mượt trong code này không?** Giữ moment cố định, noise_var giảm nên K thường tăng, giữ gốc nhiều hơn. Phải giải thích từ công thức thay vì suy luận từ tên tham số.
+
+**Câu 8 — Kuan khác Lee ở ví dụ μ100, v 10000, L 4 ra sao?** Lee K 0,75 cho 175 với pixel 200; Kuan W 0,6 cho 160. Hai kết quả khác là hệ quả công thức, không tự là lỗi.
+
+**Câu 9 — Frost có đúng mọi công thức mang tên Frost không?** Không tuyên bố như vậy. Bản repo dùng exp(−damping× CV ×distance), được ghi là biến thể khi đối chứng.
+
+**Câu 10 — Histogram có cho biết hình dạng vệt không?** Không; nó chỉ đếm mức xám, bỏ vị trí. Hoán vị pixel có thể giữ histogram nhưng đổi hình dạng.
+
+**Câu 11 — CLAHE grid 8 là tile 8 pixel?** Không. Nó chia ảnh thành 8×8 tile; ảnh 400×400 cho tile 50×50 khi chia hết.
+
+**Câu 12 — Clip 2 trên tile 2500 pixel thành ngưỡng đếm nào?** floor(2×2500/256)=19, có chặn tối thiểu 1. Nó không phải ngưỡng cường độ 2.
+
+**Câu 13 — Tại sao histogram sau tái phân phối vẫn có bin vượt limit?** Phần vượt được cộng trở lại để bảo toàn tổng số đếm. Clip là bước hạn chế tập trung ban đầu, không phải ràng buộc cứng của histogram cuối trong cài đặt này.
+
+**Câu 14 — Nội suy LUT có làm giảm mọi nhiễu không?** Không; nó làm chuyển tiếp giữa tile mềm hơn. Nhiễu trong tile vẫn có thể được khuếch đại bởi ánh xạ tương phản.
+
+**Câu 15 — HE giữ ảnh hằng, đồng hình có giữ không?** Không nhất thiết. Đồng hình hiện trả 0 khi min-max gần 0; cần mô tả đúng nhánh cụ thể, không lấy tính chất của hàm này gán cho hàm khác.
+
+**Câu 16 — Tần số cao có phải pixel sáng không?** Không. Nó là tốc độ biến thiên theo vị trí; nhiễu và cạnh đều có thành phần cao.
+
