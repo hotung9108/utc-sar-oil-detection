@@ -401,3 +401,37 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 **Câu 2 — Gx 300, Gy 300 cho magnitude bao nhiêu?** sqrt 180000≈424,264. Không ép thành 255 trước NMS nếu cần giữ quan hệ độ lớn.
 
 **Câu 3 — Unsharp có thể làm nhiễu mạnh hơn vì sao?** Nhiễu cũng nằm trong phần khác giữa ảnh gốc và ảnh mờ; cộng lại phần đó có thể tăng nhiễu.
+
+**Câu 4 — Laplacian sharpening khác LoG ở đâu?** Một bên tạo ảnh sắc hơn bằng cộng/trừ đạo hàm bậc hai; một bên tìm biên qua điểm đổi dấu của đáp ứng đã gắn Gaussian.
+
+**Câu 5 — LoG đổi dấu rất nhỏ có đáng tin không?** Có thể do sai số số học. Code chặn trị tuyệt đối<1e−9 về 0 và yêu cầu chênh vượt ngưỡng để tránh nhận dao động rất nhỏ.
+
+**Câu 6 — NMS so dọc đường biên hay theo gradient?** Theo gradient, tức thường vuông góc với đường biên. So sai hướng sẽ làm mảnh sai và giữ/loại sai điểm.
+
+**Câu 7 — NMS dùng>=có hậu quả gì?** Plateau bằng nhau có thể giữ nhiều điểm; không bảo đảm mọi biên duy nhất 1 pixel.
+
+**Câu 8 — Một điểm magnitude 60 với low 35, high 90 có được giữ không?** Nó là yếu; chỉ được giữ nếu nối 8 hướng tới điểm mạnh qua chuỗi hợp lệ. Nếu đứng riêng sẽ bị loại.
+
+**Câu 9 — Vì sao BFS cần visited?** Để không đưa lại cùng điểm vào queue liên tục, bảo đảm mỗi điểm được xử lý có giới hạn và tránh vòng lặp trên đồ thị có chu trình.
+
+**Câu 10 — Threshold Canny 90 có giống Otsu 90 không?** Không. Một bên áp lên magnitude gradient sau NMS, một bên lên mức xám của ảnh phân đoạn.
+
+**Câu 11 — Otsu η 1 có nghĩa dầu đúng 100% không?** Không. Chỉ là tỷ lệ phương sai giữa lớp so với toàn ảnh; nhãn vật lý không tham gia công thức.
+
+**Câu 12 — Tại sao Otsu 50 phải dùng<=?** Vì lớp tối bao gồm pixel bằng ngưỡng. Dùng<50 mất toàn bộ nhóm 50 trong ví dụ hai mức.
+
+**Câu 13 — Khi nào pipeline có thể phân đoạn trên filtered?** Khi tỷ lệ tối enhanced>30% và reference<=30%, hoặc η_reference>η_enhanced+0,05. Đây là heuristic có giới hạn.
+
+**Câu 14 — Manual threshold có đi qua giảm ngưỡng tự động không?** Không trong code hiện tại. Ảnh phân ngưỡng manual là enhanced; đo tương phản vẫn có thể dùng reference.
+
+**Câu 15 — Đĩa r=2 có phải 25 ô foreground không?** Không. Khung 5×5 nhưng chỉ ô trong x²+y²<=4 được chọn. Hình kernel ảnh hưởng chi tiết bị giữ/xóa.
+
+**Câu 16 — Opening và closing đổi chỗ được không?** Không; một cái co→giãn, một cái giãn→co, tác động khác. Một vùng bị co mất không tự được phục hồi bằng bước giãn sau.
+
+**Câu 17 — Đặt closing_radius 0 có tắt mọi hình thái không?** Không; opening r=2 vẫn chạy. Closing 0 chỉ làm bước closing dùng kernel 1×1.
+
+**Câu 18 — Hai pixel chạm chéo là một hay hai vùng?** Theo 8 là một; theo 4 là hai. Dự án dùng 8.
+
+**Câu 19 — Nhãn custom 1 và library 7 có chứng minh khác vùng không?** Không. Nhãn là tên nhóm; so phân hoạch pixel, không so tên số nguyên đơn thuần.
+
+**Câu 20 — C_R 0,2 có phải xác suất 20% dầu?** Không. Nó là tỷ lệ chênh mean nền/vùng theo công thức, không được hiệu chuẩn như xác suất.
