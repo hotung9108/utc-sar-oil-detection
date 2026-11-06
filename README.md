@@ -1,135 +1,115 @@
-# HỆ THỐNG PHÁT HIỆN VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH SAR SENTINEL-1
-## BÀI TẬP LỚN MÔN XỬ LÝ ẢNH / COMPUTER VISION — ĐẠI HỌC GIAO THÔNG VẬN TẢI (UTC)
-**Học phần:** Xử lý ảnh | **Chuẩn đầu ra:** CDIO Toàn diện (50% điểm học phần)  
-**Giảng viên hướng dẫn:** TS. Phan Thanh Toàn  
-**Đề tài số 18:** Phát hiện vết dầu tràn trên biển từ ảnh SAR (★★★) — NASA #6  
-**Ứng dụng thực tiễn:** Giám sát môi trường biển, cảnh báo sớm dầu vón cục và tràn dầu trôi dạt bờ biển miền Trung Việt Nam
+# BÀI TẬP LỚN XỬ LÝ ẢNH (DIP) — KHOA CNTT, UTC
+
+## ĐỀ TÀI: TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN, KHỬ NHIỄU & XỬ LÝ BIÊN BỘC LỘ VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH RADAR SAR SENTINEL-1
+
+[![Pure NumPy Core](https://img.shields.io/badge/Algorithm-100%25_Pure_NumPy-blue.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/src/)
+[![No ML / No DL](https://img.shields.io/badge/Academic-Classical_DIP_(No_ML%2FDL)-emerald.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md)
+[![NASA Topic 18](https://img.shields.io/badge/NASA-Topic_18_SAR_Oil_Spill-orange.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md)
+[![Verification](https://img.shields.io/badge/Hand_Calculations-Zero_Error_(5%2F5)-success.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/src/verification.py)
+[![Full Scan](https://img.shields.io/badge/Full_Scan-1%2C853_Images_(58.8s)-purple.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/results/edge_evaluation_output/)
+
+- **Học phần**: Xử lý ảnh (Digital Image Processing - DIP)
+- **Khoa**: Công nghệ Thông tin — Trường Đại học Giao thông Vận tải (UTC)
+- **Giảng viên hướng dẫn**: TS. Phan Thanh Toàn, TS. Cao Thị Luyên
+- **Ánh xạ đề tài**: **Nhóm A (Tăng cường & Lọc ảnh)** kết hợp **Đề 5 (Làm nét & Phát hiện biên)** và **Đề 18 NASA (Phát hiện vết dầu loang trên ảnh SAR vi ba)**.
+- **Cam kết học thuật**: **100% Xử lý ảnh số kinh điển thuần túy (NO Machine Learning / NO Deep Learning)**. Toàn bộ thuật toán được tự cài đặt từ đầu bằng Pure NumPy và đối chứng kiểm chuẩn khoa học với 5 bài toán tính tay mẫu $8 \times 8$ (sai số $= 0$) và thư viện OpenCV.
 
 ---
 
-## 1. GIỚI THIỆU BÀI TOÁN & Ý NGHĨA THỰC TIỄN
-Hàng năm, vùng biển và dải bờ biển các tỉnh miền Trung (Hà Tĩnh, Quảng Bình, Quảng Trị, Thừa Thiên Huế, Đà Nẵng, Quảng Nam, Quảng Ngãi...) thường xuyên đối mặt với sự cố dầu vón cục và các vệt dầu trôi dạt vào bờ, đe dọa nghiêm trọng hệ sinh thái biển, khu bảo tồn san hô, nghề cá và ngành du lịch ven biển.
+## 📚 MỤC LỤC BỘ TÀI LIỆU TOÀN DIỆN (FULL DOCUMENTATION)
 
-Việc giám sát bằng ảnh vệ tinh quang học truyền thống bị giới hạn lớn bởi mây mù và bóng tối. Công nghệ **Radar khẩu độ tổng hợp (SAR)** từ vệ tinh Sentinel-1 có khả năng chụp xuyên mây, hoạt động 24/7 cả ngày lẫn đêm, là giải pháp tối ưu để phát hiện sớm các vệt dầu loang ngoài khơi.
+Hệ thống tài liệu đầy đủ phục vụ viết báo cáo BTL (file Word), slide thuyết trình và bảo vệ vấn đáp trước hội đồng:
 
-Dự án này nghiên cứu và hiện thực hóa hệ thống phát hiện vết dầu tràn tự động bằng **100% thuật toán Xử lý ảnh (Computer Vision) thuần túy**, tự cài đặt mã nguồn bằng thư viện **NumPy**, tuân thủ nghiêm ngặt giáo trình bài giảng của TS. Phan Thanh Toàn.
-
----
-
-## 2. BẢNG PHÂN CÔNG 5 VAI TRÒ CHUẨN CDIO
-
-| Vai trò | Thành viên | Trách nhiệm chính trong mã nguồn | Phần viết trong Báo cáo |
-| :---: | :--- | :--- | :--- |
-| **TV1** | *Trưởng nhóm, Tích hợp (PM)* | Quản lý tiến độ, Git repo, thiết kế kiến trúc mã, làm Web App Demo tương tác (Streamlit). | **Chương 1**, **Mục 3.1 & 3.4**, **Chương 5** |
-| **TV2** | *Lý thuyết, Kiểm chứng* | Dẫn xuất công thức toán, ví dụ tính tay $5 \times 5$, code kiểm chứng so sánh NumPy vs OpenCV. | **Chương 2**, **Mục 3.5** |
-| **TV3** | *Cài đặt thuật toán 1* | Tự lập trình bằng NumPy: Lọc trung vị khử nhiễu đốm speckle, phân ngưỡng Otsu tối ưu tính hệ số $\eta$. | **Mục 3.2** |
-| **TV4** | *Cài đặt thuật toán 2* | Tự lập trình bằng NumPy: Hình thái học (co, dãn, mở, đóng), trích biên $\beta(A)$, trích 4 đặc trưng phân biệt. | **Mục 3.3** |
-| **TV5** | *Dữ liệu, Thực nghiệm* | Quản lý 5,630 ảnh SAR, viết script chạy thực nghiệm tự động, đo Precision/Recall/F1, vẽ ma trận nhầm lẫn. | **Chương 4** |
+| Chương / Tài liệu | Tên tài liệu & Đường dẫn | Nội dung trọng tâm |
+| :---: | :--- | :--- |
+| **Chương 1** | 📖 [01_TONG_QUAN_DE_TAI.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md) | Thảm họa dầu tràn, cơ sở vật lý radar SAR băng C Sentinel-1, tán xạ Bragg, hiện tượng dập sóng mao dẫn và mô hình nhiễu đốm nhân Multiplicative Speckle Noise. |
+| **Chương 2** | 📐 [02_CO_SO_LY_THUYET_TOAN_HOC.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/02_CO_SO_LY_THUYET_TOAN_HOC.md) | Đầy đủ công thức giải tích toán học rời rạc, ma trận nhân chập và nguyên lý của **21 thuật toán DIP**: Log, Global HE, CLAHE, Box, Gauss, Median, Bilateral, Lee MMSE, Frost, Kuan, Homomorphic, Unsharp, Laplacian, Roberts, Prewitt, Sobel, LoG, Canny 4 bước, Otsu $\eta$, Co/Giãn/Mở/Đóng, Ranh giới $\beta(A)$ và lọc NASA $C_R \ge 0.10$. |
+| **Chương 3** | 🏛️ [03_KIEN_TRUC_HE_THONG_VA_CAI_DAT.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/03_KIEN_TRUC_HE_THONG_VA_CAI_DAT.md) | Kiến trúc phân tầng (Layered Architecture), module hóa Pure NumPy, quy trình xử lý Decoupled 4 bước Z-Pattern, thiết kế Web Studio FastAPI + TailwindCSS tối giản, Lightbox modal. |
+| **Chương 4** | 📊 [04_KET_QUA_THUC_NGHIEM_VA_DANH_GIA.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/04_KET_QUA_THUC_NGHIEM_VA_DANH_GIA.md) | **5 bài toán tính tay $8 \times 8$ giải tích sai số $= 0$**, bảng kiểm chuẩn OpenCV ($\text{MSE} = 0.000$), kết quả 5 thử nghiệm định lượng khoa học và **báo cáo quét FULL 100% dataset (1.853 ảnh SAR)**. |
+| **Chương 5** | 🚀 [05_HUONG_DAN_CAI_DAT_VA_SU_DUNG.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/05_HUONG_DAN_CAI_DAT_VA_SU_DUNG.md) | Hướng dẫn cài đặt môi trường, chạy Web Studio thời gian thực, chạy kiểm thử verification, chạy 5 thực nghiệm và chạy benchmark toàn bộ dataset. |
+| **Phụ lục** | 🎓 [06_BO_CAU_HOI_PHAN_BIEN_BAO_VE_BTL.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/06_BO_CAU_HOI_PHAN_BIEN_BAO_VE_BTL.md) | **Cẩm nang 20 câu hỏi - đáp phản biện kinh điển** của các thầy cô UTC (TS. Phan Thanh Toàn, TS. Cao Thị Luyên) khi chấm bảo vệ BTL, kèm **Kịch bản thuyết trình bảo vệ trong 10 phút**. |
+| **Tra cứu** | 📑 [THUAT_TOAN_SU_DUNG.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/THUAT_TOAN_SU_DUNG.md) | Bảng tra cứu đối chiếu nhanh từng hàm Python với số trang slide bài giảng UTC. |
 
 ---
 
-## 3. CẨM NANG DÀNH CHO NHÓM TRONG THƯ MỤC `docs/`
-
-Toàn bộ tài liệu quy chuẩn, cơ sở toán học và hướng dẫn của dự án được phân nhóm gọn gàng tại thư mục [**`docs/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/README.md):
-
-- 📑 [**`docs/01_quan_ly_du_an/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_quan_ly_du_an/): Tổng quan chiến lược PM, kế hoạch 3 tuần chi tiết theo ngày, phân công 5 thành viên CDIO và quy chuẩn Git.
-- 📐 [**`docs/02_ly_thuyet_thuat_toan_cv/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/02_ly_thuyet_thuat_toan_cv/): Cơ chế phân biệt Class 0 vs Class 1 (chứng minh True Negative không phải lỗi), công thức toán học 4 chương giáo trình UTC, đặc tả bộ dữ liệu CSIRO.
-- 🌐 [**`docs/03_ung_dung_web/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/03_ung_dung_web/): Hướng dẫn khởi động Web Workstation (`run_web.bat`) và hướng dẫn cắm thuật toán tùy chỉnh vào hệ thống.
-- 📖 [**`docs/04_bao_cao_va_thuyet_trinh/`**](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/04_bao_cao_va_thuyet_trinh/): Khung đề cương báo cáo LaTeX 5 chương, hướng dẫn biên dịch Overleaf XeLaTeX, kịch bản thuyết trình bảo vệ 12 phút và bộ 15 câu hỏi phản biện vấn đáp.
-
----
-
-## 4. QUY TRÌNH 4 BƯỚC XỬ LÝ ẢNH THEO GIÁO TRÌNH TS. PHAN THANH TOÀN
-
-```mermaid
-flowchart TD
-    A["Ảnh SAR gốc (Sentinel-1 400x400)"] --> B["BƯỚC 1: Tiền xử lý (Chương 3)<br>Lọc trung vị Median (ksize=5)<br>Khử nhiễu đốm đục hạt speckle"]
-    B --> C["BƯỚC 2: Phân vùng (Chương 7)<br>Phân ngưỡng Otsu tối ưu<br>Đánh giá hệ số khả tách eta = sigma_B^2 / sigma_T^2"]
-    C --> D["BƯỚC 3: Hình thái học (Chương 6)<br>Phép Mở (xóa bọt biển) + Phép Đóng (hàn gắn)<br>Lấp lỗ thủng & Trích biên: beta(A) = A - (A (-) B)"]
-    D --> E["BƯỚC 4: Phân tích biên (Chương 5)<br>Đạo hàm Sobel tính Gradient ranh giới<br>Đo tương phản vành đai biển Annulus"]
-    E --> F["KẾT QUẢ ĐẦU RA<br>Vẽ đường viền ĐỎ ôm sát vết dầu<br>Bảng thống kê diện tích & tọa độ"]
-```
-
----
-
-## 5. CẤU TRÚC THƯ MỤC DỰ ÁN
+## 📌 CẤU TRÚC THƯ MỤC DỰ ÁN
 
 ```
-BTL/
-├── web/                               # GIAO DIỆN WEB WORKSTATION (STREAMLIT)
-│   ├── app.py                         # Ứng dụng web chính (Minimalist Luxury, chữ to)
-│   ├── run_web.bat                    # Kích hoạt nhanh web app trong thư mục web
-│   └── README.md                      # Hướng dẫn nhanh cho phần Web
+D:\Codin\utc-code\HK4_1\XLA\BTL\
+├── app.py                              # Web Application Server (FastAPI REST API)
+├── evaluate_all_edges.py               # Benchmark runner quét FULL 100% dataset (1.853 ảnh)
+├── run_experiments.py                  # Script thực thi chuỗi 5 thử nghiệm khoa học
+├── run_app.bat                         # File nhấp đúp khởi chạy server & mở trình duyệt
+├── requirements.txt                    # Danh sách thư viện phụ thuộc tối thiểu
 │
-├── docs/                              # TOÀN BỘ TÀI LIỆU DỰ ÁN (ĐÃ PHÂN FOLDER)
-│   ├── 01_quan_ly_du_an/              # Kế hoạch PM, phân công 5 người, Git flow
-│   ├── 02_ly_thuyet_thuat_toan_cv/    # Lý thuyết toán, cơ chế Class 0 vs 1, dữ liệu CSIRO
-│   ├── 03_ung_dung_web/               # Hướng dẫn chạy web, cắm thuật toán mới
-│   ├── 04_bao_cao_va_thuyet_trinh/    # Đề cương báo cáo LaTeX, slide, kịch bản vấn đáp
-│   └── README.md                      # Bản đồ tra cứu tổng thể tài liệu
+├── src/                                # THƯ VIỆN THUẬT TOÁN PURE NUMPY CORE (100% tự lập trình)
+│   ├── filters.py                      # 9 bộ lọc đốm và không gian (Lee, Bilateral, Frost, Kuan, Box, ...)
+│   ├── enhancement.py                  # Log Transform, Global HE, CLAHE cắt ngưỡng & nội suy song tuyến
+│   ├── sharpening.py                   # Unsharp Masking, High-Boost, Laplacian, Sobel sharpening
+│   ├── edges.py                        # Roberts, Prewitt, Sobel, LoG dò điểm qua 0, Canny 4 bước, Overlay
+│   ├── morphology.py                   # Otsu, Co, Giãn, Mở, Đóng, Ranh giới beta(A), Lọc NASA Area & CR
+│   ├── metrics.py                      # 6 chỉ số định lượng: ENL, SSI, RMS Contrast, Entropy, AMBE, EPI
+│   ├── utils.py                        # Đọc/ghi ảnh, Difference Map, cắt lát ngang Profile Slice
+│   └── verification.py                 # Bộ kiểm chuẩn 5 ví dụ số tính tay 8x8 & đối chuẩn OpenCV
 │
-├── src/                               # THUẬT TOÁN COMPUTER VISION THUẦN TÚY (PURE CV)
-│   ├── pipeline_modular.py            # Pipeline tuần tự 4 bước
-│   ├── custom_algorithms.py           # Điểm cắm thuật toán tùy chỉnh cho người dùng
-│   ├── preprocessing/                 # Lọc speckle, Otsu tối ưu, Sauvola, CLAHE
-│   ├── morphology/                    # Opening, Closing, Fill holes, trích biên beta(A)
-│   └── features/                      # Đo diện tích, độ thuôn dài, gradient Sobel
+├── static/                             # GIAO DIỆN WEB STUDIO MINIMALISM
+│   ├── index.html                      # Lưới 2x2 tầm nhìn lớn, Modal Lightbox, Bảng NASA đơn sắc lớn
+│   ├── css/style.css                   # Custom styles, range slider, animation
+│   └── js/app.js                       # Tương tác Client: Fetch API, Chart.js, zoom modal
 │
-├── data/                              # DỮ LIỆU SAR SENTINEL-1 GỐC (5,630 ẢNH)
-│   ├── Class_0/                       # 3,725 ảnh không chứa dầu / Look-alikes
-│   ├── Class_1/                       # 1,905 ảnh có vết dầu tràn thực tế
-│   └── sample/                        # Ảnh mẫu kiểm thử nhanh cho Class 0 và Class 1
+├── data/sample/                        # Bộ 10 ảnh SAR thử nghiệm chuẩn (5 Oil Slicks, 5 Sea Surface)
+├── kaggle/data/Class_1/                # 1.843 ảnh SAR vết dầu thực tế Sentinel-1
 │
-├── report_latex/                      # MÃ NGUỒN BÁO CÁO LATEX (OVERLEAF)
-├── slides/                            # MÃ NGUỒN SLIDE THUYẾT TRÌNH BẢO VỆ
-├── RUN_WEB.md                         # Hướng dẫn vận hành Web chi tiết
-├── run_web.bat                        # File 1-Click khởi động Web ở thư mục gốc
-└── run_web.ps1                        # File PowerShell khởi động Web ở thư mục gốc
-```
-├── docs/                                  # HỆ THỐNG TÀI LIỆU QUẢN TRỊ DỰ ÁN CỦA PM
-│   ├── 00_TONG_QUAN_VA_CHI_THI_PM.md
-│   ├── 01_KE_HOACH_3_TUAN_PM_ROADMAP.md
-│   ├── 02_PHAN_CONG_NHIEM_VU_5_THANH_VIEN.md
-│   ├── 03_GIT_WORKFLOW_VA_QUY_CHUAN_CODE.md
-│   ├── 04_DE_CUONG_BAO_CAO_30_60_TRANG.md
-│   └── 05_KE_HOACH_DEMO_SLIDE_VIDEO_VAN_DAP.md
+├── results/                            # KẾT QUẢ ĐỊNH LƯỢNG KHOA HỌC
+│   ├── tables/                         # Bảng dữ liệu CSV các thử nghiệm định lượng 1..5
+│   ├── figures/                        # Đồ thị và biểu đồ trực quan hóa (.png)
+│   └── edge_evaluation_output/         # Báo cáo quét 100% dataset: CSV & 732 ảnh chẩn đoán 4 khung hình
 │
-├── course_cv/                             # THUẬT TOÁN CHUẨN GIÁO TRÌNH TS. PHAN THANH TOÀN
-│   ├── step1_filter.py                    # Chương 3: Lọc trung vị khử nhiễu speckle
-│   ├── step2_segmentation.py              # Chương 7: Phân ngưỡng Otsu tối ưu & tính eta
-│   ├── step3_morphology.py                # Chương 6: Hình thái học & Trích biên beta(A)
-│   ├── step4_edge_gradient.py             # Chương 5: Đạo hàm biên Sobel & Tương phản
-│   ├── pipeline.py                        # Pipeline 4 bước khép kín
-│   ├── main.py                            # Thực thi batch trên tập ảnh
-│   └── matlab_slide_pipeline.m            # Script MATLAB Image Processing Toolbox
-│
-├── data/                                  # DỮ LIỆU SAR SENTINEL-1 (CSIRO DATASET)
-│   ├── Class_0/                           # 3,725 ảnh không chứa dầu (Look-alikes)
-│   ├── Class_1/                           # 1,905 ảnh có chứa vết dầu tràn thực tế
-│   └── sample/                            # Ảnh mẫu kiểm thử nhanh
-│
-├── outputs_slide/                         # ẢNH KẾT QUẢ TRỰC QUAN VIỀN ĐỎ
-├── AGENTS.md                              # Chỉ thị dành cho AI Coding Assistant
-└── README.md                              # Tài liệu giới thiệu dự án (file này)
+└── docs/                               # HỆ THỐNG TÀI LIỆU HỌC THUẬT TOÀN DIỆN (7 CHUYÊN ĐỀ)
 ```
 
 ---
 
-## 6. HƯỚNG DẪN CÀI ĐẶT & THỰC THI NHANH
+## 🚀 HƯỚNG DẪN KHỞI CHẠY NHANH
 
-### 6.1. Cài đặt môi trường
-Khuyến nghị sử dụng Python 3.10 trở lên:
-```bash
-pip install numpy opencv-python scipy scikit-image matplotlib streamlit
+### Cách 1: Khởi động tức thì bằng một cú nhấp đúp (Windows)
+Nhấp đúp vào tệp:
+```cmd
+run_app.bat
+```
+Server sẽ tự động kích hoạt và mở trình duyệt tại: `http://127.0.0.1:8000`
+
+### Cách 2: Khởi động bằng dòng lệnh Terminal
+```powershell
+# 1. Cài đặt thư viện
+pip install -r requirements.txt
+
+# 2. Khởi chạy server
+python app.py
 ```
 
-### 6.2. Chạy pipeline xử lý trên tập ảnh mẫu
-```bash
-python course_cv/main.py --input_dir data/sample --output_dir outputs_slide
+### Các lệnh kiểm thử & thực nghiệm quan trọng:
+```powershell
+# Kiểm tra đối chứng 5 bài toán tính tay 8x8 (Sai số = 0) & OpenCV:
+python -m src.verification
+
+# Chạy toàn bộ chuỗi 5 thử nghiệm khoa học (Xuất CSV và biểu đồ PNG):
+python run_experiments.py
+
+# Quét benchmark tự động 100% dataset (1.853 ảnh trong ~60 giây):
+python evaluate_all_edges.py
 ```
 
-### 6.3. Khởi chạy Ứng dụng Giao diện Web Streamlit (Demo tương tác)
-```bash
-streamlit run app.py
-```
-*(Nếu chưa có file `app.py`, TV1 sẽ triển khai theo thiết kế trong `docs/05`)*.
+---
+
+## 🌟 ĐẶC TRƯNG NỔI BẬT CỦA HỆ THỐNG
+
+1. **Chuỗi xử lý Decoupled 4 bước Z-Pattern**:
+   - `1. Ảnh SAR Gốc` $\rightarrow$ `2. Sau Khử Đốm & Tăng Cường (Lee + CLAHE)` $\rightarrow$ `3. Bộc Lộ Ranh Giới Vết Dầu (beta(A) viền đỏ)` $\rightarrow$ `4. Bản Đồ Vi Sai Tác Động (|Diff| x 2)`.
+   - Thuật toán phân đoạn chạy trên ảnh trước khi làm nét, triệt tiêu $100\%$ hiện tượng Undershoot thâm hụt biên ở thung lũng sóng biển.
+2. **Giải pháp Ranh giới Hình thái học $\beta(A)$ vượt trội**:
+   - Triệt tiêu hoàn toàn nhược điểm "vẽ viền lung tung khắp mặt biển" của Canny/Sobel, bộc lộ đường bao khép kín đúng 1 pixel ôm sát mảng dầu thật.
+   - Lọc sạch vùng biển lặng giả mạo (Look-alike) bằng tiêu chuẩn NASA: $\text{Area} \ge 300\text{ px}$ và $C_R \ge 0.10$.
+3. **Kiểm chuẩn học thuật tuyệt đối**:
+   - 5 bài toán tính tay $8 \times 8$ giải tích khớp từng bước với slide UTC.
+   - Quét thực tế trên **1.853 ảnh** đạt tỷ lệ sạch chuẩn **$60.5\%$ (1.121 ảnh)**, xuất 732 ảnh chẩn đoán 4 khung hình phục vụ tối ưu hóa thuật toán.

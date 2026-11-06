@@ -1,0 +1,6 @@
+﻿Phương pháp dò biên,Mật độ biên (% pixel),Độ trễ trung bình (ms),Khả năng khử biên giả sóng biển
+Sobel Gradient (3x3),95.42,30.69,Trung bình (Bắt nhiều đốm hạt)
+Prewitt Gradient (3x3),95.41,16.28,Trung bình (Bắt nhiều đốm hạt)
+Roberts Cross (2x2),89.85,7.75,Trung bình (Bắt nhiều đốm hạt)
+LoG Marr-Hildreth (Zero-Crossing),46.59,162.28,Trung bình (Bắt nhiều đốm hạt)
+Canny Edge (4 Bước Tối Ưu),3.92,125.36,"Tốt (Mảnh, liên tục)"
