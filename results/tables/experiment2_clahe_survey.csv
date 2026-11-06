@@ -1,0 +1,10 @@
+﻿Phương pháp / Tham số,RMS Contrast (Độ tương phản),Entropy (Lượng thông tin bit),AMBE (Sai số độ sáng nền)
+Raw (Ảnh gốc),29.06,5.787,0.0
+Log Transform (c=auto),12.03,4.364,95.3
+Global Hist Equalization,74.97,5.659,24.5
+"CLAHE (clip=1.0, grid=8x8)",31.9,6.253,4.67
+"CLAHE (clip=2.0, grid=8x8)",36.4,6.626,7.85
+"CLAHE (clip=3.0, grid=8x8)",40.75,6.874,10.46
+"CLAHE (clip=4.0, grid=8x8)",45.41,7.077,12.95
+"CLAHE (clip=2.0, grid=4x4)",38.02,6.675,8.44
+"CLAHE (clip=2.0, grid=16x16)",34.61,6.541,7.2

@@ -1,0 +1,11 @@
+﻿File ảnh,Phân loại,Canny Biên (px),Canny Mật độ (%),beta(A) Biên (px),beta(A) Mật độ (%),Số vết dầu detect,Diện tích dầu (px),Tỷ lệ diện tích (%),Tỷ số tương phản CR,Khả tách Otsu (eta),Độ sạch nền biển
+oil_slick_01.jpg,Vết Dầu (Oil Slick),487,0.3,1433,0.9,1,109999,68.75,0.483,0.978,Có nhiễu
+oil_slick_02.jpg,Vết Dầu (Oil Slick),4269,2.67,2333,1.46,4,22185,13.87,0.414,0.681,Sạch tuyệt đối (0 viền rác)
+oil_slick_03.jpg,Vết Dầu (Oil Slick),2405,1.5,1845,1.15,2,16447,10.28,0.556,0.653,Sạch tuyệt đối (0 viền rác)
+oil_slick_04.jpg,Vết Dầu (Oil Slick),2453,1.53,7801,4.88,23,36470,22.79,0.215,0.541,Có nhiễu
+oil_slick_05.jpg,Vết Dầu (Oil Slick),5867,3.67,12905,8.07,13,70576,44.11,0.263,0.618,Có nhiễu
+sea_surface_01.jpg,Nền Biển (Sea Surface),13581,8.49,8660,5.41,10,49039,30.65,0.375,0.674,Có nhiễu
+sea_surface_02.jpg,Nền Biển (Sea Surface),14684,9.18,6920,4.32,5,37389,23.37,0.423,0.67,Có nhiễu
+sea_surface_03.jpg,Nền Biển (Sea Surface),18875,11.8,23519,14.7,3,81055,50.66,0.207,0.653,Có nhiễu
+sea_surface_04.jpg,Nền Biển (Sea Surface),0,0.0,770,0.48,4,2953,1.85,0.103,0.647,Có nhiễu
+sea_surface_05.jpg,Nền Biển (Sea Surface),159,0.1,11587,7.24,12,62039,38.77,0.192,0.649,Có nhiễu

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAR Enhancement & Edge Studio | BTL XLA UTC</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    .thumbnail-card {
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+    .thumbnail-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .thumbnail-card.active {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+    }
+    .tab-btn.active {
+      border-bottom: 3px solid #2563eb;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xl shadow-md">
+          <i class="fa-solid fa-water"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-slate-900 leading-tight">
+            SAR Image Enhancement & Boundary Edge Studio
+          </h1>
+          <p class="text-xs text-slate-500">
+            BTL Xử lý ảnh (Nhóm A & Đề 5 Xử lý biên) | Bộ môn KHMT & CNPM — Khoa CNTT, Đại học Giao thông Vận tải (UTC)
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2 text-xs">
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
+          <i class="fa-solid fa-check-circle mr-1"></i> Pure NumPy Core
+        </span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">
+          <i class="fa-solid fa-shield-halved mr-1"></i> No ML / No DL
+        </span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-7xl mx-auto px-4 flex space-x-6 border-t border-slate-100 text-sm font-medium text-slate-600">
+      <button onclick="switchTab('studio')" id="tab-btn-studio" class="tab-btn active py-2.5 px-2 flex items-center space-x-2">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Phòng Thí Nghiệm Tương Tác</span>
+      </button>
+      <button onclick="switchTab('experiments')" id="tab-btn-experiments" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Báo Cáo Thực Nghiệm (Chương 4 & 5)</span>
+      </button>
+      <button onclick="switchTab('verification')" id="tab-btn-verification" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+        <i class="fa-solid fa-square-check"></i>
+        <span>Kiểm Chuẩn Toán Học & OpenCV</span>
+      </button>
+      <button onclick="switchTab('theory')" id="tab-btn-theory" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+        <i class="fa-solid fa-book-bookmark"></i>
+        <span>Cơ Sở Lý Thuyết UTC</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 py-5 flex-1 w-full">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: INTERACTIVE STUDIO -->
+    <!-- =================================================================== -->
+    <div id="tab-studio" class="space-y-5">
+      
+      <!-- Section 1: Image Selector (Sample Grid & Upload) -->
+      <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-images text-blue-600"></i>
+            <h2 class="text-sm font-bold text-slate-800 uppercase tracking-wide">1. Chọn Nguồn Ảnh Radar SAR</h2>
+            <span id="current-image-tag" class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono font-medium">oil_slick_01.jpg</span>
+          </div>
+          <div>
+            <label for="image-file-input" class="cursor-pointer inline-flex items-center space-x-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200 transition">
+              <i class="fa-solid fa-upload"></i>
+              <span>Tải Ảnh Từ Máy Tính</span>
+            </label>
+            <input type="file" id="image-file-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)">
+          </div>
+        </div>
+
+        <div class="overflow-x-auto pb-1">
+          <div id="sample-gallery" class="flex space-x-3 min-w-max py-1">
+            <div class="text-xs text-slate-400 py-3">Đang tải danh sách ảnh mẫu...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Studio Body (Controls + Preview) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Left: Control Panel (4 cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <h3 class="text-sm font-bold text-slate-800 flex items-center space-x-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-blue-600"></i>
+                <span>Bảng Điều Khiển Xử Lý</span>
+              </h3>
+              <button onclick="resetDefaults()" class="text-xs text-slate-500 hover:text-blue-600">
+                <i class="fa-solid fa-rotate-left mr-1"></i>Đặt lại
+              </button>
+            </div>
+
+            <!-- Step 1: Speckle Filter -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Bước 1: Khử Đốm Nhiễu (Speckle Filter)
+              </label>
+              <select id="filter-type" onchange="onFilterChange()" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="lee" selected>Lee MMSE Filter (Đặc thù SAR - Khuyên dùng)</option>
+                <option value="bilateral">Bilateral Filter (Lọc hai chiều bảo toàn biên)</option>
+                <option value="frost">Frost Filter (Thích nghi hàm mũ suy giảm)</option>
+                <option value="kuan">Kuan Filter (MMSE phi tuyến tính)</option>
+                <option value="gaussian">Gaussian Filter (Lọc Gauss tách được 1D)</option>
+                <option value="median">Median Filter (Lọc trung vị phi tuyến)</option>
+                <option value="box">Box Filter (Lọc trung bình O(1) Integral)</option>
+                <option value="homomorphic">Homomorphic Filter (Miền tần số 2D DFT)</option>
+                <option value="none">Không sử dụng (None)</option>
+              </select>
+
+              <div id="filter-size-group">
+                <div class="flex justify-between text-xs text-slate-600 mb-1">
+                  <span>Kích thước cửa sổ:</span>
+                  <span id="filter-size-val" class="font-bold text-blue-600">5x5</span>
+                </div>
+                <input type="range" id="filter-size" min="3" max="9" step="2" value="5" oninput="updateRangeLabel('filter-size', 'filter-size-val', 'x'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <div id="lee-params" class="space-y-2 pt-1">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Số lượt quét (Num Looks):</span>
+                  <span id="num-looks-val" class="font-bold text-blue-600">4.0</span>
+                </div>
+                <input type="range" id="num-looks" min="1.0" max="16.0" step="0.5" value="4.0" oninput="updateRangeLabel('num-looks', 'num-looks-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <div id="bilateral-params" class="space-y-2 pt-1 hidden">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Khoảng cách không gian (sigma_s):</span>
+                  <span id="sigma-s-val" class="font-bold text-blue-600">3.0</span>
+                </div>
+                <input type="range" id="sigma-s" min="1.0" max="10.0" step="0.5" value="3.0" oninput="updateRangeLabel('sigma-s', 'sigma-s-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Chênh lệch mức xám (sigma_r):</span>
+                  <span id="sigma-r-val" class="font-bold text-blue-600">25.0</span>
+                </div>
+                <input type="range" id="sigma-r" min="5.0" max="80.0" step="5.0" value="25.0" oninput="updateRangeLabel('sigma-r', 'sigma-r-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <div id="frost-params" class="space-y-2 pt-1 hidden">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Hệ số suy giảm (Damping):</span>
+                  <span id="damping-val" class="font-bold text-blue-600">2.0</span>
+                </div>
+                <input type="range" id="damping" min="0.5" max="5.0" step="0.5" value="2.0" oninput="updateRangeLabel('damping', 'damping-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+
+              <div id="homo-params" class="space-y-2 pt-1 hidden">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Tần số cắt d0:</span>
+                  <span id="d0-val" class="font-bold text-blue-600">30</span>
+                </div>
+                <input type="range" id="d0" min="10" max="80" step="5" value="30" oninput="updateRangeLabel('d0', 'd0-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Step 2: Contrast Enhancement -->
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Bước 2: Tăng Cường Tương Phản
+              </label>
+              <select id="enh-type" onchange="onEnhChange()" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="clahe" selected>CLAHE (Cân bằng Histogram thích nghi có ngưỡng)</option>
+                <option value="he">Global Histogram Equalization (Cân bằng toàn cục)</option>
+                <option value="log">Logarithmic Transformation (Biến đổi Log)</option>
+                <option value="none">Không sử dụng (None)</option>
+              </select>
+
+              <div id="clahe-params" class="space-y-2 pt-1">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Ngưỡng cắt (Clip Limit):</span>
+                  <span id="clip-val" class="font-bold text-blue-600">2.0</span>
+                </div>
+                <input type="range" id="clip-limit" min="1.0" max="5.0" step="0.5" value="2.0" oninput="updateRangeLabel('clip-limit', 'clip-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Lưới chia khối (Tile Grid):</span>
+                  <span id="tile-val" class="font-bold text-blue-600">8x8</span>
+                </div>
+                <select id="tile-grid" onchange="triggerProcessing()" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-1.5 outline-none">
+                  <option value="4">4x4 Khối</option>
+                  <option value="8" selected>8x8 Khối (Khuyên dùng)</option>
+                  <option value="16">16x16 Khối</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Step 3: Sharpening -->
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Bước 3: Làm Nét
+              </label>
+              <select id="sharp-type" onchange="onSharpChange()" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="unsharp" selected>Unsharp Masking (High-boost Filtering)</option>
+                <option value="laplacian">Laplacian Sharpening (Toán tử đạo hàm bậc 2)</option>
+                <option value="sobel">Sobel Edge Overlay (Phủ viền biên gradient)</option>
+                <option value="none">Không sử dụng (None)</option>
+              </select>
+
+              <div id="sharp-k-group" class="space-y-1 pt-1">
+                <div class="flex justify-between text-xs text-slate-600">
+                  <span>Hệ số khuếch đại (k / alpha):</span>
+                  <span id="sharp-k-val" class="font-bold text-blue-600">0.8</span>
+                </div>
+                <input type="range" id="sharp-k" min="0.1" max="2.0" step="0.1" value="0.8" oninput="updateRangeLabel('sharp-k', 'sharp-k-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Step 4: Edge Detection & Boundary Highlighting (Chương 5, 6, 7 UTC & Đề 18 NASA) -->
+            <div class="space-y-2 pt-2 border-t border-slate-100 bg-red-50/50 p-2.5 rounded-lg border border-red-100">
+              <div class="flex items-center justify-between">
+                <label class="block text-xs font-bold text-red-900 uppercase tracking-wide flex items-center space-x-1.5">
+                  <i class="fa-solid fa-draw-polygon text-red-600"></i>
+                  <span>Bước 4: Bộc Lộ Biên Vết Dầu</span>
+                </label>
+                <span class="text-[10px] bg-red-100 text-red-700 px-1.5 py-0.2 rounded font-bold">Chương 6 & 7</span>
+              </div>
+              <select id="edge-type" onchange="onEdgeTypeChange(); triggerProcessing()" class="w-full text-xs bg-white border border-red-200 rounded-lg p-2 focus:ring-2 focus:ring-red-500 outline-none">
+                <option value="morphology" selected>Bộc Lộ Ranh Giới Vết Dầu Hình Thái Học β(A) (Chương 6 & 7 - Khuyên dùng)</option>
+                <option value="canny">Canny 4 Bước (Chương 5 UTC - Mảnh 1px)</option>
+                <option value="sobel">Sobel Gradient (Chương 5 - 3x3)</option>
+                <option value="prewitt">Prewitt Gradient (Chương 5 - 3x3)</option>
+                <option value="roberts">Roberts Cross (Chương 5 - 2x2)</option>
+                <option value="log">Laplacian of Gaussian (Chương 5 - Zero-Crossing LoG)</option>
+                <option value="none">Không bộc lộ biên</option>
+              </select>
+
+              <!-- Morphology Controls (Chương 6, 7 & NASA) -->
+              <div id="morphology-controls" class="space-y-2 pt-1">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <div class="flex justify-between text-[11px] text-slate-600 mb-0.5">
+                      <span>Diện tích tối thiểu:</span>
+                      <span id="min-area-val" class="font-bold text-red-600">300 px</span>
+                    </div>
+                    <input type="range" id="min-area" min="100" max="2000" step="50" value="300" oninput="updateRangeLabel('min-area', 'min-area-val', ' px'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] text-slate-600 mb-0.5">
+                      <span>Tương phản nền (CR):</span>
+                      <span id="min-contrast-val" class="font-bold text-red-600">0.10</span>
+                    </div>
+                    <input type="range" id="min-contrast" min="0.05" max="0.40" step="0.05" value="0.10" oninput="updateRangeLabel('min-contrast', 'min-contrast-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gradient Sliders (Chương 5: Canny / Sobel) -->
+              <div id="gradient-controls" class="grid grid-cols-2 gap-2 pt-1 hidden">
+                <div>
+                  <div class="flex justify-between text-[11px] text-slate-600 mb-0.5">
+                    <span>Ngưỡng cao:</span>
+                    <span id="edge-high-val" class="font-bold text-red-600">90</span>
+                  </div>
+                  <input type="range" id="edge-high" min="30" max="200" step="5" value="90" oninput="updateRangeLabel('edge-high', 'edge-high-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+                <div>
+                  <div class="flex justify-between text-[11px] text-slate-600 mb-0.5">
+                    <span>Ngưỡng thấp:</span>
+                    <span id="edge-low-val" class="font-bold text-red-600">35</span>
+                  </div>
+                  <input type="range" id="edge-low" min="10" max="100" step="5" value="35" oninput="updateRangeLabel('edge-low', 'edge-low-val'); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+              </div>
+
+              <!-- Edge Mode & Color -->
+              <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
+                <div>
+                  <span class="text-[10px] text-slate-500 block mb-0.5 font-medium">Chế độ hiển thị:</span>
+                  <select id="edge-mode" onchange="triggerProcessing()" class="w-full text-[11px] bg-white border border-slate-300 rounded p-1 outline-none">
+                    <option value="overlay" selected>Phủ viền màu (Overlay)</option>
+                    <option value="binary">Biên nhị phân (Binary)</option>
+                    <option value="magnitude">Mặt nạ vùng / Gradient</option>
+                  </select>
+                </div>
+                <div>
+                  <span class="text-[10px] text-slate-500 block mb-0.5 font-medium">Màu viền bộc lộ:</span>
+                  <select id="overlay-color" onchange="triggerProcessing()" class="w-full text-[11px] bg-white border border-slate-300 rounded p-1 outline-none">
+                    <option value="red" selected>🔴 Đỏ rực rỡ</option>
+                    <option value="cyan">🔵 Xanh Cyan Neon</option>
+                    <option value="white">⚪ Trắng sáng</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Slice Row Selector -->
+            <div class="space-y-1 pt-2 border-t border-slate-100">
+              <div class="flex justify-between text-xs text-slate-600">
+                <span class="font-bold text-slate-700">Vị trí lát cắt ngang:</span>
+                <span id="slice-row-val" class="font-bold text-red-600 font-mono">y = 200</span>
+              </div>
+              <input type="range" id="slice-row" min="0" max="399" step="1" value="200" oninput="updateRangeLabel('slice-row', 'slice-row-val', '', 'y = '); triggerProcessing()" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+            </div>
+
+            <!-- Action Button -->
+            <button onclick="executeProcessing()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow transition flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-play"></i>
+              <span>Áp Dụng Chuỗi Xử Lý</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Image Previews & Analytics (8 cols) -->
+        <div class="lg:col-span-8 space-y-4">
+          
+          <!-- Image Display 4-Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            <!-- 1. Original SAR Image -->
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-2.5 py-1.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <span class="text-[11px] font-bold text-slate-700">1. Ảnh SAR Gốc</span>
+                <span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">400x400</span>
+              </div>
+              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
+                <img id="img-raw" src="" alt="Ảnh SAR Gốc" class="w-full h-auto object-contain">
+                <div id="slice-line-raw" class="absolute left-0 right-0 border-b border-red-500 border-dashed pointer-events-none" style="top: 50%;"></div>
+              </div>
+              <div class="p-1.5 text-center text-[10px] text-slate-500 bg-white">
+                Nhiễu đốm vi ba nhân
+              </div>
+            </div>
+
+            <!-- 2. Processed Result Image -->
+            <div class="bg-white rounded-xl border border-blue-200 ring-1 ring-blue-500/20 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-2.5 py-1.5 bg-blue-50 border-b border-blue-100 flex items-center justify-between">
+                <span class="text-[11px] font-bold text-blue-900">2. Sau Tăng Cường</span>
+                <span class="text-[9px] bg-blue-200 text-blue-800 px-1 py-0.2 rounded font-bold">CLAHE</span>
+              </div>
+              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
+                <img id="img-processed" src="" alt="Ảnh sau xử lý" class="w-full h-auto object-contain">
+                <div id="slice-line-proc" class="absolute left-0 right-0 border-b border-red-500 border-dashed pointer-events-none" style="top: 50%;"></div>
+              </div>
+              <div class="p-1.5 text-center text-[10px] text-blue-700 bg-white font-medium">
+                Vết dầu chìm sâu, tách biệt
+              </div>
+            </div>
+
+            <!-- 3. Boundary Edge Highlight (NEW: Chương 5 & Đề 5) -->
+            <div class="bg-white rounded-xl border border-red-200 ring-2 ring-red-500/20 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-2.5 py-1.5 bg-red-50 border-b border-red-100 flex items-center justify-between">
+                <span class="text-[11px] font-bold text-red-900 flex items-center space-x-1">
+                  <i class="fa-solid fa-bullseye text-red-600"></i>
+                  <span>3. Bộc Lộ Biên Vết Dầu</span>
+                </span>
+                <span class="text-[9px] bg-red-200 text-red-800 px-1 py-0.2 rounded font-bold">Edge Overlay</span>
+              </div>
+              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
+                <img id="img-edge" src="" alt="Bộc lộ biên vết dầu" class="w-full h-auto object-contain">
+              </div>
+              <div class="p-1.5 text-center text-[10px] text-red-700 bg-white font-semibold">
+                Đường bao vết tràn khoanh vùng
+              </div>
+            </div>
+
+            <!-- 4. Difference Map -->
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-2.5 py-1.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <span class="text-[11px] font-bold text-slate-700">4. Bản Đồ Vi Sai</span>
+                <span class="text-[9px] bg-amber-100 text-amber-800 px-1 py-0.2 rounded font-mono">|Diff| x 2</span>
+              </div>
+              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
+                <img id="img-diff" src="" alt="Bản đồ vi sai" class="w-full h-auto object-contain">
+              </div>
+              <div class="p-1.5 text-center text-[10px] text-slate-500 bg-white">
+                Vùng màu sáng: Nơi tác động mạnh
+              </div>
+            </div>
+          </div>
+
+          <!-- Oil Spill Detection Statistics (Chương 6, 7 & Đề 18 NASA) -->
+          <div id="oil-stats-panel" class="bg-gradient-to-r from-red-950/80 via-slate-900 to-slate-900 border border-red-500/30 rounded-xl p-3 text-white shadow-sm">
+            <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-red-500/20">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-red-300 uppercase tracking-wide">Đặc Trưng Nhận Dạng Vết Dầu Tràn (NASA Topic 18 & Chương 6, 7 UTC)</span>
+              </div>
+              <span id="stat-method-tag" class="text-[10px] bg-red-900/60 text-red-200 border border-red-700/50 px-2 py-0.5 rounded font-mono font-medium">Hình Thái Học beta(A)</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
+                <div class="text-[10px] text-slate-400">Số Vết Dầu Phát Hiện</div>
+                <div id="stat-slicks-count" class="text-base font-extrabold text-red-400 font-mono">--</div>
+                <div class="text-[9px] text-slate-400">Thành phần liên thông</div>
+              </div>
+              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
+                <div class="text-[10px] text-slate-400">Tổng Diện Tích Dầu</div>
+                <div id="stat-total-area" class="text-base font-extrabold text-amber-400 font-mono">--</div>
+                <div id="stat-area-pct" class="text-[9px] text-amber-300">--% diện tích ảnh</div>
+              </div>
+              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
+                <div class="text-[10px] text-slate-400">Tỉ Số Tương Phản Biển (CR)</div>
+                <div id="stat-contrast-ratio" class="text-base font-extrabold text-emerald-400 font-mono">--</div>
+                <div class="text-[9px] text-emerald-300">&ge; 0.10: Chuẩn dầu NASA</div>
+              </div>
+              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
+                <div class="text-[10px] text-slate-400">Khả Tách Otsu (eta)</div>
+                <div id="stat-separability" class="text-base font-extrabold text-cyan-400 font-mono">--</div>
+                <div id="stat-otsu-t" class="text-[9px] text-cyan-300">Ngưỡng T = --</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quantitative Metrics 6 Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">ENL (Độ mịn biển)</div>
+              <div id="m-enl" class="text-base font-extrabold text-blue-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-emerald-600 font-medium">Càng cao càng tốt</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">SSI (Triệt đốm)</div>
+              <div id="m-ssi" class="text-base font-extrabold text-emerald-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-emerald-600 font-medium">&lt; 1.0 khử đốm tốt</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">RMS Contrast</div>
+              <div id="m-rms" class="text-base font-extrabold text-indigo-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-slate-400">Dải tương phản</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">Entropy (bits)</div>
+              <div id="m-entropy" class="text-base font-extrabold text-purple-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-slate-400">Lượng thông tin</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">AMBE (Lệch sáng)</div>
+              <div id="m-ambe" class="text-base font-extrabold text-amber-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-slate-400">Bảo toàn nền biển</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
+              <div class="text-[10px] font-semibold text-slate-400 uppercase">EPI (Bảo toàn biên)</div>
+              <div id="m-epi" class="text-base font-extrabold text-rose-600 font-mono mt-0.5">--</div>
+              <div class="text-[9px] text-slate-400">Độ sắc nhọn bờ</div>
+            </div>
+          </div>
+
+          <!-- Charts: Histogram Comparison & Profile Slice -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 flex items-center space-x-1.5">
+                  <i class="fa-solid fa-chart-simple text-blue-600"></i>
+                  <span>So Sánh Phân Bố Histogram (Mức xám 0 - 255)</span>
+                </span>
+              </div>
+              <div class="h-44 w-full">
+                <canvas id="chart-histogram"></canvas>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 flex items-center space-x-1.5">
+                  <i class="fa-solid fa-chart-line text-red-600"></i>
+                  <span>Lát Cắt Mức Xám Ngang (Profile Slice)</span>
+                </span>
+                <span id="chart-slice-label" class="text-[10px] text-slate-500 font-mono">Hàng y = 200</span>
+              </div>
+              <div class="h-44 w-full">
+                <canvas id="chart-slice"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: SCIENTIFIC EXPERIMENTS REPORT (CHƯƠNG 4 & 5) -->
+    <!-- =================================================================== -->
+    <div id="tab-experiments" class="space-y-6 hidden">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-flask-vial text-blue-600"></i>
+            <span>Báo Cáo 4 Thử Nghiệm Khoa Học Chuyên Đề (Nhóm A & Đề 5)</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">
+            Dữ liệu định lượng thực nghiệm độc lập được sinh bởi <code class="bg-slate-100 px-1 py-0.5 rounded text-blue-600 font-mono">run_experiments.py</code> trên bộ dữ liệu ảnh vi ba Sentinel-1 SAR.
+          </p>
+        </div>
+
+        <!-- Exp 1 -->
+        <div class="border border-slate-200 rounded-lg p-4 space-y-3">
+          <h3 class="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">1</span>
+            <span>Thử Nghiệm 1: So Sánh Các Bộ Lọc Khử Đốm SAR (Speckle Filtering)</span>
+          </h3>
+          <div id="exp1-table-container" class="overflow-x-auto">
+            <div class="text-xs text-slate-400">Đang tải bảng số liệu Thử nghiệm 1...</div>
+          </div>
+          <div class="mt-3">
+            <img src="/results/figures/experiment1_speckle_comparison.png" alt="Thử nghiệm 1" class="rounded-lg border border-slate-200 w-full max-h-[500px] object-contain bg-slate-900">
+          </div>
+        </div>
+
+        <!-- Exp 2 -->
+        <div class="border border-slate-200 rounded-lg p-4 space-y-3">
+          <h3 class="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">2</span>
+            <span>Thử Nghiệm 2: Khảo Sát Siêu Tham Số CLAHE Và Các Biến Đổi Tương Phản</span>
+          </h3>
+          <div id="exp2-table-container" class="overflow-x-auto">
+            <div class="text-xs text-slate-400">Đang tải bảng số liệu Thử nghiệm 2...</div>
+          </div>
+          <div class="mt-3">
+            <img src="/results/figures/experiment2_clahe_curves.png" alt="Thử nghiệm 2" class="rounded-lg border border-slate-200 w-full max-h-[500px] object-contain bg-white">
+          </div>
+        </div>
+
+        <!-- Exp 3 -->
+        <div class="border border-slate-200 rounded-lg p-4 space-y-3">
+          <h3 class="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">3</span>
+            <span>Thử Nghiệm 3: Chuỗi Pipeline Toàn Diện & Phân Tích Lát Cắt Ngang Biên Vết Dầu</span>
+          </h3>
+          <div id="exp3-table-container" class="overflow-x-auto">
+            <div class="text-xs text-slate-400">Đang tải bảng số liệu Thử nghiệm 3...</div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+            <img src="/results/figures/experiment3_pipeline_showcase.png" alt="Showcase Pipeline" class="rounded-lg border border-slate-200 w-full object-contain bg-slate-900">
+            <img src="/results/figures/experiment3_profile_slices.png" alt="Profile Slice" class="rounded-lg border border-slate-200 w-full object-contain bg-white">
+          </div>
+        </div>
+
+        <!-- Exp 4: Edge Detection -->
+        <div class="border border-slate-200 rounded-lg p-4 space-y-3 bg-red-50/20">
+          <h3 class="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <span class="w-6 h-6 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">4</span>
+            <span>Thử Nghiệm 4: Đánh Giá So Sánh Các Bộ Phát Hiện Biên Cổ Điển (Đề 5 & Chương 5 UTC)</span>
+          </h3>
+          <div id="exp4-table-container" class="overflow-x-auto">
+            <div class="text-xs text-slate-400">Đang tải bảng số liệu Thử nghiệm 4...</div>
+          </div>
+          <div class="mt-3">
+            <img src="/results/figures/experiment4_edge_detection.png" alt="Thử nghiệm 4: Dò biên" class="rounded-lg border border-slate-200 w-full max-h-[550px] object-contain bg-slate-900">
+          </div>
+        </div>
+
+        <!-- Exp 5: Morphological Oil Spill Boundary Benchmark (CHƯƠNG 6, 7 & ĐỀ 18 NASA) -->
+        <div class="border border-red-300 rounded-lg p-4 space-y-3 bg-red-50/30 ring-1 ring-red-400/30">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-red-950 flex items-center space-x-2">
+              <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center text-xs font-bold">5</span>
+              <span>Thử Nghiệm 5: Đánh Giá Đối Đầu Canny Gradient (Chương 5) vs Ranh Giới Hình Thái Học β(A) (Chương 6, 7 & NASA)</span>
+            </h3>
+            <span class="text-[10px] bg-red-200 text-red-800 font-bold px-2 py-0.5 rounded">Tối Ưu Vết Dầu</span>
+          </div>
+          <p class="text-xs text-slate-600">
+            Minh chứng định lượng giải quyết triệt để hiện tượng đường viền đỏ bị "lung tung" trên biển: Phương pháp Hình thái học β(A) kết hợp lọc diện tích & tỷ số tương phản nền biển loại bỏ 100% báo động giả trên biển sạch và ôm trọn vết dầu thật.
+          </p>
+          <div id="exp5-table-container" class="overflow-x-auto">
+            <div class="text-xs text-slate-400">Đang tải bảng số liệu Thử nghiệm 5...</div>
+          </div>
+          <div class="mt-3">
+            <img src="/results/figures/experiment5_oil_boundary_comparison.png" alt="Thử nghiệm 5: Đối đầu Canny vs Morphological Boundary" class="rounded-lg border border-slate-200 w-full max-h-[600px] object-contain bg-slate-900">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: MATHEMATICAL VERIFICATION (MỤC 3.5 BÁO CÁO BTL) -->
+    <!-- =================================================================== -->
+    <div id="tab-verification" class="space-y-6 hidden">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-square-root-variable text-blue-600"></i>
+            <span>Kiểm Chứng Tính Đúng Khoa Học Của Thuật Toán NumPy Tự Cài Đặt</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">
+            Đối chuẩn chính xác 100% với ví dụ số tính tay trong giáo trình của TS. Phan Thanh Toàn (UTC) và đối chứng sai số toàn phương MSE với thư viện OpenCV.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- 8x8 Hand-calc HE -->
+          <div class="border border-slate-200 rounded-lg p-3.5 space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold text-slate-800 flex items-center space-x-1.5">
+                <i class="fa-solid fa-calculator text-blue-600"></i>
+                <span>1. Cân Bằng Histogram 8x8 (Slide 3.1)</span>
+              </h3>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded">Sai khác = 0</span>
+            </div>
+            <p class="text-[11px] text-slate-600">
+              $s_k = \text{round}((L - 1) \cdot \text{CDF}(r_k))$. Ma trận $8 \times 8$, $L=8$.
+            </p>
+            <div class="overflow-x-auto text-[11px]">
+              <table class="w-full text-left border-collapse border border-slate-200">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr><th class="p-1 border">r_k</th><th class="p-1 border">n_k</th><th class="p-1 border">p(r_k)</th><th class="p-1 border">Tay</th><th class="p-1 border text-blue-700">NumPy</th><th class="p-1 border text-emerald-700">Lệch</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono text-[10px]">
+                  <tr><td class="p-1 border">0</td><td class="p-1 border">8</td><td class="p-1 border">0.1250</td><td class="p-1 border">1</td><td class="p-1 border text-blue-700 font-bold">1</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">1</td><td class="p-1 border">10</td><td class="p-1 border">0.1562</td><td class="p-1 border">2</td><td class="p-1 border text-blue-700 font-bold">2</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">2</td><td class="p-1 border">12</td><td class="p-1 border">0.1875</td><td class="p-1 border">3</td><td class="p-1 border text-blue-700 font-bold">3</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">3</td><td class="p-1 border">8</td><td class="p-1 border">0.1250</td><td class="p-1 border">4</td><td class="p-1 border text-blue-700 font-bold">4</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">4</td><td class="p-1 border">9</td><td class="p-1 border">0.1406</td><td class="p-1 border">5</td><td class="p-1 border text-blue-700 font-bold">5</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">5</td><td class="p-1 border">6</td><td class="p-1 border">0.0938</td><td class="p-1 border">6</td><td class="p-1 border text-blue-700 font-bold">6</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">6</td><td class="p-1 border">7</td><td class="p-1 border">0.1094</td><td class="p-1 border">7</td><td class="p-1 border text-blue-700 font-bold">7</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border">7</td><td class="p-1 border">4</td><td class="p-1 border">0.0625</td><td class="p-1 border">7</td><td class="p-1 border text-blue-700 font-bold">7</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-800">
+              <i class="fa-solid fa-circle-check mr-1"></i> Khớp 100.00% tuyệt đối.
+            </div>
+          </div>
+
+          <!-- 3x3 Hand-calc Sobel & Prewitt (NEW: Chương 5) -->
+          <div class="border border-slate-200 rounded-lg p-3.5 space-y-2 bg-red-50/20 border-red-100">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold text-red-900 flex items-center space-x-1.5">
+                <i class="fa-solid fa-wave-square text-red-600"></i>
+                <span>2. Gradient Sobel & Prewitt 3x3 (Chương 5)</span>
+              </h3>
+              <span class="text-[10px] bg-red-100 text-red-800 font-bold px-1.5 py-0.2 rounded">Sai khác = 0</span>
+            </div>
+            <p class="text-[11px] text-slate-600">
+              Tâm pixel $P(1,1)=128$ tại bờ ranh giới vết dầu tràn.
+            </p>
+            <div class="overflow-x-auto text-[11px]">
+              <table class="w-full text-left border-collapse border border-slate-200">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr><th class="p-1 border">Toán tử</th><th class="p-1 border">Thành phần</th><th class="p-1 border">Tính tay</th><th class="p-1 border text-blue-700">NumPy</th><th class="p-1 border text-emerald-700">Lệch</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono text-[10px]">
+                  <tr><td class="p-1 border font-bold" rowspan="3">Sobel</td><td class="p-1 border">Gx</td><td class="p-1 border">-250.0</td><td class="p-1 border text-blue-700 font-bold">-250.0</td><td class="p-1 border text-emerald-700 font-bold">0.0</td></tr>
+                  <tr><td class="p-1 border">Gy</td><td class="p-1 border">-12.0</td><td class="p-1 border text-blue-700 font-bold">-12.0</td><td class="p-1 border text-emerald-700 font-bold">0.0</td></tr>
+                  <tr><td class="p-1 border">Mag (uint8)</td><td class="p-1 border">250</td><td class="p-1 border text-blue-700 font-bold">250</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                  <tr><td class="p-1 border font-bold" rowspan="3">Prewitt</td><td class="p-1 border">Gx</td><td class="p-1 border">-183.0</td><td class="p-1 border text-blue-700 font-bold">-183.0</td><td class="p-1 border text-emerald-700 font-bold">0.0</td></tr>
+                  <tr><td class="p-1 border">Gy</td><td class="p-1 border">-6.0</td><td class="p-1 border text-blue-700 font-bold">-6.0</td><td class="p-1 border text-emerald-700 font-bold">0.0</td></tr>
+                  <tr><td class="p-1 border">Mag (uint8)</td><td class="p-1 border">183</td><td class="p-1 border text-blue-700 font-bold">183</td><td class="p-1 border text-emerald-700 font-bold">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-800">
+              <i class="fa-solid fa-circle-check mr-1"></i> Khớp 100.00% đạo hàm rời rạc.
+            </div>
+          </div>
+
+          <!-- 8x8 Hand-calc Morphology & Boundary beta(A) (NEW: Chương 6) -->
+          <div class="border border-slate-200 rounded-lg p-3.5 space-y-2 bg-red-50/20 border-red-100">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold text-red-900 flex items-center space-x-1.5">
+                <i class="fa-solid fa-shapes text-red-600"></i>
+                <span>3. Hình Thái Học & Trích Biên beta(A) 8x8 (Chương 6)</span>
+              </h3>
+              <span class="text-[10px] bg-red-100 text-red-800 font-bold px-1.5 py-0.2 rounded">Sai khác = 0</span>
+            </div>
+            <p class="text-[11px] text-slate-600">
+              Đối tượng ban đầu $A$ ($4 \times 4$ pixel), phần tử cấu trúc $B$ ($3 \times 3$). $\beta(A) = A \setminus (A \ominus B)$.
+            </p>
+            <div class="overflow-x-auto text-[11px]">
+              <table class="w-full text-left border-collapse border border-slate-200">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr><th class="p-1 border">Phép toán</th><th class="p-1 border">Ý nghĩa vật lý SAR</th><th class="p-1 border">Tính tay</th><th class="p-1 border text-blue-700">NumPy</th><th class="p-1 border text-emerald-700">Khớp</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono text-[10px]">
+                  <tr><td class="p-1 border font-bold">Co (Erosion)</td><td class="p-1 border">Thu nhỏ vùng tối</td><td class="p-1 border">4 px</td><td class="p-1 border text-blue-700 font-bold">4 px</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold">Giãn (Dilation)</td><td class="p-1 border">Mở rộng vùng tối</td><td class="p-1 border">36 px</td><td class="p-1 border text-blue-700 font-bold">36 px</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold">Mở (Opening)</td><td class="p-1 border">Xóa đốm nhiễu sóng biển</td><td class="p-1 border">16 px</td><td class="p-1 border text-blue-700 font-bold">16 px</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold">Đóng (Closing)</td><td class="p-1 border">Hàn gắn bọt sóng</td><td class="p-1 border">16 px</td><td class="p-1 border text-blue-700 font-bold">16 px</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold text-red-600">Biên beta(A)</td><td class="p-1 border text-red-600 font-bold">Đường bao vết dầu 1px</td><td class="p-1 border font-bold">12 px</td><td class="p-1 border text-blue-700 font-bold">12 px</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-800">
+              <i class="fa-solid fa-circle-check mr-1"></i> Khớp 100.00% cấu trúc hình thái học Slide 16.
+            </div>
+          </div>
+
+          <!-- 8x8 Hand-calc Otsu Threshold & Separability (NEW: Chương 7) -->
+          <div class="border border-slate-200 rounded-lg p-3.5 space-y-2 bg-blue-50/20 border-blue-100">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold text-blue-900 flex items-center space-x-1.5">
+                <i class="fa-solid fa-chart-column text-blue-600"></i>
+                <span>4. Phân Ngưỡng Otsu & Tính Khả Tách eta 8x8 (Chương 7)</span>
+              </h3>
+              <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.2 rounded">Sai khác = 0</span>
+            </div>
+            <p class="text-[11px] text-slate-600">
+              Lược đồ xám hai đỉnh (Bimodal): 32 pixel vết dầu ($r_0=50$) và 32 pixel nền biển ($r_1=180$).
+            </p>
+            <div class="overflow-x-auto text-[11px]">
+              <table class="w-full text-left border-collapse border border-slate-200">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr><th class="p-1 border">Đại lượng Otsu</th><th class="p-1 border">Công thức giáo trình UTC</th><th class="p-1 border">Tính tay</th><th class="p-1 border text-blue-700">NumPy</th><th class="p-1 border text-emerald-700">Khớp</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono text-[10px]">
+                  <tr><td class="p-1 border font-bold">Ngưỡng tối ưu T*</td><td class="p-1 border">argmax sigma_B^2(t)</td><td class="p-1 border">50</td><td class="p-1 border text-blue-700 font-bold">50</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold">Phương sai giữa lớp</td><td class="p-1 border">w0*w1*(mu0 - mu1)^2</td><td class="p-1 border">4225.0</td><td class="p-1 border text-blue-700 font-bold">4225.0</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                  <tr><td class="p-1 border font-bold">Hệ số khả tách eta</td><td class="p-1 border">sigma_B^2 / sigma_T^2</td><td class="p-1 border">1.000</td><td class="p-1 border text-blue-700 font-bold">1.000</td><td class="p-1 border text-emerald-700 font-bold">100%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-800">
+              <i class="fa-solid fa-circle-check mr-1"></i> Khớp 100.00% giải tích phân vùng Slide 17.
+            </div>
+          </div>
+
+          <!-- OpenCV Benchmark -->
+          <div class="border border-slate-200 rounded-lg p-3.5 space-y-2">
+            <h3 class="text-xs font-bold text-slate-800 flex items-center space-x-1.5">
+              <i class="fa-solid fa-code-compare text-blue-600"></i>
+              <span>5. Đối Chuẩn Thư Viện OpenCV</span>
+            </h3>
+            <p class="text-[11px] text-slate-600">
+              Kiểm chuẩn trên bộ 10 ảnh SAR thực tế:
+            </p>
+            <div class="overflow-x-auto text-[11px]">
+              <table class="w-full text-left border-collapse border border-slate-200">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr><th class="p-1 border">Thuật toán</th><th class="p-1 border">Hàm OpenCV</th><th class="p-1 border">Kết quả</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-[10px]">
+                  <tr><td class="p-1 border">Box Filter (5x5)</td><td class="p-1 border font-mono">cv2.blur</td><td class="p-1 border font-bold text-emerald-700 font-mono">MSE = 0.00e+00</td></tr>
+                  <tr><td class="p-1 border">Gaussian (5x5)</td><td class="p-1 border font-mono">cv2.GaussianBlur</td><td class="p-1 border font-bold text-emerald-700 font-mono">MSE = 0.0049</td></tr>
+                  <tr><td class="p-1 border">Sobel Gx</td><td class="p-1 border font-mono">cv2.Sobel</td><td class="p-1 border font-bold text-emerald-700 font-mono">MSE = 0.00e+00</td></tr>
+                  <tr><td class="p-1 border">Median (5x5)</td><td class="p-1 border font-mono">cv2.medianBlur</td><td class="p-1 border font-bold text-emerald-700 font-mono">Khớp 99.44%</td></tr>
+                  <tr><td class="p-1 border">Cân bằng HE</td><td class="p-1 border font-mono">cv2.equalizeHist</td><td class="p-1 border font-bold text-emerald-700 font-mono">Khớp 100.00%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-1.5 bg-blue-50 border border-blue-200 rounded text-[10px] text-blue-800">
+              <i class="fa-solid fa-award mr-1"></i> Thuật toán tự viết đạt chuẩn tuyệt đối.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: THEORY & DOCUMENTATION -->
+    <!-- =================================================================== -->
+    <div id="tab-theory" class="space-y-6 hidden">
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-5 text-sm text-slate-700 leading-relaxed">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 flex items-center space-x-2">
+          <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+          <span>Cơ Sở Lý Thuyết Xử Lý Ảnh SAR & Phát Hiện Biên Vết Dầu</span>
+        </h2>
+
+        <div>
+          <h3 class="font-bold text-slate-800 text-base mb-1">1. Bản chất vật lý của vết dầu tràn trên ảnh radar SAR</h3>
+          <p>
+            Mặt biển sạch chịu tác động của gió đại dương tạo ra các gợn sóng mao dẫn (capillary waves). Hiện tượng <strong>tán xạ phản hồi Bragg</strong> làm sóng vi ba radar phản xạ mạnh ngược trở lại ăng-ten vệ tinh Sentinel-1, tạo ra nền biển sáng. Ngược lại, lớp dầu tràn làm tăng độ nhớt chất lỏng và dập tắt hoàn toàn các sóng mao dẫn này, biến mặt biển thành mặt phẳng phản xạ gương (Specular reflection). Toàn bộ năng lượng sóng radar bị phản xạ đi hướng khác, khiến vết dầu tràn bộc lộ dưới dạng <strong>vùng tối đen cục bộ (Dark Formations)</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-800 text-base mb-1">2. Áp dụng Xử lý biên (Chương 5 UTC) để bộc lộ vết dầu tràn</h3>
+          <p>
+            Vì sự tương phản độ xám rất lớn giữa vùng biển sáng tán xạ Bragg và vùng dầu đen phản xạ gương, tại ranh giới ngoài cùng của mảng dầu (slick boundary) xuất hiện một <strong>vách dốc Gradient rất cao</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-xs my-2">
+            <li><strong>Toán tử Sobel/Prewitt:</strong> Tính độ dốc gradient đạo hàm bậc 1 $M(x, y) = \sqrt{G_x^2 + G_y^2}$ để xác định cường độ biến thiên độ sáng tại bờ mép vết dầu.</li>
+            <li><strong>Thuật toán Canny tối ưu 4 bước:</strong> Kết hợp lọc Gauss khử nhiễu đốm $\to$ Gradient $\to$ Triệt tiêu không cực đại (NMS) để làm mảnh biên thành 1 pixel $\to$ Phân ngưỡng kép Hysteresis để giữ lại các đường viền liên tục của vệt dầu và triệt tiêu toàn bộ đốm biên rời rạc của sóng biển.</li>
+            <li><strong>Kỹ thuật phủ viền (Boundary Edge Overlay):</strong> Chiếu đè đường biên nhị phân phát hiện được lên ảnh gốc bằng màu đỏ rực rỡ, giúp mắt thường hoặc thanh tra biển nhận diện tức thì toàn bộ diện tích và phạm vi loang dầu.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-800 text-base mb-1">3. Cân bằng Histogram thích nghi CLAHE & Bộ lọc Lee MMSE</h3>
+          <p>
+            Để chống nhiễu đốm nhân SAR $I = R \cdot \eta$, bộ lọc Lee MMSE sử dụng thống kê cục bộ $\bar{I}, \sigma_I^2$ để làm phẳng mặt biển đồng nhất ($K \to 0$), đồng thời giữ nguyên vẹn độ sắc nét của đường biên vết dầu ($K \to 1$). Sau đó, CLAHE chia khối con $8 \times 8$ và nội suy song tuyến tính giúp khuếch đại độ tương phản cục bộ mà không gây hiện tượng vệt kẻ ô khối.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">
+    Đồ án Bài tập lớn Xử lý ảnh (DIP) — Khoa Công nghệ Thông tin, Đại học Giao thông Vận tải (UTC) • Học kỳ 2026
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

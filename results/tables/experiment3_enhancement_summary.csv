@@ -1,0 +1,5 @@
+﻿Giai đoạn Pipeline,ENL (Độ phẳng),SSI (Triệt đốm),RMS Contrast,Entropy (bits),AMBE (Sai số sáng),EPI (Giữ biên)
+1. Ảnh SAR Gốc,537.18,1.0,29.06,5.787,0.0,1.0
+2. Khử đốm Lee MMSE (5x5),535248.53,0.9314,27.81,5.645,0.0,0.4792
+3. Tăng tương phản CLAHE (c=2.0),69283.24,1.4166,33.82,6.483,6.32,1.2992
+4. Pipeline Hoàn Chỉnh (+Unsharp Mask),54765.5,1.4644,34.6,6.541,6.32,2.2873
