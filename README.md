@@ -1,108 +1,115 @@
 # BÀI TẬP LỚN XỬ LÝ ẢNH (DIP) — KHOA CNTT, UTC
-## ĐỀ TÀI: TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN VÀ KHỬ NHIỄU ẢNH RADAR SAR BỘC LỘ VẾT DẦU TRÀN TRÊN BIỂN
-**Chuyên đề**: **Nhóm A — Tăng cường và lọc ảnh (Image Enhancement & Filtering)**  
-**Giảng viên hướng dẫn**: TS. Phan Thanh Toàn, TS. Cao Thị Luyên  
-**Bộ môn**: Khoa học Máy tính & Công nghệ Phần mềm — Trường Đại học Giao thông Vận tải (UTC)  
-**Tập dữ liệu**: Sentinel-1 SAR Oil Spill Dataset (NASA Earth Science / Kaggle)  
-**Cam kết học thuật**: **100% Xử lý ảnh số kinh điển (No ML / No DL)**. Không sử dụng mạng nơ-ron, SVM, k-NN hay ma trận nhầm lẫn phân lớp. Toàn bộ thuật toán cốt lõi tự cài đặt bằng Pure NumPy và đối chứng kiểm chuẩn khoa học.
+
+## ĐỀ TÀI: TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN, KHỬ NHIỄU & XỬ LÝ BIÊN BỘC LỘ VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH RADAR SAR SENTINEL-1
+
+[![Pure NumPy Core](https://img.shields.io/badge/Algorithm-100%25_Pure_NumPy-blue.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/src/)
+[![No ML / No DL](https://img.shields.io/badge/Academic-Classical_DIP_(No_ML%2FDL)-emerald.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md)
+[![NASA Topic 18](https://img.shields.io/badge/NASA-Topic_18_SAR_Oil_Spill-orange.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md)
+[![Verification](https://img.shields.io/badge/Hand_Calculations-Zero_Error_(5%2F5)-success.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/src/verification.py)
+[![Full Scan](https://img.shields.io/badge/Full_Scan-1%2C853_Images_(58.8s)-purple.svg)](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/results/edge_evaluation_output/)
+
+- **Học phần**: Xử lý ảnh (Digital Image Processing - DIP)
+- **Khoa**: Công nghệ Thông tin — Trường Đại học Giao thông Vận tải (UTC)
+- **Giảng viên hướng dẫn**: TS. Phan Thanh Toàn, TS. Cao Thị Luyên
+- **Ánh xạ đề tài**: **Nhóm A (Tăng cường & Lọc ảnh)** kết hợp **Đề 5 (Làm nét & Phát hiện biên)** và **Đề 18 NASA (Phát hiện vết dầu loang trên ảnh SAR vi ba)**.
+- **Cam kết học thuật**: **100% Xử lý ảnh số kinh điển thuần túy (NO Machine Learning / NO Deep Learning)**. Toàn bộ thuật toán được tự cài đặt từ đầu bằng Pure NumPy và đối chứng kiểm chuẩn khoa học với 5 bài toán tính tay mẫu $8 \times 8$ (sai số $= 0$) và thư viện OpenCV.
 
 ---
 
-## 📌 1. Cấu Trúc Thư Mục Dự Án
+## 📚 MỤC LỤC BỘ TÀI LIỆU TOÀN DIỆN (FULL DOCUMENTATION)
 
-```text
-BTL/
-├── app.py                      # Máy chủ Web App (FastAPI + REST API xử lý mảng Pure NumPy)
-├── run_app.bat                 # File thực thi click chạy nhanh ứng dụng Web trên Windows
-├── run_experiments.py          # Script chạy 3 thử nghiệm khoa học độc lập (Chương 4)
-├── requirements.txt            # Thư viện phụ thuộc (numpy, opencv-python, scipy, matplotlib, fastapi, uvicorn, pandas)
-├── README.md                   # Hướng dẫn chi tiết cài đặt và sử dụng
-├── static/                     # Giao diện Web SPA hiện đại (Single Page Application)
-│   ├── index.html              # Bộ khung HTML5, Tailwind CSS, FontAwesome, Chart.js
-│   └── js/
-│       └── app.js              # Logic chọn ảnh, upload drag-drop, gọi API xử lý thời gian thực
-├── data/
-│   └── sample/                 # Bộ 10 ảnh SAR thử nghiệm chuẩn (5 Oil Slicks, 5 Sea Surface)
-│       ├── oil_slicks/
-│       └── sea_surface/
-├── docs/
-│   ├── THUAT_TOAN_SU_DUNG.md   # Tài liệu chi tiết cơ sở toán học & ánh xạ giáo trình UTC
-│   └── 00_tai_lieu_goc/        # Slide bài giảng UTC và hướng dẫn BTL gốc
-├── results/
-│   ├── figures/                # Đồ thị trực quan hóa Thử nghiệm 1, 2, 3, 4, 5 (.png)
-│   └── tables/                 # Bảng số liệu định lượng CSV Thử nghiệm 1, 2, 3, 4, 5
-└── src/
-    ├── edges.py                # Sobel, Prewitt, Roberts, LoG Zero-Crossing, Canny 4 bước, Edge Overlay (Pure NumPy)
-    ├── enhancement.py          # Log Transform, Global HE, CLAHE, Homomorphic Filter (Pure NumPy)
-    ├── filters.py              # Box, Gaussian, Median, Bilateral, Lee MMSE, Frost, Kuan (Pure NumPy)
-    ├── morphology.py           # Phép Co/Giãn/Mở/Đóng, Trích biên beta(A), Phân đoạn Otsu, Lọc NASA CR (Pure NumPy)
-    ├── sharpening.py           # Unsharp Masking, Laplacian, Sobel Edge Enhancement (Pure NumPy)
-    ├── metrics.py              # ENL, SSI, RMS Contrast, Shannon Entropy, AMBE, EPI
-    ├── utils.py                # Nạp ảnh, lưu ảnh, Difference Map, Profile Slice
-    └── verification.py         # Kiểm chứng tính đúng: 5 ví dụ tính tay (8x8 HE, 5x5 Lee, 3x3 Sobel/Prewitt, 8x8 Morphology, 8x8 Otsu) & OpenCV
+Hệ thống tài liệu đầy đủ phục vụ viết báo cáo BTL (file Word), slide thuyết trình và bảo vệ vấn đáp trước hội đồng:
+
+| Chương / Tài liệu | Tên tài liệu & Đường dẫn | Nội dung trọng tâm |
+| :---: | :--- | :--- |
+| **Chương 1** | 📖 [01_TONG_QUAN_DE_TAI.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/01_TONG_QUAN_DE_TAI.md) | Thảm họa dầu tràn, cơ sở vật lý radar SAR băng C Sentinel-1, tán xạ Bragg, hiện tượng dập sóng mao dẫn và mô hình nhiễu đốm nhân Multiplicative Speckle Noise. |
+| **Chương 2** | 📐 [02_CO_SO_LY_THUYET_TOAN_HOC.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/02_CO_SO_LY_THUYET_TOAN_HOC.md) | Đầy đủ công thức giải tích toán học rời rạc, ma trận nhân chập và nguyên lý của **21 thuật toán DIP**: Log, Global HE, CLAHE, Box, Gauss, Median, Bilateral, Lee MMSE, Frost, Kuan, Homomorphic, Unsharp, Laplacian, Roberts, Prewitt, Sobel, LoG, Canny 4 bước, Otsu $\eta$, Co/Giãn/Mở/Đóng, Ranh giới $\beta(A)$ và lọc NASA $C_R \ge 0.10$. |
+| **Chương 3** | 🏛️ [03_KIEN_TRUC_HE_THONG_VA_CAI_DAT.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/03_KIEN_TRUC_HE_THONG_VA_CAI_DAT.md) | Kiến trúc phân tầng (Layered Architecture), module hóa Pure NumPy, quy trình xử lý Decoupled 4 bước Z-Pattern, thiết kế Web Studio FastAPI + TailwindCSS tối giản, Lightbox modal. |
+| **Chương 4** | 📊 [04_KET_QUA_THUC_NGHIEM_VA_DANH_GIA.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/04_KET_QUA_THUC_NGHIEM_VA_DANH_GIA.md) | **5 bài toán tính tay $8 \times 8$ giải tích sai số $= 0$**, bảng kiểm chuẩn OpenCV ($\text{MSE} = 0.000$), kết quả 5 thử nghiệm định lượng khoa học và **báo cáo quét FULL 100% dataset (1.853 ảnh SAR)**. |
+| **Chương 5** | 🚀 [05_HUONG_DAN_CAI_DAT_VA_SU_DUNG.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/05_HUONG_DAN_CAI_DAT_VA_SU_DUNG.md) | Hướng dẫn cài đặt môi trường, chạy Web Studio thời gian thực, chạy kiểm thử verification, chạy 5 thực nghiệm và chạy benchmark toàn bộ dataset. |
+| **Phụ lục** | 🎓 [06_BO_CAU_HOI_PHAN_BIEN_BAO_VE_BTL.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/06_BO_CAU_HOI_PHAN_BIEN_BAO_VE_BTL.md) | **Cẩm nang 20 câu hỏi - đáp phản biện kinh điển** của các thầy cô UTC (TS. Phan Thanh Toàn, TS. Cao Thị Luyên) khi chấm bảo vệ BTL, kèm **Kịch bản thuyết trình bảo vệ trong 10 phút**. |
+| **Tra cứu** | 📑 [THUAT_TOAN_SU_DUNG.md](file:///D:/Codin/utc-code/HK4_1/XLA/BTL/docs/THUAT_TOAN_SU_DUNG.md) | Bảng tra cứu đối chiếu nhanh từng hàm Python với số trang slide bài giảng UTC. |
+
+---
+
+## 📌 CẤU TRÚC THƯ MỤC DỰ ÁN
+
+```
+D:\Codin\utc-code\HK4_1\XLA\BTL\
+├── app.py                              # Web Application Server (FastAPI REST API)
+├── evaluate_all_edges.py               # Benchmark runner quét FULL 100% dataset (1.853 ảnh)
+├── run_experiments.py                  # Script thực thi chuỗi 5 thử nghiệm khoa học
+├── run_app.bat                         # File nhấp đúp khởi chạy server & mở trình duyệt
+├── requirements.txt                    # Danh sách thư viện phụ thuộc tối thiểu
+│
+├── src/                                # THƯ VIỆN THUẬT TOÁN PURE NUMPY CORE (100% tự lập trình)
+│   ├── filters.py                      # 9 bộ lọc đốm và không gian (Lee, Bilateral, Frost, Kuan, Box, ...)
+│   ├── enhancement.py                  # Log Transform, Global HE, CLAHE cắt ngưỡng & nội suy song tuyến
+│   ├── sharpening.py                   # Unsharp Masking, High-Boost, Laplacian, Sobel sharpening
+│   ├── edges.py                        # Roberts, Prewitt, Sobel, LoG dò điểm qua 0, Canny 4 bước, Overlay
+│   ├── morphology.py                   # Otsu, Co, Giãn, Mở, Đóng, Ranh giới beta(A), Lọc NASA Area & CR
+│   ├── metrics.py                      # 6 chỉ số định lượng: ENL, SSI, RMS Contrast, Entropy, AMBE, EPI
+│   ├── utils.py                        # Đọc/ghi ảnh, Difference Map, cắt lát ngang Profile Slice
+│   └── verification.py                 # Bộ kiểm chuẩn 5 ví dụ số tính tay 8x8 & đối chuẩn OpenCV
+│
+├── static/                             # GIAO DIỆN WEB STUDIO MINIMALISM
+│   ├── index.html                      # Lưới 2x2 tầm nhìn lớn, Modal Lightbox, Bảng NASA đơn sắc lớn
+│   ├── css/style.css                   # Custom styles, range slider, animation
+│   └── js/app.js                       # Tương tác Client: Fetch API, Chart.js, zoom modal
+│
+├── data/sample/                        # Bộ 10 ảnh SAR thử nghiệm chuẩn (5 Oil Slicks, 5 Sea Surface)
+├── kaggle/data/Class_1/                # 1.843 ảnh SAR vết dầu thực tế Sentinel-1
+│
+├── results/                            # KẾT QUẢ ĐỊNH LƯỢNG KHOA HỌC
+│   ├── tables/                         # Bảng dữ liệu CSV các thử nghiệm định lượng 1..5
+│   ├── figures/                        # Đồ thị và biểu đồ trực quan hóa (.png)
+│   └── edge_evaluation_output/         # Báo cáo quét 100% dataset: CSV & 732 ảnh chẩn đoán 4 khung hình
+│
+└── docs/                               # HỆ THỐNG TÀI LIỆU HỌC THUẬT TOÀN DIỆN (7 CHUYÊN ĐỀ)
 ```
 
 ---
 
-## 🚀 2. Hướng Dẫn Cài Đặt & Chạy Nhanh
+## 🚀 HƯỚNG DẪN KHỞI CHẠY NHANH
 
-### Bước 1: Kích hoạt môi trường Python (Python 3.10 - 3.13)
-```bash
-# Cài đặt các thư viện cần thiết
+### Cách 1: Khởi động tức thì bằng một cú nhấp đúp (Windows)
+Nhấp đúp vào tệp:
+```cmd
+run_app.bat
+```
+Server sẽ tự động kích hoạt và mở trình duyệt tại: `http://127.0.0.1:8000`
+
+### Cách 2: Khởi động bằng dòng lệnh Terminal
+```powershell
+# 1. Cài đặt thư viện
 pip install -r requirements.txt
+
+# 2. Khởi chạy server
+python app.py
 ```
 
-### Bước 2: Chạy kiểm chứng tính đúng đắn thuật toán (Verification)
-Kiểm tra đối chiếu 5 ví dụ số tính tay (8x8 HE, 5x5 Lee MMSE, 3x3 Sobel/Prewitt, 8x8 Morphology, 8x8 Otsu) và so khớp kết quả với OpenCV:
-```bash
+### Các lệnh kiểm thử & thực nghiệm quan trọng:
+```powershell
+# Kiểm tra đối chứng 5 bài toán tính tay 8x8 (Sai số = 0) & OpenCV:
 python -m src.verification
-```
-*Kết quả:* Trùng khớp 100% với bài tập tính tay Slide 3.1, Slide Chương 5, Chương 6 và Chương 7 của UTC và đạt chuẩn MSE = 0 so với OpenCV.
 
-### Bước 3: Chạy toàn bộ chuỗi 5 thử nghiệm khoa học (Experiments)
-Thực thi đo lường định lượng và tự động xuất các bảng CSV và biểu đồ đồ thị chất lượng cao:
-```bash
+# Chạy toàn bộ chuỗi 5 thử nghiệm khoa học (Xuất CSV và biểu đồ PNG):
 python run_experiments.py
+
+# Quét benchmark tự động 100% dataset (1.853 ảnh trong ~60 giây):
+python evaluate_all_edges.py
 ```
-- **Thử nghiệm 1**: Khảo sát 8 bộ lọc đốm (`experiment1_speckle_filters.csv`, `experiment1_speckle_comparison.png`).
-- **Thử nghiệm 2**: Khảo sát siêu tham số CLAHE (`experiment2_clahe_survey.csv`, `experiment2_clahe_curves.png`).
-- **Thử nghiệm 3**: Pipeline hoàn chỉnh & Lát cắt ngang Profile Slice (`experiment3_enhancement_summary.csv`, `experiment3_pipeline_showcase.png`, `experiment3_profile_slices.png`).
-- **Thử nghiệm 4**: So sánh các bộ phát hiện biên Sobel, Prewitt, Roberts, LoG, Canny 4 bước & Phủ viền bộc lộ vết dầu (`experiment4_edge_comparison.csv`, `experiment4_edge_detection.png`).
-- **Thử nghiệm 5**: Đối đầu Canny Gradient vs Ranh giới Hình thái học $\beta(A)$ kết hợp Phân đoạn Otsu & Lọc tỷ số tương phản NASA (`experiment5_morphological_oil_boundary.csv`, `experiment5_oil_boundary_comparison.png`).
-
-### Bước 4: Khởi chạy Ứng dụng Web tương tác (SAR Enhancement Studio)
-Bạn có thể khởi động theo 1 trong 2 cách cực kỳ thuận tiện:
-- **Cách 1**: Chạy lệnh trực tiếp trong PowerShell / CMD:
-  ```bash
-  python app.py
-  ```
-- **Cách 2**: Double-click vào file **`run_app.bat`** trong thư mục dự án.
-
-Ứng dụng sẽ tự động bật trình duyệt web tại địa chỉ: **`http://127.0.0.1:8000`**
-
-Giao diện Web gồm 4 Tab nghiệp vụ:
-1. **Phòng Thí Nghiệm Tương Tác (Interactive Studio)**:
-   - **Bộ chọn ảnh đa năng**: Chọn ảnh mẫu trực tiếp qua lưới thumbnail (5 ảnh vết dầu, 5 ảnh mặt biển) hoặc bấm **"Tải Ảnh Từ Máy Tính"** (hỗ trợ JPG, PNG) để thử nghiệm ảnh SAR bất kỳ.
-   - **Thanh trượt điều khiển thời gian thực**: Lọc đốm thích nghi (Lee, Bilateral, Frost, Kuan), tăng tương phản (CLAHE, HE, Log), làm nét (Unsharp Masking, Laplacian, Sobel) và vị trí lát cắt ngang $y$.
-   - **Hiển thị so sánh 3 cột**: Ảnh gốc, Ảnh sau xử lý, Bản đồ sai số vi sai Difference Map.
-   - **Đồ thị tương tác Chart.js**: So sánh phân bố Histogram mức xám và Đồ thị lát cắt ngang Profile Slice qua tâm vết dầu.
-   - **Thẻ chỉ số định lượng thời gian thực**: ENL, SSI, RMS Contrast, Shannon Entropy, AMBE, EPI.
-2. **Báo Cáo Thực Nghiệm (Chương 4)**: Xem toàn bộ số liệu và đồ thị của 3 thử nghiệm định lượng.
-3. **Kiểm Chuẩn Toán Học & OpenCV**: Bảng so khớp tính tay $8 \times 8$ và sai số OpenCV.
-4. **Cơ Sở Lý Thuyết UTC**: Trích dẫn công thức tán xạ Bragg, mô hình nhiễu nhân SAR và giải tích toán học.
 
 ---
 
-## 📊 3. Bảng Tóm Tắt Kết Quả Định Lượng
+## 🌟 ĐẶC TRƯNG NỔI BẬT CỦA HỆ THỐNG
 
-### Thử nghiệm 1: Khử đốm SAR (Speckle Filtering)
-- **Lee MMSE Filter (5x5, looks=4)**: Nâng chỉ số **ENL** từ $1760.82 \to 2321.16$ (làm phẳng mặt biển), hạ **SSI** xuống $0.9168$ ($< 1$ khử đốm tốt), tốc độ xử lý nhanh (**17.55 ms**).
-- **Bilateral Filter (5x5)**: ENL đạt $2261.76$, SSI đạt $0.9305$, bảo toàn độ sắc nét của đường biên vết dầu.
-
-### Thử nghiệm 2: Tăng cường tương phản CLAHE
-- **CLAHE (clip_limit=2.0, grid=8x8)**: Nâng **RMS Contrast** từ $11.95 \to 19.89$, **Entropy thông tin** tăng từ $4.628 \to 5.828$ bits.
-- **AMBE** chỉ ở mức $9.03$, bảo toàn độ sáng nền biển tự nhiên vượt trội so với Cân bằng toàn cục Global HE ($\text{AMBE} = 39.23$) và Biến đổi Log ($\text{AMBE} = 127.63$).
-
-### Thử nghiệm 3: Chuỗi Pipeline Toàn diện (Raw $\to$ Lee Filter $\to$ CLAHE $\to$ Unsharp Masking)
-- Đưa vết dầu tràn từ trạng thái mờ nhòe do nhiễu đốm thành vùng tối đen tách biệt hoàn toàn khỏi mặt biển.
-- Đồ thị lát cắt ngang (**Profile Slice**) cho thấy đáy lòng vết dầu hạ thấp phẳng, thành biên dựng đứng sắc nhọn, chỉ số **EPI đạt 3.6449**.
+1. **Chuỗi xử lý Decoupled 4 bước Z-Pattern**:
+   - `1. Ảnh SAR Gốc` $\rightarrow$ `2. Sau Khử Đốm & Tăng Cường (Lee + CLAHE)` $\rightarrow$ `3. Bộc Lộ Ranh Giới Vết Dầu (beta(A) viền đỏ)` $\rightarrow$ `4. Bản Đồ Vi Sai Tác Động (|Diff| x 2)`.
+   - Thuật toán phân đoạn chạy trên ảnh trước khi làm nét, triệt tiêu $100\%$ hiện tượng Undershoot thâm hụt biên ở thung lũng sóng biển.
+2. **Giải pháp Ranh giới Hình thái học $\beta(A)$ vượt trội**:
+   - Triệt tiêu hoàn toàn nhược điểm "vẽ viền lung tung khắp mặt biển" của Canny/Sobel, bộc lộ đường bao khép kín đúng 1 pixel ôm sát mảng dầu thật.
+   - Lọc sạch vùng biển lặng giả mạo (Look-alike) bằng tiêu chuẩn NASA: $\text{Area} \ge 300\text{ px}$ và $C_R \ge 0.10$.
+3. **Kiểm chuẩn học thuật tuyệt đối**:
+   - 5 bài toán tính tay $8 \times 8$ giải tích khớp từng bước với slide UTC.
+   - Quét thực tế trên **1.853 ảnh** đạt tỷ lệ sạch chuẩn **$60.5\%$ (1.121 ảnh)**, xuất 732 ảnh chẩn đoán 4 khung hình phục vụ tối ưu hóa thuật toán.

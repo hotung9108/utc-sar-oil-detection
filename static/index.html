@@ -38,46 +38,38 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
   <!-- Header -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xl shadow-md">
-          <i class="fa-solid fa-water"></i>
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+    <div class="max-w-[1550px] mx-auto px-6 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center text-lg shadow-sm">
+          <i class="fa-solid fa-satellite-dish"></i>
         </div>
         <div>
-          <h1 class="text-lg font-bold text-slate-900 leading-tight">
-            SAR Image Enhancement & Boundary Edge Studio
+          <h1 class="text-base font-bold text-slate-900 tracking-tight leading-tight">
+            SAR Oil Spill Detection & Enhancement Studio
           </h1>
-          <p class="text-xs text-slate-500">
-            BTL Xử lý ảnh (Nhóm A & Đề 5 Xử lý biên) | Bộ môn KHMT & CNPM — Khoa CNTT, Đại học Giao thông Vận tải (UTC)
+          <p class="text-xs text-slate-500 font-medium">
+            Học phần Xử lý ảnh (DIP) — Khoa Công nghệ Thông tin, Đại học Giao thông Vận tải (UTC)
           </p>
         </div>
-      </div>
-      <div class="flex items-center space-x-2 text-xs">
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
-          <i class="fa-solid fa-check-circle mr-1"></i> Pure NumPy Core
-        </span>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">
-          <i class="fa-solid fa-shield-halved mr-1"></i> No ML / No DL
-        </span>
       </div>
     </div>
 
     <!-- Navigation Tabs -->
-    <div class="max-w-7xl mx-auto px-4 flex space-x-6 border-t border-slate-100 text-sm font-medium text-slate-600">
-      <button onclick="switchTab('studio')" id="tab-btn-studio" class="tab-btn active py-2.5 px-2 flex items-center space-x-2">
+    <div class="max-w-[1550px] mx-auto px-6 flex space-x-8 border-t border-slate-100 text-sm font-medium text-slate-600">
+      <button onclick="switchTab('studio')" id="tab-btn-studio" class="tab-btn active py-3 px-1 flex items-center space-x-2 hover:text-slate-900 transition">
         <i class="fa-solid fa-sliders"></i>
         <span>Phòng Thí Nghiệm Tương Tác</span>
       </button>
-      <button onclick="switchTab('experiments')" id="tab-btn-experiments" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+      <button onclick="switchTab('experiments')" id="tab-btn-experiments" class="tab-btn py-3 px-1 flex items-center space-x-2 hover:text-slate-900 transition">
         <i class="fa-solid fa-chart-line"></i>
-        <span>Báo Cáo Thực Nghiệm (Chương 4 & 5)</span>
+        <span>Báo Cáo Thực Nghiệm (5 Thử Nghiệm)</span>
       </button>
-      <button onclick="switchTab('verification')" id="tab-btn-verification" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+      <button onclick="switchTab('verification')" id="tab-btn-verification" class="tab-btn py-3 px-1 flex items-center space-x-2 hover:text-slate-900 transition">
         <i class="fa-solid fa-square-check"></i>
         <span>Kiểm Chuẩn Toán Học & OpenCV</span>
       </button>
-      <button onclick="switchTab('theory')" id="tab-btn-theory" class="tab-btn py-2.5 px-2 flex items-center space-x-2">
+      <button onclick="switchTab('theory')" id="tab-btn-theory" class="tab-btn py-3 px-1 flex items-center space-x-2 hover:text-slate-900 transition">
         <i class="fa-solid fa-book-bookmark"></i>
         <span>Cơ Sở Lý Thuyết UTC</span>
       </button>
@@ -85,7 +77,7 @@
   </header>
 
   <!-- Main Container -->
-  <main class="max-w-7xl mx-auto px-4 py-5 flex-1 w-full">
+  <main class="max-w-[1550px] mx-auto px-6 py-6 flex-1 w-full">
 
     <!-- =================================================================== -->
     <!-- TAB 1: INTERACTIVE STUDIO -->
@@ -344,154 +336,206 @@
         </div>
 
         <!-- Right: Image Previews & Analytics (8 cols) -->
-        <div class="lg:col-span-8 space-y-4">
+        <div class="lg:col-span-8 space-y-5">
           
-          <!-- Image Display 4-Cards Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <!-- Image Display 2x2 Large Grid (Tầm nhìn lớn, trực quan, dễ quan sát chi tiết) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
             <!-- 1. Original SAR Image -->
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col">
-              <div class="px-2.5 py-1.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <span class="text-[11px] font-bold text-slate-700">1. Ảnh SAR Gốc</span>
-                <span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">400x400</span>
+              <div class="px-3.5 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                  <span class="text-xs font-bold text-slate-800">1. Ảnh SAR Gốc</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono font-medium">400x400</span>
+                  <button onclick="openZoomModal(document.getElementById('img-raw').src, '1. Ảnh SAR Gốc')" title="Xem phóng to" class="text-xs text-slate-500 hover:text-blue-600 transition p-1">
+                    <i class="fa-solid fa-maximize"></i>
+                  </button>
+                </div>
               </div>
-              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
-                <img id="img-raw" src="" alt="Ảnh SAR Gốc" class="w-full h-auto object-contain">
+              <div class="relative bg-slate-950 flex-1 flex items-center justify-center min-h-[350px] md:min-h-[380px] p-2 cursor-pointer group" onclick="openZoomModal(document.getElementById('img-raw').src, '1. Ảnh SAR Gốc')">
+                <img id="img-raw" src="" alt="Ảnh SAR Gốc" class="w-full h-full max-h-[420px] object-contain transition duration-200 group-hover:scale-[1.01]">
                 <div id="slice-line-raw" class="absolute left-0 right-0 border-b border-red-500 border-dashed pointer-events-none" style="top: 50%;"></div>
+                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition bg-black/70 text-white text-[10px] px-2 py-1 rounded">
+                  <i class="fa-solid fa-search-plus mr-1"></i>Nhấp để phóng to
+                </div>
               </div>
-              <div class="p-1.5 text-center text-[10px] text-slate-500 bg-white">
-                Nhiễu đốm vi ba nhân
+              <div class="px-3 py-2 text-center text-xs text-slate-500 bg-white border-t border-slate-100">
+                Ảnh vi ba gốc Sentinel-1 mang nhiễu đốm nhân (Speckle noise)
               </div>
             </div>
 
             <!-- 2. Processed Result Image -->
-            <div class="bg-white rounded-xl border border-blue-200 ring-1 ring-blue-500/20 overflow-hidden shadow-xs flex flex-col">
-              <div class="px-2.5 py-1.5 bg-blue-50 border-b border-blue-100 flex items-center justify-between">
-                <span class="text-[11px] font-bold text-blue-900">2. Sau Tăng Cường</span>
-                <span class="text-[9px] bg-blue-200 text-blue-800 px-1 py-0.2 rounded font-bold">CLAHE</span>
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-3.5 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span class="text-xs font-bold text-slate-800">2. Sau Khử Đốm & Tăng Cường</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold font-mono">Lee + CLAHE</span>
+                  <button onclick="openZoomModal(document.getElementById('img-processed').src, '2. Sau Khử Đốm & Tăng Cường')" title="Xem phóng to" class="text-xs text-slate-500 hover:text-blue-600 transition p-1">
+                    <i class="fa-solid fa-maximize"></i>
+                  </button>
+                </div>
               </div>
-              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
-                <img id="img-processed" src="" alt="Ảnh sau xử lý" class="w-full h-auto object-contain">
+              <div class="relative bg-slate-950 flex-1 flex items-center justify-center min-h-[350px] md:min-h-[380px] p-2 cursor-pointer group" onclick="openZoomModal(document.getElementById('img-processed').src, '2. Sau Khử Đốm & Tăng Cường')">
+                <img id="img-processed" src="" alt="Ảnh sau xử lý" class="w-full h-full max-h-[420px] object-contain transition duration-200 group-hover:scale-[1.01]">
                 <div id="slice-line-proc" class="absolute left-0 right-0 border-b border-red-500 border-dashed pointer-events-none" style="top: 50%;"></div>
+                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition bg-black/70 text-white text-[10px] px-2 py-1 rounded">
+                  <i class="fa-solid fa-search-plus mr-1"></i>Nhấp để phóng to
+                </div>
               </div>
-              <div class="p-1.5 text-center text-[10px] text-blue-700 bg-white font-medium">
-                Vết dầu chìm sâu, tách biệt
+              <div class="px-3 py-2 text-center text-xs text-slate-600 bg-white border-t border-slate-100">
+                Làm phẳng mặt biển, kéo dãn khoảng sáng tối của mảng dầu
               </div>
             </div>
 
-            <!-- 3. Boundary Edge Highlight (NEW: Chương 5 & Đề 5) -->
-            <div class="bg-white rounded-xl border border-red-200 ring-2 ring-red-500/20 overflow-hidden shadow-xs flex flex-col">
-              <div class="px-2.5 py-1.5 bg-red-50 border-b border-red-100 flex items-center justify-between">
-                <span class="text-[11px] font-bold text-red-900 flex items-center space-x-1">
-                  <i class="fa-solid fa-bullseye text-red-600"></i>
-                  <span>3. Bộc Lộ Biên Vết Dầu</span>
-                </span>
-                <span class="text-[9px] bg-red-200 text-red-800 px-1 py-0.2 rounded font-bold">Edge Overlay</span>
+            <!-- 3. Boundary Edge Highlight (Ranh giới vết dầu beta(A) - Trọng tâm kết quả) -->
+            <div class="bg-white rounded-xl border border-red-200 ring-2 ring-red-500/10 overflow-hidden shadow-xs flex flex-col">
+              <div class="px-3.5 py-2.5 bg-red-50/50 border-b border-red-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                  <span class="text-xs font-bold text-red-900">3. Bộc Lộ Ranh Giới Vết Dầu</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded font-bold font-mono">Hình Thái Học beta(A)</span>
+                  <button onclick="openZoomModal(document.getElementById('img-edge').src, '3. Bộc Lộ Ranh Giới Vết Dầu')" title="Xem phóng to" class="text-xs text-red-700 hover:text-red-900 transition p-1">
+                    <i class="fa-solid fa-maximize"></i>
+                  </button>
+                </div>
               </div>
-              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
-                <img id="img-edge" src="" alt="Bộc lộ biên vết dầu" class="w-full h-auto object-contain">
+              <div class="relative bg-slate-950 flex-1 flex items-center justify-center min-h-[350px] md:min-h-[380px] p-2 cursor-pointer group" onclick="openZoomModal(document.getElementById('img-edge').src, '3. Bộc Lộ Ranh Giới Vết Dầu')">
+                <img id="img-edge" src="" alt="Bộc lộ biên vết dầu" class="w-full h-full max-h-[420px] object-contain transition duration-200 group-hover:scale-[1.01]">
+                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition bg-black/70 text-white text-[10px] px-2 py-1 rounded">
+                  <i class="fa-solid fa-search-plus mr-1"></i>Nhấp để phóng to
+                </div>
               </div>
-              <div class="p-1.5 text-center text-[10px] text-red-700 bg-white font-semibold">
-                Đường bao vết tràn khoanh vùng
+              <div class="px-3 py-2 text-center text-xs text-red-700 bg-white border-t border-slate-100 font-semibold">
+                Đường bao khép kín 1px ôm sát vết dầu thật (Sạch 100% nền biển)
               </div>
             </div>
 
             <!-- 4. Difference Map -->
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col">
-              <div class="px-2.5 py-1.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <span class="text-[11px] font-bold text-slate-700">4. Bản Đồ Vi Sai</span>
-                <span class="text-[9px] bg-amber-100 text-amber-800 px-1 py-0.2 rounded font-mono">|Diff| x 2</span>
+              <div class="px-3.5 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                  <span class="text-xs font-bold text-slate-800">4. Bản Đồ Vi Sai Tác Động</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-mono font-medium">|Diff| x 2</span>
+                  <button onclick="openZoomModal(document.getElementById('img-diff').src, '4. Bản Đồ Vi Sai')" title="Xem phóng to" class="text-xs text-slate-500 hover:text-blue-600 transition p-1">
+                    <i class="fa-solid fa-maximize"></i>
+                  </button>
+                </div>
               </div>
-              <div class="relative bg-black flex-1 flex items-center justify-center min-h-[190px]">
-                <img id="img-diff" src="" alt="Bản đồ vi sai" class="w-full h-auto object-contain">
+              <div class="relative bg-slate-950 flex-1 flex items-center justify-center min-h-[350px] md:min-h-[380px] p-2 cursor-pointer group" onclick="openZoomModal(document.getElementById('img-diff').src, '4. Bản Đồ Vi Sai')">
+                <img id="img-diff" src="" alt="Bản đồ vi sai" class="w-full h-full max-h-[420px] object-contain transition duration-200 group-hover:scale-[1.01]">
+                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition bg-black/70 text-white text-[10px] px-2 py-1 rounded">
+                  <i class="fa-solid fa-search-plus mr-1"></i>Nhấp để phóng to
+                </div>
               </div>
-              <div class="p-1.5 text-center text-[10px] text-slate-500 bg-white">
-                Vùng màu sáng: Nơi tác động mạnh
+              <div class="px-3 py-2 text-center text-xs text-slate-500 bg-white border-t border-slate-100">
+                Vùng sáng: Nơi thuật toán khử đốm và tăng cường tác động mạnh nhất
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Oil Spill Detection Statistics (Nền 1 màu đơn sắc tối giản & Chữ số lớn) -->
+          <div id="oil-stats-panel" class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-600"></div>
+                <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                  Đặc Trưng Nhận Dạng Vết Dầu Tràn
+                </h3>
+                <span class="text-xs text-slate-400 font-normal hidden sm:inline">| NASA Topic 18 & Chương 6, 7 UTC</span>
+              </div>
+              <span id="stat-method-tag" class="text-xs bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1 rounded-md font-mono font-semibold">
+                Hình Thái Học beta(A)
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3.5 text-center">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Số Vết Dầu Phát Hiện</div>
+                <div id="stat-slicks-count" class="text-3xl font-black text-slate-900 font-mono mt-1 mb-0.5">--</div>
+                <div class="text-[11px] text-slate-500">Thành phần liên thông</div>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3.5 text-center">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Tổng Diện Tích Dầu</div>
+                <div id="stat-total-area" class="text-3xl font-black text-slate-900 font-mono mt-1 mb-0.5">--</div>
+                <div id="stat-area-pct" class="text-[11px] text-blue-600 font-semibold">--% diện tích ảnh</div>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3.5 text-center">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Tương Phản Biển (CR)</div>
+                <div id="stat-contrast-ratio" class="text-3xl font-black text-slate-900 font-mono mt-1 mb-0.5">--</div>
+                <div class="text-[11px] text-emerald-600 font-semibold">&ge; 0.10: Chuẩn dầu NASA</div>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3.5 text-center">
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Khả Tách Otsu (eta)</div>
+                <div id="stat-separability" class="text-3xl font-black text-slate-900 font-mono mt-1 mb-0.5">--</div>
+                <div id="stat-otsu-t" class="text-[11px] text-slate-500 font-medium">Ngưỡng Otsu T = --</div>
               </div>
             </div>
           </div>
 
-          <!-- Oil Spill Detection Statistics (Chương 6, 7 & Đề 18 NASA) -->
-          <div id="oil-stats-panel" class="bg-gradient-to-r from-red-950/80 via-slate-900 to-slate-900 border border-red-500/30 rounded-xl p-3 text-white shadow-sm">
-            <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-red-500/20">
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                <span class="text-xs font-bold text-red-300 uppercase tracking-wide">Đặc Trưng Nhận Dạng Vết Dầu Tràn (NASA Topic 18 & Chương 6, 7 UTC)</span>
-              </div>
-              <span id="stat-method-tag" class="text-[10px] bg-red-900/60 text-red-200 border border-red-700/50 px-2 py-0.5 rounded font-mono font-medium">Hình Thái Học beta(A)</span>
+          <!-- Quantitative Metrics 6 Cards (Chữ số to rõ, giao diện phẳng) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">ENL (Độ mịn biển)</div>
+              <div id="m-enl" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-emerald-600 font-medium">Càng cao càng tốt</div>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
-                <div class="text-[10px] text-slate-400">Số Vết Dầu Phát Hiện</div>
-                <div id="stat-slicks-count" class="text-base font-extrabold text-red-400 font-mono">--</div>
-                <div class="text-[9px] text-slate-400">Thành phần liên thông</div>
-              </div>
-              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
-                <div class="text-[10px] text-slate-400">Tổng Diện Tích Dầu</div>
-                <div id="stat-total-area" class="text-base font-extrabold text-amber-400 font-mono">--</div>
-                <div id="stat-area-pct" class="text-[9px] text-amber-300">--% diện tích ảnh</div>
-              </div>
-              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
-                <div class="text-[10px] text-slate-400">Tỉ Số Tương Phản Biển (CR)</div>
-                <div id="stat-contrast-ratio" class="text-base font-extrabold text-emerald-400 font-mono">--</div>
-                <div class="text-[9px] text-emerald-300">&ge; 0.10: Chuẩn dầu NASA</div>
-              </div>
-              <div class="bg-black/30 rounded-lg p-1.5 border border-white/5">
-                <div class="text-[10px] text-slate-400">Khả Tách Otsu (eta)</div>
-                <div id="stat-separability" class="text-base font-extrabold text-cyan-400 font-mono">--</div>
-                <div id="stat-otsu-t" class="text-[9px] text-cyan-300">Ngưỡng T = --</div>
-              </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">SSI (Triệt đốm)</div>
+              <div id="m-ssi" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-emerald-600 font-medium">&lt; 1.0 khử đốm tốt</div>
             </div>
-          </div>
-
-          <!-- Quantitative Metrics 6 Cards -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">ENL (Độ mịn biển)</div>
-              <div id="m-enl" class="text-base font-extrabold text-blue-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-emerald-600 font-medium">Càng cao càng tốt</div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">RMS Contrast</div>
+              <div id="m-rms" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-slate-400">Dải tương phản</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">SSI (Triệt đốm)</div>
-              <div id="m-ssi" class="text-base font-extrabold text-emerald-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-emerald-600 font-medium">&lt; 1.0 khử đốm tốt</div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Entropy (bits)</div>
+              <div id="m-entropy" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-slate-400">Lượng thông tin</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">RMS Contrast</div>
-              <div id="m-rms" class="text-base font-extrabold text-indigo-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-slate-400">Dải tương phản</div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">AMBE (Lệch sáng)</div>
+              <div id="m-ambe" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-slate-400">Bảo toàn nền biển</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">Entropy (bits)</div>
-              <div id="m-entropy" class="text-base font-extrabold text-purple-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-slate-400">Lượng thông tin</div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">AMBE (Lệch sáng)</div>
-              <div id="m-ambe" class="text-base font-extrabold text-amber-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-slate-400">Bảo toàn nền biển</div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center shadow-xs">
-              <div class="text-[10px] font-semibold text-slate-400 uppercase">EPI (Bảo toàn biên)</div>
-              <div id="m-epi" class="text-base font-extrabold text-rose-600 font-mono mt-0.5">--</div>
-              <div class="text-[9px] text-slate-400">Độ sắc nhọn bờ</div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide">EPI (Bảo toàn biên)</div>
+              <div id="m-epi" class="text-xl font-black text-slate-900 font-mono mt-1">--</div>
+              <div class="text-[10px] text-slate-400">Độ sắc nhọn bờ</div>
             </div>
           </div>
 
           <!-- Charts: Histogram Comparison & Profile Slice -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-bold text-slate-700 flex items-center space-x-1.5">
                   <i class="fa-solid fa-chart-simple text-blue-600"></i>
                   <span>So Sánh Phân Bố Histogram (Mức xám 0 - 255)</span>
                 </span>
               </div>
-              <div class="h-44 w-full">
+              <div class="h-56 w-full">
                 <canvas id="chart-histogram"></canvas>
               </div>
             </div>
 
-            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-bold text-slate-700 flex items-center space-x-1.5">
                   <i class="fa-solid fa-chart-line text-red-600"></i>
@@ -499,7 +543,7 @@
                 </span>
                 <span id="chart-slice-label" class="text-[10px] text-slate-500 font-mono">Hàng y = 200</span>
               </div>
-              <div class="h-44 w-full">
+              <div class="h-56 w-full">
                 <canvas id="chart-slice"></canvas>
               </div>
             </div>
@@ -816,6 +860,28 @@
     </div>
 
   </main>
+
+  <!-- Lightbox Modal (Phóng to ảnh xem chi tiết) -->
+  <div id="image-zoom-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs hidden flex items-center justify-center p-4" onclick="closeZoomModal()">
+    <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+      <div class="px-5 py-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between text-white">
+        <div class="flex items-center space-x-2.5">
+          <i class="fa-solid fa-expand text-blue-400"></i>
+          <h3 id="zoom-modal-title" class="text-sm font-bold tracking-wide">Xem Chi Tiết Ảnh Phóng To</h3>
+        </div>
+        <button onclick="closeZoomModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-4 bg-slate-950 flex items-center justify-center min-h-[480px] max-h-[75vh]">
+        <img id="zoom-modal-img" src="" alt="Phóng to ảnh" class="max-w-full max-h-[70vh] object-contain rounded-lg shadow-md">
+      </div>
+      <div class="px-5 py-2.5 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+        <span>Độ phân giải chuẩn: 400x400 pixel</span>
+        <button onclick="closeZoomModal()" class="text-xs text-blue-400 hover:underline">Đóng cửa sổ [Esc]</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">

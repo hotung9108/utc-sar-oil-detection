@@ -264,18 +264,18 @@ async function loadSampleGallery() {
       const badgeBg = isOil ? "bg-amber-100 text-amber-800" : "bg-cyan-100 text-cyan-800";
       const badgeText = isOil ? "Vết dầu" : "Mặt biển";
 
-      card.className = `thumbnail-card border-2 rounded-lg p-1.5 bg-white text-center flex-shrink-0 w-24 ${
-        sample.id === currentImageId ? "active" : "border-slate-200"
+      card.className = `thumbnail-card border-2 rounded-xl p-2 bg-white text-center flex-shrink-0 w-28 transition shadow-xs ${
+        sample.id === currentImageId ? "active" : "border-slate-200/80 hover:border-slate-300"
       }`;
       card.id = `thumb-${sample.id}`;
       card.onclick = () => selectSample(sample.id);
 
       card.innerHTML = `
-        <div class="w-full h-16 bg-slate-900 rounded overflow-hidden flex items-center justify-center mb-1">
+        <div class="w-full h-16 bg-slate-950 rounded-lg overflow-hidden flex items-center justify-center mb-1.5">
           <img src="data:image/jpeg;base64,${sample.thumb_base64}" alt="${sample.id}" class="w-full h-full object-cover">
         </div>
-        <div class="text-[10px] font-mono font-bold text-slate-700 truncate">${sample.id}</div>
-        <span class="inline-block text-[9px] px-1 py-0.2 rounded font-semibold ${badgeBg} mt-0.5">${badgeText}</span>
+        <div class="text-[11px] font-mono font-bold text-slate-800 truncate">${sample.id}</div>
+        <span class="inline-block text-[10px] px-1.5 py-0.5 rounded-md font-semibold ${badgeBg} mt-0.5">${badgeText}</span>
       `;
       container.appendChild(card);
     });
@@ -418,7 +418,7 @@ async function executeProcessing() {
       document.getElementById("stat-separability").innerText = data.oil_slick_stats.separability_eta.toFixed(3);
       document.getElementById("stat-otsu-t").innerText = `Ngưỡng Otsu T = ${data.oil_slick_stats.otsu_threshold}`;
       document.getElementById("stat-method-tag").innerText = "Hình Thái Học beta(A)";
-      document.getElementById("stat-method-tag").className = "text-[10px] bg-red-900/60 text-red-200 border border-red-700/50 px-2 py-0.5 rounded font-mono font-medium";
+      document.getElementById("stat-method-tag").className = "text-xs bg-slate-100 text-slate-800 border border-slate-200 px-3 py-1 rounded-md font-mono font-semibold";
     } else {
       document.getElementById("stat-slicks-count").innerText = "--";
       document.getElementById("stat-total-area").innerText = "Không kích hoạt";
@@ -427,7 +427,7 @@ async function executeProcessing() {
       document.getElementById("stat-separability").innerText = "--";
       document.getElementById("stat-otsu-t").innerText = "Đạo hàm bậc 1/2";
       document.getElementById("stat-method-tag").innerText = `Cạnh ${edgeType.toUpperCase()}`;
-      document.getElementById("stat-method-tag").className = "text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded font-mono font-medium";
+      document.getElementById("stat-method-tag").className = "text-xs bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1 rounded-md font-mono font-medium";
     }
 
     // 3. Cập nhật biểu đồ Histogram
@@ -487,3 +487,26 @@ function renderTable(containerId, rows) {
   html += '</tbody></table>';
   container.innerHTML = html;
 }
+
+// Phóng to ảnh (Lightbox Zoom Modal)
+function openZoomModal(src, title) {
+  if (!src) return;
+  const modal = document.getElementById("image-zoom-modal");
+  const modalImg = document.getElementById("zoom-modal-img");
+  const modalTitle = document.getElementById("zoom-modal-title");
+
+  modalImg.src = src;
+  modalTitle.innerText = title || "Xem Chi Tiết Ảnh";
+  modal.classList.remove("hidden");
+}
+
+function closeZoomModal() {
+  const modal = document.getElementById("image-zoom-modal");
+  modal.classList.add("hidden");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeZoomModal();
+  }
+});

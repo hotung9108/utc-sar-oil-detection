@@ -228,6 +228,11 @@ def process_pipeline(req: ProcessRequest):
     elif e_type == "log":
         proc_img = log_transform(proc_img)
 
+    # Lưu bản sao ảnh sau khử đốm & tăng cường tương phản (enhanced_img)
+    # Đây là đầu vào lý tưởng cho phân vùng Otsu & hình thái học vì ảnh đã sạch nhiễu đốm,
+    # tương phản biển-dầu tối ưu, nhưng CHƯA bị ảnh hưởng bởi hiện tượng Undershoot Dip của làm nét
+    enhanced_img = proc_img.copy()
+
     # 4. Bước 3: Làm nét & Bộc lộ biên (Sharpening)
     s_type = req.sharpening_type.lower()
     if s_type == "unsharp":
@@ -245,8 +250,9 @@ def process_pipeline(req: ProcessRequest):
 
     if e_mode_type == "morphology":
         # Tùy chọn 1 (Khuyên dùng): Bộc lộ ranh giới vết dầu hình thái học beta(A) (Chương 6 & 7 UTC + Đề 18 NASA)
+        # Thực hiện phân đoạn trên enhanced_img để triệt tiêu mọi sai lệch từ làm nét (Undershoot dip)
         morph_res = detect_oil_slick_morphological(
-            proc_img,
+            enhanced_img,
             min_area=req.min_area,
             min_contrast=req.min_contrast,
             manual_threshold=req.manual_threshold,
