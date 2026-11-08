@@ -395,3 +395,36 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 
 ## 9. Câu hỏi ôn tập có gợi ý trả lời cho TV5
 
+**Câu 1 — Dataset đang có 5538 hay 5548 ảnh?** Có 5538 ảnh khác nhau trong hai lớp chính; 5548 đường dẫn trong `kaggle/data/` vì có 10 bản sao trùng byte. Đánh giá không đếm lặp các bản sao.
+
+**Câu 2 — Thiếu 92 ảnhso với metadata thì nói nguyên nhân gì?** Chưa biết nếu không có bằng chứng. Nêu 30 ảnhlớp 0 và 62 ảnhlớp 1 chênh lệch, không tự khẳng định đã loại ảnh lỗi.
+
+**Câu 3 — Hash khác có nghĩa hai cảnh độc lập không?** Không. Crop chồng lấn hoặc nén lại có thể đổi byte; cần thông tin cảnh/không gian/thời gian để đánh giá độc lập.
+
+**Câu 4 — Class_1 có cho mask dầu không?** Không. Nó là nhãn cấp ảnh; cần gán chuẩn pixel riêng để đánh giá diện tích/biên bằng IoU/Dice.
+
+**Câu 5 — ENL mean 100, variance 400 bằng bao nhiêu?** 25. Nếu variance 100 và mean vẫn 100 thì 100; phải kiểm ROI và việc mất chi tiết trước khi gọi là cải thiện tổng thể.
+
+**Câu 6 — ENL 999 có phải 999 look thật?** Không. Đó là giá trị code trả khi variance gần 0, một sentinel cần diễn giải riêng.
+
+**Câu 7 — SSI 0,5 có nghĩa loại đúng 50% nhiễu?** Không. SSI 0,5 là tỷ số hệ số biến thiên sau/trước bằng 0,5. Biên thật cũng tác động std.
+
+**Câu 8 — Entropy 8 bit có chứng minh ảnh tốt nhất?** Không. Histogram rất đa dạng, kể cả nhiễu, có thể cho entropy cao. Chỉ số không hiểu hình dạng dầu.
+
+**Câu 9 — AMBE 0 có nghĩa ảnh không đổi?** Không. Chỉ mean bằng nhau; [80,120] và [0,200] là phản ví dụ.
+
+**Câu 10 — EPI 1 có chứng minh đúng vị trí biên?** Không. Nó so tổng trị tuyệt đối Laplacian, không so vị trí. Nhiễu có thể bù đáp ứng bị mất.
+
+**Câu 11 — Metrics có đổi khi bật unsharp không?** Có thể, vì đo displayed; mask có thể giữ nguyên do nhánh xử lý khác.
+
+**Câu 12 — Tại sao so lọc lại tắt enhancement?** Để giảm yếu tố gây nhiễu khi muốn xem tác động riêng của bộ lọc. Nếu đổi nhiều bước, không biết tác dụng đến từ đâu.
+
+**Câu 13 — Seed 2026 có đảm bảo mọi máy cho runtime giống nhau?** Không. Seed giúp chuỗi ngẫu nhiên, không cố định tải CPU, phiên bản thư viện hay điều kiện phần cứng.
+
+**Câu 14 — Nhiễu Gaussian bổ sung có phải toàn bộ speckle SAR?** Không. Đây là một phép khảo sát độ nhạy đơn giản, không thay thế mô hình vật lý đầy đủ.
+
+**Câu 15 — Vì sao precision / recall không phải ML?** Chúng chỉ chia các số đếm đúng/sai. Quy tắc cổ điển cũng có thể được đánh giá; không có bước học được thêm vào bởi phép đo.
+
+**Câu 16 — TP + FN và FP + TN phải bằng gì?** Lần lượt 1843 và 3695, đúng số nhãn hai lớp. Nếu không khớp, cần kiểm dữ liệu thiếu/trùng hoặc logic đếm.
+
+**Câu 17 — Recall 88,93% nhưng precision 36,23% nói điều gì?** Quy tắc tìm ứng viên ở phần lớn ảnh có dầu theo nhãn, nhưng nhiều ảnh bị báo dương là Class_0. Không thể kết luận đáng tin cậy chỉ vì recall cao.
