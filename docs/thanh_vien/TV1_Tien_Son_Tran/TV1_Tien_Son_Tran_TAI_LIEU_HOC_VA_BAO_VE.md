@@ -415,3 +415,36 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 
 **Câu 15 — C_R có phải độ tròn không?** Không. Trong repo C_R=(μ_nền−μ_vùng)/μ_nền, có điều kiện bảo vệ nền gần 0. Độ tròn là đặc trưng hình học khác, không được thay thế định nghĩa.
 
+**Câu 16 — Precision thấp có chứng minh mã NumPy sai không?** Không trực tiếp. Có thể công thức cài đúng nhưng quy tắc vùng tối không phân biệt dầu/ lookalike tốt. Phải tách correctness của phép toán khỏi chất lượng ứng dụng.
+
+**Câu 17 — Nếu bỏ CLAHE mà mask không đổi, có thể xóa CLAHE khỏi bài không?** Chưa kết luận từ một ảnh. Cần xem nhánh chọn ảnh phân đoạn và vai trò tăng cường quan sát, rồi khảo sát có/không trên nhiều ảnh. Một bước có thể phục vụ quan sát mà không đổi quyết định ở ca cụ thể.
+
+**Câu 18 — Tại sao không chia mỗi người 20% theo folder?** Folder là phân công, không phải đo công sức thực tế. Đánh giá cần sản phẩm, minh chứng, nhận xét của nhóm và quy định môn học.
+
+**Câu 19 — 558 PASS có bao gồm 36 DESCRIPTIVE không?** Không. Có 594 đối chiếu, gồm 558 PASS và 36 so sánh biến thể chưa áp tiêu chí tương đương. Nói “594 ca đều đạt” làm mất khác biệt quan trọng.
+
+**Câu 20 — Cách bảo vệ trung thực khi bị hỏi hệ thống có dùng được ngoài thực tế không?** Nêu đã cài và kiểm chứng xử lý ảnh, đã đánh giá toàn bộ ảnh cục bộ, nhưng FP cao, thiếu mask chuẩn và thông tin cảnh; chưa có cơ sở khẳng định triển khai đáng tin cậy.
+
+## 10. Bài thực hành và kịch bản trình bày của TV1
+
+### 10.1. Bốn bài phải tự hoàn thành
+
+**Bài A — Tái tạo không cần UI.** Gọi `process_image` bằng Python với ảnh 00013; in shape/dtype của các đầu ra. Giải thích vì sao overlay có kênh màu còn mask không có. Đạt khi bạn không nhầm `stats` với `metrics`.
+
+**Bài B — Kiểm bất biến.** Dùng đoạn so mask khi đổi unsharp ở chương 4. Ghi kết quả True và chỉ ra hai dòng code khiến bất biến này đúng. Nếu tự đổi pipeline, bài thử phải phát hiện việc vô tình đưa displayed vào segmentation.
+
+**Bài C — Tái hiện một lỗi đầu vào.** Thử mảng 3D, mảng chứa NaN và cửa sổ 4. Ghi thông báo lỗi thực tế và giải thích giả định bị vi phạm. Không sửa hàm để nuốt lỗi.
+
+**Bài D — Dẫn giải một false positive.** Mở Class_0 `class_0_00001.jpg`, giữ cấu hình mặc định và mô tả từng bước tới vùng được giữ. Kết luận đó là ứng viên bị báo nhầm theo nhãn thư mục, không đổi nhãn để bảo vệ thuật toán.
+
+### 10.2. Trình bày theo slide và chuyển lời
+
+Slide 1/2/3 mỗi slide 20 giây: giới thiệu bài toán, đầu ra có giới hạn và năm người. Slide 6 trong 40 giây: giải thích các nhánh raw/filtered/enhanced/displayed, tại sao tách hiển thị khỏi phân đoạn. Slide 18 trong 30 giây: tổng kết theo bằng chứng và hướng cải tiến vẫn là xử lý ảnh. Tổng 130 giây, không tính phần demo.
+
+Trong demo 180 giây, TV1 dùng khoảng 90 giây để mở ứng dụng, chọn đúng nguồn ảnh, điều phối người giải thích và tải JSON / PNG hiện có. TV3 giải thích Lee– CLAHE, TV4 đổi Canny/morphology, TV5 nêu số liệu và ca sai. TV2 theo dõi tính nhất quán với bảng đối chiếu. Mọi người phải sẵn sàng thay vai khi giảng viên chỉ định.
+
+### 10.3. Cách tự chấm mức hiểu
+
+Mức 1: đọc được tên và chạy được lệnh. Mức 2: giải thích được input / output và thông số. Mức 3: tính ví dụ và dự đoán điều gì đổi khi thay một tham số. Mức 4: chỉ ra phản ví dụ, giới hạn và bằng chứng kiểm chứng. Trưởng nhóm cần đạt mức 4 ở kiến trúc/tích hợp và ít nhất mức 3 ở phần của các bạn khác.
+
+Tự ghi những câu chưa trả lời được vào nhật ký học thật. Tài liệu này không chứng nhận bạn đã hiểu chỉ vì đã tải PDF.
