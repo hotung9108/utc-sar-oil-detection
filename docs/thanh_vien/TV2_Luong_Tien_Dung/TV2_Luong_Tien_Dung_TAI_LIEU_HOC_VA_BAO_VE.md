@@ -412,3 +412,35 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 **Câu 14 — Vì sao Bilateral là variant?** Footprint và các chi tiết rời rạc hóa giữa custom và reference khác nhau; cùng tên/sigma chưa đủ đảm bảo cùng toán tử.
 
 **Câu 15 — 594 gồm những gì?** 33 mục×18 ca; 18 ca gồm 8 tổng hợp+10 demo. Kết quả hiện tại 558 PASS,36 DESCRIPTIVE,0 FAIL.
+
+**Câu 16 — `edge_f1_exact` có phải chất lượng biên dầu không?** Không. Nó đo trùng pixel với bản đồ biên của reference, không với mask dầu được gán chuẩn.
+
+**Câu 17 — Có được tăng tolerance khi FAIL không?** Chỉ khi có phân tích xác lập quy ước và lý do toán học/số học phù hợp; không thay nó chỉ để đạt kết quả mong muốn. Nếu khác biến thể, phải báo khác biến thể.
+
+**Câu 18 — Không ML thì có cần lo chọn mẫu thuận lợi không?** Có. Chọn ảnh đẹp hoặc tham số sau khi xem kết quả vẫn làm kết luận lạc quan quá mức.
+
+**Câu 19 — Tại sao cần test ảnh hằng?** Để kiểm gradient 0, nhánh chia 0 và hành vi thuật toán khi không có tương phản. Ảnh biển thật không cung cấp đáp án đơn giản như vậy.
+
+**Câu 20 — Mục tiêu tối thiểu khi giải thích một hàng CSV?** Nêu input, phép toán, reference, loại so sánh, chỉ số, tolerance, kết luận và giới hạn. Nếu chỉ nói PASS thì chưa đủ.
+
+## 10. Thực hành và trình bày của TV2
+
+### 10.1. Bài học có sản phẩm
+
+**Bài A:** Viết lại năm ví dụ ở chương 4 trên giấy, che đáp án rồi tính từ đầu. Sau đó chạy `src.verification` và so. Ghi rõ chỗ sai do công thức, số học hay quy ước.
+
+**Bài B:** Chọn một direct, một composition và một variant trong registry. Lập ba đoạn văn, mỗi đoạn giải thích input /reference/tolerance và điều không được kết luận. Đây là bài tập chuẩn bị slide 14.
+
+**Bài C:** Đọc một hàng có max error lớn nhất trong CSV; mở ảnh tương ứng, kiểm vùng nội thất/biên và quy tắc làm tròn. Không sửa số liệu. Nếu không biết nguyên nhân, ghi “chưa giải thích” cùng ca tái hiện.
+
+**Bài D:** Tự tạo hai mask cùng diện tích nhưng dịch nhau một pixel. Dự đoán tỷ lệ trùng và edge F1 sẽ thay đổi, rồi giải thích vì sao số pixel bằng nhau chưa đủ chứng minh hình học giống nhau.
+
+### 10.2. Kịch bản nói
+
+Slide 5 trong 40 giây: nói ảnh SAR khó vì speckle và lookalike; tối không đồng nghĩa dầu. Slide 14 trong 80 giây: ba loại reference, năm ví dụ tay,33×18 ca và phạm vi 558 PASS/36 DESCRIPTIVE. Tổng 120 giây. Dành phần lớn thời gian cho logic kiểm chứng, không đọc hết tên các hàm.
+
+Nếu được yêu cầu minh họa, mở một hàng CSV và diễn giải đầy đủ, hoặc tính ví dụ Lee/HE trên giấy. Chuẩn bị để trả lời chéo về mask/biên, CLAHE và ENL. Không cần chạy toàn bộ benchmark trong phần trình bày ngắn.
+
+### 10.3. Tiêu chí tự đánh giá
+
+Đạt khi tự tính được cả năm fixture, giải thích được tại sao phải khớp padding/dtype, và đưa ra một trường hợp phép toán đúng nhưng ứng dụng báo nhầm. Chưa đạt nếu chỉ nhớ 558 và 36 mà không biết chúng được tạo ra từ đâu.
