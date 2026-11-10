@@ -435,3 +435,37 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 **Câu 19 — Nhãn custom 1 và library 7 có chứng minh khác vùng không?** Không. Nhãn là tên nhóm; so phân hoạch pixel, không so tên số nguyên đơn thuần.
 
 **Câu 20 — C_R 0,2 có phải xác suất 20% dầu?** Không. Nó là tỷ lệ chênh mean nền/vùng theo công thức, không được hiệu chuẩn như xác suất.
+
+**Câu 21 — Vùng 10000 pixel, C_R 0,05 có qua mặc định không?** Không, vì 0,05<0,10. Không có ngoại lệ cho vùng lớn.
+
+**Câu 22 — Biên có thể bao quanh lỗ trong mask không?** Có. A−erode (A) đánh dấu những pixel bị co mất, gồm quanh lỗ nội bộ, không chỉ đường bao ngoài.
+
+**Câu 23 — Tại sao không đo C_R trên CLAHE mặc định?** Ánh xạ cục bộ đã thay tương phản; dùng filtered làm tham chiếu giảm việc lấy hiệu ứng tăng cường làm bằng chứng cho chính vùng đó.
+
+**Câu 24 — Không có ring thì nên tự gán C_R 1 không?** Không. Không có dữ liệu nền để đo; code bỏ vùng. Gán 1 sẽ tạo bằng chứng giả về tương phản.
+
+**Câu 25 — Giảm số vùng sau morphology luôn là cải tiến?** Không. Nó có thể xóa nhiễu hoặc gộp/xóa vùng thật. Cần kiểm hình học và nhãn chuẩn nếu có.
+
+## 10. Thực hành và trình bày của TV4
+
+### 10.1. Các bài phải tự làm
+
+**Bài A:** Tính Gx, Gy, magnitude cho ma trận Sobel 3×3 ở chương 3. Sau đó gọi `custom_sobel`, so Gx/Gy dạng float và magnitude dạng uint8; giải thích vì sao hai cách biểu diễn độ lớn khác nhau.
+
+**Bài B:** Tạo ảnh hằng 127, chạy Canny với low=high=0. Kết quả phải rỗng. Tạo một đường chéo và giải thích nhóm hướng NMS bằng tọa độ hàng/cột thực tế.
+
+**Bài C:** Tạo khối 4×4 giữa ảnh 8×8. Kiểm diện tích erosion 4, dilation 36, biên 12 với kernel 3×3. Dời khối sát mép và giải thích tác động của padding thay vì cho rằng đáp án giữa ảnh vẫn giữ nguyên.
+
+**Bài D:** Tạo mask hai pixel chạm chéo; kiểm `find_connected_components`. Sau đó thử min_area lớn hơn diện tích và xem ba đầu ra để hiểu min_area lọc metadata chứ không sửa ảnh nhãn.
+
+**Bài E:** Trên 00013 và Class_0_00001, thay từng min_area/min_contrast/closing_radius, lưu JSON và mask. Ghi cả vùng mất/gộp và lý do có thể gây false positive/negative. Không chọn chỉ cấu hình đẹp nhất để kết luận.
+
+### 10.2. Kịch bản nói
+
+Slide 9:25 giây giải thích làm nét và đạo hàm. Slide 10:40 giây cho Canny. Slide 11:30 giây cho Otsu. Slide 12:35 giây cho hình thái/liên thông. Slide 13:30 giây cho C_R và lọc vùng. Tổng 160 giây. Dùng một ví dụ nhỏ để làm rõ cơ chế thay vì đọc công thức dài không giải thích ký hiệu.
+
+Trong 30 giây demo, đổi morphology→Canny→morphology trên cùng ảnh. Chỉ rõ trạng thái có mask và chỉ có biên; nếu đổi thêm tham số, chỉ đổi một giá trị và nói đánh đổi trước khi xem kết quả.
+
+### 10.3. Tiêu chí hiểu sâu
+
+Bạn phải lần theo được một vùng từ threshold tới mask cuối, tự tính được một phép erosion/dilation và một C_R, giải thích NMS/hysteresis bằng ví dụ, và nêu được ít nhất một phản ví dụ cho min_area, min_contrast và closing. Chỉ nhớ tên hàm hoặc nói “hình thái làm sạch ảnh” chưa đáp ứng mục tiêu học.
