@@ -440,3 +440,38 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 
 **Câu 16 — Tần số cao có phải pixel sáng không?** Không. Nó là tốc độ biến thiên theo vị trí; nhiễu và cạnh đều có thành phần cao.
 
+**Câu 17 — Vì sao cần ifftshift trước IFFT?** Vì đã đổi vị trí phổ để thiết kế H quanh tâm; phải đưa về thứ tự mà phép biến đổi ngược mong đợi.
+
+**Câu 18 — CLAHE làm lộ thêm đốm thì cài đặt chắc sai?** Không. Có thể phép toán đúng nhưng khuếch đại kết cấu/nhiễu. Cần tách kiểm chứng số học với chất lượng ứng dụng.
+
+**Câu 19 — ENL tốt hơn mà vệt mất thì kết luận gì?** Bộ lọc tăng độ đồng nhất theo phép đo nhưng làm mất chi tiết; không thể gọi tốt hơn tổng thể. Cần nêu đánh đổi.
+
+**Câu 20 — Không ML có nghĩa không cần ảnh kiểm chứng độc lập?** Không. Chọn tham số theo ảnh đã xem vẫn gây thiên lệch; độc lập dữ liệu cần thiết khi muốn khẳng định khả năng tổng quát hóa.
+
+**Câu 21 — Đo C_R trên enhanced có rủi ro gì?** CLAHE đã thay tương phản cục bộ, nên có thể dùng chính hiệu ứng khuếch đại làm bằng chứng cho vùng. Repo đo trên filtered để giảm vòng suy luận đó, dù vẫn còn sai.
+
+**Câu 22 — Có thể tăng clip cho đến khi có đúng một vùng không?** Làm vậy có thể chỉ chỉnh theo đáp án của một ảnh. Cần cấu hình có lý do, khảo sát trên nhiều ảnh và báo rõ thiên lệch lựa chọn.
+
+## 10. Thực hành và trình bày của TV3
+
+### 10.1. Năm bài thực hành có đầu ra cụ thể
+
+**Bài A — Mean/median/Lee.** Tạo ảnh 5×5 tâm 200, nền 100. Tính tay các giá trị ở tâm, rồi gọi hàm thật. Lưu bảng expected/actual và giải thích vì sao Lee có thể trùng mean trong riêng ca này.
+
+**Bài B — Thay đúng một tham số.** Trên 00013, giữ mọi bước khác, lần lượt clip 1/2/4. Xuất enhanced PNG và JSON. So nền, vệt và lát cắt; ghi cả điều tốt lẫn điều xấu.
+
+**Bài C — Grid không vuông.** Dùng custom CLAHE với grid (rows=4, cols=8) trên ảnh nhỏ hợp lệ rồi đối chiếu OpenCV với thứ tự đảo. Giải thích vì sao thử chỉ 8×8 có thể che lỗi quy ước.
+
+**Bài D — Vệt mảnh.** Tạo nền 100 có dải 40 rộng 1 pixel; so window 3/5/9. Đọc lát cắt, không chỉ thumbnail. Ghi bộ lọc nào làm vệt yếu đi và cơ chế hợp lý.
+
+**Bài E — FFT.** Tạo ảnh hằng và ảnh bàn cờ. Dự đoán thành phần tần số thấp/cao, chạy đồng hình rồi giải thích tác dụng và nhánh chuẩn hóa. Không diễn giải output như đo năng lượng radar đã hiệu chuẩn.
+
+### 10.2. Kịch bản nói
+
+Slide 7 trong 50 giây: cơ chế Lee và ví dụ tâm 111. Slide 8 trong 50 giây: tile, clipping, tái phân phối và nội suy CLAHE. Slide 16 trong 40 giây: giải thích 00013 và giới hạn suy luận từ một ảnh. Tổng 140 giây.
+
+Trong 30 giây demo, đổi enhancement none → CLAHE trong khi giữ Lee và ảnh. Chỉ vào nền và vệt, nói rõ biến thiên được làm rõ chứ không tạo bằng chứng dầu. Trả điều khiển cho TV4 để phân biệt biên với mask.
+
+### 10.3. Điều kiện tự nhận là đã hiểu
+
+Bạn phải tự tính được một pixel qua Lee, một LUT HE, một ví dụ clipping histogram và nội suy bốn LUT; dự đoán tác động của L/clip/grid trước khi chạy; nêu được ít nhất một phản ví dụ cho mỗi nhóm lọc. Nếu chỉ nhớ “Lee khử nhiễu, CLAHE tăng tương phản” thì mới biết tên, chưa hiểu cơ chế.
