@@ -428,3 +428,37 @@ Lệnh demo cho tương tác một ảnh. Lệnh verification chạy kiểm ch�
 **Câu 16 — TP + FN và FP + TN phải bằng gì?** Lần lượt 1843 và 3695, đúng số nhãn hai lớp. Nếu không khớp, cần kiểm dữ liệu thiếu/trùng hoặc logic đếm.
 
 **Câu 17 — Recall 88,93% nhưng precision 36,23% nói điều gì?** Quy tắc tìm ứng viên ở phần lớn ảnh có dầu theo nhãn, nhưng nhiều ảnh bị báo dương là Class_0. Không thể kết luận đáng tin cậy chỉ vì recall cao.
+
+**Câu 18 — Accuracy của “luôn âm” có thể cao hơn hiện tại?** Có, do Class_0 chiếm khoảng 66,72%; nhưng recall 0 nên không tìm dầu. Đây là lý do phải đọc ma trận nhầm lẫn và mục tiêu.
+
+**Câu 19 — `--samples-only` có đủ để dựng báo cáo toàn tập không?** Không. Phạm vi samples không chứng minh 5538 ảnh đã chạy; builder yêu cầu full và hash khớp.
+
+**Câu 20 — Tổng pipeline_ms có phải thời gian chờ của batch 4 worker?** Không. Các khoảng đo chồng nhau khi chạy song song; còn chi phí khởi tạo và ghi file.
+
+**Câu 21 — Sửa MD có cần chạy lại toàn dataset không?** Không nếu thuật toán/ input / config không đổi. Cần dựng lại PDF và kiểm tài liệu; không tạo một lần chạy thuật toán giả trong manifest.
+
+**Câu 22 — Ảnh kết quả của 5538 ảnh nằm ở đâu?** Hiện có CSV từng ảnh; chưa có 5538 bộ PNG. PNG sẵn trong reproducible là ca mẫu/ca lỗi; demo cho tải ảnh được chọn.
+
+## 10. Thực hành và trình bày của TV5
+
+### 10.1. Năm bài có đáp án kiểm tra
+
+**Bài A — Tính chỉ số trên dãy nhỏ.** Với [80,120] và [90,110], tính mean, std, SSI, RMS, AMBE và entropy bằng tay. Mean đều 100; std 20 và 10; SSI 0,5; AMBE 0; entropy đều 1 bit. Giải thích vì sao entropy giống nhau dù độ tương phản giảm.
+
+**Bài B — Tái tính confusion.** Đọc CSV, lọc bốn tổ hợp (label, prediction), đếm và so với `confusion.json`. Không dùng số tổng hợp làm đầu vào để tạo ngược hàng chi tiết.
+
+**Bài C — Tìm một FP và một FN.** Từ CSV lấy đúng đường dẫn, mở demo ở cấu hình mặc định, đọc số vùng và phân tích lý do có thể sai. Nếu thay config, ghi rõ không còn so cùng điều kiện với CSV.
+
+**Bài D — Kiểm kê file.** Chạy `audit_dataset`, giải thích 5538 ảnh chính,10 bản sao trong `kaggle/data/sample/` và 10 mẫu demo. Đưa một cặp hash trùng làm bằng chứng, đồng thời nói rõ nó chưa chứng minh độc lập cảnh.
+
+**Bài E — Tái lập và nguồn gốc.** Mở manifest, chỉ ra completed_scope, config, source_sha256, git_head, git_dirty, executed_at. Giải thích trường nào xác định nội dung code, trường nào xác định thời điểm và trường nào chỉ là mô tả phạm vi.
+
+### 10.2. Kịch bản nói
+
+Slide 4 trong 50 giây: nguồn, số lượng và giới hạn dữ liệu. Slide 15 trong 50 giây: thiết kế thí nghiệm, cách tái lập và hàng theo ảnh. Slide 17 trong 70 giây: ma trận nhầm lẫn, FP cao và phạm vi cấp ảnh. Tổng 170 giây.
+
+Trong 30 giây demo, mở một ảnh Class_0 có ứng viên và nói đó là báo nhầm theo nhãn nguồn. Dẫn tới CSV nếu được hỏi số liệu. Không chỉ dùng 00013 thành công để thay cho đánh giá toàn tập và không gọi precision / recall là bằng chứng đã dùng ML.
+
+### 10.3. Tiêu chí hiểu sâu
+
+Đạt khi bạn tự tính được các chỉ số đơn giản, truy được một con số báo cáo về hàng ảnh cụ thể, phân biệt pixel-level và image-level, giải thích được một ca lỗi và nói rõ giới hạn của từng phép đo. Chưa đạt nếu chỉ thuộc những con số tổng hợp.
