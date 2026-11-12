@@ -6,3 +6,10 @@
 *.png binary
 *.jpg binary
 *.jpeg binary
+# Preserve the legacy snapshot exactly for manifest SHA-256 verification.
+legacy/** -text
+
+# Generated benchmark outputs and management JSON audit logs
+results/** linguist-generated=true
+docs/management/*.json linguist-generated=true
+

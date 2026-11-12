@@ -1,106 +1,118 @@
-# Bài tập lớn Xử lý ảnh — UTC
+# Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
-Khử nhiễu, tăng cường tương phản và xử lý biên vùng tối ứng viên trên ảnh SAR bằng **xử lý ảnh truyền thống**, không có machine learning/deep learning. Mục tiêu chính là [hướng dẫn BTL XLA](<docs/00_tai_lieu_goc/huong_dan_btl_docx/ds btl xla VÀ HƯỚNG DẪN.docx>); đề tài 18 trong tài liệu NASA chỉ định hướng dataset. Đề kết hợp đã được nhóm xác nhận đăng ký.
+**Đối chiếu yêu cầu ngày 17/11/2026: chưa xác nhận đạt 100% Đề 18.** Phần mềm
+đã có các nhánh thực nghiệm chạy được, nhưng chưa có cùng pipeline Sentinel-1
+được kiểm chứng đầy đủ dầu/look-alike hoặc kiểm chứng tại miền Trung.
+Xem [ma trận yêu cầu, bằng chứng và phần còn thiếu](docs/DANH_GIA_DU_AN_VA_DOI_CHIEU_DE_18.md).
 
-## Chạy demo
+Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 15 Jupyter notebook: 5 notebook SOS, 3 notebook nghiên cứu/phương pháp và 7 notebook bổ sung; chạy hàng loạt bằng CLI.
 
-Python **3.13**; chạy tại thư mục gốc dự án:
+Giao diện Streamlit: `uv run --frozen --extra web streamlit run streamlit_app.py`.
+Mở `http://127.0.0.1:8501`: chọn ảnh mẫu hoặc tải ảnh, xem các bước xử lý,
+đánh giá mask tùy chọn và tải ZIP kết quả. Xem [hướng dẫn Streamlit](docs/STREAMLIT.md).
 
-~~~powershell
-uv sync --locked --all-extras
-uv run streamlit run streamlit_app.py
-~~~
+Theo phạm vi cập nhật ngày 17/11/2026, việc hoàn thiện tập trung vào mã nguồn,
+dữ liệu, thực nghiệm, notebook và Streamlit; không làm thêm video, slide hoặc báo cáo.
 
-Mở http://localhost:8501. Windows có thể chạy `run_app.bat` sau khi cài môi trường. Nếu dùng pip:
+Demo desktop cũ vẫn có thể chạy: `uv run --frozen --extra demo python scripts/desktop/demo_qt.py`.
+Xem [hướng dẫn GUI](docs/DEMO_GUI.md). Nhánh bổ sung trên Sentinel-1 gốc và
+gió ERA5 nằm ở [notebook 07](notebooks/external/07_sentinel_calibration.ipynb),
+chưa thay thế đánh giá phát hiện dầu có nhãn của SOS.
 
-~~~powershell
-py -3.13 -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python -m streamlit run streamlit_app.py
-~~~
+SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 18** vì thiếu góc tới, thời gian/vị trí để ghép gió, và nhãn riêng các loại tương tự dầu. Không gọi phép chia 255 là chuẩn hóa góc tới hoặc suy kết quả thành khả năng cảnh báo thực tế tại miền Trung.
 
-Demo có ảnh mẫu và tải ảnh, thay phương pháp/tham số, sáu ảnh kết quả, histogram/lát cắt, bảng đối chiếu, tải PNG/JSON. Ảnh được đổi kích thước thành 400×400. `app.py` và `static/` là demo FastAPI cũ; **Streamlit là demo chính để nộp**.
+Nhánh **Cantarell vật lý** đã xác minh đủ 173 lần chuẩn bị dữ liệu, giữ 154 mẫu
+hợp lệ (94 train / 35 validation / 25 test), theo 15/4/5 cảnh. Manifest được commit
+trước chấm điểm. Đã chạy đủ 50 cấu hình ứng viên và 84 cặp mô hình NumPy/thư viện,
+khóa lựa chọn trước test, đánh giá 25 ảnh test với 7 vai trò đối chứng và kiểm tra
+lại 175 mask đầu ra. Xem [notebook 11](notebooks/external/11_cantarell_physical_candidates.ipynb),
+[notebook 12](notebooks/external/12_cantarell_models_and_angle.ipynb) và `results/cantarell/`.
 
-## Mã nguồn và phân công
+Winner ban đầu gamma0 + không lọc + Niblack + SVM đạt test F1 **0,05891**.
+Nhánh có đủ Lee + gamma0 + Niblack + SVM đạt **0,03825** và là nhánh được chạy
+ở trang **Sentinel-1 vật lý**. Nhánh có lọc được bổ sung vì yêu cầu môn học sau khi
+đã xem một phần validation, trước mọi điểm test; không thay thế hoặc che winner ban đầu.
+Hai bootstrap ghép cặp theo cảnh đều chưa chứng minh góc tới cải thiện F1.
+358/545 đối tượng GT dưới 32 pixel không thể khớp IoU≥0,5 với ứng viên tối thiểu
+64 pixel; chúng vẫn được giữ trong điểm toàn tập. Ngưỡng 64 là giới hạn của giao thức,
+không phải giá trị tối ưu đã được chứng minh cho Cantarell.
 
-| Vai trò | Họ tên / GitHub đã xác minh | Vị trí triển khai | Trách nhiệm |
-| --- | --- | --- | --- |
-| TV1 — Trưởng nhóm | Tiến Sơn Trần / `Maloque18705` | `src/tv1/`, `streamlit_app.py` | Pipeline, validation, I/O, giao diện |
-| TV2 | Lương Tiến Dũng / `ltdungg` | `src/tv2/` | Ví dụ số, đối chiếu thư viện và minh chứng |
-| TV3 | Hồ Việt Tùng / `hotung9108` | `src/tv3/` | Lọc và tăng cường tương phản |
-| TV4 | Nguyễn Hải Hiếu / `hina-kasumi` | `src/tv4/` | Làm nét, biên, Otsu, hình thái và liên thông |
-| TV5 | Phạm Minh Tuấn / `tuanpham21105` | `src/tv5/`, `reproduce.py` | Chỉ số, thí nghiệm, tham số, ca lỗi và dữ liệu |
+Mã train: `scripts/cantarell/train_cantarell.py`; lựa chọn bổ sung:
+`scripts/cantarell/select_cantarell_required_filter.py`; test: `scripts/cantarell/evaluate_cantarell.py`;
+kiểm tra kết quả: `scripts/cantarell/verify_cantarell_results.py`; phân tích kích thước:
+`scripts/cantarell/analyze_cantarell_failures.py`. Không chỉnh tham số theo test rồi gọi là
+đánh giá độc lập. Dữ liệu này chưa kiểm chứng khả năng cảnh báo tại Việt Nam.
 
-[Tài liệu học và trình bày riêng cho từng thành viên](docs/thanh_vien/README.md) có **một Markdown đầy đủ và một PDF cho mỗi người**: 10 chương giải thích từ nền tảng, ví dụ tính tay, giới hạn thuật toán, bài thực hành, slide/thời lượng và 20–25 câu hỏi có gợi ý trả lời. Chương 8 và [hướng dẫn đầu ra](results/README.md) chỉ rõ nơi lưu kết quả chạy. Họ tên do nhóm cung cấp; tài khoản được đối chiếu với API collaborators của repo.
+## Tìm file và lệnh chạy
 
-Lõi xử lý dùng NumPy/Python. OpenCV phục vụ đọc/ghi/resize/hiển thị; OpenCV/SciPy được gọi trong module đối chiếu. Gán nhãn liên thông tự cài bằng run-length union-find. NumPy FFT là phép toán số cho bộ lọc đồng hình; không tuyên bố tự cài FFT.
+Xem [bản đồ thư mục](docs/CAU_TRUC_DU_AN.md) và [danh mục scripts theo chức năng](scripts/README.md). Chạy python scripts/tasks.py list để tìm lệnh mà không phải mở từng file.
 
-Các file trực tiếp dưới `src/` chuyển tiếp import để giữ tương thích. Xem [phân công mã nguồn](docs/management/PHAN_CONG_MA_NGUON.md). Đây là trách nhiệm hiện tại, không gán lại tác giả commit trong quá khứ.
+## Chạy
 
-~~~text
-BTL/
-├── streamlit_app.py             # Demo chính
-├── reproduce.py                 # Một lệnh tái tạo mọi bảng thực nghiệm
-├── src/tv1/ ... src/tv5/         # Triển khai theo vai trò
-├── tests/                       # Hồi quy thuật toán và Streamlit
-├── data/sample/                 # 10 ảnh demo
-├── kaggle/data/Class_0,Class_1/  # 5.538 ảnh có nhãn thư mục
-├── docs/report/                 # PDF, DOCX, LaTeX, hình và evidence
-├── docs/slides/                 # PPTX, PDF và kịch bản bảo vệ
-├── docs/management/             # Phân công, Excel, đối chiếu yêu cầu
-├── docs/thanh_vien/             # 5 folder học, trình bày và vấn đáp cá nhân
-├── docs/00_tai_lieu_goc/         # Hướng dẫn học phần và giáo trình
-├── scripts/                    # Dựng báo cáo/slide, xuất PDF
-├── results/                    # Đầu ra tái tạo, được Git bỏ qua
-└── pyproject.toml, uv.lock      # Python và phụ thuộc đã khóa
-~~~
+Chạy lại riêng toàn bộ notebook hiện có (không dựng báo cáo, slide hoặc video):
 
-## Kiểm chứng và tái tạo
+```powershell
+uv run --frozen --extra web python scripts/run_notebooks.py --all
+```
 
-~~~powershell
-uv run python reproduce.py
-uv run --extra dev python -m pytest tests -q
-uv run --extra dev ruff check --config pyproject.toml src tests streamlit_app.py reproduce.py
-~~~
+Lệnh cần các dữ liệu cục bộ và kết quả thực nghiệm mà từng notebook sử dụng;
+không tự tải dữ liệu hoặc huấn luyện lại. Chạy riêng một notebook bằng
+`--notebook notebooks/external/11_cantarell_physical_candidates.ipynb`.
 
-`reproduce.py` chạy 5 ví dụ số, 33 thuật toán/chỉ số × 18 ca đối chiếu, khảo sát 10 ảnh mẫu và đánh giá **cả hai lớp** dữ liệu. Seed 2026; lưu từng ảnh và trung bình/độ lệch chuẩn. Manifest lưu phạm vi, môi trường, cấu hình và SHA-256 nguồn. `--samples-only` là lượt chạy thiếu phần toàn dataset; trình dựng báo cáo từ chối dùng nó để xác nhận kết quả toàn tập.
+Tái tạo báo cáo số liệu và chạy lại cả **10 notebook** từ các mô hình/kết quả
+đã khóa (cần đủ dữ liệu SOS, DARTIS, Sentinel-1 và QPOSD cục bộ):
 
-Kết quả hiện tại: **558 PASS, 36 DESCRIPTIVE, 0 FAIL** trong 594 đối chiếu. Bilateral/Canny là so sánh biến thể; DESCRIPTIVE không phải PASS. Phép ghép thư viện cho Lee/Frost/Kuan/đồng hình kiểm tra công thức đã chọn, không phải API tương đương độc lập cho từng phương pháp.
+```powershell
+.venv/Scripts/python.exe scripts/validation/rebuild_evidence.py
+```
 
-Đánh giá cấp ảnh: TN=810, FP=2.885, FN=204, TP=1.639. Precision ≈36,23%, recall ≈88,93%; đây **không phải đánh giá mask pixel**. [Metadata CSIRO trong repo](kaggle/metadata/dataset_metadata.xml) xác định nhãn 0=không dầu, 1=có dầu, DOI 10.25919/4v55-dn16; [giấy phép đi kèm](kaggle/metadata/license.html) ghi CC BY-SA 4.0. Bản repo ít hơn số công bố 92 ảnh; chưa có mask chuẩn hoặc checksum bộ gốc.
+Lệnh đã chạy đủ 16 bước; output và 26 hình của mười notebook khớp bản đã lưu,
+88 tệp kết quả/mô hình/giao thức được bảo vệ không đổi.
+Nhật ký: `docs/management/evidence_rebuild_audit.json` và
+`notebook_rebuild_comparison.json`. Đây là tái tạo báo cáo và phép tính notebook,
+không huấn luyện lại toàn bộ, tải dữ liệu hoặc dựng Word/PPTX/video.
 
-## Báo cáo, slide và hồ sơ nhóm
+QPOSD bổ sung nhãn dầu/tương tự dầu chung trên UAVSAR: đã so sánh 10 bộ
+phân lớp và 10 cấu hình tìm vùng, rồi chấm đủ 5 ảnh test. Macro-F1 phát hiện
+0,06373; phân lớp có sẵn vùng 0,52141. Hai phép đo không thay thế nhau.
+Xem [bảng kết quả](results/qposd/REPORT.md) và
+[notebook 10](notebooks/external/10_qposd_classification_detection.ipynb).
 
-- [Báo cáo PDF](docs/report/BAO_CAO_BTL_XLA.pdf), [Word chỉnh sửa được](docs/report/BAO_CAO_BTL_XLA.docx), [nguồn LaTeX](docs/report/main.tex).
-- [Slide PowerPoint](docs/slides/BAO_VE_BTL_XLA.pptx), [slide PDF](docs/slides/BAO_VE_BTL_XLA.pdf), [kịch bản 12 phút + demo 3 phút](docs/slides/KICH_BAN_BAO_VE.md).
-- [Excel phân công, khung 8 tuần và đánh giá chéo](docs/management/PHAN_CONG_VA_MINH_CHUNG_BTL.xlsx). Tên/GitHub đã cập nhật; MSSV, điểm, đóng góp và chữ ký để nhóm tự điền. Có thêm khung hồi cứu 10/08–11/11/2026, không thay lịch sử Git.
-- [Excel kế hoạch chi tiết 10/08–11/11/2026](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx): 70 nhiệm vụ, 14 khoảng tuần, 5 sheet thành viên, sản phẩm/tiêu chí/người kiểm tra và bảng tiến độ. Cập nhật ô vàng trong `Ke_hoach`; các mốc quá khứ là phân bổ hồi cứu, trạng thái thực tế cần nhóm xác nhận. Giữ bản sao trước khi dựng lại bằng `scripts/build_project_plan.py --overwrite`, vì thao tác này thay các cập nhật thủ công.
-- [Đối chiếu yêu cầu hiện tại](docs/management/KIEM_TRA_HIEN_TAI.md). `DOI_CHIEU_YEU_CAU_BTL.md` là snapshot trước đợt sửa.
+Một lệnh chạy chuỗi thực nghiệm SOS đã triển khai, phân tích bổ sung và notebook: `.venv/Scripts/python.exe run_experiments.py --workers 6`. Lệnh dùng checkpoint khi có; không tải dữ liệu tự động. Chỉ kiểm tra artifact đã lưu: thêm `--verify-only` (không được gọi đây là chạy lại thực nghiệm). Nhật ký từng bước lưu tại `results/sos/runner_*.json`.
 
-Dựng lại từ số liệu vừa chạy:
+Python 3.13+, cài theo `pyproject.toml` bằng `uv sync`. Dữ liệu từ [Refined SOS v1](https://zenodo.org/records/15298010), đặt tại `data/Refined-Deep-SAR/images/images/{train,val}/*.png` và `masks/masks/{train,val}/*.png`.
 
-~~~powershell
-uv run --extra docs python scripts/build_report.py
-uv run --extra docs python scripts/build_defense_slides.py
-powershell -NoProfile -File scripts/export_slides.ps1
-~~~
+```powershell
+.venv/Scripts/python.exe scripts/sos.py reproduce --workers 6
+.venv/Scripts/python.exe scripts/sos_experiments/explain_selection.py --workers 6
+.venv/Scripts/python.exe scripts/sos_experiments/adaptive_experiment.py --workers 6
+.venv/Scripts/python.exe scripts/sos_experiments/analyze_failures.py
+.venv/Scripts/python.exe scripts/sos_experiments/worked_example.py
+.venv/Scripts/python.exe scripts/sos_experiments/summarize_results.py
+.venv/Scripts/python.exe -m unittest discover -s tests -v
+.venv/Scripts/python.exe scripts/run_notebooks.py
+.venv/Scripts/python.exe scripts/sos.py predict --image <duong-dan-anh.png>
+```
 
-PDF báo cáo nhúng Times New Roman của Windows, dùng công thức vector từ LaTeX; DOCX/LaTeX chứa cùng nội dung, phân trang có thể thay đổi theo phần mềm. Xuất PDF slide cần Microsoft PowerPoint; PPTX tạo được bằng python-pptx. Canva MCP đã được kiểm tra nhưng bị quản trị viên vô hiệu hóa.
+Đầu ra suy luận: `results/prediction/mask.png`, `overlay.png`, `regions.json`. Score là điểm quyết định, không phải xác suất. Mở notebook 01–05 trong Jupyter hoặc VS Code và chọn Python `.venv`. Notebook đọc chứng cứ benchmark đã thực thi, đồng thời chạy trực tiếp các ví dụ NumPy; thiếu kết quả sẽ báo lệnh cần chạy.
 
-`docs/report/evidence/` giữ CSV/JSON và checksum đã dùng trong báo cáo. Không cần commit ảnh trung gian trong `results/`; không chỉnh tay CSV để làm đẹp số liệu. Các tài liệu `docs/01_...06_...` và sổ tay PDF chỉ để tham khảo lịch sử; báo cáo chính nằm trong `docs/report/`.
+Suy luận bằng nhánh ngưỡng thích nghi bổ sung: `.venv/Scripts/python.exe scripts/sos.py predict --selection results/sos/adaptive/selected.json --image <anh.png> --output results/prediction_adaptive`. Nhánh này đã được đánh giá validation và trên 3.101 patch PALSAR bổ sung; chưa có test Sentinel độc lập theo cảnh.
 
-## Vì sao CLAHE làm xuất hiện đốm tối?
+CLI có từng bước `prepare`, `verify`, `screen`, `benchmark`, `select`, `evaluate`, `predict`. Benchmark có checkpoint tại `results/sos/validation/`, cache tại `.cache/sos/`. Toàn bộ grid có thể tốn nhiều thời gian/dung lượng; không dùng sample nhỏ rồi báo là toàn bộ test.
 
-Lee giảm đốm theo thống kê cục bộ, không xóa mọi nhiễu/kết cấu nền. CLAHE ánh xạ lại mức xám theo từng vùng nên chênh lệch nhỏ vốn khó nhìn trở nên rõ. Toán tử biên phát hiện thay đổi cường độ, không biết đó có phải dầu hay không. Đồng nhất mọi đường biên hoặc vùng tối với dầu gây **báo động giả**.
+## Tài liệu
 
-Pipeline giữ ảnh sau lọc trước CLAHE làm tham chiếu, lọc diện tích/tương phản, tách làm nét khỏi phân đoạn. Ảnh class_1_00013 hiện giữ một vùng ứng viên khoảng 2,08% ảnh; vẫn có báo nhầm trên ảnh biển. Báo cáo không tuyên bố đã loại hết lỗi.
+Các bản báo cáo Word/PDF/LaTeX, slide, video và ZIP bàn giao cũ đã được dọn theo yêu cầu. Dự án tập trung vào mã nguồn, notebook và bằng chứng thực nghiệm; các file `results/**/REPORT.md` là diễn giải kết quả chạy nên vẫn được giữ.
 
-## Xem và chạy tất cả ảnh Kaggle
+- [Mục tiêu](docs/MUC_TIEU_DU_AN.md), [giao thức](docs/GIAO_THUC_THUC_NGHIEM.md).
+- [Phân công mới](docs/management/KE_HOACH_SOS_NOTEBOOK.md), [workbook](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx).
+- [Kiểm kê dữ liệu](docs/management/KIEM_TRA_REFINED_SOS.md), [manifest](data/manifest.json).
+- [Nguồn dữ liệu và NASA](docs/NGUON_DU_LIEU_SAR_DAU_TRAN.md).
+- Kết quả thật: `results/sos/screen.json`, `validation.json`, `model_comparison.json`, `selected.json`, `evaluation.json`.
+- [Báo cáo kết quả từ lần chạy thực tế](results/sos/REPORT.md), [bàn giao](docs/management/BAN_GIAO_SOS.md).
+- [Vì sao chọn Lee: số liệu có kiểm soát và quy tắc lựa chọn](results/sos/selection_evidence/REPORT.md). Code tái tạo: `scripts/sos_experiments/explain_selection.py`; số đếm từng ảnh: `results/sos/selection_evidence/per_image.json`.
+- [Thống kê toàn tập và ba ca thất bại](results/sos/diagnostics/REPORT.md): số liệu micro/macro, độ lệch chuẩn giữa các ảnh và hình từng bước; không chọn lại mô hình theo test.
+- [Ví dụ Lee 5×5 tính bằng số hữu tỉ](results/sos/worked_example/REPORT.md): giải thích trọng số, đối chiếu NumPy/SciPy và giới hạn của lập luận lý thuyết.
+- [Nhánh Niblack đáp ứng thao tác ngưỡng thích nghi](results/sos/adaptive/REPORT.md): thực nghiệm bổ sung trên validation; kết quả test của nhánh Otsu không áp dụng cho nhánh này.
 
-Trong sidebar chọn **Nguồn ảnh có sẵn → Dataset Kaggle → Class_0/Class_1**, rồi gõ tên ảnh trong ô chọn. Demo đọc cả 5.538 ảnh cục bộ và xử lý ảnh được chọn theo tham số hiện tại; không tự chạy cả dataset mỗi lần bấm widget.
-
-`kaggle/data/sample/` còn có 10 file trùng byte với các ảnh trong hai lớp chính: 5.548 đường dẫn tương ứng 5.538 ảnh khác nhau. Thống kê không đếm lặp các bản sao.
-
-`uv run python reproduce.py --workers 4` xử lý toàn tập bằng pipeline mặc định, lưu CSV mỗi ảnh và confusion JSON trong `results/reproducible/`. [Hướng dẫn và phạm vi kết quả](docs/management/CHAY_TOAN_BO_DATASET.md); [bằng chứng không dùng ML/DL](docs/management/KIEM_TRA_ML_DL.md).
-
-Video 5–7 phút chưa làm theo yêu cầu hiện tại. Trước khi nộp, nhóm cần điền và ký hồ sơ, xác nhận nguồn dữ liệu/trích dẫn, diễn tập và giải trình lịch sử Git chưa đủ 8 tuần. Không sửa ngày/tác giả để tạo minh chứng giả.
+Mã theo chức năng tại `src/sar_oil/`; notebook không sao chép thuật toán. Bản cũ ở `legacy/pre_refactor_20261112/`, không import vào pipeline mới hoặc dùng số liệu cũ làm bằng chứng. Kiểm tra bảo toàn bằng `python scripts/packaging/verify_archive.py`. Dữ liệu thô không đưa lên Git.
