@@ -1,0 +1,59 @@
+PHẢN BIỆN VÀ LỰA CHỌN NỘI DUNG SPEAKER NOTES
+
+Tài liệu đối chiếu: docs/slides/utc_sar_oil_spill_detection_presentation.md.
+Đối chiếu triển khai: src/tv1/pipeline.py, src/tv3/filters.py,
+src/tv4/morphology.py và số liệu trong results/.
+
+1. NÊN GIỮ TỪ TÀI LIỆU MỚI
+Mạch bảy bước giúp người mới hiểu mục đích, cách thực hiện và đầu ra của
+từng công đoạn. Phần giải thích cơ chế vùng tối, phép mở/đóng, gán nhãn,
+hộp bao, tâm hình học, ví dụ tương phản 100–80 đều hữu ích. Phần lưu ý
+cuối tài liệu có cách diễn giải thận trọng hơn một số câu ở phần chính.
+
+2. NHỮNG CHỖ CẦN SỬA HOẶC LÀM RÕ
+- Sơ đồ nối thẳng CLAHE → Otsu chưa thể hiện lựa chọn nguồn từ ảnh sau lọc.
+  Giữ mạch bảy bước nhưng giải thích rõ nhánh reference và nhánh hiển thị.
+- Tên Adaptive Otsu dễ khiến người nghe nghĩ tới ngưỡng cục bộ theo cửa sổ.
+  Mã hiện tại là Otsu toàn cục kèm lựa chọn ảnh và điều chỉnh ngưỡng một lần.
+  Chọn reference khi (tỷ lệ tối ảnh tăng cường > 0,30 và reference ≤ 0,30)
+  hoặc eta_reference > eta_image + 0,05. Khi bật điều chỉnh, nếu tỷ lệ tối
+  > 0,35 thì giảm ngưỡng theo delta=max(round(0,10*(mu_sang-mu_toi)),3),
+  ngưỡng mới không dưới 1. Các hằng số này không phải nút cấu hình trực tiếp
+  trong giao diện. Chúng là heuristic, không bảo đảm nhận diện đúng.
+- CLAHE không mang lại thông tin quan sát mới hay bằng chứng vật lý về dầu.
+  Nó biến đổi tương phản của dữ liệu sẵn có và có thể làm rõ cả nhiễu.
+- Công thức Lee trong Markdown bị lỗi chuyển đổi LaTeX, thiếu bảo vệ khi
+  phương sai bằng 0. Mã dùng Var(eta)=1/L, K=clip(1-mu²/L/max(v,1e-8),0,1).
+  Không suy ra Lee luôn tốt hơn Gaussian/Median từ tên bộ lọc hoặc mô hình.
+- Tài liệu mô tả kernel vòng nền 15×15 đúng với mã. Notes cũ của trợ lý ghi
+  vòng nền rộng 15 pixel là SAI. Đã sửa: giãn bằng box_kernel(15), trừ mask
+  vùng đang xét; kernel đặt tâm vươn 7 pixel theo mỗi chiều tọa độ. Vành
+  thực tế phụ thuộc hình dạng vùng và giới hạn ảnh, không có độ dày Euclid
+  đồng nhất. Mã chưa tự loại toàn bộ các ứng viên khác khỏi vành nền.
+- Biên A trừ erosion(A) có thể bao quanh cả lỗ trong mask. Câu “chỉ giữ
+  đường biên bên ngoài” chưa đầy đủ. Không khẳng định luôn dày đúng 1 pixel.
+- Biên của chế độ morphology được trích từ mask, không phải chạy Canny
+  sau mọi mask. Canny là chế độ khảo sát riêng trong giao diện.
+- “Các vùng dầu loang được phát hiện” là kết luận mạnh hơn bằng chứng.
+  Dùng “vùng tối ứng viên” xuyên suốt, kể cả khi vùng đạt diện tích và C_R.
+- Diện tích 300, L=4 và C_R=0,10 là cấu hình hiện tại. Không gọi là chuẩn
+  NASA chỉ vì mã có chú thích “NASA Topic 18”. Chưa có nguồn chứng minh.
+- Bố cục 9–10 slide trong tài liệu chỉ phù hợp phần pipeline. Không bỏ các
+  slide dữ liệu, kiểm chứng và thực nghiệm của bộ 18 slide hiện tại.
+
+3. ĐIỂM NÊN GIỮ TỪ NOTES HIỆN TẠI
+Phân biệt 10 ảnh khảo sát với 5.538 ảnh đánh giá cấu hình mặc định; phân biệt
+PASS số học với hiệu quả nhận diện; giải thích 36 DESCRIPTIVE; ví dụ Lee
+tính tay; giới hạn thiếu mask chuẩn; ca 00013; ma trận nhầm lẫn và cách
+hiểu precision/recall mà không suy diễn thành có ML/DL. Tài liệu mới tập
+trung vào pipeline nên chưa thay thế được các phần này.
+
+4. PHƯƠNG ÁN ĐÃ ÁP DỤNG
+Giữ 18 slide và lời nói liền mạch theo từng slide. Bổ sung mạch bảy bước,
+chi tiết Adaptive Otsu đúng với mã, thông tin hình học của thành phần liên
+thông, cách tạo vành nền và cách trích biên. Sửa trực tiếp chữ kernel trên
+slide 13 và các nguồn Notes khác có cùng lỗi. Giữ nguyên file Markdown
+đầu vào để đối chiếu. Không chỉnh thuật toán hay báo cáo Overleaf.
+
+Lời dài dùng để giải thích đầy đủ và luyện nói, không tự nhận là bản đọc
+12 phút. Kịch bản ngắn được giữ riêng trong KICH_BAN_THUYET_TRINH_V2.pdf.

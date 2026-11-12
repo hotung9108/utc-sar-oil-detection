@@ -1,0 +1,115 @@
+\chapter{TỔNG QUAN ĐỀ TÀI \& CƠ SỞ VẬT LÝ ẢNH RADAR SAR}
+\label{ch:tong_quan}
+
+\section{Đặt vấn đề và Tính cấp thiết của Đề tài}
+\subsection{Thảm họa ô nhiễm dầu tràn trên biển}
+Ô nhiễm dầu tràn trên biển là một trong những hiểm họa sinh thái đại dương nghiêm trọng nhất thế giới nói chung và Việt Nam nói riêng. Các sự cố rò rỉ từ giàn khoan khai thác ngoài khơi, đắm tàu chở dầu, hoặc hoạt động súc rửa bồn chứa và xả thải trộm của tàu thuyền thương mại gây ra những hậu quả vô cùng thảm khốc:
+\begin{itemize}
+    \item \textbf{Hủy hoại hệ sinh thái biển:} Lớp váng dầu mỏng ngăn cản sự hòa tan oxy từ khí quyển vào nước biển, triệt tiêu ánh sáng mặt trời cần thiết cho sinh vật phù du và san hô quang hợp, làm chết hàng loạt thủy hải sản và tàn phá các khu rừng ngập mặn ven bờ.
+    \item \textbf{Thiệt hại kinh tế nghiêm trọng:} Ảnh hưởng trực tiếp đến sinh kế của hàng triệu ngư dân, làm tê liệt hoạt động du lịch biển và tiêu tốn hàng triệu USD cho công tác tẩy độc, phục hồi môi trường.
+    \item \textbf{Áp lực ứng phó tại Việt Nam:} Biển Đông là tuyến hàng hải huyết mạch nhộn nhịp bậc nhất thế giới. Thực tế hàng năm, các tỉnh duyên hải miền Trung từ Hà Tĩnh, Quảng Bình đến Bình Thuận thường xuyên phải đối mặt với các vệt dầu vón cục trôi dạt vào bờ mà không rõ nguồn gốc phát thải. Do đó, việc xây dựng một hệ thống giám sát tự động, phát hiện và khoanh vùng chính xác ranh giới vệt dầu loang từ dữ liệu viễn thám có ý nghĩa thực tiễn sống còn.
+\end{itemize}
+
+\subsection{Tại sao phải sử dụng ảnh Radar khẩu độ tổng hợp (SAR)?}
+Trong công tác giám sát đại dương diện rộng, các cảm biến quang học truyền thống (chụp ảnh vệ tinh bằng dải phổ khả kiến) bộc lộ hai nhược điểm chí mạng:
+\begin{enumerate}
+    \item \textbf{Bất lực trước thời tiết mây mù:} Các vùng biển nhiệt đới thường xuyên bị che phủ bởi mây dày, mưa dông và sương mù ($> 60\%$ thời gian trong năm). Cảm biến quang học hoàn toàn không thể thu nhận thông tin bề mặt xuyên qua tầng mây.
+    \item \textbf{Phụ thuộc chu kỳ ngày -- đêm:} Các hành vi xả thải dầu trái phép thường diễn ra lén lút vào ban đêm. Khi thiếu nguồn chiếu xạ của mặt trời, cảm biến quang học thụ động không thể hoạt động.
+\end{enumerate}
+
+Để giải quyết triệt để bài toán này, \textbf{Radar khẩu độ tổng hợp (Synthetic Aperture Radar -- SAR)} trên vệ tinh Sentinel-1 của Cơ quan Vũ trụ Châu Âu (ESA) và NASA trở thành công cụ tối ưu số một \cite{esa2020sentinel1, nasa2024sar}:
+\begin{itemize}
+    \item SAR là cảm biến vi ba chủ động (Active Microwave Sensor). Vệ tinh chủ động phát các xung sóng điện từ vi ba xuống bề mặt Trái Đất và thu nhận tín hiệu tán xạ ngược (Backscatter).
+    \item Bước sóng vi ba băng C ($\lambda \approx 5.6\text{ cm}$) có khả năng \textbf{xuyên thấu hoàn toàn qua mây mù, mưa gió, khói bụi} và vận hành ổn định 24/7 bất kể ngày hay đêm \cite{brekke2005oil}.
+\end{itemize}
+
+
+
+\section{Cơ sở Vật lý Vi ba \& Bản chất Hình thành Vết Dầu trên SAR}
+\subsection{Cơ chế tán xạ phản hồi Bragg trên mặt biển tự nhiên}
+Trên mặt biển tự nhiên không có dầu, gió tương tác với bề mặt chất lỏng tạo nên các gợn sóng mao dẫn (Capillary waves) và sóng trọng lực ngắn có bước sóng $\lambda_w$ cỡ vài xentimét. Khi bước sóng sóng biển thỏa mãn \textbf{điều kiện cộng hưởng Bragg} với bước sóng radar $\lambda_r$ và góc tới $\theta$ \cite{fingas2014review}:
+\begin{equation}
+\lambda_w = \frac{\lambda_r}{2 \sin \theta}
+\label{eq:bragg}
+\end{equation}
+Hiện tượng giao thoa tăng cường xảy ra, năng lượng vi ba phản hồi ngược trực tiếp về ăng-ten vệ tinh rất mạnh. Vì vậy, trên ảnh cường độ SAR, \textbf{mặt biển tự nhiên luôn xuất hiện với mức xám trung bình hoặc sáng} ($\mu_{\text{sea}} \approx 130 \dots 200$).
+
+\subsection{Cơ chế dập tắt sóng mao dẫn của váng dầu (Oil Film Damping)}
+Khi dầu thô hoặc nhũ tương xuất hiện trên mặt biển, màng dầu làm tăng đột biến độ nhớt động lực học và triệt tiêu sức căng bề mặt chất lỏng. Quá trình này dẫn đến:
+\begin{enumerate}
+    \item Các sóng mao dẫn Bragg bị dập tắt hoàn toàn, biến mặt biển gợn sóng thành một bề mặt nhẵn bóng như gương (Smooth specular surface).
+    \item Sóng vi ba phát từ radar khi chạm vào màng dầu bị phản xạ toàn phần đi theo hướng khác (góc phản xạ bằng góc tới), hầu như \textbf{không có năng lượng tán xạ ngược trở lại ăng-ten vệ tinh}.
+    \item \textbf{Hệ quả tạo ảnh:} Vùng dầu tràn xuất hiện dưới dạng một \textbf{VÙNG TỐI CỤC BỘ (Dark Formation)} với mức xám suy giảm sâu ($\mu_{\text{slick}} \approx 20 \dots 60$), tạo nên độ tương phản sắc nét với nền biển xung quanh \cite{topouzelis2008oil}.
+\end{enumerate}
+
+\subsection{Hai thách thức học thuật cốt lõi trong xử lý ảnh SAR}
+Mặc dù vết dầu tạo nên vùng tối, việc bộc lộ và trích xuất đường biên chính xác đối mặt với hai rào cản kỹ thuật đặc thù:
+\begin{itemize}
+    \item \textbf{Nhiễu đốm nhân (Multiplicative Speckle Noise):} Do bản chất giao thoa kết hợp ngẫu nhiên của các bộ tán xạ vi ba, ảnh SAR bị suy thoái bởi nhiễu đốm đan xen dạng hạt tiêu. Khác với nhiễu cộng Gauss, phương sai nhiễu đốm tỷ lệ thuận với bình phương cường độ tín hiệu, làm vỡ nát các toán tử đạo hàm biên kinh điển.
+    \item \textbf{Hiện tượng dương tính giả (Look-alikes):} Các hiện tượng tự nhiên như vùng biển lặng gió (vận tốc gió $< 2\text{ m/s}$), màng váng sinh học (biogenic slicks), hoặc bóng mưa cũng làm giảm tán xạ Bragg và tạo ra các đốm đen giả mạo vết dầu thực tế \cite{brekke2005oil}.
+\end{itemize}
+
+
+
+\section{Phát biểu Bài toán \& Ràng buộc Kỹ thuật}
+\subsection{Phát biểu bài toán theo mô hình Đầu vào -- Đầu ra}
+Đề tài tập trung giải quyết bài toán phát hiện, khử đốm, tăng cường tương phản và trích xuất đường biên hình thái học của vệt dầu loang trên ảnh SAR:
+\begin{itemize}
+    \item \textbf{Đầu vào (Input):} Ảnh radar SAR băng C Sentinel-1 đơn kênh 8-bit mức xám ($M \times N$ pixel), biểu diễn cường độ phản xạ ngược với dải giá trị $[0, 255]$.
+    \item \textbf{Đầu ra (Output):}
+    \begin{itemize}
+        \item Ảnh đã triệt tiêu nhiễu đốm, giữ nguyên ranh giới gờ mép.
+        \item Ảnh tăng cường tương phản kéo giãn vùng tối vết dầu.
+        \item Bản đồ biên vết dầu sắc nét liên tục (Single-pixel edge map).
+        \item Mặt nạ phân vùng nhị phân và đường bao hình thái học $\beta(A)$ đã loại bỏ hiện tượng dương tính giả dựa trên chỉ số hình học NASA.
+    \end{itemize}
+    \item \textbf{Ràng buộc (Constraints):}
+    \begin{itemize}
+        \item \textbf{100\% Classical DIP (No ML/DL):} Tuyệt đối không sử dụng mô hình học máy hay mạng nơ-ron học sâu (như U-Net, YOLO, Mask R-CNN). Toàn bộ hệ thống phải được giải quyết bằng các thuật toán toán học giải tích kinh điển tự cài đặt từ đầu bằng Pure NumPy \cite{utc2024dip}.
+        \item \textbf{Tính toán giải tích kiểm chứng:} Mọi thuật toán cốt lõi phải được chứng minh sự hội tụ và có ví dụ số tính tay $8 \times 8$ đối chứng sai số bằng 0.
+        \item \textbf{Thời gian thực thi:} Tốc độ xử lý phải đạt chuẩn thời gian thực ($< 100\text{ ms}$ cho ảnh $512 \times 512$) để phục vụ demo trực quan trên Web Studio.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Mục tiêu Cụ thể \& Đo lường Định lượng}
+Để đánh giá tính đúng đắn khoa học, đề tài xác lập hệ thống mục tiêu định lượng khắt khe:
+\begin{enumerate}
+    \item \textbf{Hiệu quả khử đốm:} Chỉ số Số lượng look tương đương $\text{ENL}$ tăng tối thiểu $2.5\times$ so với ảnh gốc; chỉ số triệt đốm $\text{SSI} \le 0.70$ trên vùng đồng nhất.
+    \item \textbf{Tăng cường độ tương phản:} Chỉ số độ tương phản hiệu dụng $\text{RMS Contrast}$ tăng tối thiểu $1.8\times$; bảo toàn thông tin entropy $H \ge 6.5\text{ bits/pixel}$.
+    \item \textbf{Độ sắc nét đường biên:} Chỉ số bảo toàn biên $\text{EPI} \ge 0.50$; đường biên Canny mảnh đúng 1 pixel, liên tục, khép kín không phân mảnh.
+    \item \textbf{Loại trừ dương tính giả NASA:} Tỷ số độ tròn Compactness Ratio $C_R \ge 0.10$ và diện tích $\ge 100\text{ pixel}$ để sàng lọc triệt để các đốm nhiễu vi ba ngẫu nhiên.
+\end{enumerate}
+
+
+
+\section{Khảo sát Tiếp cận \& Phạm vi Đề tài}
+\subsection{Khảo sát các hướng tiếp cận hiện có}
+Bảng \ref{tab:approaches} tổng hợp so sánh giữa các hướng tiếp cận xử lý ảnh SAR phát hiện dầu tràn:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.8cm}|X|X|X|}
+\hline
+\textbf{Phương pháp} & \textbf{Ưu điểm} & \textbf{Nhược điểm} & \textbf{Vị trí của nhóm} \\
+\hline
+\textbf{Lọc không gian chuẩn} (Box, Gauss, Median) & Cực kỳ đơn giản, thời gian tính toán rất nhanh. & Làm nhòe nghiêm trọng biên vết dầu, không phù hợp với nhiễu đốm nhân SAR. & Dùng làm mốc tham chiếu đối chứng (Baseline). \\
+\hline
+\textbf{Lọc thích nghi SAR} (Lee, Frost, Kuan) & Tối ưu hóa thống kê cực tiểu MMSE, bảo toàn tốt cấu trúc gờ biên. & Cần ước lượng phương sai nhiễu $\sigma_v^2$, cài đặt toán học phức tạp. & \textbf{Lựa chọn cốt lõi (Core Filter):} Cài đặt giải tích Pure NumPy vector hóa. \\
+\hline
+\textbf{Học sâu (Deep Learning)} (U-Net, SegNet) & Độ chính xác cao trên tập dữ liệu lớn. & Cần hàng chục nghìn nhãn gán tay, hộp đen khó giải thích toán học, tốn tài nguyên GPU. & \textbf{Nằm ngoài phạm vi:} Đề tài cam kết thuần kinh điển theo chuẩn BTL UTC. \\
+\hline
+\textbf{Pipeline Tích hợp} (Lee + CLAHE + Canny + NASA $\beta(A)$) & Giải quyết triệt để từ khử đốm, tăng tương phản đến dò biên và loại nhiễu giả. & Cần tinh chỉnh liên tầng để tránh tích lũy sai số. & \textbf{Đóng góp của nhóm:} Thiết kế quy trình 4 bước Decoupled Z-Pattern tối ưu. \\
+\hline
+\end{tabularx}
+\caption{So sánh các hướng tiếp cận trong phát hiện vết dầu tràn trên SAR}
+\label{tab:approaches}
+\end{table}
+
+\subsection{Phạm vi đề tài}
+\begin{itemize}
+    \item \textbf{Nội dung tập trung:} Xử lý ảnh tĩnh mức xám 2D, tập trung sâu vào giải thuật Pure NumPy, phân tích toán học rời rạc, kiểm chuẩn sai số và xây dựng ứng dụng Web Studio demo thời gian thực.
+    \item \textbf{Phần không thực hiện:} Đề tài không mô phỏng thủy động lực học hải văn (sóng, dòng chảy hải lưu) và không huấn luyện mạng nơ-ron học sâu.
+\end{itemize}

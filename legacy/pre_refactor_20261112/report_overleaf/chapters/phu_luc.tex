@@ -1,0 +1,159 @@
+\chapter*{PHỤ LỤC}
+\addcontentsline{toc}{chapter}{PHỤ LỤC}
+\label{ch:phu_luc}
+
+% ==================== PHỤ LỤC A ====================
+\section*{Phụ lục A: Hướng dẫn Cài đặt \& Vận hành Hệ thống}
+\addcontentsline{toc}{section}{Phụ lục A: Hướng dẫn Cài đặt \& Vận hành Hệ thống}
+
+Hệ thống được đóng gói tối giản, có khả năng khởi chạy tức thì trên mọi máy tính cài đặt Python 3.10+.
+
+\subsection*{A.1. Yêu cầu môi trường và cài đặt thư viện}
+Mở cửa sổ dòng lệnh Terminal (PowerShell hoặc CMD) tại thư mục gốc dự án và thực hiện lệnh:
+\begin{lstlisting}[language=bash]
+# 1. Di chuyển vào thư mục dự án
+cd D:\Codin\utc-code\HK4_1\XLA\BTL
+
+# 2. Cài đặt các gói thư viện phụ thuộc tối thiểu
+pip install -r requirements.txt
+\end{lstlisting}
+
+Nội dung file \texttt{requirements.txt} bao gồm:
+\begin{lstlisting}[language=text]
+numpy>=1.24.0
+scipy>=1.10.0
+opencv-python>=4.8.0
+matplotlib>=3.7.0
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+jinja2>=3.1.2
+python-multipart>=0.0.6
+\end{lstlisting}
+
+\subsection*{A.2. Khởi chạy ứng dụng Web Studio Demo}
+\begin{itemize}
+    \item \textbf{Cách 1 (Nhấp đúp nhanh trên Windows):} Nhấp đúp vào tệp tin \texttt{run\_app.bat}. Cửa sổ dòng lệnh sẽ tự động khởi động máy chủ FastAPI tại cổng 8000 và tự động bật trình duyệt web mặc định.
+    \item \textbf{Cách 2 (Khởi chạy bằng lệnh dòng lệnh):}
+    \begin{lstlisting}[language=bash]
+python app.py
+    \end{lstlisting}
+    Truy cập vào địa chỉ: \url{http://127.0.0.1:8000} trên trình duyệt Chrome/Edge/Firefox.
+\end{itemize}
+
+\subsection*{A.3. Lệnh tái tạo toàn bộ kết quả kiểm chuẩn và thực nghiệm}
+\begin{lstlisting}[language=bash]
+# 1. Chạy bộ kiểm chuẩn 5 bài toán tính tay 8x8 và đối chuẩn OpenCV:
+python -m src.verification
+
+# 2. Chạy toàn bộ chuỗi 5 thử nghiệm định lượng khoa học:
+python run_experiments.py
+
+# 3. Quét benchmark tự động 100% dataset (1.853 ảnh trong ~58 giây):
+python evaluate_all_edges.py
+\end{lstlisting}
+
+% ==================== PHỤ LỤC B ====================
+\newpage
+\section*{Phụ lục B: Đoạn mã Python Kiểm chứng 5 Ví dụ số Tính tay ($8 \times 8$)}
+\addcontentsline{toc}{section}{Phụ lục B: Đoạn mã Python Kiểm chứng 5 Ví dụ số Tính tay}
+
+Dưới đây là đoạn mã nguồn trích từ module \texttt{src/verification.py} đối chuẩn từng bước các ví dụ số tính tay được trình bày ở Mục \ref{sec:hand_calc}:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+def verify_example_1_histogram_equalization():
+    """Kiểm chứng Ví dụ 1: Cân bằng Histogram 8x8"""
+    I = np.array([
+        [1, 1, 1, 2, 2, 3, 4, 5],
+        [1, 1, 2, 2, 3, 4, 5, 6],
+        [1, 2, 2, 3, 4, 5, 6, 7],
+        [2, 2, 3, 4, 5, 6, 7, 7],
+        [2, 3, 4, 5, 6, 7, 7, 6],
+        [3, 4, 5, 6, 7, 7, 6, 5],
+        [4, 5, 6, 7, 7, 6, 5, 4],
+        [5, 6, 7, 7, 6, 5, 4, 3]
+    ], dtype=np.uint8)
+    
+    # 1. Tính Histogram
+    hist = np.bincount(I.flatten(), minlength=8)
+    # 2. Tính CDF tích lũy
+    cdf = hist.cumsum() / I.size
+    # 3. Ánh xạ mức xám mới
+    s_numpy = np.round(7 * cdf).astype(np.uint8)
+    s_hand = np.array([1, 2, 3, 4, 5, 6, 7, 7], dtype=np.uint8)
+    
+    diff = np.max(np.abs(s_numpy - s_hand))
+    assert diff == 0, f"Sai số kiểm chuẩn khác 0: {diff}"
+    print(f"Ví dụ 1 (Histogram): Sai số tính tay vs NumPy = {diff} (Khớp 100%)")
+
+def verify_example_2_lee_filter():
+    """Kiểm chứng Ví dụ 2: Lọc đốm Lee MMSE 3x3"""
+    W = np.array([
+        [120, 140, 90],
+        [150, 138, 80],
+        [110, 130, 110]
+    ], dtype=np.float64)
+    
+    mu_I = np.mean(W)                     # 118.6667
+    var_I = np.mean((W - mu_I)**2)        # 1113.1111
+    sigma_v2 = 0.25                       # L = 4 looks
+    noise_var = sigma_v2 * (mu_I**2)      # 3520.4444
+    
+    # K factor
+    K = max(0.0, (var_I - noise_var) / var_I)  # 0.0000
+    R_hat = mu_I + K * (138.0 - mu_I)          # 118.6667 -> round = 119
+    R_hand = 119
+    
+    diff = abs(round(R_hat) - R_hand)
+    assert diff == 0, f"Sai số Lee Filter khác 0: {diff}"
+    print(f"Ví dụ 2 (Lee MMSE): Sai số tính tay vs NumPy = {diff} (Khớp 100%)")
+\end{lstlisting}
+
+% ==================== PHỤ LỤC C ====================
+\newpage
+\section*{Phụ lục C: Nhật ký Làm việc Nhóm theo Tuần (8 Tuần)}
+\addcontentsline{toc}{section}{Phụ lục C: Nhật ký Làm việc Nhóm theo Tuần}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|c|l|X|c|c|}
+\hline
+\textbf{Tuần} & \textbf{Thời gian} & \textbf{Nội dung công việc triển khai} & \textbf{Người phụ trách} & \textbf{Tình trạng} \\
+\hline
+\textbf{T1} & 16/09 -- 22/09 & Khảo sát đề tài 18 NASA, thu thập tài liệu Sentinel-1 SAR & Cả nhóm (Họp T1) & Hoàn thành \\
+\hline
+\textbf{T2} & 23/09 -- 29/09 & Thu thập dataset Kaggle Class 1, xây dựng 10 ảnh mẫu chuẩn & TV5 & Hoàn thành \\
+\hline
+\textbf{T3} & 30/09 -- 06/10 & Nghiên cứu lý thuyết tán xạ Bragg, dập sóng mao dẫn, viết Ch. 1 & TV1, TV2 & Hoàn thành \\
+\hline
+\textbf{T4} & 07/10 -- 13/10 & Dẫn xuất lọc Lee MMSE, giải tích 5 bài toán tính tay $8 \times 8$ & TV2 & Hoàn thành \\
+\hline
+\textbf{T5} & 14/10 -- 20/10 & Cài đặt Pure NumPy: filters.py, enhancement.py, morphology.py & TV3, TV4 & Hoàn thành \\
+\hline
+\textbf{T6} & 21/10 -- 27/10 & Tích hợp Canny 4 bước, viết module metrics.py, verification.py & TV3, TV4 & Hoàn thành \\
+\hline
+\textbf{T7} & 28/10 -- 03/11 & Chạy 5 thử nghiệm định lượng, quét full 1.853 ảnh, làm Web Studio & TV1, TV5 & Hoàn thành \\
+\hline
+\textbf{T8} & 04/11 -- 07/11 & Hoàn thiện báo cáo LaTeX Overleaf, slide thuyết trình, chuẩn bị bảo vệ & Cả nhóm (Họp T8) & Hoàn thành \\
+\hline
+\end{tabularx}
+\caption{Nhật ký tiến độ thực hiện Bài tập lớn Xử lý ảnh}
+\end{table}
+
+% ==================== PHỤ LỤC D ====================
+\newpage
+\section*{Phụ lục D: Tuyên bố Liêm chính Học thuật \& Khai báo Sử dụng AI}
+\addcontentsline{toc}{section}{Phụ lục D: Tuyên bố Liêm chính Học thuật \& Khai báo Sử dụng AI}
+
+Theo quy định nghiêm ngặt về liêm chính học thuật của Trường Đại học Giao thông Vận tải và hướng dẫn thực hiện BTL XLA:
+\begin{enumerate}
+    \item \textbf{Cam kết bản quyền mã nguồn:} Toàn bộ các thuật toán cốt lõi trong thư viện \texttt{src/} (bao gồm CLAHE nội suy song tuyến, lọc Lee MMSE thích ứng, Canny 4 bước trọn vẹn, ranh giới hình thái học $\beta(A)$ và lọc hình học NASA) đều do nhóm sinh viên tự thiết kế và lập trình bằng ngôn ngữ Python sử dụng Pure NumPy. Nhóm cam kết không sao chép nguyên văn mã nguồn từ các kho lưu trữ mở trên Internet mà không ghi nguồn.
+    \item \textbf{Khai báo sử dụng công cụ AI tạo sinh:}
+    \begin{itemize}
+        \item \textbf{Công cụ sử dụng:} Gemini / Antigravity CLI, Claude Code.
+        \item \textbf{Mục đích sử dụng:} Hỗ trợ tra cứu nhanh cú pháp LaTeX, tối ưu hóa câu chữ học thuật và gỡ lỗi (debugging) cú pháp giao diện CSS/HTML của Web Studio.
+        \item \textbf{Phương pháp kiểm soát:} Toàn bộ công thức toán học, dẫn xuất giải tích, kết quả thực nghiệm và số liệu đo đạc đều được nhóm sinh viên trực tiếp tính toán, chạy script thực nghiệm trên máy tính cá nhân và kiểm tra đối chiếu từng dòng mã nguồn. Nhóm chịu trách nhiệm giải trình và trả lời trực tiếp mọi câu hỏi chất vấn của Hội đồng chấm thi về từng dòng mã lệnh và công thức toán học.
+    \end{itemize}
+\end{enumerate}

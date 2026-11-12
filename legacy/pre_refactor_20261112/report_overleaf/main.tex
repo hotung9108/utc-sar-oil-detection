@@ -1,0 +1,342 @@
+\documentclass[12pt,a4paper]{report}
+
+% =========================
+% TikZ
+% =========================
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pgfornament}
+
+% --- CẤU HÌNH GÓI TIẾNG VIỆT & PHÔNG CHỮ ---
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage[T5]{fontenc}
+\usepackage{mathptmx} % Phông chuẩn Times New Roman
+
+% --- CẤU HÌNH CĂN LỀ CHUẨN UTC ---
+% Lề trái 3cm, phải 2cm, trên 2.5cm, dưới 2.5cm
+\usepackage[a4paper, left=3.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% --- CẤU HÌNH GIÃN DÒNG 1.3 ---
+\usepackage{setspace}
+\setstretch{1.3}
+
+% --- CẤU HÌNH CĂN CHỈNH VI MÔ & TRÁNH TRÀN LỀ ---
+\usepackage{microtype}
+\emergencystretch=2em
+
+% --- CÁC GÓI TOÁN HỌC & KÝ HIỆU ---
+\usepackage{amsmath,amssymb,amsfonts,bm}
+
+% --- CÁC GÓI BẢNG BIỂU & ĐỒ HỌA ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{array}
+
+% --- CẤU HÌNH CHÚ THÍCH HÌNH & BẢNG ---
+\usepackage{caption}
+\captionsetup[figure]{name=Hình, labelfont=bf, labelsep=colon, position=below}
+\captionsetup[table]{name=Bảng, labelfont=bf, labelsep=colon, position=above}
+
+% --- CẤU HÌNH LIÊN KẾT & URL ---
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={BTL Xu Ly Anh - Phat Hien Vet Dau Tran SAR},
+    pdfauthor={Ho Viet Tung - UTC}
+}
+
+% --- CẤU HÌNH THUẬT TOÁN (ALGORITHM) ---
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Thuật toán}
+\renewcommand{\algorithmicrequire}{\textbf{Đầu vào:}}
+\renewcommand{\algorithmicensure}{\textbf{Đầu ra:}}
+
+% --- CẤU HÌNH ĐOẠN MÃ (CODE LISTINGS) ---
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% --- THƯ MỤC CHỨA HÌNH ẢNH ---
+\graphicspath{{figures/}}
+
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+% Ảnh khung viền phủ kín trang, thay cho 2 khung kẻ tay trước đó
+\node[inner sep=0pt] at (current page.center)
+{\includegraphics[width=\paperwidth,height=\paperheight]{images/Khung_vien.png}};
+\end{tikzpicture}
+\centering
+
+% Header
+{\bfseries TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI \\
+KHOA CÔNG NGHỆ THÔNG TIN} \\[0.3cm]
+---o0o--- \\[1cm]
+
+% Logo
+\includegraphics[width=0.3\textwidth]{images/utc_logo.png} \\[1cm]
+
+% Title
+{\Large \bfseries BÁO CÁO BÀI TẬP LỚN} \\[0.3cm]
+{\bfseries HỌC PHẦN XỬ LÝ ẢNH} \\[0.5cm]
+
+{\bfseries ĐỀ TÀI:} \\[0.3cm]
+{\bfseries TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN, KHỬ NHIỄU \& XỬ LÝ BIÊN BỘC LỘ VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH RADAR SAR SENTINEL-1} \\[1.5cm]
+
+% Info block
+% \begin{center}
+\setstretch{1.3}
+% \hspace{4.5cm} % dịch toàn bộ khối sang phải thêm 1cm
+\begin{minipage}{0.6\textwidth} % giảm độ rộng để khối nằm lệch phải hơn
+\begin{flushleft}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{8cm}}
+\textbf{Giảng viên hướng dẫn:}
+&
+\textbf{TS. Cao Thị Luyên}
+\\[0.2cm]
+
+\textbf{Nhóm:}
+&
+\textbf{4}
+\\[0.2cm]
+
+\textbf{Sinh viên thực hiện:}
+&
+\textbf{Trần Tiến Sơn -- 231210892}
+\\[0.2cm]
+
+&
+Lương Tiến Dũng -- 231230726
+\\[0.2cm]
+
+&
+Nguyễn Hải Hiếu -- 231230774
+\\[0.2cm]
+
+&
+Phạm Minh Tuấn -- 231230946
+\\[0.2cm]
+
+&
+Hồ Việt Tùng -- 231230949
+\\[0.2cm]
+\end{tabular}
+\end{center}
+
+\end{flushleft}
+\end{minipage}
+
+\vfill
+
+% Footer
+{\centering Hà Nội, Năm 2026}
+
+\end{titlepage}
+
+\begin{titlepage}
+\centering
+
+% Header
+{\bfseries TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI \\
+KHOA CÔNG NGHỆ THÔNG TIN} \\[0.3cm]
+---o0o--- \\[1cm]
+
+% Logo
+\includegraphics[width=0.3\textwidth]{images/utc_logo.png} \\[1cm]
+
+% Title
+{\Large \bfseries BÁO CÁO BÀI TẬP LỚN} \\[0.3cm]
+{\bfseries HỌC PHẦN XỬ LÝ ẢNH} \\[0.5cm]
+
+{\bfseries ĐỀ TÀI:} \\[0.3cm]
+{\bfseries TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN, KHỬ NHIỄU \& XỬ LÝ BIÊN BỘC LỘ VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH RADAR SAR SENTINEL-1} \\[1.5cm]
+
+% Info block
+% \begin{center}
+\setstretch{1.3}
+% \hspace{4.5cm} % dịch toàn bộ khối sang phải thêm 1cm
+\begin{minipage}{0.6\textwidth} % giảm độ rộng để khối nằm lệch phải hơn
+\begin{flushleft}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{8cm}}
+\textbf{Giảng viên hướng dẫn:}
+&
+\textbf{TS. Cao Thị Luyên}
+\\[0.2cm]
+
+\textbf{Nhóm:}
+&
+\textbf{4}
+\\[0.2cm]
+
+\textbf{Sinh viên thực hiện:}
+&
+\textbf{Trần Tiến Sơn -- 231210892}
+\\[0.2cm]
+
+&
+Lương Tiến Dũng -- 231230726
+\\[0.2cm]
+
+&
+Nguyễn Hải Hiếu -- 231230774
+\\[0.2cm]
+
+&
+Phạm Minh Tuấn -- 231230946
+\\[0.2cm]
+
+&
+Hồ Việt Tùng -- 231230949
+\\[0.2cm]
+\end{tabular}
+\end{center}
+
+\end{flushleft}
+\end{minipage}
+
+\vfill
+
+% Footer
+{\centering Hà Nội, Năm 2026}
+
+\end{titlepage}
+
+% ==================== BẢNG PHÂN CÔNG NHIỆM VỤ ====================
+\newpage
+\pagenumbering{roman}
+\section*{BẢNG PHÂN CÔNG NHIỆM VỤ \& ĐÁNH GIÁ THÀNH VIÊN}
+\addcontentsline{toc}{chapter}{Bảng phân công nhiệm vụ thành viên}
+
+Theo quy định chuẩn đầu ra CDIO và hướng dẫn thực hiện Bài tập lớn Xử lý ảnh (DIP), nhóm sinh viên gồm 5 thành viên phân định trách nhiệm cụ thể như sau:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|c|X|l|X|c|}
+\hline
+\textbf{Vai trò} & \textbf{Họ và tên} & \textbf{Mã SV} & \textbf{Trách nhiệm \& Mã nguồn} & \textbf{Tỷ lệ (\%)} \\
+\hline
+\textbf{TV1} & Trần Tiến Sơn \newline (Trưởng nhóm) & 231210892 & Quản lý Git, kiến trúc mã \newline \texttt{app.py}, Web Studio \newline Viết Ch. 1, 3.1, 3.7, 5 & 20\% \\
+\hline
+\textbf{TV2} & Lương Tiến Dũng & 231230726 & Dẫn xuất công thức, giải tích \newline 5 bài toán tính tay $8\times 8$ \newline Viết Ch. 2, mục 3.5 & 20\% \\
+\hline
+\textbf{TV3} & Nguyễn Hải Hiếu & 231230774 & Thuật toán lọc đốm, CLAHE \newline \texttt{filters.py}, \texttt{enhancement.py} \newline Viết mục 3.2, 3.3 & 20\% \\
+\hline
+\textbf{TV4} & Hồ Việt Tùng & 231230949 & Dò biên Canny, hình thái học \newline \texttt{edges.py}, \texttt{morphology.py} \newline Viết mục 3.3, 3.4, 3.6 & 20\% \\
+\hline
+\textbf{TV5} & Phạm Minh Tuấn & 231230946 & Chuẩn bị dữ liệu, chạy thực nghiệm \newline \texttt{run\_experiments.py}, metrics \newline Viết Ch. 4 (5 thực nghiệm) & 20\% \\
+\hline
+\end{tabularx}
+\caption{Bảng phân công chi tiết 5 vai trò thực hiện BTL}
+\end{table}
+
+% \noindent \textbf{Cam kết liêm chính học thuật:} Toàn bộ các thuật toán xử lý ảnh cốt lõi trong báo cáo và hệ thống phần mềm được nhóm tự cài đặt bằng ngôn ngữ Python sử dụng thư viện toán học Pure NumPy, không sử dụng các mô hình học máy (Machine Learning) hay học sâu (Deep Learning) đóng gói sẵn. Kết quả tính toán giải tích hoàn toàn trùng khớp với 5 bài toán mẫu tính tay trên slide bài giảng của bộ môn.
+
+% \vspace{1cm}
+% \begin{flushright}
+% \textit{Hà Nội, ngày 07 tháng 11 năm 2026} \\
+% \textbf{Đại diện nhóm sinh viên} \\
+% \vspace{1.5cm}
+% \textbf{Hồ Viết Tùng}
+% \end{flushright}
+
+% ==================== DANH MỤC KÝ HIỆU & VIẾT TẮT ====================
+\newpage
+\section*{DANH MỤC KÝ HIỆU \& TỪ VIẾT TẮT}
+\addcontentsline{toc}{chapter}{Danh mục ký hiệu \& từ viết tắt}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Ký hiệu / Viết tắt} & \textbf{Ý nghĩa học thuật} \\
+\midrule
+DIP & Digital Image Processing (Xử lý ảnh số) \\
+SAR & Synthetic Aperture Radar (Radar khẩu độ tổng hợp) \\
+ESA & European Space Agency (Cơ quan Vũ trụ Châu Âu) \\
+NASA & National Aeronautics and Space Administration (Cơ quan Hàng không Vũ trụ Hoa Kỳ) \\
+HE & Histogram Equalization (Cân bằng Histogram toàn cục) \\
+CLAHE & Contrast Limited Adaptive Histogram Equalization \\
+MMSE & Minimum Mean Square Error (Sai số toàn phương trung bình cực tiểu) \\
+NMS & Non-Maximum Suppression (Triệt tiêu không cực đại) \\
+LoG & Laplacian of Gaussian \\
+Otsu & Thuật toán phân ngưỡng tự động dựa trên tối ưu phương sai giữa các lớp \\
+$\beta(A)$ & Morphological Boundary (Ranh giới hình thái học của tập hợp $A$) \\
+$C_R$ & Compactness Ratio (Tỷ số độ chặt / độ tròn hình học) \\
+ENL & Equivalent Number of Looks (Số look tương đương đánh giá độ phẳng lọc đốm) \\
+SSI & Speckle Suppression Index (Chỉ số suy giảm nhiễu đốm) \\
+RMS & Root Mean Square Contrast (Độ tương phản bình phương trung bình) \\
+AMBE & Absolute Mean Brightness Error (Sai số tuyệt đối độ sáng trung bình) \\
+EPI & Edge Preservation Index (Chỉ số bảo toàn biên) \\
+$f(x, y)$ & Cường độ mức xám pixel tại tọa độ không gian $(x, y)$ \\
+$\mu_I, \sigma_I^2$ & Kỳ vọng và phương sai mức xám cục bộ trong cửa sổ trượt \\
+$\sigma_v^2$ & Phương sai lý thuyết của nhiễu đốm nhân SAR ($1/L$) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==================== MỤC LỤC & DANH MỤC HÌNH BẢNG ====================
+\newpage
+\tableofcontents
+
+\newpage
+\listoffigures
+
+\newpage
+\listoftables
+
+% ==================== NỘI DUNG CHÍNH (CÁC CHƯƠNG) ====================
+\newpage
+\pagenumbering{arabic}
+
+\input{chapters/01_tong_quan.tex}
+\input{chapters/02_ly_thuyet.tex}
+\input{chapters/03_thiet_ke.tex}
+\input{chapters/04_thuc_nghiem.tex}
+\input{chapters/05_ket_luan.tex}
+% \input{chapters/phu_luc.tex}
+
+% ==================== TÀI LIỆU THAM KHẢO ====================
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

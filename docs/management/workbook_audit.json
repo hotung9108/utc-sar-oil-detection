@@ -1,0 +1,17 @@
+{
+  "historical_rows_preserved": 70,
+  "new_tasks": 15,
+  "sheets": 10,
+  "native_filters_restored": 10,
+  "styles_and_formulas_preserved": true,
+  "new_progress": [
+    3,
+    12,
+    0,
+    0,
+    0,
+    0
+  ],
+  "visual_review": "10 changed sheet ranges inspected",
+  "engine": "artifact-tool; OOXML preservation patch; openpyxl read-only checks"
+}

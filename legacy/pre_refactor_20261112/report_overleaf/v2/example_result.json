@@ -1,0 +1,11 @@
+{
+  "lee_expected": 111,
+  "lee_actual": 111,
+  "he_lut": [
+    0,
+    85,
+    170,
+    255
+  ],
+  "max_abs_error": 0
+}

@@ -6,3 +6,5 @@
 *.png binary
 *.jpg binary
 *.jpeg binary
+# Preserve the legacy snapshot exactly for manifest SHA-256 verification.
+legacy/** -text

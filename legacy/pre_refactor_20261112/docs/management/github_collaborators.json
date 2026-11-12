@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-11T21:41:23+07:00",
+  "source": "https://api.github.com/repos/hotung9108/utc-sar-oil-detection/collaborators?per_page=100",
+  "collaborators": [
+    {
+      "login": "Maloque18705",
+      "url": "https://github.com/Maloque18705",
+      "role": "write"
+    },
+    {
+      "login": "hotung9108",
+      "url": "https://github.com/hotung9108",
+      "role": "admin"
+    },
+    {
+      "login": "hina-kasumi",
+      "url": "https://github.com/hina-kasumi",
+      "role": "write"
+    },
+    {
+      "login": "ltdungg",
+      "url": "https://github.com/ltdungg",
+      "role": "write"
+    },
+    {
+      "login": "tuanpham21105",
+      "url": "https://github.com/tuanpham21105",
+      "role": "write"
+    }
+  ],
+  "identity_note": "GitHub confirms repository access. Real-name mapping was supplied by the user, not independently verified by GitHub."
+}

@@ -1,0 +1,750 @@
+\documentclass[12pt,a4paper]{extreport}
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{mathptmx}
+\else
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\renewcommand{\contentsname}{Mục lục}
+\fi
+\usepackage{amsmath,amssymb,graphicx,longtable,array,setspace,hyperref,microtype}
+\hypersetup{hypertexnames=false}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{1.2ex}{.6ex}
+\renewcommand{\normalsize}{\fontsize{13}{15.5}\selectfont}
+\setstretch{1.0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{3em}
+\setlength{\tabcolsep}{4pt}
+\makeatletter
+\renewcommand*{\l@section}{\@dottedtocline{1}{0em}{2.3em}}
+\makeatother
+\IfFileExists{v2/main.tex}{\def\vroot{v2/}}{\def\vroot{}}
+\ifPDFTeX
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{03A3}{\ensuremath{\Sigma}}
+\DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+\DeclareUnicodeCharacter{03B7}{\ensuremath{\eta}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
+\DeclareUnicodeCharacter{2207}{\ensuremath{\nabla}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2079}{\ensuremath{{}^9}}
+\DeclareUnicodeCharacter{207B}{\ensuremath{{}^-}}
+\DeclareUnicodeCharacter{2080}{\ensuremath{{}_0}}
+\DeclareUnicodeCharacter{2081}{\ensuremath{{}_1}}
+\DeclareUnicodeCharacter{2082}{\ensuremath{{}_2}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{{}^2}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{00B7}{\ensuremath{\cdot}}
+\fi
+\usepackage{pdfpages,fancyvrb}
+\begin{document}
+% First four pages: current v1 front matter, with the corrected assignment table.
+% Edit front_matter.tex and rebuild front_matter.pdf to change these pages.
+\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{\vroot front_matter.pdf}
+\setcounter{page}{5}
+\begin{center}\Large\bfseries CHƯƠNG 1. TỔNG QUAN BÀI TOÁN\end{center}
+\section*{1.1. Bối cảnh,\allowbreak{} mục tiêu và phạm vi đã đăng ký}
+\addcontentsline{toc}{section}{1.1. Bối cảnh,\allowbreak{} mục tiêu và phạm vi đã đăng ký}
+Theo hướng dẫn học phần [1],\allowbreak{} nhóm thực hiện tăng cường,\allowbreak{} lọc và xử lý biên bằng NumPy; đề tài 18 chỉ định hướng dữ liệu,\allowbreak{} không triển khai ML/\allowbreak{}DL.
+\par
+Tình huống ứng dụng là hỗ trợ quan sát vùng tối trên ảnh vùng biển Việt Nam. Vùng lặng gió,\allowbreak{} màng sinh học cũng có thể tối như vệt dầu; tổng quan [2],\allowbreak{} [3] phân biệt phát hiện dark spot với xác định bản chất đối tượng.
+\par
+Chỉ báo diện tích pixel hoặc \% ảnh resize,\allowbreak{} không suy ra km\ensuremath{{}^2} khi thiếu độ phân giải mặt đất. JPEG chưa được xác nhận là dữ liệu bức xạ SAR đã hiệu chuẩn.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 1.1. Phạm vi kết quả}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Thực hiện} & \textbf{Không suy diễn từ kết quả}\\\hline
+\endhead
+Lọc,\allowbreak{} tăng cường,\allowbreak{} biên,\allowbreak{} vùng tối & Không xác nhận thành phần hóa học là dầu\\\hline
+Đối chiếu tính toán với thư viện & Không gọi so khớp thư viện là accuracy nhận diện\\\hline
+Đánh giá theo nhãn lớp có sẵn & Không báo IoU/\allowbreak{}Dice khi chưa có mask chuẩn\\\hline
+\end{longtable}}
+\section*{1.2. Phát biểu bài toán và tiêu chí nghiệm thu}
+\addcontentsline{toc}{section}{1.2. Phát biểu bài toán và tiêu chí nghiệm thu}
+Đầu vào: ảnh xám uint8 [0,\allowbreak{}255],\allowbreak{} hữu hạn,\allowbreak{} không rỗng; demo giải mã và chuẩn hóa 400\ensuremath{\times}400. Kiểm chứng thêm ảnh hằng,\allowbreak{} ảnh nhỏ,\allowbreak{} biên ảnh và kích thước không chia hết cho lưới CLAHE.
+\par
+Đầu ra: ảnh lọc/\allowbreak{}tăng cường/\allowbreak{}làm nét,\allowbreak{} bản đồ biên,\allowbreak{} thống kê và mask vùng tối ở nhánh hình thái. Nhánh Sobel/\allowbreak{}Canny/\allowbreak{}LoG trả mask=\allowbreak{}None; không tính diện tích dầu từ pixel biên.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 1.2. Mục tiêu đo được}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Mã} & \textbf{Tiêu chí}\\\hline
+\endhead
+M1 & Lõi lọc,\allowbreak{} tăng cường,\allowbreak{} biên,\allowbreak{} hình thái và metrics không import thư viện xử lý ảnh đối chứng\\\hline
+M2 & 5/\allowbreak{}5 ví dụ số có sai số 0; 594 ca đối chiếu thuộc 33 phép toán,\allowbreak{} không có FAIL; ghi riêng 36 ca biến thể mô tả\\\hline
+M3 & Demo Streamlit chạy ảnh mẫu và đổi phương pháp; tải PNG/\allowbreak{}JSON\\\hline
+M4 & Một lệnh tái tạo bảng,\allowbreak{} ảnh,\allowbreak{} môi trường và phân tích ca lỗi\\\hline
+M5 & Phân công TV1–TV5,\allowbreak{} báo cáo,\allowbreak{} slide và mẫu đánh giá chéo; không giả dữ liệu nhóm\\\hline
+\end{longtable}}
+Ngưỡng kiểm chứng số học khai báo theo phép toán. Không đặt mục tiêu accuracy hồi cứu sau khi nhìn số liệu; kết quả nhận diện và thời gian thực đo trình bày ở chương 4.
+\par
+Giới hạn triển khai: demo chuẩn hóa ảnh về 400\ensuremath{\times}400,\allowbreak{} mức xám uint8 [0,\allowbreak{}255]; không nhận cube đa phổ hay dữ liệu SAR phức. Đây là ứng dụng tương tác trên máy cá nhân,\allowbreak{} chưa có giới hạn cứng thời gian/\allowbreak{}RAM hoặc phép đo đỉnh RAM để chứng nhận một SLA. Chương 4 báo thời gian thực đo; việc đặt và kiểm chứng ngân sách tài nguyên là phần còn thiếu.
+\par
+\section*{1.3. Hướng tiếp cận và vị trí của hệ thống}
+\addcontentsline{toc}{section}{1.3. Hướng tiếp cận và vị trí của hệ thống}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 1.3. Các phương pháp được chọn và đánh đổi}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Nguồn/\allowbreak{}phương pháp} & \textbf{Vai trò} & \textbf{Đánh đổi}\\\hline
+\endhead
+Lee [4] & Khử đốm bằng thống kê cục bộ & Phụ thuộc mô hình L và cửa sổ\\\hline
+CLAHE [5] & Tăng tương phản theo tile & Có thể làm nổi kết cấu nền\\\hline
+Canny [6] & Làm mảnh và nối biên & Biên mạnh không đồng nghĩa dầu\\\hline
+Otsu [7] & Tách nhóm mức xám & Một ngưỡng khó xử lý nền phức tạp\\\hline
+Kuan [8],\allowbreak{} Frost [9] & Phương án lọc so sánh & Chi phí và cách tham số hóa khác nhau\\\hline
+\end{longtable}}
+Bảng 1.3 nêu đánh đổi của các hướng. Nhóm tách lọc,\allowbreak{} tăng cường,\allowbreak{} biên và hình thái [10] để kiểm chứng độc lập,\allowbreak{} xác định bước gây sai khác.
+\par
+Điều chỉnh chính: giữ ảnh trước CLAHE làm tham chiếu phân đoạn/\allowbreak{}tương phản; tách làm nét khỏi mask. Quy tắc chọn ảnh,\allowbreak{} giảm ngưỡng và lọc diện tích là heuristic của hệ thống.
+\par
+Đối chứng dùng OpenCV [11],\allowbreak{} SciPy [12]. Không có API trực tiếp thì ghép phép toán nền tảng; kết quả chỉ xác minh công thức đã chọn,\allowbreak{} không chứng minh tái hiện độc lập bài báo.
+\par
+\clearpage
+\begin{center}\Large\bfseries CHƯƠNG 2. CƠ SỞ LÝ THUYẾT\end{center}
+\section*{2.1. Biến đổi điểm,\allowbreak{} histogram và CLAHE}
+\addcontentsline{toc}{section}{2.1. Biến đổi điểm,\allowbreak{} histogram và CLAHE}
+Ảnh được xem là hàm rời rạc I(y,\allowbreak{}x). Histogram h(k) đếm số pixel ở mức k và p(k)=\allowbreak{}h(k)/\allowbreak{}P là phân bố mức xám. Biến đổi log kéo giãn các mức thấp,\allowbreak{} trong khi HE ánh xạ theo phân bố tích lũy. Bản cài HE dùng CDF-min để đối chiếu OpenCV,\allowbreak{} không nhầm với ví dụ giáo trình dùng trực tiếp CDF chưa trừ giá trị đầu.
+\par
+\begin{equation}s=\operatorname{round}\left(255\frac{\ln(1+r)}{\ln(1+r_{\max})}\right)\tag{2.1}\end{equation}
+\begin{equation}HE(k)=\operatorname{round}\left(255\frac{CDF(k)-CDF_{\min}}{P-CDF_{\min}}\right)\tag{2.2}\end{equation}
+Ảnh hằng được giữ nguyên trong HE vì mẫu số CDF-min bằng 0 và không tồn tại thông tin tương phản để phân bố lại. CLAHE [5] chia ảnh thành các tile cùng kích thước sau đệm phản xạ. Mỗi histogram được cắt ở max(floor(clip\ensuremath{\cdot}tile\_area/\allowbreak{}256),\allowbreak{}1),\allowbreak{} rồi phân phối phần dư bằng thương nguyên và phần dư rải cách đều. LUT được nội suy song tuyến từ các tile lân cận.
+\par
+Lưới là số tile,\allowbreak{} không phải kích thước cửa sổ theo pixel. Clip lớn cho phép histogram tập trung hơn và thường tăng tác động tương phản; ảnh gốc không thay đổi ý nghĩa vật lý vì được ánh xạ lại. Nội suy giảm đường ráp tile nhưng không bảo đảm loại bỏ kết cấu nhiễu. Kiểm chứng phải thống nhất thứ tự grid (hàng,\allowbreak{}cột) của code và (cột,\allowbreak{}hàng) của OpenCV.
+\par
+\begin{equation}c_t=\max(1,\lfloor cA_t/256\rfloor),\quad h_t^c(l)=\min(h_t(l),c_t),\quad E_t=\sum_{l=0}^{255}(h_t(l)-h_t^c(l))\tag{2.3}\end{equation}
+Trong CLAHE [5],\allowbreak{} A\_t là diện tích ô,\allowbreak{} c là clip limit,\allowbreak{} l là mức xám; E\_t được phân phối lại thành floor(E\_t/\allowbreak{}256) mỗi bin và phần dư rải đều. LUT ô là round(255\ensuremath{\cdot}CDF\_t(l)/\allowbreak{}A\_t),\allowbreak{} không trừ CDF-min như HE. Đầu ra là tổng có trọng số bốn LUT lân cận: (1\ensuremath{-}a)(1\ensuremath{-}b)L00+\allowbreak{}a(1\ensuremath{-}b)L10+\allowbreak{}(1\ensuremath{-}a)bL01+\allowbreak{}abL11,\allowbreak{} với a,\allowbreak{}b là phần vị trí tương đối ngang/\allowbreak{}dọc trong [0,\allowbreak{}1].
+\par
+\section*{2.2. Lọc không gian và lọc thích nghi SAR}
+\addcontentsline{toc}{section}{2.2. Lọc không gian và lọc thích nghi SAR}
+Box lấy trung bình cửa sổ; Gaussian dùng trọng số giảm theo khoảng cách; Median lấy trung vị nên xử lý nhiễu xung khác với phép trung bình. Bilateral nhân trọng số không gian với trọng số chênh mức xám. Bản Bilateral của dự án dùng footprint vuông,\allowbreak{} trong khi OpenCV có footprint khác; vì thế phép đối chiếu được ghi là so sánh biến thể.
+\par
+\begin{equation}w(p,q)=e^{-\|p-q\|^2/(2\sigma_s^2)}e^{-(I_p-I_q)^2/(2\sigma_r^2)}\tag{2.4}\end{equation}
+Để dẫn xuất trực giác Lee,\allowbreak{} xét ước lượng tuyến tính cục bộ R-est=\allowbreak{}\ensuremath{\mu}+\allowbreak{}K(I\ensuremath{-}\ensuremath{\mu}). Trong mô hình nhiễu nhân với số look L,\allowbreak{} phương sai nhiễu được xấp xỉ bằng \ensuremath{\mu}\ensuremath{{}^2}/\allowbreak{}L. Phần phương sai có thể quy cho tín hiệu được ước lượng là max(\ensuremath{\sigma}\ensuremath{{}^2}\ensuremath{-}\ensuremath{\mu}\ensuremath{{}^2}/\allowbreak{}L,\allowbreak{}0). Chia cho phương sai quan sát cho hệ số K ở công thức 2.5. Đây là xấp xỉ thống kê được cài,\allowbreak{} không bảo đảm đúng cho mọi JPEG SAR.
+\par
+\begin{equation}K=\operatorname{clip}\left(1-\frac{\mu^2}{L\sigma^2},0,1\right),\quad \hat R=\mu+K(I-\mu)\tag{2.5}\end{equation}
+Kuan dùng C\_i\ensuremath{{}^2}=\allowbreak{}\ensuremath{\sigma}\ensuremath{{}^2}/\allowbreak{}\ensuremath{\mu}\ensuremath{{}^2},\allowbreak{} C\_u\ensuremath{{}^2}=\allowbreak{}1/\allowbreak{}L và trọng số clip((1\ensuremath{-}C\_u\ensuremath{{}^2}/\allowbreak{}C\_i\ensuremath{{}^2})/\allowbreak{}(1+\allowbreak{}C\_u\ensuremath{{}^2}),\allowbreak{}0,\allowbreak{}1). Bản được đặt tên Frost trong dự án dùng trọng số exp(\ensuremath{-}a\ensuremath{\cdot}CV\ensuremath{\cdot}distance); đây là biến thể trọng số đã nêu rõ,\allowbreak{} không tuyên bố tương đương mọi công thức Frost trong tài liệu. Cửa sổ càng rộng càng có nguy cơ trộn nền và vệt; L càng lớn làm mô hình giả định nhiễu tương đối nhỏ hơn.
+\par
+\begin{equation}C_i^2=\frac{v}{\mu^2+\epsilon},\quad C_u^2=\frac{1}{L},\quad W_K=\mathrm{clip}\left(\frac{1-C_u^2/(C_i^2+\epsilon)}{1+C_u^2},0,1\right)\tag{2.6}\end{equation}
+\begin{equation}w_q=e^{-d\,\mathrm{CV}\,\|q-p\|},\quad J_p=\frac{\sum_q w_q I_q}{\sum_q w_q},\quad \mathrm{CV}=\frac{\sqrt{v}}{\mu+\epsilon}\tag{2.7}\end{equation}
+Kuan [9] dùng trọng số W\_K trong J=\allowbreak{}\ensuremath{\mu}+\allowbreak{}W\_K(I\ensuremath{-}\ensuremath{\mu}); L tăng làm giảm mức nhiễu giả định,\allowbreak{} giữ chi tiết nhiều hơn. Biến thể Frost trong mã [8] dùng CV,\allowbreak{} không dùng CV\ensuremath{{}^2}; d tăng làm trọng số xa tâm giảm nhanh. \ensuremath{\epsilon}>0 tránh chia 0. Phải ghi rõ biến thể khi đối chiếu thay vì coi mọi tên Frost là cùng công thức.
+\par
+Dẫn xuất Lee [4]: mô hình cục bộ Y=\allowbreak{}X+\allowbreak{}n,\allowbreak{} E[n]=\allowbreak{}0,\allowbreak{} n không tương quan X,\allowbreak{} Var(Y)=\allowbreak{}v=\allowbreak{}Var(X)+\allowbreak{}\ensuremath{\sigma}\_n\ensuremath{{}^2}. Ước lượng tuyến tính X-est=\allowbreak{}\ensuremath{\mu}+\allowbreak{}K(Y\ensuremath{-}\ensuremath{\mu}) có MSE=\allowbreak{}(1\ensuremath{-}K)\ensuremath{{}^2}Var(X)+\allowbreak{}K\ensuremath{{}^2}\ensuremath{\sigma}\_n\ensuremath{{}^2}. Đạo hàm theo K bằng 0 cho K=\allowbreak{}Var(X)/\allowbreak{}v=\allowbreak{}1\ensuremath{-}\ensuremath{\sigma}\_n\ensuremath{{}^2}/\allowbreak{}v; đạo hàm bậc hai 2v>0 xác nhận cực tiểu. Mã xấp xỉ nhiễu nhân bằng \ensuremath{\sigma}\_n\ensuremath{{}^2}\ensuremath{\approx}\ensuremath{\mu}\ensuremath{{}^2}/\allowbreak{}L,\allowbreak{} chặn K vào [0,\allowbreak{}1]. Đây là xấp xỉ thống kê cục bộ,\allowbreak{} không phải học trọng số từ dữ liệu.
+\par
+\section*{2.3. Lọc đồng hình và làm nét}
+\addcontentsline{toc}{section}{2.3. Lọc đồng hình và làm nét}
+Lọc đồng hình chuyển sang miền log,\allowbreak{} biến đổi Fourier,\allowbreak{} nhân bộ lọc rồi biến đổi ngược và lấy exp. NumPy FFT được dùng như phép toán số; bộ lọc miền tần số được tự xây dựng theo công thức. Đây không phải bài tự cài DFT/\allowbreak{}FFT cơ số hai. Phạm vi đề kết hợp không được tự mở rộng sang yêu cầu riêng của đề Fourier nếu chưa đăng ký.
+\par
+\begin{equation}H(u,v)=(\gamma_H-\gamma_L)(1-e^{-cD^2/D_0^2})+\gamma_L\tag{2.8}\end{equation}
+\begin{equation}f_{sharp}=f+k(f-\operatorname{blur}(f)),\quad f_{lap}=f-\alpha\nabla^2 f\tag{2.9}\end{equation}
+D\ensuremath{{}_0} điều khiển khoảng chuyển tiếp; \ensuremath{\gamma}\_L và \ensuremath{\gamma}\_H điều chỉnh các dải thấp/\allowbreak{}cao. Bản cài chuẩn hóa kết quả về 0–255,\allowbreak{} nên độ sáng trung bình có thể thay đổi mạnh. Unsharp và high-boost bổ sung phần chi tiết cao tần; khi k lớn,\allowbreak{} cả biên thật và nhiễu còn lại đều được tăng cường. Laplacian có thể tạo viền vượt mức quanh chuyển tiếp sáng–tối.
+\par
+Pipeline vì thế tách ảnh hiển thị sau làm nét khỏi ảnh đưa vào phân đoạn. Đây là một quyết định dữ liệu: mask được tính trước làm nét và phải không đổi khi chỉ sửa hệ số sharpening. Kiểm thử hồi quy thực hiện đúng phép thay đổi đó. Các kết quả làm nét được đối chiếu bằng phép ghép blur hoặc Laplacian thư viện với cùng công thức đại số,\allowbreak{} cùng cách làm tròn và clip uint8.
+\par
+\section*{2.4. Gradient,\allowbreak{} LoG và Canny}
+\addcontentsline{toc}{section}{2.4. Gradient,\allowbreak{} LoG và Canny}
+Các trường hợp ở Bảng 2.1 dùng để phát hiện lỗi số học và hướng gradient. Sobel và Prewitt xấp xỉ đạo hàm theo hai trục; Roberts dùng chênh lệch chéo 2\ensuremath{\times}2. Độ lớn gradient phản ánh mức thay đổi cường độ,\allowbreak{} không xác định chất liệu của đối tượng. Các thành phần Gx,\allowbreak{} Gy được giữ ở float64. Chỉ ảnh hiển thị độ lớn mới được làm tròn và giới hạn về 8-bit.
+\par
+\begin{equation}G=\sqrt{G_x^2+G_y^2},\quad \theta=\operatorname{atan2}(G_y,G_x)\tag{2.10}\end{equation}
+LoG sử dụng kernel lấy mẫu,\allowbreak{} trừ trung bình để tổng trọng số gần 0,\allowbreak{} sau đó dò đổi dấu giữa các cặp lân cận đối diện. Sai số triệt tiêu số học rất nhỏ được đặt bằng 0 trước khi xét dấu; nếu không,\allowbreak{} vùng bằng phẳng có thể tạo dấu âm/\allowbreak{}dương do làm tròn. Ngưỡng chênh lệch của cặp phải được giữ giống nhau trong code và đối chứng.
+\par
+Canny [6] gồm Gaussian,\allowbreak{} gradient,\allowbreak{} triệt tiêu không cực đại,\allowbreak{} ngưỡng kép và hysteresis. NMS so độ lớn theo hướng gradient; tọa độ y của ảnh tăng xuống dưới nên các cặp chéo phải được chọn nhất quán. Pixel yếu chỉ được giữ khi nối 8-láng giềng đến pixel mạnh. Kết quả của NMS lượng tử bốn hướng có thể khác OpenCV ở cách xử lý bằng nhau và mép ảnh; số liệu so sánh được giữ,\allowbreak{} không ép kết luận bằng 0.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 2.1. Những điểm cần kiểm tra ở bộ dò biên}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Điều kiện} & \textbf{Hệ quả mong đợi}\\\hline
+\endhead
+Ảnh hằng,\allowbreak{} ngưỡng bằng 0 & Không tạo toàn ảnh thành biên\\\hline
+Gradient lớn hơn 255 & NMS vẫn dùng float,\allowbreak{} không bão hòa\\\hline
+Biên chéo & Cặp lân cận đúng hướng theo hệ tọa độ ảnh\\\hline
+\end{longtable}}
+\begin{equation}\nabla^2G_\sigma(x,y)=\frac{x^2+y^2-2\sigma^2}{2\pi\sigma^6}e^{-\frac{x^2+y^2}{2\sigma^2}}\tag{2.11}\end{equation}
+LoG dùng kernel lấy mẫu rồi trừ trung bình để tổng bằng 0; \ensuremath{\sigma} quyết định thang cấu trúc. Đổi dấu được xét trên bốn cặp đối xứng,\allowbreak{} tích hai đáp ứng <0 và chênh lệch vượt ngưỡng. Tăng ngưỡng bỏ thêm biên yếu; tăng \ensuremath{\sigma} làm mượt mạnh và có thể mất vệt nhỏ. Canny [6] khác LoG ở NMS theo hướng gradient và liên kết ngưỡng kép.
+\par
+\section*{2.5. Otsu,\allowbreak{} hình thái và tương phản vùng/\allowbreak{}nền}
+\addcontentsline{toc}{section}{2.5. Otsu,\allowbreak{} hình thái và tương phản vùng/\allowbreak{}nền}
+Otsu [7] chọn t làm cực đại phương sai giữa hai lớp I\ensuremath{\leq}t và I>t. Với histogram nhiều đỉnh hoặc nền có cấu trúc,\allowbreak{} hai lớp mức xám không nhất thiết trùng với dầu và biển. Hệ số \ensuremath{\eta} đo khả năng tách histogram; \ensuremath{\eta} cao không phải chứng cứ rằng nhãn vật lý đúng.
+\par
+\begin{equation}\sigma_B^2(t)=\omega_0\omega_1(\mu_0-\mu_1)^2,\quad \eta=\sigma_B^2(t^*)/\sigma_T^2\tag{2.12}\end{equation}
+Opening là erosion rồi dilation; closing là dilation rồi erosion. Các phần tử cấu trúc được tạo bằng NumPy và được mô tả theo bán kính pixel. Closing có thể nối vệt đứt nhưng cũng gộp các đốm nền gần nhau. Gán nhãn 8-liên thông tạo các vùng để đo diện tích và tính tương phản với vòng nền lân cận.
+\par
+\begin{equation}\beta(A)=A\setminus(A\ominus B),\quad C_R=\frac{\mu_{nen}-\mu_{vung}}{\mu_{nen}}\tag{2.13}\end{equation}
+C\_R ở đây là tương phản,\allowbreak{} không phải 4\ensuremath{\pi}A/\allowbreak{}P\ensuremath{{}^2} là độ tròn. Mọi vùng,\allowbreak{} kể cả vùng lớn hơn 1.200 pixel,\allowbreak{} phải đạt ngưỡng người dùng chọn. Không có vòng nền thì không đo được tương phản và vùng không được giữ. Biên \ensuremath{\beta}(A) bao gồm mép ngoài và mép lỗ trong mask; nhiều vòng đỏ nhỏ không nhất thiết là nhiều vùng dầu riêng biệt.
+\par
+\section*{2.6. Chỉ số định lượng và ví dụ số}
+\addcontentsline{toc}{section}{2.6. Chỉ số định lượng và ví dụ số}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 2.2. Chỉ số và giới hạn diễn giải}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Chỉ số} & \textbf{Công thức} & \textbf{Giới hạn}\\\hline
+\endhead
+ENL & \ensuremath{\mu}\ensuremath{{}^2}/\allowbreak{}\ensuremath{\sigma}\ensuremath{{}^2} trên ROI & ROI cố định chưa chắc đồng nhất; 999 là sentinel khi \ensuremath{\sigma}\ensuremath{{}^2}\ensuremath{\approx}0\\\hline
+SSI & (std\_f/\allowbreak{}mean\_f)/\allowbreak{}(std\_o/\allowbreak{}mean\_o) & Độ biến thiên toàn ảnh,\allowbreak{} không riêng nhiễu\\\hline
+RMS & std(I) & Tăng cả tương phản nền lẫn vệt\\\hline
+Entropy & \ensuremath{-}\ensuremath{\Sigma}p log\ensuremath{{}_2}p & Không phải chất lượng phân đoạn\\\hline
+AMBE & |mean\_f\ensuremath{-}mean\_o| & Độ lệch sáng,\allowbreak{} không đo đúng biên\\\hline
+EPI & \ensuremath{\Sigma}|\ensuremath{\nabla}\ensuremath{{}^2}f|/\allowbreak{}\ensuremath{\Sigma}|\ensuremath{\nabla}\ensuremath{{}^2}o| & Cả nhiễu và biên cùng ảnh hưởng\\\hline
+\end{longtable}}
+Bảng 2.2 định nghĩa chỉ số; Bảng 2.3 ghi kết quả chạy các ví dụ số. Các chỉ số được dùng để mô tả đánh đổi,\allowbreak{} không cộng thành một điểm chất lượng tùy ý. Ví dụ ENL rất lớn có thể do ROI gần hằng sau lọc,\allowbreak{} nhưng việc làm phẳng đó cũng có thể xóa chi tiết. Khi phương sai ROI bằng 0,\allowbreak{} code dùng giá trị quy ước 999; không diễn giải 999 là số look vật lý đo được. So sánh trên cùng ảnh và ROI là điều kiện tối thiểu.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 2.3. Ví dụ tính tay được chạy trên hàm thật}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Ví dụ} & \textbf{Kết quả kỳ vọng} & \textbf{Sai số lớn nhất}\\\hline
+\endhead
+HE 4x4 CDF-min & [0.0,\allowbreak{} 85.0,\allowbreak{} 170.0,\allowbreak{} 255.0] & 0\\\hline
+Lee center 5x5,\allowbreak{} window 3 & 111.0 & 0\\\hline
+Sobel center 3x3 & [300.0,\allowbreak{} 300.0] & 0\\\hline
+Morphology 8x8 & [4.0,\allowbreak{} 36.0,\allowbreak{} 12.0] & 0\\\hline
+Otsu 8x8 & [50.0,\allowbreak{} 1.0] & 0\\\hline
+\end{longtable}}
+Ví dụ HE dùng ma trận 4\ensuremath{\times}4 gồm bốn mức 0,\allowbreak{}1,\allowbreak{}2,\allowbreak{}3,\allowbreak{} mỗi mức bốn lần. CDF là 4,\allowbreak{}8,\allowbreak{}12,\allowbreak{}16; trừ CDF\_min=\allowbreak{}4 và chia 12 cho LUT 0,\allowbreak{}85,\allowbreak{}170,\allowbreak{}255. Ví dụ Lee dùng nền 100,\allowbreak{} tâm 200,\allowbreak{} cửa sổ 3\ensuremath{\times}3: tổng 1.000,\allowbreak{} trung bình 111,\allowbreak{}111; phương sai 80000/\allowbreak{}81 nhỏ hơn \ensuremath{\mu}\ensuremath{{}^2}/\allowbreak{}4 nên K=\allowbreak{}0 và kết quả làm tròn là 111. Hai ví dụ này đã kiểm chứng bằng NumPy; mã và số đo đầy đủ ở phụ lục.
+\par
+\begin{equation}P_r=\frac{TP}{TP+FP},\ R=\frac{TP}{TP+FN},\ F_1=\frac{2TP}{2TP+FP+FN}\tag{2.14}\end{equation}
+\begin{equation}S_p=\frac{TN}{TN+FP},\quad A_c=\frac{TP+TN}{TP+TN+FP+FN}\tag{2.15}\end{equation}
+\begin{equation}e_{\max}=\max_p|J_p-R_p|,\quad \mathrm{MSE}=\frac{1}{MN}\sum_p(J_p-R_p)^2\tag{2.16}\end{equation}
+TP,\allowbreak{} TN,\allowbreak{} FP,\allowbreak{} FN là số ảnh dương đúng,\allowbreak{} âm đúng,\allowbreak{} dương sai,\allowbreak{} âm sai; dương nghĩa là có ít nhất một vùng ứng viên được giữ. Precision P\_r,\allowbreak{} recall R,\allowbreak{} F1,\allowbreak{} specificity S\_p và accuracy A\_c chỉ đánh giá kết quả so nhãn,\allowbreak{} không đòi hỏi ML/\allowbreak{}DL. R\_p trong công thức sai số là kết quả thư viện tại pixel p,\allowbreak{} khác ký hiệu recall R. Mật độ biên bằng số pixel biên khác 0 chia MN; tỷ lệ pixel khớp bằng số pixel hai kết quả bằng nhau chia MN. Edge-F1 được tính từ TP/\allowbreak{}FP/\allowbreak{}FN pixel của hai bản đồ biên khi đối chiếu.
+\par
+Ví dụ chính 5\ensuremath{\times}5: A=\allowbreak{}[100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100; 100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100; 100,\allowbreak{}100,\allowbreak{}200,\allowbreak{}100,\allowbreak{}100; 100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100; 100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100,\allowbreak{}100]. Bước 1 lấy cửa sổ 3\ensuremath{\times}3 ở tâm (tám số 100,\allowbreak{} một số 200). Bước 2: tổng=\allowbreak{}1000,\allowbreak{} \ensuremath{\mu}=\allowbreak{}1000/\allowbreak{}9,\allowbreak{} tổng bình phương=\allowbreak{}120000. Bước 3: v=\allowbreak{}120000/\allowbreak{}9\ensuremath{-}(1000/\allowbreak{}9)\ensuremath{{}^2}=\allowbreak{}80000/\allowbreak{}81\ensuremath{\approx}987,\allowbreak{}654. Bước 4: L=\allowbreak{}4 cho \ensuremath{\sigma}\_n\ensuremath{{}^2}=\allowbreak{}250000/\allowbreak{}81\ensuremath{\approx}3086,\allowbreak{}420; K=\allowbreak{}max(0,\allowbreak{}1\ensuremath{-}3,\allowbreak{}125)=\allowbreak{}0. Bước 5: J=\allowbreak{}\ensuremath{\mu}+\allowbreak{}0\ensuremath{\cdot}(200\ensuremath{-}\ensuremath{\mu})=\allowbreak{}111,\allowbreak{}111,\allowbreak{} làm tròn uint8 thành 111. Đã kiểm chứng bằng NumPy; phụ lục B gọi đúng hàm của pipeline,\allowbreak{} kỳ vọng 111 được đặt độc lập.
+\par
+\section*{2.7. Công thức các phép toán nền tảng}
+\addcontentsline{toc}{section}{2.7. Công thức các phép toán nền tảng}
+Bổ sung công thức cho các toán tử của [10]. Với cửa sổ \ensuremath{\Omega} có k\ensuremath{{}^2} phần tử,\allowbreak{} kernel Gaussian được chuẩn hóa có tổng bằng 1. \ensuremath{\sigma} lớn làm trọng số trải rộng hơn; Box là trường hợp trọng số đều. Median là thống kê thứ tự,\allowbreak{} không phải tích chập tuyến tính.
+\par
+\begin{equation}g(i)=\frac{e^{-i^2/(2\sigma^2)}}{\sum_j e^{-j^2/(2\sigma^2)}},\quad G(i,j)=g(i)g(j)\tag{2.17}\end{equation}
+\begin{equation}Box(p)=\frac{1}{k^2}\sum_{q\in\Omega_p}I(q),\quad Median(p)=\operatorname{median}_{q\in\Omega_p}I(q)\tag{2.18}\end{equation}
+Đặt p\_ij là mẫu ở hàng i,\allowbreak{} cột j trong cửa sổ 3\ensuremath{\times}3. Hai thành phần Sobel dùng hệ số dưới đây; Prewitt thay hệ số 2 bằng 1 ở cả hai công thức. Hướng y dương xuống dưới. Roberts dùng cửa sổ 2\ensuremath{\times}2 và tính độ lớn theo công thức 2.10.
+\par
+\begin{equation}G_x=(p_{02}+2p_{12}+p_{22})-(p_{00}+2p_{10}+p_{20})\tag{2.19}\end{equation}
+\begin{equation}G_y=(p_{20}+2p_{21}+p_{22})-(p_{00}+2p_{01}+p_{02})\tag{2.20}\end{equation}
+\begin{equation}G_x=p_{11}-p_{00},\quad G_y=p_{10}-p_{01}\tag{2.21}\end{equation}
+Với ảnh nhị phân A và tập vị trí B của kernel,\allowbreak{} erosion lấy AND,\allowbreak{} dilation lấy OR. Opening ghép erosion rồi dilation; closing ghép theo chiều ngược lại. Phần tử đĩa bán kính r gồm các offset i\ensuremath{{}^2}+\allowbreak{}j\ensuremath{{}^2}\ensuremath{\leq}r\ensuremath{{}^2}; r tăng loại hoặc nối các cấu trúc lớn hơn.
+\par
+\begin{equation}(A\ominus B)(p)=\bigwedge_{b\in B}A(p+b),\quad (A\oplus B)(p)=\bigvee_{b\in B}A(p-b)\tag{2.22}\end{equation}
+Quy ước: M hàng,\allowbreak{} N cột,\allowbreak{} P=\allowbreak{}MN pixel; k là cạnh cửa sổ,\allowbreak{} B là phần tử cấu trúc,\allowbreak{} T là số ô CLAHE,\allowbreak{} K\_v là số vùng giữ lại. Với mỗi vùng tạo một mask riêng,\allowbreak{} chi phí bổ sung có thể đến O(K\_v P),\allowbreak{} không chỉ O(P).
+\par
+\clearpage
+\begin{center}\Large\bfseries CHƯƠNG 3. THIẾT KẾ VÀ CÀI ĐẶT\end{center}
+\section*{3.1. Kiến trúc,\allowbreak{} dữ liệu và trách nhiệm TV1–TV5}
+\addcontentsline{toc}{section}{3.1. Kiến trúc,\allowbreak{} dữ liệu và trách nhiệm TV1–TV5}
+Bảng 3.1 xác định module và trách nhiệm tích hợp. Kiến trúc tách phần giao diện khỏi hàm xử lý. Streamlit giải mã ảnh,\allowbreak{} nhận tham số và hiển thị; process\_image nhận ma trận và PipelineConfig bất biến rồi trả kết quả. Không import framework web vào thuật toán lõi. Các wrapper ở src/\allowbreak{} giữ tương thích với đường dẫn cũ,\allowbreak{} nhưng mỗi thuật toán chỉ có một bản triển khai trong thư mục của vai trò phụ trách.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 3.1. Phân công module}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Vai trò} & \textbf{Module chính} & \textbf{Trách nhiệm}\\\hline
+\endhead
+TV1 & src/\allowbreak{}tv1,\allowbreak{} streamlit\_app.py & Pipeline,\allowbreak{} validation,\allowbreak{} giao diện và tích hợp\\\hline
+TV2 & src/\allowbreak{}tv2 & Ví dụ số,\allowbreak{} registry đối chiếu và xuất bảng\\\hline
+TV3 & src/\allowbreak{}tv3 & Lọc,\allowbreak{} log/\allowbreak{}HE/\allowbreak{}CLAHE,\allowbreak{} đồng hình\\\hline
+TV4 & src/\allowbreak{}tv4 & Làm nét,\allowbreak{} biên,\allowbreak{} Otsu/\allowbreak{}hình thái,\allowbreak{} liên thông\\\hline
+TV5 & src/\allowbreak{}tv5,\allowbreak{} reproduce.py & Chỉ số,\allowbreak{} dữ liệu,\allowbreak{} thực nghiệm,\allowbreak{} tái lập\\\hline
+\end{longtable}}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/pipeline.png}
+\par\small Hình 3.1. Luồng dữ liệu của pipeline và nhánh ảnh tham chiếu.
+\end{center}
+Hình 3.1 cho thấy nhánh trước CLAHE được giữ riêng. Làm nét không thay đổi đầu vào phân đoạn. Giao diện hiển thị rõ kết quả nào là ảnh quan sát,\allowbreak{} bản đồ biên hoặc mask ứng viên; không biến số pixel biên thành diện tích vùng. Phân công trên là trách nhiệm từ phiên bản hiện tại,\allowbreak{} không xác nhận tác giả lịch sử.
+\par
+\section*{3.2. Cài đặt lọc không gian và bộ lọc SAR}
+\addcontentsline{toc}{section}{3.2. Cài đặt lọc không gian và bộ lọc SAR}
+\textbf{Thuật toán 3.1. Các bộ lọc cục bộ (đầu vào I,\allowbreak{} cửa sổ lẻ k; đầu ra J)}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Kiểm tra ảnh hữu hạn,\allowbreak{} k lẻ; chuyển float trước phép trừ/\allowbreak{}nhân.\\
+2. Đệm reflect-101; tính moment bằng tổng tích lũy cho Box,\allowbreak{} Lee,\allowbreak{} Kuan.\\
+3. Box: J \ensuremath{\leftarrow} mean cửa sổ. Gaussian: hai lượt kernel 1D chuẩn hóa.\\
+4. Median: J \ensuremath{\leftarrow} trung vị cửa sổ.\\
+5. Bilateral: trọng số \ensuremath{\leftarrow} Gauss(khoảng cách) \ensuremath{\times} Gauss(chênh mức xám).\\
+6. Lee: tính K; Kuan: tính W từ Ci\ensuremath{{}^2},\allowbreak{} Cu\ensuremath{{}^2}; nội suy giữa mean và pixel.\\
+7. Frost biến thể: trọng số exp(\ensuremath{-}a\ensuremath{\cdot}CV\ensuremath{\cdot}distance),\allowbreak{} chuẩn hóa tổng.\\
+8. Round,\allowbreak{} clip 0..255 và chuyển uint8.\\
+\end{flushleft}}
+Bảng 3.2 chỉ ra chi phí tăng theo cửa sổ và số pixel. Tổng tích lũy tránh lặp lại phép cộng cho mọi cửa sổ. Gaussian được tách theo hai chiều vì kernel là tích của hai kernel 1D. Median và Bilateral dùng sliding\_window\_view để biểu diễn cửa sổ; các phép nhân trung gian vẫn có thể cần O(Pk\ensuremath{{}^2}) bộ nhớ,\allowbreak{} dù view tự nó không sao chép dữ liệu. Demo giới hạn k đến 9 để tránh chi phí không kiểm soát.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 3.2. Chi phí nhóm lọc với P=\allowbreak{}M\ensuremath{\times}N}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Phương pháp} & \textbf{Thời gian} & \textbf{Bộ nhớ bổ sung}\\\hline
+\endhead
+Box/\allowbreak{}Lee/\allowbreak{}Kuan & O(P) & O(P)\\\hline
+Gaussian tách & O(Pk) & O(P)\\\hline
+Median & Phụ thuộc chọn trung vị từng cửa sổ & Có thể O(Pk\ensuremath{{}^2})\\\hline
+Bilateral/\allowbreak{}Frost biến thể & O(Pk\ensuremath{{}^2}) & O(Pk\ensuremath{{}^2}) trung gian\\\hline
+\end{longtable}}
+Code yêu cầu sigma và số look dương; cửa sổ phải lẻ. Trong đối chiếu,\allowbreak{} quy tắc biên của thư viện được đặt tương ứng. Khác biệt ở vùng mép do dùng reflect thay vì nearest không được bỏ qua bằng cách chỉ cắt vùng giữa và tuyên bố khớp toàn ảnh.
+\par
+\section*{3.3. Cài đặt biến đổi điểm,\allowbreak{} CLAHE và đồng hình}
+\addcontentsline{toc}{section}{3.3. Cài đặt biến đổi điểm,\allowbreak{} CLAHE và đồng hình}
+\textbf{Thuật toán 3.2. Log,\allowbreak{} HE và CLAHE (đầu vào I và tham số; đầu ra J)}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Log: tạo LUT log1p cho 256 mức theo r\_max,\allowbreak{} tra LUT cho từng pixel.\\
+2. HE: đếm histogram; cộng dồn CDF; xử lý riêng ảnh hằng.\\
+3. CLAHE: đệm để kích thước chia hết cho lưới; tạo histogram mỗi tile.\\
+4. Cắt histogram; chia lượng dư thành thương nguyên và phần dư.\\
+5. Tạo LUT uint8 từ CDF với cùng quy tắc làm tròn.\\
+6. Tính trọng số giữa tâm tile; nội suy bốn LUT cho từng pixel.\\
+7. Trả ảnh kích thước gốc,\allowbreak{} không trả phần đệm.\\
+\end{flushleft}}
+\textbf{Thuật toán 3.3. Lọc đồng hình (đầu vào I,\allowbreak{} \ensuremath{\gamma}L,\allowbreak{} \ensuremath{\gamma}H,\allowbreak{} c,\allowbreak{} D\ensuremath{{}_0}; đầu ra J)}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. L \ensuremath{\leftarrow} log(1+\allowbreak{}I).\\
+2. F \ensuremath{\leftarrow} FFT2(L); dịch gốc tần số về tâm.\\
+3. Tạo H(u,\allowbreak{}v) từ khoảng cách tới tâm và các tham số.\\
+4. Z \ensuremath{\leftarrow} phần thực của IFFT2(F\ensuremath{\times}H) sau dịch ngược.\\
+5. J \ensuremath{\leftarrow} exp(Z)\ensuremath{-}1; chuẩn hóa min/\allowbreak{}max về 0..255; xử lý ảnh hằng.\\
+\end{flushleft}}
+Log và HE cần O(P+\allowbreak{}256) thời gian,\allowbreak{} bảng ánh xạ nhỏ. CLAHE cần O(P+\allowbreak{}256T) với T là số tile và thêm O(256T+\allowbreak{}P) bộ nhớ cho LUT,\allowbreak{} tọa độ và ảnh nội suy. Đồng hình dùng FFT có chi phí xấp xỉ O(P log P),\allowbreak{} bộ nhớ O(P) số phức. NumPy FFT được coi là phép toán số nền tảng; thuật toán lọc và ghép các bước do nhóm cài.
+\par
+Lưới 1\ensuremath{\times}1 và ảnh không chia hết cho lưới là hai ca dễ gây chia cho 0 hoặc sai nội suy. Kiểm thử so trực tiếp với cv2.createCLAHE cả các ca đó. Không dùng kết quả CLAHE như bằng chứng rằng tín hiệu tối mới xuất hiện là đối tượng mới trong cảnh.
+\par
+\section*{3.4. Cài đặt làm nét và các toán tử biên}
+\addcontentsline{toc}{section}{3.4. Cài đặt làm nét và các toán tử biên}
+\textbf{Thuật toán 3.4. Làm nét và gradient (đầu vào I; đầu ra ảnh làm nét/\allowbreak{}biên)}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Unsharp/\allowbreak{}high-boost: blur I; tính mask=\allowbreak{}I\ensuremath{-}blur; J=\allowbreak{}I+\allowbreak{}k\ensuremath{\cdot}mask.\\
+2. Laplacian sharpen: tính tổng bốn láng giềng\ensuremath{-}4I; J=\allowbreak{}I\ensuremath{-}\ensuremath{\alpha}\ensuremath{\cdot}L.\\
+3. Roberts: tính hai chênh lệch chéo trên cửa sổ 2\ensuremath{\times}2.\\
+4. Prewitt/\allowbreak{}Sobel: tích chập tương quan với hai kernel đạo hàm.\\
+5. G \ensuremath{\leftarrow} hypot(Gx,\allowbreak{}Gy),\allowbreak{} \ensuremath{\theta} \ensuremath{\leftarrow} atan2(Gy,\allowbreak{}Gx).\\
+6. Sobel enhancement: cộng 0,\allowbreak{}5G vào I để quan sát.\\
+7. Chỉ round/\allowbreak{}clip ảnh hiển thị; giữ Gx,\allowbreak{}Gy float để xử lý tiếp.\\
+\end{flushleft}}
+\textbf{Thuật toán 3.5. LoG và zero crossing}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Lấy bán kính ceil(3\ensuremath{\sigma}); tạo kernel LoG rồi trừ mean kernel.\\
+2. Tương quan ảnh đã đệm reflect với kernel.\\
+3. Đặt đáp ứng |L|<10\ensuremath{{}^-}\ensuremath{{}^9} bằng 0 để bỏ đổi dấu do triệt tiêu số học.\\
+4. Xét bốn cặp đối diện; giữ khi tích âm và chênh lệch vượt ngưỡng.\\
+5. Trả bản đồ nhị phân 0/\allowbreak{}255.\\
+\end{flushleft}}
+Đạo hàm kernel cố định có O(P) thời gian và O(P) bộ nhớ. LoG tổng quát có O(Pk\ensuremath{{}^2}),\allowbreak{} với k phụ thuộc sigma. Khi so với filter2D,\allowbreak{} cần chỉ rõ anchor của kernel Roberts 2\ensuremath{\times}2; nếu để anchor khác nhau,\allowbreak{} biên có thể lệch một pixel dù công thức kernel giống nhau. Đầu ra biên bị cắt về 255 chỉ là biểu diễn hiển thị,\allowbreak{} không thay cho độ lớn gradient dùng bên trong Canny.
+\par
+\section*{3.5. Cài đặt Canny và kiểm soát sai khác}
+\addcontentsline{toc}{section}{3.5. Cài đặt Canny và kiểm soát sai khác}
+\textbf{Thuật toán 3.6. Canny tự cài (I,\allowbreak{} low,\allowbreak{} high,\allowbreak{} \ensuremath{\sigma} \ensuremath{\rightarrow} biên nhị phân)}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Nếu thiếu ngưỡng: lấy ngưỡng từ median ảnh; kiểm tra 0\ensuremath{\leq}low\ensuremath{\leq}high.\\
+2. Làm mịn Gaussian 5\ensuremath{\times}5; tính Sobel float và góc hướng.\\
+3. Lượng tử góc thành 0°,\allowbreak{}45°,\allowbreak{}90°,\allowbreak{}135°.\\
+4. NMS: giữ pixel không nhỏ hơn hai láng giềng theo đúng hướng.\\
+5. Mạnh: nms>0 và nms\ensuremath{\geq}high; yếu: nms>0 và low\ensuremath{\leq}nms<high.\\
+6. Đưa pixel mạnh vào hàng đợi.\\
+7. Duyệt BFS,\allowbreak{} nối pixel yếu 8-láng giềng chưa thăm.\\
+8. Trả các pixel mạnh hoặc yếu đã nối thành ảnh 0/\allowbreak{}255.\\
+\end{flushleft}}
+Hysteresis duyệt mỗi pixel tối đa một lần,\allowbreak{} nên thời gian O(P) sau bước gradient và bộ nhớ O(P) cho ảnh trạng thái/\allowbreak{}hàng đợi. NMS được vector hóa bằng các lát ảnh đệm. Bản cũ đưa độ lớn đã clip uint8 vào NMS; điều này làm các gradient lớn bão hòa bằng nhau và có thể giữ những vị trí không phải cực đại. Phiên bản hiện tại dùng hypot(Gx,\allowbreak{}Gy) float.
+\par
+Đối chứng OpenCV dùng ảnh đã được làm mịn giống nhau,\allowbreak{} bật L2gradient và cùng cặp ngưỡng. Tuy nhiên,\allowbreak{} quy tắc so sánh bằng nhau,\allowbreak{} lượng tử góc,\allowbreak{} cách xử lý mép của hai phiên bản không được giả định tương đương. Bảng xuất vì vậy giữ MSE,\allowbreak{} sai số lớn nhất,\allowbreak{} tỷ lệ pixel khớp và F1 biên chính xác vị trí để mô tả khác biệt; không tính các hàng này là PASS.
+\par
+Một phép kiểm tra tối thiểu là ảnh hằng ở ngưỡng 0 phải trả ảnh biên rỗng. Quy tắc nms>0 tránh biến mọi pixel bằng 0 thành cạnh mạnh. Kiểm tra ngưỡng đảo ngược phải báo lỗi thay vì âm thầm tạo đầu ra không có nghĩa.
+\par
+\section*{3.6. Phân đoạn,\allowbreak{} liên thông và lọc ứng viên}
+\addcontentsline{toc}{section}{3.6. Phân đoạn,\allowbreak{} liên thông và lọc ứng viên}
+\textbf{Thuật toán 3.7. Otsu,\allowbreak{} hình thái và phân đoạn vùng tối}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Otsu: histogram\ensuremath{\rightarrow}xác suất\ensuremath{\rightarrow}moment tích lũy\ensuremath{\rightarrow}t cực đại phương sai giữa lớp.\\
+2. Chọn ảnh tăng cường hoặc reference theo tỷ lệ tối và \ensuremath{\eta}; ghi đây là heuristic.\\
+3. Nếu bật thích ứng và vùng tối >35\%,\allowbreak{} giảm t theo chênh mean hai lớp.\\
+4. Mask \ensuremath{\leftarrow} I\ensuremath{\leq}t; ảnh hằng cho mask rỗng.\\
+5. Erosion/\allowbreak{}dilation: AND/\allowbreak{}OR các lát dịch theo kernel; ghép thành opening/\allowbreak{}closing.\\
+6. Gán nhãn run-length union-find; lọc diện tích nhỏ.\\
+7. Lấy vòng nền dilation(mask)\ensuremath{-}mask; đo CR trên reference.\\
+8. Giữ mọi vùng đạt min\_contrast; không có vòng nền thì bỏ.\\
+9. \ensuremath{\beta}(A) \ensuremath{\leftarrow} A\ensuremath{-}erosion(A); xuất vùng,\allowbreak{} diện tích,\allowbreak{} centroid,\allowbreak{} bounding box.\\
+\end{flushleft}}
+\textbf{Thuật toán 3.8. Gán nhãn 8-liên thông bằng các đoạn chạy}\par{\fontsize{10.5}{12}\selectfont\begin{flushleft}
+1. Mỗi hàng: tìm các đoạn foreground liên tiếp [left,\allowbreak{}right].\\
+2. Tạo nhãn cho đoạn; nối với đoạn hàng trước có khoảng cách \ensuremath{\leq}1 pixel.\\
+3. Union-find hợp nhất nhãn tương đương,\allowbreak{} nén đường đi.\\
+4. Ánh xạ root thành nhãn liên tục; đếm diện tích bằng bincount.\\
+5. Chỉ dựng mask metadata cho vùng qua min\_area; không thay ma trận nhãn.\\
+\end{flushleft}}
+Ngưỡng Otsu được tính trong O(P+\allowbreak{}256),\allowbreak{} morphology O(P|B|). Gán nhãn theo đoạn có chi phí quét O(P) cộng hợp nhất các đoạn giao nhau; dựng mask cho K vùng được giữ có thể tốn O(K\_v P) thời gian/\allowbreak{}bộ nhớ. Việc bỏ metadata cho vùng nhỏ giúp giảm chi phí thực tế,\allowbreak{} nhưng không được tuyên bố toàn pipeline O(P) khi K tăng. Đây là giới hạn cần nêu trong thiết kế.
+\par
+\section*{3.7. Kiểm chứng,\allowbreak{} xử lý lỗi và tích hợp Streamlit}
+\addcontentsline{toc}{section}{3.7. Kiểm chứng,\allowbreak{} xử lý lỗi và tích hợp Streamlit}
+Bảng 3.3 phân biệt mức bằng chứng mà mỗi kiểu đối chứng cung cấp. TV2 tổ chức registry gồm tên phép toán,\allowbreak{} hàm tự cài,\allowbreak{} hàm tham chiếu,\allowbreak{} mô tả quy tắc biên và giới hạn sai số. Ba nhóm được tách rõ: API trực tiếp; phép ghép primitive thư viện; biến thể mô tả. Các ca gồm ảnh đen,\allowbreak{} trắng,\allowbreak{} hằng,\allowbreak{} ramp,\allowbreak{} checkerboard,\allowbreak{} đường chéo,\allowbreak{} nhiễu có seed,\allowbreak{} xung đơn và 10 ảnh mẫu. Khi có FAIL ở nhóm có giới hạn,\allowbreak{} lệnh tái tạo kết quả dừng với mã lỗi.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 3.3. Quy tắc đối chứng}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Nhóm} & \textbf{Ví dụ} & \textbf{Diễn giải}\\\hline
+\endhead
+Trực tiếp & HE,\allowbreak{} CLAHE,\allowbreak{} Sobel,\allowbreak{} Otsu,\allowbreak{} morphology & Cùng tham số,\allowbreak{} dtype và border\\\hline
+Phép ghép & Lee/\allowbreak{}Kuan/\allowbreak{}Frost,\allowbreak{} homomorphic,\allowbreak{} sharpen & Kiểm tra công thức bằng primitive; không có API toàn thuật toán tương đương\\\hline
+Biến thể & Bilateral,\allowbreak{} Canny & Giữ sai khác và phân tích; không tính là PASS\\\hline
+\end{longtable}}
+Kiểm thử hồi quy còn kiểm tra phân hoạch liên thông so OpenCV,\allowbreak{} tham số không hợp lệ,\allowbreak{} endpoint của Otsu,\allowbreak{} ảnh hằng và bất biến mask khi đổi làm nét. Kiểm tra AST phát hiện import thư viện đối chứng trong các module lõi TV3/\allowbreak{}TV4/\allowbreak{}metrics TV5. Đây là hàng rào kiến trúc,\allowbreak{} không thay thế đọc mã hoặc chứng minh toán học.
+\par
+Streamlit có các tab kết quả ảnh,\allowbreak{} chỉ số,\allowbreak{} bảng đối chứng và phân công. Người dùng chọn ảnh mẫu hoặc tải tệp,\allowbreak{} thay bộ lọc và tham số,\allowbreak{} tải PNG/\allowbreak{}JSON. AppTest kiểm tra luồng mặc định,\allowbreak{} đổi Canny và quay lại morphology,\allowbreak{} chọn ảnh 00013; đó là kiểm tra hành vi giao diện,\allowbreak{} không phải chứng nhận tương thích mọi trình duyệt. Những ảnh lỗi giải mã hoặc tham số không hợp lệ được thông báo thay vì trả kết quả giả.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 3.4. Lệnh và sản phẩm}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Lệnh} & \textbf{Sản phẩm}\\\hline
+\endhead
+uv sync --locked --all-extras & Môi trường Python theo uv.lock\\\hline
+uv run python reproduce.py & CSV,\allowbreak{} JSON,\allowbreak{} ảnh chẩn đoán trong results/\allowbreak{}\\\hline
+uv run --extra dev python -m pytest tests -q & Kiểm thử hồi quy và ranh giới thư viện\\\hline
+uv run streamlit run streamlit\_app.py & Demo tương tác tại localhost:8501\\\hline
+\end{longtable}}
+Bảng 3.4 phục vụ kiểm tra giao diện và tái lập từ cùng môi trường; kết quả chạy được lưu riêng với dữ liệu đầu vào.
+\par
+\clearpage
+\begin{center}\Large\bfseries CHƯƠNG 4. THỰC NGHIỆM VÀ ĐÁNH GIÁ\end{center}
+\section*{4.1. Môi trường và quy trình tái lập}
+\addcontentsline{toc}{section}{4.1. Môi trường và quy trình tái lập}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.1. Môi trường của lần đo}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Thuộc tính} & \textbf{Giá trị}\\\hline
+\endhead
+Python & 3.13.5\\\hline
+Hệ điều hành & Windows-11-10.0.26100-SP0\\\hline
+CPU /\allowbreak{} logical CPUs & Intel64 Family 6 Model 154 Stepping 3,\allowbreak{} GenuineIntel /\allowbreak{} 16\\\hline
+RAM vật lý & 15.7 GiB\\\hline
+NumPy /\allowbreak{} OpenCV & 2.5.4 /\allowbreak{} 5.0.0\\\hline
+Seed /\allowbreak{} process dataset & 2026 /\allowbreak{} 4\\\hline
+Ngày chạy & 2026-11-11T21:36:42+\allowbreak{}0700\\\hline
+Hash mã nguồn (rút gọn) & 28ecff90ac5cd28b2c2547ee\\\hline
+scipy & 1.18.1\\\hline
+scikit-image & 0.26.0\\\hline
+matplotlib & 3.11.2\\\hline
+pandas & 3.1.1\\\hline
+streamlit & 1.67.0\\\hline
+\end{longtable}}
+Bảng 4.1 ghi môi trường đã khóa; lệnh tái lập nằm ở mục 3.7 và phụ lục A. Các số liệu trong chương này được đọc từ file CSV/\allowbreak{}JSON sau khi chạy reproduce.py,\allowbreak{} không gõ lại bằng tay. Manifest lưu commit nền,\allowbreak{} trạng thái working tree,\allowbreak{} SHA-256 của mã nguồn,\allowbreak{} seed và cấu hình pipeline. Khi working tree có sửa đổi,\allowbreak{} chỉ ghi commit là chưa đủ tái lập; hash nguồn giúp nhận diện đúng trạng thái đã đo.
+\par
+Một lệnh chạy toàn bộ gồm ví dụ số,\allowbreak{} đối chiếu thư viện,\allowbreak{} thực nghiệm bộ mẫu và đánh giá hai lớp dataset. Tùy chọn --samples-only phục vụ phát triển nhưng phải được ghi rõ là phạm vi hạn chế. Thời gian từng ảnh được đo bằng đồng hồ đơn điệu; benchmark dataset dùng nhiều process nên số mili giây có ảnh hưởng tranh chấp tài nguyên,\allowbreak{} không được coi là độ trễ một yêu cầu độc lập trên máy nhàn rỗi.
+\par
+\section*{4.2. Dữ liệu,\allowbreak{} nhãn và thiết kế thí nghiệm}
+\addcontentsline{toc}{section}{4.2. Dữ liệu,\allowbreak{} nhãn và thiết kế thí nghiệm}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.2. Tập ảnh trong dự án}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Tập} & \textbf{Số ảnh} & \textbf{Vai trò}\\\hline
+\endhead
+Class\_0 & 3.695 & Đánh giá mức ảnh theo nhãn thư mục\\\hline
+Class\_1 & 1.843 & Đánh giá mức ảnh theo nhãn thư mục\\\hline
+Mẫu demo & 10 & 5 dầu +\allowbreak{} 5 biển; chạy khảo sát và đối chứng\\\hline
+Ảnh tổng hợp & 8 & Điều kiện biên và kiểm chứng số học\\\hline
+\end{longtable}}
+Bảng 4.2 phân biệt dữ liệu đánh giá,\allowbreak{} demo và ca tổng hợp. Nguồn [13] được xác định từ kaggle/\allowbreak{}metadata/\allowbreak{}dataset\_metadata.xml: CSIRO,\allowbreak{} David Blondeau-Patissier,\allowbreak{} ngày 15/\allowbreak{}12/\allowbreak{}2022,\allowbreak{} DOI 10.25919/\allowbreak{}4v55-dn16. Metadata mô tả chip Sentinel-1 xám JPEG 400\ensuremath{\times}400,\allowbreak{} nhãn 0 là biển sạch/\allowbreak{}look-alike và 1 có dầu. Tệp license.html đi kèm ghi CC BY-SA 4.0. Tên bộ dữ liệu có nhắc ML/\allowbreak{}DL nhưng việc dùng các ảnh cho thí nghiệm xử lý ảnh không yêu cầu huấn luyện mô hình.
+\par
+Metadata công bố 5.630 ảnh (3.725 lớp 0,\allowbreak{} 1.905 lớp 1); repo có 5.538 ảnh khác nhau,\allowbreak{} thiếu 30 ảnh lớp 0 và 62 ảnh lớp 1. Không có checksum gốc để giải thích chênh lệch. Ảnh 400\ensuremath{\times}400 lưu RGB,\allowbreak{} pipeline đọc xám. Ngoài hai lớp chính,\allowbreak{} kaggle/\allowbreak{}data/\allowbreak{}sample có 10 bản sao trùng byte: 5.548 đường dẫn nhưng 5.538 ảnh khác nhau,\allowbreak{} không đếm lặp khi đánh giá. Cả 10 ảnh demo cũng khớp byte với dataset; đây là tập con khảo sát,\allowbreak{} không phải tập đánh giá độc lập. Chưa có mask pixel hoặc định danh cảnh để kiểm tra chồng lấn giữa các chip.
+\par
+Thí nghiệm A hỏi các bộ lọc thay đổi biến thiên và thành phần biên ra sao. Thí nghiệm B khảo sát CLAHE theo clip 1–5 và grid 4/\allowbreak{}8/\allowbreak{}16. Thí nghiệm C thêm nhiễu Gauss \ensuremath{\sigma}=\allowbreak{}10,\allowbreak{}20,\allowbreak{}30 cùng ảnh sạch để quan sát độ nhạy của bộ dò biên. Thí nghiệm D phân tích 00013 và toàn bộ năm ảnh biển mẫu. Thí nghiệm E đo sự có mặt của vùng ứng viên trên toàn bộ hai lớp.
+\par
+Không có bước huấn luyện và không tối ưu tham số trên một tập test rồi gọi đó là đánh giá độc lập. Các thí nghiệm nhỏ dùng cùng 10 ảnh nên chỉ hỗ trợ nhận xét trên bộ mẫu,\allowbreak{} không đại diện mọi điều kiện SAR. Nhiễu Gauss được dùng như điều kiện bất lợi có thể tái lập,\allowbreak{} không thay thế mô hình speckle nhân của dữ liệu gốc.
+\par
+\section*{4.3. Kết quả đối chiếu: lọc và tăng cường}
+\addcontentsline{toc}{section}{4.3. Kết quả đối chiếu: lọc và tăng cường}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.3. Sai số lớn nhất và MSE trung bình trên 18 ca}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}}
+\textbf{Phép toán} & \textbf{Nhóm đối chứng} & \textbf{Max |\ensuremath{\Delta}|} & \textbf{MSE TB}\\\hline
+\endhead
+box & Trực tiếp & 0 & 0\\\hline
+gaussian & Trực tiếp & 0 & 0\\\hline
+median & Trực tiếp & 0 & 0\\\hline
+bilateral & Biến thể & 20 & 2.01\\\hline
+lee & Ghép hàm & 0 & 0\\\hline
+frost & Ghép hàm & 0 & 0\\\hline
+kuan & Ghép hàm & 0 & 0\\\hline
+log & Ghép hàm & 0 & 0\\\hline
+HE & Trực tiếp & 0 & 0\\\hline
+CLAHE & Trực tiếp & 1 & 0.00013\\\hline
+homomorphic & Ghép hàm & 0 & 0\\\hline
+\end{longtable}}
+Bảng 4.3 phân biệt so trực tiếp API và đối chiếu bằng primitive. Các phép Box,\allowbreak{} Gaussian,\allowbreak{} Median đặt border tương ứng trước khi so. Gaussian cho phép sai khác một mức xám do thứ tự tính và làm tròn. HE cần riêng trường hợp hằng; CLAHE cần thống nhất giới hạn histogram,\allowbreak{} phần dư và nội suy. Sự giống nhau của các phép biến đổi này không chứng minh chúng cải thiện phân đoạn dầu.
+\par
+Lee,\allowbreak{} Kuan và Frost biến thể được tính lại bằng moment/\allowbreak{}shift của SciPy và công thức đã trình bày. Đây là đối chứng cấu thành: nếu cả hai cùng dùng một giả định mô hình không phù hợp dữ liệu thì vẫn có thể khớp số học. Homomorphic dùng scipy.fft làm đối chứng chuỗi biến đổi. Bilateral dùng footprint khác nên được giữ ở trạng thái DESCRIPTIVE,\allowbreak{} không nâng ngưỡng tùy ý để đổi thành PASS.
+\par
+Các giá trị trong bảng là tổng hợp của sai số từng ca; bảng per\_case.csv giữ lại cả ảnh tổng hợp lẫn ảnh thật. Có thể truy ngược một sai khác tới ảnh,\allowbreak{} phương pháp và thông số. Báo cáo không chỉ chọn ảnh khớp đẹp để trình bày.
+\par
+\section*{4.4. Kết quả đối chiếu: biên,\allowbreak{} hình thái và metrics}
+\addcontentsline{toc}{section}{4.4. Kết quả đối chiếu: biên,\allowbreak{} hình thái và metrics}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.4. Đối chiếu nhóm biên và hình thái}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}}
+\textbf{Phép toán} & \textbf{Nhóm đối chứng} & \textbf{Max |\ensuremath{\Delta}|} & \textbf{MSE TB}\\\hline
+\endhead
+unsharp & Ghép hàm & 0 & 0\\\hline
+high\_boost & Ghép hàm & 0 & 0\\\hline
+laplacian\_sharpen & Ghép hàm & 0 & 0\\\hline
+sobel\_enhance & Ghép hàm & 0 & 0\\\hline
+roberts & Ghép hàm & 0 & 0\\\hline
+prewitt & Ghép hàm & 0 & 0\\\hline
+sobel & Trực tiếp & 0 & 0\\\hline
+LoG & Ghép hàm & 0 & 0\\\hline
+canny & Biến thể & 255 & 32.8\\\hline
+otsu & Trực tiếp & 0 & 0\\\hline
+erosion & Trực tiếp & 0 & 0\\\hline
+dilation & Trực tiếp & 0 & 0\\\hline
+opening & Ghép hàm & 0 & 0\\\hline
+closing & Ghép hàm & 0 & 0\\\hline
+boundary & Ghép hàm & 0 & 0\\\hline
+components & Trực tiếp & 0 & 0\\\hline
+\end{longtable}}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.5. Đối chiếu sáu chỉ số định lượng}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}|>{\raggedright\arraybackslash}p{3.705cm}}
+\textbf{Phép toán} & \textbf{Nhóm đối chứng} & \textbf{Max |\ensuremath{\Delta}|} & \textbf{MSE TB}\\\hline
+\endhead
+ENL & Ghép hàm & 4.02e-11 & 1.17e-22\\\hline
+SSI & Ghép hàm & 0 & 0\\\hline
+RMS & Trực tiếp & 2.96e-13 & 9.85e-27\\\hline
+entropy & Ghép hàm & 7.08e-07 & 5.44e-14\\\hline
+AMBE & Ghép hàm & 2.84e-14 & 5.61e-29\\\hline
+EPI & Ghép hàm & 0 & 0\\\hline
+\end{longtable}}
+Bảng 4.4 và Bảng 4.5 liệt kê sai số nhóm biên,\allowbreak{} hình thái và chỉ số. Sobel/\allowbreak{}Prewitt so cả Gx và Gy ở float thay vì chỉ ảnh độ lớn bão hòa. Roberts đặt anchor rõ cho kernel 2\ensuremath{\times}2. LoG đặt đáp ứng gần zero bằng 0 ở cả hai phép tính để tránh khác dấu do triệt tiêu số học. Otsu chọn ngưỡng đầu tiên đạt cực đại và kiểm tra I\ensuremath{\leq}t; hai điều này tránh sai khác endpoint bị che bởi ảnh xám hiển thị.
+\par
+Nhãn thành phần liên thông có thể khác thứ tự đánh số mà vẫn mô tả cùng phân hoạch. Bộ kiểm tra hồi quy xác nhận ánh xạ một-một giữa các vùng; bảng đo dùng diện tích vùng tại từng pixel như một đại lượng bất biến theo ID. Với erosion/\allowbreak{}dilation,\allowbreak{} giá trị ngoài ảnh được đặt rõ ràng để không so hai quy ước khác nhau.
+\par
+Canny vẫn là đối chiếu biến thể,\allowbreak{} không có lời kết luận “khớp tuyệt đối”. Sáu metrics cũng có đối chứng riêng,\allowbreak{} nhưng chúng chỉ đo các đặc tính đã định nghĩa. MSE=\allowbreak{}0 của entropy hoặc EPI không có nghĩa đường biên đúng với thực tế. Tổng số PASS/\allowbreak{}DESCRIPTIVE trong toàn bộ registry được báo trên bảng tổng hợp kèm theo.
+\par
+\section*{4.5. So sánh bộ lọc: giảm biến thiên và mất chi tiết}
+\addcontentsline{toc}{section}{4.5. So sánh bộ lọc: giảm biến thiên và mất chi tiết}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.6. SSI và EPI,\allowbreak{} trung bình \ensuremath{\pm} độ lệch chuẩn trên 10 ảnh}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Bộ lọc} & \textbf{SSI (TB \ensuremath{\pm} SD)} & \textbf{EPI (TB \ensuremath{\pm} SD)}\\\hline
+\endhead
+none & 1.0000 \ensuremath{\pm} 0.0000 & 1.0000 \ensuremath{\pm} 0.0000\\\hline
+box & \textbf{0.9313 \ensuremath{\pm} 0.1065} & 0.4784 \ensuremath{\pm} 0.1797\\\hline
+gaussian & 0.9596 \ensuremath{\pm} 0.0654 & 0.5840 \ensuremath{\pm} 0.1181\\\hline
+median & 0.9423 \ensuremath{\pm} 0.0983 & \textbf{0.6783 \ensuremath{\pm} 0.1588}\\\hline
+bilateral & 0.9456 \ensuremath{\pm} 0.0812 & 0.5679 \ensuremath{\pm} 0.1282\\\hline
+lee & 0.9314 \ensuremath{\pm} 0.1065 & 0.4792 \ensuremath{\pm} 0.1793\\\hline
+frost & 0.9342 \ensuremath{\pm} 0.1033 & 0.4884 \ensuremath{\pm} 0.1723\\\hline
+kuan & 0.9313 \ensuremath{\pm} 0.1065 & 0.4790 \ensuremath{\pm} 0.1794\\\hline
+\end{longtable}}
+Bảng 4.6 in đậm SSI trung bình nhỏ nhất và EPI trung bình gần 1 nhất trong các bộ lọc (loại hàng ảnh gốc khỏi xếp hạng). Đó là hai tiêu chí riêng,\allowbreak{} không phải kết luận một bộ lọc tối ưu đồng thời cho khử nhiễu và phân đoạn.
+\par
+SSI nhỏ hơn 1 cho thấy hệ số biến thiên toàn ảnh giảm so ảnh đầu vào. EPI gần 1 có nghĩa tổng đáp ứng Laplacian được giữ theo định nghĩa của chỉ số; nó không tách được biên thật khỏi nhiễu. Vì vậy không thể chọn bộ lọc tốt nhất chỉ từ một cột. Khi SSI giảm đồng thời EPI giảm nhiều,\allowbreak{} cần xem vùng chuyển tiếp trước khi kết luận lợi ích.
+\par
+Kết quả bộ mẫu cho thấy Lee,\allowbreak{} Kuan và Box có các giá trị gần nhau trong cấu hình khảo sát. Điều này phù hợp với cơ chế khi trọng số thích nghi nhỏ: kết quả tiến gần trung bình cục bộ. Không có căn cứ nói Lee luôn bảo toàn biên tốt nhất. Median và Gaussian cho đánh đổi khác,\allowbreak{} tùy phân bố cường độ và kết cấu của từng ảnh.
+\par
+ENL có thể tăng rất mạnh khi ROI góc trên trở nên gần hằng. Đây là dấu hiệu cần xem lại ROI,\allowbreak{} không phải bằng chứng số look vật lý tăng tương ứng. Bảng nguồn giữ ENL và thời gian để người đọc kiểm tra; thời gian đang đo toàn pipeline với cùng cấu hình phân đoạn,\allowbreak{} không phải chỉ thời gian riêng kernel lọc. Độ lệch chuẩn lớn cần được giữ lại,\allowbreak{} không chỉ báo trung bình.
+\par
+\section*{4.6. Khảo sát CLAHE và độ nhạy tham số}
+\addcontentsline{toc}{section}{4.6. Khảo sát CLAHE và độ nhạy tham số}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/clahe_survey.png}
+\par\small Hình 4.1. AMBE và entropy trung bình theo clip và grid trên bộ mẫu.
+\end{center}
+Bảng 4.7 là lát cắt clip=\allowbreak{}2 của khảo sát ở Hình 4.1. Hình 4.1 giúp trả lời tham số CLAHE thay đổi độ sáng và phân bố mức xám như thế nào. Mỗi điểm được tổng hợp từ cùng 10 ảnh. Clip và grid là hai yếu tố khác nhau: clip điều chỉnh cắt histogram,\allowbreak{} grid thay đổi kích thước vùng thống kê. Tăng entropy sau biến đổi không tự chứng minh vùng dầu được tách tốt hơn.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.7. Một số cấu hình tại clip=\allowbreak{}2}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Grid} & \textbf{AMBE (TB \ensuremath{\pm} SD)} & \textbf{Entropy (TB \ensuremath{\pm} SD)}\\\hline
+\endhead
+4 & 7.273 \ensuremath{\pm} 6.129 & 6.558 \ensuremath{\pm} 1.034\\\hline
+8 & 6.717 \ensuremath{\pm} 4.953 & 6.463 \ensuremath{\pm} 0.996\\\hline
+16 & 5.654 \ensuremath{\pm} 4.970 & 6.280 \ensuremath{\pm} 1.039\\\hline
+\end{longtable}}
+Mask cuối có thể ít thay đổi giữa hai cấu hình khi quy tắc chọn ảnh phân đoạn chuyển sang reference trước CLAHE. Vì thế cần báo cả ảnh tăng cường,\allowbreak{} tỷ lệ vùng ứng viên và ảnh thực sự được dùng để phân đoạn,\allowbreak{} không suy luận từ histogram hiển thị duy nhất. Không chọn thông số dựa vào vẻ đẹp của một ảnh rồi coi đó là tối ưu trên toàn dataset.
+\par
+\section*{4.7. Điều kiện bất lợi: nhiễu và mật độ biên}
+\addcontentsline{toc}{section}{4.7. Điều kiện bất lợi: nhiễu và mật độ biên}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/edge_noise.png}
+\par\small Hình 4.2. Mật độ biên theo mức nhiễu Gauss,\allowbreak{} trung bình trên bộ mẫu.
+\end{center}
+Hình 4.2 cho biết mỗi phương pháp phản ứng thế nào khi đầu vào thay đổi. Mật độ biên là tỷ lệ pixel khác 0 trong bản đồ biên; không phải precision/\allowbreak{}recall vì chưa có nhãn biên chuẩn. Một phương pháp trả rất ít biên có thể đã bỏ sót đối tượng,\allowbreak{} còn nhiều biên có thể do nền hoặc nhiễu. Cần đối chiếu đồng thời ảnh và chỉ số.
+\par
+Nhiễu được sinh bằng bộ sinh số giả ngẫu nhiên với seed 2026. Mỗi ảnh ở mỗi mức có một realization; phương pháp biên được chạy trên cùng ảnh nhiễu ở mức đó để so sánh công bằng. Độ lệch chuẩn hiện tại là giữa các ảnh,\allowbreak{} không phải khoảng tin cậy trên nhiều lần sinh nhiễu. Nếu cần kết luận ổn định theo nhiễu,\allowbreak{} cần lặp nhiều seed và tách hai nguồn biến thiên.
+\par
+Việc tự thêm Gauss là điều kiện thử kiểm soát được,\allowbreak{} không nói ảnh SAR gốc chỉ có nhiễu Gauss. Kết quả được dùng để giải thích hạn chế của đạo hàm và ngưỡng hóa,\allowbreak{} đúng mục tiêu phân tích điều kiện bất lợi của học phần. Thời gian của Canny có thể tăng khi số điểm mạnh/\allowbreak{}yếu và độ liên thông tăng.
+\par
+\section*{4.8. Ca 00013 và các ảnh biển bị nhận nhầm}
+\addcontentsline{toc}{section}{4.8. Ca 00013 và các ảnh biển bị nhận nhầm}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/class_1_00013_clahe.png}
+\par\small Hình 4.3. Ảnh 00013: đầu vào,\allowbreak{} ảnh lọc,\allowbreak{} CLAHE và biên ứng viên.
+\end{center}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/roi_00013.png}
+\par\small Hình 4.4. Cùng ROI vệt chính trên ảnh gốc,\allowbreak{} ảnh lọc và ảnh tăng cường.
+\end{center}
+Hình 4.4 phóng to vệt chính; Bảng 4.8 cho thấy các ảnh biển vẫn có báo nhầm. Với cấu hình mặc định hiện tại,\allowbreak{} ảnh 00013 giữ 1 vùng ứng viên,\allowbreak{} chiếm 2.08\% ảnh,\allowbreak{} CR trung bình 0.520. Hình 4.3–4.4 cho thấy vệt chính nổi bật hơn,\allowbreak{} nhưng chưa có mask chuẩn để lượng hóa độ khớp. Trong năm ảnh biển mẫu,\allowbreak{} 3/\allowbreak{}5 ảnh vẫn có ứng viên; do đó không thể kết luận lọc đã loại hết báo động giả.
+\par
+CLAHE làm rõ cả dao động nền vốn khó thấy bằng mắt; Otsu lại tối ưu phân tách mức xám chứ không tối ưu nhãn dầu. Nếu mask trước đó nhận nền thành một vùng lớn có lỗ,\allowbreak{} phép lấy biên sẽ vẽ cả mép các lỗ. Đây là lý do nhiều vòng nhỏ trên hình không nhất thiết biểu thị nhiều đối tượng riêng. Lỗi gán nhãn chủ yếu phát sinh ở phân đoạn; bước lấy biên chỉ phản ánh mask đó.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.8. Ảnh biển mẫu,\allowbreak{} cấu hình CLAHE mặc định}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Ảnh biển} & \textbf{Số vùng} & \textbf{Diện tích (\%)}\\\hline
+\endhead
+sea\_surface\_01 & 2 & 19.31\\\hline
+sea\_surface\_02 & 3 & 31.72\\\hline
+sea\_surface\_03 & 0 & 0.00\\\hline
+sea\_surface\_04 & 0 & 0.00\\\hline
+sea\_surface\_05 & 4 & 16.38\\\hline
+\end{longtable}}
+\begin{center}\includegraphics[width=\linewidth,height=6cm,keepaspectratio]{\vroot assets/sea_surface_01_clahe.png}
+\par\small Hình 4.5. Ca báo nhầm sea\_surface\_01: vùng nền tối được giữ thành ứng viên.
+\end{center}
+Hình 4.5 là ví dụ thất bại ở ảnh được đặt trong nhóm biển. Hai vùng qua được các kiểm tra diện tích và tương phản vì các tiêu chí đó mô tả hình học/\allowbreak{}mức xám,\allowbreak{} không kiểm chứng bản chất dầu. Closing có thể nối nền tối thành vùng lớn. Vì vậy lọc diện tích đơn thuần không đủ sửa loại báo nhầm này; cần đánh giá quy tắc nền cục bộ và mask gán tay như đề xuất ở chương 5.
+\par
+\section*{4.9. Đánh giá cấp ảnh trên cả hai lớp}
+\addcontentsline{toc}{section}{4.9. Đánh giá cấp ảnh trên cả hai lớp}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.9. Ma trận nhầm lẫn theo nhãn thư mục}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Nhãn thật theo thư mục} & \textbf{Không có ứng viên} & \textbf{Có ứng viên}\\\hline
+\endhead
+Class\_0 & 810 & 2885\\\hline
+Class\_1 & 204 & 1639\\\hline
+\end{longtable}}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.10. Chỉ số cấp ảnh và phạm vi diễn giải}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Chỉ số} & \textbf{Giá trị}\\\hline
+\endhead
+Precision & 36.23\%\\\hline
+Recall & 88.93\%\\\hline
+F1 & 51.48\%\\\hline
+Specificity & 21.92\%\\\hline
+Accuracy cấp ảnh & 44.22\%\\\hline
+\end{longtable}}
+Bảng 4.9 và Bảng 4.10 phải được đọc cùng phạm vi nhãn cấp ảnh. Quy tắc dự đoán dương tính là có ít nhất một vùng tối được giữ. Kết quả cho thấy nhiều ảnh Class\_0 cũng có vùng thỏa diện tích và tương phản,\allowbreak{} nên độ đặc hiệu còn thấp. Đây là hạn chế của quy tắc dựa vào cường độ và hình thái,\allowbreak{} không thể sửa bằng cách đổi nhãn heuristic thành “sạch chuẩn”. Tỷ lệ phát hiện cao ở Class\_1 phải được đọc cùng số báo nhầm.
+\par
+Precision=\allowbreak{}TP/\allowbreak{}(TP+\allowbreak{}FP),\allowbreak{} Recall=\allowbreak{}TP/\allowbreak{}(TP+\allowbreak{}FN),\allowbreak{} F1=\allowbreak{}2TP/\allowbreak{}(2TP+\allowbreak{}FP+\allowbreak{}FN),\allowbreak{} Specificity=\allowbreak{}TN/\allowbreak{}(TN+\allowbreak{}FP),\allowbreak{} Accuracy=\allowbreak{}(TP+\allowbreak{}TN)/\allowbreak{}(TP+\allowbreak{}TN+\allowbreak{}FP+\allowbreak{}FN). Các chỉ số này dựa trên giả định ý nghĩa nhãn thư mục và ở cấp ảnh. Không có giá trị IoU/\allowbreak{}Dice hoặc sai số diện tích thực vì thiếu mask,\allowbreak{} độ phân giải mặt đất và xác minh vật lý.
+\par
+Không loại các ca xấu khỏi mẫu đánh giá và không dùng tập này để khẳng định hiệu năng triển khai ngoài thực tế. Tất cả 5.538 đường dẫn được lưu ở bảng per\_image; số ảnh mỗi lớp được kiểm tra trước tổng hợp. Bước tiếp theo có căn cứ là xây dựng nhãn vùng trên một tập đại diện và đối chiếu các quy tắc nền cục bộ,\allowbreak{} không phải tăng độ mạnh CLAHE để làm hình bắt mắt hơn.
+\par
+Các thí nghiệm bộ lọc,\allowbreak{} CLAHE và nhiễu dùng toàn bộ tập khảo sát 10 ảnh,\allowbreak{} không phải 5.538 ảnh cho từng cấu hình. Đánh giá cấp ảnh dùng toàn bộ 5.538 ảnh duy nhất có trong repo. Chưa có đánh giá độc lập theo cảnh chụp,\allowbreak{} chưa có mask chuẩn và chưa chạy ma trận tất cả cấu hình trên toàn bộ bộ dữ liệu. Vì vậy không suy rộng mức cải thiện trên tập nhỏ thành kết luận trên toàn tập. Các công trình [2],\allowbreak{} [3] dùng bối cảnh và giao thức khác; không đặt cạnh nhau các accuracy không tương thích để tuyên bố vượt trội.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 4.11. Thống kê toàn bộ dữ liệu,\allowbreak{} trung bình \ensuremath{\pm} SD}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Lớp /\allowbreak{} số ảnh} & \textbf{Diện tích ứng viên (\%)} & \textbf{Thời gian (ms/\allowbreak{}ảnh)}\\\hline
+\endhead
+0 /\allowbreak{} 3.695 & 34,\allowbreak{}780 \ensuremath{\pm} 29,\allowbreak{}352 & 170,\allowbreak{}938 \ensuremath{\pm} 69,\allowbreak{}992\\\hline
+1 /\allowbreak{} 1.843 & 10,\allowbreak{}477 \ensuremath{\pm} 17,\allowbreak{}177 & 174,\allowbreak{}847 \ensuremath{\pm} 59,\allowbreak{}217\\\hline
+\end{longtable}}
+Bảng 4.11 cho thấy ảnh lớp 0 có diện tích ứng viên trung bình lớn hơn lớp 1: nền tối gây báo nhầm,\allowbreak{} phù hợp hạn chế ngưỡng histogram chương 2. Thời gian gồm đọc và xử lý,\allowbreak{} đo với 4 worker; không phải độ trễ đơn luồng hoặc thời gian toàn đợt. Hai lớp không phải hai phương pháp nên không in đậm một lớp như kết quả tốt nhất.
+\par
+\clearpage
+\begin{center}\Large\bfseries CHƯƠNG 5. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN\end{center}
+\section*{5.1. Đối chiếu mục tiêu và kết quả đạt được}
+\addcontentsline{toc}{section}{5.1. Đối chiếu mục tiêu và kết quả đạt được}
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 5.1. Đối chiếu mục tiêu chương 1}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}|>{\raggedright\arraybackslash}p{5.035cm}}
+\textbf{Mục tiêu} & \textbf{Kết quả} & \textbf{Giới hạn}\\\hline
+\endhead
+M1: lõi NumPy & Đã triển khai và có kiểm tra ranh giới import & FFT dùng primitive NumPy; I/\allowbreak{}O/\allowbreak{}resize ở lớp tích hợp\\\hline
+M2: kiểm chứng & 5 ví dụ; 33 thuật toán/\allowbreak{}chỉ số \ensuremath{\times}18 ca & 558 PASS,\allowbreak{} 36 DESCRIPTIVE; không phải mọi thuật toán có API độc lập\\\hline
+M3: demo & Streamlit,\allowbreak{} AppTest và xuất PNG/\allowbreak{}JSON & Chưa là kiểm thử mọi trình duyệt/\allowbreak{}tệp ảnh\\\hline
+M4: tái lập & Một lệnh,\allowbreak{} kết quả từng ảnh,\allowbreak{} manifest/\allowbreak{}hash & CSIRO có metadata/\allowbreak{}giấy phép; chưa rõ 92 ảnh chênh lệch\\\hline
+M5: hồ sơ nhóm & Phân công,\allowbreak{} báo cáo,\allowbreak{} slide,\allowbreak{} mẫu đánh giá & Tên đã cung cấp; MSSV/\allowbreak{}chữ ký chờ điền; video đang hoãn\\\hline
+\end{longtable}}
+Bảng 5.1 đối chiếu M1–M5. Pipeline giải thích được từng bước; các lỗi Otsu,\allowbreak{} ảnh hằng,\allowbreak{} gradient uint8 và LoG gần 0 có kiểm thử. Tuy nhiên precision 36,\allowbreak{}23\% và 2.885 báo nhầm chưa đủ cho vận hành nhận diện dầu.
+\par
+\section*{5.2. Hạn chế và hướng phát triển khả thi}
+\addcontentsline{toc}{section}{5.2. Hạn chế và hướng phát triển khả thi}
+Bảng 5.2 đề xuất các bước kiểm tra cụ thể cho ba hướng cải tiến. Hạn chế dữ liệu gồm JPEG không có thông tin hiệu chuẩn bức xạ đi kèm mỗi ảnh,\allowbreak{} thiếu mask pixel,\allowbreak{} ít hơn bộ CSIRO công bố 92 ảnh và chưa xác định các chip có cùng cảnh chụp. Hạn chế thuật toán gồm ngưỡng toàn cục,\allowbreak{} ROI ENL cố định,\allowbreak{} vòng nền có thể chứa vùng ứng viên khác và tham số diện tích phụ thuộc resize. Hạn chế thực nghiệm gồm bộ mẫu nhỏ cho khảo sát tham số,\allowbreak{} một realization mỗi mức nhiễu và benchmark chạy song song có ảnh hưởng thời gian.
+\par
+{\fontsize{10.5}{12}\selectfont\textit{Bảng 5.2. Ba hướng tiếp tục trong xử lý ảnh truyền thống}
+\begin{longtable}{>{\raggedright\arraybackslash}p{7.693cm}|>{\raggedright\arraybackslash}p{7.693cm}}
+\textbf{Hướng} & \textbf{Cách kiểm tra đề xuất}\\\hline
+\endhead
+Ước lượng nền cục bộ & So sánh vòng nền loại trừ vùng ứng viên với nền toàn cục; giữ tập đánh giá riêng\\\hline
+Phân đoạn đa tỉ lệ & Khảo sát cửa sổ và phép hình thái theo độ phân giải; đánh giá bỏ sót/\allowbreak{}nhận nhầm\\\hline
+Gán mask tập đại diện & Nhóm khoanh vùng độc lập,\allowbreak{} thống nhất bất đồng; tính IoU/\allowbreak{}Dice và sai số biên\\\hline
+\end{longtable}}
+Ba hướng ở Bảng 5.2 không dùng ML/\allowbreak{}DL. Cần cố định giả thuyết,\allowbreak{} tham số và tiêu chí trước đánh giá; báo đồng thời precision/\allowbreak{}recall để tránh chỉ chọn chỉ số thuận lợi.
+\par
+\clearpage
+\section*{Phụ lục A. Cài đặt và sử dụng ứng dụng}
+\addcontentsline{toc}{section}{Phụ lục A. Cài đặt và sử dụng ứng dụng}
+Các lệnh dưới đây được chạy tại thư mục gốc của dự án. Ứng dụng hỗ trợ Python 3.10 trở lên; các kết quả trong báo cáo được thực hiện với Python 3.13.5. Trước hết, tạo môi trường riêng và cài các thư viện trong requirements.txt, sau đó mở ứng dụng bằng Streamlit.
+\par
+\begin{Verbatim}[fontsize=\fontsize{9}{10.3}\selectfont]
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m streamlit run streamlit_app.py
+\end{Verbatim}
+Khi ứng dụng khởi động, mở địa chỉ được hiển thị trong cửa sổ lệnh, thường là http://localhost:8501. Có thể chọn ảnh mẫu hoặc tải ảnh lên, thay đổi bộ lọc và quan sát kết quả ở từng bước.
+\par
+Để chạy lại các thí nghiệm với bộ thư viện đã khóa phiên bản, dùng hai lệnh uv bên dưới. Các bảng số liệu và ảnh minh họa được lưu trong results/reproducible/; kết quả đối chiếu thư viện nằm trong results/verification/. Thư mục evidence/ đi kèm báo cáo lưu bản sao số liệu đã dùng. Đợt chạy này chỉ xuất ảnh minh họa được chọn, chưa lưu mask của toàn bộ 5.538 ảnh.
+\par
+\begin{Verbatim}[fontsize=\fontsize{9}{10.3}\selectfont]
+uv sync --locked --all-extras
+uv run python reproduce.py
+\end{Verbatim}
+\section*{Phụ lục B. Kiểm tra lại ví dụ tính tay}
+\addcontentsline{toc}{section}{Phụ lục B. Kiểm tra lại ví dụ tính tay}
+Ví dụ ở chương 2 được kiểm tra bằng cách gọi lại các hàm đang dùng trong dự án. Với ma trận Lee, giá trị tại tâm sau lọc phải bằng 111; với HE, bốn mức đầu của LUT phải là [0, 85, 170, 255]. Các lệnh assert giúp phát hiện ngay khi kết quả khác giá trị tính tay.
+\par
+\begin{Verbatim}[fontsize=\fontsize{9}{10.3}\selectfont]
+import sys, json
+from pathlib import Path
+import numpy as np
+root = next(p for p in Path(__file__).resolve().parents
+            if (p / "src/tv3/filters.py").exists())
+sys.path.insert(0, str(root))
+from src.filters import custom_lee_filter
+from src.enhancement import global_histogram_equalization
+a = np.full((5, 5), 100, dtype=np.uint8)
+a[2, 2] = 200
+actual = int(custom_lee_filter(a, 3, 4)[2, 2])
+assert actual == 111, actual
+h = np.repeat(np.arange(4, dtype=np.uint8), 4).reshape(4, 4)
+lut = global_histogram_equalization(h)[1][:4]
+assert np.array_equal(lut, [0, 85, 170, 255])
+result = {"lee_expected": 111, "lee_actual": actual,
+          "he_lut": lut.tolist(), "max_abs_error": 0}
+Path(__file__).with_name("example_result.json").write_text(
+    json.dumps(result, indent=2), encoding="utf-8")
+print(json.dumps(result))
+\end{Verbatim}
+Chạy uv run python report\_overleaf/v2/verify\_example.py từ thư mục gốc. Nếu hai phép kiểm tra đều đạt, chương trình ghi kết quả vào example\_result.json. Lần kiểm chứng dùng trong báo cáo cho sai số lớn nhất bằng 0.
+\par
+\clearpage
+\section*{Phụ lục C. Nhật ký làm việc của nhóm}
+\addcontentsline{toc}{section}{Phụ lục C. Nhật ký làm việc của nhóm}
+Bảng dưới đây tóm tắt kế hoạch làm việc theo tuần, gồm nội dung dự kiến và thành viên phụ trách. Cách sắp xếp này giúp nhóm theo dõi các đầu việc và đối chiếu với phần được phân công.
+\par
+{\fontsize{10.5}{12}\selectfont
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{12.2cm}}
+\textbf{Tuần / thời gian} & \textbf{Nội dung dự kiến / phụ trách}\\[3pt]\hline
+\endhead
+1: 10/08-16/08 & Thống nhất yêu cầu và phạm vi bài toán (TV1).\\[3pt]\hline
+2: 17/08-23/08 & Chuẩn bị dữ liệu, kiểm tra nhãn ảnh (TV5).\\[3pt]\hline
+3: 24/08-30/08 & Tìm hiểu histogram và biến đổi mức xám (TV3).\\[3pt]\hline
+4: 31/08-06/09 & Cài đặt, thử nghiệm các bộ lọc không gian (TV3).\\[3pt]\hline
+5: 07/09-13/09 & Khảo sát Lee, Kuan và Frost (TV3).\\[3pt]\hline
+6: 14/09-20/09 & Khảo sát CLAHE và lọc đồng hình (TV3).\\[3pt]\hline
+7: 21/09-27/09 & Cài đặt Sobel, LoG và Canny (TV4).\\[3pt]\hline
+8: 28/09-04/10 & Xử lý hình thái và các vùng liên thông (TV4).\\[3pt]\hline
+9: 05/10-11/10 & Ghép pipeline, hoàn thiện giao diện demo (TV1).\\[3pt]\hline
+10: 12/10-18/10 & Đối chiếu kết quả với hàm thư viện (TV2).\\[3pt]\hline
+11: 19/10-25/10 & Chạy thí nghiệm khảo sát tham số (TV5).\\[3pt]\hline
+12: 26/10-01/11 & Phân tích ảnh báo nhầm và ảnh bỏ sót (TV5).\\[3pt]\hline
+13: 02/11-08/11 & Tổng hợp số liệu, viết báo cáo và slide (TV1).\\[3pt]\hline
+14: 09/11-11/11 & Rà soát nội dung, chuẩn bị bảo vệ (TV1).\\[3pt]\hline
+\end{longtable}}
+Trong quá trình chuẩn bị báo cáo, công cụ AI được dùng để hỗ trợ rà soát mã và gợi ý cách trình bày. Các gợi ý cần được đối chiếu với mã nguồn, số liệu thực nghiệm và tài liệu tham khảo trước khi đưa vào bản nộp.
+\par
+\clearpage
+\section*{Tài liệu tham khảo}
+\addcontentsline{toc}{section}{Tài liệu tham khảo}
+[1] Bộ môn Xử lý ảnh,\allowbreak{} UTC,\allowbreak{} “ds btl xla VÀ HƯỚNG DẪN,\allowbreak{}” tài liệu hướng dẫn BTL trong dự án,\allowbreak{} không ghi năm.
+\par
+[2] C. Brekke and A. H. S. Solberg,\allowbreak{} “Oil spill detection by satellite remote sensing,\allowbreak{}” Remote Sensing of Environment,\allowbreak{} vol. 95,\allowbreak{} pp. 1–13,\allowbreak{} 2005,\allowbreak{} doi:10.1016/\allowbreak{}j.rse.2004.11.015.
+\par
+[3] K. Topouzelis,\allowbreak{} “Oil spill detection by SAR images: Dark formation detection,\allowbreak{} feature extraction and classification algorithms,\allowbreak{}” Sensors,\allowbreak{} vol. 8,\allowbreak{} pp. 6642–6659,\allowbreak{} 2008,\allowbreak{} doi:10.3390/\allowbreak{}s8106642.
+\par
+[4] J.-S. Lee,\allowbreak{} “Digital image enhancement and noise filtering by use of local statistics,\allowbreak{}” IEEE TPAMI,\allowbreak{} vol. PAMI-2,\allowbreak{} pp. 165–168,\allowbreak{} 1980,\allowbreak{} doi:10.1109/\allowbreak{}TPAMI.1980.4766994.
+\par
+[5] A. M. Reza,\allowbreak{} “Realization of the contrast limited adaptive histogram equalization (CLAHE) for real-time image enhancement,\allowbreak{}” Journal of VLSI Signal Processing Systems,\allowbreak{} vol. 38,\allowbreak{} pp. 35–44,\allowbreak{} 2004,\allowbreak{} doi:10.1023/\allowbreak{}B:VLSI.0000028532.53893.82.
+\par
+[6] J. Canny,\allowbreak{} “A computational approach to edge detection,\allowbreak{}” IEEE TPAMI,\allowbreak{} vol. PAMI-8,\allowbreak{} pp. 679–698,\allowbreak{} 1986,\allowbreak{} doi:10.1109/\allowbreak{}TPAMI.1986.4767851.
+\par
+[7] N. Otsu,\allowbreak{} “A threshold selection method from gray-level histograms,\allowbreak{}” IEEE TSMC,\allowbreak{} vol. 9,\allowbreak{} pp. 62–66,\allowbreak{} 1979,\allowbreak{} doi:10.1109/\allowbreak{}TSMC.1979.4310076.
+\par
+[8] D. T. Kuan et al.,\allowbreak{} “Adaptive noise smoothing filter for images with signal-dependent noise,\allowbreak{}” IEEE TPAMI,\allowbreak{} vol. PAMI-7,\allowbreak{} pp. 165–177,\allowbreak{} 1985,\allowbreak{} doi:10.1109/\allowbreak{}TPAMI.1985.4767641.
+\par
+[9] V. S. Frost et al.,\allowbreak{} “A model for radar images and its application to adaptive digital filtering of multiplicative noise,\allowbreak{}” IEEE TPAMI,\allowbreak{} vol. PAMI-4,\allowbreak{} pp. 157–166,\allowbreak{} 1982,\allowbreak{} doi:10.1109/\allowbreak{}TPAMI.1982.4767223.
+\par
+[10] R. C. Gonzalez and R. E. Woods,\allowbreak{} Digital Image Processing,\allowbreak{} 4th ed. Pearson,\allowbreak{} 2018.
+\par
+[11] OpenCV,\allowbreak{} “Image processing reference,\allowbreak{}” tài liệu thư viện,\allowbreak{} \url{https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html}. Đối chứng thực tế dùng phiên bản ghi trong manifest.
+\par
+[12] SciPy,\allowbreak{} “Multidimensional image processing (scipy.ndimage),\allowbreak{}” tài liệu thư viện,\allowbreak{} \url{https://docs.scipy.org/doc/scipy/reference/ndimage.html}. Đối chứng thực tế dùng phiên bản ghi trong manifest.
+\par
+[13] D. Blondeau-Patissier,\allowbreak{} CSIRO Sentinel-1 SAR image dataset of oil- and non-oil features for machine learning (Deep Learning),\allowbreak{} CSIRO,\allowbreak{} Dec. 15,\allowbreak{} 2022,\allowbreak{} doi:10.25919/\allowbreak{}4v55-dn16. Nguồn và CC BY-SA 4.0 theo metadata/\allowbreak{}giấy phép kèm repo; số ảnh bản cục bộ khác số công bố.
+\par
+\end{document}

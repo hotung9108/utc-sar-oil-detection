@@ -1,0 +1,204 @@
+﻿1
+00:00:00,000 --> 00:00:07,000
+DEMO BTL XỬ LÝ ẢNH SAR
+Nhóm 4 · Thuật toán cổ điển bằng NumPy
+
+2
+00:00:07,000 --> 00:00:15,000
+Video thao tác trên ứng dụng thật.
+Không dùng mô hình machine learning hay deep learning.
+
+3
+00:00:15,000 --> 00:00:23,000
+Mục tiêu: lọc nhiễu, tăng tương phản, tìm biên
+và khoanh vùng tối ứng viên trên ảnh SAR.
+
+4
+00:00:23,000 --> 00:00:32,000
+Chọn ảnh class_1_00013 trong danh sách mẫu.
+Ảnh được chuyển xám và xử lý ở kích thước 400 × 400.
+
+5
+00:00:32,000 --> 00:00:40,000
+Ba ảnh đầu: ảnh gốc, ảnh sau lọc
+và ảnh sau tăng tương phản.
+
+6
+00:00:40,000 --> 00:00:49,000
+Chuyển bộ lọc sang none để đối chiếu.
+Ảnh gốc có vệt tối chính và dao động nền dạng hạt.
+
+7
+00:00:49,000 --> 00:00:57,000
+Bật lại Lee, cửa sổ 5 × 5 và L = 4.
+Lee làm mịn theo trung bình và phương sai cục bộ.
+
+8
+00:00:57,000 --> 00:01:05,000
+Lọc giảm dao động nhưng không xóa hết nhiễu.
+Lọc quá mạnh cũng có thể làm mất chi tiết thật.
+
+9
+00:01:05,000 --> 00:01:14,000
+Tắt tăng tương phản để nhìn ảnh sau lọc.
+Vệt chính còn thấy, nhưng các chi tiết nền ít nổi bật hơn.
+
+10
+00:01:14,000 --> 00:01:23,000
+Bật CLAHE: clip limit = 2, lưới 8 × 8.
+Thuật toán tăng tương phản theo từng vùng nhỏ.
+
+11
+00:01:23,000 --> 00:01:32,000
+CLAHE làm rõ cả vệt chính lẫn kết cấu nền.
+Những chấm tối dễ thấy hơn chưa phải bằng chứng dầu.
+
+12
+00:01:32,000 --> 00:01:41,000
+Tăng clip limit để khảo sát tác động.
+Tương phản mạnh hơn không đảm bảo mask đúng hơn.
+
+13
+00:01:41,000 --> 00:01:50,000
+Trả clip limit về 2 để giữ cấu hình mặc định.
+Ảnh sau lọc được giữ làm reference trước CLAHE.
+
+14
+00:01:50,000 --> 00:01:59,000
+Reference hỗ trợ chọn ảnh phân đoạn
+và đo tương phản vùng so với nền xung quanh.
+
+15
+00:01:59,000 --> 00:02:08,000
+Chuyển phương pháp biên sang Canny.
+Canny tìm nơi mức xám thay đổi và liên kết các điểm biên.
+
+16
+00:02:08,000 --> 00:02:17,000
+Biên có thể xuất hiện ở cả nhiễu nhỏ.
+Bản đồ biên không phải mask diện tích dầu.
+
+17
+00:02:17,000 --> 00:02:26,000
+Trở lại morphology để tạo mask vùng ứng viên.
+Otsu tạo vùng tối, sau đó mở và đóng hình thái.
+
+18
+00:02:26,000 --> 00:02:35,000
+Vùng còn lại phải đạt diện tích tối thiểu
+và đủ tương phản với nền lân cận.
+
+19
+00:02:35,000 --> 00:02:44,000
+Thử tăng ngưỡng tương phản vùng/nền.
+Điều kiện khắt khe hơn có thể loại cả vùng cần tìm.
+
+20
+00:02:44,000 --> 00:02:53,000
+Trả ngưỡng tương phản về 0,10.
+Mỗi lần đổi tham số, ứng dụng tính lại kết quả.
+
+21
+00:02:53,000 --> 00:03:02,000
+Mở Chỉ số và phân tích để xem histogram.
+Histogram đếm số pixel ở từng mức xám.
+
+22
+00:03:02,000 --> 00:03:11,000
+Đường lát cắt thể hiện mức xám theo một hàng.
+So sánh ảnh gốc, sau lọc và sau tăng tương phản.
+
+23
+00:03:11,000 --> 00:03:20,000
+Đổi hàng lát cắt để xem vị trí khác trong ảnh.
+Chỉ số tăng cường không tự chứng minh đường bao đúng.
+
+24
+00:03:20,000 --> 00:03:29,000
+Quay về Kết quả ảnh và xem số vùng, diện tích.
+Diện tích ở đây tính bằng pixel và phần trăm ảnh.
+
+25
+00:03:29,000 --> 00:03:37,000
+Tải mask PNG để lưu vùng ứng viên.
+Tệp cấu hình và chỉ số giúp kiểm tra lại lần chạy.
+
+26
+00:03:37,000 --> 00:03:46,000
+Kết quả được xuất từ chính giao diện ứng dụng.
+Chưa đổi diện tích pixel sang mét vuông ngoài biển.
+
+27
+00:03:46,000 --> 00:03:55,000
+Tải lên sea_surface_01.jpg để thử ảnh nền biển.
+Giữ cấu hình xử lý giống ảnh trước.
+
+28
+00:03:55,000 --> 00:04:04,000
+Đây là trường hợp bất lợi cần trình bày trung thực.
+Nền biển cũng có thể tối hơn khu vực xung quanh.
+
+29
+00:04:04,000 --> 00:04:13,000
+Ở mẫu này, chương trình vẫn tạo vùng ứng viên.
+Vùng qua được tiêu chí chưa chắc là dầu.
+
+30
+00:04:13,000 --> 00:04:22,000
+Vì chưa có mask chuẩn, nhóm chưa báo IoU/Dice.
+Không dùng một ảnh thuận mắt để kết luận toàn hệ thống.
+
+31
+00:04:22,000 --> 00:04:31,000
+Mở bảng Đối chiếu thư viện.
+So sánh kết quả tự cài với hàm hoặc phép ghép đối chứng.
+
+32
+00:04:31,000 --> 00:04:40,000
+Sai số lớn nhất và MSE kiểm tra tính toán.
+Các biến thể được tách riêng, không coi là khớp tuyệt đối.
+
+33
+00:04:40,000 --> 00:04:49,000
+Bảng là kết quả kiểm chứng đã lưu trong dự án,
+không phải phép kiểm chứng mới chạy trên ảnh đang chọn.
+
+34
+00:04:49,000 --> 00:04:58,000
+Tab phân công cho biết vai trò của 5 thành viên.
+Mỗi người cần hiểu cả pipeline để trả lời vấn đáp.
+
+35
+00:04:58,000 --> 00:05:07,000
+Quay lại ảnh 00013 và cấu hình mặc định
+để tổng kết các bước xử lý vừa minh họa.
+
+36
+00:05:07,000 --> 00:05:16,000
+Cấu hình báo cáo giữ 1 vùng, 3.328 pixel, tức 2,08%.
+Đây là diện tích mask ứng viên, chưa xác nhận là dầu.
+
+37
+00:05:16,000 --> 00:05:25,000
+Tăng tương phản giúp quan sát, nhưng có thể làm rõ nhiễu.
+Phát hiện biên và xác nhận dầu là hai nhiệm vụ khác nhau.
+
+38
+00:05:25,000 --> 00:05:34,000
+Kết quả toàn tập đã lưu cho thấy còn nhiều báo nhầm.
+Cần đánh giá nhiều ảnh, không chỉ một trường hợp đẹp.
+
+39
+00:05:34,000 --> 00:05:43,000
+Hướng cải tiến: chọn nền cục bộ phù hợp hơn,
+khảo sát kích thước cấu trúc và bổ sung mask gán tay.
+
+40
+00:05:43,000 --> 00:05:52,000
+Ứng dụng: streamlit run streamlit_app.py
+Kết quả thực nghiệm: results/reproducible/
+
+41
+00:05:52,000 --> 00:06:00,000
+Cảm ơn cô và các bạn đã theo dõi.
+Video chỉ có phụ đề để nhóm tự thu lời dẫn.

@@ -1,0 +1,137 @@
+SPEAKER NOTES – BẢN GIẢI THÍCH TRỰC QUAN, DỄ HIỂU
+Đi cùng 18 slide của BAO_VE_BTL_XLA_V2.pptx
+
+CÁCH DÙNG
+Mỗi slide dưới đây có lời nói liền mạch, có thể đọc để tập trình bày.
+Các ví dụ ví von giúp hình dung phép toán, không thay thế mô hình vật lý.
+Các ví dụ số được ghi rõ là minh họa, trừ số liệu thực nghiệm của dự án.
+Bản này ưu tiên hiểu bài; khi bảo vệ 12 phút, cần chọn ý và diễn tập rút gọn.
+
+======================================================================
+SLIDE 1. XỬ LÝ ẢNH SAR: TỪ KHỬ NHIỄU ĐẾN VÙNG TỐI ỨNG VIÊN
+======================================================================
+
+Kính thưa cô và các bạn, nhóm em xin trình bày hệ thống xử lý ảnh SAR để tìm những vùng tối nghi ngờ trên mặt biển. Trước hết, chúng ta có thể hình dung một bức ảnh như một tờ giấy ô vuông rất lớn. Mỗi ô là một pixel, tức một điểm ảnh, và trong mỗi ô có một con số cho biết nó sáng hay tối. Máy tính không nhìn thấy “biển” hay “dầu” như con người; nó chỉ nhận được bảng số đó. Công việc của nhóm là dùng các phép toán để làm giảm những dao động không mong muốn, làm rõ chênh lệch sáng tối, rồi tìm những cụm điểm tối đáng chú ý. Với ảnh radar mặt biển, dầu có thể làm giảm các gợn sóng nhỏ và khiến tín hiệu phản hồi yếu hơn, nên có thể xuất hiện tối hơn nền biển. Tuy nhiên, vùng lặng gió cũng có thể tối. Vì vậy, ta có thể ví hệ thống như một người khoanh những vị trí cần kiểm tra thêm trên bản đồ: khoanh đúng chỗ đáng chú ý chưa có nghĩa đã xác nhận nguyên nhân. Nhóm gọi đầu ra là vùng tối ứng viên để thể hiện giới hạn đó. Toàn bộ quy trình sử dụng xử lý ảnh cổ điển bằng NumPy; chương trình không học từ tập huấn luyện và không sử dụng mạng nơ-ron. Sau đây, em sẽ làm rõ hệ thống nhận gì và trả về những gì.
+
+======================================================================
+SLIDE 2. BÀI TOÁN VÀ PHẠM VI
+======================================================================
+
+Ảnh dữ liệu của nhóm có kích thước 400 nhân 400, tương đương 160.000 ô trong bảng số vừa nói. Khi chuyển sang ảnh xám 8 bit, mỗi ô nhận một giá trị nguyên từ 0 đến 255: 0 là đen, 255 là trắng, còn các số ở giữa là những mức xám. Hệ thống tạo ra ba loại kết quả có ý nghĩa khác nhau. Ảnh sau xử lý vẫn giống một bức ảnh, nhưng độ sáng và tương phản đã thay đổi. Bản đồ biên giống như dùng bút chì vẽ đường viền quanh những chỗ có sự thay đổi sáng tối. Còn mask giống như dùng bút tô kín toàn bộ vùng được chọn: ô thuộc vùng thì đánh dấu 1, ô không thuộc vùng thì đánh dấu 0. Nếu muốn tính diện tích một chiếc lá, ta phải đếm phần được tô kín, chứ không chỉ đếm nét viền quanh lá; tính diện tích vùng tối cũng tương tự. Trong dự án, diện tích được báo bằng số pixel hoặc phần trăm diện tích ảnh. Muốn đổi thành mét vuông còn cần biết mỗi pixel đại diện cho bao nhiêu diện tích ngoài thực tế. Nhóm chưa có đủ thông tin đó nên không quy đổi. Mục tiêu của bài là cài đặt, kiểm chứng và giải thích các phép xử lý, đồng thời đánh giá giới hạn của chúng trên dữ liệu, chứ chưa tạo ra một công cụ xác nhận dầu ngoài thực địa.
+
+======================================================================
+SLIDE 3. PHÂN CÔNG THEO MODULE
+======================================================================
+
+Để dễ hiểu cách chia việc, chúng ta có thể xem hệ thống như một dây chuyền xử lý. Bạn Tuấn chuẩn bị dữ liệu và đo kết quả, giống như chuẩn bị nguyên liệu và kiểm tra sản phẩm. Bạn Tùng phụ trách làm sạch và tăng tương phản ảnh. Bạn Hiếu phụ trách các phép làm nét, tìm biên và xử lý hình dạng vùng. Bạn Dũng kiểm tra cơ sở lý thuyết, tính tay ví dụ và đối chiếu với thư viện để xem phép tính có đúng không. Em là Sơn, phụ trách ghép các công đoạn thành pipeline và xây dựng giao diện để người dùng thao tác. Trong mã nguồn, các phần này được tổ chức theo src/tv1 đến src/tv5. Việc chia module giúp xác định rõ đầu vào và đầu ra: chẳng hạn, bộ lọc nhận ảnh xám và trả lại ảnh xám; bước phân đoạn nhận ảnh và trả lại mask. Nếu một bước trả sai kiểu dữ liệu hoặc thay đổi kích thước không thống nhất thì những bước sau cũng có thể sai. Vì vậy, mỗi người không chỉ cần hiểu phần mình viết mà còn phải hiểu phần trước đưa đến cái gì và phần sau cần cái gì. Khi gặp nhiều chấm tối sau CLAHE, cả người làm tăng tương phản lẫn người làm biên đều cần cùng giải thích, thay vì cho rằng đó chỉ là lỗi của một module. Tiếp theo, Tuấn sẽ giới thiệu dữ liệu mà dây chuyền này xử lý.
+
+======================================================================
+SLIDE 4. DỮ LIỆU VÀ PHẠM VI ĐÁNH GIÁ
+======================================================================
+
+Bản dữ liệu cục bộ sau loại trùng có 5.538 ảnh: 3.695 ảnh thuộc lớp không dầu và 1.843 ảnh thuộc lớp có dầu theo nhãn thư mục. So với 5.630 ảnh của bộ công bố, bản cục bộ còn thiếu 92 ảnh và nhóm chưa xác định được nguyên nhân. Điều quan trọng nhất là hiểu nhãn đang nói điều gì. Có thể hình dung nhãn cấp ảnh giống như ghi ngoài một phong bì rằng “bên trong có một vết dầu”. Dòng chữ đó không chỉ cho chúng ta vết dầu nằm ở góc nào hay đường bao chạy qua những pixel nào. Vì thế, một ảnh có nhãn dầu nhưng chương trình khoanh nhầm một vùng nền vẫn có thể được tính là đúng ở cấp ảnh nếu quy tắc chỉ kiểm tra có tạo ra ứng viên hay không. Để đánh giá đường bao, cần một mask chuẩn, giống như có người đã tô chính xác vùng cần tìm để đem so với mask máy tạo ra. Dữ liệu hiện dùng chưa có chuẩn pixel đó, nên nhóm chưa báo IoU hay Dice. Nhóm khảo sát các phương án trên 10 ảnh mẫu và chạy một cấu hình mặc định trên toàn bộ 5.538 ảnh. Hai quy mô này khác nhau; không thể lấy kết quả 10 ảnh để nói mọi phương án đều đã được đánh giá trên toàn tập. Dù không có huấn luyện mô hình, việc chọn tham số theo những ảnh đã nhìn cũng có thể làm kết quả thiên về các ảnh đó.
+
+======================================================================
+SLIDE 5. ĐẶC ĐIỂM ẢNH SAR
+======================================================================
+
+Ảnh SAR được tạo từ tín hiệu radar phản hồi, không phải ánh sáng nhìn thấy như ảnh chụp điện thoại. Một đặc điểm thường gặp là các hạt sáng tối xen kẽ, gọi là speckle. Để dễ hình dung, hãy tưởng tượng một vùng đáng lẽ khá đều màu nhưng trên ảnh lại giống một mặt giấy có nhiều hạt đậm nhạt. Những hạt này khiến máy khó biết chỗ nào là thay đổi thật của đối tượng, chỗ nào là dao động của tín hiệu. Mô hình I bằng R nhân eta mô tả ảnh quan sát I là tín hiệu R bị tác động bởi một thành phần nhiễu nhân eta. Nói cách khác, mức dao động có liên hệ với tín hiệu, không chỉ là cộng cùng một lượng nhiễu vào mọi pixel. Tuy nhiên, ảnh của nhóm là JPEG đã qua biến đổi và lưu trữ; không nên coi mọi giá trị xám là số đo radar đã được hiệu chuẩn. Có hai nguy cơ trái chiều: làm mịn mạnh thì mất hạt nhưng cũng có thể mất vệt mảnh; tăng tương phản mạnh thì thấy vệt rõ hơn nhưng cũng thấy hạt rõ hơn. Giống như lau một nét bút chì mảnh trên giấy bẩn, ta muốn xóa vết bẩn nhưng có thể làm nhòe cả nét cần giữ. Vì vậy, nhóm phải quan sát ảnh ở từng bước, chứ không chỉ chọn kết quả cuối nhìn đẹp nhất.
+
+======================================================================
+SLIDE 6. PIPELINE VÀ ẢNH THAM CHIẾU
+======================================================================
+
+Nhánh tìm vùng tối có thể nhớ theo bảy việc nối tiếp: giảm nhiễu bằng Lee, tăng tương phản bằng CLAHE, chia sáng tối bằng Otsu, sửa các chi tiết nhỏ trên mask bằng hình thái học, nhóm pixel thành từng vùng, lọc vùng theo tiêu chí, rồi vẽ đường viền lên ảnh gốc. Hãy hình dung chúng ta đang xử lý một bản đồ: làm sạch bản đồ, làm rõ nét, tô các khu vực cần xét, chỉnh phần tô, đánh số từng khu vực, kiểm tra từng khu vực và cuối cùng đánh dấu để người dùng nhìn thấy. Nhưng có một nhánh rất quan trọng: ảnh ngay sau bộ lọc được giữ lại làm reference, tức ảnh tham chiếu trước CLAHE. Reference giống như giữ một bản trước khi tăng tương phản để có cái đối chiếu; nó vẫn là ảnh đã xử lý, không phải đáp án đúng. Chương trình có thể chọn phân đoạn trên reference nếu các tiêu chí thống kê cho thấy ảnh tăng cường không phù hợp. Khi có reference, phép đo tương phản vùng với nền cũng sử dụng ảnh này. Vì thế, việc ta nhìn ảnh CLAHE rõ hơn không có nghĩa mask nhất thiết được tính trực tiếp từ ảnh CLAHE. Ngoài nhánh tạo mask, ứng dụng còn có nhánh khảo sát biên như Canny và Sobel. Chọn Canny là xem đường biến thiên sáng tối, không phải tự động tính diện tích dầu từ các đường đó.
+
+======================================================================
+SLIDE 7. BỘ LỌC LEE
+======================================================================
+
+Bộ lọc Lee xử lý từng pixel bằng cách nhìn thêm các pixel xung quanh nó. Có thể tưởng tượng đặt một khung cửa sổ nhỏ lên ảnh, xem các con số trong khung rồi quyết định có nên sửa con số ở giữa hay không. Trung bình mu cho biết mức sáng chung; phương sai v cho biết các pixel có giống nhau hay chênh nhau nhiều. Lee tạo một trọng số K trong khoảng 0 đến 1 rồi tính J bằng mu cộng K nhân với I trừ mu. Ta có thể hiểu K như núm điều chỉnh mức tin vào pixel gốc: K gần 0 thì đầu ra gần trung bình hàng xóm, K gần 1 thì gần giá trị ban đầu. Ví dụ minh họa, hàng xóm có trung bình 100, pixel đang xét là 140 và K bằng 0,25, thì kết quả là 100 cộng 0,25 nhân 40, bằng 110. Pixel không bị thay hẳn bằng 100, mà được kéo một phần về mức chung. Trong mã, phương sai nhiễu được ước lượng bằng mu bình phương chia cho L; mặc định L bằng 4 và cửa sổ là 5 nhân 5. Nếu giữ nguyên mu và v mà tăng L, nhiễu ước lượng giảm, nên thuật toán thường giữ nhiều giá trị gốc hơn. Cửa sổ lớn có thể làm mịn rộng hơn nhưng cũng dễ trộn cả hai phía của một cạnh. Lee dựa vào thống kê, không biết pixel nào thật sự là dầu hay nhiễu. Do đó, nó có thể giữ lại nhiễu và làm mờ chi tiết; không được nói cứ dùng Lee là ảnh đã sạch hoàn toàn.
+
+======================================================================
+SLIDE 8. CLAHE VÀ TƯƠNG PHẢN CỤC BỘ
+======================================================================
+
+Sau Lee, những chi tiết gần nhau về độ sáng có thể vẫn khó nhìn. Ví dụ minh họa, hai vùng mang mức xám 100 và 105 chỉ lệch nhau 5 mức nên trông khá giống nhau; nếu ánh xạ chúng ra xa nhau hơn thì mắt dễ phân biệt. CLAHE làm việc dựa trên histogram, tức bảng đếm số pixel ở từng mức xám. Thuật toán chia ảnh thành nhiều ô, tính cách đổi mức xám riêng cho từng ô, rồi phối hợp các ánh xạ lân cận để tránh đường nối đột ngột. Lưới 8 nhân 8 nghĩa là chia theo tám ô mỗi chiều, không phải mỗi ô chỉ có tám pixel. Clip limit giới hạn các cột histogram quá cao trước khi phân phối lại phần dư; giá trị 2 không có nghĩa xóa các pixel sáng hơn mức 2. Có thể ví CLAHE như điều chỉnh độ tương phản riêng cho từng khu vực của một tấm ảnh thiếu rõ nét. Vấn đề là máy không biết chênh lệch nào là chi tiết có ích: một vệt dầu yếu và một chấm nhiễu yếu đều có thể được làm nổi bật. Vì vậy, những chấm đen li ti nhìn thấy sau CLAHE có thể là dao động nền vốn đã tồn tại nhưng trước đó khó thấy. CLAHE không tạo thêm một lần quan sát mặt biển để xác nhận chúng là dầu. Đây là lý do tăng tương phản tốt cho quan sát chưa chắc tốt cho phân đoạn. Nhóm cần nhìn tiếp mask và kiểm tra kết quả, thay vì chỉ chọn ảnh có tương phản mạnh nhất.
+
+======================================================================
+SLIDE 9. LÀM NÉT VÀ PHÁT HIỆN BIÊN
+======================================================================
+
+Làm nét và tìm biên cùng quan tâm đến chi tiết nhưng trả về kết quả khác nhau. Làm nét giống như nhấn đậm những chỗ chuyển sáng tối trong bức ảnh để ảnh có vẻ rõ hơn. Với unsharp, ta tạo một bản mờ, lấy ảnh ban đầu trừ bản mờ để thu phần chi tiết, rồi cộng phần chi tiết đó trở lại ảnh ban đầu với một trọng số. Nếu trọng số quá lớn, các hạt nhiễu và quầng quanh cạnh cũng bị nhấn mạnh. Tìm biên thì giống như lấy bút vẽ vào nơi độ sáng thay đổi nhanh. Ví dụ minh họa, dãy pixel 50, 50, 50, 200, 200 có một chỗ chuyển rõ từ 50 sang 200; toán tử biên sẽ phản ứng mạnh gần chỗ chuyển này. Nhưng nếu dãy chỉ xuất hiện một chấm tối do nhiễu, chấm đó cũng tạo thay đổi sáng tối ở hai phía và vẫn có thể sinh biên. Sobel, Prewitt và Roberts dùng các phép chênh lệch lân cận để đo biến thiên; Laplacian liên quan đến đạo hàm bậc hai, còn LoG làm trơn trước khi xét đổi dấu. Những phép toán này không mang kiến thức rằng đường nào thuộc dầu. Vì vậy, nhìn thấy nhiều đường trên ảnh chưa đủ kết luận hệ thống phát hiện nhiều vệt dầu. Ta cần xem đang ở chế độ bản đồ biên hay chế độ mask vùng ứng viên.
+
+======================================================================
+SLIDE 10. CÁC BƯỚC CỦA CANNY
+======================================================================
+
+Canny có thể hình dung như quá trình vẽ lại một đường viền đang vừa nhiễu vừa có đoạn mờ. Đầu tiên, Gaussian làm trơn để bớt những dao động nhỏ. Tiếp theo, gradient đo độ mạnh và hướng thay đổi sáng tối. Nếu giữ cả một dải điểm có gradient lớn, đường viền sẽ dày, nên bước NMS chỉ giữ những điểm là cực đại cục bộ theo hướng gradient. Có thể ví như chọn sống lưng cao nhất của một dải đồi thay vì tô toàn bộ sườn đồi. Sau đó, Canny dùng hai ngưỡng: điểm vượt ngưỡng cao là biên mạnh, điểm nằm giữa hai ngưỡng là biên yếu. Ví dụ minh họa với ngưỡng thấp 20 và ngưỡng cao 50, đáp ứng 70 là mạnh, 30 là yếu và 10 bị loại. Điểm yếu chỉ được giữ khi có đường kết nối với biên mạnh qua các điểm đủ điều kiện. Cách này giúp giữ một đoạn đường mờ nối tiếp đoạn rõ, đồng thời bỏ một số chấm yếu đứng riêng. Nhưng nếu nhiễu đủ mạnh hoặc nối được vào đường mạnh, nó vẫn có thể tồn tại. Các phép tính gradient được giữ ở số thực để tránh mất hoặc sai giá trị khi ép sớm về uint8. Canny tự cài và OpenCV có thể khác nhau về xử lý biên ảnh, hướng gradient hoặc ngưỡng; vì vậy, đối chiếu phải giải thích biến thể. Đầu ra cuối cùng vẫn chỉ là đường biên, chưa phải vùng dầu được tô kín.
+
+======================================================================
+SLIDE 11. PHÂN NGƯỠNG OTSU
+======================================================================
+
+Để chuyển ảnh xám thành mask, ta cần một ranh giới giữa nhóm tối và nhóm sáng. Hãy tưởng tượng xếp các pixel theo mức xám rồi thử đặt một vạch ngăn ở từng vị trí. Otsu chọn vạch làm hai nhóm tách nhau rõ nhất theo phương sai giữa lớp. Sau khi tìm ngưỡng t, pixel nhỏ hơn hoặc bằng t được đưa vào nhóm tối. Ví dụ ảnh chỉ có mức 50 và 200, nếu t bằng 50 thì phải dùng điều kiện nhỏ hơn hoặc bằng 50 để giữ nhóm tối; dùng nhỏ hơn 50 sẽ bỏ mất toàn bộ các pixel mức 50. Otsu chỉ tối ưu cách chia con số, không biết nhóm tối là dầu hay bóng nền. Trong dự án, tên Adaptive Otsu chỉ phần bổ sung quy tắc vào Otsu toàn cục, không phải tính ngưỡng riêng cho mỗi ô nhỏ. Chương trình so ảnh tăng cường với reference: ưu tiên reference nếu ảnh tăng cường có hơn 30% pixel tối trong khi reference không vượt 30%, hoặc độ khả tách của reference cao hơn quá 0,05. Độ khả tách cao chỉ nói hai nhóm mức xám phân biệt rõ theo tiêu chí thống kê. Nếu bật điều chỉnh và vùng tối sau lựa chọn vẫn vượt 35%, mã giảm ngưỡng một lần theo 10% chênh lệch trung bình hai nhóm sau làm tròn, tối thiểu 3 mức xám và không hạ ngưỡng dưới 1. Hạ ngưỡng giống như siết điều kiện: pixel phải tối hơn nữa mới được chọn. Điều này có thể bớt nền nhưng cũng có thể bỏ một phần vệt thật. Những mốc đó là quy tắc thực nghiệm trong mã, không phải bảo đảm vật lý rằng kết quả là dầu.
+
+======================================================================
+SLIDE 12. HÌNH THÁI HỌC VÀ VÙNG LIÊN THÔNG
+======================================================================
+
+Sau Otsu, hãy hình dung mask như một tờ giấy đen có các mảng trắng được tô lên. Các mảng trắng là vùng tối đã được chọn từ ảnh gốc; màu trắng của mask chỉ là cách đánh dấu, không có nghĩa đối tượng ngoài ảnh sáng. Phép co làm phần trắng thu lại theo một mẫu lân cận, còn phép giãn làm nó nở ra. Mở là co trước rồi giãn sau: một chấm nhỏ biến mất khi co thì không có gì để nở lại. Đóng là giãn trước rồi co sau: một số khe nhỏ được nối khi giãn và có thể vẫn kín sau khi co. Mặc định, dự án mở bằng đĩa bán kính 2 và đóng bằng đĩa bán kính 4. Phải nhớ rằng thuật toán chỉ xét hình dạng; một vệt thật mảnh cũng có thể bị xóa, hai vùng khác nhau cũng có thể bị nối nhầm. Sau đó, chương trình đánh số từng mảng trắng bằng gán nhãn liên thông. Với liên thông tám hướng, các pixel chạm ngang, dọc hoặc chéo đều có thể thuộc cùng vùng. Mã gom các đoạn pixel liên tiếp trên hàng rồi dùng union-find để hợp nhất các đoạn liên quan, giống như nhận ra hai nhóm đang mang số khác nhau thực ra cùng một khu vực. Mỗi vùng được tính diện tích, hộp bao và tâm hình học. Hộp bao là hình chữ nhật ôm vùng; tâm hình học là vị trí trung bình của các pixel, không phải vị trí tối nhất. Những vùng dưới 300 pixel bị loại theo mặc định, rồi phần còn lại được xét tương phản với nền.
+
+======================================================================
+SLIDE 13. TƯƠNG PHẢN GIỮA VÙNG VÀ NỀN
+======================================================================
+
+Một vùng có đủ diện tích vẫn cần được so với xung quanh. Ví dụ, mức xám 80 có thể khá tối nếu nền là 100 nhưng lại sáng hơn nền nếu nền chỉ là 60. Do đó, nhìn riêng số 80 không đủ; ta cần ngữ cảnh lân cận. Chương trình tạo một vành quanh vùng bằng cách giãn mask với kernel vuông 15 nhân 15 rồi bỏ vùng ban đầu khỏi phần giãn. Có thể hình dung tô nở một hòn đảo trên bản đồ rồi xóa phần đảo gốc, phần mới thêm vào là vành lấy mẫu nền. Số 15 là kích thước kernel, không phải vành rộng 15 pixel: kernel đặt tâm vươn 7 pixel theo mỗi chiều tọa độ; vành thực còn phụ thuộc hình vùng và mép ảnh. Trên reference, chương trình tính mức xám trung bình của vùng và của vành, rồi lấy trung bình nền trừ trung bình vùng, chia cho trung bình nền. Ví dụ minh họa, nền 100 và vùng 80 cho tỷ số 0,20, nghĩa là vùng tối hơn nền 20% theo phép đo này. Nếu vùng là 95 thì tỷ số chỉ 0,05, không qua mức mặc định 0,10. Con số 0,20 không phải xác suất 20% có dầu. Vành nền có thể lẫn các ứng viên khác vì mã hiện chỉ bỏ chính vùng đang xét; đây là một hạn chế cần cải thiện. Cuối cùng, mask giữ lại được trừ phần sau co bằng kernel 3 nhân 3 để lấy biên. Nếu mask có lỗ, biên có thể xuất hiện cả quanh lỗ, nên một vùng có thể tạo nhiều nét đỏ trên ảnh.
+
+======================================================================
+SLIDE 14. KIỂM CHỨNG THUẬT TOÁN
+======================================================================
+
+Kiểm chứng với thư viện giống như tự tính một bài toán rồi dùng một cách tính đối chứng để xem các con số có khớp không. Nhóm kiểm tra 33 phép toán hoặc cấu hình trên 18 ảnh, tạo thành 594 trường hợp. Có 558 trường hợp đạt tiêu chí số học và 36 trường hợp bilateral, Canny được so sánh mô tả giữa các biến thể. Không nên nói tất cả đều trùng tuyệt đối. Sai số lớn nhất cho biết điểm lệch nhiều nhất, còn MSE cho biết mức lệch bình phương trung bình trên cả ảnh. Chúng đánh giá phép tính so với đối chứng, không đánh giá vùng dầu so với thực tế. Riêng Lee, đối chứng được ghép từ các moment do SciPy tính rồi áp dụng cùng công thức, không phải một hàm Lee độc lập sẵn có. Để thấy rõ cách tính, xét ví dụ ma trận 5 nhân 5 toàn số 100, riêng tâm là 200. Cửa sổ 3 nhân 3 ở tâm có tám số 100 và một số 200, nên tổng là 1.000, trung bình khoảng 111,111. Tổng bình phương là 120.000; chia 9 rồi trừ bình phương trung bình cho phương sai khoảng 987,654. Với L bằng 4, phương sai nhiễu ước lượng khoảng 3.086,42, lớn hơn phương sai quan sát; trọng số Lee bị chặn về 0 nên đầu ra là trung bình, làm tròn thành 111. Ví dụ này đã được đối chiếu bằng NumPy. Cửa sổ 3 nhân 3 chỉ để tính tay dễ theo dõi, không thay cấu hình mặc định 5 nhân 5. Qua đó, ta thấy cài đúng công thức là một việc, còn công thức có giải quyết tốt bài toán dữ liệu hay không là việc phải kiểm tra tiếp.
+
+======================================================================
+SLIDE 15. THÍ NGHIỆM TRÊN 10 ẢNH MẪU
+======================================================================
+
+Ở slide này, chúng ta chuyển từ câu hỏi “tính đúng không” sang “xử lý có tác động như thế nào”. Nhóm so sánh các phương án, thay tham số và thử điều kiện bất lợi trên 10 ảnh. Bảng trên slide chỉ trích ba trong tám phương án khảo sát. Khi đọc một giá trị trung bình cộng trừ độ lệch chuẩn, cần hiểu đó là kết quả gộp nhiều ảnh. Ví dụ SSI của Lee khoảng 0,931 cộng trừ 0,107: trung bình là 0,931, còn 0,107 mô tả độ phân tán giữa các ảnh, không có nghĩa mọi ảnh đều nằm đúng trong khoảng đó. SSI theo dõi mức dao động tương đối sau xử lý so với trước; nó giảm có thể vì nhiễu giảm, nhưng cũng có thể vì chi tiết bị làm mờ. EPI ở đây dựa trên đáp ứng Laplacian; đáp ứng tăng có thể là cạnh rõ hơn hoặc nhiễu tạo thêm biến thiên. Có thể ví như đánh giá một bản ghi âm: âm lượng lớn hơn chưa chắc lời nói dễ hiểu hơn, vì cả tiếng ồn cũng có thể lớn lên. Biểu đồ CLAHE thay clip limit từ 1 đến 5 trong khi giữ lưới 8 nhân 8, rồi theo dõi phần trăm diện tích ứng viên trung bình. Diện tích giảm không tự chứng minh kết quả tốt: có thể bỏ đúng phần nền, cũng có thể bỏ nhầm phần cần tìm. Biểu đồ hiện chưa có thanh độ lệch chuẩn. Vì thiếu mask chuẩn, nhóm dùng các kết quả này để phân tích tác động của tham số, không dùng chúng để khẳng định phương án nhận diện dầu tốt nhất.
+
+======================================================================
+SLIDE 16. ẢNH 00013: VỆT CHÍNH VÀ KẾT CẤU NỀN
+======================================================================
+
+Đây là ảnh giúp trả lời câu hỏi rất thực tế: vì sao ban đầu mắt thấy một vệt đen nhưng sau Lee và CLAHE lại thấy nhiều chấm nhỏ? Khi nhìn ảnh gốc, mắt thường tập trung vào vệt chính ở phía dưới. Trong nền vẫn có chênh lệch mức xám nhỏ, chỉ là chúng chưa đủ nổi để ta chú ý. Lee giảm một phần dao động đó nhưng không xóa sạch. CLAHE tiếp tục kéo giãn tương phản cục bộ, giống như tăng độ rõ để thấy cả những dấu mờ trên một tờ giấy. Vệt chính rõ hơn và các dấu nền cũng rõ hơn. Khi đưa ảnh này qua toán tử biên, những chấm có chênh lệch sáng tối sẽ tạo ra đáp ứng. Toán tử tìm được biến thiên thật trong ảnh đã xử lý chưa có nghĩa nó xác nhận một vệt dầu thật ngoài biển. Nếu gọi mọi chấm hoặc mọi đường biên là dầu thì đó là suy diễn sai. Vì thế, hệ thống giữ reference, tạo mask rồi lọc theo diện tích và tương phản. Với cấu hình hiện tại, ảnh này giữ một vùng có 3.328 pixel; lấy 3.328 chia 160.000 rồi nhân 100 được 2,08%. Đây là phần trăm diện tích mask ứng viên. Dù hình nhìn khá khớp vệt chính, ta chưa có mask chuẩn để biết đường bao thiếu hay thừa bao nhiêu. Một vùng có thể có lỗ và tạo nhiều nét viền bên trong; không nên đếm nét đỏ rồi kết luận có từng ấy vệt dầu. Điều cần trình bày là hệ thống đang chọn một vùng theo các tiêu chí đã nêu, và chất lượng vùng đó vẫn cần kiểm chứng độc lập.
+
+======================================================================
+SLIDE 17. ĐÁNH GIÁ TOÀN TẬP Ở CẤP ẢNH
+======================================================================
+
+Để đọc bảng này dễ hơn, hãy tưởng tượng hệ thống chỉ trả lời một câu hỏi cho mỗi ảnh: sau xử lý còn vùng ứng viên nào không? Nếu còn ít nhất một vùng thì câu trả lời là có. Đem câu trả lời đó so với nhãn thư mục, ta có bốn nhóm. Có dầu theo nhãn và máy có ứng viên là TP, gồm 1.639 ảnh; có dầu nhưng không có ứng viên là FN, gồm 204 ảnh bị bỏ sót. Không dầu và không có ứng viên là TN, gồm 810 ảnh; không dầu nhưng vẫn có ứng viên là FP, gồm 2.885 ảnh báo nhầm. Precision hỏi: trong các lần máy báo có, bao nhiêu lần rơi vào ảnh mang nhãn dầu? Phép tính là 1.639 chia cho 1.639 cộng 2.885, khoảng 36,23%. Recall hỏi theo chiều ngược lại: trong tất cả ảnh có dầu theo nhãn, máy tìm được ứng viên ở bao nhiêu ảnh? Đó là 1.639 chia cho 1.639 cộng 204, khoảng 88,93%. Có thể hiểu hệ thống ít bỏ sót hơn nhưng báo nhầm nhiều. F1 là trung bình điều hòa của precision và recall, đạt 51,48%; accuracy là tổng TP và TN chia tổng ảnh, đạt 44,22%. Do lớp không dầu đông, nếu luôn trả lời không dầu thì accuracy đã khoảng 66,72%, nhưng khi đó recall dầu bằng 0. Bởi vậy, một con số đơn lẻ không đủ đánh giá hệ thống. Những phép đếm này dùng cho mọi chương trình ra quyết định, kể cả quy tắc xử lý ảnh cố định; chúng không chứng minh có dùng học máy. Và cần nhớ rằng TP ở cấp ảnh vẫn có thể khoanh nhầm vị trí bên trong ảnh có dầu, nên bảng này chưa đánh giá độ đúng của mask theo pixel.
+
+======================================================================
+SLIDE 18. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
+======================================================================
+
+Qua bài này, nhóm đã xây dựng một chuỗi xử lý có thể quan sát từng bước: ảnh đầu vào được lọc, tăng tương phản, khảo sát biên và tạo vùng tối ứng viên. Các thuật toán cốt lõi được tự cài bằng NumPy, có đối chiếu thư viện, ví dụ tính tay và kết quả thực nghiệm. Điều nhóm học được không chỉ là cách gọi một phép xử lý, mà còn là cách giải thích vì sao ảnh thay đổi và vì sao một kết quả nhìn đẹp chưa chắc đúng về đối tượng. Số liệu toàn tập cho thấy vẫn còn nhiều báo nhầm, nên hệ thống hiện phù hợp để minh họa và khảo sát xử lý ảnh hơn là dùng làm công cụ xác nhận dầu. Ba việc tiếp theo có thể thực hiện trong phạm vi xử lý ảnh cổ điển là cải thiện cách lấy vùng nền để bớt lẫn các cấu trúc khác, khảo sát nhiều kích thước cửa sổ và phần tử hình thái để xử lý vệt lớn nhỏ khác nhau, và xây dựng tập mask gán tay có kiểm tra chéo để đo đường bao. Mỗi cải tiến cần được thử trên dữ liệu độc lập trước khi kết luận có hiệu quả. Khi chuyển sang demo, nhóm sẽ cho thấy cả ảnh 00013 và một trường hợp bất lợi, đồng thời thay tham số để người xem hiểu tác động thật của thuật toán. Em xin cảm ơn cô và các bạn đã theo dõi, và xin chuyển sang phần thao tác trực tiếp trên ứng dụng.
+
+======================================================================
+GHI NHỚ CHUNG KHI TẬP NÓI
+======================================================================
+
+Mạch giải thích xuyên suốt là: đầu vào của bước này là gì, nó giải quyết
+vấn đề nào, biến đổi dữ liệu ra sao, đầu ra đi đâu và có thể sai ở đâu.
+Khi nói tới ví dụ, chỉ vào đúng ảnh, bảng hoặc công thức trên slide.
+Nếu người nghe chưa hiểu, dùng ví dụ bảng ô vuông, bút tô vùng và bút vẽ
+viền để giải thích lại sự khác nhau giữa ảnh xám, mask và bản đồ biên.
+Không gọi reference là ảnh chuẩn, không gọi tỷ số tương phản là xác suất,
+không gọi các vùng tối vượt tiêu chí là dầu đã được xác nhận.
+Các số liệu thực nghiệm ở đây theo bản kết quả hiện tại của dự án;
+nếu chạy lại và thay cấu hình, cần kiểm tra lại số liệu trước khi trình bày.
+
+Tài liệu đối chiếu trong dự án:
+docs/slides/v2/SPEAKER_NOTES_DAY_DU.txt
+docs/slides/v2/PHAN_BIEN_VA_LUA_CHON_NOTES.txt
+docs/slides/utc_sar_oil_spill_detection_presentation.md
+src/tv1/pipeline.py; src/tv3/filters.py; src/tv4/morphology.py
+results/reproducible/confusion.json; results/verification/per_case.csv

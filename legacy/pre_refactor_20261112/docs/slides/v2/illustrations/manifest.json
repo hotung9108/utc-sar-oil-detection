@@ -1,0 +1,392 @@
+{
+  "input": "kaggle\\data\\Class_1\\class_1_00013.jpg",
+  "input_sha256": "b18c46fd661c7a5a24e0b8565a0c62e01617d9fa0157f2f332e927d0944eed7a",
+  "config": {
+    "filter_name": "lee",
+    "window_size": 5,
+    "num_looks": 4.0,
+    "enhancement_name": "clahe",
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "sharpening_name": "none",
+    "sharp_k": 1.0,
+    "edge_name": "morphology",
+    "low_threshold": 35.0,
+    "high_threshold": 90.0,
+    "min_area": 300,
+    "min_contrast": 0.1,
+    "closing_radius": 4,
+    "manual_threshold": null,
+    "adaptive_otsu": true
+  },
+  "stats": {
+    "slicks_detected": [
+      {
+        "id": 1,
+        "area": 3328,
+        "bbox": [
+          309,
+          285,
+          383,
+          399
+        ],
+        "centroid": [
+          350.1418269230769,
+          334.8798076923077
+        ],
+        "slick_mean": 27.8,
+        "sea_mean": 57.9,
+        "contrast_ratio": 0.52
+      }
+    ],
+    "slicks_count": 1,
+    "total_area_px": 3328,
+    "area_pct": 2.08,
+    "mean_contrast_ratio": 0.52,
+    "otsu_threshold": 46,
+    "separability_eta": 0.484
+  },
+  "assets": {
+    "raw": {
+      "meaning": "process_image default: raw",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "filtered": {
+      "meaning": "process_image default: filtered",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "enhanced": {
+      "meaning": "process_image default: enhanced",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "mask": {
+      "meaning": "process_image default: mask",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "boundary": {
+      "meaning": "process_image default: boundary",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "overlay": {
+      "meaning": "process_image default: overlay",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400,
+        3
+      ]
+    },
+    "detail_raw": {
+      "meaning": "Detail of raw; same crop for comparison",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "detail_filtered": {
+      "meaning": "Detail of filtered; same crop for comparison",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "detail_enhanced": {
+      "meaning": "Detail of enhanced; same crop for comparison",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "detail_overlay": {
+      "meaning": "Detail of overlay; same crop for comparison",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180,
+        3
+      ]
+    },
+    "texture_raw": {
+      "meaning": "Background detail of raw",
+      "crop_xyxy": [
+        75,
+        90,
+        235,
+        250
+      ],
+      "shape": [
+        160,
+        160
+      ]
+    },
+    "texture_filtered": {
+      "meaning": "Background detail of filtered",
+      "crop_xyxy": [
+        75,
+        90,
+        235,
+        250
+      ],
+      "shape": [
+        160,
+        160
+      ]
+    },
+    "texture_enhanced": {
+      "meaning": "Background detail of enhanced",
+      "crop_xyxy": [
+        75,
+        90,
+        235,
+        250
+      ],
+      "shape": [
+        160,
+        160
+      ]
+    },
+    "sharp": {
+      "meaning": "Unsharp k=1 on enhanced image; demonstration, separate from default mask",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "canny": {
+      "meaning": "Canny low=35 high=90 on default enhanced image",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "canny_mag": {
+      "meaning": "Actual Canny mag; shared display normalization / 161.820889",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "canny_nms": {
+      "meaning": "Actual Canny nms; shared display normalization / 161.820889",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "dark_mask": {
+      "meaning": "Actual morphological pipeline intermediate: dark_mask",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "opened": {
+      "meaning": "Actual morphological pipeline intermediate: opened",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "closed": {
+      "meaning": "Actual morphological pipeline intermediate: closed",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "clean_mask": {
+      "meaning": "Actual morphological pipeline intermediate: clean_mask",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180
+      ]
+    },
+    "seg_img": {
+      "meaning": "Selected image used to threshold; full image",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "otsu_dark": {
+      "meaning": "Initial mask after actual threshold selection",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "contrast_ring": {
+      "meaning": "False-color overlay of actual component (teal) and 15x15 dilation ring (orange)",
+      "crop_xyxy": [
+        220,
+        235,
+        400,
+        400
+      ],
+      "shape": [
+        165,
+        180,
+        3
+      ]
+    },
+    "sea_raw": {
+      "meaning": "data\\sample\\sea_surface\\sea_surface_01.jpg; default raw",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400
+      ]
+    },
+    "sea_overlay": {
+      "meaning": "data\\sample\\sea_surface\\sea_surface_01.jpg; default overlay",
+      "crop_xyxy": null,
+      "shape": [
+        400,
+        400,
+        3
+      ]
+    }
+  },
+  "contrast": {
+    "mean_region": 27.801682692307693,
+    "mean_ring": 57.904761904761905,
+    "ratio": 0.5198722561361336
+  },
+  "sea_stats": {
+    "slicks_detected": [
+      {
+        "id": 1,
+        "area": 30136,
+        "bbox": [
+          5,
+          195,
+          367,
+          399
+        ],
+        "centroid": [
+          243.53676665781788,
+          291.2959251393682
+        ],
+        "slick_mean": 62.9,
+        "sea_mean": 114.5,
+        "contrast_ratio": 0.451
+      },
+      {
+        "id": 2,
+        "area": 754,
+        "bbox": [
+          249,
+          0,
+          302,
+          49
+        ],
+        "centroid": [
+          277.55968169761275,
+          16.73342175066313
+        ],
+        "slick_mean": 83.6,
+        "sea_mean": 117.6,
+        "contrast_ratio": 0.289
+      }
+    ],
+    "slicks_count": 2,
+    "total_area_px": 30890,
+    "area_pct": 19.31,
+    "mean_contrast_ratio": 0.37,
+    "otsu_threshold": 96,
+    "separability_eta": 0.718
+  }
+}

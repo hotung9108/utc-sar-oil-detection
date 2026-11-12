@@ -1,0 +1,430 @@
+KỊCH BẢN THUYẾT TRÌNH
+BÀI TẬP LỚN XỬ LÝ ẢNH
+
+Từ khử nhiễu SAR đến vùng tối ứng viên
+
+Báo cáo v2, cập nhật 12/11/2026
+
+18 slide, 12 phút thuyết trình; demo 3 phút; vấn đáp 5 phút. Thời lượng là mục tiêu diễn tập, chưa phải số đo giọng đọc.
+
+Cách dùng: đọc phần “Lời trình bày” khi luyện tập. Phần “Thao tác / chuyển lời” là chỉ dẫn, không đọc thành tiếng. Các câu hỏi cuối tài liệu dùng để ôn và trả lời chéo giữa thành viên. Khi bảo vệ nên nói tự nhiên theo ý, không đọc toàn bộ văn bản liên tục.
+
+Đây là kịch bản ngắn theo thứ tự 18 slide của BAO_VE_BTL_XLA_V2.pptx. Notes trong PowerPoint là bản giải thích dài, liền mạch, không giới hạn 12 phút. Chọn bản phù hợp với thời lượng thực tế khi luyện nói.
+
+Phân vai theo docs/management/thanh_vien.json: TV3 Hồ Việt Tùng phụ trách lọc/tăng cường; TV4 Nguyễn Hải Hiếu phụ trách biên/hình thái. Lịch nói ở đây giữ thứ tự 18 slide hiện có.
+
+
+======================================================================
+
+SLIDE 01
+Xử lý ảnh SAR: từ khử nhiễu đến vùng tối ứng viên
+
+TV1 — Tiến Sơn Trần • 20 giây • Mốc 00:00–00:20
+
+Lời trình bày
+
+Kính thưa cô và các bạn, nhóm 4 xin trình bày bài tập lớn Xử lý ảnh. Nhóm sử dụng ảnh SAR mặt biển để khảo sát các thuật toán lọc, tăng cường tương phản và phát hiện biên. Sản phẩm cuối cùng hiển thị vùng tối ứng viên, giúp quan sát và phân tích ảnh. Các thuật toán cốt lõi do nhóm cài đặt bằng NumPy, không huấn luyện mô hình học máy hay học sâu.
+
+Thao tác / chuyển lời: Mở trang bìa. Nhìn người nghe khi giới thiệu phạm vi.
+
+Nguồn để đối chiếu: report_overleaf/v2/main.tex; README.md
+
+
+======================================================================
+
+SLIDE 02
+Bài toán và phạm vi
+
+TV1 — Tiến Sơn Trần • 20 giây • Mốc 00:20–00:40
+
+Lời trình bày
+
+Đầu vào là ảnh được chuyển sang mức xám. Đầu ra gồm ảnh sau xử lý, bản đồ biên và vùng tối cùng diện tích tính theo pixel. Nhóm đặt mục tiêu cài đặt được thuật toán, kiểm chứng với thư viện và phân tích cả trường hợp thất bại. Một vùng tối chưa đủ để kết luận đó là dầu, và diện tích pixel cũng chưa thể đổi sang diện tích mặt biển khi thiếu độ phân giải mặt đất.
+
+Thao tác / chuyển lời: Chỉ lần lượt đầu vào, đầu ra và tiêu chí kiểm chứng.
+
+Nguồn để đối chiếu: report_overleaf/v2/main.tex, chương 1
+
+
+======================================================================
+
+SLIDE 03
+Phân công theo module
+
+TV1 — Tiến Sơn Trần • 20 giây • Mốc 00:40–01:00
+
+Lời trình bày
+
+Nhóm chia công việc theo các phần của hệ thống. Em phụ trách tích hợp và giao diện. Bạn Dũng phụ trách lý thuyết và kiểm chứng. Bạn Tùng làm bộ lọc và tăng cường tương phản. Bạn Hiếu làm biên và hình thái học. Bạn Tuấn phụ trách dữ liệu và thực nghiệm. Sau đây, Tuấn trình bày dữ liệu mà nhóm đã sử dụng.
+
+Thao tác / chuyển lời: Dùng tên thành viên thay vì đọc tên tài khoản GitHub. Chuyển lời cho Tuấn.
+
+Nguồn để đối chiếu: docs/management/thanh_vien.json; src/tv1/ đến src/tv5/
+
+
+======================================================================
+
+SLIDE 04
+Dữ liệu và phạm vi đánh giá
+
+TV5 — Phạm Minh Tuấn • 50 giây • Mốc 01:00–01:50
+
+Lời trình bày
+
+Dữ liệu có nguồn từ bộ ảnh SAR của CSIRO. Sau khi loại ảnh trùng, dự án có 5.538 ảnh duy nhất, gồm 3.695 ảnh lớp không dầu và 1.843 ảnh lớp có dầu theo nhãn thư mục. Ảnh JPEG có kích thước 400 nhân 400, được chuyển sang ảnh xám 8 bit để xử lý. Bộ dữ liệu công bố có 5.630 ảnh, nên bản cục bộ còn thiếu 92 ảnh; nhóm chưa xác định nguyên nhân. Nhãn hiện có chỉ cho biết lớp của cả ảnh, không cung cấp đường bao dầu ở từng pixel. Vì vậy, nhóm chỉ đánh giá quyết định có vùng ứng viên ở cấp ảnh, chưa báo cáo IoU hay Dice. Khảo sát nhiều phương pháp dùng 10 ảnh mẫu; đánh giá toàn bộ 5.538 ảnh chỉ dùng cấu hình mặc định. Em xin chuyển sang Dũng để giải thích khó khăn của ảnh SAR.
+
+Thao tác / chuyển lời: Nhấn mạnh hai phạm vi 10 ảnh khảo sát và 5.538 ảnh toàn tập; không gọi chúng là tập train và test.
+
+Nguồn để đối chiếu: results/reproducible/manifest.json; report_overleaf/v2/main.tex; CSIRO DOI 10.25919/4v55-dn16
+
+
+======================================================================
+
+SLIDE 05
+Đặc điểm ảnh SAR
+
+TV2 — Lương Tiến Dũng • 40 giây • Mốc 01:50–02:30
+
+Lời trình bày
+
+Trong mô hình thường dùng cho SAR, ảnh quan sát bằng tín hiệu phản xạ nhân với nhiễu speckle. Vì thế, độ dao động của nhiễu liên quan đến mức sáng của vùng ảnh. Lee dùng trung bình và phương sai trong lân cận để điều chỉnh mức làm mịn. Tuy nhiên, ảnh JPEG ở đây không phải dữ liệu SAR thô đã được nhóm hiệu chuẩn, nên mô hình này là cơ sở thiết kế bộ lọc. Khó khăn tiếp theo là vùng lặng gió hoặc kết cấu nền cũng có thể tối giống dầu. Lọc mạnh dễ mất chi tiết, còn tăng tương phản mạnh có thể làm nền nổi rõ hơn. Sơn sẽ trình bày cách hệ thống tách các bước này.
+
+Thao tác / chuyển lời: Giải thích ký hiệu I, R và nhiễu trước khi nói đến đánh đổi.
+
+Nguồn để đối chiếu: src/tv3/filters.py; Lee 1980, DOI 10.1109/TPAMI.1980.4766994; report_overleaf/v2/main.tex
+
+
+======================================================================
+
+SLIDE 06
+Pipeline và ảnh tham chiếu
+
+TV1 — Tiến Sơn Trần • 40 giây • Mốc 02:30–03:10
+
+Lời trình bày
+
+Ảnh đi qua bước đọc và chuyển xám, sau đó lọc nhiễu và tăng tương phản. Hệ thống giữ lại ảnh sau lọc, trước CLAHE, làm ảnh tham chiếu. Nhánh hiển thị có thể làm nét để quan sát chi tiết. Nhánh phân đoạn sử dụng ảnh trước làm nét và có cơ chế lựa chọn ảnh tham chiếu để hạn chế tác động của CLAHE. Otsu tạo vùng tối ban đầu, hình thái học xử lý cấu trúc, rồi hệ thống lọc vùng theo diện tích và tương phản với nền. Các chế độ phát hiện biên chỉ trả bản đồ biên, không tự suy ra diện tích dầu. Tùng sẽ giải thích hai bước đầu là Lee và CLAHE.
+
+Thao tác / chuyển lời: Chỉ rõ nhánh quan sát và nhánh tạo mask. Tránh nói mọi ảnh luôn phân đoạn trực tiếp trên ảnh CLAHE.
+
+Nguồn để đối chiếu: src/tv1/pipeline.py; src/tv4/morphology.py
+
+
+======================================================================
+
+SLIDE 07
+Bộ lọc Lee
+
+TV3 — Hồ Việt Tùng • 50 giây • Mốc 03:10–04:00
+
+Lời trình bày
+
+Với mỗi pixel, Lee tính trung bình mu và phương sai trong một cửa sổ. Mức nhiễu ước lượng bằng mu bình phương chia cho L. Trọng số K là một trừ tỷ lệ giữa phương sai nhiễu và phương sai quan sát, sau đó giới hạn từ không đến một. Trong code, mẫu số được chặn bằng epsilon để tránh chia cho không. K nhỏ thì kết quả gần trung bình cục bộ, nghĩa là làm mịn mạnh. K lớn thì giữ nhiều thông tin pixel gốc hơn. Cấu hình mặc định dùng cửa sổ 5 nhân 5 và L bằng 4. Khi tăng L trong công thức này, mức nhiễu ước lượng giảm nên K thường tăng. Cửa sổ lớn có thể làm mịn tốt hơn nhưng cũng làm mất cấu trúc nhỏ. Lee không loại bỏ hoàn toàn speckle, nên ảnh sau lọc vẫn còn dao động nền.
+
+Thao tác / chuyển lời: Chỉ công thức theo thứ tự mu, phương sai, L, K. Có thể dừng một nhịp ở hai trường hợp K gần 0 và gần 1.
+
+Nguồn để đối chiếu: src/tv3/filters.py; Lee 1980, DOI 10.1109/TPAMI.1980.4766994
+
+
+======================================================================
+
+SLIDE 08
+CLAHE và tương phản cục bộ
+
+TV3 — Hồ Việt Tùng • 50 giây • Mốc 04:00–04:50
+
+Lời trình bày
+
+CLAHE chia ảnh thành các ô nhỏ và lập histogram cho từng ô. Thuật toán cắt phần histogram vượt ngưỡng, phân phối lại phần dư, rồi tính ánh xạ từ hàm phân phối tích lũy. Giá trị ở các ô lân cận được nội suy song tuyến để giảm ranh giới giữa ô. Cài đặt của nhóm có xử lý đệm ảnh, làm tròn và phân phối phần dư, sau đó đối chiếu với OpenCV ở cùng tham số. Cấu hình mặc định có clip limit bằng 2 và lưới 8 nhân 8. Clip limit lớn cho phép tăng tương phản mạnh hơn, nhưng không bảo đảm phân đoạn tốt hơn. Những chấm tối yếu còn lại sau Lee có thể trở nên rất rõ sau CLAHE. Đó là lý do cần kiểm tra cả ảnh tham chiếu và kết quả mask, thay vì chỉ đánh giá ảnh trông sắc nét. Hiếu sẽ trình bày bước biên và phân đoạn.
+
+Thao tác / chuyển lời: Giải thích clip limit là tham số tương phản, không phải xác suất nhận diện dầu.
+
+Nguồn để đối chiếu: src/tv3/enhancement.py; results/verification/summary.csv; Reza 2004, DOI 10.1023/B:VLSI.0000028532.53893.82
+
+
+======================================================================
+
+SLIDE 09
+Làm nét và phát hiện biên
+
+TV4 — Nguyễn Hải Hiếu • 25 giây • Mốc 04:50–05:15
+
+Lời trình bày
+
+Unsharp và high boost tăng thành phần chi tiết bằng cách lấy ảnh gốc trừ ảnh mờ rồi cộng lại có trọng số. Các toán tử Roberts, Prewitt và Sobel dựa vào biến thiên mức xám. LoG tìm đổi dấu sau khi làm trơn và lấy Laplacian. Những phép toán này phát hiện cấu trúc sáng tối, nên cả bờ vệt chính lẫn nhiễu nhỏ đều có thể tạo biên. Vì vậy, bản đồ biên cần được diễn giải riêng với mask vùng ứng viên.
+
+Thao tác / chuyển lời: Không gọi mọi đường biên là đường bao dầu.
+
+Nguồn để đối chiếu: src/tv4/sharpening.py; src/tv4/edges.py
+
+
+======================================================================
+
+SLIDE 10
+Các bước của Canny
+
+TV4 — Nguyễn Hải Hiếu • 40 giây • Mốc 05:15–05:55
+
+Lời trình bày
+
+Canny bắt đầu bằng làm trơn Gaussian, tính gradient và hướng, rồi dùng triệt tiêu cực đại không để làm mảnh biên. Tiếp theo, ngưỡng kép phân biệt pixel mạnh và yếu. Hysteresis giữ pixel yếu có kết nối với pixel mạnh theo tám láng giềng. Một chi tiết quan trọng là giữ gradient ở kiểu số thực trong quá trình xử lý. Nếu ép sớm về uint8, giá trị có thể bị cắt và làm thay đổi quyết định chọn biên. Cài đặt cũng cần chọn đúng cặp pixel so sánh theo hướng gradient trong hệ tọa độ ảnh. Do khác biệt lượng tử hướng và cách xử lý điểm bằng nhau, nhóm báo sai khác với OpenCV dưới dạng so sánh biến thể, không khẳng định trùng tuyệt đối.
+
+Thao tác / chuyển lời: Chỉ luồng năm bước, nhấn vào NMS và hysteresis khi được hỏi sâu.
+
+Nguồn để đối chiếu: src/tv4/edges.py; results/verification/summary.csv; Canny 1986, DOI 10.1109/TPAMI.1986.4767851
+
+
+======================================================================
+
+SLIDE 11
+Phân ngưỡng Otsu
+
+TV4 — Nguyễn Hải Hiếu • 30 giây • Mốc 05:55–06:25
+
+Lời trình bày
+
+Otsu thử các ngưỡng và chọn ngưỡng làm phương sai giữa hai lớp lớn nhất. Với mục tiêu vùng tối, nhóm lấy các pixel có mức xám nhỏ hơn hoặc bằng ngưỡng. Dấu bằng cần được giữ đúng: ví dụ ảnh chỉ gồm mức 50 và 200, ngưỡng 50 vẫn phải giữ được vùng mức 50. Tiêu chuẩn Otsu chỉ đánh giá khả năng tách histogram. Ngay cả khi hai lớp tách rõ, vùng tối vẫn có thể là nền. Ảnh hằng cũng không cung cấp đủ bằng chứng tương phản để nhận vùng.
+
+Thao tác / chuyển lời: Giải thích mục tiêu thống kê khác với nhãn vật lý.
+
+Nguồn để đối chiếu: src/tv4/morphology.py; Otsu 1979, DOI 10.1109/TSMC.1979.4310076
+
+
+======================================================================
+
+SLIDE 12
+Hình thái học và vùng liên thông
+
+TV4 — Nguyễn Hải Hiếu • 35 giây • Mốc 06:25–07:00
+
+Lời trình bày
+
+Sau khi có mask nhị phân, phép mở dùng co rồi giãn để loại cấu trúc nhỏ. Phép đóng dùng giãn rồi co để nối khe hẹp và lấp lỗ nhỏ. Cấu hình hiện tại dùng phần tử cấu trúc dạng đĩa, bán kính mở bằng 2 và bán kính đóng bằng 4. Sau đó, các pixel liên thông tám hướng được gán nhãn thành từng vùng. Cài đặt gán nhãn dùng các đoạn chạy và union find. Nhóm loại vùng nhỏ hơn 300 pixel rồi kiểm tra tương phản. Bán kính đóng quá lớn có thể nối nhầm hai vùng, nên giảm số mảnh không tự động có nghĩa là kết quả đúng hơn.
+
+Thao tác / chuyển lời: Dùng ví dụ một chấm nhỏ và hai mảnh gần nhau để phân biệt mở với đóng.
+
+Nguồn để đối chiếu: src/tv4/morphology.py; src/tv1/pipeline.py
+
+
+======================================================================
+
+SLIDE 13
+Tương phản giữa vùng và nền
+
+TV4 — Nguyễn Hải Hiếu • 30 giây • Mốc 07:00–07:30
+
+Lời trình bày
+
+C R trong cài đặt hiện tại là trung bình nền trừ trung bình vùng, chia cho trung bình nền. Nền được lấy trong vòng lân cận quanh vùng. C R lớn cho biết vùng tối hơn nền rõ hơn. Ngưỡng mặc định là 0,1, còn vòng nền được tạo bằng phép giãn với kernel vuông 15 × 15 rồi loại vùng đang xét. Nếu thiếu vùng nền phù hợp thì phép đo không có đủ bằng chứng. Một hạn chế là vòng nền có thể chứa cấu trúc khác, làm thay đổi độ tương phản. Sau đây, Dũng trình bày cách nhóm kiểm chứng các phép tính vừa nêu.
+
+Thao tác / chuyển lời: Dùng đúng định nghĩa trong mã hiện tại. Không giải thích C_R là độ tròn hay độ compact.
+
+Nguồn để đối chiếu: src/tv4/morphology.py; tests/test_core.py
+
+
+======================================================================
+
+SLIDE 14
+Kiểm chứng thuật toán
+
+TV2 — Lương Tiến Dũng • 80 giây • Mốc 07:30–08:50
+
+Lời trình bày
+
+Nhóm kiểm chứng 33 phép toán hoặc cấu hình trên 18 ảnh, gồm 8 ảnh tổng hợp và 10 ảnh thực, tổng cộng 594 trường hợp. Có 558 trường hợp đạt tiêu chí kiểm tra và 36 trường hợp so sánh mô tả cho hai biến thể bilateral và Canny. Không có trường hợp FAIL trong bộ kiểm tra này. Nhóm phân biệt đối chiếu trực tiếp với hàm thư viện, đối chiếu công thức ghép từ các phép cơ bản và so sánh biến thể. Ví dụ, Lee không có hàm đối chứng trực tiếp trong bộ thư viện đã chọn, nên nhóm dùng SciPy tính các moment rồi áp dụng cùng công thức. Nhóm còn kiểm chứng ví dụ số tính tay. Với ma trận 5 nhân 5 có các giá trị 100, riêng tâm bằng 200, cửa sổ 3 nhân 3 ở tâm có trung bình khoảng 111,111 và phương sai khoảng 987,654. Khi L bằng 4, ước lượng nhiễu lớn hơn phương sai quan sát, nên K bằng không. Kết quả sau làm tròn là 111, khớp phép kiểm tra NumPy. Các kiểm tra này chứng minh phần tính toán trong phạm vi mẫu đã thử; chúng chưa chứng minh hệ thống nhận diện dầu chính xác ngoài thực tế. Tuấn sẽ tiếp tục với thiết kế thực nghiệm.
+
+Thao tác / chuyển lời: Dừng ở 558 PASS và 36 DESCRIPTIVE để giải thích khác nhau. Ví dụ dùng cửa sổ 3×3 cho tính tay, khác mặc định 5×5.
+
+Nguồn để đối chiếu: results/verification/per_case.csv; results/verification/hand_examples.json; report_overleaf/v2/verify_example.py
+
+
+======================================================================
+
+SLIDE 15
+Thí nghiệm trên 10 ảnh mẫu
+
+TV5 — Phạm Minh Tuấn • 50 giây • Mốc 08:50–09:40
+
+Lời trình bày
+
+Nhóm thực hiện ba loại thí nghiệm trên 10 ảnh mẫu: so sánh bộ lọc, khảo sát tham số CLAHE và thử điều kiện bất lợi. Bảng trích ba phương án trong tám phương án đã khảo sát. Với Lee, SSI trung bình khoảng 0,931 và EPI khoảng 0,479. SSI là tỷ lệ hệ số biến thiên; EPI là tỷ lệ đáp ứng biên. Các giá trị cho thấy tác động làm mịn, nhưng chưa chứng minh phân đoạn đúng. Biểu đồ bên phải giữ lưới CLAHE bằng 8 nhân 8: diện tích ứng viên trung bình thay đổi khi tăng clip limit. Đường này không biểu diễn độ lệch chuẩn, và diện tích giảm cũng không tự động có nghĩa là ít báo nhầm hơn. Nhóm lưu số liệu từng ảnh cùng cấu hình để chạy lại thực nghiệm. Đánh giá toàn tập dùng một cấu hình mặc định riêng. Tùng sẽ minh họa ảnh 00013.
+
+Thao tác / chuyển lời: Phân biệt chỉ số chất lượng ảnh với độ đúng của mask. Không gọi khảo sát nhiễu Gaussian là mô phỏng speckle hoàn chỉnh.
+
+Nguồn để đối chiếu: reproduce.py; results/reproducible/manifest.json; report_overleaf/v2/main.tex, chương 4
+
+
+======================================================================
+
+SLIDE 16
+Ảnh 00013: vệt chính và kết cấu nền
+
+TV3 — Hồ Việt Tùng • 40 giây • Mốc 09:40–10:20
+
+Lời trình bày
+
+Ở ảnh 00013, mắt người dễ chú ý đến một vệt tối chính. Tuy nhiên, ảnh gốc vẫn có các dao động mức xám yếu trong nền. Lee làm giảm dao động nhưng không loại bỏ hết. CLAHE tăng tương phản cục bộ nên những chấm tối này nổi rõ hơn, và toán tử biên có thể phát hiện ranh giới của chúng. Phát hiện được biên ở đó chưa có nghĩa là đã tìm thấy dầu. Cấu hình hiện tại giữ một vùng ứng viên, có 3.328 pixel, tương đương 2,08 phần trăm ảnh. Kết quả thuận mắt hơn chưa chứng minh đường bao chính xác vì chưa có mask chuẩn. Tuấn sẽ trình bày kết quả khi áp dụng cùng cấu hình trên toàn tập.
+
+Thao tác / chuyển lời: Chỉ ảnh gốc, ảnh sau CLAHE và mask theo thứ tự. Không dùng ảnh đơn lẻ để kết luận độ chính xác toàn hệ thống.
+
+Nguồn để đối chiếu: results/reproducible/class_1_00013_clahe.png; report_overleaf/v2/main.tex
+
+
+======================================================================
+
+SLIDE 17
+Đánh giá toàn tập ở cấp ảnh
+
+TV5 — Phạm Minh Tuấn • 70 giây • Mốc 10:20–11:30
+
+Lời trình bày
+
+Trên 5.538 ảnh, hệ thống giữ vùng ứng viên ở 1.639 ảnh lớp có dầu và bỏ sót 204 ảnh của lớp này. Với lớp không dầu, có 810 ảnh không tạo vùng ứng viên nhưng có tới 2.885 ảnh tạo vùng và bị tính là báo nhầm. Từ đó, precision đạt 36,23 phần trăm, recall đạt 88,93 phần trăm và F1 đạt 51,48 phần trăm. Accuracy là 44,22 phần trăm. Precision và recall là cách đếm kết quả đúng sai, hoàn toàn có thể dùng cho thuật toán xử lý ảnh có quy tắc cố định. Chúng không có nghĩa là hệ thống đã dùng học máy. Ở đây, một ảnh được dự đoán dương khi còn ít nhất một vùng sau các bước lọc. Recall cao cho thấy nhiều ảnh lớp có dầu tạo được ứng viên, nhưng precision thấp cho thấy rất nhiều vùng nền cũng vượt qua tiêu chí. Đây là hạn chế lớn và là lý do nhóm chỉ gọi đầu ra là vùng tối ứng viên. Sau phần kết luận, nhóm sẽ demo riêng trong ba phút.
+
+Thao tác / chuyển lời: Đọc các chỉ số chính, dành thời gian giải thích 2.885 báo nhầm. Chuyển lời cho Sơn.
+
+Nguồn để đối chiếu: results/reproducible/confusion.json; streamlit_app.py
+
+
+======================================================================
+
+SLIDE 18
+Kết luận và hướng phát triển
+
+TV1 — Tiến Sơn Trần • 30 giây • Mốc 11:30–12:00
+
+Lời trình bày
+
+Nhóm đã xây dựng ứng dụng xử lý ảnh với các thuật toán cốt lõi tự cài đặt, có đối chiếu thư viện và thực nghiệm tái lập. Kết quả toàn tập cho thấy phương pháp vẫn báo nhầm nhiều, nên chưa đủ để kết luận dầu ngoài thực tế. Hướng tiếp theo là cải thiện cách chọn nền cục bộ, khảo sát cấu trúc ở nhiều kích thước và tạo một tập mask gán tay độc lập để đánh giá đường bao. Nhóm tiếp tục theo hướng xử lý ảnh cổ điển. Em xin chuyển sang phần demo ứng dụng.
+
+Thao tác / chuyển lời: Giữ trang kết luận khi mở ứng dụng. Sau demo quay lại trang này để nhận câu hỏi.
+
+Nguồn để đối chiếu: report_overleaf/v2/main.tex; Lee 1980; Otsu 1979; Canny 1986
+
+
+======================================================================
+
+DEMO TRỰC TIẾP — 3 PHÚT
+
+Chuẩn bị trước: từ thư mục gốc dự án chạy .venv\Scripts\python -m streamlit run streamlit_app.py. Mở địa chỉ mà terminal hiển thị. Kiểm tra ảnh 00013, ảnh nền biển bất lợi và các nút cần dùng trước khi bảo vệ. Không khởi động chương trình lần đầu ngay trong ba phút demo.
+
+00:00–00:30 • Tiến Sơn Trần
+
+Mở Streamlit đã chạy sẵn, chọn ảnh class_1_00013 trong danh sách mẫu hoặc tải ảnh tương ứng từ dataset. Giữ bộ lọc Lee, cửa sổ 5, L=4, CLAHE clip 2, lưới 8.
+
+Đây là giao diện của hệ thống. Nhóm dùng ảnh 00013 và cấu hình mặc định, cùng cấu hình đã ghi trong thực nghiệm. Các ảnh trung gian giúp theo dõi tác động của từng bước.
+
+00:30–01:15 • Hồ Việt Tùng
+
+Chỉ ảnh gốc, ảnh sau Lee và CLAHE. Thay clip limit một lần để minh họa, rồi trả về 2 trước bước tiếp theo.
+
+Vệt chính đã có trong ảnh gốc. Khi thay clip limit, các chi tiết yếu của nền cũng thay đổi độ rõ. Tăng tương phản giúp quan sát nhưng có thể làm vùng nền nổi lên. Em trả lại cấu hình mặc định để giữ kết quả nhất quán.
+
+01:15–02:00 • Nguyễn Hải Hiếu
+
+Hiển thị mask và vùng ứng viên ở chế độ hình thái. Giải thích diện tích và tương phản. Chuyển sang Canny rồi trở lại hình thái nếu giao diện cho phép trong thời gian còn lại.
+
+Mask là kết quả sau ngưỡng, hình thái và lọc vùng. Canny chỉ biểu diễn biên, còn diện tích cần tính trên mask vùng. Con số diện tích này có đơn vị pixel, chưa phải diện tích dầu thực ngoài biển.
+
+
+======================================================================
+
+DEMO — PHÂN TÍCH LỖI VÀ KẾT THÚC
+
+02:00–02:40 • Phạm Minh Tuấn
+
+Mở ảnh nền biển bất lợi đã kiểm tra trước buổi bảo vệ. Nếu thời gian ít, dùng hình kết quả lưu sẵn từ report_overleaf/v2/assets/sea_surface_01_clahe.png. Không thay tham số để che lỗi.
+
+Ở điều kiện này, một số vùng nền có thể vượt qua tiêu chí và trở thành ứng viên. Đây là kiểu báo nhầm đã xuất hiện trong đánh giá toàn tập. Nhóm trình bày trường hợp này để làm rõ giới hạn của phương pháp.
+
+02:40–03:00 • Tiến Sơn Trần
+
+Quay về slide kết luận. Nếu demo gặp lỗi, dùng ảnh kết quả đã lưu, nói rõ đang trình bày kết quả chạy trước.
+
+Phần demo cho thấy hệ thống chạy theo các phép xử lý ảnh và cho phép quan sát từng bước. Nhóm xin kết thúc phần trình bày và sẵn sàng trả lời câu hỏi của cô.
+
+
+======================================================================
+
+CÂU HỎI ÔN VÀ VẤN ĐÁP
+
+Mọi thành viên cần giải thích được toàn bộ pipeline. Người phụ trách chuẩn bị câu trả lời sâu hơn và chỉ được vị trí mã nguồn hoặc số liệu khi cần. Các câu trả lời dưới đây là gợi ý kiến thức, không phải kịch bản đoán trước câu hỏi của giảng viên.
+
+1. Có precision và recall thì có phải dùng ML không?
+
+Không. Đây là phép đo từ TP, FP và FN. Với quy tắc cố định, vẫn tính được precision = TP/(TP+FP), recall = TP/(TP+FN). Dự án dùng nhãn thư mục để đánh giá cấp ảnh, không dùng để huấn luyện trọng số.
+
+2. Vì sao ảnh chỉ có một vệt chính nhưng CLAHE làm xuất hiện chấm tối?
+
+Ảnh còn dao động nền mà mắt khó phân biệt. Lee chỉ làm giảm một phần. Ánh xạ tương phản cục bộ của CLAHE làm các dao động rõ hơn và có thể thay đổi cấu trúc nhìn thấy. Cần đối chiếu ảnh trước tăng cường. Biên của chấm tối không đủ chứng cứ để gọi là dầu.
+
+3. Nhận được đúng một vùng có chứng minh thuật toán đúng không?
+
+Không. Số vùng đúng theo quan sát chưa chứng minh đúng vị trí, diện tích hay đường bao. Cần mask chuẩn độc lập và chỉ số phân đoạn như IoU/Dice. Dự án chưa có nhãn pixel để báo các chỉ số đó.
+
+4. Vì sao giữ ảnh tham chiếu trước CLAHE?
+
+Để đo tương phản và hỗ trợ chọn ảnh phân đoạn ít bị ảnh hưởng bởi tăng cường cục bộ. Đây là quy tắc kỹ thuật trong pipeline; nó không bảo đảm mọi ảnh đều tốt hơn. Khi trả lời chi tiết, mở phần lựa chọn nguồn trong src/tv4/morphology.py.
+
+5. 36 DESCRIPTIVE có phải là 36 trường hợp đạt không?
+
+Không. Đó là 18 trường hợp bilateral và 18 trường hợp Canny dùng so sánh biến thể. Chúng ghi độ lệch để phân tích, không gộp vào 558 PASS của các tiêu chí còn lại. Không có FAIL trong bộ kiểm tra đã chạy không có nghĩa mọi đầu vào đều đúng.
+
+
+======================================================================
+
+CÂU HỎI ÔN VÀ VẤN ĐÁP (TIẾP)
+
+6. Dùng SciPy/OpenCV thì có còn tự cài đặt không?
+
+Cần phân biệt nhánh thuật toán cốt lõi với nhánh kiểm chứng. Lõi xử lý theo NumPy; thư viện dùng cho đọc/ghi, hỗ trợ ứng dụng và đối chứng. Với thuật toán không có API tương ứng, phép đối chứng ghép từ primitive chỉ kiểm chứng công thức đó, không phải một thuật toán tham chiếu độc lập hoàn toàn.
+
+7. Tại sao recall cao mà accuracy thấp?
+
+Vì hệ thống tạo ứng viên trên nhiều ảnh, nên ít bỏ sót lớp dương nhưng nhận nhầm nhiều ảnh âm. Có 2.885 FP so với 1.639 TP. Lớp âm cũng đông hơn lớp dương. Chỉ nhìn recall sẽ che giấu nhược điểm báo nhầm.
+
+8. Nếu luôn đoán không dầu thì kết quả thế nào?
+
+Accuracy sẽ là 3.695/5.538, khoảng 66,72%, nhưng recall của lớp dầu bằng 0. Baseline này cho thấy cần xem nhiều chỉ số và ma trận nhầm lẫn, đồng thời thừa nhận cấu hình hiện tại chưa tốt ở accuracy.
+
+9. C_R có phải độ tròn không?
+
+Trong mã và nội dung v2 hiện tại, C_R = (mean nền − mean vùng)/mean nền. Nó là tương phản vùng/nền. Không dùng định nghĩa độ tròn cho công thức này. Bốn trang đầu kế thừa từ báo cáo cũ có chỗ cần thống nhất thuật ngữ trước khi nộp.
+
+
+======================================================================
+
+CÂU HỎI ÔN VÀ VẤN ĐÁP (TIẾP)
+
+10. Ví dụ Lee ra 111 được tính như thế nào?
+
+Trong cửa sổ 3×3 có tám số 100 và một số 200: tổng 1.000 nên mu=1.000/9. E[I²]=120.000/9 và v=E[I²]−mu²=80.000/81. Với L=4, mu²/L lớn hơn v nên K=0. Giá trị đầu ra bằng mu, làm tròn thành 111. Cửa sổ nhỏ chỉ phục vụ minh họa tính tay.
+
+11. Độ phức tạp của pipeline là bao nhiêu?
+
+Phải trả lời theo từng phép toán và cách cài. Tính tổng cửa sổ bằng ảnh tích phân có thể O(MN); phép trượt tổng quát với k×k có thể O(MNk²). Histogram, ánh xạ và nội suy CLAHE gần tuyến tính theo số pixel khi số bin cố định. Hình thái phụ thuộc diện tích phần tử cấu trúc. Bộ nhớ phải tính cả ảnh trung gian, không chỉ một ảnh đầu vào.
+
+12. Đã chạy toàn bộ dataset và khảo sát tất cả tham số chưa?
+
+Đã đánh giá cấu hình mặc định trên 5.538 ảnh duy nhất trong bản cục bộ. So sánh phương pháp và khảo sát tham số dùng 10 ảnh. Chưa khảo sát toàn bộ tổ hợp trên toàn tập, chưa xác nhận độc lập giữa các cảnh và bản cục bộ thiếu 92 ảnh so với bộ công bố.
+
+13. Hướng cải tiến tiếp theo có dùng deep learning không?
+
+Kế hoạch trong phạm vi bài này tiếp tục dùng xử lý ảnh cổ điển: chọn vòng nền thích nghi, giảm ảnh hưởng vùng ứng viên khác lên nền, khảo sát nhiều kích thước cấu trúc, và đánh giá bằng mask gán tay độc lập. Cần đo lại để biết thay đổi có thực sự giảm báo nhầm hay không.
+
+
+======================================================================
+
+KIỂM TRA TRƯỚC KHI BẢO VỆ
+
+Diễn tập một lượt có bấm giờ. Mốc 12 phút là mục tiêu, cần điều chỉnh tốc độ và khoảng dừng theo giọng đọc thực tế. Ưu tiên giữ giải thích về phạm vi dữ liệu, kiểm chứng và hạn chế báo nhầm.
+
+Mỗi thành viên tự diễn đạt lại phần của một bạn khác. Đặc biệt luyện phân biệt biên với mask, tăng tương phản với độ đúng, và kiểm chứng số học với hiệu quả nhận diện.
+
+Chuẩn bị ảnh demo, nguồn điện và trình duyệt. Lưu sẵn kết quả tại results/reproducible/ và hình trong report_overleaf/v2/assets/. Nếu dùng ảnh chạy trước thay demo trực tiếp, nói rõ với người nghe.
+
+Đối chiếu số liệu trước khi đổi cấu hình: TN 810, FP 2.885, FN 204, TP 1.639 trên 5.538 ảnh. Không ghép số đo của cấu hình khác vào cùng bảng.
+
+Không nói đã có mask chuẩn, đã kiểm thử độc lập theo cảnh, hoặc đã chứng minh nhận diện dầu chính xác. Những điều này chưa có bằng chứng trong thực nghiệm hiện tại.
+
+Tài liệu báo cáo v2: report_overleaf/v2/BAO_CAO_BTL_XLA.pdf. Nguồn số liệu: results/reproducible/confusion.json, results/verification/per_case.csv. Không cần đọc đường dẫn hay DOI khi trình bày, nhưng phải biết chỗ tra lại.

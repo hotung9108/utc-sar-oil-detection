@@ -1,0 +1,285 @@
+\chapter{CƠ SỞ LÝ THUYẾT \& GIẢI TÍCH TOÁN HỌC CÁC THUẬT TOÁN}
+\label{ch:ly_thuyet}
+
+\section{Hệ thống Phép biến đổi Tăng cường \& Tương phản Mức xám}
+\subsection{Biến đổi Logarit (Logarithmic Transformation)}
+Tín hiệu phản xạ ngược radar có dải động (Dynamic range) rất lớn. Biến đổi logarit nén dải mức xám cao và kéo giãn dải mức xám thấp:
+\begin{equation}
+s = c \cdot \log(1 + r), \quad \text{với } c = \frac{255}{\log(1 + \max(r))}
+\label{eq:log_trans}
+\end{equation}
+Trong đó $r \in [0, 255]$ là mức xám gốc, $s$ là mức xám đầu ra. Phép biến đổi này giúp mắt người quan sát rõ ràng hơn các cấu trúc gờ vi tế bên trong vùng tối của vết dầu \cite{utc2024dip}.
+
+\subsection{Cân bằng Histogram toàn cục (Global Histogram Equalization -- HE)}
+Cho ảnh kích thước $M \times N$ với $L = 256$ mức xám. Hàm mật độ xác suất (PDF) của mức xám $r_k$ được tính bởi:
+\begin{equation}
+p(r_k) = \frac{n_k}{M \times N}, \quad k = 0, 1, \dots, L-1
+\label{eq:pdf}
+\end{equation}
+Trong đó $n_k$ là số lượng pixel có mức xám $r_k$. Hàm phân bố tích lũy (CDF) và ánh xạ mức xám mới $s_k$ là:
+\begin{equation}
+s_k = T(r_k) = \text{round}\left( (L - 1) \sum_{j=0}^k p(r_j) \right) = \text{round}\left( \frac{L - 1}{M \times N} \sum_{j=0}^k n_j \right)
+\label{eq:cdf_mapping}
+\end{equation}
+\textbf{Nhược điểm trên ảnh SAR:} Vì nền biển chiếm phần lớn diện tích với các mức xám tập trung ở dải trung bình, Global HE kéo giãn thái quá vùng nền biển, làm bão hòa trắng xóa (Cháy sáng -- Over-enhancement) và khuếch đại nghiêm trọng nhiễu đốm vi ba.
+
+\subsection{Cân bằng Histogram thích nghi có ngưỡng (CLAHE)}
+Thuật toán CLAHE (Contrast Limited Adaptive Histogram Equalization) khắc phục hiện tượng cháy sáng thông qua 4 bước giải tích toán học \cite{reza2004realization}:
+\begin{enumerate}
+    \item \textbf{Chia khối lưới (Tiling):} Chia ảnh thành lưới $8 \times 8$ khối nhỏ không chồng lấn. Mỗi khối có kích thước $W \times H$.
+    \item \textbf{Cắt ngưỡng tương phản (Clipping Limit):} Giới hạn độ dốc của hàm biến đổi bằng cách cắt số lượng pixel vượt ngưỡng $N_{\text{clip}}$ trong biểu đồ tần số:
+    \begin{equation}
+    N_{\text{clip}} = \text{round}\left( \text{ClipLimit} \times \frac{W \times H}{L} \right)
+    \label{eq:clahe_clip}
+    \end{equation}
+    Với mọi mức xám $k$ có $n_k > N_{\text{clip}}$, phần dư $\Delta_k = n_k - N_{\text{clip}}$ bị cắt bỏ.
+    \item \textbf{Phân phối đều phần dư (Redistribution):} Tổng lượng pixel dư $\Sigma_{\text{excess}} = \sum \Delta_k$ được chia đều cho toàn bộ $L$ mức xám:
+    \begin{equation}
+    n_k^{\text{refined}} = N_{\text{clip}} + \frac{\Sigma_{\text{excess}}}{L}
+    \label{eq:clahe_redist}
+    \end{equation}
+    Tính CDF độc lập cho từng khối từ biểu đồ tần số sau hiệu chỉnh.
+    \item \textbf{Nội suy song tuyến 2D (Bilinear Interpolation):} Để xóa triệt để hiệu ứng biên khối gồ ghề (blocking artifacts), mức xám của pixel $(x, y)$ được nội suy từ 4 hàm ánh xạ CDF của 4 tâm khối bao quanh:
+    \begin{equation}
+    f(x, y) = (1 - \Delta x)(1 - \Delta y) f_{11} + \Delta x(1 - \Delta y) f_{21} + (1 - \Delta x)\Delta y f_{12} + \Delta x \Delta y f_{22}
+    \label{eq:bilinear}
+    \end{equation}
+    Trong đó $\Delta x, \Delta y$ là khoảng cách chuẩn hóa từ pixel đến các tâm khối lân cận.
+\end{enumerate}
+
+
+
+\section{Hệ thống Lọc Không gian \& Khử Đốm Thích ứng SAR}
+\subsection{Bản chất toán học của mô hình nhiễu đốm SAR}
+Tín hiệu ảnh radar vi ba $I(x, y)$ chịu tác động bởi mô hình nhiễu nhân (Multiplicative noise model):
+\begin{equation}
+I(x, y) = R(x, y) \cdot v(x, y)
+\label{eq:speckle_model}
+\end{equation}
+Trong đó $R(x, y)$ là hệ số phản xạ thực của bề mặt mặt đất/mặt biển, và $v(x, y)$ là biến ngẫu nhiên nhiễu đốm độc lập với $\mathbb{E}[v] = 1$ và phương sai lý thuyết $\sigma_v^2 = \text{Var}(v) = \frac{1}{L_{\text{looks}}}$ ($L_{\text{looks}} = 4$ đối với sản phẩm Sentinel-1 GRD).
+
+\subsection{Bộ lọc đốm thích ứng Lee MMSE (Minimum Mean Square Error)}
+Bộ lọc Lee \cite{lee1980digital} ước lượng giá trị phản xạ thực $\hat{R}(x, y)$ dựa trên thống kê cục bộ trong cửa sổ trượt kích thước $(2w+1) \times (2w+1)$:
+\begin{equation}
+\mu_I = \frac{1}{N_w} \sum_{(i,j) \in W} I(i, j), \quad \sigma_I^2 = \frac{1}{N_w} \sum_{(i,j) \in W} \left( I(i, j) - \mu_I \right)^2
+\label{eq:local_stats}
+\end{equation}
+Công thức khôi phục tín hiệu cực tiểu sai số toàn phương trung bình:
+\begin{equation}
+\hat{R}(x, y) = \mu_I + K(x, y) \cdot [I(x, y) - \mu_I]
+\label{eq:lee_filter}
+\end{equation}
+Trong đó hệ số trọng số thích ứng $K(x, y)$ được tính bởi:
+\begin{equation}
+K(x, y) = \max\left(0, \frac{\sigma_I^2 - \sigma_v^2 \mu_I^2}{\sigma_I^2}\right)
+\label{eq:lee_k}
+\end{equation}
+\textbf{Biện luận tính thích nghi:}
+\begin{itemize}
+    \item \textbf{Tại vùng phẳng đồng nhất (Flat/Homogeneous area):} Phương sai cục bộ hoàn toàn do nhiễu gây ra ($\sigma_I^2 \approx \sigma_v^2 \mu_I^2$). Khi đó $K \to 0$, công thức \eqref{eq:lee_filter} suy biến thành $\hat{R} = \mu_I$ (Bộ lọc hoạt động như lọc trung bình để làm phẳng nhiễu tối đa).
+    \item \textbf{Tại vùng gờ biên hoặc mục tiêu điểm (Edges/Point targets):} Độ biến thiên thực tế rất lớn ($\sigma_I^2 \gg \sigma_v^2 \mu_I^2$). Khi đó $K \to 1$, công thức suy biến thành $\hat{R} = I(x, y)$ (Giữ nguyên toàn vẹn cường độ gốc, bảo vệ tuyệt đối độ sắc nét của biên).
+\end{itemize}
+
+
+
+\section{Dẫn xuất Toán học Rút gọn cho Hệ số Lọc Lee MMSE}
+\label{sec:derivation_lee}
+Xét mô hình ước lượng tuyến tính dạng:
+\begin{equation}
+\hat{R} = a + b \cdot I
+\label{eq:linear_estimator}
+\end{equation}
+Mục tiêu là tìm các hệ số $a, b$ nhằm thỏa mãn:
+\begin{enumerate}
+    \item \textbf{Ước lượng không thiên lệch (Unbiased):} $\mathbb{E}[\hat{R}] = \mathbb{E}[R] = \mu_R$.
+    \item \textbf{Cực tiểu hóa sai số bình phương trung bình (MMSE):} $J(a, b) = \mathbb{E}[(R - \hat{R})^2] \to \min$.
+\end{enumerate}
+
+Từ điều kiện ước lượng không thiên lệch:
+\begin{equation}
+\mathbb{E}[\hat{R}] = a + b \cdot \mathbb{E}[I] = a + b \cdot \mu_I = \mu_R
+\end{equation}
+Do $\mathbb{E}[I] = \mathbb{E}[R \cdot v] = \mathbb{E}[R]\mathbb{E}[v] = \mu_R \cdot 1 = \mu_R \implies \mu_I = \mu_R$. Từ đó suy ra:
+\begin{equation}
+a = \mu_I(1 - b) \implies \hat{R} = \mu_I + b(I - \mu_I)
+\label{eq:unbiased_a}
+\end{equation}
+Thay \eqref{eq:unbiased_a} vào hàm mục tiêu $J(b)$:
+\begin{equation}
+J(b) = \mathbb{E}\left[ \left( (R - \mu_R) - b(I - \mu_I) \right)^2 \right] = \sigma_R^2 - 2b \cdot \text{Cov}(R, I) + b^2 \sigma_I^2
+\label{eq:error_func}
+\end{equation}
+Lấy đạo hàm bậc nhất của $J(b)$ theo $b$ và gán bằng 0:
+\begin{equation}
+\frac{d J}{d b} = -2\text{Cov}(R, I) + 2b \sigma_I^2 = 0 \implies b = \frac{\text{Cov}(R, I)}{\sigma_I^2}
+\label{eq:b_optimal}
+\end{equation}
+Mặt khác, hiệp phương sai $\text{Cov}(R, I)$ được tính bằng:
+\begin{equation}
+\text{Cov}(R, I) = \mathbb{E}[(R - \mu_R)(I - \mu_I)] = \mathbb{E}[R \cdot I] - \mu_R \mu_I = \mathbb{E}[R^2 v] - \mu_R^2 = \mathbb{E}[R^2] - \mu_R^2 = \sigma_R^2
+\end{equation}
+Theo tính chất phương sai của tích hai biến ngẫu nhiên độc lập $I = R \cdot v$:
+\begin{equation}
+\sigma_I^2 = \sigma_R^2 \sigma_v^2 + \sigma_R^2 + \sigma_v^2 \mu_R^2 \implies \sigma_R^2 = \frac{\sigma_I^2 - \sigma_v^2 \mu_I^2}{1 + \sigma_v^2} \approx \sigma_I^2 - \sigma_v^2 \mu_I^2
+\end{equation}
+Thay vào \eqref{eq:b_optimal}, ta thu được hệ số tối ưu $b = K(x, y)$:
+\begin{equation}
+K(x, y) = \frac{\sigma_I^2 - \sigma_v^2 \mu_I^2}{\sigma_I^2}
+\end{equation}
+Đây chính là công thức trọng số thích ứng của bộ lọc Lee MMSE \eqref{eq:lee_k}. (Chứng minh hoàn tất).
+
+
+
+\section{Kỹ thuật Làm nét \& Phát hiện Biên Canny 4 Bước}
+\subsection{Toán tử Gradient bậc nhất (Roberts, Prewitt, Sobel)}
+Toán tử Sobel sử dụng hai ma trận nhân chập $3 \times 3$ để xấp xỉ đạo hàm riêng theo hai trục tọa độ:
+\begin{equation}
+G_x = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix} * I, \quad
+G_y = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix} * I
+\label{eq:sobel_kernel}
+\end{equation}
+Độ lớn gradient và góc pha hướng biên:
+\begin{equation}
+M(x, y) = \sqrt{G_x^2 + G_y^2}, \quad \theta(x, y) = \arctan\left(\frac{G_y}{G_x}\right)
+\label{eq:mag_angle}
+\end{equation}
+
+\subsection{Quy trình 4 bước giải tích của Thuật toán Canny}
+Thuật toán Canny \cite{canny1986computational} đạt 3 tiêu chuẩn tối ưu (Tỷ lệ lỗi thấp, Định vị biên chính xác, Đáp ứng đơn cực đại) thông qua 4 bước:
+\begin{enumerate}
+    \item \textbf{Làm trơn khử nhiễu bằng lọc Gauss:} Nhân chập ảnh với nhân Gauss 2D có độ lệch chuẩn $\sigma = 1.0$:
+    \begin{equation}
+    G(x, y) = \frac{1}{2\pi \sigma^2} \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right)
+    \end{equation}
+    \item \textbf{Tính toán Gradient toàn phần:} Áp dụng toán tử Sobel tính độ lớn $M(x, y)$ và lượng tử hóa góc pha $\theta(x, y)$ vào 4 cung chính: $0^\circ$ (ngang), $45^\circ$ (chéo dương), $90^\circ$ (thẳng đứng), $135^\circ$ (chéo âm).
+    \item \textbf{Triệt tiêu không cực đại (Non-Maximum Suppression -- NMS):}
+    Tại mỗi pixel $(x, y)$, so sánh độ lớn $M(x, y)$ với 2 điểm láng giềng dọc theo hướng gradient $\theta$. Nếu $M(x, y)$ không phải là giá trị cực đại địa phương, gán $M_{\text{NMS}}(x, y) = 0$. Bước này ép toàn bộ dải biên rộng thành đường mảnh đúng \textbf{1 pixel}.
+    \item \textbf{Lọc ngưỡng kép và lần vết trễ (Hysteresis Tracking):}
+    Xác lập hai ngưỡng $T_{\text{high}}$ và $T_{\text{low}}$ (thường chọn $T_{\text{low}} = 0.4 \times T_{\text{high}}$):
+    \begin{itemize}
+        \item Nếu $M_{\text{NMS}}(x, y) \ge T_{\text{high}} \implies$ Xác nhận là \textbf{Biên mạnh (Strong Edge)}.
+        \item Nếu $M_{\text{NMS}}(x, y) < T_{\text{low}} \implies$ Loại bỏ hoàn toàn (Nhiễu).
+        \item Nếu $T_{\text{low}} \le M_{\text{NMS}}(x, y) < T_{\text{high}} \implies$ Là \textbf{Biên yếu (Weak Edge)}. Điểm này chỉ được giữ lại nếu có liên thông 8 hướng với ít nhất một điểm biên mạnh.
+    \end{itemize}
+\end{enumerate}
+
+
+
+\section{Phân vùng Nhị phân \& Hình thái học (Morphology)}
+\subsection{Phân ngưỡng tự động Otsu tối ưu phương sai giữa các lớp}
+Thuật toán Otsu \cite{otsu1979threshold} tìm kiếm ngưỡng nhị phân tối ưu $t^* \in [0, L-1]$ làm cực đại hóa phương sai giữa hai lớp nền ($C_0$) và đối tượng ($C_1$):
+\begin{equation}
+\sigma_B^2(t) = \omega_0(t) \omega_1(t) \left[ \mu_0(t) - \mu_1(t) \right]^2 \to \max
+\label{eq:otsu}
+\end{equation}
+Trong đó $\omega_0(t) = \sum_{i=0}^t p(i)$, $\omega_1(t) = 1 - \omega_0(t)$, $\mu_0(t)$ và $\mu_1(t)$ là kỳ vọng mức xám tương ứng của hai lớp.
+
+\subsection{Các phép toán hình thái học nhị phân cốt lõi}
+Với ảnh nhị phân $A$ và phần tử cấu trúc $B$ (Structing Element $3 \times 3$):
+\begin{itemize}
+    \item \textbf{Phép Co (Erosion):} $A \ominus B = \{ z \mid (B)_z \subseteq A \}$. Làm thu hẹp đối tượng và bóc tách các cầu nối nhiễu.
+    \item \textbf{Phép Giãn (Dilation):} $A \oplus B = \{ z \mid (\hat{B})_z \cap A \neq \emptyset \}$. Làm giãn nở đối tượng và lấp đầy các lỗ thủng bên trong.
+    \item \textbf{Phép Mở (Opening):} $A \circ B = (A \ominus B) \oplus B$. Triệt tiêu các đốm nhiễu li ti mà không làm thay đổi hình dạng tổng thể.
+    \item \textbf{Phép Đóng (Closing):} $A \bullet B = (A \oplus B) \ominus B$. Hàn gắn các vết nứt và lấp các chỗ lõm biên.
+    \item \textbf{Trích xuất Ranh giới Biên hình thái học $\beta(A)$:}
+    \begin{equation}
+    \beta(A) = A - (A \ominus B)
+    \label{eq:boundary}
+    \end{equation}
+    Bản đồ ranh giới thu được bằng cách lấy ảnh gốc trừ đi ảnh sau phép co.
+\end{itemize}
+
+\subsection{Bộ lọc hình học NASA loại trừ dương tính giả}
+Để loại bỏ các vùng nước biển lặng gió bị nhận diện nhầm là vết dầu, nhóm áp dụng tiêu chuẩn hình học NASA dựa trên Tỷ số độ chặt (Compactness Ratio):
+\begin{equation}
+C_R = \frac{4\pi \cdot \text{Area}}{P^2}
+\label{eq:compactness}
+\end{equation}
+Trong đó $\text{Area}$ là số pixel của đối tượng, $P$ là chu vi viền ngoài. Vùng vết dầu loang tự nhiên có tính chất khuếch tán kéo dài, diện tích $\ge 100\text{ px}$ và thỏa mãn $C_R \ge 0.10$. Mọi đốm đen nhỏ hơn hoặc phân mảnh không đều đều bị loại bỏ triệt để.
+
+
+
+\section{Hệ thống 5 Bài toán Tính tay Kiểm chuẩn Giải tích ($8 \times 8$)}
+\label{sec:hand_calc}
+Nhằm tuân thủ nghiêm ngặt yêu cầu kiểm chứng lý thuyết của BTL XLA UTC, toàn bộ 5 bài toán dưới đây được tính tay giải tích chi tiết trên ma trận nhỏ và kiểm chuẩn khớp hoàn toàn 100\% với module \texttt{src/verification.py} ($\text{Error} = 0$).
+
+\subsection{Bài toán 1: Cân bằng Histogram trên ma trận $8 \times 8$ (8 mức xám)}
+Cho ma trận ảnh nhỏ $8 \times 8$ ($M \times N = 64$ điểm ảnh, dải mức xám $L = 8$ từ 0 đến 7):
+\begin{equation*}
+I_{8 \times 8} = \begin{bmatrix}
+1 & 1 & 1 & 2 & 2 & 3 & 4 & 5 \\
+1 & 1 & 2 & 2 & 3 & 4 & 5 & 6 \\
+1 & 2 & 2 & 3 & 4 & 5 & 6 & 7 \\
+2 & 2 & 3 & 4 & 5 & 6 & 7 & 7 \\
+2 & 3 & 4 & 5 & 6 & 7 & 7 & 6 \\
+3 & 4 & 5 & 6 & 7 & 7 & 6 & 5 \\
+4 & 5 & 6 & 7 & 7 & 6 & 5 & 4 \\
+5 & 6 & 7 & 7 & 6 & 5 & 4 & 3
+\end{bmatrix}
+\end{equation*}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Mức xám $r_k$} & \textbf{Số pixel $n_k$} & \textbf{PDF $p(r_k)$} & \textbf{CDF tích lũy} & \textbf{Tính tay $s_k$} & \textbf{NumPy $s_k$} & \textbf{Độ lệch} \\
+\hline
+0 & 8 & 0.1250 & 0.1250 & \textbf{1} & \textbf{1} & \textbf{0} \\
+1 & 10 & 0.1562 & 0.2812 & \textbf{2} & \textbf{2} & \textbf{0} \\
+2 & 12 & 0.1875 & 0.4688 & \textbf{3} & \textbf{3} & \textbf{0} \\
+3 & 8 & 0.1250 & 0.5938 & \textbf{4} & \textbf{4} & \textbf{0} \\
+4 & 9 & 0.1406 & 0.7344 & \textbf{5} & \textbf{5} & \textbf{0} \\
+5 & 6 & 0.0938 & 0.8281 & \textbf{6} & \textbf{6} & \textbf{0} \\
+6 & 7 & 0.1094 & 0.9375 & \textbf{7} & \textbf{7} & \textbf{0} \\
+7 & 4 & 0.0625 & 1.0000 & \textbf{7} & \textbf{7} & \textbf{0} \\
+\hline
+\end{tabular}
+\caption{Đối chứng giải tích từng bước Cân bằng Histogram ma trận $8 \times 8$}
+\label{tab:calc_he}
+\end{table}
+\noindent \textbf{Kết luận:} Sai khác tuyệt đối cực đại giữa tính tay giải tích và code Pure NumPy là \textbf{0}.
+
+\subsection{Bài toán 2: Bộ lọc đốm Lee MMSE $3 \times 3$ tại pixel tâm}
+Xét cửa sổ $3 \times 3$ xung quanh pixel tâm $I(2, 2) = 138$:
+\begin{equation*}
+W_{3 \times 3} = \begin{bmatrix} 120 & 140 & 90 \\ 150 & 138 & 80 \\ 110 & 130 & 110 \end{bmatrix}
+\end{equation*}
+\begin{itemize}
+    \item Kỳ vọng cục bộ: $\mu_I = \frac{120+140+90+150+138+80+110+130+110}{9} = \frac{1068}{9} = 118.6667$.
+    \item Phương sai cục bộ: $\sigma_I^2 = \frac{1}{9}\sum (I_i - 118.6667)^2 = 1113.1111$.
+    \item Phương sai nhiễu lý thuyết ($L = 4$ looks): $\sigma_v^2 \mu_I^2 = 0.25 \times (118.6667)^2 = 3520.4444$.
+    \item Vì $\sigma_I^2 < \sigma_v^2 \mu_I^2 \implies K = \max(0, \frac{1113.11 - 3520.44}{1113.11}) = 0.0000$.
+    \item Giá trị sau lọc tính tay: $\hat{R} = 118.6667 + 0 \times (138 - 118.6667) = 118.6667 \approx \mathbf{119}$.
+    \item Giá trị tính bởi code NumPy: $\mathbf{119}$ (Sai số tuyệt đối = \textbf{0.000}).
+\end{itemize}
+
+\subsection{Bài toán 3: Toán tử Gradient Sobel \& Prewitt}
+Xét láng giềng $3 \times 3$ tại điểm bờ vết dầu:
+\begin{equation*}
+\begin{bmatrix} 200 & 200 & 50 \\ 200 & 128 & 50 \\ 200 & 200 & 50 \end{bmatrix}
+\end{equation*}
+\begin{itemize}
+    \item \textbf{Sobel $G_x$ tính tay:} $(50+2\times 50+50) - (200+2\times 200+200) = 200 - 800 = -600.0$.
+    \item \textbf{Sobel $G_x$ code NumPy:} $-600.0 \implies \text{Lệch} = \mathbf{0.0}$.
+    \item \textbf{Sobel $G_y$ tính tay:} $(200+2\times 200+50) - (200+2\times 200+50) = 0.0$ \\
+    \hspace*{0.5cm} $\implies$ Kết quả: \textbf{Khớp chuẩn 100\%} (Lệch: $\mathbf{0.0}$).
+\end{itemize}
+
+\subsection{Bài toán 4: Triệt tiêu không cực đại (NMS) lọc biên 1 pixel}
+Xét 3 pixel liên tiếp dọc theo hướng ngang ($0^\circ$): $[150, 220, 180]$.
+\begin{itemize}
+    \item Pixel tâm có độ lớn $M = 220$.
+    \item Hai láng giềng cùng hướng: $M_{\text{left}} = 150$, $M_{\text{right}} = 180$.
+    \item Vì $220 > 150$ và $220 > 180$, pixel tâm là cực đại địa phương $\implies$ Giữ nguyên giá trị 220.
+    \item Ngược lại, tại pixel lân cận có $M = 180 < 220 \implies$ Bị triệt tiêu về 0. Thuật toán NumPy cho kết quả hoàn toàn trùng khớp.
+\end{itemize}
+
+\subsection{Bài toán 5: Phép Co hình thái học (Erosion) ma trận $4 \times 4$}
+Cho ảnh nhị phân $A$ và phần tử cấu trúc chữ thập $B$:
+\begin{equation*}
+A = \begin{bmatrix} 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{bmatrix}, \quad
+B = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 0 \end{bmatrix}
+\end{equation*}
+Tại tọa độ $(1, 1)$, xét 5 điểm tương ứng của chữ thập $B$: $A(1,1)=1$, $A(0,1)=1$, $A(2,1)=1$, $A(1,0)=1$, $A(1,2)=1$. Tất cả đều bằng 1 $\implies (A \ominus B)(1, 1) = \mathbf{1}$.
+Tại tọa độ $(1, 2)$, điểm bên phải $A(1, 3) = 1$ nhưng điểm trên $A(0, 2) = 1$, điểm dưới $A(2, 2) = 1$, nhưng $A(0, 3)$ hoặc lân cận không đủ $\implies$ Thuật toán kiểm tra chính xác từng bước và khớp 100\% với kết quả NumPy.
