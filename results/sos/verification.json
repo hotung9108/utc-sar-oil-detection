@@ -8,8 +8,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 5.699999746866524e-06,
-      "reference_seconds": 3.2999996619764715e-06,
+      "numpy_seconds": 1.6600000890321098e-05,
+      "reference_seconds": 9.60000033956021e-06,
       "passed": true
     },
     {
@@ -20,8 +20,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004825999994864105,
-      "reference_seconds": 0.0002858000007108785,
+      "numpy_seconds": 0.0013269999999465654,
+      "reference_seconds": 0.002757799999017152,
       "passed": true
     },
     {
@@ -32,8 +32,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0007721000001765788,
-      "reference_seconds": 0.0005722999994759448,
+      "numpy_seconds": 0.0024290000001201406,
+      "reference_seconds": 0.001618800000869669,
       "passed": true
     },
     {
@@ -44,8 +44,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 2.220446049250313e-16,
-      "numpy_seconds": 0.0002642999997988227,
-      "reference_seconds": 0.00015559999974357197,
+      "numpy_seconds": 0.0018306000001757639,
+      "reference_seconds": 0.0009200999993481673,
       "passed": true
     },
     {
@@ -56,8 +56,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 2.220446049250313e-16,
-      "numpy_seconds": 0.00022190000072441762,
-      "reference_seconds": 7.850000019971048e-05,
+      "numpy_seconds": 0.000772700001107296,
+      "reference_seconds": 0.00035650000063469633,
       "passed": true
     },
     {
@@ -69,8 +69,8 @@
         "looks": 1
       },
       "max_abs_error": 3.1807889655510735e-14,
-      "numpy_seconds": 0.0002730999995037564,
-      "reference_seconds": 9.42999995459104e-05,
+      "numpy_seconds": 0.001259599999684724,
+      "reference_seconds": 0.0004139000011491589,
       "passed": true
     },
     {
@@ -82,8 +82,8 @@
         "looks": 4
       },
       "max_abs_error": 8.681944052568724e-14,
-      "numpy_seconds": 0.0002113999998982763,
-      "reference_seconds": 7.660000028408831e-05,
+      "numpy_seconds": 0.000884899998709443,
+      "reference_seconds": 0.0002982000005431473,
       "passed": true
     },
     {
@@ -95,8 +95,8 @@
         "looks": 1
       },
       "max_abs_error": 8.326672684688674e-15,
-      "numpy_seconds": 0.00022140000055514975,
-      "reference_seconds": 7.019999975454994e-05,
+      "numpy_seconds": 0.0009117000008700415,
+      "reference_seconds": 0.00029279999944265,
       "passed": true
     },
     {
@@ -108,8 +108,8 @@
         "looks": 4
       },
       "max_abs_error": 5.1181281435219717e-14,
-      "numpy_seconds": 0.00020109999968553893,
-      "reference_seconds": 7.229999937408138e-05,
+      "numpy_seconds": 0.0008385999990423443,
+      "reference_seconds": 0.0003113000002485933,
       "passed": true
     },
     {
@@ -121,8 +121,8 @@
         "looks": 1
       },
       "max_abs_error": 6.439293542825908e-15,
-      "numpy_seconds": 0.00019130000055156415,
-      "reference_seconds": 6.0599999414989725e-05,
+      "numpy_seconds": 0.0008560999995097518,
+      "reference_seconds": 0.000282599999991362,
       "passed": true
     },
     {
@@ -134,8 +134,8 @@
         "looks": 4
       },
       "max_abs_error": 4.340972026284362e-14,
-      "numpy_seconds": 0.0002066000006379909,
-      "reference_seconds": 7.050000021990854e-05,
+      "numpy_seconds": 0.00087100000018836,
+      "reference_seconds": 0.00028059999931429047,
       "passed": true
     },
     {
@@ -253,8 +253,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 1.249999968422344e-05,
-      "reference_seconds": 5.500000042957254e-06,
+      "numpy_seconds": 1.5800000255694613e-05,
+      "reference_seconds": 7.300001016119495e-06,
       "passed": true
     },
     {
@@ -265,8 +265,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005543000006582588,
-      "reference_seconds": 0.00019489999976940453,
+      "numpy_seconds": 0.0005212000014580553,
+      "reference_seconds": 0.00017729999854054768,
       "passed": true
     },
     {
@@ -277,8 +277,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0003747000000657863,
-      "reference_seconds": 0.0001170999994428712,
+      "numpy_seconds": 0.00046940000174799934,
+      "reference_seconds": 0.00016350000078091398,
       "passed": true
     },
     {
@@ -289,8 +289,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00041260000034526456,
-      "reference_seconds": 0.00023989999954210361,
+      "numpy_seconds": 0.0005264999999781139,
+      "reference_seconds": 0.00022509999871545006,
       "passed": true
     },
     {
@@ -301,8 +301,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005179999998290441,
-      "reference_seconds": 0.00021410000044852495,
+      "numpy_seconds": 0.0004560999987006653,
+      "reference_seconds": 0.00018959999943035655,
       "passed": true
     },
     {
@@ -314,8 +314,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.000293000000056054,
-      "reference_seconds": 8.39000003907131e-05,
+      "numpy_seconds": 0.0006429000004573027,
+      "reference_seconds": 0.0001953999999386724,
       "passed": true
     },
     {
@@ -327,8 +327,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00023400000009132782,
-      "reference_seconds": 5.8200000239594374e-05,
+      "numpy_seconds": 0.0011412000003474532,
+      "reference_seconds": 0.00021809999998367857,
       "passed": true
     },
     {
@@ -340,8 +340,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0002541999992899946,
-      "reference_seconds": 7.840000034775585e-05,
+      "numpy_seconds": 0.0007673000000067987,
+      "reference_seconds": 0.00018900000031862874,
       "passed": true
     },
     {
@@ -353,8 +353,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005734999995183898,
-      "reference_seconds": 0.00014970000029279618,
+      "numpy_seconds": 0.000513400000272668,
+      "reference_seconds": 0.00012539999988803174,
       "passed": true
     },
     {
@@ -366,8 +366,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004391000002215151,
-      "reference_seconds": 0.00011410000024625333,
+      "numpy_seconds": 0.0004668000001402106,
+      "reference_seconds": 0.00015829999938432593,
       "passed": true
     },
     {
@@ -379,8 +379,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00029569999969680794,
-      "reference_seconds": 8.679999973537633e-05,
+      "numpy_seconds": 0.0006522000003315043,
+      "reference_seconds": 0.00018060000002151355,
       "passed": true
     },
     {
@@ -498,8 +498,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 3.3999995139311068e-06,
-      "reference_seconds": 1.2000000424450263e-06,
+      "numpy_seconds": 8.999999408842996e-06,
+      "reference_seconds": 4.100000296602957e-06,
       "passed": true
     },
     {
@@ -510,8 +510,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00021850000030099181,
-      "reference_seconds": 7.069999992381781e-05,
+      "numpy_seconds": 0.000565199999982724,
+      "reference_seconds": 0.00014879999980621506,
       "passed": true
     },
     {
@@ -522,8 +522,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0001903000002130284,
-      "reference_seconds": 0.00019740000061574392,
+      "numpy_seconds": 0.0004417000000103144,
+      "reference_seconds": 0.00015460000031453092,
       "passed": true
     },
     {
@@ -534,8 +534,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00037759999941044953,
-      "reference_seconds": 0.00016510000023117755,
+      "numpy_seconds": 0.0005285999995976454,
+      "reference_seconds": 0.00021330000163288787,
       "passed": true
     },
     {
@@ -546,8 +546,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0003860000006170594,
-      "reference_seconds": 0.0001748000004226924,
+      "numpy_seconds": 0.00045510000018111896,
+      "reference_seconds": 0.00018490000002202578,
       "passed": true
     },
     {
@@ -559,8 +559,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004967000004398869,
-      "reference_seconds": 0.00013180000041757012,
+      "numpy_seconds": 0.0006374999993568053,
+      "reference_seconds": 0.00017149999985122122,
       "passed": true
     },
     {
@@ -572,8 +572,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004255999992892612,
-      "reference_seconds": 0.00012460000016289996,
+      "numpy_seconds": 0.0006435000013880199,
+      "reference_seconds": 0.00016320000031555537,
       "passed": true
     },
     {
@@ -585,8 +585,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004208999998809304,
-      "reference_seconds": 0.00011789999916800298,
+      "numpy_seconds": 0.0006317000006674789,
+      "reference_seconds": 0.0001675000003160676,
       "passed": true
     },
     {
@@ -598,8 +598,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00044629999956669053,
-      "reference_seconds": 0.00011629999971773941,
+      "numpy_seconds": 0.0006495999987237155,
+      "reference_seconds": 0.00016010000035748817,
       "passed": true
     },
     {
@@ -611,8 +611,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006513000007544179,
-      "reference_seconds": 0.00021360000027925707,
+      "numpy_seconds": 0.0006355000004987232,
+      "reference_seconds": 0.000161899999511661,
       "passed": true
     },
     {
@@ -624,8 +624,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005843999997523497,
-      "reference_seconds": 0.0002009999998335843,
+      "numpy_seconds": 0.0006395000000338769,
+      "reference_seconds": 0.0001655000014579855,
       "passed": true
     },
     {
@@ -743,8 +743,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 9.099999260797631e-06,
-      "reference_seconds": 2.499999936844688e-06,
+      "numpy_seconds": 7.3999999585794285e-06,
+      "reference_seconds": 3.899998773704283e-06,
       "passed": true
     },
     {
@@ -755,8 +755,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0003480000004856265,
-      "reference_seconds": 0.00010879999990720535,
+      "numpy_seconds": 0.00036279999949329067,
+      "reference_seconds": 0.00010420000035082921,
       "passed": true
     },
     {
@@ -767,8 +767,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.000278700000308163,
-      "reference_seconds": 8.460000026389025e-05,
+      "numpy_seconds": 0.00033819999953266233,
+      "reference_seconds": 0.0005166999999346444,
       "passed": true
     },
     {
@@ -779,8 +779,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00038669999958074186,
-      "reference_seconds": 0.00015389999953185907,
+      "numpy_seconds": 0.0013796000002912479,
+      "reference_seconds": 0.0006115000014688121,
       "passed": true
     },
     {
@@ -791,8 +791,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00032929999997577397,
-      "reference_seconds": 0.00012569999944389565,
+      "numpy_seconds": 0.0005653000007441733,
+      "reference_seconds": 0.0002623999989737058,
       "passed": true
     },
     {
@@ -804,8 +804,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00041200000032404205,
-      "reference_seconds": 0.00011850000009872019,
+      "numpy_seconds": 0.0007218000009743264,
+      "reference_seconds": 0.00020849999964411836,
       "passed": true
     },
     {
@@ -817,8 +817,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00040219999937107787,
-      "reference_seconds": 0.00012119999973947415,
+      "numpy_seconds": 0.0006701000002067303,
+      "reference_seconds": 0.000610499999311287,
       "passed": true
     },
     {
@@ -830,8 +830,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00039879999985714676,
-      "reference_seconds": 0.00013130000024830224,
+      "numpy_seconds": 0.0007133999988582218,
+      "reference_seconds": 0.00019870000141963828,
       "passed": true
     },
     {
@@ -843,8 +843,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00034779999987222254,
-      "reference_seconds": 0.00010469999961060239,
+      "numpy_seconds": 0.0006580999997822801,
+      "reference_seconds": 0.0001731000011204742,
       "passed": true
     },
     {
@@ -856,8 +856,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0003546999996615341,
-      "reference_seconds": 0.00010599999950500205,
+      "numpy_seconds": 0.0005968000004941132,
+      "reference_seconds": 0.00016630000027362257,
       "passed": true
     },
     {
@@ -869,8 +869,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00036019999970449135,
-      "reference_seconds": 0.00029100000028847717,
+      "numpy_seconds": 0.0005486000009113923,
+      "reference_seconds": 0.0001543000016681617,
       "passed": true
     },
     {

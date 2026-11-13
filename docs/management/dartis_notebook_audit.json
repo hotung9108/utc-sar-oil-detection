@@ -1,0 +1,10 @@
+{
+  "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
+  "sha256": "628be98f975068c147aedbe8ac1ed38ee9b0cabd5ea19d792d753ebea4dea745",
+  "nbformat_valid": true,
+  "code_cells_compile": true,
+  "code_cells": 3,
+  "executed": false,
+  "reason": "Awaiting complete DARTIS download and frozen-model inference",
+  "tests": "9/9 unittest tests passed; includes three DARTIS reporting guard/denominator tests"
+}

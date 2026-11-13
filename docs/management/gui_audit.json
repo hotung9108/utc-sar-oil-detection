@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "mode": "Qt windows event loop; automated widget actions, no manual file-dialog test",
+  "checks": [
+    {
+      "branch": "SOS: Otsu + SVM (đã đánh giá test)",
+      "sample": "val/sentinel_0",
+      "candidate_regions": 2,
+      "metrics": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "images": 1,
+        "empty_images": 0,
+        "intersection": 48502,
+        "union": 52422,
+        "predicted_pixels": 48681,
+        "truth_pixels": 52243,
+        "edge_gt": 2,
+        "edge_tp": 2,
+        "interior_gt": 0,
+        "interior_tp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "pixel_iou": 0.9252222349395292,
+        "dice": 0.961158891839404,
+        "fp_per_image": 0.0,
+        "edge_recall": 1.0,
+        "interior_recall": null
+      },
+      "thread_completed": true,
+      "export_mask_equal": true,
+      "ground_truth_did_not_change_prediction": true,
+      "shape_mismatch_rejected": true,
+      "raw_uint16_rejected": true
+    },
+    {
+      "branch": "Bổ sung: Niblack + CART (chỉ validation)",
+      "sample": "val/sentinel_0",
+      "candidate_regions": 20,
+      "metrics": {
+        "tp": 2,
+        "fp": 12,
+        "fn": 0,
+        "images": 1,
+        "empty_images": 0,
+        "intersection": 28239,
+        "union": 53693,
+        "predicted_pixels": 29689,
+        "truth_pixels": 52243,
+        "edge_gt": 2,
+        "edge_tp": 2,
+        "interior_gt": 0,
+        "interior_tp": 0,
+        "precision": 0.14285714285714285,
+        "recall": 1.0,
+        "f1": 0.25,
+        "pixel_iou": 0.5259344793548507,
+        "dice": 0.6893277351950398,
+        "fp_per_image": 12.0,
+        "edge_recall": 1.0,
+        "interior_recall": null
+      },
+      "thread_completed": true,
+      "export_mask_equal": true,
+      "ground_truth_did_not_change_prediction": true,
+      "shape_mismatch_rejected": true,
+      "raw_uint16_rejected": true
+    }
+  ],
+  "failure_cases": [
+    {
+      "sample": "val/sentinel_440",
+      "matches_saved_test_counts": true
+    },
+    {
+      "sample": "val/sentinel_591",
+      "matches_saved_test_counts": true
+    }
+  ],
+  "otsu_counts_equal_saved_sos_test": true,
+  "font": "Segoe UI",
+  "source_sha256": {
+    "demo_qt.py": "147975bc03e6e5296a784f55f2f7dd85ad1bb91315b9224ef5a2a8f8ef8e54b5",
+    "demo_engine.py": "bb7a7db543e12ed1e76494507dae19ba1a3c514b522a97f6efcbf68e1884ba2e"
+  },
+  "screenshots": {
+    "branch-0.png": "271cb15f6cf560f3ecabfde5d2f63ece1760f188aab96969c02e380a370abc25",
+    "branch-1.png": "3f58f6608c19ab6808dc44999673d86da68772ddfb7bf81bea0b5c89a02246a0",
+    "failure-1.png": "a2ade8dcae17c238ec5fe40de209cdacac7c857337c3e586e70e034a24fd5e80",
+    "failure-2.png": "ffddcb31629c896b81c4c011b0686c22eeae0de0da6cc898a98e6c15f35bb481",
+    "features.png": "d03aabb073bcee43376e3f1c58f9e3ff3f20a98955d81e65894b17014463218e",
+    "ground-truth.png": "7f5f261e679ec7746bf8ec110d08ce8dc0acf26546ba10525ee6332d61862463"
+  }
+}

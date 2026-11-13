@@ -2,6 +2,11 @@
 
 Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Giao diện học tập là 5 Jupyter notebook; chạy hàng loạt bằng CLI.
 
+Demo desktop: `uv run --frozen --extra demo python scripts/demo_qt.py`.
+Xem [hướng dẫn GUI](docs/DEMO_GUI.md). Nhánh bổ sung trên Sentinel-1 gốc và
+gió ERA5 nằm ở [notebook 07](notebooks/external/07_sentinel_calibration.ipynb),
+chưa thay thế đánh giá phát hiện dầu có nhãn của SOS.
+
 SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 18** vì thiếu góc tới, thời gian/vị trí để ghép gió, và nhãn riêng các loại tương tự dầu. Không gọi phép chia 255 là chuẩn hóa góc tới hoặc suy kết quả thành khả năng cảnh báo thực tế tại miền Trung.
 
 ## Chạy

@@ -36,6 +36,12 @@
       "evidence": "docs/management/notebook_execution_audit.json"
     },
     {
+      "item": "Desktop GUI demo (PyQt), separate from Jupyter experiments",
+      "status": "implemented_native_qt_verified",
+      "evidence": "scripts/demo_qt.py; scripts/demo_engine.py; docs/DEMO_GUI.md; docs/management/gui_audit.json",
+      "limit": "Automated Qt Windows actions verified; manual OS file-picker flow not exercised. Physical calibration branch remains notebook-only."
+    },
+    {
       "item": "Phân công thành viên",
       "status": "implemented",
       "evidence": "docs/management/KE_HOACH_SOS_NOTEBOOK.md; KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx",
@@ -43,8 +49,8 @@
     },
     {
       "item": "Chuẩn hóa góc tới và dữ liệu gió",
-      "status": "missing_real_data",
-      "evidence": "SOS không chứa metadata cần thiết; chưa có kiểm chứng nhánh vật lý"
+      "status": "partial_physical_demo_not_detection_validated",
+      "evidence": "SOS không chứa metadata cần thiết. Đã có tile DN Sentinel-1 gốc 1024x1024, kiểm chứng hiệu chuẩn NumPy–SciPy và ghép gió ERA5 theo thời gian/vị trí; results/physical/calibration.json, wind.json, notebook 07. Chưa có nhãn dầu hoặc ánh xạ patch; chưa chứng minh hiệu chuẩn/gió cải thiện phát hiện dầu, chưa tích hợp vào pipeline SOS."
     },
     {
       "item": "Ngưỡng thích nghi trong pipeline đáp ứng Đề 18",
@@ -59,14 +65,14 @@
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
-      "status": "draft_rendered_review_pending",
+      "status": "draft_layout_verified_submission_pending",
       "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
-      "limit": "Chưa duyệt toàn bộ trang của bản mới. Metadata bìa, chữ ký, điểm đóng góp và biên bản thật còn thiếu. Chỉ bản render khớp hash với DOCX hiện tại mới dùng để kết luận độ dài; kiểm tra văn bản không thay thế duyệt bố cục."
+      "limit": "Bản v7 khớp hash đã được duyệt đủ 36 trang: 32 trang có pixel giống bản v6 đã duyệt và 4 trang đổi được xem trực tiếp, theo docs/report/render_progress.json. Metadata bìa, chữ ký, điểm đóng góp, biên bản thật và đối chiếu mẫu cuối còn thiếu; chưa phải bản nộp hoàn chỉnh."
     },
     {
       "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
       "status": "unfinished",
-      "evidence": "Chưa xác minh bộ nộp mới; không sử dụng nội dung cũ làm bằng chứng mới"
+      "evidence": "18 slide tại deliverables/presentation/SAR_SOS_review_v1.pptx đã xem từng trang và kiểm tra cấu trúc; docs/management/slides_audit.json. Video demo, phụ lục đóng góp và nhật ký thật vẫn chưa hoàn thành."
     },
     {
       "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",

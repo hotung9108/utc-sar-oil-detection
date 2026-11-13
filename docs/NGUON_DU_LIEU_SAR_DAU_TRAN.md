@@ -299,3 +299,26 @@ sau khi lượt đang chạy kết thúc; ảnh hợp lệ được dùng lại.
 đủ toàn bộ ảnh, kiểm tra hash giao thức/model/manifest, lưu từng ảnh và checkpoint.
 Các lỗi không bị bỏ qua khỏi mẫu số. `complete=false` luôn là kết quả chưa đầy đủ.
 Số liệu ngoài miền này không được gộp với bảng test SOS hoặc coi là nhãn hiện trường.
+# Metadata Sentinel-1 gốc bổ sung — chưa phải dữ liệu của SOS
+
+Đã truy ngược patch DARTIS `nc-0001-00-000001.jpg` đến cảnh
+`S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0`.
+Tệp `productInfo.json` xác nhận mã cảnh và thời gian chụp 2019-01-05 15:49:01.
+Đã tải XML annotation VV, calibration VV và noise VV bằng GET ẩn danh từ S3.
+Các lần thử proxy ban đầu trả 404 cho XML nhưng endpoint S3 trả tệp hợp lệ;
+nguồn tải thành công và hash được ghi trong `docs/management/sentinel_metadata_audit.json`.
+
+- Lưới địa định vị: 210 điểm; góc tới từ 30,561276° đến 46,074471°.
+- Kích thước ảnh gốc trong annotation: 16.725 dòng × 25.721 mẫu.
+- XML hiệu chuẩn: 27 vector.
+- Đã đọc một tile cường độ gốc 1.024 × 1.024 ở tâm cảnh bằng byte range;
+  chưa chứng minh ánh xạ patch JPEG sang pixel gốc. Đã ghép gió ERA5 tại tâm
+  tile theo thời gian chụp, không phải theo từng pixel; `results/physical/wind.json`.
+  Không gán lưới góc tới này cho ảnh SOS. Xem `results/physical/README.md`
+  và `docs/management/sentinel_window_audit.json` về hiệu chuẩn thử nghiệm.
+- Việc có XML chưa chứng minh chuẩn hóa góc tới cải thiện phát hiện dầu.
+
+Tái tạo: `python scripts/fetch_sentinel_metadata.py`.
+Nguồn cấu trúc đường dẫn: [tài liệu Sentinel-1 GRD](https://roda.sentinel-hub.com/sentinel-s1-l1c/GRD/readme.html),
+[AWS Open Data Registry](https://registry.opendata.aws/sentinel-1/).
+Ý nghĩa metadata hiệu chuẩn: [ASF Data Formats](https://asf.alaska.edu/sar-information/data-formats-in-depth/).

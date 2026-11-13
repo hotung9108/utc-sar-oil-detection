@@ -42,4 +42,22 @@ Deadline: 23:59 ngày 15/11/2026, Asia/Saigon. Các việc S01–S03 nối tiế
 
 Mỗi việc ước lượng 4 giờ, không phải giờ đã làm. TV3/TV4 sửa các hàm khác nhau trong core.py và reference.py, cần phối hợp trước khi merge. TV5 khóa split và giao thức trước benchmark; TV1 chỉ mở test sau khi TV2/3/4 kiểm chứng xong. Mỗi notebook phải Restart & Run All được bằng cùng môi trường.
 
+## Phần bổ sung sau benchmark — giao việc kiểm tra lại
+
+Các sản phẩm dưới đây được trợ lý hỗ trợ xây dựng; bảng này giao trách nhiệm
+kiểm tra và giải thích, **không xác nhận thành viên đã thực hiện hoặc số giờ đã làm**.
+Không tự điền điểm đóng góp hay chữ ký từ các artifact tự động.
+
+| Phụ trách | Việc cần kiểm tra | Bằng chứng/đầu ra | Điều kiện nghiệm thu |
+|---|---|---|---|
+| TV1 — Tiến Sơn Trần | Demo PyQt, xuất kết quả, video và gói bàn giao | `scripts/demo_qt.py`, `demo_engine.py`, `record_demo_video.py`, `docs/DEMO_GUI.md` | Chạy cả hai nhánh và hai ca lỗi; kiểm tra chọn file/lưu thư mục thủ công; video đủ 5–7 phút, phụ đề đúng kết quả |
+| TV2 — Lương Tiến Dũng | Giải thích hiệu chuẩn DN/LUT và giới hạn so sánh thư viện | `scripts/sentinel_calibration_demo.py`, `results/physical/calibration.json` | Tái tạo sai số NumPy–SciPy; phân biệt gamma hình học với loại hết phụ thuộc góc/gió; không gọi đây là đối chứng SNAP |
+| TV3 — Hồ Việt Tùng | Kiểm tra góc tới và phép ghép gió | `scripts/fetch_scene_wind.py`, notebook 07, `results/physical/wind.json` | Kiểm tra UTC, đơn vị m/s, khoảng cách ô lưới, quy ước hướng FROM và nội suy u/v; không gán metadata này cho SOS |
+| TV4 — Nguyễn Hải Hiếu | Kiểm tra liên hệ vùng ứng viên, đặc trưng và ca thất bại trong GUI | Bảng đặc trưng GUI; `results/sos/diagnostics/` | Đối chiếu số vùng, score và mask với pipeline; giải thích khác biệt TP pixel với TP đối tượng |
+| TV5 — Phạm Minh Tuấn | Hoàn tất DARTIS và kiểm tra phạm vi nhãn tham chiếu | `results/dartis/`, notebook 06, `scripts/dartis_results.py` | Tôn trọng giới hạn tải; đủ 2.290 ảnh và hash trước đánh giá; không diễn giải cụm K-means là nhãn mưa/gió yếu/màng sinh học |
+
+Các việc chưa thể xác nhận hoàn thành: đánh giá nhánh vật lý trên mẫu có nhãn
+đã căn chỉnh, nhãn nguyên nhân look-alike, thông tin bìa chính thức, biên bản
+và đóng góp thật. Theo dõi riêng tại `completion_audit.json`.
+
 Giao thức, thuật toán và tiêu chí lựa chọn: [GIAO_THUC_THUC_NGHIEM.md](../GIAO_THUC_THUC_NGHIEM.md). Phân công máy đọc: sos_tasks.json; workbook giữ các ô minh chứng và giờ thực tế cho người thực hiện.

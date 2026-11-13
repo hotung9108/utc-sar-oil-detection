@@ -1,0 +1,7 @@
+{
+  "http_status": 429,
+  "observed_unix": 1794584969.5398986,
+  "retry_after_header": "15",
+  "resume_not_before_unix": 1794585029.5398986,
+  "source": "https://download.pangaea.de/dataset/980773/files/nw-0940-06-000028.jpg"
+}

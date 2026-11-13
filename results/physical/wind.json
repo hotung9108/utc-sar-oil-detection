@@ -1,0 +1,60 @@
+{
+  "scene": "S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0",
+  "annotation_sha256": "cf90e463b69be346788c667b83c7519106873d7a634e3d08c4cfe4a4598418d4",
+  "tile_center_line_pixel": [
+    8703.5,
+    12799.5
+  ],
+  "sar_center_utc": "2019-01-05T15:49:14.737876+00:00",
+  "requested_lat_lon": [
+    35.119400652694495,
+    32.46650561225391
+  ],
+  "returned_grid_lat_lon": [
+    35.0,
+    32.5
+  ],
+  "grid_center_distance_km": 13.622265806019325,
+  "request_url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.1194007&longitude=32.4665056&start_date=2019-01-05&end_date=2019-01-05&hourly=wind_speed_10m%2Cwind_direction_10m&models=era5&timezone=GMT&wind_speed_unit=ms&cell_selection=nearest&elevation=nan",
+  "request_parameters": {
+    "latitude": "35.1194007",
+    "longitude": "32.4665056",
+    "start_date": "2019-01-05",
+    "end_date": "2019-01-05",
+    "hourly": "wind_speed_10m,wind_direction_10m",
+    "models": "era5",
+    "timezone": "GMT",
+    "wind_speed_unit": "ms",
+    "cell_selection": "nearest",
+    "elevation": "nan"
+  },
+  "source": "ERA5 via Open-Meteo archive; nominal 0.25 degree hourly reanalysis",
+  "raw_file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/era5_wind_raw.json",
+  "raw_sha256": "0067041f1c9616733fcee16e762f23a8753995959ef980b92c30f4b275cfa7b1",
+  "bracketing_hours": [
+    {
+      "time_utc": "2019-01-05T15:00:00+00:00",
+      "speed_m_s": 3.83,
+      "from_degrees": 263
+    },
+    {
+      "time_utc": "2019-01-05T16:00:00+00:00",
+      "speed_m_s": 3.24,
+      "from_degrees": 261
+    }
+  ],
+  "temporal_weight": 0.8207605211111112,
+  "method": "Linear interpolation of u/v vectors, not of circular direction",
+  "u_east_m_s": 3.3078943673006167,
+  "v_north_m_s": 0.4996622998946703,
+  "speed_m_s": 3.3454188914327574,
+  "from_degrees": 261.4103245011308,
+  "script_sha256": "5161ab4dd65a690629d40e57b9172034ac27f794ed7ca80fbb83cb5d6b450a3b",
+  "limitations": [
+    "Single coarse reanalysis grid cell, not SAR pixel-scale wind or field observation",
+    "API speed/direction are rounded; reconstructed vectors have rounding error",
+    "No classifier or threshold changed using this wind",
+    "No wind linkage to SOS images",
+    "No proof that a dark SAR region is caused by low wind"
+  ]
+}
