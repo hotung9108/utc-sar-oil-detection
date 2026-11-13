@@ -11,7 +11,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 TREES = ('src/', 'scripts/', 'tests/', 'docs/', 'notebooks/', 'results/sos/',
-         'results/physical/', 'results/dartis/', 'deliverables/report/',
+         'results/physical/', 'results/dartis/', 'results/qposd/', 'deliverables/report/',
          'deliverables/presentation/', 'deliverables/video/')
 ROOT_FILES = {'.gitignore', '.gitattributes', '.python-version', 'README.md',
               'requirements.txt', 'pyproject.toml', 'uv.lock', 'run_experiments.py',

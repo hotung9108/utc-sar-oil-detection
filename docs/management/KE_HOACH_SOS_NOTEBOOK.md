@@ -61,3 +61,23 @@ Các việc chưa thể xác nhận hoàn thành: đánh giá nhánh vật lý t
 và đóng góp thật. Theo dõi riêng tại `completion_audit.json`.
 
 Giao thức, thuật toán và tiêu chí lựa chọn: [GIAO_THUC_THUC_NGHIEM.md](../GIAO_THUC_THUC_NGHIEM.md). Phân công máy đọc: sos_tasks.json; workbook giữ các ô minh chứng và giờ thực tế cho người thực hiện.
+
+## Bổ sung QPOSD — kiểm tra trước bàn giao 15/11
+
+SOS vẫn là benchmark chính. QPOSD bổ sung nhãn dầu/tương tự dầu chung trên
+UAVSAR; không thay thế nhãn nguyên nhân mưa, gió yếu hoặc màng sinh học.
+Các nhiệm vụ dưới đây giao trách nhiệm kiểm tra sản phẩm, không ghi nhận
+thành viên đã làm. Mã máy đọc: `qposd_tasks.json`. Không thay lịch sử S01–S03.
+
+| ID / phụ trách | Việc cần làm | Bằng chứng và điều kiện nghiệm thu | Người kiểm tra |
+|---|---|---|---|
+| Q01-TV5 — Phạm Minh Tuấn | Giải thích chất lượng nhãn và giao thức v2 | 24 cặp hợp lệ/17 cặp lệch; giữ nhãn 255 bỏ qua; giải thích lỗi giao trùng v1, nhóm {19,20}/{21,22,33,35}, chia 14/5/5; không tuyên bố độc lập cảnh | Tiến Sơn Trần |
+| Q02-TV2 — Lương Tiến Dũng | Kiểm tra 10 cấu hình CART/SVM, hội tụ và lựa chọn validation | Đối chiếu `classifier_selection.json`, confusion và score NumPy/thư viện; giải thích đây là phân lớp có sẵn vùng; không fit/chọn lại theo test | Hồ Việt Tùng |
+| Q03-TV3 — Hồ Việt Tùng | Đối chiếu 10 cấu hình lọc/ngưỡng trên 5 ảnh validation | Đủ 50 lượt, macro-F1 từ tổng TP/FP/FN; cùng classifier đã khóa; không bỏ cấu hình điểm thấp; giải thích Lee trên T11 tuyến tính khác Lee trên SOS PNG | Nguyễn Hải Hiếu |
+| Q04-TV4 — Nguyễn Hải Hiếu | Kiểm tra 8 đặc trưng và tối ưu gom tọa độ NumPy | Chạy `benchmark_qposd_features.py` ra file mới; ID/8 cột bằng mã cũ; phân biệt sai số đặc trưng với tốc độ toàn pipeline; giải thích mọi công thức và GT nhỏ vẫn được tính | Phạm Minh Tuấn |
+| Q05-TV1 — Tiến Sơn Trần | Tích hợp kết quả test đã khóa, notebook 10, báo cáo và gói bàn giao | Đủ 5 ảnh, mask hai backend khớp khi chạy lại; tách F1 phân lớp/phát hiện, nhầm lẫn có điều kiện và bỏ sót; báo cả kết quả kém; kiểm tra artifact/hash trước đóng gói | Lương Tiến Dũng |
+
+Thứ tự phụ thuộc: Q01 → Q02 → Q03 → Q05; Q04 kiểm chứng trước khi chạy
+Q03 với bản tối ưu. Lượt chạy tự động không thay thế việc thành viên đọc,
+chạy lại, giải thích và ký xác nhận. Thông tin lớp, nhóm, giảng viên, mã sinh
+viên, đóng góp và biên bản chưa xác nhận tiếp tục để trống theo yêu cầu.
