@@ -19,7 +19,9 @@ def main():
 
 SOS vẫn là dữ liệu chính; đây là kiểm tra bổ sung trên UAVSAR L-band.
 Nguồn: [QPOSD](https://zenodo.org/records/19258036), CC BY 4.0.
-Chia theo ảnh nguồn, chưa chứng minh độc lập cảnh. Nhãn tương tự dầu là lớp
+Chia theo nhóm ảnh có giao trùng chính xác (giao thức v2), chưa chứng minh
+độc lập cảnh. Tập test đã được xem để kiểm tra ảnh–nhãn, không phải đánh giá mù.
+Nhãn tương tự dầu là lớp
 chung, chưa phân biệt gió yếu, màng sinh học hay mưa.
 
 **Hai kết quả khác nhau:** phân lớp có sẵn vùng tham chiếu và phát hiện

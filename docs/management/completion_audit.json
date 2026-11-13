@@ -60,9 +60,9 @@
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
-      "status": "generic_lookalike_labels_audited_evaluation_pending",
-      "evidence": "QPOSD exact RGB labels audited across 41 masks; 24 image/mask shapes match. Object census and NumPy/SciPy connectivity checked. Frozen 14/5/5 source-image split, classifier/detection/test runners and metric tests implemented. Partial real feature extraction stored in results/qposd/regions. Full MAT download is still running; no QPOSD model fit, validation selection or test score yet.",
-      "limit": "Generic look-alike only; no wind/biofilm/rain cause labels. Source-scene independence unverified. Notebook 10 builder syntax checked but real notebook execution remains pending full evaluation."
+      "status": "generic_lookalike_classification_validated_detection_running",
+      "evidence": "All 24 eligible MAT pairs downloaded, CRC/hash/finite checks and visual review complete. All 276 pairwise overlap checks complete; protocol v1 rejected before fitting for overlap across splits. Protocol v2 keeps exact-overlap groups together with 14/5/5 images. All 10 classifiers fitted and converged using train only; validation winner CART depth5/min_leaf1, conditional macro-F1 0.6238049911020982 (oil F1 0.3835616438356164). results/qposd/classifier_selection.json stores all comparisons and frozen models. Complete 10-by-5 candidate validation is running; no detection winner or test result yet. NumPy feature optimization passed exact equality on 1474 real candidate regions and 24 QPOSD tests.",
+      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Conditional reference-region classification is not end-to-end detection. Real notebook 10 execution, detection/test results and report integration remain pending."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
