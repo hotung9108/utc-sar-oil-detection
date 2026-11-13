@@ -1,19 +1,61 @@
 {
-  "render": ".cache\\report\\render-fields-v3\\Bao_cao_SAR_SOS_fields.pdf",
-  "pages": 32,
-  "main_start": 9,
-  "main_end": 29,
-  "main_page_count": 21,
-  "visually_reviewed_latest_pages": [
-    6,
-    7
+  "render": ".cache\\report\\render-fields-v7\\Bao_cao_SAR_SOS_fields.pdf",
+  "docx_sha256": "fd57367bef1cdb4cfe6f2cc27036161841333af347ec1c224593c9637bdd4cdb",
+  "pdf_sha256": "64797804315e17a84bbdd33318c77faa2f4709af849f0adcb0982184117d4764",
+  "total_pages": 36,
+  "main_pages": 25,
+  "directly_reviewed_pdf_pages": [
+    18,
+    22,
+    23,
+    34
   ],
-  "layout_verified": false,
+  "pixel_identical_to_reviewed_v6_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20,
+    21,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    35,
+    36
+  ],
+  "all_pages_covered": true,
+  "layout_verified": true,
+  "findings": [
+    "Changed pages visually inspected at full resolution: readable, no clipping or overlap.",
+    "Each algorithm block remains on one page.",
+    "References left-aligned without stretched whitespace.",
+    "32 other page rasters exactly match v6 reviewed pages using PIL ImageChops pixel comparison."
+  ],
+  "submission_ready": false,
   "pending": [
-    "Review all remaining pages",
-    "Equation number right alignment",
-    "Check every TOC page number",
-    "Reconcile course guide length",
-    "Actual group metadata and signatures"
+    "Cover metadata and authentic contribution records",
+    "Complete outstanding scientific requirements",
+    "Submission package and template comparison gate"
   ]
 }

@@ -40,6 +40,13 @@ mục lục với trang thực tế. Các audit trong cache chỉ chứng minh p
 
 - Bố cục toàn bộ bản render mới nhất, đặc biệt bảng nhiều trang và hình thất bại.
 - Số thứ tự công thức sát lề phải và dẫn chiếu đủ từng hình/bảng.
-- Quy định độ dài bản hướng dẫn trước so với mẫu mới 20–35 trang nội dung chính.
-- Thông số phần cứng chạy thử; thông tin bìa và xác nhận của thành viên.
+- Độ dài sau mỗi lần sửa phải được kiểm tra lại trong `render_audit.json`: nội dung
+  chính cần nằm trong giao của hai hướng dẫn, tức 25–35 trang.
+- Thông tin bìa và xác nhận của thành viên. Phần cứng đã ghi trong `environment.json`
+  tại lúc chuẩn bị báo cáo; đây không phải nhật ký tải máy khi benchmark.
 - DOCX/PDF cuối, slides và video demo trong bộ bàn giao.
+
+`render_progress.json` lưu những trang đã xem và các lỗi phát hiện, gắn với hash
+DOCX/PDF của đúng vòng render. Không chuyển trạng thái duyệt từ bản cũ sang bản mới
+chỉ vì mục lục khớp. Bản v6 đã được xem đủ 36 trang; sau đó đã sửa cách căn tài liệu
+tham khảo và giữ liền khối giả mã, nên bản dựng tiếp theo cần được kiểm tra lại.

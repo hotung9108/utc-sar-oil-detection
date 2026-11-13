@@ -2,18 +2,77 @@
   "objective": "Hoàn thiện dự án đầy đủ theo Đề 18 và hướng dẫn BTL",
   "complete": false,
   "requirements": [
-    {"item": "Kiểm kê labeled SOS, split và giới hạn ground truth", "status": "implemented", "evidence": "data/manifest.json; docs/management/refined_sos_audit.json"},
-    {"item": "So sánh thuật toán với mask, lưu số liệu thật", "status": "implemented_with_limits", "evidence": "results/sos/screen.json; validation.json; evaluation.json", "limit": "Tìm kiếm theo giai đoạn, không thử mọi tổ hợp; thiếu scene IDs"},
-    {"item": "Giải thích lựa chọn Lee bằng số liệu và ví dụ số", "status": "implemented_with_limits", "evidence": "results/sos/selection_evidence/; results/sos/worked_example/", "limit": "Chưa chứng minh Lee vượt mean7 hoặc L4 vượt L1; Lee reference ghép công thức SciPy"},
-    {"item": "Thuật toán NumPy và đối chiếu thư viện", "status": "implemented_with_limits", "evidence": "src/sar_oil/core.py; models.py; results/sos/verification_real.json; model_comparison.json; results/sos/REPORT.md", "limit": "Đối chiếu phép toán trên 8 ảnh validation, có max error và MSE; không suy rộng tương đương toàn miền đầu vào"},
-    {"item": "Phân tích ít nhất 3 thất bại, độ phân tán toàn tập", "status": "implemented", "evidence": "scripts/analyze_failures.py; results/sos/diagnostics/; notebooks/05_final_pipeline.ipynb"},
-    {"item": "Notebook chạy được và kết quả suy luận cuối", "status": "verified", "evidence": "docs/management/notebook_execution_audit.json"},
-    {"item": "Phân công thành viên", "status": "implemented", "evidence": "docs/management/KE_HOACH_SOS_NOTEBOOK.md; KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx", "limit": "Không thay thế đóng góp thực tế, chữ ký và lịch sử commit của từng người"},
-    {"item": "Chuẩn hóa góc tới và dữ liệu gió", "status": "missing_real_data", "evidence": "SOS không chứa metadata cần thiết; chưa có kiểm chứng nhánh vật lý"},
-    {"item": "Ngưỡng thích nghi trong pipeline đáp ứng Đề 18", "status": "implemented_validation_only", "evidence": "scripts/adaptive_experiment.py; results/sos/adaptive/: 27 tổ hợp; toàn pipeline NumPy trên 671 ảnh validation F1=0.144656", "limit": "Nhánh bổ sung sau lựa chọn; chưa có tập test độc lập mới. Không thay thế kết quả test Otsu"},
-    {"item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn", "status": "missing_labels", "evidence": "SOS chỉ có dầu/nền; chưa có đánh giá theo lớp look-alike"},
-    {"item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo", "status": "draft_rendered_review_pending", "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; .cache/report có DOCX/PDF 32 trang trong vòng render-v2, 21 trang nội dung chính; update_report_fields.ps1 và import_report_fields.py cập nhật mục lục bằng Word với hash bảo vệ", "limit": "Đang kiểm tra toàn bộ trang sau cập nhật trường; chưa phải bản nộp. Còn thiếu metadata bìa, chữ ký, điểm đóng góp và biên bản thật. Yêu cầu độ dài bản hướng dẫn trước cần đối chiếu lại với mẫu mới 20–35 trang"},
-    {"item": "Slide, video demo, phụ lục đóng góp và nhật ký thật", "status": "unfinished", "evidence": "Chưa xác minh bộ nộp mới; không sử dụng nội dung cũ làm bằng chứng mới"},
-    {"item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao", "status": "partial", "evidence": "run_experiments.py --workers 6 đã hoàn tất 10 bước; results/sos/runner_reproduce.json passed=true; 5 notebook và 6 tests đạt", "limit": "Runner dùng checkpoint hợp lệ cho benchmark gốc; chưa đóng gói toàn bộ tài liệu nộp"}
+    {
+      "item": "Kiểm kê labeled SOS, split và giới hạn ground truth",
+      "status": "implemented",
+      "evidence": "data/manifest.json; docs/management/refined_sos_audit.json"
+    },
+    {
+      "item": "So sánh thuật toán với mask, lưu số liệu thật",
+      "status": "implemented_with_limits",
+      "evidence": "results/sos/screen.json; validation.json; evaluation.json",
+      "limit": "Tìm kiếm theo giai đoạn, không thử mọi tổ hợp; thiếu scene IDs"
+    },
+    {
+      "item": "Giải thích lựa chọn Lee bằng số liệu và ví dụ số",
+      "status": "implemented_with_limits",
+      "evidence": "results/sos/selection_evidence/; results/sos/worked_example/",
+      "limit": "Chưa chứng minh Lee vượt mean7 hoặc L4 vượt L1; Lee reference ghép công thức SciPy"
+    },
+    {
+      "item": "Thuật toán NumPy và đối chiếu thư viện",
+      "status": "implemented_with_limits",
+      "evidence": "src/sar_oil/core.py; models.py; results/sos/verification_real.json; model_comparison.json; results/sos/REPORT.md",
+      "limit": "Đối chiếu phép toán trên 8 ảnh validation, có max error và MSE; không suy rộng tương đương toàn miền đầu vào"
+    },
+    {
+      "item": "Phân tích ít nhất 3 thất bại, độ phân tán toàn tập",
+      "status": "implemented",
+      "evidence": "scripts/analyze_failures.py; results/sos/diagnostics/; notebooks/05_final_pipeline.ipynb"
+    },
+    {
+      "item": "Notebook chạy được và kết quả suy luận cuối",
+      "status": "verified",
+      "evidence": "docs/management/notebook_execution_audit.json"
+    },
+    {
+      "item": "Phân công thành viên",
+      "status": "implemented",
+      "evidence": "docs/management/KE_HOACH_SOS_NOTEBOOK.md; KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx",
+      "limit": "Không thay thế đóng góp thực tế, chữ ký và lịch sử commit của từng người"
+    },
+    {
+      "item": "Chuẩn hóa góc tới và dữ liệu gió",
+      "status": "missing_real_data",
+      "evidence": "SOS không chứa metadata cần thiết; chưa có kiểm chứng nhánh vật lý"
+    },
+    {
+      "item": "Ngưỡng thích nghi trong pipeline đáp ứng Đề 18",
+      "status": "implemented_validation_only",
+      "evidence": "scripts/adaptive_experiment.py; results/sos/adaptive/: 27 tổ hợp; toàn pipeline NumPy trên 671 ảnh validation F1=0.144656",
+      "limit": "Nhánh bổ sung sau lựa chọn; chưa có tập test độc lập mới. Không thay thế kết quả test Otsu"
+    },
+    {
+      "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
+      "status": "missing_labels",
+      "evidence": "SOS chỉ có dầu/nền; chưa có đánh giá theo lớp look-alike"
+    },
+    {
+      "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
+      "status": "draft_rendered_review_pending",
+      "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
+      "limit": "Chưa duyệt toàn bộ trang của bản mới. Metadata bìa, chữ ký, điểm đóng góp và biên bản thật còn thiếu. Chỉ bản render khớp hash với DOCX hiện tại mới dùng để kết luận độ dài; kiểm tra văn bản không thay thế duyệt bố cục."
+    },
+    {
+      "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
+      "status": "unfinished",
+      "evidence": "Chưa xác minh bộ nộp mới; không sử dụng nội dung cũ làm bằng chứng mới"
+    },
+    {
+      "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
+      "status": "partial",
+      "evidence": "run_experiments.py --workers 6 đã hoàn tất 10 bước; results/sos/runner_reproduce.json passed=true; 5 notebook và 6 tests đạt",
+      "limit": "Runner dùng checkpoint hợp lệ cho benchmark gốc; chưa đóng gói toàn bộ tài liệu nộp"
+    }
   ]
 }

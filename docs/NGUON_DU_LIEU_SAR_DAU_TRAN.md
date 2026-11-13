@@ -235,3 +235,67 @@ Danh mục này bao gồm các đầu mối tìm được trong đợt khảo s�
 ## Cập nhật 13/11/2026
 
 Nhóm đã chọn Refined SOS v1 (https://zenodo.org/records/15298010), tải và kiểm kê 8070 cặp PNG/mask. Sentinel dùng huấn luyện/validation/test, PALSAR chỉ đánh giá ngoài miền. Xem `management/KIEM_TRA_REFINED_SOS.md` và `GIAO_THUC_THUC_NGHIEM.md`. Các dòng “chưa chọn/chưa tải” ở mục khảo sát cũ mô tả trạng thái trước quyết định này. Không có metadata để hoàn thành chuẩn hóa góc tới, ghép gió hoặc đánh giá riêng look-alike.
+
+### Kiểm tra bổ sung DARTIS ngày 13/11/2026
+
+SOS vẫn là dữ liệu chính. Đã tải catalog từ
+[PANGAEA 980773](https://doi.pangaea.de/10.1594/PANGAEA.980773?format=textfile)
+vào `data/dartis/catalog.tsv`. Script `scripts/audit_dartis.py` kiểm tra catalog,
+ghi [audit](management/dartis_catalog_audit.json) và manifest cục bộ.
+Nguồn công bố CC-BY-4.0; cần ghi tác giả Yang và Singha cùng DOI khi sử dụng.
+
+Kết quả chạy thực tế: 5.515 dòng, 3.655 ảnh duy nhất, 3.225 dòng đối tượng dầu,
+1.063 mã cảnh Sentinel-1. Bốn tập có 375 oil/coast, 990 oil/water,
+351 no-oil/coast và 1.939 no-oil/water. Có 3.581 ảnh 640×640;
+74 ảnh có kích thước khác. Các box trong catalog không vượt biên theo kiểm tra
+`0 <= xmin < xmax <= width` và tương tự cho y. Đây chưa phải xác nhận nhãn đúng
+về mặt hiện tượng hoặc kiểm tra toàn bộ tệp ảnh.
+
+Đã tải và mở `ow-0001.jpg` cùng XML: ảnh xám 640×640; box
+(345, 297, 368, 343) khớp catalog. Trường filename trong XML dùng tên cảnh/patch
+gốc, khác tên tải xuống; script đối chiếu qua `patch_name` để tránh ghép sai.
+Hash catalog, JPEG và XML được lưu trong audit. Chưa chạy benchmark trên DARTIS.
+
+[README của tác giả](https://download.pangaea.de/reference/132854/attachments/README.pdf)
+cho biết nhãn dầu là box VOC; mã nhóm no-oil là cụm K-means. Vì vậy:
+
+- Không biến box thành mask dầu đặc rồi tính IoU pixel như SOS.
+- Có thể thiết kế phép đo báo dầu nhầm trên ảnh no-oil, nhưng cần cố định cách
+  xử lý kích thước và giao thức trước khi xem kết quả.
+- Không gán tên mưa/gió yếu/màng sinh học cho mã cụm khi chưa có nhãn xác nhận.
+- Mã cảnh và thời gian hỗ trợ truy dữ liệu gốc; JPEG không cung cấp băng góc tới
+  hoặc gió. Chưa đáp ứng chuẩn hóa góc tới và ghép gió chỉ nhờ tải catalog.
+- Khi chia tập phải gộp các patch chia sẻ bất kỳ mã cảnh nào; một patch có thể
+  được tạo từ nhiều cảnh. Không chỉ nhóm theo mã cảnh đầu tiên.
+
+Chạy lại kiểm tra sau khi đặt catalog và các ảnh/XML cần kiểm tra trong `data/dartis/`:
+
+```powershell
+.venv/Scripts/python.exe scripts/audit_dartis.py
+```
+
+Ảnh và catalog nằm ngoài Git theo quy tắc thư mục data; audit và script được lưu
+trong mã nguồn. Download từng tệp dùng tên trong catalog nối với
+`https://download.pangaea.de/dataset/980773/files/`.
+
+### Phép thử no-oil với mô hình SOS đã khóa
+
+Giao thức nằm trong `results/dartis/protocol.json`, được ghi trước khi chạy suy luận.
+Phạm vi là toàn bộ 2.290 ảnh no-oil (1.939 water, 351 coast). Kiểm kê xác nhận
+riêng tập no-oil đều 640×640; các kích thước khác thuộc tập dầu. Giữ kích thước
+gốc, đổi ảnh xám sang float bằng chia 255, không fit lại hoặc chỉnh tham số SOS.
+Một ảnh báo nhầm khi giữ ít nhất một vùng có score > 0. Báo tỷ lệ ảnh báo nhầm,
+số vùng giữ/ảnh và tỷ lệ pixel dự đoán dầu; tách coast/water và cụm K-means.
+Không tính Recall dầu hoặc F1 tổng thể từ một tập chỉ có ảnh âm.
+
+```powershell
+.venv/Scripts/python.exe scripts/download_dartis.py --workers 4
+.venv/Scripts/python.exe scripts/evaluate_dartis.py --workers 4
+```
+
+Downloader kiểm tra giải mã JPEG, kích thước và SHA-256, lưu tiến độ mỗi 25 ảnh
+trong `results/dartis/download_audit.json`. Nếu máy chủ trả lỗi, chạy lại downloader
+sau khi lượt đang chạy kết thúc; ảnh hợp lệ được dùng lại. Evaluator chỉ chạy khi
+đủ toàn bộ ảnh, kiểm tra hash giao thức/model/manifest, lưu từng ảnh và checkpoint.
+Các lỗi không bị bỏ qua khỏi mẫu số. `complete=false` luôn là kết quả chưa đầy đủ.
+Số liệu ngoài miền này không được gộp với bảng test SOS hoặc coi là nhãn hiện trường.

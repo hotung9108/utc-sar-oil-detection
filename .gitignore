@@ -22,6 +22,7 @@ __pycache__/
 /results/*
 !/results/README.md
 !/results/sos/
+!/results/dartis/
 /results/sos/validation/
 /data/Refined-Deep-SAR/
 .DS_Store

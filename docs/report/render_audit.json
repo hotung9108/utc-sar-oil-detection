@@ -1,13 +1,13 @@
 {
-  "docx_sha256": "0506f2564f5796836f7d7d7ec07b6a9beb33bf370d4d4a951bfc17a914f518f8",
-  "pdf_sha256": "c86784623d51907c0c661010fdd4dc058197ed0d5ac3fd510be094c1ce68e950",
-  "render": ".cache\\report\\render-fields-v5\\Bao_cao_SAR_SOS_fields.pdf",
-  "pages": 35,
+  "docx_sha256": "fd57367bef1cdb4cfe6f2cc27036161841333af347ec1c224593c9637bdd4cdb",
+  "pdf_sha256": "64797804315e17a84bbdd33318c77faa2f4709af849f0adcb0982184117d4764",
+  "render": ".cache\\report\\render-fields-v7\\Bao_cao_SAR_SOS_fields.pdf",
+  "pages": 36,
   "main_start": 9,
-  "main_end": 32,
-  "main_page_count": 24,
+  "main_end": 33,
+  "main_page_count": 25,
   "latest_template_20_to_35": true,
-  "original_guide_25_to_40": false,
+  "original_guide_25_to_40": true,
   "toc_checks": [
     {
       "target": "– TỔNG QUAN BÀI TOÁN",
@@ -23,290 +23,290 @@
     },
     {
       "target": "Mục tiêu và phạm vi",
-      "cached_page": 1,
-      "pdf_page": 9,
+      "cached_page": 2,
+      "pdf_page": 10,
       "found": true
     },
     {
       "target": "Chức năng bắt buộc và hướng mở rộng",
-      "cached_page": 2,
-      "pdf_page": 10,
+      "cached_page": 3,
+      "pdf_page": 11,
       "found": true
     },
     {
       "target": "Bố cục báo cáo",
-      "cached_page": 2,
-      "pdf_page": 10,
+      "cached_page": 3,
+      "pdf_page": 11,
       "found": true
     },
     {
       "target": "– DỮ LIỆU VÀ CƠ SỞ LÝ THUYẾT",
-      "cached_page": 3,
-      "pdf_page": 11,
+      "cached_page": 4,
+      "pdf_page": 12,
       "found": true
     },
     {
       "target": "Dữ liệu ảnh",
-      "cached_page": 3,
-      "pdf_page": 11,
+      "cached_page": 4,
+      "pdf_page": 12,
       "found": true
     },
     {
       "target": "Cơ sở lý thuyết",
-      "cached_page": 4,
-      "pdf_page": 12,
+      "cached_page": 5,
+      "pdf_page": 13,
       "found": true
     },
     {
       "target": "Lọc cục bộ và phân ngưỡng",
-      "cached_page": 4,
-      "pdf_page": 12,
+      "cached_page": 5,
+      "pdf_page": 13,
       "found": true
     },
     {
       "target": "Đặc trưng vùng và phân lớp",
-      "cached_page": 7,
-      "pdf_page": 15,
+      "cached_page": 8,
+      "pdf_page": 16,
       "found": true
     },
     {
       "target": "Độ đo đánh giá",
-      "cached_page": 9,
-      "pdf_page": 17,
+      "cached_page": 10,
+      "pdf_page": 18,
       "found": true
     },
     {
       "target": "– THIẾT KẾ VÀ CÀI ĐẶT PIPELINE",
-      "cached_page": 11,
-      "pdf_page": 19,
+      "cached_page": 12,
+      "pdf_page": 20,
       "found": true
     },
     {
       "target": "Sơ đồ pipeline",
-      "cached_page": 11,
-      "pdf_page": 19,
+      "cached_page": 12,
+      "pdf_page": 20,
       "found": true
     },
     {
       "target": "Mô tả chi tiết từng bước",
-      "cached_page": 11,
-      "pdf_page": 19,
+      "cached_page": 12,
+      "pdf_page": 20,
       "found": true
     },
     {
       "target": "Cài đặt thuật toán tự xây dựng",
-      "cached_page": 12,
-      "pdf_page": 20,
-      "found": true
-    },
-    {
-      "target": "Kết quả trung gian",
-      "cached_page": 14,
-      "pdf_page": 22,
-      "found": true
-    },
-    {
-      "target": "– THỰC NGHIỆM VÀ ĐÁNH GIÁ",
-      "cached_page": 17,
-      "pdf_page": 25,
-      "found": true
-    },
-    {
-      "target": "Thiết kế thực nghiệm",
-      "cached_page": 17,
-      "pdf_page": 25,
-      "found": true
-    },
-    {
-      "target": "Kết quả định lượng",
-      "cached_page": 17,
-      "pdf_page": 25,
-      "found": true
-    },
-    {
-      "target": "So sánh phương pháp và tham số",
-      "cached_page": 18,
-      "pdf_page": 26,
-      "found": true
-    },
-    {
-      "target": "Phân tích trường hợp thất bại",
-      "cached_page": 20,
-      "pdf_page": 28,
-      "found": true
-    },
-    {
-      "target": "Hướng mở rộng đã thực hiện",
-      "cached_page": 23,
-      "pdf_page": 31,
-      "found": true
-    },
-    {
-      "target": "KẾT LUẬN",
-      "cached_page": 24,
-      "pdf_page": 32,
-      "found": true
-    },
-    {
-      "target": "TÀI LIỆU THAM KHẢO",
-      "cached_page": 25,
-      "pdf_page": 33,
-      "found": true
-    },
-    {
-      "target": "PHỤ LỤC",
-      "cached_page": 26,
-      "pdf_page": 34,
-      "found": true
-    },
-    {
-      "target": "A. Bảng phân công công việc và tự đánh giá đóng góp",
-      "cached_page": 26,
-      "pdf_page": 34,
-      "found": true
-    },
-    {
-      "target": "B. Biên bản họp nhóm",
-      "cached_page": 26,
-      "pdf_page": 34,
-      "found": true
-    },
-    {
-      "target": "C. Khai báo sử dụng công cụ AI",
-      "cached_page": 27,
-      "pdf_page": 35,
-      "found": true
-    },
-    {
-      "target": "D. Hướng dẫn cài đặt và chạy chương trình",
-      "cached_page": 27,
-      "pdf_page": 35,
-      "found": true
-    },
-    {
-      "target": "Hình 2.1. Sáu cặp ảnh và mask validation với seed 2026",
-      "cached_page": 4,
-      "pdf_page": 12,
-      "found": true
-    },
-    {
-      "target": "Hình 3.1. Luồng suy luận tách biệt với ground truth",
-      "cached_page": 11,
-      "pdf_page": 19,
-      "found": true
-    },
-    {
-      "target": "Hình 3.2. Ảnh đầu vào và các bước tạo mask trong một ca thất bại",
-      "cached_page": 15,
-      "pdf_page": 23,
-      "found": true
-    },
-    {
-      "target": "Hình 4.1. Ảnh hưởng tham số trên tập validation",
-      "cached_page": 18,
-      "pdf_page": 26,
-      "found": true
-    },
-    {
-      "target": "Hình 4.2. Phân tích lỗi trên ảnh val/sentinel_440",
-      "cached_page": 21,
-      "pdf_page": 29,
-      "found": true
-    },
-    {
-      "target": "Hình 4.3. Phân tích lỗi trên ảnh val/sentinel_25",
-      "cached_page": 21,
-      "pdf_page": 29,
-      "found": true
-    },
-    {
-      "target": "Hình 4.4. Phân tích lỗi trên ảnh val/sentinel_591",
-      "cached_page": 22,
-      "pdf_page": 30,
-      "found": true
-    },
-    {
-      "target": "Bảng 1.1. Chức năng và người phụ trách theo kế hoạch",
-      "cached_page": 2,
-      "pdf_page": 10,
-      "found": true
-    },
-    {
-      "target": "Bảng 2.1. Các tập dữ liệu sử dụng trong thực nghiệm",
-      "cached_page": 3,
-      "pdf_page": 11,
-      "found": true
-    },
-    {
-      "target": "Bảng 2.2. Ma trận 5×5 dùng kiểm chứng Lee",
-      "cached_page": 7,
-      "pdf_page": 15,
-      "found": true
-    },
-    {
-      "target": "Bảng 2.3. Định nghĩa và giới hạn đặc trưng vùng",
-      "cached_page": 9,
-      "pdf_page": 17,
-      "found": true
-    },
-    {
-      "target": "Bảng 3.1. Đầu vào và đầu ra các bước của nhánh đã khóa",
-      "cached_page": 12,
-      "pdf_page": 20,
-      "found": true
-    },
-    {
-      "target": "Bảng 3.2. Đối chiếu classifier trên cùng đặc trưng validation",
       "cached_page": 13,
       "pdf_page": 21,
       "found": true
     },
     {
-      "target": "Bảng 3.3. Sai số đối chiếu trên tám ảnh validation",
-      "cached_page": 14,
-      "pdf_page": 22,
+      "target": "Kết quả trung gian",
+      "cached_page": 15,
+      "pdf_page": 23,
       "found": true
     },
     {
-      "target": "Bảng 3.4. Trách nhiệm module và đường đi bằng chứng",
-      "cached_page": 16,
-      "pdf_page": 24,
-      "found": true
-    },
-    {
-      "target": "Bảng 4.1. Kết quả pipeline đã khóa và các đối chứng",
+      "target": "– THỰC NGHIỆM VÀ ĐÁNH GIÁ",
       "cached_page": 18,
       "pdf_page": 26,
       "found": true
     },
     {
-      "target": "Bảng 4.2. Đối chứng bộ lọc trên 671 ảnh validation",
+      "target": "Thiết kế thực nghiệm",
+      "cached_page": 18,
+      "pdf_page": 26,
+      "found": true
+    },
+    {
+      "target": "Kết quả định lượng",
+      "cached_page": 18,
+      "pdf_page": 26,
+      "found": true
+    },
+    {
+      "target": "So sánh phương pháp và tham số",
       "cached_page": 19,
       "pdf_page": 27,
       "found": true
     },
     {
-      "target": "Bảng 4.3. Thống kê từng ảnh test với độ lệch chuẩn tổng thể",
+      "target": "Phân tích trường hợp thất bại",
+      "cached_page": 21,
+      "pdf_page": 29,
+      "found": true
+    },
+    {
+      "target": "Hướng mở rộng đã thực hiện",
+      "cached_page": 24,
+      "pdf_page": 32,
+      "found": true
+    },
+    {
+      "target": "KẾT LUẬN",
+      "cached_page": 25,
+      "pdf_page": 33,
+      "found": true
+    },
+    {
+      "target": "TÀI LIỆU THAM KHẢO",
+      "cached_page": 26,
+      "pdf_page": 34,
+      "found": true
+    },
+    {
+      "target": "PHỤ LỤC",
+      "cached_page": 27,
+      "pdf_page": 35,
+      "found": true
+    },
+    {
+      "target": "A. Bảng phân công công việc và tự đánh giá đóng góp",
+      "cached_page": 27,
+      "pdf_page": 35,
+      "found": true
+    },
+    {
+      "target": "B. Biên bản họp nhóm",
+      "cached_page": 27,
+      "pdf_page": 35,
+      "found": true
+    },
+    {
+      "target": "C. Khai báo sử dụng công cụ AI",
+      "cached_page": 28,
+      "pdf_page": 36,
+      "found": true
+    },
+    {
+      "target": "D. Hướng dẫn cài đặt và chạy chương trình",
+      "cached_page": 28,
+      "pdf_page": 36,
+      "found": true
+    },
+    {
+      "target": "Hình 2.1. Sáu cặp ảnh và mask validation với seed 2026",
+      "cached_page": 5,
+      "pdf_page": 13,
+      "found": true
+    },
+    {
+      "target": "Hình 3.1. Luồng suy luận tách biệt với ground truth",
+      "cached_page": 12,
+      "pdf_page": 20,
+      "found": true
+    },
+    {
+      "target": "Hình 3.2. Ảnh đầu vào và các bước tạo mask trong một ca thất bại",
+      "cached_page": 16,
+      "pdf_page": 24,
+      "found": true
+    },
+    {
+      "target": "Hình 4.1. Ảnh hưởng tham số trên tập validation",
+      "cached_page": 19,
+      "pdf_page": 27,
+      "found": true
+    },
+    {
+      "target": "Hình 4.2. Phân tích lỗi trên ảnh val/sentinel_440",
+      "cached_page": 22,
+      "pdf_page": 30,
+      "found": true
+    },
+    {
+      "target": "Hình 4.3. Phân tích lỗi trên ảnh val/sentinel_25",
+      "cached_page": 22,
+      "pdf_page": 30,
+      "found": true
+    },
+    {
+      "target": "Hình 4.4. Phân tích lỗi trên ảnh val/sentinel_591",
       "cached_page": 23,
       "pdf_page": 31,
       "found": true
     },
     {
+      "target": "Bảng 1.1. Chức năng và người phụ trách theo kế hoạch",
+      "cached_page": 3,
+      "pdf_page": 11,
+      "found": true
+    },
+    {
+      "target": "Bảng 2.1. Các tập dữ liệu sử dụng trong thực nghiệm",
+      "cached_page": 4,
+      "pdf_page": 12,
+      "found": true
+    },
+    {
+      "target": "Bảng 2.2. Ma trận 5×5 dùng kiểm chứng Lee",
+      "cached_page": 8,
+      "pdf_page": 16,
+      "found": true
+    },
+    {
+      "target": "Bảng 2.3. Định nghĩa và giới hạn đặc trưng vùng",
+      "cached_page": 10,
+      "pdf_page": 18,
+      "found": true
+    },
+    {
+      "target": "Bảng 3.1. Đầu vào và đầu ra các bước của nhánh đã khóa",
+      "cached_page": 13,
+      "pdf_page": 21,
+      "found": true
+    },
+    {
+      "target": "Bảng 3.2. Đối chiếu classifier trên cùng đặc trưng validation",
+      "cached_page": 14,
+      "pdf_page": 22,
+      "found": true
+    },
+    {
+      "target": "Bảng 3.3. Sai số đối chiếu trên tám ảnh validation",
+      "cached_page": 15,
+      "pdf_page": 23,
+      "found": true
+    },
+    {
+      "target": "Bảng 3.4. Trách nhiệm module và đường đi bằng chứng",
+      "cached_page": 17,
+      "pdf_page": 25,
+      "found": true
+    },
+    {
+      "target": "Bảng 4.1. Kết quả pipeline đã khóa và các đối chứng",
+      "cached_page": 19,
+      "pdf_page": 27,
+      "found": true
+    },
+    {
+      "target": "Bảng 4.2. Đối chứng bộ lọc trên 671 ảnh validation",
+      "cached_page": 20,
+      "pdf_page": 28,
+      "found": true
+    },
+    {
+      "target": "Bảng 4.3. Thống kê từng ảnh test với độ lệch chuẩn tổng thể",
+      "cached_page": 24,
+      "pdf_page": 32,
+      "found": true
+    },
+    {
       "target": "Bảng PL.1. Phân công kiểm tra và bàn giao",
-      "cached_page": 26,
-      "pdf_page": 34,
+      "cached_page": 27,
+      "pdf_page": 35,
       "found": true
     },
     {
       "target": "Bảng PL.2. Xác nhận đóng góp thực tế",
-      "cached_page": 26,
-      "pdf_page": 34,
+      "cached_page": 27,
+      "pdf_page": 35,
       "found": true
     },
     {
       "target": "Bảng PL.3. Khai báo hỗ trợ bằng AI",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 28,
+      "pdf_page": 36,
       "found": true
     }
   ],

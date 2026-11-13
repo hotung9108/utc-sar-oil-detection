@@ -312,7 +312,7 @@ new_table(p, [['Đặc trưng', 'Định nghĩa trong code', 'Ý nghĩa và gi�
     ['mean', 'μR', 'Mức xám trung bình trên ảnh lọc'],
     ['std', 'σR với ddof=0', 'Độ phân tán trong vùng'],
     ['boundary_gradient', 'Mean độ lớn Sobel trên biên', 'Kernel Sobel chia 8; biên lấy bằng R trừ erosion'],
-    ['background_contrast', '(μB−μR)/(|μB|+ε)', 'B là vành ngoài bán kính 5, chỉ lấy pixel label=0']],
+    ['background_\ncontrast', '(μB−μR)/(|μB|+ε)', 'B là vành ngoài bán kính 5, chỉ lấy pixel label=0']],
     2, 3, 'Định nghĩa và giới hạn đặc trưng vùng', [4, 5, 7])
 p = after(p, 'Nếu vành ngoài không có pixel nền, code dùng toàn bộ nền của ảnh; nếu cả ảnh không có nền, dùng trung bình toàn ảnh. Quy tắc dự phòng này tránh NaN nhưng làm đặc trưng tương phản mất ý nghĩa nền cục bộ trong trường hợp vùng phủ gần hết ảnh. Bản NumPy và bản tham chiếu cùng dùng quy tắc đó, vì khác định nghĩa vùng nền có thể tạo sai số dù cả hai chương trình đều chạy đúng.')
 p = after(p, 'Nhóm đặc trưng hình dạng dùng bốn cột đầu; nhóm cường độ dùng bốn cột cuối; nhóm đầy đủ dùng cả tám. So sánh ba nhóm giữ cùng cách tạo ứng viên nhằm đo ảnh hưởng của thông tin đầu vào classifier. Chuẩn hóa z-score dùng trung bình và độ lệch chuẩn chỉ tính trên tập train; cột gần hằng có hệ số chia bảo vệ. Một vùng ở test được biến đổi bằng chính các thống kê train đã lưu.')
@@ -331,9 +331,18 @@ algorithms = [
     ['Thuật toán 2  CART tại một nút', 'Vào: X, y, depth, min_leaf', '1. Nếu lá thuần hoặc đạt giới hạn sâu: tạo lá.', '2. Với từng cột: sắp xếp ổn định các mẫu.', '3. Tính tổng nhãn tích lũy và Gini hai nhánh.', '4. Bỏ điểm chia vi phạm min_leaf.', '5. Chọn gain lớn nhất theo quy tắc hòa xác định.', '6. Nếu gain không dương: tạo lá; nếu không: đệ quy.', 'Mã: models.py, lớp CART.'],
     ['Thuật toán 3  SVM squared hinge', 'Vào: X đã chuẩn hóa, y∈{−1,+1}, C, tol', '1. Thêm cột hằng và khởi tạo trọng số.', '2. Tính Q và gradient theo (2.5).', '3. Backtracking để chọn bước giảm Q hợp lệ.', '4. Cập nhật trọng số với tăng tốc và restart.', '5. Dừng nếu chuẩn gradient đạt tol.', '6. Nếu hết vòng lặp: lưu trạng thái chưa hội tụ.', 'Mã: models.py, lớp LinearSVM.']]
 p = paragraphs[114]
-text(p, algorithms[0][0])
-for line in algorithms[0][1:] + [''] + algorithms[1] + [''] + algorithms[2]:
-    p = after(p, line, code=True)
+for algorithm_index, lines in enumerate(algorithms):
+    for line_index, line in enumerate(lines):
+        if algorithm_index == 0 and line_index == 0:
+            text(p, line)
+        else:
+            p = after(p, line, code=True)
+        p.paragraph_format.keep_together = True
+        p.paragraph_format.keep_with_next = line_index < len(lines) - 1
+        if line_index == 0:
+            p.paragraph_format.space_before = Pt(10)
+            for run in p.runs:
+                run.bold = True
 for i in range(115, 120):
     remove(paragraphs[i])
 caption(paragraphs[120], 'Bảng', 3, 3, 'Sai số đối chiếu trên tám ảnh validation')
@@ -419,7 +428,15 @@ after(p, 'Dice pixel được tính bằng 2|A∩B|/(|A|+|B|), còn FP/ảnh là
 # References and appendices retain source locations and formatting.
 for index in range(153, 157):
     remove(paragraphs[index])
-block(152, [f"[{r['number']}] {r['citation']} {r['url']}" for r in load('docs/report/bibliography.json')])
+reference_end = block(152, [f"[{r['number']}] {r['citation']} {r['url']}" for r in load('docs/report/bibliography.json')])
+reference_node = paragraphs[152]._p
+while True:
+    reference_paragraph = Paragraph(reference_node, doc._body)
+    reference_paragraph.alignment = 0
+    reference_paragraph.paragraph_format.keep_together = True
+    if reference_node is reference_end._p:
+        break
+    reference_node = reference_node.getnext()
 caption(paragraphs[160], 'Bảng', 'PL', 1, 'Phân công kiểm tra và bàn giao')
 fill_table(tables[10], [['Thành viên', 'Nhiệm vụ', 'Sản phẩm kiểm tra']] + [[m['name'], m['role'], m['modules']] for m in members], [3.8, 5.4, 6.8])
 caption(paragraphs[163], 'Bảng', 'PL', 2, 'Xác nhận đóng góp thực tế')
