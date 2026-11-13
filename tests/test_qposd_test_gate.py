@@ -30,6 +30,7 @@ class QposdTestGateTests(unittest.TestCase):
         for key, source in (
                 ('script_sha256', 'scripts/select_qposd_detection.py'),
                 ('pipeline_sha256', 'scripts/qposd_pipeline.py'),
+                ('feature_code_sha256', 'scripts/qposd_fast_features.py'),
                 ('metrics_sha256', 'scripts/qposd_metrics.py')):
             selection[key] = runner.digest(runner.ROOT/source)
         path = directory/'detection_selection.json'

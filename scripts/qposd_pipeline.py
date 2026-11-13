@@ -3,6 +3,7 @@ import time
 import numpy as np
 
 from extract_qposd_regions import display_normalize
+from qposd_fast_features import features as grouped_features
 from sar_oil import core, reference
 
 
@@ -25,7 +26,8 @@ def infer(linear_t11, config, model, backend='numpy'):
     dark = ops.threshold(candidate_image, **config['threshold'])
     kept = ops.postprocess(dark, operation='none', min_area=config['min_area'])
     labels = ops.label(kept)
-    X, ids = ops.features(feature_image, labels)
+    X, ids = (grouped_features(feature_image, labels) if backend == 'numpy'
+              else ops.features(feature_image, labels))
     scores = model.scores(X)
     if len(scores) != len(ids) or not np.isfinite(X).all() or not np.isfinite(scores).all():
         raise ValueError('Invalid features or scores')

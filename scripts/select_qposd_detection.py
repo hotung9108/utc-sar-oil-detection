@@ -76,6 +76,7 @@ def main():
         raise ValueError('Classifier changed during validation')
     report = {'script_sha256': digest(Path(__file__)),
               'pipeline_sha256': digest(ROOT/'scripts/qposd_pipeline.py'),
+              'feature_code_sha256': digest(ROOT/'scripts/qposd_fast_features.py'),
               'metrics_sha256': digest(ROOT/'scripts/qposd_metrics.py'),
               'inputs_sha256': inputs, 'classifier': model_record,
               'configurations': results, 'winner_index': winner['index'],

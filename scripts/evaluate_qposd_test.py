@@ -23,6 +23,7 @@ def frozen_detection(protocol, model_record):
     for key, source in (
             ('script_sha256', 'scripts/select_qposd_detection.py'),
             ('pipeline_sha256', 'scripts/qposd_pipeline.py'),
+            ('feature_code_sha256', 'scripts/qposd_fast_features.py'),
             ('metrics_sha256', 'scripts/qposd_metrics.py')):
         if selection[key] != digest(ROOT/source):
             raise ValueError('Detection implementation changed since selection')
@@ -119,6 +120,7 @@ def main():
     report = {'complete': len(rows) == len(protocol['splits']['test']),
               'script_sha256': digest(Path(__file__)),
               'pipeline_sha256': digest(ROOT/'scripts/qposd_pipeline.py'),
+              'feature_code_sha256': digest(ROOT/'scripts/qposd_fast_features.py'),
               'metrics_sha256': digest(ROOT/'scripts/qposd_metrics.py'),
               'inputs_sha256': inputs, 'classifier': classifier_record,
               'detector': detector_record, 'images': rows,

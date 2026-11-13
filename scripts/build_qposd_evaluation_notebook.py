@@ -50,6 +50,7 @@ assert evaluation['complete']
 assert [r['number'] for r in evaluation['images']]==protocol['splits']['test']
 assert evaluation['script_sha256']==digest(ROOT/'scripts/evaluate_qposd_test.py')
 assert evaluation['pipeline_sha256']==digest(ROOT/'scripts/qposd_pipeline.py')
+assert evaluation['feature_code_sha256']==digest(ROOT/'scripts/qposd_fast_features.py')
 assert evaluation['metrics_sha256']==digest(ROOT/'scripts/qposd_metrics.py')
 for name,sha in evaluation['inputs_sha256'].items(): assert digest(ROOT/name)==sha
 model,model_record=frozen_classifier()
