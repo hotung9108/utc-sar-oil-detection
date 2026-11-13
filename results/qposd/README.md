@@ -49,12 +49,14 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã chạy 4 ảnh trên và ảnh train số 10, gồm 94 vùng. Sai số lớn nhất trên tất cả đặc trưng:
+Đã chạy 4 ảnh trên, ảnh train số 10 và ảnh validation số 13, gồm 97 vùng.
+Sai số lớn nhất trên tất cả đặc trưng:
 `1.8349904928882665e-11`; trên ảnh chuẩn hóa:
 `1.2308238472868993e-7`. Số liệu chỉ thuộc bốn ảnh này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
 công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
-`scripts/extract_qposd_regions.py --numbers 10` trong cùng môi trường Python.
+`scripts/extract_qposd_regions.py --numbers 10` và `--numbers 13` trong cùng
+môi trường Python. Chưa trích đặc trưng hoặc chấm mô hình trên test.
 
 ## Bộ chấm điểm đã kiểm tra
 
@@ -83,6 +85,18 @@ thức; không điều chỉnh theo test. Mã tham chiếu Lee ghép các phép 
 theo cùng công thức, không phải so với một bộ xử lý SAR độc lập như SNAP.
 
 ## Điều kiện còn thiếu trước huấn luyện
+
+`scripts/qposd_pipeline.py` là hàm suy luận chỉ nhận T11, cấu hình và mô hình;
+không nhận mask thật. `scripts/select_qposd_detection.py` dùng hàm này cho
+10 cấu hình trên 5 ảnh validation, sau khi mô hình phân lớp đã được cố định.
+Nó lưu vùng, đặc trưng, score, điểm đối tượng, số pixel bất đồng NumPy/thư
+viện và chọn theo macro-F1 từ tổng số đếm. Nhánh thư viện dùng cùng mô hình
+NumPy đã cố định để tách riêng khác biệt của các phép xử lý ảnh.
+
+Ba kiểm tra suy luận với ảnh giả lập và bộ phân lớp giả lập xác định đã qua;
+không suy ra độ chính xác thực tế từ các kiểm tra này. Lần chạy lệnh chọn
+cấu hình trên dữ liệu hiện tại dừng trước chấm validation do thiếu hồ sơ
+24 MAT. Chưa có `detection_selection.json`.
 
 Mã `scripts/train_qposd_classifiers.py` đã có hai chế độ:
 

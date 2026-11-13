@@ -84,6 +84,40 @@
       ],
       "png_path": ".cache/qposd/pair_previews/pair10.png",
       "png_sha256": "a0614f08c46194ea3600c830629edbc6aef3b7a795e266d35af736cc6b71c7d7"
+    },
+    {
+      "number": 13,
+      "mat_sha256": "b04df68c653fe5f98e9c77f36f73de5bb9bb71c595012b0efe310d87dd0bd97a",
+      "mask_sha256": "07f3543c21c413d5d9743252f93c8d39fda3cad2458c9f25435d797cf53c515a",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -26.12687269925475,
+        -15.25426381303246
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair13.png",
+      "png_sha256": "fc0d67f3eeafee099b48ab665a2ec2c2af7f9d356ca5b71e6b8a11fd67c2c32c"
+    },
+    {
+      "number": 14,
+      "mat_sha256": "306b982d1a5b4024c98ceb9540f78d037d8815467546422397dd510d4d9e59ca",
+      "mask_sha256": "908ce8b0f12b91bbb8c153f8f2f99031cc7df4cd9b00ee7bac8fec1ca16633a7",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -26.72381688784703,
+        -16.703371268818287
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair14.png",
+      "png_sha256": "421c1bdeb3e24b44df5c59d1ea931043873b5735cef9341cdf63b0cb2920a063"
     }
   ],
   "scope": "Visual preview only; no quantitative registration, classification, or physical calibration.",
@@ -91,6 +125,8 @@
     4,
     8,
     10,
+    13,
+    14,
     35,
     41
   ],
@@ -101,7 +137,9 @@
     "8": "Annotated oil regions overlap the central dark slick; thin dark structures outside the reference remain sea-labeled.",
     "35": "Reference oil covers a broad heterogeneous region; land boundary follows the visible elongated bright land mass approximately.",
     "41": "Look-alike reference lies along the dark coastal margin; land boundary follows the visible shoreline approximately. Coastal context may confound classification.",
-    "10": "Oil reference broadly follows the large upper-left dark feature and smaller central/left features. Boundaries are approximate; some annotated edge regions contain substantial intensity variation. No quantitative registration established."
+    "10": "Oil reference broadly follows the large upper-left dark feature and smaller central/left features. Boundaries are approximate; some annotated edge regions contain substantial intensity variation. No quantitative registration established.",
+    "13": "Reference follows the lower-left dark feature approximately, with broad smooth boundaries crossing heterogeneous intensity; no precise registration measurement.",
+    "14": "Test-image structural review only, no prediction: oil reference broadly follows the elongated left dark feature. Sharp corners and simplified boundaries remain visible."
   },
   "limits": "Visual correspondence only; no proof of physical oil identity, precise boundary registration, or scene independence. Do not remove samples based on model performance.",
   "preview_script_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5"
