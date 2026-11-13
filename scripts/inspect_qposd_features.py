@@ -16,9 +16,13 @@ from audit_qposd import ROOT, RangeReader
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--numbers', type=int, nargs='+', default=[7, 35, 40])
+    parser.add_argument('--budget-mib', type=int, default=80,
+                        help='Maximum HTTP bytes in MiB for this inspection (1..4096)')
     parser.add_argument('--output', type=Path, default=ROOT / 'docs/management/qposd_feature_audit.json')
     parser.add_argument('--selection-reason', default='Small archive members for structural inspection: sea/land, oil, look-alike; not a random or held-out evaluation set')
     args = parser.parse_args()
+    if not 1 <= args.budget_mib <= 4096:
+        parser.error('--budget-mib must be between 1 and 4096')
     if len(set(args.numbers)) != len(args.numbers) or any(n < 1 or n > 41 for n in args.numbers):
         parser.error('Choose distinct published sample numbers from 1 to 41')
     if args.numbers != [7, 35, 40] and args.output.resolve() == (ROOT / 'docs/management/qposd_feature_audit.json').resolve():
@@ -27,7 +31,7 @@ def main():
     entry = audit['archive']
     folder = ROOT / 'data/lookalike_sources/qposd_features'
     folder.mkdir(parents=True, exist_ok=True)
-    stream = RangeReader(entry['links']['self'], entry['size'], budget=80 * 1024**2)
+    stream = RangeReader(entry['links']['self'], entry['size'], budget=args.budget_mib * 1024**2)
     rows = []
     with zipfile.ZipFile(stream) as archive:
         for number in args.numbers:
