@@ -1,25 +1,45 @@
-# Phát hiện dầu tràn trên biển từ ảnh SAR — Đề 18
+# Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
-Dự án đang ở giai đoạn tái tổ chức: **chưa chốt dataset, chưa có pipeline hoặc kết quả thực nghiệm mới**. Phiên bản xử lý ảnh trước đây được lưu riêng trong `legacy/pre_refactor_20261112/`.
+Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Giao diện học tập là 5 Jupyter notebook; chạy hàng loạt bằng CLI.
 
-- [Mục tiêu và tiêu chí khoa học](docs/MUC_TIEU_DU_AN.md)
-- [Danh mục nguồn dữ liệu và link](docs/NGUON_DU_LIEU_SAR_DAU_TRAN.md)
-- [Kế hoạch và phân công 13–15/11/2026](docs/management/KE_HOACH_REFACTOR_3_NGAY.md)
-- [Workbook kế hoạch nối tiếp](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx)
-- [Bàn giao và kết quả kiểm tra](docs/management/BAN_GIAO_REFACTOR.md)
-- [Hướng dẫn BTL gốc](docs/00_tai_lieu_goc/huong_dan_btl_docx/)
+SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 18** vì thiếu góc tới, thời gian/vị trí để ghép gió, và nhãn riêng các loại tương tự dầu. Không gọi phép chia 255 là chuẩn hóa góc tới hoặc suy kết quả thành khả năng cảnh báo thực tế tại miền Trung.
 
-## Cấu trúc
+## Chạy
 
-`src/sar_oil/`: mã mới theo chức năng; `tests/`: kiểm tra hiện hành; `configs/`: cấu hình nghiên cứu sau khi chốt dữ liệu; `data/`: manifest/hướng dẫn dữ liệu; `results/`: đầu ra mới; `docs/`: tài liệu hiện hành; `legacy/`: phiên bản lịch sử.
+Một lệnh chạy chuỗi thực nghiệm SOS đã triển khai, phân tích bổ sung và notebook: `.venv/Scripts/python.exe run_experiments.py --workers 6`. Lệnh dùng checkpoint khi có; không tải dữ liệu tự động. Chỉ kiểm tra artifact đã lưu: thêm `--verify-only` (không được gọi đây là chạy lại thực nghiệm). Nhật ký từng bước lưu tại `results/sos/runner_*.json`.
 
-## Kiểm tra
-
-Python 3.13+. Không cần thư viện ngoài cho bộ kiểm tra cấu trúc hiện tại:
+Python 3.13+, cài theo `pyproject.toml` bằng `uv sync`. Dữ liệu từ [Refined SOS v1](https://zenodo.org/records/15298010), đặt tại `data/Refined-Deep-SAR/images/images/{train,val}/*.png` và `masks/masks/{train,val}/*.png`.
 
 ```powershell
-python -m unittest discover -s tests -v
-python scripts/verify_archive.py
+.venv/Scripts/python.exe scripts/sos.py reproduce --workers 6
+.venv/Scripts/python.exe scripts/explain_selection.py --workers 6
+.venv/Scripts/python.exe scripts/adaptive_experiment.py --workers 6
+.venv/Scripts/python.exe scripts/analyze_failures.py
+.venv/Scripts/python.exe scripts/worked_example.py
+.venv/Scripts/python.exe scripts/summarize_results.py
+.venv/Scripts/python.exe -m unittest discover -s tests -v
+.venv/Scripts/python.exe scripts/run_notebooks.py
+.venv/Scripts/python.exe scripts/sos.py predict --image <duong-dan-anh.png>
 ```
 
-Không có lệnh chạy demo mới ở giai đoạn này. Không dùng báo cáo, video hoặc số liệu trong legacy làm kết quả của hướng mới. Môi trường `.venv` hiện có được giữ; không cần đồng bộ/xóa môi trường đó để chạy kiểm tra cấu trúc.
+Đầu ra suy luận: `results/prediction/mask.png`, `overlay.png`, `regions.json`. Score là điểm quyết định, không phải xác suất. Mở notebook 01–05 trong Jupyter hoặc VS Code và chọn Python `.venv`. Notebook đọc chứng cứ benchmark đã thực thi, đồng thời chạy trực tiếp các ví dụ NumPy; thiếu kết quả sẽ báo lệnh cần chạy.
+
+Suy luận bằng nhánh ngưỡng thích nghi bổ sung: `.venv/Scripts/python.exe scripts/sos.py predict --selection results/sos/adaptive/selected.json --image <anh.png> --output results/prediction_adaptive`. Nhánh này chỉ được đánh giá validation, chưa có kết quả test độc lập mới.
+
+CLI có từng bước `prepare`, `verify`, `screen`, `benchmark`, `select`, `evaluate`, `predict`. Benchmark có checkpoint tại `results/sos/validation/`, cache tại `.cache/sos/`. Toàn bộ grid có thể tốn nhiều thời gian/dung lượng; không dùng sample nhỏ rồi báo là toàn bộ test.
+
+## Tài liệu
+
+- [Mục tiêu](docs/MUC_TIEU_DU_AN.md), [giao thức](docs/GIAO_THUC_THUC_NGHIEM.md).
+- [Phân công mới](docs/management/KE_HOACH_SOS_NOTEBOOK.md), [workbook](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx).
+- [Kiểm kê dữ liệu](docs/management/KIEM_TRA_REFINED_SOS.md), [manifest](data/manifest.json).
+- [Nguồn dữ liệu và NASA](docs/NGUON_DU_LIEU_SAR_DAU_TRAN.md).
+- Kết quả thật: `results/sos/screen.json`, `validation.json`, `model_comparison.json`, `selected.json`, `evaluation.json`.
+- [Báo cáo kết quả từ lần chạy thực tế](results/sos/REPORT.md), [bàn giao](docs/management/BAN_GIAO_SOS.md).
+- [Vì sao chọn Lee: số liệu có kiểm soát và quy tắc lựa chọn](results/sos/selection_evidence/REPORT.md). Code tái tạo: `scripts/explain_selection.py`; số đếm từng ảnh: `results/sos/selection_evidence/per_image.json`.
+- [Thống kê toàn tập và ba ca thất bại](results/sos/diagnostics/REPORT.md): số liệu micro/macro, độ lệch chuẩn giữa các ảnh và hình từng bước; không chọn lại mô hình theo test.
+- [Ví dụ Lee 5×5 tính bằng số hữu tỉ](results/sos/worked_example/REPORT.md): giải thích trọng số, đối chiếu NumPy/SciPy và giới hạn của lập luận lý thuyết.
+- [Nhánh Niblack đáp ứng thao tác ngưỡng thích nghi](results/sos/adaptive/REPORT.md): thực nghiệm bổ sung trên validation; kết quả test của nhánh Otsu không áp dụng cho nhánh này.
+- Nguồn dựng báo cáo theo mẫu: `docs/report/narrative.json`, `bibliography.json`, `source_audit.json`. Đây chưa phải DOCX/PDF hoàn chỉnh. Tái tạo hình báo cáo bằng `python scripts/report_figures.py`; kiểm tra nguồn bằng `python scripts/verify_report_sources.py`.
+
+Mã theo chức năng tại `src/sar_oil/`; notebook không sao chép thuật toán. Bản cũ ở `legacy/pre_refactor_20261112/`, không import vào pipeline mới hoặc dùng số liệu cũ làm bằng chứng. Kiểm tra bảo toàn bằng `python scripts/verify_archive.py`. Dữ liệu thô không đưa lên Git.

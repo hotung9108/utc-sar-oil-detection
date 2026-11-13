@@ -1,0 +1,35 @@
+{
+  "manifest_sha256": "572d38f21c25a628d419181d108f50e6e43ebd52cb9b85368f4cd4771c9bed7e",
+  "code": {
+    "__init__.py": "99d91f21e06b5a1706aad319391ea5091d50ce99bb8cb804b79b2420174cc293",
+    "core.py": "95357d596a7ee1083196c9fea2054058eaa947ac65c95ad09e242b46d9008b2b",
+    "data.py": "1bed9d4d20a868935f430e5fac6568185f6a1b252cc6f0e39476a1c10592eba0",
+    "evaluation.py": "6b4ace1ac8139256c4e1cd79971958a526a8e30ff36959c42405f1b29857a39d",
+    "experiments.py": "1c7062da5551b7f271e1f387fe074b8fa502dad044c3784b83ef1605e13b392b",
+    "models.py": "747bba5d5044a0662849bb3b4827ca86d4589406d36d4d383ecfb78c73d94bd9",
+    "pipeline.py": "ef601b0bf4bf5ec46577456bda41e75b88e64dd2d935e46308501122e62fd573",
+    "provenance.py": "a0ebd8d235c02bab3421ed22a34638757b294aed32ac28b5776dc1905cb1d714",
+    "reference.py": "410b82dc56d79cc1c1eeb4785636f0cf0cb85eda082e092fad3c6af3be5a6988",
+    "verification.py": "443681224388ca43b565419b562fc4a482c6c39a454bf1238730c43ddc724b0a"
+  },
+  "source_sha256": {
+    "__init__.py": "42d9194a5d39a9257417b7eed349eebf60c97aa5d222857c30b1d152b8465e14",
+    "core.py": "f18abf40ce140cb1a97f4d2fd210551f41897fe7254845f0220f026bb652468d",
+    "data.py": "0e4c3781e5f9898ae087c476dbf2e9ae59cd60d59508dddad71dd7f46b17f0b8",
+    "evaluation.py": "4df8cfb78099b394024ce96e4560ffdc9cda3fdb9d7806c4a6f67db51e91e740",
+    "experiments.py": "cd282c7c5a80dd8925acca44742433aad6cd131a05bde615c87fc9f30937d693",
+    "models.py": "dafd98f4d2122def5e54ec8d7068a31bc2a206a44145f45bb60001bf75a72d0e",
+    "pipeline.py": "8ebec93324dd8bac079293341b5c808a0099f21876534544c02f52ac80a65760",
+    "provenance.py": "0c79d34e01074ffa65ba283d188ee86c627f7b412426f9f980695a677ca9b8c5",
+    "reference.py": "ea8753b3affb644a3ab92bdc3cf65c8de1df892024180089b10ac41fcf7d9e9d",
+    "verification.py": "1542c65f347b14f1cc512a6ba7944c60f2de2997c2464bfd09b2a3425042f69b"
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-image": "0.26.0",
+    "scikit-learn": "1.9.1",
+    "Pillow": "13.0.0",
+    "matplotlib": "3.11.2"
+  }
+}

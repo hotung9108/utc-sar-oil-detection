@@ -1,0 +1,159 @@
+{
+  "title": "PHÁT HIỆN VẾT DẦU TRÀN TRÊN BIỂN TỪ ẢNH SAR",
+  "status": "Nội dung kỹ thuật dùng để dựng báo cáo theo mẫu; số liệu bảng lấy trực tiếp từ JSON kết quả",
+  "preface": [
+    "Báo cáo khảo sát một pipeline xử lý ảnh SAR nhằm phát hiện vùng có nhãn dầu trong bộ Refined Deep-SAR Oil Spill (SOS). Quy trình bắt đầu từ kiểm kê ảnh và nhãn, cố định cách chia dữ liệu, so sánh bộ lọc và phân ngưỡng, trích đặc trưng từng vùng rồi huấn luyện bộ phân lớp. Hai yêu cầu đánh giá được tách biệt: chất lượng phát hiện so với mask tham chiếu và tính tương đồng giữa thuật toán tự cài bằng NumPy với bản dùng thư viện.",
+    "Trên 839 ảnh Sentinel thuộc tập kiểm tra, pipeline NumPy đã khóa đạt F1 mức đối tượng 0,28052 và pixel IoU 0,66139. Chênh lệch này cho thấy độ phủ pixel tương đối cao chưa đồng nghĩa với phát hiện đúng từng đối tượng. Nhánh ngưỡng thích nghi Niblack được khảo sát riêng để đối chiếu yêu cầu đề tài; kết quả validation thấp hơn nhánh Otsu. SOS thiếu metadata góc tới, gió và nhãn riêng các loại tương tự dầu, nên báo cáo phân biệt rõ những chức năng đã kiểm chứng với những yêu cầu chưa đạt."
+  ],
+  "sections": [
+    {
+      "anchor": 67,
+      "paragraphs": [
+        "Đề 18 đặt ra nhu cầu phát hiện sớm dầu ngoài khơi trước khi trôi dạt vào bờ biển miền Trung. Người sử dụng dự kiến là nhóm theo dõi môi trường biển và lực lượng ứng phó; đầu ra có ích là danh sách vùng cần kiểm tra, kèm hình dạng, vị trí trong ảnh và mức độ nghi ngờ. Một mask do thuật toán tạo ra chưa đủ để kết luận có sự cố dầu thật hoặc xác định tàu gây ô nhiễm.",
+        "Bối cảnh ứng dụng phù hợp với hoạt động NASA–NOAA sử dụng công nghệ radar để hỗ trợ ứng phó dầu tràn [1]. Tuy nhiên, mục tiêu ứng dụng của cơ quan không phải bằng chứng về độ chính xác của mô hình trong bài tập. Các chức năng bắt buộc của dự án được lấy từ tài liệu môn học, còn dữ liệu SOS do nhóm tác giả khác công bố [2]. Không coi nhãn SOS là nhãn do NASA xác nhận.",
+        "Khó khăn cốt lõi là vùng tối trong SAR không chỉ xuất hiện do dầu. Một vùng ít tán xạ có thể do điều kiện mặt biển hoặc các hiện tượng khác. Ở mức xử lý ảnh, nhiễu và độ không đồng nhất của nền còn làm ngưỡng cường độ tạo ra nhiều mảnh nhỏ. Vì vậy, bài toán được tách thành tạo ứng viên có recall đủ cao và loại ứng viên không phù hợp bằng đặc trưng hình dạng, cường độ.",
+        "Đóng góp thực nghiệm của dự án là một quy trình có thể kiểm tra lại: cùng split và mask, cùng định nghĩa đối tượng, có đối chứng bỏ lọc và bỏ classifier, có bản NumPy và bản thư viện. Đây là cải tiến về phương pháp thực hiện và khả năng giải thích trong phạm vi bài tập; chưa phải thuật toán mới được chứng minh vượt các công trình chuyên ngành."
+      ]
+    },
+    {
+      "anchor": 70,
+      "paragraphs": [
+        "Mục tiêu thứ nhất là xác lập dữ liệu tham chiếu có thể truy vết: kiểm kê toàn bộ ảnh–mask, xác định ý nghĩa nhãn và lưu manifest có hash. Mục tiêu thứ hai là lựa chọn thuật toán bằng các thí nghiệm có số đếm TP, FP, FN, thay vì chọn trước rồi tìm lý do hợp thức hóa. Mục tiêu thứ ba là tự cài các phép toán và classifier bằng NumPy, đối chiếu với thư viện trên cùng đầu vào. Mục tiêu thứ tư là tạo đầu ra mask, đặc trưng vùng và notebook có kết quả trực quan.",
+        "Các mục tiêu trên là tiêu chí hoàn thành quy trình, không phải cam kết F1 tùy ý đặt sau khi xem kết quả. Chất lượng được công bố bằng Precision, Recall, F1 mức đối tượng và các đối chứng. Các giá trị đạt được không được diễn giải thành khả năng cảnh báo vận hành nếu chưa có kiểm thử ngoài bộ dữ liệu.",
+        "Phạm vi hiện tại là ảnh PNG 256×256 của Refined SOS, mask dầu/nền và các đối tượng suy ra từ thành phần liên thông. Các ảnh không có mã cảnh, góc tới, thời gian hay tọa độ để ghép dữ liệu gió. Do đó không thực hiện chuẩn hóa góc tới trên PNG, không suy đoán gió từ độ tối, không công bố tỷ lệ nhầm lẫn riêng giữa dầu với mưa, màng sinh học hoặc vùng gió yếu.",
+        "Hai nhánh được phân biệt trong toàn báo cáo. Nhánh Otsu được chọn trong thực nghiệm ban đầu và đã đánh giá test. Nhánh Niblack đáp ứng thao tác phân ngưỡng thích nghi nhưng chỉ có đánh giá validation bổ sung. Không ghép số liệu của hai nhánh để tạo ra một pipeline được mô tả là đã đáp ứng đầy đủ đề tài."
+      ]
+    },
+    {
+      "anchor": 77,
+      "paragraphs": [
+        "Chương 2 mô tả dữ liệu, các công thức lọc và phân ngưỡng, đặc trưng vùng, classifier và giao thức đánh giá. Chương 3 trình bày luồng xử lý, kiểu dữ liệu, giả mã và cách đối chiếu cài đặt. Chương 4 công bố số liệu thực nghiệm cùng các trường hợp thất bại. Phần kết luận đối chiếu từng mục tiêu với bằng chứng đạt được và xác định công việc cần thêm dữ liệu."
+      ]
+    },
+    {
+      "anchor": 81,
+      "paragraphs": [
+        "Refined SOS v1 do Denis Zuenko và Ilvira Khaidarova công bố trên Zenodo [2], dựa trên bộ SOS liên quan công trình của Zhu và cộng sự [3]. Nhà phát hành mô tả việc hiệu chỉnh thủ công các mask có sai sót. Việc hiệu chỉnh giúp giảm một nguồn nhiễu nhãn, nhưng không biến các mask thành xác nhận hóa học hoặc khảo sát hiện trường. Bản dữ liệu tải về không ghi công cụ và thời gian gán nhãn cho từng mẫu; báo cáo không tự bổ sung những thông tin này.",
+        "Kiểm kê cục bộ tìm thấy 8070 cặp ảnh–mask, không có ảnh thiếu mask, mask mồ côi, lỗi đọc hoặc sai kích thước. Dữ liệu gồm Sentinel và PALSAR. Manifest lưu đường dẫn, sensor suy từ tên tệp, split do nhà phát hành cung cấp, split thực nghiệm và hash. Hash ảnh sau giải mã được dùng để kiểm tra trùng hoàn toàn; kiểm tra này không loại trừ patch chồng lấn hoặc cùng cảnh bị cắt khác nhau.",
+        "Tập Sentinel train do nhà phát hành cung cấp có 3354 ảnh, được chia thành 2683 ảnh train và 671 ảnh validation bằng seed 2026, phân tầng theo mask rỗng/không rỗng. 839 ảnh Sentinel thuộc tập val của nhà phát hành được dùng làm test cuối của dự án. Tên thư mục val vì vậy không đồng nhất với vai trò validation trong thực nghiệm. 776 ảnh PALSAR val chỉ được dùng để đánh giá ngoài sensor với mô hình đã khóa; 3101 ảnh PALSAR train không được dùng để fit classifier.",
+        "Một số mask train chứa mức xám trung gian. Quy tắc chính là pixel có giá trị từ 128 trở lên thuộc dầu; khảo sát độ nhạy trên validation dùng thêm ngưỡng 64 và 192. Không thay quy tắc mask theo từng ảnh để làm đẹp kết quả. Ảnh đầu vào được đọc dạng xám và chia 255 thành số thực; thao tác này chỉ đổi thang biểu diễn, không phải hiệu chuẩn sigma0 hay chuẩn hóa góc tới.",
+        "Giấy phép cụ thể của bản tải chưa được xác minh chắc chắn từ trường Rights được hiển thị. Dữ liệu thô được giữ ngoài Git; báo cáo ghi nguồn và phiên bản. Trước khi phân phối lại dữ liệu hoặc phát hành bộ mẫu công khai cần xác nhận điều khoản của nhà phát hành. Việc sử dụng trong thí nghiệm nội bộ không tự tạo ra quyền tái phân phối."
+      ]
+    },
+    {
+      "anchor": 91,
+      "heading": "Lọc cục bộ và phân ngưỡng",
+      "paragraphs": [
+        "Các bộ lọc được khảo sát gồm không lọc, median, Gaussian và một biến thể Lee dựa trên thống kê cục bộ. Median thay pixel bằng trung vị trong cửa sổ, có thể hạn chế giá trị cực đoan nhưng cũng làm mất cấu trúc hẹp. Gaussian lấy trung bình có trọng số theo khoảng cách; sigma lớn làm trơn mạnh hơn và có thể giảm tương phản ở biên. Nhánh không lọc là đối chứng cần thiết để xác định tác dụng thực của tiền xử lý.",
+        "Lee dùng trung bình m và phương sai v trong cửa sổ. Code ước lượng noise=m²/L, tính w=max(v−noise,0)/max(v,10⁻¹²), rồi trả y=m+w(x−m). Khi phương sai nhỏ, đầu ra gần trung bình; khi phương sai lớn hơn mức noise, đầu ra giữ lại một phần sai lệch của pixel so với trung bình. Công trình Lee [4] cung cấp cơ sở lọc theo thống kê cục bộ, nhưng công thức cụ thể trong dự án phải được đọc cùng mã nguồn và đối chứng của nó.",
+        "L là tham số thực nghiệm trên PNG, chưa phải số looks vật lý đã biết. Cơ chế điều chỉnh trọng số không bảo đảm giữ đúng biên dầu: một điểm sáng nhiễu hoặc cấu trúc nền cũng có thể làm phương sai tăng. Vì vậy, việc chọn Lee cần số liệu so với mask và đối chứng cùng cửa sổ; không thể chỉ dựa vào nhận xét ảnh trông mịn hơn.",
+        "Otsu [5] chọn một ngưỡng toàn cục theo histogram để tách hai nhóm mức xám. Bản cài sử dụng 256 bin cố định trên [0,1], lấy tâm bin đầu tiên đạt cực đại tiêu chí giữa lớp. Vùng ứng viên là pixel nhỏ hơn ngưỡng. Quy ước bin và cách xử lý hòa phải thống nhất giữa NumPy và thư viện, nếu không khác biệt threshold có thể do định nghĩa đầu vào chứ không phải lỗi thuật toán.",
+        "Niblack đặt ngưỡng theo từng vị trí: T=m−k·s, trong đó s là độ lệch chuẩn cục bộ [6]. Pixel x<T được xem là tối. Cửa sổ nhỏ phản ứng với cấu trúc cục bộ nhưng dễ phân mảnh; cửa sổ lớn dùng nền rộng hơn. Với dấu công thức đang dùng, tăng k hạ ngưỡng và thường làm điều kiện chọn tối nghiêm ngặt hơn. Đây là mô tả cơ chế, không bảo đảm số đối tượng giảm đơn điệu sau các bước liên thông và lọc diện tích.",
+        "Trường hợp ảnh hằng được xử lý riêng, trả mask ứng viên rỗng. Đây là quyết định kỹ thuật cần công bố: nếu một patch thật sự được phủ dầu gần đồng nhất, ngưỡng dựa vào tương phản nội ảnh có thể bỏ sót. Ba ca lỗi trong Chương 4 minh họa vì sao tương phản cục bộ không thay thế được bối cảnh ngoài patch."
+      ]
+    },
+    {
+      "anchor": 93,
+      "heading": "Đặc trưng vùng và phân lớp",
+      "paragraphs": [
+        "Mask ứng viên được gán nhãn liên thông 8. Mỗi vùng có tám đặc trưng: tỷ lệ diện tích, độ thuôn dài, extent, độ phức tạp biên, trung bình cường độ, độ lệch chuẩn cường độ, gradient biên và tương phản với nền. Các đặc trưng giúp mô tả hình học và phân bố mức xám mà không cần sử dụng nhãn trong lúc suy luận.",
+        "Độ thuôn dài lấy căn tỷ lệ hai trị riêng của ma trận hiệp phương sai tọa độ, thêm 10⁻⁶ để tránh chia 0. Extent là diện tích chia diện tích hộp bao. Độ phức tạp biên là P²/(4πA), với P được đếm bằng cạnh lưới pixel. Đây là chu vi rời rạc được định nghĩa cụ thể; không đối chiếu trực tiếp với hàm thư viện dùng một quy ước chu vi khác rồi coi chênh lệch là lỗi.",
+        "Gradient biên lấy độ lớn Sobel trên ảnh đã lọc và trung bình ở các pixel biên vùng. Nền tham chiếu là vành giãn bán kính 5 nằm ngoài mọi ứng viên. Nếu vành rỗng, code dùng nền còn lại của ảnh; nếu không còn nền thì dùng trung bình toàn ảnh. Tương phản là (m_nền−m_vùng)/(|m_nền|+10⁻⁶). Quy tắc dự phòng làm đặc trưng luôn xác định nhưng khiến ngữ nghĩa nền thay đổi ở vùng chiếm gần toàn patch.",
+        "Nhãn huấn luyện của ứng viên được suy từ tỷ lệ pixel dầu trong mask tham chiếu. Purity từ 0,5 trở lên là dương, không quá 0,05 là âm, phần còn lại không tham gia fit. Những vùng mơ hồ vẫn tồn tại khi đánh giá; không xóa chúng khỏi test. Quy tắc này học dầu/nền theo SOS, không tạo ra nhãn gió yếu, mưa hoặc màng sinh học.",
+        "CART chọn ngưỡng chia một đặc trưng để giảm Gini có trọng số. Các tham số kiểm soát là chiều sâu tối đa và số mẫu tối thiểu ở lá. Tại lá, tỷ lệ dương được trừ 0,5 để tạo score; score>0 là dầu. Cây dễ đọc nhưng biên quyết định chia theo từng trục và có thể nhạy với nhiễu ở ứng viên. Bản tham chiếu dùng DecisionTreeClassifier [7] với cùng giới hạn độ sâu và kích thước lá.",
+        "SVM tuyến tính sử dụng squared hinge và phạt L2. Sau chuẩn hóa đặc trưng bằng thống kê train, thêm cột hằng vào ma trận X; hệ số bias được regularize như các hệ số khác. Hàm mục tiêu là J(w)=[0,5||w||²+CΣmax(1−yᵢxᵢᵀw,0)²]/n, với y thuộc {−1,+1}. Công trình SVM [8] là cơ sở phân lớp; cấu hình tương đương thực tế được đối chiếu với LinearSVC [9], không mặc định mọi SVM có cùng hàm mục tiêu.",
+        "Gradient của J là w/n−(2C/n)Xᵀ[y⊙max(1−y⊙Xw,0)]. Code dùng bước gradient có tăng tốc, backtracking và restart, dừng khi thành phần gradient lớn nhất theo trị tuyệt đối không quá 10⁻⁶. Ghi nhận hội tụ và giá trị objective là cần thiết: agreement cao trên một số mẫu không đủ để khẳng định bộ tối ưu đã giải đúng bài toán."
+      ]
+    },
+    {
+      "anchor": 96,
+      "paragraphs": [
+        "Đánh giá chính là mức đối tượng. Cả mask dự đoán và mask tham chiếu được chuyển thành thành phần liên thông 8. IoU của hai vùng bằng diện tích giao chia diện tích hợp. Chỉ cặp có IoU≥0,5 mới đủ điều kiện ghép. Bài toán ghép một-một ưu tiên số cặp hợp lệ, sau đó tối đa tổng IoU; không cho nhiều mảnh dự đoán cùng nhận TP từ một vùng GT.",
+        "Precision=TP/(TP+FP), Recall=TP/(TP+FN), F1=2TP/(2TP+FP+FN). Báo cáo chính cộng số đếm của mọi ảnh rồi mới chia, tức micro. Khi mẫu số bằng 0, chỉ số không xác định được lưu null, không tự thay bằng 1. Bảng mean±SD từng ảnh chỉ dùng các giá trị xác định và ghi số ảnh bị loại khỏi phép trung bình.",
+        "Pixel IoU và Dice đo độ phủ vùng; chúng không phản ánh trực tiếp số đối tượng tìm đúng. Một vùng lớn có thể được phủ phần lớn pixel nhưng bị chia thành nhiều mảnh, làm F1 đối tượng thấp. Ngược lại, nhiều đối tượng nhỏ đúng có thể đóng góp ít vào tổng diện tích. Hai nhóm chỉ số được trình bày song song để tránh kết luận dựa vào chỉ số thuận lợi nhất.",
+        "Sai số tuyệt đối lớn nhất và MSE giữa đầu ra NumPy với thư viện dùng để kiểm chứng cài đặt. MSE này không phải độ chính xác so với dầu thật. Không tính PSNR khử nhiễu khi không có ảnh SAR sạch tương ứng; dùng mask phân đoạn thay ảnh sạch sẽ trả lời sai câu hỏi."
+      ]
+    },
+    {
+      "anchor": 103,
+      "paragraphs": [
+        "Luồng suy luận nhận ảnh và cấu hình đã lưu, không nhận ground truth. Sau đổi thang số thực, ảnh đi qua bộ lọc, phân ngưỡng, hậu xử lý và liên thông. Mỗi vùng được trích đặc trưng rồi đưa vào classifier đã fit. Chỉ các vùng có score dương được giữ trong mask cuối. Ground truth chỉ xuất hiện ở nhánh tạo nhãn train hoặc nhánh đánh giá kết quả.",
+        "Việc tách suy luận khỏi đánh giá giúp tránh rò rỉ nhãn vô ý, chẳng hạn chọn threshold riêng cho từng ảnh bằng mask của chính ảnh đó. Thống kê chuẩn hóa đặc trưng cũng được fit trên train và lưu cùng model, không tính lại trên validation hoặc test. Các file JSON của model chứa đủ trạng thái để chạy suy luận mà không phải huấn luyện lại."
+      ]
+    },
+    {
+      "anchor": 109,
+      "paragraphs": [
+        "Ảnh gốc uint8 được chuyển float trước khi bình phương để không tràn số. Các phép toán mean dùng summed-area table với đệm reflect không lặp pixel biên; bản SciPy dùng mirror tương ứng. Phương sai E[x²]−E[x]² được chặn tối thiểu 0 để xử lý sai số dấu phẩy động nhỏ. Mask giữ kiểu bool, bản đồ vùng dùng số nguyên và không dùng giá trị label như cường độ ảnh.",
+        "Hậu xử lý khảo sát ba phương án: giữ nguyên, đóng và mở rồi đóng, với footprint đĩa bán kính 1. Ngoài ảnh được coi là false trong cả giãn và co. Sau đó loại vùng có diện tích nhỏ hơn ngưỡng. Đây là ngưỡng trên vùng dự đoán; không áp dụng cùng ngưỡng để xóa các đối tượng nhỏ trong ground truth khi chấm điểm.",
+        "Cấu hình cuối ban đầu dùng Lee 7×7, L=4, Otsu, không morphology, min_area=64, tám đặc trưng và SVM C=10. Nhánh thích nghi bổ sung dùng Lee 7×7, L=1, Niblack cửa sổ 51 với k=0,2, cùng hậu xử lý và CART depth=3/min_leaf=5. Chương 4 giải thích quy tắc lựa chọn và mức độ bằng chứng của từng tham số; không coi các giá trị này là hằng số đúng cho mọi ảnh SAR."
+      ]
+    },
+    {
+      "anchor": 113,
+      "paragraphs": [
+        "CART tự cài sắp xếp từng cột đặc trưng, tính tổng nhãn tích lũy và đánh giá mọi điểm chia giữa hai giá trị khác nhau. Điểm chia chỉ hợp lệ nếu cả hai phía đủ min_leaf. Thứ tự sắp xếp ổn định và phép so sánh gain nghiêm ngặt làm lựa chọn hòa xác định được. Cây dừng ở lá thuần nhất, khi đạt độ sâu tối đa hoặc không có gain đủ lớn. Sai khác so với thư viện có thể phát sinh ở quy tắc hòa hoặc độ chính xác số, nên phải đo đầu ra thực tế.",
+        "SVM tự cài tính objective và gradient nhất quán với cùng ma trận đã thêm cột hằng. Backtracking giảm bước cho đến khi thỏa bất đẳng thức kiểm tra giảm hàm mục tiêu. Restart loại bỏ đà tăng tốc khi hướng di chuyển không thuận lợi. Khi hết max_iter mà chưa đạt tol, model bị đánh dấu chưa hội tụ và không được chọn tự động làm kết quả cuối.",
+        "Với n ứng viên, d đặc trưng, mỗi vòng gradient có chi phí chính O(nd); bước khởi tạo còn tính chuẩn phổ của X. CART sắp xếp lại tại mỗi nút, nên cây cân bằng thường có chi phí gần O(dn log²n), trong khi giới hạn sâu D cho một cận mô tả O(Ddn log n). Không gọi các cận này là thời gian chạy đo được: thời gian thực còn phụ thuộc số vùng, BLAS, bộ nhớ và tải máy.",
+        "Cài đặt liên thông quét các đoạn liên tiếp theo từng hàng và union-find để nối các đoạn thuộc hai hàng kề nhau. Liên thông 8 cho phép nối chéo. Đặc trưng cần quét vùng và vùng lân cận; với nhiều ứng viên, chi phí tăng theo số vùng và kích thước các hộp bao. Đây là lý do thời gian pipeline không chỉ phụ thuộc số pixel.",
+        "Đối chiếu bộ lọc và đặc trưng dùng các ca biên và ảnh validation thật. Riêng Lee, bản tham chiếu ghép cùng công thức từ thống kê SciPy, không phải một API Lee độc lập. So sánh classifier giữ nguyên đặc trưng reference để tách lỗi fit khỏi lỗi trích đặc trưng; sau đó toàn bộ pipeline NumPy được chạy riêng để kiểm chứng ghép nối các bước."
+      ]
+    },
+    {
+      "anchor": 123,
+      "paragraphs": [
+        "Các hình trung gian hiển thị cùng thang [0,1] để không biến việc tự co giãn màu thành cải thiện thị giác giả. Mask bool dùng rõ vmin=0 và vmax=1, kể cả mask toàn true hoặc toàn false. Bản đồ lỗi pixel dùng xanh lá cho giao, đỏ cho pixel dự đoán ngoài GT và xanh lam cho pixel GT bị bỏ sót.",
+        "Classifier hiện chỉ quyết định giữ hay bỏ cả vùng. Nếu threshold đã chia một vết dầu thành nhiều mảnh hoặc bỏ mất phần biên, classifier không thể tự nối hoặc khôi phục pixel. Vì vậy, phân tích lỗi phải đọc cả mask ứng viên trước classifier và mask cuối; nhìn riêng output không đủ xác định bước làm mất thông tin."
+      ]
+    },
+    {
+      "anchor": 132,
+      "paragraphs": [
+        "Thực nghiệm đầu tiên khảo sát 11 cấu hình lọc và 10 cấu hình threshold, tổng 110 tổ hợp trên toàn bộ 671 ảnh validation. Hậu xử lý ở bước này cố định không morphology và min_area16. Đây là so sánh chất lượng vùng ứng viên, chưa phải chất lượng sau classifier.",
+        "Ba cấu hình được giữ cho giai đoạn tiếp theo. Mỗi cấu hình được kết hợp với ba phép hậu xử lý, ba ngưỡng diện tích, ba nhóm đặc trưng và chín cấu hình classifier, tạo 729 tổ hợp. Dữ liệu ứng viên train được lấy tối đa 10000 mẫu mỗi lớp bằng seed 2026. Việc giới hạn cân bằng này là quy ước thực nghiệm; phân bố ứng viên test không bị ép cân bằng.",
+        "Quy tắc lựa chọn ban đầu xét các cấu hình có F1 trong khoảng tuyệt đối 0,005 so với cực đại, rồi ưu tiên Recall, thời gian ghi nhận và ID. Khoảng 0,005 là quy ước, không phải định lý hay khoảng tương đương thống kê. Một lần đo thời gian không đủ làm bằng chứng tốc độ; ảnh hưởng của quy tắc này được công bố cùng phương án chỉ tối đa F1.",
+        "Sau khi thấy giới hạn của lựa chọn ban đầu, hai đối chứng mean7 và median7 được chạy bổ sung trên validation để so sánh cùng cửa sổ với Lee7. Nhánh Niblack cũng được khảo sát bổ sung theo ràng buộc thích nghi. Hai phần này là phân tích sau lựa chọn, không được trình bày như kế hoạch tiên nghiệm hoặc dùng để thay mô hình rồi gọi test cũ là chưa từng xem."
+      ]
+    },
+    {
+      "anchor": 134,
+      "paragraphs": [
+        "Bảng kết quả chính được tạo trực tiếp từ evaluation.json. Pipeline cuối cải thiện F1 đối tượng so với baseline không lọc, nhưng F1 tuyệt đối vẫn thấp. Điều này chứng minh sự cải thiện trong thí nghiệm đã định nghĩa, không đủ để tuyên bố sản phẩm sẵn sàng sử dụng ngoài biển.",
+        "Bảng ablation bỏ classifier cho biết phần đóng góp của phân lớp khi giữ nguyên bước tạo ứng viên. Classifier giảm mạnh số vùng báo nhầm nhưng cũng làm giảm recall so với giữ tất cả ứng viên. Đánh đổi này cần được công bố đồng thời; chỉ báo mức giảm FP sẽ bỏ qua chi phí bỏ sót dầu.",
+        "Mean±SD của F1 từng ảnh khác F1 micro vì trọng số ảnh khác nhau và một số ảnh không có mẫu số xác định. Không dùng độ lệch chuẩn giữa các patch làm khoảng tin cậy theo cảnh. PALSAR dùng mô hình đóng băng để khảo sát chuyển sensor; chưa có bằng chứng đó là đánh giá độc lập theo sự kiện hoặc đại diện vùng biển Việt Nam."
+      ]
+    },
+    {
+      "anchor": 139,
+      "paragraphs": [
+        "Giữ Otsu và hậu xử lý cố định, Lee7 L4 đạt F1 ứng viên cao nhất trong grid ban đầu. Tuy nhiên, khi thêm mean7, chênh lệch F1 chỉ khoảng 0,00140 và khoảng bootstrap chứa 0. So sánh L4 với L1 cũng không tách biệt rõ. Vì vậy kết luận phù hợp là Lee đã được lựa chọn theo giao thức cụ thể, chưa chứng minh ưu thế so với mọi bộ lọc hoặc ưu thế chắc chắn của L4.",
+        "Bootstrap lấy mẫu lại cùng chỉ số patch cho hai phương pháp rồi tính lại micro F1 từ tổng TP/FP/FN. Có 2000 lần lấy mẫu với seed 2026. Khoảng này mang tính thăm dò sau khi đã xem validation, chưa hiệu chỉnh nhiều so sánh và không giải quyết được thiếu mã cảnh. Nó giúp đánh giá độ ổn định của chênh lệch quan sát, không phải chứng minh phổ quát.",
+        "Nếu chỉ tối đa F1, cấu hình Lee7 L1 có F1 validation nhỉnh hơn cấu hình đã chọn. Quy tắc ưu tiên recall trong khoảng F1 cho phép dẫn tới L4. Tương tự, C10 và C1 có cùng F1/Recall ở một cấu hình, nên thời gian một lần chạy đã quyết định thứ tự. Không có đủ bằng chứng nói C10 tốt hơn C1 về chất lượng.",
+        "Nhánh thích nghi lấy ba cấu hình Niblack tốt nhất theo F1 ứng viên và thử chín classifier cho mỗi cấu hình, giữ min_area64 và tám đặc trưng. CART NumPy đạt F1 validation 0,14466, SVM đạt 0,13795. Kết quả thấp hơn nhánh Otsu cho thấy đáp ứng loại thao tác được yêu cầu không tự bảo đảm tăng chất lượng. Cần nghiên cứu tạo ứng viên phù hợp hơn nếu muốn một nhánh thích nghi có hiệu quả cao."
+      ]
+    },
+    {
+      "anchor": 142,
+      "paragraphs": [
+        "Ba ảnh lỗi được chọn bằng quy tắc tái lập: nhiều FP đối tượng nhất, nhiều FN nhất và tổng pixel sai lớn nhất, tránh trùng ảnh. Lựa chọn này nhằm phân tích các cực trị lỗi, không đại diện cho tần suất trung bình. Mỗi ảnh được suy luận lại và assert số đếm khớp kết quả đã lưu.",
+        "Ở sentinel_440, mask GT phủ toàn patch nhưng dự đoán bị phân mảnh. Các mảnh có thể nằm trên pixel dầu mà vẫn bị tính FP đối tượng vì không đạt IoU với vùng GT lớn. Do đó FP đối tượng không đồng nghĩa mọi pixel của vùng đó là biển sạch. Ở sentinel_25, cấu trúc hẹp và đứt đoạn trong GT khó được ghép đúng sau lọc và threshold. Ở sentinel_591, classifier loại hết ứng viên trong khi GT là vùng dầu phủ patch; lỗi xuất hiện ở cả thiếu ứng viên và loại vùng.",
+        "Những quan sát hình học này có thể kiểm chứng từ hình và số đếm. Không thể kết luận nguyên nhân vật lý là mưa hoặc gió yếu do dữ liệu không cung cấp nhãn phụ. Hướng khắc phục cần khảo sát trên validation mới gồm phân đoạn vùng đồng nhất theo bối cảnh rộng hơn, xử lý vùng dính/phân mảnh và bổ sung dữ liệu âm khó có nhãn. Không tinh chỉnh tham số trực tiếp trên ba ảnh test đã chọn."
+      ]
+    },
+    {
+      "anchor": 145,
+      "paragraphs": [
+        "Không thực hiện mô phỏng trôi dầu hoặc truy tìm tàu bằng AIS trong phiên bản này. Các khảo sát bổ sung mean7/median7, bootstrap và nhánh Niblack là phần kiểm chứng phương pháp, không được gọi là hoàn thành mô hình dự báo bãi biển bị ảnh hưởng."
+      ]
+    },
+    {
+      "anchor": 149,
+      "paragraphs": [
+        "Mục tiêu kiểm kê dữ liệu và thực nghiệm có truy vết đã đạt trong phạm vi SOS: manifest bao phủ 8070 cặp, các split và quy tắc nhãn được lưu, kết quả có số đếm từng ảnh. Mục tiêu so sánh thuật toán được thực hiện qua 110 cấu hình tạo ứng viên, 729 tổ hợp pipeline và các khảo sát bổ sung. Tuy nhiên, đây là tìm kiếm theo giai đoạn chứ không phải tối ưu mọi tổ hợp có thể.",
+        "Mục tiêu tự cài và đối chiếu được thực hiện với các phép xử lý NumPy, CART và SVM. Các kiểm tra đã chạy chứng minh sự tương đồng trên những ca kiểm thử cụ thể; không chứng minh chương trình đúng với mọi đầu vào. Pipeline cuối có F1 test 0,28052 và còn bỏ sót/báo nhầm nhiều đối tượng. Đây là kết quả cần báo cáo trung thực, không thay bằng pixel IoU cao hơn để mô tả chất lượng mức đối tượng.",
+        "Đề 18 mới được đáp ứng một phần. Đã có lọc, hai loại threshold, đặc trưng và classifier; nhánh thích nghi có số liệu validation riêng. Chưa có đầu vào hợp lệ để chuẩn hóa góc tới và ghép gió, chưa có nhãn look-alike đủ để tính nhầm lẫn theo các loại hiện tượng, chưa đánh giá trên biển miền Trung. Các phần này là yêu cầu còn thiếu, không được coi là hoàn thành nhờ ghi trong hướng phát triển.",
+        "Ba hướng tiếp theo là bổ sung cảnh Sentinel-1 có metadata góc tới và thời gian để ghép gió đúng thời điểm; bổ sung tập dầu/look-alike được thẩm định và chia theo cảnh; cải thiện bước tạo ứng viên thích nghi trước khi thay classifier. Nguồn DARTIS có thông tin cảnh và thời gian là một đầu mối khảo sát [10], nhưng ảnh hiển thị và box không tự thay thế dữ liệu SAR đã hiệu chuẩn hoặc mask pixel. Mọi nhánh mới cần giao thức đánh giá độc lập, không tái dùng test đã xem như tập hoàn toàn mới."
+      ]
+    }
+  ]
+}

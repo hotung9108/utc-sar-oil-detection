@@ -1,0 +1,12 @@
+[
+  {"number": 1, "citation": "NASA, ‘NASA-NOAA Tech Will Aid Marine Oil Spill Response.’ Truy cập ngày 13/11/2026.", "url": "https://www.nasa.gov/centers-and-facilities/jpl/nasa-noaa-tech-will-aid-marine-oil-spill-response/"},
+  {"number": 2, "citation": "D. Zuenko and I. Khaidarova, ‘Refined Deep-SAR Oil Spill (SOS) dataset,’ v1, Zenodo, 2025, doi: 10.5281/zenodo.15298010.", "url": "https://zenodo.org/records/15298010"},
+  {"number": 3, "citation": "Q. Zhu et al., ‘Oil Spill Contextual and Boundary-Supervised Detection Network Based on Marine SAR Images,’ IEEE Transactions on Geoscience and Remote Sensing, vol. 60, art. 5213910, 2022, doi: 10.1109/TGRS.2021.3115492. Công bố trực tuyến năm 2021.", "url": "https://doi.org/10.1109/TGRS.2021.3115492"},
+  {"number": 4, "citation": "J. S. Lee, ‘Digital Image Enhancement and Noise Filtering by Use of Local Statistics,’ IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. PAMI-2, no. 2, pp. 165–168, 1980, doi: 10.1109/TPAMI.1980.4766994.", "url": "https://doi.org/10.1109/TPAMI.1980.4766994"},
+  {"number": 5, "citation": "N. Otsu, ‘A Threshold Selection Method from Gray-Level Histograms,’ IEEE Transactions on Systems, Man, and Cybernetics, vol. 9, no. 1, pp. 62–66, 1979, doi: 10.1109/TSMC.1979.4310076.", "url": "https://doi.org/10.1109/TSMC.1979.4310076"},
+  {"number": 6, "citation": "scikit-image, ‘threshold_niblack,’ skimage.filters documentation, version 0.26.0. Truy cập ngày 13/11/2026.", "url": "https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.threshold_niblack"},
+  {"number": 7, "citation": "scikit-learn, ‘DecisionTreeClassifier,’ documentation, version 1.9.1. Truy cập ngày 13/11/2026.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"},
+  {"number": 8, "citation": "C. Cortes and V. Vapnik, ‘Support-vector networks,’ Machine Learning, vol. 20, pp. 273–297, 1995, doi: 10.1007/BF00994018.", "url": "https://doi.org/10.1007/BF00994018"},
+  {"number": 9, "citation": "scikit-learn, ‘LinearSVC,’ documentation, version 1.9.1. Truy cập ngày 13/11/2026.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html"},
+  {"number": 10, "citation": "Y.-J. Yang and S. Singha, ‘Oil slicks, look-alikes and other remarkable SAR signatures in Sentinel-1 imagery in the Eastern Mediterranean Sea in 2019,’ PANGAEA, 2025, doi: 10.1594/PANGAEA.980773.", "url": "https://doi.pangaea.de/10.1594/PANGAEA.980773"}
+]

@@ -1,0 +1,19 @@
+{
+  "render": ".cache\\report\\render-fields-v3\\Bao_cao_SAR_SOS_fields.pdf",
+  "pages": 32,
+  "main_start": 9,
+  "main_end": 29,
+  "main_page_count": 21,
+  "visually_reviewed_latest_pages": [
+    6,
+    7
+  ],
+  "layout_verified": false,
+  "pending": [
+    "Review all remaining pages",
+    "Equation number right alignment",
+    "Check every TOC page number",
+    "Reconcile course guide length",
+    "Actual group metadata and signatures"
+  ]
+}

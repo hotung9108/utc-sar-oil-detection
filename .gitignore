@@ -21,10 +21,15 @@ __pycache__/
 /.refactor_stage.py
 /results/*
 !/results/README.md
+!/results/sos/
+/results/sos/validation/
+/data/Refined-Deep-SAR/
 .DS_Store
 Thumbs.db
 Desktop.ini
 ~$*
 *.tmp
 *.swp
+
+/data
 # Legacy source and artifacts are deliberately retained, including former ignored exports.

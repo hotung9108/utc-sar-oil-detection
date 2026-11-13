@@ -4,8 +4,8 @@
     "name": "Tiến Sơn Trần",
     "github": "Maloque18705",
     "reported_alias": "maloque",
-    "role": "Tích hợp, kiến trúc và bàn giao",
-    "modules": "Theo chức năng; xem KE_HOACH_REFACTOR_3_NGAY.md",
+    "role": "Tích hợp pipeline, CLI và kết quả cuối",
+    "modules": "pipeline.py; scripts/sos.py; 05_final_pipeline.ipynb",
     "folder": "TV1_Tien_Son_Tran"
   },
   {
@@ -13,8 +13,8 @@
     "name": "Lương Tiến Dũng",
     "github": "ltdungg",
     "reported_alias": "itdungg",
-    "role": "Lý thuyết, yêu cầu và kiểm chứng",
-    "modules": "Theo chức năng; xem KE_HOACH_REFACTOR_3_NGAY.md",
+    "role": "CART/SVM NumPy và đối chứng sklearn",
+    "modules": "models.py; 04_cart_svm_numpy.ipynb",
     "folder": "TV2_Luong_Tien_Dung"
   },
   {
@@ -22,8 +22,8 @@
     "name": "Hồ Việt Tùng",
     "github": "hotung9108",
     "reported_alias": "hotung9108",
-    "role": "Kiểm kê lọc SAR và giả định đầu vào",
-    "modules": "Theo chức năng; xem KE_HOACH_REFACTOR_3_NGAY.md",
+    "role": "Lọc speckle và phân ngưỡng thích nghi",
+    "modules": "core.py/reference.py: filter_image, threshold; 02_filter_threshold_benchmark.ipynb",
     "folder": "TV3_Ho_Viet_Tung"
   },
   {
@@ -31,8 +31,8 @@
     "name": "Nguyễn Hải Hiếu",
     "github": "hina-kasumi",
     "reported_alias": "hinakasumi",
-    "role": "Kiểm kê vùng, hình thái và đặc trưng",
-    "modules": "Theo chức năng; xem KE_HOACH_REFACTOR_3_NGAY.md",
+    "role": "Liên thông, hình thái và đặc trưng vùng",
+    "modules": "core.py/reference.py: label, postprocess, features; 03_regions_and_features.ipynb",
     "folder": "TV4_Nguyen_Hai_Hieu"
   },
   {
@@ -40,8 +40,8 @@
     "name": "Phạm Minh Tuấn",
     "github": "tuanpham21105",
     "reported_alias": "tuanpham21105",
-    "role": "Dữ liệu, manifest và kế hoạch thực nghiệm",
-    "modules": "Theo chức năng; xem KE_HOACH_REFACTOR_3_NGAY.md",
+    "role": "Dữ liệu, ground truth và đánh giá đối tượng",
+    "modules": "data.py; evaluation.py; 01_data_and_ground_truth.ipynb",
     "folder": "TV5_Pham_Minh_Tuan"
   }
 ]

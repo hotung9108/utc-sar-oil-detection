@@ -1,0 +1,88 @@
+{
+  "mode": "reproduce",
+  "steps": [
+    {
+      "command": [
+        "scripts/sos.py",
+        "reproduce",
+        "--workers",
+        "6"
+      ],
+      "exit_code": 0,
+      "seconds": 42.73843339999985
+    },
+    {
+      "command": [
+        "scripts/explain_selection.py",
+        "--workers",
+        "6"
+      ],
+      "exit_code": 0,
+      "seconds": 42.43059830000038
+    },
+    {
+      "command": [
+        "scripts/adaptive_experiment.py",
+        "--workers",
+        "6"
+      ],
+      "exit_code": 0,
+      "seconds": 34.38583130000006
+    },
+    {
+      "command": [
+        "scripts/analyze_failures.py"
+      ],
+      "exit_code": 0,
+      "seconds": 5.805241200000637
+    },
+    {
+      "command": [
+        "scripts/worked_example.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.950283500000296
+    },
+    {
+      "command": [
+        "scripts/summarize_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1681711000001087
+    },
+    {
+      "command": [
+        "scripts/build_notebooks.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5013645999997607
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py"
+      ],
+      "exit_code": 0,
+      "seconds": 29.200977099999363
+    },
+    {
+      "command": [
+        "scripts/verify_outputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3.8063796000005823
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 3.2292685000002166
+    }
+  ],
+  "passed": true
+}

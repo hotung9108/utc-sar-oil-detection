@@ -1,0 +1,4650 @@
+[
+  {
+    "id": "a1159901d4a94442",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 1049,
+      "fp": 20743,
+      "fn": 1691,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10548979,
+      "union": 18739516,
+      "predicted_pixels": 15750505,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 854,
+      "interior_gt": 853,
+      "interior_tp": 195,
+      "precision": 0.04813693098384728,
+      "recall": 0.38284671532846715,
+      "f1": 0.08552095222566444,
+      "pixel_iou": 0.5629269720733449,
+      "dice": 0.7203496799681923,
+      "fp_per_image": 30.913561847988078,
+      "edge_recall": 0.45257021727609964,
+      "interior_recall": 0.22860492379835873
+    },
+    "seconds": 4.874386400002663
+  },
+  {
+    "id": "fb6730989f402f81",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 1034,
+      "fp": 20770,
+      "fn": 1706,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10657001,
+      "union": 18877021,
+      "predicted_pixels": 15996032,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 849,
+      "interior_gt": 853,
+      "interior_tp": 185,
+      "precision": 0.047422491286002566,
+      "recall": 0.37737226277372266,
+      "f1": 0.08425684485006518,
+      "pixel_iou": 0.5645488766474329,
+      "dice": 0.7216762417255598,
+      "fp_per_image": 30.953800298062593,
+      "edge_recall": 0.44992050874403816,
+      "interior_recall": 0.21688159437280188
+    },
+    "seconds": 4.918660799998861
+  },
+  {
+    "id": "608052049b0b0cba",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 967,
+      "fp": 32486,
+      "fn": 1773,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10497725,
+      "union": 19602525,
+      "predicted_pixels": 16562260,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 804,
+      "interior_gt": 853,
+      "interior_tp": 163,
+      "precision": 0.02890622664633964,
+      "recall": 0.3529197080291971,
+      "f1": 0.0534357472439422,
+      "pixel_iou": 0.535529223913756,
+      "dice": 0.6975174624795475,
+      "fp_per_image": 48.41430700447094,
+      "edge_recall": 0.4260731319554849,
+      "interior_recall": 0.1910902696365768
+    },
+    "seconds": 4.952543699998159
+  },
+  {
+    "id": "696b4f2f5e563595",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 961,
+      "fp": 32247,
+      "fn": 1779,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10581140,
+      "union": 19723890,
+      "predicted_pixels": 16767040,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 800,
+      "interior_gt": 853,
+      "interior_tp": 161,
+      "precision": 0.0289388099253192,
+      "recall": 0.35072992700729927,
+      "f1": 0.05346611772560365,
+      "pixel_iou": 0.5364631419055774,
+      "dice": 0.6983091585786254,
+      "fp_per_image": 48.05812220566319,
+      "edge_recall": 0.4239533651298357,
+      "interior_recall": 0.18874560375146543
+    },
+    "seconds": 4.813729199997624
+  },
+  {
+    "id": "7f823288948a31d5",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 910,
+      "fp": 36046,
+      "fn": 1830,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10670397,
+      "union": 20361136,
+      "predicted_pixels": 17493543,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 769,
+      "interior_gt": 853,
+      "interior_tp": 141,
+      "precision": 0.02462387704297002,
+      "recall": 0.33211678832116787,
+      "f1": 0.0458484482063684,
+      "pixel_iou": 0.5240570565414425,
+      "dice": 0.6877131722754399,
+      "fp_per_image": 53.71982116244411,
+      "edge_recall": 0.4075251722310546,
+      "interior_recall": 0.1652989449003517
+    },
+    "seconds": 28.36468949999744
+  },
+  {
+    "id": "e33923ecdb9e7a70",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 895,
+      "fp": 40877,
+      "fn": 1845,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10556631,
+      "union": 20627296,
+      "predicted_pixels": 17645937,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 755,
+      "interior_gt": 853,
+      "interior_tp": 140,
+      "precision": 0.021425835487886624,
+      "recall": 0.3266423357664234,
+      "f1": 0.040213874910136595,
+      "pixel_iou": 0.5117796826108473,
+      "dice": 0.6770559076796197,
+      "fp_per_image": 60.91952309985097,
+      "edge_recall": 0.40010598834128247,
+      "interior_recall": 0.16412661195779601
+    },
+    "seconds": 3.318478599999821
+  },
+  {
+    "id": "fc4b5e624bdf731e",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 822,
+      "fp": 46897,
+      "fn": 1918,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10435558,
+      "union": 21267050,
+      "predicted_pixels": 18164618,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 710,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.01722584295563612,
+      "recall": 0.3,
+      "f1": 0.032580907271249925,
+      "pixel_iou": 0.49069137468525253,
+      "dice": 0.658340663960517,
+      "fp_per_image": 69.89120715350224,
+      "edge_recall": 0.3762586115527292,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 4.8488329999999
+  },
+  {
+    "id": "2d2193cf780f9d7c",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 821,
+      "fp": 46341,
+      "fn": 1919,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10504557,
+      "union": 21397252,
+      "predicted_pixels": 18363819,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 715,
+      "interior_gt": 853,
+      "interior_tp": 106,
+      "precision": 0.01740808277850812,
+      "recall": 0.29963503649635037,
+      "f1": 0.03290449280589956,
+      "pixel_iou": 0.4909301904749264,
+      "dice": 0.658555569685719,
+      "fp_per_image": 69.06259314456035,
+      "edge_recall": 0.3789083200847907,
+      "interior_recall": 0.1242672919109027
+    },
+    "seconds": 4.783310899999037
+  },
+  {
+    "id": "0683f7c699a2896e",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 794,
+      "fp": 47039,
+      "fn": 1946,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10510858,
+      "union": 21677662,
+      "predicted_pixels": 18650530,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 694,
+      "interior_gt": 853,
+      "interior_tp": 100,
+      "precision": 0.016599418811280915,
+      "recall": 0.28978102189781024,
+      "f1": 0.0314001542324956,
+      "pixel_iou": 0.4848704625065194,
+      "dice": 0.6530811606125414,
+      "fp_per_image": 70.10283159463488,
+      "edge_recall": 0.3677795442501325,
+      "interior_recall": 0.11723329425556858
+    },
+    "seconds": 3.4258942000016077
+  },
+  {
+    "id": "57eb21ff94172623",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 758,
+      "fp": 50479,
+      "fn": 1982,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10596644,
+      "union": 22166615,
+      "predicted_pixels": 19225269,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 670,
+      "interior_gt": 853,
+      "interior_tp": 88,
+      "precision": 0.014793996525948046,
+      "recall": 0.27664233576642333,
+      "f1": 0.028086036645237785,
+      "pixel_iou": 0.478045204466266,
+      "dice": 0.6468614126573916,
+      "fp_per_image": 75.22950819672131,
+      "edge_recall": 0.35506094329623744,
+      "interior_recall": 0.10316529894490035
+    },
+    "seconds": 11.61436769999682
+  },
+  {
+    "id": "780a2ee3d304f5b0",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 702,
+      "fp": 39799,
+      "fn": 2038,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7498974,
+      "union": 23502543,
+      "predicted_pixels": 17463527,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 582,
+      "interior_gt": 853,
+      "interior_tp": 120,
+      "precision": 0.017332905360361472,
+      "recall": 0.2562043795620438,
+      "f1": 0.032469184338937584,
+      "pixel_iou": 0.319070749067452,
+      "dice": 0.48378110013132586,
+      "fp_per_image": 59.31296572280179,
+      "edge_recall": 0.30842607313195547,
+      "interior_recall": 0.1406799531066823
+    },
+    "seconds": 8.245489899997096
+  },
+  {
+    "id": "66314cf158bec659",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 696,
+      "fp": 40268,
+      "fn": 2044,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7375112,
+      "union": 23457290,
+      "predicted_pixels": 17294412,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 575,
+      "interior_gt": 853,
+      "interior_tp": 121,
+      "precision": 0.016990528268723756,
+      "recall": 0.25401459854014596,
+      "f1": 0.03185063152114223,
+      "pixel_iou": 0.31440596931700127,
+      "dice": 0.47840009351201374,
+      "fp_per_image": 60.011922503725785,
+      "edge_recall": 0.3047164811870694,
+      "interior_recall": 0.141852286049238
+    },
+    "seconds": 8.15485550000244
+  },
+  {
+    "id": "8be3b5f4368430f4",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 776,
+      "fp": 58772,
+      "fn": 1964,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5653668,
+      "union": 20256936,
+      "predicted_pixels": 12372614,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 559,
+      "interior_gt": 853,
+      "interior_tp": 217,
+      "precision": 0.01303150399677571,
+      "recall": 0.2832116788321168,
+      "f1": 0.02491651682507064,
+      "pixel_iou": 0.27909788528729124,
+      "dice": 0.43639800909311105,
+      "fp_per_image": 87.5886736214605,
+      "edge_recall": 0.2962374138844727,
+      "interior_recall": 0.2543962485345838
+    },
+    "seconds": 8.121351899997421
+  },
+  {
+    "id": "7bc6d592681a7109",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 762,
+      "fp": 59676,
+      "fn": 1978,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5528773,
+      "union": 20213088,
+      "predicted_pixels": 12203871,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 550,
+      "interior_gt": 853,
+      "interior_tp": 212,
+      "precision": 0.012607961878288493,
+      "recall": 0.2781021897810219,
+      "f1": 0.024122321061128875,
+      "pixel_iou": 0.2735244115100078,
+      "dice": 0.42955503489044555,
+      "fp_per_image": 88.93591654247392,
+      "edge_recall": 0.29146793852676206,
+      "interior_recall": 0.2485345838218054
+    },
+    "seconds": 8.043894000000023
+  },
+  {
+    "id": "3f4300df743c997c",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 655,
+      "fp": 54183,
+      "fn": 2085,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7381577,
+      "union": 23759992,
+      "predicted_pixels": 17603579,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 548,
+      "interior_gt": 853,
+      "interior_tp": 107,
+      "precision": 0.011944272219993435,
+      "recall": 0.23905109489051096,
+      "f1": 0.02275174545833478,
+      "pixel_iou": 0.31067253726348054,
+      "dice": 0.47406583785165096,
+      "fp_per_image": 80.74962742175857,
+      "edge_recall": 0.29040805511393747,
+      "interior_recall": 0.1254396248534584
+    },
+    "seconds": 8.105460599997173
+  },
+  {
+    "id": "128564a36fab6fa9",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 650,
+      "fp": 54852,
+      "fn": 2090,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7280107,
+      "union": 23715145,
+      "predicted_pixels": 17457262,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 541,
+      "interior_gt": 853,
+      "interior_tp": 109,
+      "precision": 0.011711289683254657,
+      "recall": 0.23722627737226276,
+      "f1": 0.022320662065176335,
+      "pixel_iou": 0.306981340405045,
+      "dice": 0.4697562710572574,
+      "fp_per_image": 81.74664679582712,
+      "edge_recall": 0.2866984631690514,
+      "interior_recall": 0.12778429073856976
+    },
+    "seconds": 8.185590699999238
+  },
+  {
+    "id": "3c91a331a363e147",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 635,
+      "fp": 58599,
+      "fn": 2105,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7354228,
+      "union": 23881124,
+      "predicted_pixels": 17697362,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 538,
+      "interior_gt": 853,
+      "interior_tp": 97,
+      "precision": 0.010720194482898335,
+      "recall": 0.23175182481751824,
+      "f1": 0.02049246458192145,
+      "pixel_iou": 0.30795150178023445,
+      "dice": 0.47089131571176146,
+      "fp_per_image": 87.33084947839046,
+      "edge_recall": 0.2851086380498145,
+      "interior_recall": 0.11371629542790153
+    },
+    "seconds": 31.58206859999848
+  },
+  {
+    "id": "3ea1ea966da30ec5",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 584,
+      "fp": 46072,
+      "fn": 2156,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6948515,
+      "union": 24352466,
+      "predicted_pixels": 17762991,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 451,
+      "interior_gt": 853,
+      "interior_tp": 133,
+      "precision": 0.012517146776406037,
+      "recall": 0.21313868613138687,
+      "f1": 0.02364563932302211,
+      "pixel_iou": 0.2853310625708296,
+      "dice": 0.44398065351370297,
+      "fp_per_image": 68.66169895678092,
+      "edge_recall": 0.2390037095919449,
+      "interior_recall": 0.1559202813599062
+    },
+    "seconds": 7.513231399998631
+  },
+  {
+    "id": "1363dacb49d471bb",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 578,
+      "fp": 46595,
+      "fn": 2162,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6817275,
+      "union": 24310394,
+      "predicted_pixels": 17589679,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 448,
+      "interior_gt": 853,
+      "interior_tp": 130,
+      "precision": 0.012252771712632227,
+      "recall": 0.21094890510948905,
+      "f1": 0.02316029892012101,
+      "pixel_iou": 0.28042634767663577,
+      "dice": 0.4380202706473138,
+      "fp_per_image": 69.44113263785395,
+      "edge_recall": 0.237413884472708,
+      "interior_recall": 0.15240328253223914
+    },
+    "seconds": 7.608821800000442
+  },
+  {
+    "id": "31a02dc6231ed606",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 518,
+      "fp": 39283,
+      "fn": 2222,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10498412,
+      "union": 24577784,
+      "predicted_pixels": 21538206,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 472,
+      "interior_gt": 853,
+      "interior_tp": 46,
+      "precision": 0.013014748373156453,
+      "recall": 0.18905109489051095,
+      "f1": 0.024352977127947158,
+      "pixel_iou": 0.42715047052248484,
+      "dice": 0.5986060746153887,
+      "fp_per_image": 58.543964232488825,
+      "edge_recall": 0.25013248542660305,
+      "interior_recall": 0.053927315357561546
+    },
+    "seconds": 3.0165045000017017
+  },
+  {
+    "id": "8e00a803f1ba344e",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 733,
+      "fp": 80690,
+      "fn": 2007,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5570836,
+      "union": 20381763,
+      "predicted_pixels": 12414609,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 529,
+      "interior_gt": 853,
+      "interior_tp": 204,
+      "precision": 0.009002370337619591,
+      "recall": 0.2675182481751825,
+      "f1": 0.017418580611432578,
+      "pixel_iou": 0.2733245401783938,
+      "dice": 0.42930852513075857,
+      "fp_per_image": 120.25335320417288,
+      "edge_recall": 0.28033916269210385,
+      "interior_recall": 0.2391559202813599
+    },
+    "seconds": 8.0435270999983
+  },
+  {
+    "id": "33bd6d87d71b79a4",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 731,
+      "fp": 81758,
+      "fn": 2009,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5462131,
+      "union": 20336393,
+      "predicted_pixels": 12260534,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 525,
+      "interior_gt": 853,
+      "interior_tp": 206,
+      "precision": 0.008861787632290365,
+      "recall": 0.2667883211678832,
+      "f1": 0.01715378568327682,
+      "pixel_iou": 0.2685889774061703,
+      "dice": 0.42344523275827717,
+      "fp_per_image": 121.84500745156483,
+      "edge_recall": 0.27821939586645467,
+      "interior_recall": 0.24150058616647127
+    },
+    "seconds": 8.215090599999598
+  },
+  {
+    "id": "6266c0c338040f01",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 719,
+      "fp": 86960,
+      "fn": 2021,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5546777,
+      "union": 20451749,
+      "predicted_pixels": 12460536,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 510,
+      "interior_gt": 853,
+      "interior_tp": 209,
+      "precision": 0.00820036724871406,
+      "recall": 0.26240875912408756,
+      "f1": 0.015903737046417236,
+      "pixel_iou": 0.27121284345901175,
+      "dice": 0.4266993444166796,
+      "fp_per_image": 129.59761549925486,
+      "edge_recall": 0.2702702702702703,
+      "interior_recall": 0.24501758499413834
+    },
+    "seconds": 31.390526899997667
+  },
+  {
+    "id": "e6b71091a7cc1d27",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 702,
+      "fp": 96493,
+      "fn": 2038,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5503388,
+      "union": 20438886,
+      "predicted_pixels": 12404284,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 502,
+      "interior_gt": 853,
+      "interior_tp": 200,
+      "precision": 0.007222593754822779,
+      "recall": 0.2562043795620438,
+      "f1": 0.014049131935758243,
+      "pixel_iou": 0.2692606632279274,
+      "dice": 0.424279536944217,
+      "fp_per_image": 143.8047690014903,
+      "edge_recall": 0.2660307366189719,
+      "interior_recall": 0.23446658851113716
+    },
+    "seconds": 6.289799100002597
+  },
+  {
+    "id": "534576302d45e467",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 640,
+      "fp": 65587,
+      "fn": 2100,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3748950,
+      "union": 17770000,
+      "predicted_pixels": 7980960,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 395,
+      "interior_gt": 853,
+      "interior_tp": 245,
+      "precision": 0.009663732314614886,
+      "recall": 0.23357664233576642,
+      "f1": 0.018559600968579174,
+      "pixel_iou": 0.2109707371975239,
+      "dice": 0.34843242816215475,
+      "fp_per_image": 97.7451564828614,
+      "edge_recall": 0.20932697403285638,
+      "interior_recall": 0.28722157092614303
+    },
+    "seconds": 8.094912499996326
+  },
+  {
+    "id": "e1f82b6452d053b8",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 623,
+      "fp": 66610,
+      "fn": 2117,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3665123,
+      "union": 17736379,
+      "predicted_pixels": 7863512,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 383,
+      "interior_gt": 853,
+      "interior_tp": 240,
+      "precision": 0.009266282926539051,
+      "recall": 0.22737226277372263,
+      "f1": 0.01780686836351164,
+      "pixel_iou": 0.20664437763762264,
+      "dice": 0.34251082003496763,
+      "fp_per_image": 99.26974664679582,
+      "edge_recall": 0.20296767355590886,
+      "interior_recall": 0.2813599062133646
+    },
+    "seconds": 8.026209500003574
+  },
+  {
+    "id": "d17fb0a71244a158",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 612,
+      "fp": 87053,
+      "fn": 2128,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3703139,
+      "union": 17757678,
+      "predicted_pixels": 7922827,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 363,
+      "interior_gt": 853,
+      "interior_tp": 249,
+      "precision": 0.006981121314093424,
+      "recall": 0.22335766423357664,
+      "f1": 0.013539074166251866,
+      "pixel_iou": 0.20853734367747856,
+      "dice": 0.3451069919658697,
+      "fp_per_image": 129.73621460506706,
+      "edge_recall": 0.19236883942766295,
+      "interior_recall": 0.29191090269636577
+    },
+    "seconds": 8.080738999998175
+  },
+  {
+    "id": "18917a34b1d6b2f6",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 597,
+      "fp": 87817,
+      "fn": 2143,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3623324,
+      "union": 17720563,
+      "predicted_pixels": 7805897,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 351,
+      "interior_gt": 853,
+      "interior_tp": 246,
+      "precision": 0.006752324292532857,
+      "recall": 0.21788321167883212,
+      "f1": 0.01309871206968427,
+      "pixel_iou": 0.20447002727847868,
+      "dice": 0.3395186640558957,
+      "fp_per_image": 130.8748137108793,
+      "edge_recall": 0.18600953895071543,
+      "interior_recall": 0.28839390386869873
+    },
+    "seconds": 8.09767500000055
+  },
+  {
+    "id": "9bf5ec3e4d2b4355",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 595,
+      "fp": 63454,
+      "fn": 2145,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7315109,
+      "union": 23963172,
+      "predicted_pixels": 17740291,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 500,
+      "interior_gt": 853,
+      "interior_tp": 95,
+      "precision": 0.009289762525566363,
+      "recall": 0.21715328467153286,
+      "f1": 0.017817305244875653,
+      "pixel_iou": 0.30526463691868505,
+      "dice": 0.46774367171904363,
+      "fp_per_image": 94.56631892697466,
+      "edge_recall": 0.2649708532061473,
+      "interior_recall": 0.11137162954279015
+    },
+    "seconds": 6.346091099997352
+  },
+  {
+    "id": "38236d76c572c2b0",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 599,
+      "fp": 92312,
+      "fn": 2141,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3687049,
+      "union": 17774412,
+      "predicted_pixels": 7923471,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 358,
+      "interior_gt": 853,
+      "interior_tp": 241,
+      "precision": 0.006447029953396261,
+      "recall": 0.2186131386861314,
+      "f1": 0.012524699166762502,
+      "pixel_iou": 0.20743577902886465,
+      "dice": 0.3435972043096227,
+      "fp_per_image": 137.5737704918033,
+      "edge_recall": 0.1897191308956015,
+      "interior_recall": 0.2825322391559203
+    },
+    "seconds": 31.415292499997918
+  },
+  {
+    "id": "9920efa974b84877",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 583,
+      "fp": 69578,
+      "fn": 2157,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7223063,
+      "union": 24022872,
+      "predicted_pixels": 17707945,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 503,
+      "interior_gt": 853,
+      "interior_tp": 80,
+      "precision": 0.008309459671327376,
+      "recall": 0.21277372262773722,
+      "f1": 0.015994293631088737,
+      "pixel_iou": 0.300674415615252,
+      "dice": 0.4623361726893434,
+      "fp_per_image": 103.69299552906111,
+      "edge_recall": 0.2665606783253842,
+      "interior_recall": 0.09378663540445487
+    },
+    "seconds": 8.146635199999537
+  },
+  {
+    "id": "24eb0c1ab2697e48",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 575,
+      "fp": 70888,
+      "fn": 2165,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7139984,
+      "union": 23966655,
+      "predicted_pixels": 17568649,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 494,
+      "interior_gt": 853,
+      "interior_tp": 81,
+      "precision": 0.008046121769307194,
+      "recall": 0.20985401459854014,
+      "f1": 0.015498025686293007,
+      "pixel_iou": 0.2979132465502591,
+      "dice": 0.4590649603771079,
+      "fp_per_image": 105.64530551415797,
+      "edge_recall": 0.26179120296767355,
+      "interior_recall": 0.09495896834701055
+    },
+    "seconds": 8.15029110000205
+  },
+  {
+    "id": "8c2953e080ccd670",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 566,
+      "fp": 70229,
+      "fn": 2174,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7212916,
+      "union": 24068700,
+      "predicted_pixels": 17743626,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 489,
+      "interior_gt": 853,
+      "interior_tp": 77,
+      "precision": 0.007994914895119712,
+      "recall": 0.20656934306569344,
+      "f1": 0.015394030053715918,
+      "pixel_iou": 0.2996803317171264,
+      "dice": 0.46116006283051364,
+      "fp_per_image": 104.66318926974665,
+      "edge_recall": 0.2591414944356121,
+      "interior_recall": 0.09026963657678781
+    },
+    "seconds": 6.615276100000415
+  },
+  {
+    "id": "7f738bd764beb124",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 564,
+      "fp": 76706,
+      "fn": 2176,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7184555,
+      "union": 24143367,
+      "predicted_pixels": 17789932,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 474,
+      "interior_gt": 853,
+      "interior_tp": 90,
+      "precision": 0.0072990811440403775,
+      "recall": 0.20583941605839415,
+      "f1": 0.014098237720284965,
+      "pixel_iou": 0.2975788339712518,
+      "dice": 0.45866782993139477,
+      "fp_per_image": 114.31594634873323,
+      "edge_recall": 0.25119236883942764,
+      "interior_recall": 0.10550996483001172
+    },
+    "seconds": 14.615223499996546
+  },
+  {
+    "id": "4f27f4fd91b42eb0",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 556,
+      "fp": 75769,
+      "fn": 2184,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5078445,
+      "union": 20962716,
+      "predicted_pixels": 12503171,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 347,
+      "interior_gt": 853,
+      "interior_tp": 209,
+      "precision": 0.007284638060923681,
+      "recall": 0.2029197080291971,
+      "f1": 0.014064377410990956,
+      "pixel_iou": 0.2422608310869641,
+      "dice": 0.3900321494882659,
+      "fp_per_image": 112.91952309985096,
+      "edge_recall": 0.18388977212506624,
+      "interior_recall": 0.24501758499413834
+    },
+    "seconds": 7.726621899997895
+  },
+  {
+    "id": "ec1277589a5e9f1c",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 540,
+      "fp": 59240,
+      "fn": 2200,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6875864,
+      "union": 24579426,
+      "predicted_pixels": 17917300,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 426,
+      "interior_gt": 853,
+      "interior_tp": 114,
+      "precision": 0.009033121445299431,
+      "recall": 0.19708029197080293,
+      "f1": 0.01727447216890595,
+      "pixel_iou": 0.279740625350649,
+      "dice": 0.4371833163833492,
+      "fp_per_image": 88.28614008941878,
+      "edge_recall": 0.22575516693163752,
+      "interior_recall": 0.1336459554513482
+    },
+    "seconds": 7.54743439999811
+  },
+  {
+    "id": "c8e0719b89904681",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 662,
+      "fp": 108444,
+      "fn": 2078,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5386767,
+      "union": 20338603,
+      "predicted_pixels": 12187380,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 468,
+      "interior_gt": 853,
+      "interior_tp": 194,
+      "precision": 0.006067493996663795,
+      "recall": 0.2416058394160584,
+      "f1": 0.011837705416376089,
+      "pixel_iou": 0.26485432652380303,
+      "dice": 0.41879024480503096,
+      "fp_per_image": 161.6154992548435,
+      "edge_recall": 0.2480127186009539,
+      "interior_recall": 0.22743259085580306
+    },
+    "seconds": 7.969175099997642
+  },
+  {
+    "id": "140d0ba0a8c34ccf",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 539,
+      "fp": 76925,
+      "fn": 2201,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4959005,
+      "union": 20923168,
+      "predicted_pixels": 12344183,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 335,
+      "interior_gt": 853,
+      "interior_tp": 204,
+      "precision": 0.006958070845812249,
+      "recall": 0.19671532846715328,
+      "f1": 0.01344072614832178,
+      "pixel_iou": 0.2370102366907344,
+      "dice": 0.3831985050096064,
+      "fp_per_image": 114.64232488822653,
+      "edge_recall": 0.17753047164811872,
+      "interior_recall": 0.2391559202813599
+    },
+    "seconds": 7.678085900002884
+  },
+  {
+    "id": "80ed3030327385a6",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 531,
+      "fp": 60094,
+      "fn": 2209,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6767417,
+      "union": 24535348,
+      "predicted_pixels": 17764775,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 414,
+      "interior_gt": 853,
+      "interior_tp": 117,
+      "precision": 0.008758762886597939,
+      "recall": 0.1937956204379562,
+      "f1": 0.016760041032115522,
+      "pixel_iou": 0.2758231511531852,
+      "dice": 0.4323846152248851,
+      "fp_per_image": 89.55886736214605,
+      "edge_recall": 0.21939586645468998,
+      "interior_recall": 0.13716295427901523
+    },
+    "seconds": 7.578781999999933
+  },
+  {
+    "id": "f864bb9624e042da",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 652,
+      "fp": 109489,
+      "fn": 2088,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5292721,
+      "union": 20275608,
+      "predicted_pixels": 12030339,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 461,
+      "interior_gt": 853,
+      "interior_tp": 191,
+      "precision": 0.005919684767706848,
+      "recall": 0.23795620437956205,
+      "f1": 0.011551988377140528,
+      "pixel_iou": 0.2610388305001754,
+      "dice": 0.4140060150195971,
+      "fp_per_image": 163.17287630402384,
+      "edge_recall": 0.24430312665606782,
+      "interior_recall": 0.223915592028136
+    },
+    "seconds": 7.957574200003023
+  },
+  {
+    "id": "d6f407392591db6e",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 647,
+      "fp": 110966,
+      "fn": 2093,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5363801,
+      "union": 20319432,
+      "predicted_pixels": 12145243,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 459,
+      "interior_gt": 853,
+      "interior_tp": 188,
+      "precision": 0.005796815783107702,
+      "recall": 0.23613138686131388,
+      "f1": 0.011315837800494959,
+      "pixel_iou": 0.2639739634454349,
+      "dice": 0.41768892568937876,
+      "fp_per_image": 165.37406855439642,
+      "edge_recall": 0.24324324324324326,
+      "interior_recall": 0.22039859320046892
+    },
+    "seconds": 6.479053600001407
+  },
+  {
+    "id": "3eba77fb3a022721",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 633,
+      "fp": 117247,
+      "fn": 2107,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5332887,
+      "union": 20371789,
+      "predicted_pixels": 12166686,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 442,
+      "interior_gt": 853,
+      "interior_tp": 191,
+      "precision": 0.005369867662029182,
+      "recall": 0.23102189781021898,
+      "f1": 0.010495771845465096,
+      "pixel_iou": 0.26177804021041057,
+      "dice": 0.4149351658818808,
+      "fp_per_image": 174.73472429210133,
+      "edge_recall": 0.23423423423423423,
+      "interior_recall": 0.223915592028136
+    },
+    "seconds": 14.544648999999822
+  },
+  {
+    "id": "633ee60af5186116",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 576,
+      "fp": 100546,
+      "fn": 2164,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3627023,
+      "union": 17666891,
+      "predicted_pixels": 7755924,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 335,
+      "interior_gt": 853,
+      "interior_tp": 241,
+      "precision": 0.005696089871640197,
+      "recall": 0.21021897810218979,
+      "f1": 0.01109164083110281,
+      "pixel_iou": 0.20530058174921664,
+      "dice": 0.3406628767261857,
+      "fp_per_image": 149.84500745156484,
+      "edge_recall": 0.17753047164811872,
+      "interior_recall": 0.2825322391559203
+    },
+    "seconds": 6.303828799999906
+  },
+  {
+    "id": "e5e899720288baf9",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 523,
+      "fp": 98973,
+      "fn": 2217,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5045960,
+      "union": 21078133,
+      "predicted_pixels": 12586103,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 327,
+      "interior_gt": 853,
+      "interior_tp": 196,
+      "precision": 0.005256492723325561,
+      "recall": 0.19087591240875912,
+      "f1": 0.010231229703822528,
+      "pixel_iou": 0.23939311892566575,
+      "dice": 0.3863070002085814,
+      "fp_per_image": 147.50074515648285,
+      "edge_recall": 0.17329093799682035,
+      "interior_recall": 0.22977725674091443
+    },
+    "seconds": 7.6134890999991285
+  },
+  {
+    "id": "67d8ee71fc9d50b7",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 506,
+      "fp": 64125,
+      "fn": 2234,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6860386,
+      "union": 24680093,
+      "predicted_pixels": 18002489,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 407,
+      "interior_gt": 853,
+      "interior_tp": 99,
+      "precision": 0.007829060358032523,
+      "recall": 0.18467153284671534,
+      "f1": 0.015021299965860681,
+      "pixel_iou": 0.2779724533452933,
+      "dice": 0.43502104073942566,
+      "fp_per_image": 95.56631892697466,
+      "edge_recall": 0.21568627450980393,
+      "interior_recall": 0.1160609613130129
+    },
+    "seconds": 30.95623339999895
+  },
+  {
+    "id": "71b75ea22ba5bb14",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 523,
+      "fp": 105324,
+      "fn": 2217,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5033060,
+      "union": 21131805,
+      "predicted_pixels": 12626875,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 329,
+      "interior_gt": 853,
+      "interior_tp": 194,
+      "precision": 0.004941094220903757,
+      "recall": 0.19087591240875912,
+      "f1": 0.009632828975844254,
+      "pixel_iou": 0.23817463770842104,
+      "dice": 0.3847189733254882,
+      "fp_per_image": 156.9657228017884,
+      "edge_recall": 0.17435082140964495,
+      "interior_recall": 0.22743259085580306
+    },
+    "seconds": 31.03194120000103
+  },
+  {
+    "id": "a7af605d70551298",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 522,
+      "fp": 107607,
+      "fn": 2218,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3485852,
+      "union": 17434369,
+      "predicted_pixels": 7382231,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 306,
+      "interior_gt": 853,
+      "interior_tp": 216,
+      "precision": 0.0048275670726632075,
+      "recall": 0.1905109489051095,
+      "f1": 0.00941651859401636,
+      "pixel_iou": 0.19994139162707866,
+      "dice": 0.3332519288395663,
+      "fp_per_image": 160.36810730253353,
+      "edge_recall": 0.16216216216216217,
+      "interior_recall": 0.2532239155920281
+    },
+    "seconds": 8.005875999999603
+  },
+  {
+    "id": "ad11b6b9ba4a3d24",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 511,
+      "fp": 108472,
+      "fn": 2229,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3446111,
+      "union": 17360784,
+      "predicted_pixels": 7268905,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 295,
+      "interior_gt": 853,
+      "interior_tp": 216,
+      "precision": 0.004688804675958636,
+      "recall": 0.1864963503649635,
+      "f1": 0.009147624034442326,
+      "pixel_iou": 0.19849973365258158,
+      "dice": 0.3312470217204441,
+      "fp_per_image": 161.65722801788377,
+      "edge_recall": 0.15633280339162692,
+      "interior_recall": 0.2532239155920281
+    },
+    "seconds": 6.376803300003985
+  },
+  {
+    "id": "924f5a27a516d9ea",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 509,
+      "fp": 100292,
+      "fn": 2231,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4938683,
+      "union": 21031879,
+      "predicted_pixels": 12432572,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 316,
+      "interior_gt": 853,
+      "interior_tp": 193,
+      "precision": 0.005049553079830557,
+      "recall": 0.18576642335766425,
+      "f1": 0.009831854048154837,
+      "pixel_iou": 0.23481891465807692,
+      "dice": 0.3803293128581507,
+      "fp_per_image": 149.46646795827124,
+      "edge_recall": 0.1674615792262851,
+      "interior_recall": 0.22626025791324736
+    },
+    "seconds": 7.749893099997507
+  },
+  {
+    "id": "06af66c01a483048",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 506,
+      "fp": 107280,
+      "fn": 2234,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3409016,
+      "union": 17383268,
+      "predicted_pixels": 7254294,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 290,
+      "interior_gt": 853,
+      "interior_tp": 216,
+      "precision": 0.004694487224685952,
+      "recall": 0.18467153284671534,
+      "f1": 0.009156216636809439,
+      "pixel_iou": 0.19610904002630575,
+      "dice": 0.3279116426074211,
+      "fp_per_image": 159.88077496274218,
+      "edge_recall": 0.15368309485956544,
+      "interior_recall": 0.2532239155920281
+    },
+    "seconds": 8.001898400000641
+  },
+  {
+    "id": "a29e8906a1c8e6a8",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 485,
+      "fp": 67987,
+      "fn": 2255,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6840659,
+      "union": 24754571,
+      "predicted_pixels": 18057240,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 389,
+      "interior_gt": 853,
+      "interior_tp": 96,
+      "precision": 0.007083187288234607,
+      "recall": 0.177007299270073,
+      "f1": 0.013621299780935797,
+      "pixel_iou": 0.2763392263998435,
+      "dice": 0.4330184651290717,
+      "fp_per_image": 101.32190760059612,
+      "edge_recall": 0.2061473237943826,
+      "interior_recall": 0.11254396248534584
+    },
+    "seconds": 5.9027798999997
+  },
+  {
+    "id": "0552bec5c0d04415",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 491,
+      "fp": 115749,
+      "fn": 2249,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5009071,
+      "union": 21114089,
+      "predicted_pixels": 12585170,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 304,
+      "interior_gt": 853,
+      "interior_tp": 187,
+      "precision": 0.004224019270474879,
+      "recall": 0.1791970802919708,
+      "f1": 0.008253487981173306,
+      "pixel_iou": 0.23723831987257418,
+      "dice": 0.38349656014050365,
+      "fp_per_image": 172.50223546944858,
+      "edge_recall": 0.16110227874933758,
+      "interior_recall": 0.21922626025791325
+    },
+    "seconds": 6.095593400001235
+  },
+  {
+    "id": "443df9b4d5f7e1db",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 490,
+      "fp": 112468,
+      "fn": 2250,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3426363,
+      "union": 17393252,
+      "predicted_pixels": 7281625,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 285,
+      "interior_gt": 853,
+      "interior_tp": 205,
+      "precision": 0.004337895500982666,
+      "recall": 0.17883211678832117,
+      "f1": 0.008470327922695293,
+      "pixel_iou": 0.19699381116308784,
+      "dice": 0.32914758510183784,
+      "fp_per_image": 167.61251862891208,
+      "edge_recall": 0.151033386327504,
+      "interior_recall": 0.2403282532239156
+    },
+    "seconds": 14.519668699999443
+  },
+  {
+    "id": "b7cc5cbc26abf034",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 470,
+      "fp": 128499,
+      "fn": 2270,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4903557,
+      "union": 20973231,
+      "predicted_pixels": 12338798,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 291,
+      "interior_gt": 853,
+      "interior_tp": 179,
+      "precision": 0.0036442866115112935,
+      "recall": 0.17153284671532848,
+      "f1": 0.007136945842729047,
+      "pixel_iou": 0.23380074343337945,
+      "dice": 0.37899270960522613,
+      "fp_per_image": 191.5037257824143,
+      "edge_recall": 0.15421303656597773,
+      "interior_recall": 0.20984759671746775
+    },
+    "seconds": 7.658131600000615
+  },
+  {
+    "id": "76f11c5a4867a9a0",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 462,
+      "fp": 131188,
+      "fn": 2278,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4884736,
+      "union": 20942767,
+      "predicted_pixels": 12289513,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 288,
+      "interior_gt": 853,
+      "interior_tp": 174,
+      "precision": 0.003509304975313331,
+      "recall": 0.1686131386861314,
+      "f1": 0.006875511570801399,
+      "pixel_iou": 0.2332421499031145,
+      "dice": 0.3782584789555537,
+      "fp_per_image": 195.51117734724292,
+      "edge_recall": 0.15262321144674085,
+      "interior_recall": 0.20398593200468934
+    },
+    "seconds": 6.005872800001725
+  },
+  {
+    "id": "4eed63ee50b3c92a",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 460,
+      "fp": 129732,
+      "fn": 2280,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4807522,
+      "union": 20905750,
+      "predicted_pixels": 12175282,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 282,
+      "interior_gt": 853,
+      "interior_tp": 178,
+      "precision": 0.0035332432100282658,
+      "recall": 0.1678832116788321,
+      "f1": 0.006920831703427316,
+      "pixel_iou": 0.22996170909917127,
+      "dice": 0.3739331190522933,
+      "fp_per_image": 193.34128166915053,
+      "edge_recall": 0.1494435612082671,
+      "interior_recall": 0.20867526377491208
+    },
+    "seconds": 7.589368400001604
+  },
+  {
+    "id": "148616cd476de0fe",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 456,
+      "fp": 129880,
+      "fn": 2284,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4909488,
+      "union": 19846541,
+      "predicted_pixels": 11218039,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 336,
+      "interior_gt": 853,
+      "interior_tp": 120,
+      "precision": 0.003498649643997054,
+      "recall": 0.16642335766423358,
+      "f1": 0.006853226727584237,
+      "pixel_iou": 0.2473724766446707,
+      "dice": 0.396629685641425,
+      "fp_per_image": 193.5618479880775,
+      "edge_recall": 0.178060413354531,
+      "interior_recall": 0.1406799531066823
+    },
+    "seconds": 5.6504168999990725
+  },
+  {
+    "id": "3c73105d5a990115",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 441,
+      "fp": 73243,
+      "fn": 2299,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6769455,
+      "union": 24772862,
+      "predicted_pixels": 18004327,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 365,
+      "interior_gt": 853,
+      "interior_tp": 76,
+      "precision": 0.005985017100048858,
+      "recall": 0.16094890510948906,
+      "f1": 0.01154087721134722,
+      "pixel_iou": 0.2732609175314503,
+      "dice": 0.4292300403930377,
+      "fp_per_image": 109.15499254843517,
+      "edge_recall": 0.19342872284048754,
+      "interior_recall": 0.08909730363423213
+    },
+    "seconds": 7.559012000000962
+  },
+  {
+    "id": "63c0a198b3062d14",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 437,
+      "fp": 74995,
+      "fn": 2303,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6680817,
+      "union": 24714611,
+      "predicted_pixels": 17857438,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 360,
+      "interior_gt": 853,
+      "interior_tp": 77,
+      "precision": 0.005793297274366316,
+      "recall": 0.1594890510948905,
+      "f1": 0.01118047382694571,
+      "pixel_iou": 0.2703185172528105,
+      "dice": 0.42559171354504227,
+      "fp_per_image": 111.76602086438152,
+      "edge_recall": 0.1907790143084261,
+      "interior_recall": 0.09026963657678781
+    },
+    "seconds": 7.509497900002202
+  },
+  {
+    "id": "03c300f34d26fc2f",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 405,
+      "fp": 80287,
+      "fn": 2335,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6735520,
+      "union": 24871534,
+      "predicted_pixels": 18069064,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 335,
+      "interior_gt": 853,
+      "interior_tp": 70,
+      "precision": 0.0050190849154810886,
+      "recall": 0.1478102189781022,
+      "f1": 0.009708505129926168,
+      "pixel_iou": 0.2708124074695192,
+      "dice": 0.4262035936661481,
+      "fp_per_image": 119.65275707898658,
+      "edge_recall": 0.17753047164811872,
+      "interior_recall": 0.08206330597889801
+    },
+    "seconds": 14.109667399996965
+  },
+  {
+    "id": "d6381e0ca0b4f85b",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 402,
+      "fp": 73285,
+      "fn": 2338,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6765459,
+      "union": 24814143,
+      "predicted_pixels": 18041612,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 331,
+      "interior_gt": 853,
+      "interior_tp": 71,
+      "precision": 0.005455507755777817,
+      "recall": 0.1467153284671533,
+      "f1": 0.010519842464050662,
+      "pixel_iou": 0.2726452813623263,
+      "dice": 0.4284701878130066,
+      "fp_per_image": 109.21758569299553,
+      "edge_recall": 0.17541070482246954,
+      "interior_recall": 0.08323563892145369
+    },
+    "seconds": 6.0701698000011675
+  },
+  {
+    "id": "5a71677717af51fb",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 402,
+      "fp": 88110,
+      "fn": 2338,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3211608,
+      "union": 18237080,
+      "predicted_pixels": 7910698,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 223,
+      "interior_gt": 853,
+      "interior_tp": 179,
+      "precision": 0.00454175704989154,
+      "recall": 0.1467153284671533,
+      "f1": 0.008810765791434708,
+      "pixel_iou": 0.17610319195836174,
+      "dice": 0.29946894653882794,
+      "fp_per_image": 131.31147540983608,
+      "edge_recall": 0.1181770005299417,
+      "interior_recall": 0.20984759671746775
+    },
+    "seconds": 7.659034599998336
+  },
+  {
+    "id": "1f6d6f6811e7a693",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 387,
+      "fp": 110900,
+      "fn": 2353,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3196695,
+      "union": 18232409,
+      "predicted_pixels": 7891114,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 213,
+      "interior_gt": 853,
+      "interior_tp": 174,
+      "precision": 0.003477495125216782,
+      "recall": 0.14124087591240875,
+      "f1": 0.0067878660317293275,
+      "pixel_iou": 0.17533036912456276,
+      "dice": 0.29835078498849044,
+      "fp_per_image": 165.2757078986587,
+      "edge_recall": 0.11287758346581876,
+      "interior_recall": 0.20398593200468934
+    },
+    "seconds": 7.508465299997397
+  },
+  {
+    "id": "861e9d570927177d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 385,
+      "fp": 89203,
+      "fn": 2355,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3136625,
+      "union": 18206758,
+      "predicted_pixels": 7805393,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 210,
+      "interior_gt": 853,
+      "interior_tp": 175,
+      "precision": 0.004297450551413136,
+      "recall": 0.14051094890510948,
+      "f1": 0.008339831903647864,
+      "pixel_iou": 0.17227806290389536,
+      "dice": 0.29392013440418513,
+      "fp_per_image": 132.9403874813711,
+      "edge_recall": 0.11128775834658187,
+      "interior_recall": 0.205158264947245
+    },
+    "seconds": 7.588404300001798
+  },
+  {
+    "id": "68e5c8a017bc8e2e",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 385,
+      "fp": 115971,
+      "fn": 2355,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3182696,
+      "union": 18236076,
+      "predicted_pixels": 7880782,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 207,
+      "interior_gt": 853,
+      "interior_tp": 178,
+      "precision": 0.003308810890714703,
+      "recall": 0.14051094890510948,
+      "f1": 0.0064653724726271245,
+      "pixel_iou": 0.17452745864845046,
+      "dice": 0.2971875325065321,
+      "fp_per_image": 172.83308494783904,
+      "edge_recall": 0.10969793322734499,
+      "interior_recall": 0.20867526377491208
+    },
+    "seconds": 31.046375800000533
+  },
+  {
+    "id": "90c5065abdba8839",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 377,
+      "fp": 63160,
+      "fn": 2363,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6958360,
+      "union": 24400880,
+      "predicted_pixels": 17821250,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 336,
+      "interior_gt": 853,
+      "interior_tp": 41,
+      "precision": 0.005933550529612666,
+      "recall": 0.1375912408759124,
+      "f1": 0.011376495616880667,
+      "pixel_iou": 0.28516840376248725,
+      "dice": 0.44378371414613366,
+      "fp_per_image": 94.12816691505216,
+      "edge_recall": 0.178060413354531,
+      "interior_recall": 0.04806565064478312
+    },
+    "seconds": 5.781946099999459
+  },
+  {
+    "id": "07e5d6305391311d",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 441,
+      "fp": 137436,
+      "fn": 2299,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4859410,
+      "union": 20983339,
+      "predicted_pixels": 12304759,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 273,
+      "interior_gt": 853,
+      "interior_tp": 168,
+      "precision": 0.0031985030135555604,
+      "recall": 0.16094890510948906,
+      "f1": 0.006272356827410626,
+      "pixel_iou": 0.2315842106921115,
+      "dice": 0.3760753161360659,
+      "fp_per_image": 204.822652757079,
+      "edge_recall": 0.14467408585055644,
+      "interior_recall": 0.1969519343493552
+    },
+    "seconds": 14.227834099999086
+  },
+  {
+    "id": "ff059b4740dca6dd",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 372,
+      "fp": 111770,
+      "fn": 2368,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3122546,
+      "union": 18195923,
+      "predicted_pixels": 7780479,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 198,
+      "interior_gt": 853,
+      "interior_tp": 174,
+      "precision": 0.0033172228067985233,
+      "recall": 0.13576642335766423,
+      "f1": 0.006476210372382096,
+      "pixel_iou": 0.1716069033706067,
+      "dice": 0.2929427999731125,
+      "fp_per_image": 166.57228017883756,
+      "edge_recall": 0.10492845786963434,
+      "interior_recall": 0.20398593200468934
+    },
+    "seconds": 7.666241099999411
+  },
+  {
+    "id": "a9184f786262d95d",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 361,
+      "fp": 124974,
+      "fn": 2379,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3134127,
+      "union": 18115326,
+      "predicted_pixels": 7711463,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 183,
+      "interior_gt": 853,
+      "interior_tp": 178,
+      "precision": 0.002880280847329158,
+      "recall": 0.13175182481751824,
+      "f1": 0.005637321881709936,
+      "pixel_iou": 0.17300969356002757,
+      "dice": 0.2949842520652179,
+      "fp_per_image": 186.25037257824144,
+      "edge_recall": 0.09697933227344992,
+      "interior_recall": 0.20867526377491208
+    },
+    "seconds": 5.903265700000134
+  },
+  {
+    "id": "68e44f8f4ba45217",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 331,
+      "fp": 131824,
+      "fn": 2409,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2996637,
+      "union": 17833995,
+      "predicted_pixels": 7292642,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 166,
+      "interior_gt": 853,
+      "interior_tp": 165,
+      "precision": 0.0025046347092429343,
+      "recall": 0.1208029197080292,
+      "f1": 0.00490752066422032,
+      "pixel_iou": 0.16802948526115433,
+      "dice": 0.287714458207509,
+      "fp_per_image": 196.45901639344262,
+      "edge_recall": 0.08797032326444092,
+      "interior_recall": 0.19343493552168817
+    },
+    "seconds": 7.621717500002205
+  },
+  {
+    "id": "287547b15c94ee58",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 325,
+      "fp": 131046,
+      "fn": 2415,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2917621,
+      "union": 17776379,
+      "predicted_pixels": 7156010,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 162,
+      "interior_gt": 853,
+      "interior_tp": 163,
+      "precision": 0.00247390976699576,
+      "recall": 0.11861313868613138,
+      "f1": 0.004846731438882717,
+      "pixel_iou": 0.16412909513236637,
+      "dice": 0.2819774813955736,
+      "fp_per_image": 195.29955290611028,
+      "edge_recall": 0.08585055643879173,
+      "interior_recall": 0.1910902696365768
+    },
+    "seconds": 7.6110920000005535
+  },
+  {
+    "id": "a858d2e3678a75f2",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 323,
+      "fp": 98673,
+      "fn": 2417,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2793290,
+      "union": 16325433,
+      "predicted_pixels": 5580733,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 180,
+      "interior_gt": 853,
+      "interior_tp": 143,
+      "precision": 0.0032627580912360094,
+      "recall": 0.11788321167883212,
+      "f1": 0.006349768027050405,
+      "pixel_iou": 0.17110051537377294,
+      "dice": 0.292204662413907,
+      "fp_per_image": 147.05365126676602,
+      "edge_recall": 0.09538950715421304,
+      "interior_recall": 0.16764361078546308
+    },
+    "seconds": 5.597373500000231
+  },
+  {
+    "id": "576df6cdd89704f4",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 322,
+      "fp": 132388,
+      "fn": 2418,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2957038,
+      "union": 17742129,
+      "predicted_pixels": 7161177,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 163,
+      "interior_gt": 853,
+      "interior_tp": 159,
+      "precision": 0.0024263431542461003,
+      "recall": 0.11751824817518249,
+      "f1": 0.00475452196382429,
+      "pixel_iou": 0.166667596656523,
+      "dice": 0.2857156522289037,
+      "fp_per_image": 197.29955290611028,
+      "edge_recall": 0.08638049814520403,
+      "interior_recall": 0.18640093786635403
+    },
+    "seconds": 5.987527200000272
+  },
+  {
+    "id": "5ae8c011efa7cf5d",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 308,
+      "fp": 135863,
+      "fn": 2432,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2942022,
+      "union": 17767531,
+      "predicted_pixels": 7171563,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 161,
+      "interior_gt": 853,
+      "interior_tp": 147,
+      "precision": 0.0022618619236107543,
+      "recall": 0.11240875912408758,
+      "f1": 0.004434494028550655,
+      "pixel_iou": 0.16558417711498577,
+      "dice": 0.28412221161895673,
+      "fp_per_image": 202.478390461997,
+      "edge_recall": 0.08532061473237944,
+      "interior_recall": 0.17233294255568582
+    },
+    "seconds": 14.190991899999176
+  },
+  {
+    "id": "9c08d099f30bd51b",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 278,
+      "fp": 150532,
+      "fn": 2462,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4473163,
+      "union": 20358753,
+      "predicted_pixels": 11293926,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 181,
+      "interior_gt": 853,
+      "interior_tp": 97,
+      "precision": 0.0018433790862674888,
+      "recall": 0.10145985401459855,
+      "f1": 0.00362097036795832,
+      "pixel_iou": 0.2197169443531242,
+      "dice": 0.36027530054467,
+      "fp_per_image": 224.3397913561848,
+      "edge_recall": 0.09591944886062533,
+      "interior_recall": 0.11371629542790153
+    },
+    "seconds": 5.122731100001147
+  },
+  {
+    "id": "525a489d20a19c09",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 278,
+      "fp": 74859,
+      "fn": 2462,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6233436,
+      "union": 25022982,
+      "predicted_pixels": 17718428,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 202,
+      "interior_gt": 853,
+      "interior_tp": 76,
+      "precision": 0.0036999081677469158,
+      "recall": 0.10145985401459855,
+      "f1": 0.0071394635129755895,
+      "pixel_iou": 0.24910843959365034,
+      "dice": 0.3988579881418274,
+      "fp_per_image": 111.56333830104322,
+      "edge_recall": 0.10704822469528352,
+      "interior_recall": 0.08909730363423213
+    },
+    "seconds": 7.143556599998419
+  },
+  {
+    "id": "48a6cb15eab656e9",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 266,
+      "fp": 75870,
+      "fn": 2474,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6103474,
+      "union": 24987885,
+      "predicted_pixels": 17553369,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 188,
+      "interior_gt": 853,
+      "interior_tp": 78,
+      "precision": 0.0034937480298413365,
+      "recall": 0.09708029197080292,
+      "f1": 0.0067447639332623354,
+      "pixel_iou": 0.24425732710071302,
+      "dice": 0.3926154530588386,
+      "fp_per_image": 113.07004470938897,
+      "edge_recall": 0.0996290408055114,
+      "interior_recall": 0.0914419695193435
+    },
+    "seconds": 7.206488000000149
+  },
+  {
+    "id": "875076b972741d55",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 248,
+      "fp": 92457,
+      "fn": 2492,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6291422,
+      "union": 25554884,
+      "predicted_pixels": 18308316,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 184,
+      "interior_gt": 853,
+      "interior_tp": 64,
+      "precision": 0.002675152365028855,
+      "recall": 0.0905109489051095,
+      "f1": 0.005196710147205197,
+      "pixel_iou": 0.2461925477728641,
+      "dice": 0.39511157118191353,
+      "fp_per_image": 137.7898658718331,
+      "edge_recall": 0.09750927397986221,
+      "interior_recall": 0.07502930832356389
+    },
+    "seconds": 30.533045699997274
+  },
+  {
+    "id": "94dc40d3d23e88ea",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 241,
+      "fp": 86554,
+      "fn": 2499,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6278531,
+      "union": 25451096,
+      "predicted_pixels": 18191637,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 180,
+      "interior_gt": 853,
+      "interior_tp": 61,
+      "precision": 0.002776657641569215,
+      "recall": 0.08795620437956204,
+      "f1": 0.005383369631987491,
+      "pixel_iou": 0.2466900050198231,
+      "dice": 0.3957519576262274,
+      "fp_per_image": 128.9925484351714,
+      "edge_recall": 0.09538950715421304,
+      "interior_recall": 0.07151230949589683
+    },
+    "seconds": 7.159091899997975
+  },
+  {
+    "id": "400ca73c95074724",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 240,
+      "fp": 88087,
+      "fn": 2500,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6162891,
+      "union": 25410575,
+      "predicted_pixels": 18035476,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 177,
+      "interior_gt": 853,
+      "interior_tp": 63,
+      "precision": 0.0027171759484642295,
+      "recall": 0.08759124087591241,
+      "f1": 0.005270844543028759,
+      "pixel_iou": 0.24253252828792737,
+      "dice": 0.39038419158669496,
+      "fp_per_image": 131.27719821162444,
+      "edge_recall": 0.09379968203497616,
+      "interior_recall": 0.0738569753810082
+    },
+    "seconds": 7.2343991999970285
+  },
+  {
+    "id": "91b976eeea5cd986",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 234,
+      "fp": 61286,
+      "fn": 2506,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6570945,
+      "union": 25034836,
+      "predicted_pixels": 18067791,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 201,
+      "interior_gt": 853,
+      "interior_tp": 33,
+      "precision": 0.0038036410923276984,
+      "recall": 0.0854014598540146,
+      "f1": 0.007282913165266107,
+      "pixel_iou": 0.26247206093141573,
+      "dice": 0.4158065260276277,
+      "fp_per_image": 91.33532041728763,
+      "edge_recall": 0.10651828298887123,
+      "interior_recall": 0.038686987104337635
+    },
+    "seconds": 5.114751900000783
+  },
+  {
+    "id": "d6891425dfc30c35",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 224,
+      "fp": 137658,
+      "fn": 2516,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4128329,
+      "union": 21177366,
+      "predicted_pixels": 11767705,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 123,
+      "interior_gt": 853,
+      "interior_tp": 101,
+      "precision": 0.0016245775373145152,
+      "recall": 0.08175182481751825,
+      "f1": 0.003185845742486951,
+      "pixel_iou": 0.19494062670494527,
+      "dice": 0.32627667408462796,
+      "fp_per_image": 205.15350223546946,
+      "edge_recall": 0.06518282988871224,
+      "interior_recall": 0.11840562719812427
+    },
+    "seconds": 7.159128899999587
+  },
+  {
+    "id": "e97d38574a0da60e",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 224,
+      "fp": 174086,
+      "fn": 2516,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4319419,
+      "union": 21739106,
+      "predicted_pixels": 12520535,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 129,
+      "interior_gt": 853,
+      "interior_tp": 95,
+      "precision": 0.0012850668349492283,
+      "recall": 0.08175182481751825,
+      "f1": 0.002530358655746964,
+      "pixel_iou": 0.198693497331491,
+      "dice": 0.33151676850474077,
+      "fp_per_image": 259.44262295081967,
+      "edge_recall": 0.06836248012718601,
+      "interior_recall": 0.11137162954279015
+    },
+    "seconds": 30.40153329999839
+  },
+  {
+    "id": "2c49a3289f28d82a",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 220,
+      "fp": 139556,
+      "fn": 2520,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4049430,
+      "union": 21148430,
+      "predicted_pixels": 11659870,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 118,
+      "interior_gt": 853,
+      "interior_tp": 102,
+      "precision": 0.0015739468864468865,
+      "recall": 0.08029197080291971,
+      "f1": 0.0030873726458783574,
+      "pixel_iou": 0.19147662497878093,
+      "dice": 0.32141062772791024,
+      "fp_per_image": 207.98211624441132,
+      "edge_recall": 0.06253312135665076,
+      "interior_recall": 0.11957796014067995
+    },
+    "seconds": 7.179170000001477
+  },
+  {
+    "id": "58990c96c7c91132",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 212,
+      "fp": 165987,
+      "fn": 2528,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4297754,
+      "union": 21681220,
+      "predicted_pixels": 12440984,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 123,
+      "interior_gt": 853,
+      "interior_tp": 89,
+      "precision": 0.001275579275446904,
+      "recall": 0.07737226277372262,
+      "f1": 0.0025097816371589744,
+      "pixel_iou": 0.1982247308961396,
+      "dice": 0.3308640287333903,
+      "fp_per_image": 247.3725782414307,
+      "edge_recall": 0.06518282988871224,
+      "interior_recall": 0.10433763188745604
+    },
+    "seconds": 7.089168399997789
+  },
+  {
+    "id": "b01f64035c1433d4",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 210,
+      "fp": 91805,
+      "fn": 2530,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6309901,
+      "union": 25659290,
+      "predicted_pixels": 18431201,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 156,
+      "interior_gt": 853,
+      "interior_tp": 54,
+      "precision": 0.002282236591860023,
+      "recall": 0.07664233576642336,
+      "f1": 0.004432483773943328,
+      "pixel_iou": 0.24591097415400037,
+      "dice": 0.3947488693098302,
+      "fp_per_image": 136.8181818181818,
+      "edge_recall": 0.08267090620031796,
+      "interior_recall": 0.06330597889800703
+    },
+    "seconds": 5.647050500001228
+  },
+  {
+    "id": "c1ffc1abfbc56d9c",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 201,
+      "fp": 183001,
+      "fn": 2539,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4348158,
+      "union": 21813143,
+      "predicted_pixels": 12623311,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 116,
+      "interior_gt": 853,
+      "interior_tp": 85,
+      "precision": 0.001097149594436742,
+      "recall": 0.07335766423357665,
+      "f1": 0.0021619644835486336,
+      "pixel_iou": 0.19933661095973193,
+      "dice": 0.33241145002689276,
+      "fp_per_image": 272.72876304023845,
+      "edge_recall": 0.06147323794382618,
+      "interior_recall": 0.09964830011723329
+    },
+    "seconds": 5.48918130000186
+  },
+  {
+    "id": "2a281feee61152a0",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 200,
+      "fp": 167737,
+      "fn": 2540,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4203965,
+      "union": 21639589,
+      "predicted_pixels": 12305564,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 114,
+      "interior_gt": 853,
+      "interior_tp": 86,
+      "precision": 0.0011909227865211358,
+      "recall": 0.072992700729927,
+      "f1": 0.0023436081018532082,
+      "pixel_iou": 0.19427194296527536,
+      "dice": 0.3253395411482492,
+      "fp_per_image": 249.98062593144562,
+      "edge_recall": 0.06041335453100159,
+      "interior_recall": 0.10082063305978899
+    },
+    "seconds": 7.143677400000001
+  },
+  {
+    "id": "3df6905cd7f2f27f",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 189,
+      "fp": 115465,
+      "fn": 2551,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2333629,
+      "union": 16540435,
+      "predicted_pixels": 5336074,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 93,
+      "interior_gt": 853,
+      "interior_tp": 96,
+      "precision": 0.0016341847233991042,
+      "recall": 0.06897810218978102,
+      "f1": 0.0031927293612852,
+      "pixel_iou": 0.14108631363080837,
+      "dice": 0.24728420969643847,
+      "fp_per_image": 172.0789865871833,
+      "edge_recall": 0.0492845786963434,
+      "interior_recall": 0.11254396248534584
+    },
+    "seconds": 5.031182800002398
+  },
+  {
+    "id": "1063bf343c920d5b",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 178,
+      "fp": 94317,
+      "fn": 2562,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6274539,
+      "union": 25697985,
+      "predicted_pixels": 18434534,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 136,
+      "interior_gt": 853,
+      "interior_tp": 42,
+      "precision": 0.0018836975501349278,
+      "recall": 0.06496350364963503,
+      "f1": 0.0036612330950789324,
+      "pixel_iou": 0.24416463002838548,
+      "dice": 0.3924956941153598,
+      "fp_per_image": 140.5618479880775,
+      "edge_recall": 0.07207207207207207,
+      "interior_recall": 0.0492379835873388
+    },
+    "seconds": 5.634506500001976
+  },
+  {
+    "id": "406c35e631078aa5",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 176,
+      "fp": 95394,
+      "fn": 2564,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6263009,
+      "union": 25659959,
+      "predicted_pixels": 18384978,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 134,
+      "interior_gt": 853,
+      "interior_tp": 42,
+      "precision": 0.0018415820864287956,
+      "recall": 0.06423357664233577,
+      "f1": 0.0035805106296409317,
+      "pixel_iou": 0.24407712420740812,
+      "dice": 0.3923826255754164,
+      "fp_per_image": 142.16691505216096,
+      "edge_recall": 0.07101218865924748,
+      "interior_recall": 0.0492379835873388
+    },
+    "seconds": 7.082729699999504
+  },
+  {
+    "id": "3863458b0e61b738",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 174,
+      "fp": 205105,
+      "fn": 2566,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4245128,
+      "union": 21643615,
+      "predicted_pixels": 12350753,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 98,
+      "interior_gt": 853,
+      "interior_tp": 76,
+      "precision": 0.0008476268882837505,
+      "recall": 0.06350364963503649,
+      "f1": 0.0016729241078939905,
+      "pixel_iou": 0.1961376599981103,
+      "dice": 0.32795165064599696,
+      "fp_per_image": 305.67064083457524,
+      "edge_recall": 0.051934287228404874,
+      "interior_recall": 0.08909730363423213
+    },
+    "seconds": 13.689165599998773
+  },
+  {
+    "id": "607389894d4cff26",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 169,
+      "fp": 199196,
+      "fn": 2571,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4267621,
+      "union": 21619732,
+      "predicted_pixels": 12349363,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 92,
+      "interior_gt": 853,
+      "interior_tp": 77,
+      "precision": 0.0008476914202593234,
+      "recall": 0.06167883211678832,
+      "f1": 0.0016723980109349102,
+      "pixel_iou": 0.19739472256177829,
+      "dice": 0.329707019485538,
+      "fp_per_image": 296.86438152011925,
+      "edge_recall": 0.048754636989931106,
+      "interior_recall": 0.09026963657678781
+    },
+    "seconds": 5.497472800002129
+  },
+  {
+    "id": "d1472ffed46814d7",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 169,
+      "fp": 196436,
+      "fn": 2571,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4276942,
+      "union": 21658039,
+      "predicted_pixels": 12396991,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 99,
+      "interior_gt": 853,
+      "interior_tp": 70,
+      "precision": 0.0008595915668472317,
+      "recall": 0.06167883211678832,
+      "f1": 0.0016955529358649577,
+      "pixel_iou": 0.19747595800340004,
+      "dice": 0.3298203303098622,
+      "fp_per_image": 292.7511177347243,
+      "edge_recall": 0.05246422893481717,
+      "interior_recall": 0.08206330597889801
+    },
+    "seconds": 7.0163176000003205
+  },
+  {
+    "id": "07ad6acf5727018f",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 169,
+      "fp": 98380,
+      "fn": 2571,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6165524,
+      "union": 25600523,
+      "predicted_pixels": 18228057,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 131,
+      "interior_gt": 853,
+      "interior_tp": 38,
+      "precision": 0.001714882951628124,
+      "recall": 0.06167883211678832,
+      "f1": 0.0033369862472726556,
+      "pixel_iou": 0.24083586104861998,
+      "dice": 0.38818327001782754,
+      "fp_per_image": 146.61698956780924,
+      "edge_recall": 0.06942236354001059,
+      "interior_recall": 0.044548651817116064
+    },
+    "seconds": 7.140917700002319
+  },
+  {
+    "id": "15f991fcd666209a",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 161,
+      "fp": 103196,
+      "fn": 2579,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6244445,
+      "union": 25732357,
+      "predicted_pixels": 18438812,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 121,
+      "interior_gt": 853,
+      "interior_tp": 40,
+      "precision": 0.0015577077508054607,
+      "recall": 0.05875912408759124,
+      "f1": 0.0030349585756430436,
+      "pixel_iou": 0.24266898675469176,
+      "dice": 0.3905609447749028,
+      "fp_per_image": 153.79433681073024,
+      "edge_recall": 0.06412294647588765,
+      "interior_recall": 0.04689331770222743
+    },
+    "seconds": 13.801279899999258
+  },
+  {
+    "id": "e6f1627c73a93382",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 159,
+      "fp": 198019,
+      "fn": 2581,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 4176219,
+      "union": 21587649,
+      "predicted_pixels": 12225878,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 90,
+      "interior_gt": 853,
+      "interior_tp": 69,
+      "precision": 0.0008023090353116895,
+      "recall": 0.05802919708029197,
+      "f1": 0.0015827352452244198,
+      "pixel_iou": 0.19345409034582692,
+      "dice": 0.32419192646073175,
+      "fp_per_image": 295.1102831594635,
+      "edge_recall": 0.04769475357710652,
+      "interior_recall": 0.08089097303634232
+    },
+    "seconds": 7.0820375000000695
+  },
+  {
+    "id": "4fb60f2518bed328",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 118,
+      "fp": 183989,
+      "fn": 2622,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2403108,
+      "union": 18388437,
+      "predicted_pixels": 7253555,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 62,
+      "interior_gt": 853,
+      "interior_tp": 56,
+      "precision": 0.0006409316321486961,
+      "recall": 0.043065693430656936,
+      "f1": 0.0012630655027910536,
+      "pixel_iou": 0.1306858217476559,
+      "dice": 0.23116204207046662,
+      "fp_per_image": 274.20119225037257,
+      "edge_recall": 0.03285638579756227,
+      "interior_recall": 0.06565064478311841
+    },
+    "seconds": 6.994277399998168
+  },
+  {
+    "id": "0055f2c4ee95dfeb",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 113,
+      "fp": 187397,
+      "fn": 2627,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2385799,
+      "union": 18367897,
+      "predicted_pixels": 7215706,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 64,
+      "interior_gt": 853,
+      "interior_tp": 49,
+      "precision": 0.0006026345261586049,
+      "recall": 0.041240875912408756,
+      "f1": 0.0011879106438896188,
+      "pixel_iou": 0.12988961120589906,
+      "dice": 0.22991557744702437,
+      "fp_per_image": 279.28017883755587,
+      "edge_recall": 0.03391626921038686,
+      "interior_recall": 0.05744431418522861
+    },
+    "seconds": 30.364262800000006
+  },
+  {
+    "id": "e7dd01cfc2a6f079",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 111,
+      "fp": 196039,
+      "fn": 2629,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2407760,
+      "union": 18350482,
+      "predicted_pixels": 7220252,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 56,
+      "interior_gt": 853,
+      "interior_tp": 55,
+      "precision": 0.0005658934488911548,
+      "recall": 0.04051094890510949,
+      "f1": 0.0011161948815928402,
+      "pixel_iou": 0.13120963253172316,
+      "dice": 0.2319811089975731,
+      "fp_per_image": 292.15946348733235,
+      "edge_recall": 0.0296767355590885,
+      "interior_recall": 0.06447831184056271
+    },
+    "seconds": 5.416476200000943
+  },
+  {
+    "id": "17571ab03a47291d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 110,
+      "fp": 184163,
+      "fn": 2630,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2339121,
+      "union": 18353956,
+      "predicted_pixels": 7155087,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 58,
+      "interior_gt": 853,
+      "interior_tp": 52,
+      "precision": 0.0005969404090669821,
+      "recall": 0.040145985401459854,
+      "f1": 0.0011763888071952217,
+      "pixel_iou": 0.12744505871104844,
+      "dice": 0.22607763939601636,
+      "fp_per_image": 274.46050670640835,
+      "edge_recall": 0.03073661897191309,
+      "interior_recall": 0.06096131301289566
+    },
+    "seconds": 7.1042386999992
+  },
+  {
+    "id": "5c7575c0a808109c",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 107,
+      "fp": 153429,
+      "fn": 2633,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2233182,
+      "union": 18000304,
+      "predicted_pixels": 6695496,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 52,
+      "interior_gt": 853,
+      "interior_tp": 55,
+      "precision": 0.0006969049604001668,
+      "recall": 0.03905109489051095,
+      "f1": 0.0013693721364764903,
+      "pixel_iou": 0.12406357137079463,
+      "dice": 0.2207412009971984,
+      "fp_per_image": 228.65722801788377,
+      "edge_recall": 0.02755696873343932,
+      "interior_recall": 0.06447831184056271
+    },
+    "seconds": 7.110196199997745
+  },
+  {
+    "id": "36995381f0ceb06e",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 102,
+      "fp": 154728,
+      "fn": 2638,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2189326,
+      "union": 17981001,
+      "predicted_pixels": 6632337,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 50,
+      "interior_gt": 853,
+      "interior_tp": 52,
+      "precision": 0.0006587870567719435,
+      "recall": 0.03722627737226277,
+      "f1": 0.0012946626895982737,
+      "pixel_iou": 0.12175773751416842,
+      "dice": 0.21708383805577372,
+      "fp_per_image": 230.59314456035767,
+      "edge_recall": 0.026497085320614733,
+      "interior_recall": 0.06096131301289566
+    },
+    "seconds": 7.101764400001343
+  },
+  {
+    "id": "6f58d9a8d998943b",
+    "config": {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 95,
+      "fp": 194608,
+      "fn": 2645,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2243499,
+      "union": 17892298,
+      "predicted_pixels": 6597807,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 46,
+      "interior_gt": 853,
+      "interior_tp": 49,
+      "precision": 0.0004879226308788257,
+      "recall": 0.03467153284671533,
+      "f1": 0.0009623030444229474,
+      "pixel_iou": 0.1253890919992502,
+      "dice": 0.22283687107095884,
+      "fp_per_image": 290.026825633383,
+      "edge_recall": 0.024377318494965553,
+      "interior_recall": 0.05744431418522861
+    },
+    "seconds": 5.502624300001571
+  },
+  {
+    "id": "fb4a42e920b47fa6",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 93,
+      "fp": 196283,
+      "fn": 2647,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2288377,
+      "union": 18010835,
+      "predicted_pixels": 6761222,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 45,
+      "interior_gt": 853,
+      "interior_tp": 48,
+      "precision": 0.00047358129302969815,
+      "recall": 0.03394160583941606,
+      "f1": 0.0009341288495148557,
+      "pixel_iou": 0.12705557515795354,
+      "dice": 0.22546461409437962,
+      "fp_per_image": 292.5230998509687,
+      "edge_recall": 0.02384737678855326,
+      "interior_recall": 0.05627198124267292
+    },
+    "seconds": 7.021743199998355
+  },
+  {
+    "id": "fc212ea88f2bcb31",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 92,
+      "fp": 193849,
+      "fn": 2648,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2208551,
+      "union": 17945874,
+      "predicted_pixels": 6616435,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 44,
+      "interior_gt": 853,
+      "interior_tp": 48,
+      "precision": 0.0004743710716145632,
+      "recall": 0.033576642335766425,
+      "f1": 0.0009355250380057047,
+      "pixel_iou": 0.12306734127298564,
+      "dice": 0.21916288854680796,
+      "fp_per_image": 288.8956780923994,
+      "edge_recall": 0.023317435082140965,
+      "interior_recall": 0.05627198124267292
+    },
+    "seconds": 7.033556700003032
+  },
+  {
+    "id": "6b70edf87d6e9c6d",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 85,
+      "fp": 68964,
+      "fn": 2655,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6152928,
+      "union": 25798892,
+      "predicted_pixels": 18413830,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 69,
+      "interior_gt": 853,
+      "interior_tp": 16,
+      "precision": 0.0012310098625613695,
+      "recall": 0.03102189781021898,
+      "f1": 0.0023680508155845604,
+      "pixel_iou": 0.23849582377413728,
+      "dice": 0.3851378732103523,
+      "fp_per_image": 102.7779433681073,
+      "edge_recall": 0.03656597774244833,
+      "interior_recall": 0.01875732708089097
+    },
+    "seconds": 5.098908300000858
+  },
+  {
+    "id": "fb0804b73ec18ae2",
+    "config": {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 80,
+      "fp": 196210,
+      "fn": 2660,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 2231168,
+      "union": 17908187,
+      "predicted_pixels": 6601365,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 44,
+      "interior_gt": 853,
+      "interior_tp": 36,
+      "precision": 0.0004075602424983443,
+      "recall": 0.029197080291970802,
+      "f1": 0.0008038989097121037,
+      "pixel_iou": 0.12458927305148199,
+      "dice": 0.22157293518089333,
+      "fp_per_image": 292.4143070044709,
+      "edge_recall": 0.023317435082140965,
+      "interior_recall": 0.04220398593200469
+    },
+    "seconds": 13.574874899996189
+  },
+  {
+    "id": "3d5dc587ed702804",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 70,
+      "fp": 211501,
+      "fn": 2670,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 3922920,
+      "union": 20893263,
+      "predicted_pixels": 11278193,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 42,
+      "interior_gt": 853,
+      "interior_tp": 28,
+      "precision": 0.0003308581989024961,
+      "recall": 0.025547445255474453,
+      "f1": 0.00065325624909594,
+      "pixel_iou": 0.1877600449484602,
+      "dice": 0.31615821014859535,
+      "fp_per_image": 315.2026825633383,
+      "edge_recall": 0.022257551669316374,
+      "interior_recall": 0.032825322391559206
+    },
+    "seconds": 4.606107700000052
+  },
+  {
+    "id": "82aa949cd3d5993d",
+    "config": {
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 16
+      }
+    },
+    "metrics": {
+      "tp": 29,
+      "fp": 149469,
+      "fn": 2711,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 1651069,
+      "union": 16479393,
+      "predicted_pixels": 4592472,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 17,
+      "interior_gt": 853,
+      "interior_tp": 12,
+      "precision": 0.0001939825281943571,
+      "recall": 0.010583941605839416,
+      "f1": 0.0003809824091225581,
+      "pixel_iou": 0.1001899159756673,
+      "dice": 0.18213203833415828,
+      "fp_per_image": 222.75558867362147,
+      "edge_recall": 0.009009009009009009,
+      "interior_recall": 0.01406799531066823
+    },
+    "seconds": 4.4708323000007795
+  }
+]

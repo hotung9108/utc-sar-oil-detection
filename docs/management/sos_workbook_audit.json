@@ -1,0 +1,39 @@
+{
+  "new_tasks": 15,
+  "historical_tasks_preserved": 85,
+  "existing_unedited_cells_and_styles_preserved": true,
+  "formula_engine": "artifact-tool",
+  "recalculation": {
+    "before": [
+      [
+        3,
+        12,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "changed": [
+      [
+        3,
+        12,
+        1,
+        0.3333333333333333,
+        0,
+        1
+      ]
+    ],
+    "restored": [
+      [
+        3,
+        12,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "native_features": "Preserved using original OOXML package"
+}

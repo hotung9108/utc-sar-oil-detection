@@ -32,8 +32,12 @@ Phân biệt ảnh sigma0 tuyến tính, dB và ảnh hiển thị. Không suy g
 
 Tìm hiểu mục đích nghiên cứu/ứng phó dầu tràn của NASA bằng nguồn chính thức, phân biệt ảnh NASA và nhãn do nhóm khác tạo. Các yêu cầu cụ thể của Đề 18 lấy từ tài liệu môn học, không tự gán thành nguyên văn yêu cầu NASA. Xem [danh mục nguồn](NGUON_DU_LIEU_SAR_DAU_TRAN.md).
 
-AIS truy nguồn tàu và mô phỏng trôi dầu là hướng phát triển sau. Chưa chọn dataset chính. Ưu tiên xem QPOSD, Trujillo-Acatitla và DARTIS nhưng phải thẩm định trước khi quyết định.
+AIS truy nguồn tàu và mô phỏng trôi dầu là hướng phát triển sau. Ngày 13/11/2026 nhóm chọn **Refined Deep-SAR Oil Spill — SOS** làm dữ liệu chính cho thực nghiệm xử lý ảnh. Đã kiểm kê 8070 cặp ảnh/mask; Sentinel là tập chính, PALSAR đánh giá ngoài miền. Xem `management/KIEM_TRA_REFINED_SOS.md`.
 
-## Đợt 13–15/11/2026
+## Phạm vi triển khai đã chốt
 
-Chỉ dọn, lưu trữ, tổ chức lại dự án và cập nhật phân công. Kế hoạch dữ liệu/thuật toán chi tiết lập sau. Hạn nghiệm thu: 23:59 ngày 15/11/2026, Asia/Saigon. Không cam kết hoàn thành bộ phát hiện dầu trong đợt này.
+Thực hiện pipeline NumPy và bản thư viện, CLI và 5 notebook Jupyter theo thành viên; chạy số liệu thật trước khi quyết định thuật toán. So sánh 110 cấu hình lọc/ngưỡng, rồi 729 cấu hình hình thái/đặc trưng/classifier trên validation. Chọn bản NumPy đã kiểm chứng và hội tụ; giữ nguyên test cuối. Chi tiết tại [giao thức](GIAO_THUC_THUC_NGHIEM.md) và [phân công](management/KE_HOACH_SOS_NOTEBOOK.md).
+
+SOS thiếu metadata góc tới, gió và nhãn look-alike. Vì vậy kết quả hiện tại chỉ đo dầu/nền trên PNG, **chưa hoàn tất toàn bộ yêu cầu Đề 18**. Không suy góc tới, không giả lập gió, không gọi nền là từng loại gió yếu/màng sinh học/mưa. Cần nguồn bổ sung để đánh giá những yêu cầu đó.
+
+Đầu ra cuối gồm mask, overlay, đặc trưng/điểm từng vùng, Precision/Recall/F1 đối tượng, pixel IoU/Dice, FP/ảnh, ablation và phân tích lỗi. Mục tiêu cải tiến là giảm báo nhầm bằng vùng nền cục bộ và phân lớp vùng; chỉ kết luận có cải thiện khi số liệu test xác nhận, kể cả khi kết quả kém. Hạn bàn giao: 23:59 ngày 15/11/2026, Asia/Saigon.

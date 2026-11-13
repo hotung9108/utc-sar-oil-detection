@@ -1,0 +1,33 @@
+{
+  "notebooks": [
+    {
+      "notebook": "01_data_and_ground_truth.ipynb",
+      "executed_cells": 3,
+      "figures": 1
+    },
+    {
+      "notebook": "02_filter_threshold_benchmark.ipynb",
+      "executed_cells": 5,
+      "figures": 3
+    },
+    {
+      "notebook": "03_regions_and_features.ipynb",
+      "executed_cells": 3,
+      "figures": 1
+    },
+    {
+      "notebook": "04_cart_svm_numpy.ipynb",
+      "executed_cells": 3,
+      "figures": 1
+    },
+    {
+      "notebook": "05_final_pipeline.ipynb",
+      "executed_cells": 4,
+      "figures": 4
+    }
+  ],
+  "all_executed": true,
+  "no_cell_errors": true,
+  "aggregated_metrics_verified": true,
+  "numpy_full_pipeline_matches_validation": true
+}

@@ -1,0 +1,19 @@
+{
+  "seed": 2026,
+  "split": "validation",
+  "sample_rule": "uniform sample without replacement, six patches",
+  "image_ids": [
+    "train/sentinel_2454",
+    "train/sentinel_2951",
+    "train/sentinel_2122",
+    "train/sentinel_1069",
+    "train/sentinel_1543",
+    "train/sentinel_577"
+  ],
+  "source": "results/sos/screen.json",
+  "figures": [
+    "dataset_examples.png",
+    "parameter_study.png",
+    "pipeline.png"
+  ]
+}

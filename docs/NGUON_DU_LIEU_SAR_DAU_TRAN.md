@@ -223,7 +223,7 @@ Mục tiêu của nhóm: tự cài CART và SVM, so sánh giữa các thuật to
 - Đo cải tiến giảm báo nhầm bằng ablation trên cùng split; báo cả thay đổi recall để tránh giảm báo nhầm bằng cách bỏ sót hầu hết dầu.
 - Số liệu trong bài báo bên ngoài chỉ là tham khảo. Số liệu đánh giá của nhóm phải do script chạy tạo ra, có cấu hình và nguồn dữ liệu truy lại được.
 
-## 8. Những việc chưa thực hiện
+## 8. Trạng thái khảo sát cũ (12/11/2026)
 
 - Chưa tải và kiểm chứng toàn bộ dataset hoặc huấn luyện mô hình mới.
 - Chưa gửi email xin dữ liệu MKLab.
@@ -231,3 +231,7 @@ Mục tiêu của nhóm: tự cài CART và SVM, so sánh giữa các thuật to
 - Chưa chốt nguồn chính, chưa thay đổi pipeline và chưa tạo số liệu thực nghiệm mới.
 
 Danh mục này bao gồm các đầu mối tìm được trong đợt khảo sát, không khẳng định bao quát mọi dataset tồn tại. Các bản sao không rõ nguồn trên Kaggle/Hugging Face không được coi là nguồn gốc độc lập.
+
+## Cập nhật 13/11/2026
+
+Nhóm đã chọn Refined SOS v1 (https://zenodo.org/records/15298010), tải và kiểm kê 8070 cặp PNG/mask. Sentinel dùng huấn luyện/validation/test, PALSAR chỉ đánh giá ngoài miền. Xem `management/KIEM_TRA_REFINED_SOS.md` và `GIAO_THUC_THUC_NGHIEM.md`. Các dòng “chưa chọn/chưa tải” ở mục khảo sát cũ mô tả trạng thái trước quyết định này. Không có metadata để hoàn thành chuẩn hóa góc tới, ghép gió hoặc đánh giá riêng look-alike.

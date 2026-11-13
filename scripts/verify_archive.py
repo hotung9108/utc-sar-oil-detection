@@ -1,4 +1,5 @@
 """Verify every archived file against its original SHA-256, without modifying it."""
+
 import hashlib
 import json
 from pathlib import Path

@@ -1,9 +1,10 @@
 """Acceptance checks for the dataset-first repository migration."""
+
 import ast
 import json
-from pathlib import Path
 import tomllib
 import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -21,7 +22,9 @@ class StructureTests(unittest.TestCase):
                 self.assertFalse(any(n.startswith(("legacy", "src.tv")) for n in names))
 
     def test_schedule_dependencies_and_owners(self):
-        tasks = json.loads((ROOT / "docs/management/refactor_tasks.json").read_text(encoding="utf-8"))
+        tasks = json.loads(
+            (ROOT / "docs/management/refactor_tasks.json").read_text(encoding="utf-8")
+        )
         self.assertEqual(len(tasks), 15)
         by_id = {t["id"]: t for t in tasks}
         self.assertEqual(len(by_id), 15)
@@ -39,6 +42,17 @@ class StructureTests(unittest.TestCase):
         self.assertIn("legacy", config["tool"]["ruff"]["extend-exclude"])
         self.assertFalse((ROOT / "app.py").exists())
         self.assertFalse((ROOT / "streamlit_app.py").exists())
+
+    def test_sos_assignment_owners_and_dependencies(self):
+        tasks = json.loads((ROOT / "docs/management/sos_tasks.json").read_text(encoding="utf-8"))
+        by_id = {t["id"]: t for t in tasks}
+        self.assertEqual(len(by_id), 15)
+        for task in tasks:
+            self.assertNotEqual(task["name"], task["reviewer"])
+            if task["dependency"] != "Không":
+                self.assertLess(by_id[task["dependency"]]["day"], task["day"])
+        for i in range(1, 6):
+            self.assertEqual(sum(t["owner"] == f"TV{i}" for t in tasks), 3)
 
 
 if __name__ == "__main__":

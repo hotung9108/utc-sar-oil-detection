@@ -1,0 +1,1478 @@
+[
+  {
+    "id": "7b5c505ee3be8bb6",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 672,
+      "fp": 5879,
+      "fn": 2068,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6937579,
+      "union": 15617777,
+      "predicted_pixels": 9017366,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 561,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.10257975881544802,
+      "recall": 0.24525547445255474,
+      "f1": 0.14465611882466903,
+      "pixel_iou": 0.4442104020309677,
+      "dice": 0.6151602306786911,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.2972972972972973,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 1.646183299999393
+  },
+  {
+    "id": "8720ab70a53df08e",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 672,
+      "fp": 5879,
+      "fn": 2068,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6937579,
+      "union": 15617777,
+      "predicted_pixels": 9017366,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 561,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.10257975881544802,
+      "recall": 0.24525547445255474,
+      "f1": 0.14465611882466903,
+      "pixel_iou": 0.4442104020309677,
+      "dice": 0.6151602306786911,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.2972972972972973,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 0.17206480000004376
+  },
+  {
+    "id": "357f504d6a0ced4d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 660,
+      "fp": 5833,
+      "fn": 2080,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6765418,
+      "union": 15480030,
+      "predicted_pixels": 8707458,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 549,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.101647928538426,
+      "recall": 0.24087591240875914,
+      "f1": 0.14296545001624608,
+      "pixel_iou": 0.4370416594799881,
+      "dice": 0.6082518994447763,
+      "fp_per_image": 8.692995529061102,
+      "edge_recall": 0.29093799682034976,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 1.1042201000000205
+  },
+  {
+    "id": "ca576120f5824e93",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 660,
+      "fp": 5833,
+      "fn": 2080,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6765418,
+      "union": 15480030,
+      "predicted_pixels": 8707458,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 549,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.101647928538426,
+      "recall": 0.24087591240875914,
+      "f1": 0.14296545001624608,
+      "pixel_iou": 0.4370416594799881,
+      "dice": 0.6082518994447763,
+      "fp_per_image": 8.692995529061102,
+      "edge_recall": 0.29093799682034976,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 0.19619160000002012
+  },
+  {
+    "id": "07ab56b06680887a",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 662,
+      "fp": 5879,
+      "fn": 2078,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7097943,
+      "union": 15785766,
+      "predicted_pixels": 9345719,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 555,
+      "interior_gt": 853,
+      "interior_tp": 107,
+      "precision": 0.10120776639657544,
+      "recall": 0.2416058394160584,
+      "f1": 0.14265704126710485,
+      "pixel_iou": 0.44964197492855273,
+      "dice": 0.6203490002429239,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.29411764705882354,
+      "interior_recall": 0.1254396248534584
+    },
+    "seconds": 0.22656030000052851
+  },
+  {
+    "id": "4543be81a4a3b8cd",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 662,
+      "fp": 5879,
+      "fn": 2078,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7097943,
+      "union": 15785766,
+      "predicted_pixels": 9345719,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 555,
+      "interior_gt": 853,
+      "interior_tp": 107,
+      "precision": 0.10120776639657544,
+      "recall": 0.2416058394160584,
+      "f1": 0.14265704126710485,
+      "pixel_iou": 0.44964197492855273,
+      "dice": 0.6203490002429239,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.29411764705882354,
+      "interior_recall": 0.1254396248534584
+    },
+    "seconds": 0.23323220000020228
+  },
+  {
+    "id": "a2b880ee44482edf",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 659,
+      "fp": 5863,
+      "fn": 2081,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6958756,
+      "union": 15785748,
+      "predicted_pixels": 9206514,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 551,
+      "interior_gt": 853,
+      "interior_tp": 108,
+      "precision": 0.1010426249616682,
+      "recall": 0.2405109489051095,
+      "f1": 0.1423018786439214,
+      "pixel_iou": 0.44082523045471145,
+      "dice": 0.6119065951053494,
+      "fp_per_image": 8.737704918032787,
+      "edge_recall": 0.29199788023317436,
+      "interior_recall": 0.12661195779601406
+    },
+    "seconds": 0.2430648999998084
+  },
+  {
+    "id": "d3e31cb787826d74",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 678,
+      "fp": 6123,
+      "fn": 2062,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7140361,
+      "union": 15890366,
+      "predicted_pixels": 9492737,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 566,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.09969122187913543,
+      "recall": 0.24744525547445256,
+      "f1": 0.14212346714180904,
+      "pixel_iou": 0.44935157566540634,
+      "dice": 0.6200725665325285,
+      "fp_per_image": 9.125186289120716,
+      "edge_recall": 0.2999470058293588,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 0.28697470000042813
+  },
+  {
+    "id": "f7e015561334a789",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 659,
+      "fp": 5878,
+      "fn": 2081,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6959370,
+      "union": 15786787,
+      "predicted_pixels": 9208167,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 551,
+      "interior_gt": 853,
+      "interior_tp": 108,
+      "precision": 0.10081076946611596,
+      "recall": 0.2405109489051095,
+      "f1": 0.14207179044949875,
+      "pixel_iou": 0.440835111033043,
+      "dice": 0.6119161140055439,
+      "fp_per_image": 8.76005961251863,
+      "edge_recall": 0.29199788023317436,
+      "interior_recall": 0.12661195779601406
+    },
+    "seconds": 0.26277480000044307
+  },
+  {
+    "id": "31d7feb434e30d9d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 674,
+      "fp": 6109,
+      "fn": 2066,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7114752,
+      "union": 15894475,
+      "predicted_pixels": 9471237,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 562,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.09936606221435942,
+      "recall": 0.245985401459854,
+      "f1": 0.14155203192271343,
+      "pixel_iou": 0.44762422162418075,
+      "dice": 0.6184259905819521,
+      "fp_per_image": 9.104321907600596,
+      "edge_recall": 0.2978272390037096,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 0.2449071000000913
+  },
+  {
+    "id": "624920693b7583af",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 10
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 673,
+      "fp": 6344,
+      "fn": 2067,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7164048,
+      "union": 16058799,
+      "predicted_pixels": 9684857,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 560,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09590993301980903,
+      "recall": 0.2456204379562044,
+      "f1": 0.13795223941785384,
+      "pixel_iou": 0.446113560547087,
+      "dice": 0.6169827497894638,
+      "fp_per_image": 9.454545454545455,
+      "edge_recall": 0.296767355590885,
+      "interior_recall": 0.1324736225087925
+    },
+    "seconds": 0.16381010000077367
+  },
+  {
+    "id": "b132beb9449c2e9b",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 0.1
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 673,
+      "fp": 6344,
+      "fn": 2067,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7163983,
+      "union": 16060212,
+      "predicted_pixels": 9686205,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 560,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09590993301980903,
+      "recall": 0.2456204379562044,
+      "f1": 0.13795223941785384,
+      "pixel_iou": 0.4460702635805804,
+      "dice": 0.6169413407009371,
+      "fp_per_image": 9.454545454545455,
+      "edge_recall": 0.296767355590885,
+      "interior_recall": 0.1324736225087925
+    },
+    "seconds": 0.16884029999982886
+  },
+  {
+    "id": "ed492cc365770c49",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 1
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 673,
+      "fp": 6344,
+      "fn": 2067,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7164048,
+      "union": 16058799,
+      "predicted_pixels": 9684857,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 560,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09590993301980903,
+      "recall": 0.2456204379562044,
+      "f1": 0.13795223941785384,
+      "pixel_iou": 0.446113560547087,
+      "dice": 0.6169827497894638,
+      "fp_per_image": 9.454545454545455,
+      "edge_recall": 0.296767355590885,
+      "interior_recall": 0.1324736225087925
+    },
+    "seconds": 0.15503400000034162
+  },
+  {
+    "id": "100e7f87ce118d49",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 656,
+      "fp": 6121,
+      "fn": 2084,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6942153,
+      "union": 15806170,
+      "predicted_pixels": 9210333,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 545,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.09679799321233584,
+      "recall": 0.23941605839416058,
+      "f1": 0.13785856887674688,
+      "pixel_iou": 0.4392052597181986,
+      "dice": 0.6103441559186583,
+      "fp_per_image": 9.12220566318927,
+      "edge_recall": 0.2888182299947006,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 0.2509559000000081
+  },
+  {
+    "id": "ca2638afcd5b2022",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 665,
+      "fp": 6289,
+      "fn": 2075,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7045880,
+      "union": 16029787,
+      "predicted_pixels": 9537677,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 552,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09562841530054644,
+      "recall": 0.2427007299270073,
+      "f1": 0.13719826696925932,
+      "pixel_iou": 0.4395491967547666,
+      "dice": 0.6106761724373991,
+      "fp_per_image": 9.3725782414307,
+      "edge_recall": 0.29252782193958665,
+      "interior_recall": 0.1324736225087925
+    },
+    "seconds": 0.2418732000005548
+  },
+  {
+    "id": "8d6ebc72a23215bd",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 0.1
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 667,
+      "fp": 6367,
+      "fn": 2073,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7066451,
+      "union": 16073316,
+      "predicted_pixels": 9601777,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 555,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.09482513505828831,
+      "recall": 0.24343065693430657,
+      "f1": 0.13648455084919173,
+      "pixel_iou": 0.4396386532810031,
+      "dice": 0.6107625024919222,
+      "fp_per_image": 9.48882265275708,
+      "edge_recall": 0.29411764705882354,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 0.14472990000012942
+  },
+  {
+    "id": "b33893cb476a83ba",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 1
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 667,
+      "fp": 6367,
+      "fn": 2073,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7066383,
+      "union": 16074310,
+      "predicted_pixels": 9602703,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 555,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.09482513505828831,
+      "recall": 0.24343065693430657,
+      "f1": 0.13648455084919173,
+      "pixel_iou": 0.4396072366403286,
+      "dice": 0.610732185073282,
+      "fp_per_image": 9.48882265275708,
+      "edge_recall": 0.29411764705882354,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 0.1392452999998568
+  },
+  {
+    "id": "1d0df8801cac8a63",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 10
+    },
+    "group": "all",
+    "training": {
+      "positive": 19938,
+      "negative": 68216,
+      "ambiguous": 4560,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 667,
+      "fp": 6368,
+      "fn": 2073,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7066383,
+      "union": 16074470,
+      "predicted_pixels": 9602863,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 555,
+      "interior_gt": 853,
+      "interior_tp": 112,
+      "precision": 0.09481165600568586,
+      "recall": 0.24343065693430657,
+      "f1": 0.13647058823529412,
+      "pixel_iou": 0.43960286093413964,
+      "dice": 0.6107279623616294,
+      "fp_per_image": 9.490312965722802,
+      "edge_recall": 0.29411764705882354,
+      "interior_recall": 0.13130128956623682
+    },
+    "seconds": 0.14066800000000512
+  },
+  {
+    "id": "8b1036d249443a77",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 727,
+      "fp": 10903,
+      "fn": 2013,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5199684,
+      "union": 14788702,
+      "predicted_pixels": 6450396,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 526,
+      "interior_gt": 853,
+      "interior_tp": 201,
+      "precision": 0.06251074806534823,
+      "recall": 0.2653284671532847,
+      "f1": 0.1011830201809325,
+      "pixel_iou": 0.3515984026184313,
+      "dice": 0.5202705210915979,
+      "fp_per_image": 16.248882265275707,
+      "edge_recall": 0.27874933757286696,
+      "interior_recall": 0.23563892145369286
+    },
+    "seconds": 0.3500728999997591
+  },
+  {
+    "id": "4d2ea5e5bd8db27d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 8,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 714,
+      "fp": 10774,
+      "fn": 2026,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5172459,
+      "union": 14720200,
+      "predicted_pixels": 6354669,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 520,
+      "interior_gt": 853,
+      "interior_tp": 194,
+      "precision": 0.062151810584958216,
+      "recall": 0.2605839416058394,
+      "f1": 0.10036547652516166,
+      "pixel_iou": 0.3513851034632682,
+      "dice": 0.5200369643897279,
+      "fp_per_image": 16.056631892697467,
+      "edge_recall": 0.27556968733439324,
+      "interior_recall": 0.22743259085580306
+    },
+    "seconds": 0.32290049999937764
+  },
+  {
+    "id": "fd6cd4764466b4f7",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 694,
+      "fp": 10782,
+      "fn": 2046,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5182287,
+      "union": 14689442,
+      "predicted_pixels": 6333739,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 501,
+      "interior_gt": 853,
+      "interior_tp": 193,
+      "precision": 0.06047403276402928,
+      "recall": 0.25328467153284673,
+      "f1": 0.0976364659538548,
+      "pixel_iou": 0.35278991536914744,
+      "dice": 0.5215738399008963,
+      "fp_per_image": 16.06855439642325,
+      "edge_recall": 0.2655007949125596,
+      "interior_recall": 0.22626025791324736
+    },
+    "seconds": 0.20998520000011922
+  },
+  {
+    "id": "a778b41b0b3918de",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 5,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 694,
+      "fp": 10789,
+      "fn": 2046,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5182708,
+      "union": 14690649,
+      "predicted_pixels": 6335367,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 501,
+      "interior_gt": 853,
+      "interior_tp": 193,
+      "precision": 0.060437167987459725,
+      "recall": 0.25328467153284673,
+      "f1": 0.09758841313365675,
+      "pixel_iou": 0.35278958744436684,
+      "dice": 0.5215734815210132,
+      "fp_per_image": 16.07898658718331,
+      "edge_recall": 0.2655007949125596,
+      "interior_recall": 0.22626025791324736
+    },
+    "seconds": 0.21026219999930618
+  },
+  {
+    "id": "a82072d0edd48d48",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 0.1
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 724,
+      "fp": 11423,
+      "fn": 2016,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5261088,
+      "union": 14857402,
+      "predicted_pixels": 6580500,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 526,
+      "interior_gt": 853,
+      "interior_tp": 198,
+      "precision": 0.05960319420433029,
+      "recall": 0.26423357664233577,
+      "f1": 0.09726607106871768,
+      "pixel_iou": 0.3541055158903286,
+      "dice": 0.5230102259165573,
+      "fp_per_image": 17.023845007451566,
+      "edge_recall": 0.27874933757286696,
+      "interior_recall": 0.2321219226260258
+    },
+    "seconds": 0.17693159999998898
+  },
+  {
+    "id": "564e8c5664cd474d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 1
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 724,
+      "fp": 11428,
+      "fn": 2016,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5262038,
+      "union": 14858273,
+      "predicted_pixels": 6582321,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 526,
+      "interior_gt": 853,
+      "interior_tp": 198,
+      "precision": 0.05957867017774852,
+      "recall": 0.26423357664233577,
+      "f1": 0.0972334139135106,
+      "pixel_iou": 0.35414869547759686,
+      "dice": 0.5230573225234938,
+      "fp_per_image": 17.03129657228018,
+      "edge_recall": 0.27874933757286696,
+      "interior_recall": 0.2321219226260258
+    },
+    "seconds": 0.16677329999947688
+  },
+  {
+    "id": "b6cab0d42a3dd3f7",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 10
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 724,
+      "fp": 11428,
+      "fn": 2016,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5262038,
+      "union": 14858273,
+      "predicted_pixels": 6582321,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 526,
+      "interior_gt": 853,
+      "interior_tp": 198,
+      "precision": 0.05957867017774852,
+      "recall": 0.26423357664233577,
+      "f1": 0.0972334139135106,
+      "pixel_iou": 0.35414869547759686,
+      "dice": 0.5230573225234938,
+      "fp_per_image": 17.03129657228018,
+      "edge_recall": 0.27874933757286696,
+      "interior_recall": 0.2321219226260258
+    },
+    "seconds": 0.15971580000041286
+  },
+  {
+    "id": "99b49dbef8306f3d",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 20
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 720,
+      "fp": 11496,
+      "fn": 2020,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5123537,
+      "union": 14754677,
+      "predicted_pixels": 6340224,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 521,
+      "interior_gt": 853,
+      "interior_tp": 199,
+      "precision": 0.05893909626719057,
+      "recall": 0.26277372262773724,
+      "f1": 0.09628242845680664,
+      "pixel_iou": 0.3472483335284127,
+      "dice": 0.5154926896349944,
+      "fp_per_image": 17.13263785394933,
+      "edge_recall": 0.27609962904080554,
+      "interior_recall": 0.23329425556858147
+    },
+    "seconds": 0.20644530000026862
+  },
+  {
+    "id": "e1d54684eab4346a",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 38310,
+      "negative": 89213,
+      "ambiguous": 3927,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 720,
+      "fp": 11496,
+      "fn": 2020,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 5123537,
+      "union": 14754677,
+      "predicted_pixels": 6340224,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 521,
+      "interior_gt": 853,
+      "interior_tp": 199,
+      "precision": 0.05893909626719057,
+      "recall": 0.26277372262773724,
+      "f1": 0.09628242845680664,
+      "pixel_iou": 0.3472483335284127,
+      "dice": 0.5154926896349944,
+      "fp_per_image": 17.13263785394933,
+      "edge_recall": 0.27609962904080554,
+      "interior_recall": 0.23329425556858147
+    },
+    "seconds": 1.1354467000001023
+  }
+]
