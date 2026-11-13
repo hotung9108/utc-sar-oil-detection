@@ -59,13 +59,13 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã chạy 4 ảnh trên, ảnh train số 10 và ảnh validation số 13, 15, gồm 120 vùng.
+Đã chạy 4 ảnh trên, ảnh train số 10 và ảnh validation số 13, 15, 16, gồm 121 vùng.
 Sai số lớn nhất trên tất cả đặc trưng:
 `1.8349904928882665e-11`; trên ảnh chuẩn hóa:
-`5.937018903307001e-7`. Số liệu chỉ thuộc bảy ảnh đã trích đặc trưng này. Thời gian trong JSON
+`5.937018903307001e-7`. Số liệu chỉ thuộc tám ảnh đã trích đặc trưng này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
 công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
-`scripts/extract_qposd_regions.py --numbers 10`, `--numbers 13` và `--numbers 15` trong cùng
+`scripts/extract_qposd_regions.py --numbers 10`, `--numbers 13`, `--numbers 15`, `--numbers 16` trong cùng
 môi trường Python. Chưa trích đặc trưng hoặc chấm mô hình trên test.
 
 ## Bộ chấm điểm đã kiểm tra

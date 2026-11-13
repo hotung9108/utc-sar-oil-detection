@@ -1,0 +1,24 @@
+{
+  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+  "observed_exit_code": 0,
+  "tests_run": 37,
+  "failures": 0,
+  "errors": 0,
+  "reported_test_seconds": 0.756,
+  "test_file_sha256": {
+    "tests/test_algorithms.py": "ccacdb8e7c8ed5f04c4ec99b47c79ed870d06d63a7908ac1789dc3bf382c1a7c",
+    "tests/test_dartis_reporting.py": "c5cd0974f5a3b4e3bf208e05ec92cfa9e11bdc0673ee9bff96fa117a2f01e1c1",
+    "tests/test_download_backoff.py": "08f72bf36e03e5d1bb43d30ae02e99988c9a160c543106ba2a591a857ce0e000",
+    "tests/test_physical_interpolation.py": "45767baef4a6f57cbca4154e34af094562684a0bf03fe41fd7ac65f78a8abb9e",
+    "tests/test_qposd_labels.py": "a91a435e8a2bf81e7cf7ea378a78c65e50604eb9774f1c59a425dcd0c5f9a2cf",
+    "tests/test_qposd_metrics.py": "4b16158be6c078435749383ec1973595902b52e96b2a937627e76d007d776b7b",
+    "tests/test_qposd_overlap.py": "5c0ec3edb66865009a3f90121877a8c76cf0af4e6dd35d55f7235e08407546a5",
+    "tests/test_qposd_pipeline.py": "9f2d9c00ae96d7c4c2091819425ce627f9d42ac4baf23f3f573a3caad12018be",
+    "tests/test_qposd_range.py": "6fa8e4f3fa9b8a903eae6ff554900fb98186a8868499056f4e4d34280c41d8c8",
+    "tests/test_qposd_test_gate.py": "bf40ed430c4d2988879eb81aad7154c06ad51ea5d648361d920683bad218a442",
+    "tests/test_qposd_training.py": "8b330b595a9d7c926dfa9cbca150dc473a2c5dba00db94bc0b5a3c4968b29150",
+    "tests/test_review_package.py": "58196d4df9f44b82e364c672f1152d56d6af3ff18c16f9d71e68a74a8b126b4c",
+    "tests/test_structure.py": "aed3cd3920d8edbba09a069134ef4bc7b873646509750d9a5dd69ca44f330133"
+  },
+  "scope": "Full current unittest discovery, including existing SOS and new QPOSD checks. Does not establish completed QPOSD data acquisition, training or test performance."
+}
