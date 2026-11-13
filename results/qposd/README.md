@@ -49,11 +49,31 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã chạy 4 ảnh trên, gồm 67 vùng. Sai số lớn nhất trên tất cả đặc trưng:
+Đã chạy 4 ảnh trên và ảnh train số 10, gồm 94 vùng. Sai số lớn nhất trên tất cả đặc trưng:
 `1.8349904928882665e-11`; trên ảnh chuẩn hóa:
 `1.2308238472868993e-7`. Số liệu chỉ thuộc bốn ảnh này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
-công bằng của hai pipeline hoàn chỉnh.
+công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
+`scripts/extract_qposd_regions.py --numbers 10` trong cùng môi trường Python.
+
+## Bộ chấm điểm đã kiểm tra
+
+`scripts/qposd_metrics.py` thực hiện ghép một-một, ưu tiên số cặp hợp lệ rồi
+tổng IoU. Có hai lần ghép riêng: cùng lớp để tính F1, không xét lớp để ghi
+nhầm dầu/tương tự dầu. Hai phép ghép có thể khác nhau, không dùng ma trận
+nhầm lẫn có điều kiện để thay cho F1 đầu-cuối. Tỉ lệ nhầm lớp trong ma trận
+không xét lớp chỉ tính trong những đối tượng đã ghép được về không gian;
+các đối tượng không ghép được được báo cáo riêng.
+
+Pixel nhãn 255 được xóa khỏi hai raster trước khi gán vùng để chấm điểm,
+nên có thể làm tách vùng. Đây là quy ước đánh giá, không phải bước suy luận.
+Tổng TP/FP/FN được cộng qua các ảnh trước khi tính F1 từng lớp và macro-F1.
+Trường hợp mẫu số bằng 0 lưu `null`, không tự biến thành điểm 1.
+
+Đã chạy 7 kiểm tra tính tay: đảo lớp, gộp/tách vùng, đất và pixel bỏ qua,
+ưu tiên số cặp ghép, ảnh rỗng, biên IoU 0,5, tỉ lệ nhầm lớp và tổng hợp
+toàn tập. Bằng chứng tại `docs/management/qposd_metrics_test_audit.json`.
+Đây là kiểm tra bộ chấm, chưa phải số liệu chất lượng mô hình.
 
 Đầu vào là T11 tuyến tính, không chia 255 và không gọi là Sentinel VV.
 Lọc Lee 7×7, L=4 chuyển từ cấu hình SOS đã cố định, rồi đổi log và chuẩn hóa

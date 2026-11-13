@@ -67,12 +67,30 @@
       ],
       "png_path": ".cache/qposd/pair_previews/pair41.png",
       "png_sha256": "855ea4a7bdd95a4c0bf7b5f40ae0948c3d74621e58b8bc5ebbdaa1d5de797855"
+    },
+    {
+      "number": 10,
+      "mat_sha256": "4169057ffc93a6ed762a0ecbe1b058a44e248d036857e040b9eeb9703ada5e79",
+      "mask_sha256": "ea4c333171156633d571fe79cb8705be84bf610469951794cf613f76e387c2d3",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -25.58597839624649,
+        -11.61216812434986
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair10.png",
+      "png_sha256": "a0614f08c46194ea3600c830629edbc6aef3b7a795e266d35af736cc6b71c7d7"
     }
   ],
   "scope": "Visual preview only; no quantitative registration, classification, or physical calibration.",
   "reviewed_numbers": [
     4,
     8,
+    10,
     35,
     41
   ],
@@ -82,7 +100,8 @@
     "4": "Large annotated oil region follows the broad upper dark/bright transition; interior intensities vary substantially.",
     "8": "Annotated oil regions overlap the central dark slick; thin dark structures outside the reference remain sea-labeled.",
     "35": "Reference oil covers a broad heterogeneous region; land boundary follows the visible elongated bright land mass approximately.",
-    "41": "Look-alike reference lies along the dark coastal margin; land boundary follows the visible shoreline approximately. Coastal context may confound classification."
+    "41": "Look-alike reference lies along the dark coastal margin; land boundary follows the visible shoreline approximately. Coastal context may confound classification.",
+    "10": "Oil reference broadly follows the large upper-left dark feature and smaller central/left features. Boundaries are approximate; some annotated edge regions contain substantial intensity variation. No quantitative registration established."
   },
   "limits": "Visual correspondence only; no proof of physical oil identity, precise boundary registration, or scene independence. Do not remove samples based on model performance.",
   "preview_script_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5"
