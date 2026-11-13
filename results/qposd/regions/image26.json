@@ -1,6 +1,6 @@
 {
   "number": 26,
-  "protocol_sha256": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+  "protocol_sha256": "ead2603c6b06574da90201160451ad5e0d5fa71427af1635befcce5601989100",
   "mat_sha256": "950f5d91d3b1d9d0e15e2bd547707e54916b48915147c0681a6269c5a173d0cd",
   "mask_sha256": "b450125daefb43e946f5ecae989e569047962d60597efc49011bb5f2ceca5853",
   "published_prefix_matches": true,
@@ -2454,8 +2454,8 @@
       2.6233570271899898e-20,
       6.709752977330256e-19
     ],
-    "numpy_seconds_single_run": 1.5766697999997632,
-    "reference_seconds_single_run": 0.6106164999996508
+    "numpy_seconds_single_run": 1.5639216999998098,
+    "reference_seconds_single_run": 0.545893999999862
   },
   "scope": "Reference-region features with GT geometry supplied; no classifier fit or detection scores. Full MAT audit and visual eligibility gates still required before fitting. Timings are single-run, with NumPy labeling included only in NumPy path; not a fair end-to-end speed comparison."
 }

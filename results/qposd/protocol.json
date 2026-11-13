@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "record": "https://zenodo.org/api/records/19258036",
   "seed": 2026,
   "shape_audit_sha256": "16350dd359812b5c3f912c69ad857d64ac5dfe985d7c195284d43ae3e091a8e3",
@@ -8,9 +8,9 @@
       4,
       8,
       10,
-      17,
       19,
       20,
+      21,
       22,
       26,
       28,
@@ -29,15 +29,15 @@
     ],
     "test": [
       14,
+      17,
       18,
-      21,
       24,
       25
     ]
   },
   "stratification": "Dominant oil/look-alike pixel class per source image; 16/8 images. Three oil pixels in image32 retained.",
   "eligibility": "24 matching dimensions; full MAT finite/nine-channel/hash checks and visual review required before fitting. No resizing of 17 mismatched pairs. Stop and version protocol if a structural failure changes the population.",
-  "split_scope": "Source-image split, not verified scene-independent split. Image labels/previews inspected before split; no QPOSD model scores inspected.",
+  "split_scope": "Connected exact-overlap groups kept intact. Sampled overlap screening does not establish scene independence or exclude radiometrically changed/rotated overlap.",
   "feature_image": {
     "channel": "T[:,:,0] (publisher T11); not Sentinel VV or 8-bit DN",
     "filter": "Lee, window7, looks4 on nonnegative linear T11",
@@ -255,5 +255,80 @@
     "UAVSAR L-band supplementary branch; does not replace SOS Sentinel/PALSAR results.",
     "Five test images yield fragile estimates; object counts are not independent image or scene counts.",
     "No physical calibration or georeferenced wind evaluation is implied."
-  ]
+  ],
+  "revision": {
+    "reason": "Exact translated overlap crosses train/test in v1 (21/22); repair before fitting.",
+    "original_protocol_sha256": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+    "overlap_audit_sha256": "d156121bf80a73e0e46485d5c4c97d498d75c19b8a66e4d858713baa78b5fa55",
+    "groups": [
+      [
+        4
+      ],
+      [
+        8
+      ],
+      [
+        10
+      ],
+      [
+        13
+      ],
+      [
+        14
+      ],
+      [
+        15
+      ],
+      [
+        16
+      ],
+      [
+        17
+      ],
+      [
+        18
+      ],
+      [
+        19,
+        20
+      ],
+      [
+        21,
+        22,
+        33,
+        35
+      ],
+      [
+        24
+      ],
+      [
+        25
+      ],
+      [
+        26
+      ],
+      [
+        28
+      ],
+      [
+        32
+      ],
+      [
+        34
+      ],
+      [
+        36
+      ],
+      [
+        39
+      ],
+      [
+        41
+      ]
+    ],
+    "images_moved": 2,
+    "feasible_group_assignments": 5880,
+    "selection_rule": "Preserve 14/5/5 total and 10/3/3 dominant-oil counts; enumerate all eligible oil-group assignments, minimize changed image membership, tie-break SHA256 of seed2026 plus canonical split JSON. No model scores read.",
+    "prior_exposure": "All images/masks visually audited. V1 train/validation features extracted before grouping; no classifier fitted and no model scores. Revised test is not claimed visually blind."
+  }
 }
