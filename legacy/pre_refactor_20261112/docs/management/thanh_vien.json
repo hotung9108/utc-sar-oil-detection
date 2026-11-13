@@ -1,0 +1,57 @@
+[
+  {
+    "id": "TV1",
+    "name": "Tiến Sơn Trần",
+    "github": "Maloque18705",
+    "reported_alias": "maloque",
+    "role": "Trưởng nhóm — tích hợp, Streamlit và báo cáo chung",
+    "modules": "src/tv1/, streamlit_app.py",
+    "folder": "TV1_Tien_Son_Tran",
+    "slides": [1, 2, 3, 6, 18],
+    "slide_seconds": [20, 20, 20, 40, 30]
+  },
+  {
+    "id": "TV2",
+    "name": "Lương Tiến Dũng",
+    "github": "ltdungg",
+    "reported_alias": "itdungg",
+    "role": "Lý thuyết, ví dụ số và đối chiếu thư viện",
+    "modules": "src/tv2/",
+    "folder": "TV2_Luong_Tien_Dung",
+    "slides": [5, 14],
+    "slide_seconds": [40, 80]
+  },
+  {
+    "id": "TV3",
+    "name": "Hồ Việt Tùng",
+    "github": "hotung9108",
+    "reported_alias": "hotung9108",
+    "role": "Lọc ảnh và tăng cường tương phản",
+    "modules": "src/tv3/",
+    "folder": "TV3_Ho_Viet_Tung",
+    "slides": [7, 8, 16],
+    "slide_seconds": [50, 50, 40]
+  },
+  {
+    "id": "TV4",
+    "name": "Nguyễn Hải Hiếu",
+    "github": "hina-kasumi",
+    "reported_alias": "hinakasumi",
+    "role": "Làm nét, biên, Otsu và hình thái học",
+    "modules": "src/tv4/",
+    "folder": "TV4_Nguyen_Hai_Hieu",
+    "slides": [9, 10, 11, 12, 13],
+    "slide_seconds": [25, 40, 30, 35, 30]
+  },
+  {
+    "id": "TV5",
+    "name": "Phạm Minh Tuấn",
+    "github": "tuanpham21105",
+    "reported_alias": "tuanpham21105",
+    "role": "Dữ liệu, chỉ số, thực nghiệm và tái lập",
+    "modules": "src/tv5/, reproduce.py",
+    "folder": "TV5_Pham_Minh_Tuan",
+    "slides": [4, 15, 17],
+    "slide_seconds": [50, 50, 70]
+  }
+]

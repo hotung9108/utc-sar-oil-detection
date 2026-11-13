@@ -1,0 +1,56 @@
+{
+  "input": "kaggle/data/Class_1/class_1_00013.jpg",
+  "config": {
+    "filter_name": "lee",
+    "window_size": 5,
+    "num_looks": 4.0,
+    "enhancement_name": "clahe",
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "sharpening_name": "none",
+    "sharp_k": 1.0,
+    "edge_name": "morphology",
+    "low_threshold": 35.0,
+    "high_threshold": 90.0,
+    "min_area": 300,
+    "min_contrast": 0.1,
+    "closing_radius": 4,
+    "manual_threshold": null,
+    "adaptive_otsu": true
+  },
+  "stats": {
+    "slicks_detected": [
+      {
+        "id": 1,
+        "area": 3328,
+        "bbox": [
+          309,
+          285,
+          383,
+          399
+        ],
+        "centroid": [
+          350.1418269230769,
+          334.8798076923077
+        ],
+        "slick_mean": 27.8,
+        "sea_mean": 57.9,
+        "contrast_ratio": 0.52
+      }
+    ],
+    "slicks_count": 1,
+    "total_area_px": 3328,
+    "area_pct": 2.08,
+    "mean_contrast_ratio": 0.52,
+    "otsu_threshold": 46,
+    "separability_eta": 0.484
+  },
+  "metrics": {
+    "ENL": 54.41568468751578,
+    "SSI": 1.5546676044649672,
+    "RMS_Contrast": 15.355762195136839,
+    "Entropy": 5.878494348161624,
+    "AMBE": 14.012012499999997,
+    "EPI": 2.0674364439908812
+  }
+}

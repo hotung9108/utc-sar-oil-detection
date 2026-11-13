@@ -1,0 +1,145 @@
+{
+  "executed_at": "2026-11-12T10:45:26.425034+07:00",
+  "python": "3.13.5",
+  "sources": [
+    {
+      "path": "data/sample/oil_slicks/oil_slick_01.jpg",
+      "scope": "sample10",
+      "sha256": "186ee06f9d9d059dfe3ec7167c1afef6e2ba6aab7d2e06e408b33a4a2d91a5aa"
+    },
+    {
+      "path": "data/sample/oil_slicks/oil_slick_02.jpg",
+      "scope": "sample10",
+      "sha256": "a7bab4b4f45d9962377b67cd12c07f4c34cf4724ff37fc0b57bc4fcdc9b972ce"
+    },
+    {
+      "path": "data/sample/oil_slicks/oil_slick_03.jpg",
+      "scope": "sample10",
+      "sha256": "8faeb2f1ddd6c528202d6b9b8e485e6ed4482995da39916fc75b01bb36a9e79d"
+    },
+    {
+      "path": "data/sample/oil_slicks/oil_slick_04.jpg",
+      "scope": "sample10",
+      "sha256": "1be6ad2ae8cc18034d32dae4b2d2479e58f86ef482c9c56c73d1892396f3b7c2"
+    },
+    {
+      "path": "data/sample/oil_slicks/oil_slick_05.jpg",
+      "scope": "sample10",
+      "sha256": "6490c110493caf3b6e0a76c6d3968c29f68321bdff9bb617287b83227c634ae0"
+    },
+    {
+      "path": "data/sample/sea_surface/sea_surface_01.jpg",
+      "scope": "sample10",
+      "sha256": "79311f55bbfdd0361aae5d862301338e987e82f86ff2a333a79de6e7f6257eb4"
+    },
+    {
+      "path": "data/sample/sea_surface/sea_surface_02.jpg",
+      "scope": "sample10",
+      "sha256": "af53cee48c04c4a2eb95b3428c3b0bd91e9df51bc820a063e15bdee60abb4a9f"
+    },
+    {
+      "path": "data/sample/sea_surface/sea_surface_03.jpg",
+      "scope": "sample10",
+      "sha256": "ba14cbc5f52d623b64ff7072bfa95531a66c968ea63e56a03df31340238cc43a"
+    },
+    {
+      "path": "data/sample/sea_surface/sea_surface_04.jpg",
+      "scope": "sample10",
+      "sha256": "aa0dfdf9a9b02d9ecc5cd67ba57ae02ca1d965beeeeb361098a1a2b2c9db62e6"
+    },
+    {
+      "path": "data/sample/sea_surface/sea_surface_05.jpg",
+      "scope": "sample10",
+      "sha256": "4197ecb2df2385cec9b97c3386718b3fd5bb234adf928ea9dae93b8dbb05fe7a"
+    },
+    {
+      "path": "kaggle/data/Class_1/class_1_00013.jpg",
+      "scope": "case00013",
+      "sha256": "b18c46fd661c7a5a24e0b8565a0c62e01617d9fa0157f2f332e927d0944eed7a"
+    }
+  ],
+  "configs": {
+    "A_raw": {
+      "filter_name": "none",
+      "window_size": 5,
+      "num_looks": 4.0,
+      "enhancement_name": "none",
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "sharpening_name": "none",
+      "sharp_k": 1.0,
+      "edge_name": "morphology",
+      "low_threshold": 35.0,
+      "high_threshold": 90.0,
+      "min_area": 300,
+      "min_contrast": 0.1,
+      "closing_radius": 4,
+      "manual_threshold": null,
+      "adaptive_otsu": true
+    },
+    "B_lee": {
+      "filter_name": "lee",
+      "window_size": 5,
+      "num_looks": 4.0,
+      "enhancement_name": "none",
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "sharpening_name": "none",
+      "sharp_k": 1.0,
+      "edge_name": "morphology",
+      "low_threshold": 35.0,
+      "high_threshold": 90.0,
+      "min_area": 300,
+      "min_contrast": 0.1,
+      "closing_radius": 4,
+      "manual_threshold": null,
+      "adaptive_otsu": true
+    },
+    "C_clahe": {
+      "filter_name": "none",
+      "window_size": 5,
+      "num_looks": 4.0,
+      "enhancement_name": "clahe",
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "sharpening_name": "none",
+      "sharp_k": 1.0,
+      "edge_name": "morphology",
+      "low_threshold": 35.0,
+      "high_threshold": 90.0,
+      "min_area": 300,
+      "min_contrast": 0.1,
+      "closing_radius": 4,
+      "manual_threshold": null,
+      "adaptive_otsu": true
+    },
+    "D_lee_clahe": {
+      "filter_name": "lee",
+      "window_size": 5,
+      "num_looks": 4.0,
+      "enhancement_name": "clahe",
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "sharpening_name": "none",
+      "sharp_k": 1.0,
+      "edge_name": "morphology",
+      "low_threshold": 35.0,
+      "high_threshold": 90.0,
+      "min_area": 300,
+      "min_contrast": 0.1,
+      "closing_radius": 4,
+      "manual_threshold": null,
+      "adaptive_otsu": true
+    }
+  },
+  "scope": "Paired exploratory sample of ten existing demo images, plus 00013 separately; not full dataset.",
+  "controls": "Same images, downstream thresholds/morphology, no sharpening. Reference follows filter output as in production.",
+  "limitations": "No clean reference or pixel masks. Image statistics and candidate area do not establish detection accuracy. Runtime one pass, descriptive only.",
+  "source_hashes": {
+    "src\\tv1\\pipeline.py": "050952fe76dbc389c920922f298b466e1d2c22c5a2d8cd4b9240e1a8c8a9680c",
+    "src\\tv3\\filters.py": "752b06d5c9dbdb4eafc5783e1c34ee1d45335d0867ea5b77b386f494318ace42",
+    "src\\tv3\\enhancement.py": "59247f7caac0d939a382658161907de763e44f6fb1b4ea19e6ffa279bd6f0eb4",
+    "src\\tv4\\morphology.py": "bd84ab19654a4c3ff6b6c6251d28ba9b27e74726cb35789f2499942c3d52b989",
+    "src\\tv4\\edges.py": "67a6d0f20ba3eb7676179bffd94ca5fda7e960c712f414daacafb3e202c4f21d"
+  }
+}
