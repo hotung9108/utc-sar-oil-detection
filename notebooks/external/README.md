@@ -1,5 +1,39 @@
 # Notebook bổ sung ngoài bộ SOS chính
 
+## Hai pipeline cố định trên PALSAR
+
+`09_palsar_frozen_pipelines.ipynb` đã chạy ba ô mã, hai hình đã được xem trực
+tiếp. Toàn bộ 3.101 ảnh `external_train` được chấm cho cả Otsu và Niblack đã
+khóa; không fit lại hoặc thay tham số. F1 đối tượng lần lượt 0,339645 và
+0,249476. Notebook kiểm tra hash và tổng hợp lại số đếm, sau đó chạy lại hai
+mô hình trên ảnh có ID nhỏ nhất để đối chiếu với kết quả đã lưu.
+
+Đây là phép thử bổ sung chuyển sensor; không chứng minh độc lập theo cảnh
+hoặc tác dụng riêng của thuật toán ngưỡng. Chi tiết và giao thức nằm tại
+`results/sos/external_palsar_train/`; audit notebook tại
+`docs/management/palsar_notebook_audit.json`. Kết quả này đã được đưa vào DOCX
+v10 và PPTX v4; các bản DOCX v9, PPTX v3 và ZIP v2 không chứa cập nhật này.
+
+```text
+python scripts/run_notebooks.py --notebook notebooks/external/09_palsar_frozen_pipelines.ipynb
+```
+
+## Thẩm định nguồn nhãn QPOSD
+
+`08_qposd_audit.ipynb` đã chạy đủ bốn ô mã, không có lỗi, có hai hình đã
+kiểm tra trực quan. Notebook đọc lại 41 mask gốc, đối chiếu hash, đếm màu nhãn,
+kiểm tra kích thước từ 41 phần đầu MAT và hiển thị ba cặp MAT–mask tải đầy đủ.
+Bằng chứng lần chạy: `docs/management/qposd_notebook_audit.json`.
+
+Kết quả: 24 cặp khớp kích thước, 17 cặp lệch; khớp kích thước chưa chứng minh
+căn chỉnh từng pixel. Đây là kiểm tra dữ liệu bổ sung, chưa phải đánh giá
+classifier và không thay thế SOS. Dữ liệu nguồn không được đóng gói trong Git;
+các lệnh tải và giới hạn kiểm tra nằm trong `docs/management/QPOSD_THAM_DINH.md`.
+
+```text
+python scripts/run_notebooks.py --notebook notebooks/external/08_qposd_audit.ipynb
+```
+
 ## Hiệu chuẩn Sentinel-1 gốc
 
 `07_sentinel_calibration.ipynb` gồm phần hiệu chuẩn và ghép gió ERA5 tại tâm tile.
@@ -18,9 +52,11 @@ python scripts/run_notebooks.py --notebook notebooks/external/07_sentinel_calibr
 `06_dartis_false_alarms.ipynb` trình bày phép kiểm tra báo nhầm trên toàn bộ
 2.290 ảnh no-oil của DARTIS bằng mô hình SOS cố định.
 
-Hiện notebook mới được tạo và kiểm tra cấu trúc/cú pháp, **chưa chạy với kết quả
-thực nghiệm đầy đủ**. Tải dữ liệu và chạy `scripts/evaluate_dartis.py` xong mới
-Run All notebook. Ô đầu sẽ dừng nếu thiếu kết quả, sai hash hoặc thiếu ảnh.
+Đã có kết quả thực nghiệm đủ 2.290 ảnh và notebook đã thực thi bốn ô mã:
+bảng tổng hợp, biểu đồ nhóm/cụm và ba ảnh có tỷ lệ pixel báo nhầm cao nhất.
+Ô minh họa chạy lại mô hình và đối chiếu số pixel/vùng với kết quả đã lưu.
+Ô đầu sẽ dừng nếu thiếu kết quả, sai hash hoặc thiếu ảnh. Tỷ lệ báo nhầm
+toàn tập là 1.449/2.290 (63,2751%); không diễn giải thành Recall hoặc F1 dầu.
 
 Notebook này nằm riêng để năm notebook SOS vẫn tái tạo được khi máy chưa tải
 DARTIS. `scripts/run_notebooks.py` hiện chỉ chạy năm notebook SOS ở cấp trên.

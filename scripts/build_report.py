@@ -425,6 +425,25 @@ new_table(p, rows, 4, 3, 'Thống kê từng ảnh test với độ lệch chu�
 p = after(p, 'Micro F1=0,28052 không bằng trung bình F1 từng ảnh=0,34912 vì hai cách gộp có trọng số khác nhau. Không nên chọn cách gộp sau khi xem điểm nào lớn hơn. Khi so sánh với bài báo khác còn phải giữ cùng quy tắc đối tượng, ngưỡng ghép, tập kiểm tra và cách xử lý ảnh rỗng. Do các điều kiện đó chưa được chứng minh tương đương với kết quả CBD-Net [3], báo cáo không lập bảng tuyên bố hơn hoặc kém mô hình công bố chỉ từ các con số khác giao thức.')
 after(p, 'Dice pixel được tính bằng 2|A∩B|/(|A|+|B|), còn FP/ảnh là tổng số đối tượng dự đoán không ghép được chia số ảnh. Các độ đo pixel và đối tượng bổ sung cho nhau: Dice hoặc IoU cao vẫn có thể đi cùng nhiều FP đối tượng do phân mảnh. MSE trong Bảng 3.3 lại đo sai khác giữa hai triển khai, không đo chất lượng phân đoạn so với mask. Cần giữ riêng ba câu hỏi về độ phủ, số đối tượng và tính đúng cài đặt.')
 
+dartis = load('results/dartis/evaluation.json')
+assert dartis['complete'] and dartis['completed'] == 2290
+dartis_rows = [['Tập no-oil', 'Ảnh', 'Ảnh báo nhầm', 'Tỷ lệ', 'Vùng/ảnh']]
+for label, result in [('Toàn bộ', dartis['overall']), ('Bờ', dartis['by_subset']['nc']), ('Biển', dartis['by_subset']['nw'])]:
+    dartis_rows.append([label, str(result['images']), str(result['false_alarm_images']),
+                        f"{result['false_alarm_rate']:.4%}", f"{result['retained_regions_per_image']:.4f}"])
+new_table(tails[145], dartis_rows, 4, 4, 'Báo nhầm của mô hình SOS cố định trên DARTIS', [3.5, 2, 3.5, 3.5, 3.5])
+palsar_node = deepcopy(body_pattern)
+tails[145]._p.getnext().getnext().addnext(palsar_node)
+palsar_paragraph = Paragraph(palsar_node, doc._body)
+text(palsar_paragraph, 'Bảng 4.5 bổ sung phép thử trên toàn bộ 3101 patch PALSAR external_train của SOS [2]. Tập này mang tên train của nhà phát hành nhưng không tham gia fit/chọn cấu hình trong pipeline hiện tại. Giao thức khóa cả hai mô hình trước suy luận; không đổi tham số hoặc chọn lại mô hình từ kết quả. Kiểm tra hash đủ 8070 cặp và pixel grayscale không phát hiện ảnh trùng hoàn toàn liên quan tới tập này; vẫn chưa loại trừ patch chồng lấn hoặc chung cảnh. Không gộp với 776 ảnh PALSAR external_val đã đánh giá trước đó.')
+palsar_paragraph = after(palsar_paragraph, 'Cả hai nhánh được chấm đủ 3101 ảnh theo cùng quy tắc ghép đối tượng. Otsu–SVM đạt F1=0,33965, Niblack–CART đạt 0,24948. Hai pipeline khác cả tham số Lee và classifier nên không quy chênh lệch riêng cho phân ngưỡng. Reporter kiểm tra hash nguồn và tổng hợp lại TP/FP/FN; notebook 09 chạy lại ảnh có ID nhỏ nhất để đối chiếu số đếm. Đây là phép thử bổ sung chuyển sensor, không phải kiểm chứng mù, độc lập theo cảnh hoặc đánh giá Sentinel-1 tại Việt Nam.')
+palsar_rows = [['Nhánh cố định', 'Precision', 'Recall', 'F1 đối tượng', 'IoU pixel']]
+for name, label in [('otsu', 'Otsu–SVM'), ('niblack', 'Niblack–CART')]:
+    result = load(f'results/sos/external_palsar_train/{name}.json')
+    assert result['complete'] and result['completed'] == 3101
+    palsar_rows.append([label] + [f"{result['metrics'][key]:.5f}" for key in ['precision', 'recall', 'f1', 'pixel_iou']])
+new_table(palsar_paragraph, palsar_rows, 4, 5, 'Hai pipeline cố định trên 3101 patch PALSAR bổ sung', [4, 3, 3, 3, 3])
+
 # References and appendices retain source locations and formatting.
 for index in range(153, 157):
     remove(paragraphs[index])

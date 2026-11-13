@@ -1,0 +1,56 @@
+{
+  "population": "external_train",
+  "expected": 3101,
+  "backend": "numpy",
+  "mask_threshold": 128,
+  "object_iou_threshold": 0.5,
+  "manifest_sha256": "572d38f21c25a628d419181d108f50e6e43ebd52cb9b85368f4cd4771c9bed7e",
+  "preflight_sha256": "30669e7c0e95243042b2f5123f4d99171e898086afafb8746dbfc53c17ff5649",
+  "script_sha256": "d19121c24fbdc9d2d1276041b3543dd0c28fcbbe039a9b87a912c1e6b0497658",
+  "models": {
+    "otsu": {
+      "selected": "results/sos/selected.json",
+      "selected_sha256": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966",
+      "model": "results/sos/svm_model.json",
+      "model_sha256": "cdc7b063e7bae8e8601b0c70a8277f4bb0359fcee61ac84dc022687c235d434b",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      }
+    },
+    "niblack": {
+      "selected": "results/sos/adaptive/selected.json",
+      "selected_sha256": "9cb30152446aaf711e95ed22f82abff4361d453eed93ddbe3516d2bd9d5faa8b",
+      "model": "results/sos/adaptive/cart_model.json",
+      "model_sha256": "a9766bc3d26d6a3dc76c6ed7f898e461a9650bf2581b6ed667ba67ba423c6752",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.2
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      }
+    }
+  },
+  "rule": "Evaluate every listed patch for both frozen pipelines; no fitting, filtering by outcome, threshold changes or winner selection.",
+  "scope": "Supplementary PALSAR patch-level cross-sensor evaluation. Publisher train naming does not imply use in this project fitting. Scene independence and historical manual exposure are not established."
+}

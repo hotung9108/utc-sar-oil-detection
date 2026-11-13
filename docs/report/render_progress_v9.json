@@ -1,0 +1,169 @@
+{
+  "render": ".cache\\report\\render-fields-v9\\Bao_cao_SAR_SOS_fields.pdf",
+  "docx_sha256": "1765359e852f5ca58795b8edd5639b458adc701507508585e1628ca4281959ca",
+  "pdf_sha256": "22ea7489061042e6e8162c10f5ede18a534af39481c786291362befa60023608",
+  "total_pages": 38,
+  "main_pages": 26,
+  "directly_reviewed_pdf_pages": [
+    7,
+    33
+  ],
+  "pixel_identical_to_reviewed_v8_pages": [
+    {
+      "new": 1,
+      "old": 1
+    },
+    {
+      "new": 2,
+      "old": 2
+    },
+    {
+      "new": 3,
+      "old": 3
+    },
+    {
+      "new": 4,
+      "old": 4
+    },
+    {
+      "new": 5,
+      "old": 5
+    },
+    {
+      "new": 6,
+      "old": 6
+    },
+    {
+      "new": 8,
+      "old": 8
+    },
+    {
+      "new": 9,
+      "old": 9
+    },
+    {
+      "new": 10,
+      "old": 10
+    },
+    {
+      "new": 11,
+      "old": 11
+    },
+    {
+      "new": 12,
+      "old": 12
+    },
+    {
+      "new": 13,
+      "old": 13
+    },
+    {
+      "new": 14,
+      "old": 14
+    },
+    {
+      "new": 15,
+      "old": 15
+    },
+    {
+      "new": 16,
+      "old": 16
+    },
+    {
+      "new": 17,
+      "old": 17
+    },
+    {
+      "new": 18,
+      "old": 18
+    },
+    {
+      "new": 19,
+      "old": 19
+    },
+    {
+      "new": 20,
+      "old": 20
+    },
+    {
+      "new": 21,
+      "old": 21
+    },
+    {
+      "new": 22,
+      "old": 22
+    },
+    {
+      "new": 23,
+      "old": 23
+    },
+    {
+      "new": 24,
+      "old": 24
+    },
+    {
+      "new": 25,
+      "old": 25
+    },
+    {
+      "new": 26,
+      "old": 26
+    },
+    {
+      "new": 27,
+      "old": 27
+    },
+    {
+      "new": 28,
+      "old": 28
+    },
+    {
+      "new": 29,
+      "old": 29
+    },
+    {
+      "new": 30,
+      "old": 30
+    },
+    {
+      "new": 31,
+      "old": 31
+    },
+    {
+      "new": 32,
+      "old": 32
+    },
+    {
+      "new": 34,
+      "old": 34
+    },
+    {
+      "new": 35,
+      "old": 35
+    },
+    {
+      "new": 36,
+      "old": 36
+    },
+    {
+      "new": 37,
+      "old": 37
+    },
+    {
+      "new": 38,
+      "old": 38
+    }
+  ],
+  "all_pages_covered": true,
+  "layout_verified": true,
+  "findings": [
+    "Changed pages 7 and 33 visually inspected at full size; readable, no clipping or overlap.",
+    "36 other page rasters exactly match reviewed v8 pages.",
+    "All TOC targets found, including new table 4.4."
+  ],
+  "submission_ready": false,
+  "pending": [
+    "Cover metadata and authentic contribution records",
+    "Complete outstanding scientific requirements"
+  ]
+}

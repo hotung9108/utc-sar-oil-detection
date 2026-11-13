@@ -2,9 +2,9 @@
   "manifest_sha256": "1b8657afaf0a8763e6b0a89b6882679f4dac0c5425bb9684a9b3fda9826f53c2",
   "expected": 2290,
   "completed": 2290,
-  "errors": 42,
-  "complete": false,
-  "elapsed_seconds": 314.04524479999964,
+  "errors": 0,
+  "complete": true,
+  "elapsed_seconds": 21.402740899999117,
   "files": [
     {
       "filename": "nc-0001-00-000001.jpg",
@@ -6819,7 +6819,10 @@
     },
     {
       "filename": "nw-0623-03-000120.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "e427090dad113c7a94f003747d434dac26539a25717f697777089fc7c35a3558",
+      "bytes": 89900,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0623-03-000120.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0624-03-000121.jpg",
@@ -6844,7 +6847,10 @@
     },
     {
       "filename": "nw-0627-03-000124.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "1a05e47bd400461636018a11f2f0439396dd3cb203f8b0727698aecd01a02d03",
+      "bytes": 118962,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0627-03-000124.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0628-03-000125.jpg",
@@ -6876,7 +6882,10 @@
     },
     {
       "filename": "nw-0632-03-000129.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "d74972b69383a44334d818fba251d1b1acc78bfb87b0f0eb1b85ee56ecf51ea5",
+      "bytes": 123228,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0632-03-000129.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0633-03-000130.jpg",
@@ -6887,7 +6896,10 @@
     },
     {
       "filename": "nw-0634-03-000131.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "ca5eff8c7ec761d89e0ab68e05319e8f2aca51d0b35aa17a48b63740132d887c",
+      "bytes": 50379,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0634-03-000131.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0635-03-000132.jpg",
@@ -6968,7 +6980,10 @@
     },
     {
       "filename": "nw-0646-03-000143.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "34a985b8bfa0625808cacdc61d7d16a9dfacc1ed10ba5a6034bf00d4fd1d2fa0",
+      "bytes": 124319,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0646-03-000143.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0647-03-000144.jpg",
@@ -7000,7 +7015,10 @@
     },
     {
       "filename": "nw-0651-03-000148.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "94f4a27b0688ebf1926047c57b39cd625610b8b971ae602559835d2ed03a1bd5",
+      "bytes": 142023,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0651-03-000148.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0652-03-000149.jpg",
@@ -7011,11 +7029,17 @@
     },
     {
       "filename": "nw-0653-03-000150.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "0e01d2c33fa483a5498ec5e8b4db88caf533f7b6c48f702eed3740bf40e40f01",
+      "bytes": 135063,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0653-03-000150.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0654-03-000151.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "d91f4c5703ce5a2c960e5c309b8d640baee2a096c2478b20a1c81f1462855d1e",
+      "bytes": 128702,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0654-03-000151.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0655-03-000152.jpg",
@@ -7089,7 +7113,10 @@
     },
     {
       "filename": "nw-0665-03-000162.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "b2707ff689933c74a008201c768316021d4340e599b101a841c5ecd1bba594ff",
+      "bytes": 87688,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0665-03-000162.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0666-04-000001.jpg",
@@ -7121,7 +7148,10 @@
     },
     {
       "filename": "nw-0670-04-000005.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "d23c45abeec29cac3174f27929b09da24141cc4c78bff5b50138398b94139aa7",
+      "bytes": 143210,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0670-04-000005.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0671-04-000006.jpg",
@@ -7167,7 +7197,10 @@
     },
     {
       "filename": "nw-0677-04-000012.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "2541b7e2647c6d74a02eb2626c9284fc83d068551563fc6da68c421d5fd7a73d",
+      "bytes": 140332,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0677-04-000012.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0678-04-000013.jpg",
@@ -7199,7 +7232,10 @@
     },
     {
       "filename": "nw-0682-04-000017.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "dfc39cec6030b131b2c4a8b3720edc00cc4be689d75b3818f6175f3b76c0b5a8",
+      "bytes": 142368,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0682-04-000017.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0683-04-000018.jpg",
@@ -7294,7 +7330,10 @@
     },
     {
       "filename": "nw-0696-04-000031.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "8ff81343c996b43980cd02b13ae498cf2a6fe221ff5d4135d2917da23b18dcad",
+      "bytes": 145578,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0696-04-000031.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0697-04-000032.jpg",
@@ -7340,7 +7379,10 @@
     },
     {
       "filename": "nw-0703-04-000038.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "42f6d9b50afb7c39bb0eae26678b506dc19e5b5f3c7bd2ab98e9c77d171777c3",
+      "bytes": 134568,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0703-04-000038.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0704-04-000039.jpg",
@@ -7470,7 +7512,10 @@
     },
     {
       "filename": "nw-0722-04-000057.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "1d880f6fe5f5c6d271c01fafe771772fdd5a581141569c6a0851438cbb32cf14",
+      "bytes": 149469,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0722-04-000057.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0723-04-000058.jpg",
@@ -7523,7 +7568,10 @@
     },
     {
       "filename": "nw-0730-04-000065.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "d75958fb6085b3eab4148b1b9a0d0d41c56bc51e1843af39b6886b0a7ed64eb0",
+      "bytes": 147114,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0730-04-000065.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0731-04-000066.jpg",
@@ -7667,7 +7715,10 @@
     },
     {
       "filename": "nw-0751-05-000005.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "0b735506a54661e50ffb252818404a42408c7aa79f314eea4851bf1dd63dd813",
+      "bytes": 150489,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0751-05-000005.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0752-05-000006.jpg",
@@ -7790,11 +7841,17 @@
     },
     {
       "filename": "nw-0769-05-000023.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "fcb0d1b25caf8cb3bbb596ae9f7444d448497ec5a9513953f5d9d4876016b9c6",
+      "bytes": 115740,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0769-05-000023.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0770-05-000024.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "26c5b0e35f6734858d2183743ed32f9324105e31bcb65e56541f99249c99000b",
+      "bytes": 136562,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0770-05-000024.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0771-05-000025.jpg",
@@ -7819,7 +7876,10 @@
     },
     {
       "filename": "nw-0774-05-000028.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "3b617b0b5cb489261126f89c999068a33cf501477ef87caa1cae1f123629cc1a",
+      "bytes": 123616,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0774-05-000028.jpg",
+      "reused": false
     },
     {
       "filename": "nw-0775-05-000029.jpg",
@@ -7837,7 +7897,10 @@
     },
     {
       "filename": "nw-0777-05-000031.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "893d0bcbc9ab19bfcfec8592a45ad15ca5d3cd379fe906b3f1fe223f32592bf1",
+      "bytes": 145864,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0777-05-000031.jpg",
+      "reused": false
     },
     {
       "filename": "nw-0778-05-000032.jpg",
@@ -7869,7 +7932,10 @@
     },
     {
       "filename": "nw-0782-05-000036.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "a20c7cc5c78e9c3d8be7abbfe335ddb5f70d05dfd51b48c21c5c1947e9133ad5",
+      "bytes": 138335,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0782-05-000036.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0783-05-000037.jpg",
@@ -7908,7 +7974,10 @@
     },
     {
       "filename": "nw-0788-05-000042.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "ca9e72b0ead0ba2a596254c8a67ef5d71ad1748994dc6ee42fa9cd082812b9c8",
+      "bytes": 158546,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0788-05-000042.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0789-05-000043.jpg",
@@ -7940,7 +8009,10 @@
     },
     {
       "filename": "nw-0793-05-000047.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "ebb497e7480038cf83e3a37cb8d5436c805cc751c4ae6712655911975647cb3c",
+      "bytes": 150802,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0793-05-000047.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0794-05-000048.jpg",
@@ -7958,7 +8030,10 @@
     },
     {
       "filename": "nw-0796-05-000050.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "9c5b89febdd4b1357c434818e3143c05cc0c12b27e9cf407e2f4c16a187bc0d6",
+      "bytes": 87479,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0796-05-000050.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0797-05-000051.jpg",
@@ -8137,7 +8212,10 @@
     },
     {
       "filename": "nw-0822-05-000076.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "e71ee3a27af0be07baab8ede87dd4b4fe4ce4c1419189ca5c01260ac0746c666",
+      "bytes": 156849,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0822-05-000076.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0823-05-000077.jpg",
@@ -8232,7 +8310,10 @@
     },
     {
       "filename": "nw-0836-05-000090.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "66cafd94abe3871c916b17133d4411f1b38420e637586c961311f53809984441",
+      "bytes": 148357,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0836-05-000090.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0837-05-000091.jpg",
@@ -8264,7 +8345,10 @@
     },
     {
       "filename": "nw-0841-05-000095.jpg",
-      "error": "URLError: <urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>"
+      "sha256": "7c36fff65c9077e6e11b73f71978842b44ce1fbdaffc262b5849295c931f5bbe",
+      "bytes": 154913,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0841-05-000095.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0842-05-000096.jpg",
@@ -8345,7 +8429,10 @@
     },
     {
       "filename": "nw-0853-05-000107.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "42dbb2f9fcddfbe6133c3d1e8981a1b7cbab4f2fd6d08f7c254014a4b57f5728",
+      "bytes": 147565,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0853-05-000107.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0854-05-000108.jpg",
@@ -8391,7 +8478,10 @@
     },
     {
       "filename": "nw-0860-05-000114.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "1395778c649ff35d064b18ffe3e398eb1931f782efa78f445b7752fd1b5ed224",
+      "bytes": 135194,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0860-05-000114.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0861-05-000115.jpg",
@@ -8437,7 +8527,10 @@
     },
     {
       "filename": "nw-0867-05-000121.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "bb10abeb10705e2161e3f48529a546abcdeea33cda0217323db7c8659ec00a81",
+      "bytes": 148299,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0867-05-000121.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0868-05-000122.jpg",
@@ -8469,7 +8562,10 @@
     },
     {
       "filename": "nw-0872-05-000126.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "667e479cbf23d55ccc74fd26abe312469cc465a882084adf342639bad7405115",
+      "bytes": 133596,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0872-05-000126.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0873-05-000127.jpg",
@@ -8564,7 +8660,10 @@
     },
     {
       "filename": "nw-0886-05-000140.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "677281bc797f845235d9e2198ac2e499fd35c326d6953047e0b35dd84a2b27bf",
+      "bytes": 148597,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0886-05-000140.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0887-05-000141.jpg",
@@ -8596,7 +8695,10 @@
     },
     {
       "filename": "nw-0891-05-000145.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "5a4648f8ba3852fc3bdc37d28c7ab81a298c5c7c05c41b39ae70fc1098e199b1",
+      "bytes": 151349,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0891-05-000145.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0892-05-000146.jpg",
@@ -8656,7 +8758,10 @@
     },
     {
       "filename": "nw-0900-05-000154.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "488d0085ea753a72fde72ab5281c3d3b1478af58a087365b25fc1b49f1f5525d",
+      "bytes": 138655,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0900-05-000154.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0901-05-000155.jpg",
@@ -8702,7 +8807,10 @@
     },
     {
       "filename": "nw-0907-05-000161.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "f8f57b057f9e348f0578e0063d97d382d5a7f0d5cc67c39a3f6ab8bb7f90af2f",
+      "bytes": 141824,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0907-05-000161.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0908-05-000162.jpg",
@@ -8734,7 +8842,10 @@
     },
     {
       "filename": "nw-0912-05-000166.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "13b2bb99b9438a4989cb4f6a758d17345219b8c2c42c91d75a0eb2cb00daa0c3",
+      "bytes": 95056,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0912-05-000166.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0913-06-000001.jpg",
@@ -8836,7 +8947,10 @@
     },
     {
       "filename": "nw-0927-06-000015.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "7f9b812cabeef4b33194084c9be9a030647a55295c7350b280cad14483f1019a",
+      "bytes": 141025,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0927-06-000015.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0928-06-000016.jpg",
@@ -8889,7 +9003,10 @@
     },
     {
       "filename": "nw-0935-06-000023.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "dbfce3d7c68cc1c5aa0dd8f0ab22f3d6258ee6f2a2203713d7225256889b0306",
+      "bytes": 144577,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0935-06-000023.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0936-06-000024.jpg",
@@ -8916,13 +9033,15 @@
       "filename": "nw-0939-06-000027.jpg",
       "sha256": "41cf5eca77475abc45926efb82bbb71950da7a6548ac84ec85f0c4ca0cf12a24",
       "bytes": 134082,
-      "source": "https://download.pangaea.de/dataset/980773/files/nw-0939-06-000027.jpg?download=2",
-      "reused": false
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0939-06-000027.jpg",
+      "reused": true
     },
     {
       "filename": "nw-0940-06-000028.jpg",
-      "error": "HTTPError: HTTP Error 429: Too Many Requests",
-      "resume_not_before_unix": 1794586506.1735303
+      "sha256": "baf4c13bb1ec9471f3e27afbfa6d0f181adaaa1bb8fba777b281e00bf5437957",
+      "bytes": 146988,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0940-06-000028.jpg",
+      "reused": false
     },
     {
       "filename": "nw-0941-06-000029.jpg",
@@ -9017,7 +9136,10 @@
     },
     {
       "filename": "nw-0954-06-000042.jpg",
-      "error": "Deferred: publisher rate limit reached"
+      "sha256": "e825f6227f64b15dafa930500c846a20e86a8659057eea0af985fb61108c28fa",
+      "bytes": 151598,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0954-06-000042.jpg",
+      "reused": false
     },
     {
       "filename": "nw-0955-06-000043.jpg",
@@ -9042,7 +9164,10 @@
     },
     {
       "filename": "nw-0958-06-000046.jpg",
-      "error": "Deferred: publisher rate limit reached"
+      "sha256": "8e12e76b31c833c799e298be287ba43298260203d794ea969b39725a60e5c0eb",
+      "bytes": 144251,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0958-06-000046.jpg",
+      "reused": false
     },
     {
       "filename": "nw-0959-06-000047.jpg",

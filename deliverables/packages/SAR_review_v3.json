@@ -1,0 +1,12 @@
+{
+  "file": "deliverables/packages/SAR_review_v3.zip",
+  "sha256": "c539d5e52ebc5170dab939846b32366d2726ede348e354341f0f942a0849941e",
+  "bytes": 39181421,
+  "members": 233,
+  "zip_crc_and_sha256_verified": true,
+  "submission_ready": false,
+  "isolated_execution_verified": true,
+  "fresh_venv_verified": true,
+  "verification_audit": "docs/management/package_environment_audit_v3.json",
+  "verification_scope": "Fresh Windows venv: saved SOS evidence and 22 tests; Qt startup and both models on synthetic constant image. No full retraining or raw-data rerun."
+}

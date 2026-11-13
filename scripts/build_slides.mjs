@@ -5,13 +5,15 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const runtime = process.env.ARTIFACT_RUNTIME || 'C:/Users/hotung/.cache/codex-runtimes/codex-primary-runtime/dependencies';
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.join(runtime, 'node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs')).href);
-const out = path.join(root, '.cache/slides-v2');
+const out = path.join(root, '.cache/slides-v4');
 await fs.mkdir(out, {recursive:true});
 const read = async p => JSON.parse(await fs.readFile(path.join(root,p),'utf8'));
 const results = await read('results/sos/evaluation.json');
 const comparison = await read('results/sos/model_comparison.json');
 const physical = await read('results/physical/calibration.json');
 const wind = await read('results/physical/wind.json');
+const dartis = await read('results/dartis/evaluation.json');
+if (!dartis.complete || dartis.completed !== 2290) throw new Error('Complete DARTIS evaluation required');
 const deck = Presentation.create({slideSize:{width:1280,height:720}});
 const FONT = 'Arial';
 function text(s,t,x=72,y=180,w=1136,h=400,size=30,bold=false,color='#243447') {
@@ -67,8 +69,16 @@ s=slide('Tác dụng và đánh đổi của bộ phân lớp','Nguồn: results
 const ab=results.test_no_classifier.metrics;
 table(s,[['Cấu hình','TP','FP','F1'],['Bỏ classifier',String(ab.tp),String(ab.fp),ab.f1.toFixed(5)],['Có classifier',String(m.tp),String(m.fp),m.f1.toFixed(5)]],[480,210,210,236],185,235);
 text(s,`Giảm ${ab.fp-m.fp} báo sai, đồng thời mất ${ab.tp-m.tp} phát hiện đúng.`,72,490,1136,100,34,true);
-s=slide('Nhánh ngưỡng thích nghi Niblack','Nguồn: results/sos/adaptive/selected.json; validation_full_numpy.json. Nhánh bổ sung sau lựa chọn; chưa có test độc lập mới.');
-lines(s,['T(x,y) = m(x,y) − k·s(x,y).','Khảo sát 27 cấu hình classifier trên 3 nhánh Niblack.','Lee7 L1 + Niblack51 k=0,2 + CART depth3/leaf5.','F1 validation 0,14466; chưa thay thế kết quả test của nhánh Otsu.']);
+s=slide('Niblack: validation và phép thử PALSAR bổ sung','Nguồn: results/sos/adaptive/selected.json; validation_full_numpy.json; results/sos/external_palsar_train/{protocol,otsu,niblack}.json; notebook 09. Hai pipeline cố định chạy đủ 3101 external_train PALSAR, không fit lại hoặc chọn mô hình từ phép thử. Không có mã cảnh để chứng minh độc lập theo cảnh; không quy chênh lệch riêng cho ngưỡng vì Lee và classifier cũng khác.');
+text(s,'Niblack51 k=0,2 + Lee7 L1 + CART depth3/leaf5.\n27 cấu hình đã khảo sát; F1 validation Sentinel = 0,14466.',72,165,1136,100,29);
+const palsarRows=[['Pipeline cố định','F1 trên 3.101 patch PALSAR']];
+for(const [name,label] of [['otsu','Otsu–SVM'],['niblack','Niblack–CART']]) {
+ const result=await read(`results/sos/external_palsar_train/${name}.json`);
+ if(!result.complete || result.completed!==3101) throw new Error('Incomplete PALSAR evaluation');
+ palsarRows.push([label,result.metrics.f1.toFixed(5)]);
+}
+table(s,palsarRows,[568,568],300,220);
+text(s,'Phép thử chuyển sensor; chưa chứng minh độc lập theo cảnh.\nKhông diễn giải thành ưu thế riêng của thuật toán ngưỡng.',72,555,1136,90,27,true);
 s=slide('Phân mảnh làm F1 đối tượng thấp','Nguồn: results/sos/diagnostics/diagnostics.json; test image val/sentinel_440. GT phủ toàn patch. 35 FP đối tượng có thể nằm trong pixel dầu nhưng không ghép được với GT lớn.');
 await image(s,'results/sos/diagnostics/failure_1.png');
 text(s,'GT phủ patch, dự đoán bị phân mảnh: TP=0, FP=35, FN=1.',72,635,1136,45,25);
@@ -85,19 +95,23 @@ lines(s,['PyQt chạy mô hình NumPy đã khóa, có hai nhánh Otsu và Niblac
  'Hiển thị ảnh trung gian, đặc trưng vùng và đối chiếu mask.',
  'Xuất mask, overlay, JSON. Thay mask tham chiếu không đổi dự đoán.',
  'Video 6 phút có phụ đề tiếng Việt, không âm thanh.']);
-s=slide('Giới hạn dữ liệu và bước kiểm chứng tiếp theo','Nguồn: docs/management/completion_audit.json; qposd_mask_audit.json; qposd_feature_audit.json; results/dartis/protocol.json. DARTIS chưa đủ dữ liệu nên chưa có kết quả đánh giá. QPOSD dùng UAVSAR, lớp look-alike chung không xác định nguyên nhân vật lý.');
+s=slide('DARTIS: báo nhầm khi chuyển miền dữ liệu','Nguồn: results/dartis/evaluation.json, REPORT.md, protocol.json; notebook 06. Đủ 2.290 ảnh no-oil, mô hình SOS cố định, giữ ảnh 640×640. Reporter đã kiểm tra hash và tổng hợp lại từng ảnh. Đây là tỷ lệ báo nhầm mức ảnh, không phải Recall dầu hoặc F1 đối tượng. Không chỉnh tham số theo kết quả này.');
+const negativeGroups=[['Toàn bộ',dartis.overall],['Bờ',dartis.by_subset.nc],['Biển',dartis.by_subset.nw]];
+table(s,[['Tập no-oil','Ảnh báo nhầm / tổng','Tỷ lệ'],...negativeGroups.map(([name,r])=>[name,`${r.false_alarm_images} / ${r.images}`,`${(100*r.false_alarm_rate).toFixed(2)}%`])],[340,480,316],175,290);
+text(s,'Báo nhầm cao: chưa phù hợp triển khai trực tiếp ngoài tập SOS.\nKhông dùng tỷ lệ này thay F1 đối tượng hoặc nhãn nguyên nhân.',72,510,1136,120,29,true);
+s=slide('Giới hạn dữ liệu và bước kiểm chứng tiếp theo','Nguồn: docs/management/completion_audit.json; qposd_mask_audit.json; qposd_shape_audit.json; qposd_matched_lookalike_audit.json. QPOSD dùng UAVSAR, lớp look-alike chung không xác định nguyên nhân vật lý. Header toàn bộ 41 MAT đã đọc; bốn MAT 7, 35, 40, 41 đã tải đủ và kiểm tra CRC.');
 lines(s,['QPOSD: 11/41 mask chứa look-alike, 2.117 pixel ngoài bảng màu.',
- 'Hai trong ba cặp đã kiểm tra lệch một cột, chưa dùng để chấm F1.',
- 'DARTIS: chờ đủ 2.290 ảnh no-oil để đo báo nhầm theo giao thức.',
+ '41 cặp: 24 khớp kích thước, 17 lệch; chưa xác minh căn chỉnh pixel.',
+ 'Mẫu 41 đã đọc đủ: có look-alike, không có dầu; chưa chấm F1.',
  'Chưa đánh giá theo nguyên nhân look-alike hoặc biển miền Trung.']);
 s=slide('Đóng góp và phân công kiểm tra','Nguồn: docs/management/thanh_vien.json; PHAN_CONG_MA_NGUON.md. Đây là phân công dự kiến, không thay cho xác nhận đóng góp cá nhân. Mã và báo cáo có hỗ trợ Codex; thành viên cần đọc, chạy lại và xác nhận.');
 table(s,[['Phụ trách','Nội dung'],['TV1 / TV2','Tích hợp pipeline / CART và SVM'],['TV3 / TV4','Lọc, ngưỡng / Vùng và đặc trưng'],['TV5','Dữ liệu, đánh giá và kiểm chứng']], [400,736],175,280);
 text(s,'Kết quả có thể chạy lại, so sánh hai cách cài và truy số đếm từng ảnh.\nChưa đủ bằng chứng triển khai cảnh báo dầu ngoài thực địa.',72,515,1136,120,29,true);
-if(deck.slides.items.length!==20) throw new Error('Expected 20 slides');
+if(deck.slides.items.length!==21) throw new Error('Expected 21 slides');
 await (await PresentationFile.exportPptx(deck)).save(path.join(out,'SAR_SOS_draft.pptx'));
 for(let i=0;i<deck.slides.items.length;i++) {
  const blob=await deck.export({slide:deck.slides.items[i],format:'png',scale:1});
  await fs.writeFile(path.join(out,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await blob.arrayBuffer()));
- console.log(`Rendered ${i+1}/20`);
+ console.log(`Rendered ${i+1}/21`);
 }
 console.log('Draft exported; finalization and visual review remain.');

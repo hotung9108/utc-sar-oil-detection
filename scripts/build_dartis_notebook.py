@@ -48,7 +48,7 @@ for label, r in rows:
 display(Markdown('\\n'.join(lines)))
 fig, ax = plt.subplots(figsize=(8,4))
 bars = ax.bar([label for label, _ in rows], [r['false_alarm_rate'] for _, r in rows])
-ax.set(ylim=(0,1), ylabel='Tỷ lệ ảnh báo nhầm', title='Mô hình SOS cố định trên DARTIS no-oil')
+ax.set(ylim=(0,1.08), ylabel='Tỷ lệ ảnh báo nhầm', title='Mô hình SOS cố định trên DARTIS no-oil')
 ax.bar_label(bars, labels=[f"{r['false_alarm_images']}/{r['images']}" for _, r in rows], padding=3)
 plt.tight_layout(); plt.show()'''),
     nbf.v4.new_markdown_cell('''## Các cụm do nhà phát hành cung cấp
@@ -62,6 +62,37 @@ ax.set(ylim=(0,1), ylabel='Tỷ lệ ảnh báo nhầm', xlabel='Mã cụm DARTI
 ax.tick_params(axis='x', rotation=60)
 plt.tight_layout(); plt.show()
 print('Counts per cluster:', {key:r['images'] for key,r in groups})'''),
+    nbf.v4.new_markdown_cell('''## Ba ảnh có tỷ lệ pixel báo nhầm cao nhất
+
+Chọn cố định theo số pixel dự đoán dầu giảm dần, tên ảnh để phá hòa. Đây là
+minh họa lỗi nghiêm trọng sau đánh giá, không phải mẫu ngẫu nhiên đại diện.
+Chạy lại suy luận trên ba ảnh và đối chiếu số pixel/vùng với kết quả đã lưu.
+Nhãn tham chiếu ở đây là no-oil mức ảnh; không có mask dầu để tính IoU.
+Không dùng những ảnh này để điều chỉnh mô hình.'''),
+    nbf.v4.new_code_cell('''import numpy as np
+from PIL import Image
+sys.path.insert(0, str(ROOT/'src'))
+from sar_oil.models import RegionModel
+from sar_oil.pipeline import predict
+selected=json.loads((ROOT/'results/sos/selected.json').read_text())
+model=RegionModel.load(ROOT/'results/sos'/selected['model_file'])
+examples=sorted(result['per_image'], key=lambda r: (-r['predicted_oil_pixels']/r['pixels'], r['filename']))[:3]
+fig,axes=plt.subplots(3,2,figsize=(10,14),layout='constrained')
+for i,row in enumerate(examples):
+    with Image.open(ROOT/'data/dartis'/row['filename']) as source:
+        image=np.asarray(source.convert('L'),dtype=np.float64)/255.0
+    mask,regions=predict(image,selected['config'],model,backend='numpy')
+    assert int(mask.sum())==row['predicted_oil_pixels']
+    assert sum(r['oil'] for r in regions)==row['retained_regions']
+    axes[i,0].imshow(image,cmap='gray',vmin=0,vmax=1)
+    axes[i,0].set_title(row['filename']+' | reference: no-oil')
+    axes[i,1].imshow(image,cmap='gray',vmin=0,vmax=1)
+    overlay=np.zeros((*mask.shape,4)); overlay[mask.astype(bool)]=[1,0,0,.65]
+    axes[i,1].imshow(overlay)
+    axes[i,1].set_title(f"False oil pixels: {mask.sum()/mask.size:.2%}")
+    for ax in axes[i]: ax.set_axis_off()
+plt.show()
+print('Recomputed predictions match stored pixel and region counts for all three examples.')'''),
     nbf.v4.new_markdown_cell('''## Giới hạn và cách dùng trong báo cáo
 
 - Kết quả kiểm tra chuyển miền từ PNG SOS sang JPEG DARTIS khác độ phân giải,

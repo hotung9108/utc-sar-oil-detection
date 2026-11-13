@@ -1,4 +1,5 @@
-"""Inspect three small QPOSD image/mask pairs; this is not a benchmark split."""
+"""Inspect selected QPOSD image/mask pairs; this is not a benchmark split."""
+import argparse
 import hashlib
 import io
 import json
@@ -13,14 +14,23 @@ from audit_qposd import ROOT, RangeReader
 
 
 def main():
-    audit = json.loads((ROOT / 'docs/management/qposd_mask_audit.json').read_text())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--numbers', type=int, nargs='+', default=[7, 35, 40])
+    parser.add_argument('--output', type=Path, default=ROOT / 'docs/management/qposd_feature_audit.json')
+    parser.add_argument('--selection-reason', default='Small archive members for structural inspection: sea/land, oil, look-alike; not a random or held-out evaluation set')
+    args = parser.parse_args()
+    if len(set(args.numbers)) != len(args.numbers) or any(n < 1 or n > 41 for n in args.numbers):
+        parser.error('Choose distinct published sample numbers from 1 to 41')
+    if args.numbers != [7, 35, 40] and args.output.resolve() == (ROOT / 'docs/management/qposd_feature_audit.json').resolve():
+        parser.error('Use a separate --output to preserve the original three-pair audit')
+    audit = json.loads((ROOT / 'docs/management/qposd_mask_audit.json').read_text(encoding='utf-8'))
     entry = audit['archive']
     folder = ROOT / 'data/lookalike_sources/qposd_features'
     folder.mkdir(parents=True, exist_ok=True)
     stream = RangeReader(entry['links']['self'], entry['size'], budget=80 * 1024**2)
     rows = []
     with zipfile.ZipFile(stream) as archive:
-        for number in [7, 35, 40]:
+        for number in args.numbers:
             member = f'train_images_9ch/image{number}.mat'
             info = archive.getinfo(member)
             target = folder / f'image{number}.mat'
@@ -55,11 +65,11 @@ def main():
                    'matching_spatial_shape': 'T' in arrays and list(arrays['T'].shape[:2]) == mask_shape}
             rows.append(row)
             print(json.dumps(row), flush=True)
-    output = {'record': audit['record'], 'selection': [7, 35, 40],
-              'selection_reason': 'Small archive members for structural inspection: sea/land, oil, look-alike; not a random or held-out evaluation set',
+    output = {'record': audit['record'], 'selection': args.numbers,
+              'selection_reason': args.selection_reason,
               'http_bytes': stream.transferred, 'pairs': rows,
               'scope': 'Shape/key/numeric checks do not establish geospatial alignment, physical calibration, or independent source scenes.'}
-    (ROOT / 'docs/management/qposd_feature_audit.json').write_text(json.dumps(output, indent=2) + '\n', encoding='utf-8')
+    args.output.write_text(json.dumps(output, indent=2) + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':

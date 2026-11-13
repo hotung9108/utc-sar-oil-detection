@@ -1,23 +1,22 @@
 {
-  "render": ".cache\\report\\render-fields-v8\\Bao_cao_SAR_SOS_fields.pdf",
-  "docx_sha256": "ebd56eb2fa772d5abbc40074dc4c953039bfe9885eb637da093121d3363977e8",
-  "pdf_sha256": "ce5832f885e5e766b2ecf9136ab1e2e45dc7b4a218cc837ba9cd4ccbb03abace",
-  "total_pages": 38,
-  "main_pages": 26,
+  "render": ".cache\\report\\render-fields-v10\\Bao_cao_SAR_SOS_fields.pdf",
+  "docx_sha256": "48171e737356a20fbd6dce69c37bec6d96d2da8cfecbc12d2d81a9118fdf9450",
+  "pdf_sha256": "7c517f63a7b46f5fb27d340718dc676484c798d3ea66f9980330b3df2c5808f6",
+  "total_pages": 39,
+  "main_pages": 27,
   "directly_reviewed_pdf_pages": [
     5,
     7,
+    10,
     11,
-    13,
-    32,
-    33,
     34,
     35,
     36,
     37,
-    38
+    38,
+    39
   ],
-  "pixel_identical_to_reviewed_v7_pages": [
+  "pixel_identical_to_reviewed_v9_pages": [
     {
       "new": 1,
       "old": 1
@@ -47,12 +46,12 @@
       "old": 9
     },
     {
-      "new": 10,
-      "old": 10
-    },
-    {
       "new": 12,
       "old": 12
+    },
+    {
+      "new": 13,
+      "old": 13
     },
     {
       "new": 14,
@@ -125,19 +124,26 @@
     {
       "new": 31,
       "old": 31
+    },
+    {
+      "new": 32,
+      "old": 32
+    },
+    {
+      "new": 33,
+      "old": 33
     }
   ],
   "all_pages_covered": true,
   "layout_verified": true,
   "findings": [
-    "All eleven changed pages visually inspected: text readable, no clipping or overlap.",
-    "Twenty-seven remaining page rasters match reviewed v7 pixels exactly.",
-    "All TOC targets verified against rendered pages."
+    "All ten changed pages visually inspected; no clipping or overlap.",
+    "29 other page rasters exactly match reviewed v9.",
+    "All TOC targets found, including PALSAR table 4.5."
   ],
   "submission_ready": false,
   "pending": [
     "Cover metadata and authentic contribution records",
-    "Complete outstanding scientific requirements",
-    "Final submission package and template comparison gate"
+    "Complete outstanding scientific requirements"
   ]
 }

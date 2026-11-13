@@ -1,0 +1,25 @@
+{
+  "notebook": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
+  "sha256": "dc8cf9f1d0f82e2daf7abaec6a3618c96ee855ec7c5c8eac2d20b458a265beac",
+  "execution_counts": [
+    1,
+    2,
+    3
+  ],
+  "errors": 0,
+  "visually_reviewed_figures": [
+    {
+      "path": ".cache/palsar/notebook-review/figure-1.png",
+      "sha256": "eaff12695dc645af19f687efa3ec3be83e55745241044b26412b49654d017ec1"
+    },
+    {
+      "path": ".cache/palsar/notebook-review/figure-2.png",
+      "sha256": "03a2afa0961119585488c488ce37f5868a8d3ae21a4f106043bb72fa2e0dd8de"
+    }
+  ],
+  "visual_review_completed": true,
+  "example_id": "train/palsar_0",
+  "example_rule": "Lexicographically smallest ID, fixed independently of model outcomes",
+  "example_counts_recomputed_and_matched": true,
+  "scope": "Two frozen pipelines on 3101 PALSAR patches; no scene-independent or causal threshold superiority claim."
+}

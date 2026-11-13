@@ -2,17 +2,21 @@
 
 Đây là bộ tài liệu và mã nguồn để nhóm chạy, rà soát và hoàn thiện. **Chưa phải bản nộp đầy đủ Đề 18**; tình trạng từng yêu cầu nằm trong `docs/management/completion_audit.json`.
 
+Gói v3: `packages/SAR_review_v3.zip`, gồm báo cáo v10, slide v4 và các kết quả
+DARTIS/PALSAR bổ sung. Trạng thái kiểm tra và hash của từng gói nằm trong
+tệp JSON cùng tên bên cạnh ZIP; không chuyển xác nhận từ gói cũ sang gói mới.
+
 ## Các sản phẩm
 
 | Sản phẩm | Điểm mở |
 |---|---|
-| Báo cáo 38 trang, 26 trang nội dung chính | `report/Bao_cao_SAR_SOS_review_v8.docx` hoặc `.pdf` |
-| Slide 20 trang | `presentation/SAR_SOS_review_v2.pptx` |
+| Báo cáo 39 trang, 27 trang nội dung chính | `report/Bao_cao_SAR_SOS_review_v10.docx` hoặc `.pdf` |
+| Slide 21 trang | `presentation/SAR_SOS_review_v4.pptx` |
 | Video tự động 6 phút có phụ đề, không âm thanh | `video/SAR_demo_v1.mp4` |
 | Giao diện PyQt | `scripts/demo_qt.py` từ thư mục gốc |
 | Năm notebook SOS theo nhiệm vụ | `notebooks/01_...` đến `05_...` |
 | Nhánh Sentinel-1 gốc và gió ERA5 | `notebooks/external/07_sentinel_calibration.ipynb` |
-| DARTIS đang chờ đủ dữ liệu | `results/dartis/README.md` |
+| DARTIS: 2.290 ảnh đã đánh giá, báo nhầm 63,2751% | `results/dartis/REPORT.md` |
 
 ## Chạy sau khi giải nén
 
@@ -30,7 +34,7 @@ uv run --frozen --extra demo python scripts/demo_qt.py
 uv run --frozen --extra demo python run_experiments.py --workers 6
 ```
 
-Notebook 07 cần dữ liệu SAR/metadata/gió đã tải bởi các script ở `results/physical/README.md`. Notebook 06 chưa phải notebook đã thực thi thành công: bộ kiểm tra sẽ từ chối nếu DARTIS thiếu ảnh. Để dựng lại DOCX/PPTX, xem `docs/report/README.md` và `deliverables/presentation/README.md`; công cụ Word/Artifact Tool là phụ thuộc bổ sung, không thuộc lệnh tái lập SOS.
+Notebook 07 cần dữ liệu SAR/metadata/gió đã tải bởi các script ở `results/physical/README.md`. Notebook 06 đã thực thi bốn ô mã trên kết quả đủ 2.290 ảnh, gồm ba hình đã kiểm tra trực quan; bộ kiểm tra vẫn từ chối nếu DARTIS thiếu ảnh hoặc sai hash. Kết quả DARTIS đã có trong báo cáo v9 và slide v3; ZIP v1 vẫn là bản trước cập nhật này. Để dựng lại DOCX/PPTX, xem `docs/report/README.md` và `deliverables/presentation/README.md`; công cụ Word/Artifact Tool là phụ thuộc bổ sung, không thuộc lệnh tái lập SOS.
 
 ## Kiểm tra gói
 
@@ -60,7 +64,6 @@ python scripts/verify_package_environment.py --project <thu-muc-giai-nen>
 - Nhãn và căn chỉnh hợp lệ để đánh giá tác động hiệu chuẩn/gió lên phát hiện dầu.
 - Đánh giá dầu/look-alike, đặc biệt theo từng nguyên nhân vật lý; QPOSD còn sai lệch ảnh–mask.
 - Test độc lập mới cho nhánh Niblack; không dùng kết quả Otsu thay thế.
-- Đủ dữ liệu và kết quả DARTIS theo giao thức đã chốt.
 - Thông tin bìa, mã sinh viên, xác nhận đóng góp, chữ ký và biên bản họp thật.
 
 Các ô chưa xác nhận được giữ trống. Video và kết quả tự động không thay thế thuyết trình, buổi họp hay công việc thực tế của từng thành viên.

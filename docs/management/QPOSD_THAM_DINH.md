@@ -30,6 +30,25 @@ QPOSD dùng UAVSAR băng L; kết quả của nhánh bổ sung phải ghi riêng
 
 ## Tái tạo
 
+### Mẫu look-alike khớp kích thước đã đọc đầy đủ
+
+Sau khi sàng lọc header, đã chọn mẫu 41 vì có MAT nén nhỏ nhất trong tám cặp
+khớp kích thước chứa look-alike. Đã tải đủ 50.758.204 byte MAT, kiểm tra CRC,
+lưu SHA-256 và đọc bằng SciPy: T có kích thước 1031×1031×9, float64, toàn bộ
+giá trị hữu hạn; mask 1031×1031. Bằng chứng riêng nằm trong
+`qposd_matched_lookalike_audit.json`, không ghi đè audit ba mẫu ban đầu.
+
+Mask chứa 18.671 pixel look-alike, 890.637 biển và 153.653 đất, không có dầu.
+Hình đối chiếu riêng ảnh T11 thang log và mask gốc đã được xem: đường bờ có
+hình dạng tương ứng, nhãn look-alike tập trung dọc bờ. Đây là quan sát trực
+quan, chưa định lượng sai số căn chỉnh và không xác nhận nguyên nhân vật lý
+của vùng tối. Mẫu này không đủ để tính Recall dầu hoặc huấn luyện hai lớp
+dầu/look-alike. Chưa chạy classifier trên mẫu 41.
+
+```powershell
+.venv/Scripts/python.exe scripts/inspect_qposd_features.py --numbers 41 --output docs/management/qposd_matched_lookalike_audit.json --selection-reason "Smallest compressed MAT among dimension-matching pairs with look-alike labels; structural inspection only, not a benchmark split"
+```
+
 ### Kiểm tra phần đầu MAT trên toàn bộ 41 cặp
 
 `scripts/audit_qposd_shapes.py` đã đọc đủ 41 phần đầu MAT qua HTTP Range, tổng tải 687.432 byte. Có **24 cặp khớp kích thước, 17 cặp lệch**. Các mẫu lệch là 1, 2, 3, 5, 6, 7, 9, 11, 12, 23, 27, 29, 30, 31, 37, 38, 40; một số thiếu cột, một số thiếu cả hàng và cột. Trong 24 cặp khớp, tám mask có pixel look-alike: 15, 24, 25, 26, 32, 34, 36, 41.

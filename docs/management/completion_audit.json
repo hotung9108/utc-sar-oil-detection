@@ -54,9 +54,9 @@
     },
     {
       "item": "Ngưỡng thích nghi trong pipeline đáp ứng Đề 18",
-      "status": "implemented_validation_only",
-      "evidence": "scripts/adaptive_experiment.py; results/sos/adaptive/: 27 tổ hợp; toàn pipeline NumPy trên 671 ảnh validation F1=0.144656",
-      "limit": "Nhánh bổ sung sau lựa chọn; chưa có tập test độc lập mới. Không thay thế kết quả test Otsu"
+      "status": "implemented_validation_and_supplementary_palsar_patch_test",
+      "evidence": "Adaptive search: 27 configurations, 671 Sentinel validation images, F1=0.144656. Frozen supplementary evaluation on all 3101 external_train PALSAR patches: Otsu F1=0.339645, Niblack F1=0.249476. results/sos/external_palsar_train/; palsar_evaluation_audit.json; executed notebook 09.",
+      "limit": "Source-scene independence and historical manual exposure not established. Cross-sensor patch test, not an independent new Sentinel scene test. Pipelines differ in Lee settings and classifier as well as threshold. Existing SOS results unchanged."
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
@@ -67,19 +67,25 @@
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
       "status": "draft_layout_verified_submission_pending",
       "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
-      "limit": "Bản v8 tại deliverables/report/ đã được duyệt đủ 38 trang, 26 trang nội dung chính: 27 trang có pixel giống v7 và 11 trang đổi được xem trực tiếp, theo docs/report/render_progress.json. Đã bổ sung vật lý, gió, GUI/video và QPOSD. Metadata bìa, chữ ký, điểm đóng góp, biên bản thật và đối chiếu mẫu cuối còn thiếu; chưa phải bản nộp hoàn chỉnh."
+      "limit": "Report v10: 39 pages, 27 main pages; ten pages directly reviewed, 29 pixel-identical to v9. Includes DARTIS and supplemental 3101-patch PALSAR evaluation. Missing authentic cover/contribution records and scientific label/scene constraints remain."
     },
     {
       "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
       "status": "artifacts_verified_authentic_records_pending",
-      "evidence": "20 slide tại deliverables/presentation/SAR_SOS_review_v2.pptx đã được kiểm tra theo slides_audit.json, đồng bộ phần vật lý/gió, GUI/video và QPOSD. Video deliverables/video/SAR_demo_v1.mp4 dài 360 giây, 720 khung hình; giải mã toàn bộ và 24 phụ đề đạt video_audit.json; 9 khung hình đại diện đã được xem theo video_visual_review.json.",
+      "evidence": "21 slides in SAR_SOS_review_v4.pptx: slide 14 directly reviewed, twenty slides pixel-identical to v3. Ten native tables; finalization passed. Video v1 remains verified by video_audit.json and video_visual_review.json.",
       "limit": "Video tự động có phụ đề, không âm thanh; không thay thế thuyết trình của thành viên. Hồ sơ đóng góp, chữ ký và nhật ký thật còn thiếu."
     },
     {
       "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
       "status": "review_package_verified_full_reproduction_partial",
-      "evidence": "Runner SOS đã hoàn tất 10 bước theo runner_reproduce.json. Gói deliverables/packages/SAR_review_v1.zip có 204 tệp, manifest SHA-256 và CRC đã kiểm tra. Sau giải nén riêng, run_experiments.py --verify-only đạt đối chiếu số liệu, output 5 notebook và 22 tests; docs/management/package_audit.json.",
-      "limit": "Gói là bản review tại thời điểm đóng, không tự cập nhật theo workspace. Đã cài theo uv.lock trong venv mới trên cùng máy Windows, 22 tests và startup Qt/hai mô hình đạt theo package_environment_audit.json; chưa thử hệ điều hành khác. Dữ liệu ảnh gốc và legacy không đóng gói. Chưa có một lệnh tái tạo cả Word/PPTX/video và các đánh giá bên ngoài còn thiếu."
+      "evidence": "SAR_review_v3.zip: 233 files plus manifest; CRC and SHA-256 verified. Fresh isolated Windows venv installed from uv.lock; saved SOS evidence, 22 tests, Qt startup and both saved models passed. package_environment_audit_v3.json binds verification to ZIP SHA-256. Report v10 and slides v4 included.",
+      "limit": "Frozen review snapshot, not submission-ready. Raw imagery and Git/legacy history excluded. Installation/startup checks are not full retraining or another-OS verification. No single command regenerates Word/PPTX/video and all scientific requirements."
+    },
+    {
+      "item": "Frozen SOS model external no-oil diagnostics on DARTIS",
+      "status": "verified_complete_population",
+      "evidence": "results/dartis/evaluation.json; REPORT.md; docs/management/dartis_notebook_audit.json: 2290 images, 1449 false alarms (63.2751%), four executed notebook cells and three reviewed figures",
+      "limit": "Image-level false alarms only; no oil recall/F1 or cause-specific look-alike labels. Performance is poor under direct domain transfer."
     }
   ]
 }
