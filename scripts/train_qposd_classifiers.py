@@ -23,6 +23,12 @@ def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+def reject_cross_split_overlap(pair, split_of):
+    first, second = pair['first'], pair['second']
+    if split_of[first] != split_of[second] and any(t['entire_overlap_exact'] for t in pair['translations']):
+        raise ValueError(f'Exact overlap crosses splits: {first}/{second}; revise groups before fitting')
+
+
 def preflight():
     protocol_path = DEST/'protocol.json'
     protocol = read(protocol_path)
@@ -58,6 +64,27 @@ def preflight():
         full[number] = row
     if set(full) != expected:
         raise ValueError('Full audit IDs do not cover protocol population')
+    overlap_path = ROOT/'docs/management/qposd_overlap_all24.json'
+    if not overlap_path.is_file():
+        raise ValueError('Full-population exact-overlap screen is incomplete')
+    overlap = read(overlap_path)
+    if (set(overlap['selection']) != expected
+            or overlap['script_sha256'] != digest(ROOT/'scripts/audit_qposd_overlap.py')):
+        raise ValueError('Overlap audit population/code differs')
+    split_of = {n: name for name, numbers in protocol['splits'].items() for n in numbers}
+    seen_pairs = set()
+    for pair in overlap['pairs']:
+        first, second = pair['first'], pair['second']
+        key = tuple(sorted((first, second)))
+        if first not in expected or second not in expected or first == second or key in seen_pairs:
+            raise ValueError('Invalid or repeated overlap pair')
+        seen_pairs.add(key)
+        reject_cross_split_overlap(pair, split_of)
+    if len(seen_pairs) != len(expected)*(len(expected)-1)//2:
+        raise ValueError('Not every source pair was screened for exact overlap')
+    for number in expected:
+        if overlap['inputs'][str(number)]['mat_sha256'] != full[number]['sha256']:
+            raise ValueError('Overlap audit source hash changed')
     census = read(ROOT/'docs/management/qposd_object_audit.json')
     census = {r['number']: r for r in census['rows']}
     inputs, groups = {}, {}
@@ -96,7 +123,8 @@ def preflight():
             raise ValueError(f'Invalid {split} feature matrix or class coverage')
         groups[split] = (X, y, identities)
     inputs.update({p.relative_to(ROOT).as_posix(): digest(p) for p in
-                   (protocol_path, complete, visual_path, masks_path, ROOT/'docs/management/qposd_object_audit.json')})
+                   (protocol_path, complete, visual_path, masks_path, overlap_path,
+                    ROOT/'docs/management/qposd_object_audit.json')})
     return protocol, groups, inputs
 
 

@@ -32,6 +32,16 @@ hằng là bằng chứng trùng lặp. Đây là kiểm tra lấy mẫu, không
 chắn ảnh cùng cảnh đã đổi thang, xoay hoặc lấy mẫu lại; không được dùng kết
 quả âm tính để khẳng định độc lập cảnh. Sẽ cần mở rộng kiểm tra khi đủ 24 ảnh.
 
+Sau đó, khi ảnh 22 tải xong, kiểm tra cặp 22/35 phát hiện vùng giao
+**771×581 = 447.951 pixel T11 giống hệt nhau**, độ dịch ảnh đích so với ảnh
+nguồn là (-160, -450), có 108 ô lấy mẫu khớp. Bằng chứng tại
+`docs/management/qposd_overlap_22_35.json`. Hai ảnh hiện cùng train, nên cặp
+này không gây rò rỉ giữa các tập nhưng chứng minh tên tệp khác nhau không
+đảm bảo nội dung độc lập. Bước trước huấn luyện hiện yêu cầu kiểm tra đủ
+276 cặp của 24 ảnh và từ chối chạy nếu vùng giao giống hệt nằm khác tập.
+Nếu phát hiện trường hợp đó, phải lập lại nhóm trước fit và lưu thay đổi
+giao thức; không che giấu bằng cách tiếp tục chấm test theo cách chia cũ.
+
 Giao thức quy định 10 cấu hình SVM/CART, chọn bằng macro-F1 phân lớp trên
 validation; sau đó chọn trong 10 cấu hình tạo vùng bằng trung bình F1 mức
 đối tượng của hai lớp trên validation. Test chỉ chấm sau khi lưu mô hình và
@@ -59,13 +69,14 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã chạy 4 ảnh trên, ảnh train số 10 và ảnh validation số 13, 15, 16, gồm 121 vùng.
+Đã trích 178 vùng của 12 ảnh train/validation: 4, 8, 10, 13, 15, 16, 17,
+19, 20, 22, 35, 41.
 Sai số lớn nhất trên tất cả đặc trưng:
-`1.8349904928882665e-11`; trên ảnh chuẩn hóa:
-`5.937018903307001e-7`. Số liệu chỉ thuộc tám ảnh đã trích đặc trưng này. Thời gian trong JSON
+`3.2909064362485196e-11`; trên ảnh chuẩn hóa:
+`5.937018903307001e-7`. Số liệu chỉ thuộc 12 ảnh đã trích đặc trưng này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
 công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
-`scripts/extract_qposd_regions.py --numbers 10`, `--numbers 13`, `--numbers 15`, `--numbers 16` trong cùng
+`scripts/extract_qposd_regions.py --numbers` kèm ID ảnh chưa xử lý trong cùng
 môi trường Python. Chưa trích đặc trưng hoặc chấm mô hình trên test.
 
 ## Bộ chấm điểm đã kiểm tra
