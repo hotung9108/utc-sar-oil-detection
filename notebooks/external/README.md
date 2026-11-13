@@ -1,5 +1,12 @@
 # Notebook bổ sung ngoài bộ SOS chính
 
+Chạy lại cả năm notebook SOS và bốn notebook bổ sung, đồng thời tái tạo báo
+cáo số liệu bằng một lệnh: `python scripts/rebuild_evidence.py`. Lệnh cần đủ
+dữ liệu đã tải cục bộ và dừng nếu nguồn/mô hình/giao thức đã khóa bị thay đổi.
+Lần chạy 14 bước đã đạt; output và 19 hình khớp bản trước theo
+`docs/management/notebook_rebuild_comparison.json`. Không bao gồm tải dữ liệu,
+tái huấn luyện, Word/PPTX/video.
+
 ## Hai pipeline cố định trên PALSAR
 
 `09_palsar_frozen_pipelines.ipynb` đã chạy ba ô mã, hai hình đã được xem trực

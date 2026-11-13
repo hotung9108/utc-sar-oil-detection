@@ -78,8 +78,8 @@
     {
       "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
       "status": "review_package_verified_full_reproduction_partial",
-      "evidence": "SAR_review_v3.zip: 233 files plus manifest; CRC and SHA-256 verified. Fresh isolated Windows venv installed from uv.lock; saved SOS evidence, 22 tests, Qt startup and both saved models passed. package_environment_audit_v3.json binds verification to ZIP SHA-256. Report v10 and slides v4 included.",
-      "limit": "Frozen review snapshot, not submission-ready. Raw imagery and Git/legacy history excluded. Installation/startup checks are not full retraining or another-OS verification. No single command regenerates Word/PPTX/video and all scientific requirements."
+      "evidence": "SAR_review_v3.zip: 233 files plus manifest; CRC and SHA-256 verified. Fresh isolated Windows venv installed from uv.lock; saved SOS evidence, 22 tests, Qt startup and both saved models passed. package_environment_audit_v3.json binds verification to ZIP SHA-256. Report v10 and slides v4 included. One-command scripts/rebuild_evidence.py completed all 14 steps, three numeric reports and all nine notebooks; all outputs and 19 figures match the prior committed execution. See evidence_rebuild_audit.json and notebook_rebuild_comparison.json.",
+      "limit": "Frozen ZIP v3 predates the new report/notebook rebuild runner. Raw imagery and history excluded. Runner regenerates numeric reports and notebook computations, not full training or reviewed Word/PPTX/video. Scientific label and scene limitations remain."
     },
     {
       "item": "Frozen SOS model external no-oil diagnostics on DARTIS",
@@ -87,5 +87,8 @@
       "evidence": "results/dartis/evaluation.json; REPORT.md; docs/management/dartis_notebook_audit.json: 2290 images, 1449 false alarms (63.2751%), four executed notebook cells and three reviewed figures",
       "limit": "Image-level false alarms only; no oil recall/F1 or cause-specific look-alike labels. Performance is poor under direct domain transfer."
     }
-  ]
+  ],
+  "user_decisions": {
+    "group_metadata": "Leave unconfirmed cover and authentic contribution/meeting fields blank temporarily, as requested on 2026-11-14. Do not block technical work or repeat the request."
+  }
 }

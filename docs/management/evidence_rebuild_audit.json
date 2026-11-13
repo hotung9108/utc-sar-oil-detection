@@ -1,0 +1,153 @@
+{
+  "scope": "Rebuild reports and rerun notebook computations from frozen evidence; not full retraining or DOCX/PPTX/video production",
+  "script_sha256": "ef721619e7093441a0cda9da700aba4254a654eb0b1c234bf4b9450f1b839ae3",
+  "protected_sha256": {
+    "data/manifest.json": "572d38f21c25a628d419181d108f50e6e43ebd52cb9b85368f4cd4771c9bed7e",
+    "results/sos/selected.json": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966",
+    "results/sos/svm_model.json": "cdc7b063e7bae8e8601b0c70a8277f4bb0359fcee61ac84dc022687c235d434b",
+    "results/sos/cart_model.json": "99b35e072206e938c4174c3b7deeb6c8c1dc211747e3b9ec6f8ef8a67fab26e3",
+    "results/sos/evaluation.json": "03edf61be8c2656a5de5a99d99386f5c7646f874b14d1e595c1cbe2031b8fc92",
+    "results/sos/adaptive/selected.json": "9cb30152446aaf711e95ed22f82abff4361d453eed93ddbe3516d2bd9d5faa8b",
+    "results/sos/adaptive/cart_model.json": "a9766bc3d26d6a3dc76c6ed7f898e461a9650bf2581b6ed667ba67ba423c6752",
+    "results/sos/adaptive/svm_model.json": "ebf64cde9f919fc6b0230ff17c548f7297b1617297bd0760b9e69fc0283a9425",
+    "results/dartis/protocol.json": "17f41c39f4b1395cb68527114afcfb48e8530037d1eadf519d4437a2ce103a92",
+    "results/dartis/evaluation.json": "7c631987279c78b263f780fd43a2f53a42b791a4121130f68648b9282ceae7fe",
+    "results/sos/external_palsar_train/protocol.json": "d09231a5d193139c0a7bbaec6775cf91a8440b76424285655fcec3a53690feb2",
+    "results/sos/external_palsar_train/otsu.json": "117ef9118d55f69788877f794d0d993988451019b099abcd0ac7f58d74a016ee",
+    "results/sos/external_palsar_train/niblack.json": "9b79badb80f99eb5015efcb0ac0ade7f53fb64eea9a921b423faf5e83be263dd"
+  },
+  "expected_steps": 14,
+  "steps": [
+    {
+      "command": [
+        "scripts/verify_outputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 4.5453629000003275,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/summarize_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.16878779999933613,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/report_dartis.py"
+      ],
+      "exit_code": 0,
+      "seconds": 43.35037790000024,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/report_palsar_holdout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 60.18974960000014,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/01_data_and_ground_truth.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 11.477172999999311,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/02_filter_threshold_benchmark.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 10.724722400000246,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/03_regions_and_features.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 9.156785500001206,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/04_cart_svm_numpy.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 13.080223799999658,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/05_final_pipeline.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 11.021860499999093,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/external/06_dartis_false_alarms.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 15.842045700001108,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/external/07_sentinel_calibration.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 11.927084200000536,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/external/08_qposd_audit.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 28.90451580000081,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/external/09_palsar_frozen_pipelines.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 7.891304499999023,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/verify_outputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.868066099999851,
+      "frozen_sources_unchanged": true
+    }
+  ],
+  "passed": true
+}

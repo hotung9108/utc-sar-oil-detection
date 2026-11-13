@@ -11,6 +11,18 @@ SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 
 
 ## Chạy
 
+Tái tạo báo cáo số liệu và chạy lại cả **9 notebook** từ các mô hình/kết quả
+đã khóa (cần đủ dữ liệu SOS, DARTIS, Sentinel-1 và QPOSD cục bộ):
+
+```powershell
+.venv/Scripts/python.exe scripts/rebuild_evidence.py
+```
+
+Lệnh đã chạy đủ 14 bước; output và 19 hình của chín notebook khớp bản đã lưu.
+Nhật ký: `docs/management/evidence_rebuild_audit.json` và
+`notebook_rebuild_comparison.json`. Đây là tái tạo báo cáo và phép tính notebook,
+không huấn luyện lại toàn bộ, tải dữ liệu hoặc dựng Word/PPTX/video.
+
 Một lệnh chạy chuỗi thực nghiệm SOS đã triển khai, phân tích bổ sung và notebook: `.venv/Scripts/python.exe run_experiments.py --workers 6`. Lệnh dùng checkpoint khi có; không tải dữ liệu tự động. Chỉ kiểm tra artifact đã lưu: thêm `--verify-only` (không được gọi đây là chạy lại thực nghiệm). Nhật ký từng bước lưu tại `results/sos/runner_*.json`.
 
 Python 3.13+, cài theo `pyproject.toml` bằng `uv sync`. Dữ liệu từ [Refined SOS v1](https://zenodo.org/records/15298010), đặt tại `data/Refined-Deep-SAR/images/images/{train,val}/*.png` và `masks/masks/{train,val}/*.png`.

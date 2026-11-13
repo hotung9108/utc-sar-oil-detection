@@ -1,0 +1,79 @@
+{
+  "compared_to_git_commit": "a043b9d87cc31a5f4b9fb7f705cec01a2d9acae9",
+  "notebooks": [
+    {
+      "notebook": "notebooks/01_data_and_ground_truth.ipynb",
+      "previous_sha256": "6069ac7ee61c8ca75bc0d1adcb72a00a2628e8f3627242cf00d75ab1a4451b7f",
+      "current_sha256": "5da80703389f5903a420f696633cea5135e72d3a73a5962fad0808e135f71ec3",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1
+    },
+    {
+      "notebook": "notebooks/02_filter_threshold_benchmark.ipynb",
+      "previous_sha256": "920e1c313525c23d9f0d93ae7d0b065b4c0858d4121afc0f05b88385da940ea0",
+      "current_sha256": "8f47952db1df7f0137c883a3200e8e1642bfd598b91078f4cc165f9daee80b21",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 3
+    },
+    {
+      "notebook": "notebooks/03_regions_and_features.ipynb",
+      "previous_sha256": "5ab4d37b5f817fe763c4b4adeb700c0ebea7812e955cba167c131f992d4ed306",
+      "current_sha256": "d49fc07d0dcbe7f8821cab52fb8de2c087eb2b1bc0b05fc689f7a42756d6c2f4",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1
+    },
+    {
+      "notebook": "notebooks/04_cart_svm_numpy.ipynb",
+      "previous_sha256": "eaeead1e79550cd1a85476ddce2cec2613e7363223e1a066d694b2ec63e8ad9d",
+      "current_sha256": "05501b3710add78a9dff3d60e636ae47fb27027d6e79d57820131a86fa37b332",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1
+    },
+    {
+      "notebook": "notebooks/05_final_pipeline.ipynb",
+      "previous_sha256": "c359509f31887c67ea0a88451893296c272d59f45e8313231de06512606da508",
+      "current_sha256": "c3f75606a0898e5299d619c0044079a773b35f9cb65448f37098b635c6cc39a8",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 4
+    },
+    {
+      "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
+      "previous_sha256": "99c35e3edac3fc66117a559dc60cd1583ed67750be7a381b7a453585ad906c93",
+      "current_sha256": "553eddb037f7697f83a6948a594ec85c9dfb858544f65586be9e6a5e8da4afaf",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 3
+    },
+    {
+      "notebook": "notebooks/external/07_sentinel_calibration.ipynb",
+      "previous_sha256": "5a1e353014c0b16ec430ab70b80c9eea4c1bc9d12db70b359a07a474b5e54a84",
+      "current_sha256": "263206ea5f8ef80b57f5b95f28b2dff8b10aad655fe50361324f30f7accead50",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2
+    },
+    {
+      "notebook": "notebooks/external/08_qposd_audit.ipynb",
+      "previous_sha256": "f39be23cb7a1648d9bd86dd4affd1c863c5406ea6c65191a27c321279ebf5943",
+      "current_sha256": "e8476bccd6b4b4c2e60edadbb5c4ef9b5f6d3f50ff1fc69500355dc79c07111b",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2
+    },
+    {
+      "notebook": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
+      "previous_sha256": "51d397c5abb79cdb734a494eaa48d208c2ae2f540874d50a2a506c28e3d09815",
+      "current_sha256": "749e0046c4899240406db5aa60bb7eb7dac17deb71a79eba456f1e02af893945",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2
+    }
+  ],
+  "all_outputs_equal": true,
+  "all_figures_equal": true
+}
