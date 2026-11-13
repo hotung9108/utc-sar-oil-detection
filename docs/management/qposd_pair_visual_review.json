@@ -1,0 +1,89 @@
+{
+  "pairs": [
+    {
+      "number": 4,
+      "mat_sha256": "40c618aa566eb74b21472195c7cb25c8504992f08ad930c75c5cc67b2a059965",
+      "mask_sha256": "896b359f5e1a5559c318c3379f84f84d22c67f6de8e96eb128dcfba8d1028f97",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -33.16886356878267,
+        -17.118943036062618
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair4.png",
+      "png_sha256": "e90ee8e62cc8cf1d445c506866a163dc9e8afabe4b1b1f8b22344053fd46f6bb"
+    },
+    {
+      "number": 8,
+      "mat_sha256": "7d802eae25f1988af1f47123e9b1ef0539cd529c172faf4136cc15676568a6ee",
+      "mask_sha256": "493fb19bc42f2ff9bb498944a527c87cc1e50475b0be72609c06a053797e2fc5",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -25.20552012491585,
+        -14.379084253752962
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair8.png",
+      "png_sha256": "79a325b0bf63f71081f5484532b47259772e01bd69854bec6dfb9596b62c5503"
+    },
+    {
+      "number": 35,
+      "mat_sha256": "bce74b0bdb6e58c0ddc9706e7e30cad4a0354bd6aeb1a793eda6d89e75ac0d54",
+      "mask_sha256": "dfa7197b6ea243c8554458c0797f6408aff8ff5c0b423b538d39f84f2257b198",
+      "shape": [
+        771,
+        771,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -38.974827254954484,
+        -13.172974576966439
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair35.png",
+      "png_sha256": "2b9f7dfb70eb5f87181b3b66cfec602ba6f533ba60b3a564009bedbd7dc3303b"
+    },
+    {
+      "number": 41,
+      "mat_sha256": "0b15946e9ef2a9789062730204f9ad4b74c012f5b6ed4ca0f9320bd7f990704e",
+      "mask_sha256": "378916f662bfe5606e11d55da091e96d1576bf6a2a0383b4549cecb491e1f983",
+      "shape": [
+        1031,
+        1031,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -26.115122049174968,
+        -7.54130108252978
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair41.png",
+      "png_sha256": "855ea4a7bdd95a4c0bf7b5f40ae0948c3d74621e58b8bc5ebbdaa1d5de797855"
+    }
+  ],
+  "scope": "Visual preview only; no quantitative registration, classification, or physical calibration.",
+  "reviewed_numbers": [
+    4,
+    8,
+    35,
+    41
+  ],
+  "visual_review_completed": true,
+  "quantitative_registration_verified": false,
+  "observations": {
+    "4": "Large annotated oil region follows the broad upper dark/bright transition; interior intensities vary substantially.",
+    "8": "Annotated oil regions overlap the central dark slick; thin dark structures outside the reference remain sea-labeled.",
+    "35": "Reference oil covers a broad heterogeneous region; land boundary follows the visible elongated bright land mass approximately.",
+    "41": "Look-alike reference lies along the dark coastal margin; land boundary follows the visible shoreline approximately. Coastal context may confound classification."
+  },
+  "limits": "Visual correspondence only; no proof of physical oil identity, precise boundary registration, or scene independence. Do not remove samples based on model performance.",
+  "preview_script_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5"
+}
