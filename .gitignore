@@ -24,6 +24,7 @@ __pycache__/
 !/results/sos/
 !/results/dartis/
 !/results/physical/
+!/results/qposd/
 /results/sos/validation/
 /data/Refined-Deep-SAR/
 .DS_Store
