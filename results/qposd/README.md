@@ -128,6 +128,21 @@ thắng không đúng quy tắc validation, điểm tổng hợp bị sửa và 
 thiếu ảnh. Trên dữ liệu thực hiện tại, lệnh dừng trước test vì chưa đủ hồ
 sơ MAT; **chưa tạo `evaluation.json` hay thư mục `test/`**.
 
+Notebook kết quả được tạo sau khi test hoàn tất:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/build_qposd_evaluation_notebook.py
+.\.venv\Scripts\python.exe scripts/run_notebooks.py --notebook notebooks/external/10_qposd_classification_detection.ipynb
+```
+
+Mã dựng gồm 5 ô code: kiểm tra nguồn, so sánh bộ phân lớp, so sánh cấu hình
+tạo vùng, chạy lại và xem cả 5 ảnh test, tổng hợp điểm/nhầm lẫn. Đã kiểm tra
+định dạng notebook và biên dịch cú pháp các ô trong thư mục tạm; chưa chạy
+trên dữ liệu thật. Mã từ chối tạo notebook trong dự án nếu chưa có test đầy
+đủ, và không ghi đè notebook đã có. Sau khi thực thi phải xem các hình trước
+khi đưa vào báo cáo. Lệnh tái tạo 9 notebook hiện tại chưa bao gồm notebook
+mới này; chỉ cập nhật lệnh đó khi notebook 10 đã thực thi và được kiểm tra.
+
 Mã `scripts/train_qposd_classifiers.py` đã có hai chế độ:
 
 ```powershell

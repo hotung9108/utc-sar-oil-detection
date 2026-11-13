@@ -60,8 +60,9 @@
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
-      "status": "missing_labels",
-      "evidence": "SOS chỉ có dầu/nền; chưa có đánh giá theo lớp look-alike. Đã kiểm kê 41 mask QPOSD với lớp look-alike chung và đọc prefix của 41 MAT: 24 cặp khớp kích thước, 17 cặp lệch (qposd_shape_audit.json). Chưa xác nhận căn chỉnh, CRC/giá trị toàn bộ MAT hoặc chạy mô hình trên QPOSD; chưa có nhãn nguyên nhân gió yếu/màng sinh học/mưa."
+      "status": "generic_lookalike_labels_audited_evaluation_pending",
+      "evidence": "QPOSD exact RGB labels audited across 41 masks; 24 image/mask shapes match. Object census and NumPy/SciPy connectivity checked. Frozen 14/5/5 source-image split, classifier/detection/test runners and metric tests implemented. Partial real feature extraction stored in results/qposd/regions. Full MAT download is still running; no QPOSD model fit, validation selection or test score yet.",
+      "limit": "Generic look-alike only; no wind/biofilm/rain cause labels. Source-scene independence unverified. Notebook 10 builder syntax checked but real notebook execution remains pending full evaluation."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
