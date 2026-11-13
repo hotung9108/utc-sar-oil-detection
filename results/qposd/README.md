@@ -1,12 +1,14 @@
 # Thử nghiệm bổ sung QPOSD
 
 SOS vẫn là tập chính. QPOSD cung cấp nhãn dầu/tương tự dầu chung trên UAVSAR
-L-band, không có nhãn nguyên nhân gió yếu, màng sinh học và mưa. Hiện đã cố
-định giao thức ban đầu và trích đủ đặc trưng train/validation; **chưa có
-điểm phân lớp hoặc phát hiện QPOSD**. Kiểm tra 276 cặp đã phát hiện vùng
-trùng chính xác giữa ảnh 21 (test) và ảnh 22 (train). Giao thức v1 hiện
-**bị chặn trước huấn luyện**; cần nhóm các ảnh trùng cùng một tập và lưu
-giao thức sửa đổi trước khi chạy mô hình.
+L-band, không có nhãn nguyên nhân gió yếu, màng sinh học và mưa. Đã sửa
+cách chia theo nhóm ảnh trùng trước khi fit, lưu giao thức v2 và chạy đủ
+10 cấu hình phân lớp. CART độ sâu 5, min_leaf=1 đạt macro-F1 validation
+cao nhất 0,6238049911 khi được cung cấp vùng tham chiếu. Nhánh tìm vùng
+đang được so sánh riêng; chưa có kết quả phát hiện cuối hoặc điểm test.
+
+V1 bị từ chối trước fit vì ảnh 21 (test) trùng 7.601 pixel với ảnh 22
+(train). Toàn bộ giao thức và đặc trưng v1 được giữ tại `archive/protocol_v1/`.
 
 ## Giao thức trước huấn luyện
 
@@ -15,15 +17,21 @@ bất kỳ dự đoán nào. Lệnh từ chối ghi đè nếu giao thức thay 
 
 | Tập | ID ảnh nguồn |
 |---|---|
-| Train | 4, 8, 10, 17, 19, 20, 22, 26, 28, 33, 34, 35, 36, 41 |
+| Train | 4, 8, 10, 19, 20, 21, 22, 26, 28, 33, 34, 35, 36, 41 |
 | Validation | 13, 15, 16, 32, 39 |
-| Test | 14, 18, 21, 24, 25 |
+| Test | 14, 17, 18, 24, 25 |
 
 Chia theo ảnh trước khi lấy vùng, seed 2026, phân tầng theo lớp chiếm nhiều
 pixel hơn trong mỗi ảnh. Có 16 ảnh chủ yếu dầu và 8 ảnh chủ yếu tương tự dầu;
 train lấy 10+4, validation 3+2, test 3+2. Ba pixel dầu trong ảnh 32 vẫn giữ
 nhãn dầu. Tỉ lệ này là lựa chọn thiết kế cho tập nhỏ, không phải tỉ lệ tối
 ưu được chứng minh bằng định lý. Chưa có ID cảnh để chứng minh độc lập cảnh.
+
+V2 xét đủ 5.880 cách gán các nhóm ảnh dầu giữ nguyên quy mô/phân tầng,
+chọn cách đổi ít ảnh nhất rồi phá hòa bằng SHA-256 gắn seed 2026. Chỉ ảnh
+21 chuyển sang train và 17 chuyển sang test. Không dùng điểm mô hình để
+sửa tập. Ảnh 17 từng được trích đặc trưng dưới v1, nhưng chưa có mô hình
+hay điểm dự đoán; không gọi test mới là tập chưa từng xem.
 
 Đã kiểm tra trùng lặp chính xác trên 7 ảnh tải trước (4, 8, 10, 13, 14, 35,
 41), gồm 21 cặp: lấy ô T11 5×5, bước 64 pixel, tìm giá trị ô giống hệt trong
@@ -72,16 +80,18 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã trích 721 vùng của toàn bộ 19 ảnh train/validation theo giao thức v1:
-519 vùng train (317 dầu, 202 tương tự dầu), 202 vùng validation (24 dầu,
-178 tương tự dầu). Các đặc trưng này chưa được dùng để fit hoặc chọn mô hình.
+V2 đã trích lại 729 vùng của đủ 19 ảnh train/validation: 527 vùng train
+(325 dầu, 202 tương tự dầu), 202 vùng validation (24 dầu, 178 tương tự dầu).
+Đặc trưng của 18 ảnh giữ nguyên vai trò khớp hoàn toàn giữa hai lần trích;
+đã lưu kiểm chứng tại `docs/management/qposd_protocol_v2_audit.json`.
 Sai số lớn nhất trên tất cả đặc trưng:
 `6.516835210357286e-9`; trên ảnh chuẩn hóa:
 `1.8385559610381574e-6`. Số liệu chỉ thuộc 19 ảnh đã trích đặc trưng này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
 công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
 `scripts/extract_qposd_regions.py --numbers` kèm ID ảnh chưa xử lý trong cùng
-môi trường Python. Chưa trích đặc trưng hoặc chấm mô hình trên test.
+môi trường Python. Chưa chấm mô hình trên test; phần đặc trưng ảnh 17 đã
+trích dưới v1 được lưu trong lịch sử, không dùng để fit v2.
 
 ## Bộ chấm điểm đã kiểm tra
 
@@ -120,8 +130,8 @@ NumPy đã cố định để tách riêng khác biệt của các phép xử l�
 
 Ba kiểm tra suy luận với ảnh giả lập và bộ phân lớp giả lập xác định đã qua;
 không suy ra độ chính xác thực tế từ các kiểm tra này. Lần chạy lệnh chọn
-cấu hình trên dữ liệu hiện tại dừng trước chấm validation do thiếu hồ sơ
-24 MAT. Chưa có `detection_selection.json`.
+cấu hình ban đầu dừng trước chấm validation do thiếu hồ sơ 24 MAT. Sau khi
+đủ dữ liệu và sửa nhóm trùng, lượt so sánh 10 cấu hình validation đang chạy.
 
 Sau khi đã lưu đủ hai lựa chọn, chấm test bằng:
 
@@ -140,8 +150,9 @@ dang trước khi quyết định cách phục hồi, không âm thầm chạy l
 
 Đã kiểm tra bằng dữ liệu giả lập rằng bước kiểm tra test từ chối phương án
 thắng không đúng quy tắc validation, điểm tổng hợp bị sửa và tập validation
-thiếu ảnh. Trên dữ liệu thực hiện tại, lệnh dừng trước test vì chưa đủ hồ
-sơ MAT; **chưa tạo `evaluation.json` hay thư mục `test/`**.
+thiếu ảnh. Lần kiểm tra ban đầu dừng trước test vì chưa đủ hồ sơ MAT.
+Hiện test vẫn chưa chạy vì lựa chọn cấu hình tìm vùng chưa hoàn tất;
+**chưa tạo `evaluation.json` hay thư mục `test/`**.
 
 Notebook kết quả được tạo sau khi test hoàn tất:
 
@@ -175,8 +186,11 @@ Chỉ cấu hình NumPy hội tụ mới đủ điều kiện lựa chọn; khô
 Kiểm tra tích hợp với dữ liệu giả lập đã qua: hai loại mô hình dùng cùng
 train, không lấy thống kê chuẩn hóa từ validation, dự đoán NumPy/thư viện
 khớp trong trường hợp kiểm tra và hòa điểm chọn đúng thứ tự. Đây không phải
-thí nghiệm độ chính xác QPOSD. Lần chạy kiểm tra dữ liệu hiện tại dừng trước
-fit do chưa có hồ sơ đầy đủ 24 MAT; chưa có `classifier_selection.json`.
+thí nghiệm độ chính xác QPOSD. Với v2, kiểm tra trước fit đã qua và cả 10
+cấu hình đã chạy/hội tụ. `classifier_selection.json` lưu mọi score validation,
+ma trận nhầm lẫn và hash mô hình. Cấu hình thắng NumPy và thư viện có score
+giống nhau trên validation: dầu P=0,285714, R=0,583333, F1=0,383562;
+tương tự dầu F1=0,864048. Đây là phân lớp có sẵn vùng, không phải phát hiện.
 
 Đã tải đủ 24 MAT, kiểm tra CRC/hash, giá trị hữu hạn, khớp kích thước và
 xem toàn bộ 24 cặp ảnh/nhãn. `qposd_matched_full_audit.json` lưu bằng chứng.
