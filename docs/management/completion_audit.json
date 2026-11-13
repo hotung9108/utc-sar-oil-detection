@@ -1,0 +1,95 @@
+{
+  "objective": "Hoàn thiện dự án đầy đủ theo Đề 18 và hướng dẫn BTL",
+  "complete": false,
+  "requirements": [
+    {
+      "item": "Kiểm kê labeled SOS, split và giới hạn ground truth",
+      "status": "implemented",
+      "evidence": "data/manifest.json; docs/management/refined_sos_audit.json"
+    },
+    {
+      "item": "So sánh thuật toán với mask, lưu số liệu thật",
+      "status": "implemented_with_limits",
+      "evidence": "results/sos/screen.json; validation.json; evaluation.json",
+      "limit": "Tìm kiếm theo giai đoạn, không thử mọi tổ hợp; thiếu scene IDs"
+    },
+    {
+      "item": "Giải thích lựa chọn Lee bằng số liệu và ví dụ số",
+      "status": "implemented_with_limits",
+      "evidence": "results/sos/selection_evidence/; results/sos/worked_example/",
+      "limit": "Chưa chứng minh Lee vượt mean7 hoặc L4 vượt L1; Lee reference ghép công thức SciPy"
+    },
+    {
+      "item": "Thuật toán NumPy và đối chiếu thư viện",
+      "status": "implemented_with_limits",
+      "evidence": "src/sar_oil/core.py; models.py; results/sos/verification_real.json; model_comparison.json; results/sos/REPORT.md",
+      "limit": "Đối chiếu phép toán trên 8 ảnh validation, có max error và MSE; không suy rộng tương đương toàn miền đầu vào"
+    },
+    {
+      "item": "Phân tích ít nhất 3 thất bại, độ phân tán toàn tập",
+      "status": "implemented",
+      "evidence": "scripts/analyze_failures.py; results/sos/diagnostics/; notebooks/05_final_pipeline.ipynb"
+    },
+    {
+      "item": "Notebook chạy được và kết quả suy luận cuối",
+      "status": "verified",
+      "evidence": "docs/management/notebook_execution_audit.json"
+    },
+    {
+      "item": "Desktop GUI demo (PyQt), separate from Jupyter experiments",
+      "status": "implemented_native_qt_verified",
+      "evidence": "scripts/demo_qt.py; scripts/demo_engine.py; docs/DEMO_GUI.md; docs/management/gui_audit.json",
+      "limit": "Automated Qt Windows actions verified; manual OS file-picker flow not exercised. Physical calibration branch remains notebook-only."
+    },
+    {
+      "item": "Phân công thành viên",
+      "status": "implemented",
+      "evidence": "docs/management/KE_HOACH_SOS_NOTEBOOK.md; KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx",
+      "limit": "Không thay thế đóng góp thực tế, chữ ký và lịch sử commit của từng người"
+    },
+    {
+      "item": "Chuẩn hóa góc tới và dữ liệu gió",
+      "status": "partial_physical_demo_not_detection_validated",
+      "evidence": "SOS không chứa metadata cần thiết. Đã có tile DN Sentinel-1 gốc 1024x1024, kiểm chứng hiệu chuẩn NumPy–SciPy và ghép gió ERA5 theo thời gian/vị trí; results/physical/calibration.json, wind.json, notebook 07. Chưa có nhãn dầu hoặc ánh xạ patch; chưa chứng minh hiệu chuẩn/gió cải thiện phát hiện dầu, chưa tích hợp vào pipeline SOS."
+    },
+    {
+      "item": "Ngưỡng thích nghi trong pipeline đáp ứng Đề 18",
+      "status": "implemented_validation_and_supplementary_palsar_patch_test",
+      "evidence": "Adaptive search: 27 configurations, 671 Sentinel validation images, F1=0.144656. Frozen supplementary evaluation on all 3101 external_train PALSAR patches: Otsu F1=0.339645, Niblack F1=0.249476. results/sos/external_palsar_train/; palsar_evaluation_audit.json; executed notebook 09.",
+      "limit": "Source-scene independence and historical manual exposure not established. Cross-sensor patch test, not an independent new Sentinel scene test. Pipelines differ in Lee settings and classifier as well as threshold. Existing SOS results unchanged."
+    },
+    {
+      "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
+      "status": "generic_lookalike_full_evidence_and_deliverables_verified",
+      "evidence": "All 24 eligible MAT pairs and 276 pairwise overlap checks complete; v2 keeps exact-overlap groups in 14/5/5 source-image splits. All 10 classifiers converged; conditional validation winner CART depth5/min_leaf1, macro-F1 0.6238049911. All 50 validation candidate comparisons completed; no candidate filter + Otsu won with object macro-F1 0.0563380282. Frozen winner committed before test. All five test images evaluated: detection macro-F1 0.0637296643, oil F1 0.1132075472, look-alike F1 0.0142517815; conditional classification macro-F1 0.5214138612. NumPy/reference masks exactly equal on all five test images. results/qposd/REPORT.md verifies hashes and recomputes pooled counts. Notebook 10 reran both backends on all five test images with exact saved-mask and metric equality; all five code cells and seven figures verified (qposd_notebook10_audit.json).",
+      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Word report v11 includes the complete comparisons and test results. Slides v5 (24 slides) includes the QPOSD results and failure case. Package v4 includes the QPOSD evidence; isolated install reproduces all ten model scores on 202 saved validation regions."
+    },
+    {
+      "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
+      "status": "draft_layout_verified_submission_pending",
+      "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
+      "limit": "Report v11: 41 pages, 29 main pages. Includes complete QPOSD comparisons and test results, DARTIS and supplemental PALSAR. All pages covered by direct visual review and pixel-equality chains, TOC targets verified. User-requested blank cover/contribution records and scientific label/scene limitations remain."
+    },
+    {
+      "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
+      "status": "artifacts_verified_authentic_records_pending",
+      "evidence": "24 slides in SAR_SOS_review_v5.pptx: slides20-24 directly reviewed; slides1-19 pixel-identical to reviewed v4. Twelve native tables; QPOSD cells checked against JSON; finalization passed. Video v1 remains verified.",
+      "limit": "Video tự động có phụ đề, không âm thanh; không thay thế thuyết trình của thành viên. Hồ sơ đóng góp, chữ ký và nhật ký thật còn thiếu."
+    },
+    {
+      "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
+      "status": "review_package_verified_full_reproduction_partial",
+      "evidence": "SAR_review_v4.zip: 363 files plus manifest, 55,883,712 bytes; CRC and SHA-256 verified. Includes report v11, slides v5, video v1 and all QPOSD/SOS/DARTIS/PALSAR evidence. Fresh isolated Windows venv installed 59 packages from uv.lock; all 41 tests, saved evidence checks, Qt startup and two SOS model smoke checks passed. All ten QPOSD models reproduce exact scores on 202 saved validation regions; QPOSD report provenance and pooled metrics verified. package_environment_audit_v4.json binds checks to ZIP SHA-256. scripts/rebuild_evidence.py completed 16 steps, four reports and ten notebooks; all outputs and 26 figures match prior committed execution; 88 frozen files unchanged.",
+      "limit": "Raw imagery, virtual environments and Git history excluded. The ZIP is an immutable snapshot; final post-package verification receipts live alongside it/in the repository. Rebuild runner regenerates numeric reports and notebook computations, not full training or Word/PPTX/video. No other-OS or fresh real-image GUI claim. Scientific label and scene limitations remain."
+    },
+    {
+      "item": "Frozen SOS model external no-oil diagnostics on DARTIS",
+      "status": "verified_complete_population",
+      "evidence": "results/dartis/evaluation.json; REPORT.md; docs/management/dartis_notebook_audit.json: 2290 images, 1449 false alarms (63.2751%), four executed notebook cells and three reviewed figures",
+      "limit": "Image-level false alarms only; no oil recall/F1 or cause-specific look-alike labels. Performance is poor under direct domain transfer."
+    }
+  ],
+  "user_decisions": {
+    "group_metadata": "Leave unconfirmed cover and authentic contribution/meeting fields blank temporarily, as requested on 2026-11-14. Do not block technical work or repeat the request."
+  }
+}
