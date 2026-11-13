@@ -55,7 +55,10 @@ meaningful; update TOC/caption fields in Word before final export.
 Paragraph 97 equation pattern may be cloned for Lee, threshold, SVM and metrics;
 explain symbols immediately. Pseudocode 114–119 is replaced with <=20 lines per
 algorithm, linked to real function names. References 152–156 replaced with all
-10 verified entries from bibliography.json. No invented references.
+verified entries from bibliography.json (13 after the physical/GUI/data-audit
+update). No invented references. Anchor 145 also records the separate physical,
+wind and GUI demonstrations and the QPOSD audit, without claiming labelled
+physical detection validation. Preserve the existing section style and flow.
 Appendix A: tables 10/11 planned assignments and unfilled actual peer scores.
 Appendix B: no invented meeting records; remove sample minutes paragraphs
 167–173 and table12, preserve section with a truthful pending note.

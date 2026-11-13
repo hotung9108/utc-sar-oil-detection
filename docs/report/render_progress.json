@@ -1,61 +1,143 @@
 {
-  "render": ".cache\\report\\render-fields-v7\\Bao_cao_SAR_SOS_fields.pdf",
-  "docx_sha256": "fd57367bef1cdb4cfe6f2cc27036161841333af347ec1c224593c9637bdd4cdb",
-  "pdf_sha256": "64797804315e17a84bbdd33318c77faa2f4709af849f0adcb0982184117d4764",
-  "total_pages": 36,
-  "main_pages": 25,
+  "render": ".cache\\report\\render-fields-v8\\Bao_cao_SAR_SOS_fields.pdf",
+  "docx_sha256": "ebd56eb2fa772d5abbc40074dc4c953039bfe9885eb637da093121d3363977e8",
+  "pdf_sha256": "ce5832f885e5e766b2ecf9136ab1e2e45dc7b4a218cc837ba9cd4ccbb03abace",
+  "total_pages": 38,
+  "main_pages": 26,
   "directly_reviewed_pdf_pages": [
-    18,
-    22,
-    23,
-    34
-  ],
-  "pixel_identical_to_reviewed_v6_pages": [
-    1,
-    2,
-    3,
-    4,
     5,
-    6,
     7,
-    8,
-    9,
-    10,
     11,
-    12,
     13,
-    14,
-    15,
-    16,
-    17,
-    19,
-    20,
-    21,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
     32,
     33,
+    34,
     35,
-    36
+    36,
+    37,
+    38
+  ],
+  "pixel_identical_to_reviewed_v7_pages": [
+    {
+      "new": 1,
+      "old": 1
+    },
+    {
+      "new": 2,
+      "old": 2
+    },
+    {
+      "new": 3,
+      "old": 3
+    },
+    {
+      "new": 4,
+      "old": 4
+    },
+    {
+      "new": 6,
+      "old": 6
+    },
+    {
+      "new": 8,
+      "old": 8
+    },
+    {
+      "new": 9,
+      "old": 9
+    },
+    {
+      "new": 10,
+      "old": 10
+    },
+    {
+      "new": 12,
+      "old": 12
+    },
+    {
+      "new": 14,
+      "old": 14
+    },
+    {
+      "new": 15,
+      "old": 15
+    },
+    {
+      "new": 16,
+      "old": 16
+    },
+    {
+      "new": 17,
+      "old": 17
+    },
+    {
+      "new": 18,
+      "old": 18
+    },
+    {
+      "new": 19,
+      "old": 19
+    },
+    {
+      "new": 20,
+      "old": 20
+    },
+    {
+      "new": 21,
+      "old": 21
+    },
+    {
+      "new": 22,
+      "old": 22
+    },
+    {
+      "new": 23,
+      "old": 23
+    },
+    {
+      "new": 24,
+      "old": 24
+    },
+    {
+      "new": 25,
+      "old": 25
+    },
+    {
+      "new": 26,
+      "old": 26
+    },
+    {
+      "new": 27,
+      "old": 27
+    },
+    {
+      "new": 28,
+      "old": 28
+    },
+    {
+      "new": 29,
+      "old": 29
+    },
+    {
+      "new": 30,
+      "old": 30
+    },
+    {
+      "new": 31,
+      "old": 31
+    }
   ],
   "all_pages_covered": true,
   "layout_verified": true,
   "findings": [
-    "Changed pages visually inspected at full resolution: readable, no clipping or overlap.",
-    "Each algorithm block remains on one page.",
-    "References left-aligned without stretched whitespace.",
-    "32 other page rasters exactly match v6 reviewed pages using PIL ImageChops pixel comparison."
+    "All eleven changed pages visually inspected: text readable, no clipping or overlap.",
+    "Twenty-seven remaining page rasters match reviewed v7 pixels exactly.",
+    "All TOC targets verified against rendered pages."
   ],
   "submission_ready": false,
   "pending": [
     "Cover metadata and authentic contribution records",
     "Complete outstanding scientific requirements",
-    "Submission package and template comparison gate"
+    "Final submission package and template comparison gate"
   ]
 }

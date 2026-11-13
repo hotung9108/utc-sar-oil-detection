@@ -5,11 +5,13 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const runtime = process.env.ARTIFACT_RUNTIME || 'C:/Users/hotung/.cache/codex-runtimes/codex-primary-runtime/dependencies';
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.join(runtime, 'node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs')).href);
-const out = path.join(root, '.cache/slides');
+const out = path.join(root, '.cache/slides-v2');
 await fs.mkdir(out, {recursive:true});
 const read = async p => JSON.parse(await fs.readFile(path.join(root,p),'utf8'));
 const results = await read('results/sos/evaluation.json');
 const comparison = await read('results/sos/model_comparison.json');
+const physical = await read('results/physical/calibration.json');
+const wind = await read('results/physical/wind.json');
 const deck = Presentation.create({slideSize:{width:1280,height:720}});
 const FONT = 'Arial';
 function text(s,t,x=72,y=180,w=1136,h=400,size=30,bold=false,color='#243447') {
@@ -38,7 +40,7 @@ text(s,'Bài tập lớn Xử lý ảnh • Tháng 11/2026',72,540,1000,60,26);
 s=slide('Bài toán và mục tiêu ứng dụng','Nguồn: tài liệu Đề 18; NASA, https://www.nasa.gov/centers-and-facilities/jpl/nasa-noaa-tech-will-aid-marine-oil-spill-response/ (2021). MOST là bối cảnh ứng dụng; chưa xác minh đồng nhất với thử thách NASA #6.');
 lines(s,['Phát hiện sớm vùng nghi dầu ngoài khơi để hỗ trợ kiểm tra.','NASA–NOAA MOST hướng tới phát hiện, bản đồ phạm vi và đặc trưng độ dày dầu.','Nhóm đánh giá vùng trên SOS; chưa đo độ dày hoặc dự báo dầu vào bờ.']);
 s=slide('Yêu cầu Đề 18 và phạm vi đã kiểm chứng','Nguồn: docs/MUC_TIEU_DU_AN.md; docs/management/completion_audit.json.');
-table(s,[['Yêu cầu','Trạng thái'],['Lọc và chuẩn hóa góc tới','Đã lọc; thiếu metadata góc tới'],['Ngưỡng thích nghi và đặc trưng vùng','Có Niblack, 8 đặc trưng; validation riêng'],['SVM/CART, dầu và tương tự dầu','Có dầu/nền SOS; thiếu nhãn loại look-alike']], [420,716]);
+table(s,[['Yêu cầu','Trạng thái'],['Lọc và chuẩn hóa góc tới','Đã lọc SOS, hiệu chuẩn SAR minh họa riêng'],['Ngưỡng thích nghi và đặc trưng vùng','Có Niblack, 8 đặc trưng; validation riêng'],['SVM/CART, dầu và tương tự dầu','Có dầu/nền SOS; thiếu nhãn loại look-alike']], [420,716]);
 s=slide('Dữ liệu và nhãn tham chiếu','Nguồn: https://zenodo.org/records/15298010; docs/management/refined_sos_audit.json. Nhãn được tác giả hiệu chỉnh; không coi là xác nhận hóa học hay hiện trường.');
 lines(s,['8.070 cặp PNG–mask, kích thước 256×256.','Mask nhị phân chính: giá trị ≥128 là dầu; kiểm tra thêm 64 và 192.','Thiếu mã cảnh, góc tới, thời gian và tọa độ để ghép gió.','Kiểm tra trùng hoàn toàn không loại trừ patch chồng lấn.']);
 s=slide('Chia dữ liệu trước khi chọn cấu hình','Nguồn: data/manifest.json; docs/GIAO_THUC_THUC_NGHIEM.md. Seed 2026. Publisher Sentinel val được dùng làm test dự án; không phải validation chọn cấu hình. PALSAR train 3101 ảnh chưa dùng fit.');
@@ -73,16 +75,29 @@ text(s,'GT phủ patch, dự đoán bị phân mảnh: TP=0, FP=35, FN=1.',72,63
 s=slide('Bỏ sót vùng dầu lớn','Nguồn: results/sos/diagnostics/diagnostics.json; test image val/sentinel_591. Không suy đoán nguyên nhân vật lý từ ảnh PNG.');
 await image(s,'results/sos/diagnostics/failure_3.png');
 text(s,'Classifier loại hết ứng viên: TP=0, FP=0, FN=1.',72,635,1136,45,25);
-s=slide('Giới hạn dữ liệu và bước kiểm chứng tiếp theo','Nguồn: docs/management/completion_audit.json; docs/management/dartis_catalog_audit.json; results/dartis/protocol.json. DARTIS download/evaluation chưa hoàn tất khi soạn bản này; không có số liệu hiệu năng DARTIS trong slide.');
-lines(s,['Cần cảnh SAR gốc có góc tới, vị trí và thời gian để ghép gió.','Cần nhãn look-alike đã xác nhận; cụm K-means không phải nhãn vật lý.','DARTIS: đang chuẩn bị phép thử báo nhầm trên 2.290 ảnh no-oil.','Chưa đánh giá độc lập trên biển miền Trung Việt Nam.']);
+s=slide('Hiệu chuẩn Sentinel-1 và gió ERA5','Nguồn: results/physical/calibration.json, wind.json; notebooks/external/07_sentinel_calibration.ipynb. Tham chiếu nội suy SciPy dùng cùng lưới/công thức, chưa đối chiếu SNAP độc lập. Chưa loại nhiễu nhiệt. Gió ô lưới cách tâm tile 13,6223 km, không phải đo hiện trường.');
+lines(s,[`Tile ${physical.shape.join('×')}, góc tới ${physical.angle_min.toFixed(4)}–${physical.angle_max.toFixed(4)} độ.`,
+ `NumPy và SciPy: sai số gamma0 tối đa ${physical.checks.gamma_calibrated.max_abs.toExponential(2)}.`,
+ `Gió ERA5 ghép theo tâm tile: ${wind.speed_m_s.toFixed(4)} m/s.`,
+ 'Chưa có nhãn dầu trên tile để đo tác động lên F1.']);
+s=slide('Ứng dụng demo và video','Nguồn: scripts/demo_qt.py; docs/management/gui_audit.json; deliverables/video/SAR_demo_v1.mp4; video_audit.json và video_visual_review.json. Kiểm tra Qt tự động, chưa kiểm tra thủ công hộp thoại hệ điều hành. Video ghi tự động, không thay thế thuyết trình của thành viên.');
+lines(s,['PyQt chạy mô hình NumPy đã khóa, có hai nhánh Otsu và Niblack.',
+ 'Hiển thị ảnh trung gian, đặc trưng vùng và đối chiếu mask.',
+ 'Xuất mask, overlay, JSON. Thay mask tham chiếu không đổi dự đoán.',
+ 'Video 6 phút có phụ đề tiếng Việt, không âm thanh.']);
+s=slide('Giới hạn dữ liệu và bước kiểm chứng tiếp theo','Nguồn: docs/management/completion_audit.json; qposd_mask_audit.json; qposd_feature_audit.json; results/dartis/protocol.json. DARTIS chưa đủ dữ liệu nên chưa có kết quả đánh giá. QPOSD dùng UAVSAR, lớp look-alike chung không xác định nguyên nhân vật lý.');
+lines(s,['QPOSD: 11/41 mask chứa look-alike, 2.117 pixel ngoài bảng màu.',
+ 'Hai trong ba cặp đã kiểm tra lệch một cột, chưa dùng để chấm F1.',
+ 'DARTIS: chờ đủ 2.290 ảnh no-oil để đo báo nhầm theo giao thức.',
+ 'Chưa đánh giá theo nguyên nhân look-alike hoặc biển miền Trung.']);
 s=slide('Đóng góp và phân công kiểm tra','Nguồn: docs/management/thanh_vien.json; PHAN_CONG_MA_NGUON.md. Đây là phân công dự kiến, không thay cho xác nhận đóng góp cá nhân. Mã và báo cáo có hỗ trợ Codex; thành viên cần đọc, chạy lại và xác nhận.');
 table(s,[['Phụ trách','Nội dung'],['TV1 / TV2','Tích hợp pipeline / CART và SVM'],['TV3 / TV4','Lọc, ngưỡng / Vùng và đặc trưng'],['TV5','Dữ liệu, đánh giá và kiểm chứng']], [400,736],175,280);
 text(s,'Kết quả có thể chạy lại, so sánh hai cách cài và truy số đếm từng ảnh.\nChưa đủ bằng chứng triển khai cảnh báo dầu ngoài thực địa.',72,515,1136,120,29,true);
-if(deck.slides.items.length!==18) throw new Error('Expected 18 slides');
+if(deck.slides.items.length!==20) throw new Error('Expected 20 slides');
 await (await PresentationFile.exportPptx(deck)).save(path.join(out,'SAR_SOS_draft.pptx'));
 for(let i=0;i<deck.slides.items.length;i++) {
  const blob=await deck.export({slide:deck.slides.items[i],format:'png',scale:1});
  await fs.writeFile(path.join(out,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await blob.arrayBuffer()));
- console.log(`Rendered ${i+1}/18`);
+ console.log(`Rendered ${i+1}/20`);
 }
 console.log('Draft exported; finalization and visual review remain.');

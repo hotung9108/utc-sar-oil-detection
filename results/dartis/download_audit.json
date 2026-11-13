@@ -2,9 +2,9 @@
   "manifest_sha256": "1b8657afaf0a8763e6b0a89b6882679f4dac0c5425bb9684a9b3fda9826f53c2",
   "expected": 2290,
   "completed": 2290,
-  "errors": 43,
+  "errors": 42,
   "complete": false,
-  "elapsed_seconds": 302.6292290000001,
+  "elapsed_seconds": 314.04524479999964,
   "files": [
     {
       "filename": "nc-0001-00-000001.jpg",
@@ -8264,7 +8264,7 @@
     },
     {
       "filename": "nw-0841-05-000095.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "error": "URLError: <urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>"
     },
     {
       "filename": "nw-0842-05-000096.jpg",
@@ -8914,12 +8914,15 @@
     },
     {
       "filename": "nw-0939-06-000027.jpg",
-      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+      "sha256": "41cf5eca77475abc45926efb82bbb71950da7a6548ac84ec85f0c4ca0cf12a24",
+      "bytes": 134082,
+      "source": "https://download.pangaea.de/dataset/980773/files/nw-0939-06-000027.jpg?download=2",
+      "reused": false
     },
     {
       "filename": "nw-0940-06-000028.jpg",
       "error": "HTTPError: HTTP Error 429: Too Many Requests",
-      "resume_not_before_unix": 1794585029.5398986
+      "resume_not_before_unix": 1794586506.1735303
     },
     {
       "filename": "nw-0941-06-000029.jpg",

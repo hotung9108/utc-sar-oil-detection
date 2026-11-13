@@ -47,6 +47,8 @@ Mục tiêu của nhóm: tự cài CART và SVM, so sánh giữa các thuật to
 
 ### 2.3. QPOSD — Quad-polarization Oil Spill Detection Dataset
 
+**Cập nhật 13/11/2026:** đã truy cập API chính thức bản 19258036, xác nhận CC BY 4.0 và đọc đủ 41 mask từ ZIP bằng HTTP Range. Đếm được 4.780.381 pixel look-alike và 2.117 pixel ngoài bảng màu. Đã tải ba mảng đặc trưng: mẫu 7 và 40 có ảnh 521×521 nhưng mask 521×520; mẫu 35 khớp 771×771. Chưa chạy mô hình vì cần xác minh căn chỉnh. Xem [thẩm định thực tế](management/QPOSD_THAM_DINH.md), `management/qposd_mask_audit.json` và `management/qposd_feature_audit.json`. Các ghi chú chưa truy cập dưới đây là trạng thái khảo sát cũ.
+
 - Bài báo: <https://www.sciencedirect.com/science/article/pii/S2352340926003264>
 - Bản bài báo trên PMC: <https://pmc.ncbi.nlm.nih.gov/articles/PMC13112480/>
 - DOI dữ liệu: <https://doi.org/10.5281/zenodo.19258036>

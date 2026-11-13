@@ -1,0 +1,484 @@
+{
+  "record": "https://zenodo.org/api/records/19258036",
+  "selection": [
+    7,
+    35,
+    40
+  ],
+  "selection_reason": "Small archive members for structural inspection: sea/land, oil, look-alike; not a random or held-out evaluation set",
+  "http_bytes": 55449983,
+  "pairs": [
+    {
+      "member": "train_images_9ch/image7.mat",
+      "sha256": "1b233f0be7d87f33abcbc45bf3307b3449263560261759cf49a3458bedbad9fc",
+      "bytes": 13079597,
+      "crc32_verified": true,
+      "variables": {
+        "T": {
+          "shape": [
+            521,
+            521,
+            9
+          ],
+          "dtype": "float64",
+          "all_finite": true,
+          "channels": [
+            {
+              "min": 0.0003627596306614578,
+              "max": 20.192745208740234,
+              "mean": 0.017792065200981883,
+              "std": 0.09435607032464031
+            },
+            {
+              "min": -5.518077373504639,
+              "max": 13.036656379699707,
+              "mean": -0.0008334701265935853,
+              "std": 0.04967323960321891
+            },
+            {
+              "min": -1.946187973022461,
+              "max": 14.735262870788574,
+              "mean": -0.0029119492978589958,
+              "std": 0.07090924395735332
+            },
+            {
+              "min": -1.8507356643676758,
+              "max": 0.6526468396186829,
+              "mean": -0.00031818368854905576,
+              "std": 0.007316267263421026
+            },
+            {
+              "min": -0.3199027478694916,
+              "max": 1.4701579809188843,
+              "mean": 0.00012031316208828908,
+              "std": 0.006591100821497251
+            },
+            {
+              "min": 0.00017844783724285662,
+              "max": 25.45236587524414,
+              "mean": 0.008919096452988329,
+              "std": 0.11241328448758495
+            },
+            {
+              "min": -2.1582489013671875,
+              "max": 0.23400789499282837,
+              "mean": -5.236229986548462e-05,
+              "std": 0.008680412898592992
+            },
+            {
+              "min": -0.31297567486763,
+              "max": 0.8916760683059692,
+              "mean": 7.596791002716097e-05,
+              "std": 0.00431157541486873
+            },
+            {
+              "min": 2.5251936676795594e-05,
+              "max": 0.8172248005867004,
+              "mean": 0.0016167376563936047,
+              "std": 0.0065950693280914284
+            }
+          ]
+        },
+        "ans": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "channels": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "data": {
+          "shape": [
+            271441,
+            1
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        },
+        "dataType": {
+          "shape": [
+            1
+          ],
+          "dtype": "<U7"
+        },
+        "fileId": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "fileNames": {
+          "shape": [
+            1,
+            9
+          ],
+          "dtype": "object"
+        },
+        "k": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "m": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "n": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "t": {
+          "shape": [
+            521,
+            521
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        }
+      },
+      "mask_member": "train_masks/mask7.png",
+      "mask_shape": [
+        521,
+        520
+      ],
+      "publisher_T_key_present": true,
+      "matching_spatial_shape": false
+    },
+    {
+      "member": "train_images_9ch/image35.mat",
+      "sha256": "bce74b0bdb6e58c0ddc9706e7e30cad4a0354bd6aeb1a793eda6d89e75ac0d54",
+      "bytes": 29283978,
+      "crc32_verified": true,
+      "variables": {
+        "T": {
+          "shape": [
+            771,
+            771,
+            9
+          ],
+          "dtype": "float64",
+          "all_finite": true,
+          "channels": [
+            {
+              "min": 1.3900784324505366e-05,
+              "max": 12.482745170593262,
+              "mean": 0.007458945633365548,
+              "std": 0.039034295782344
+            },
+            {
+              "min": -4.334696292877197,
+              "max": 4.7381463050842285,
+              "mean": -0.00015810209856529926,
+              "std": 0.0120966035357935
+            },
+            {
+              "min": -3.1387953758239746,
+              "max": 2.923025608062744,
+              "mean": -0.001900037928379293,
+              "std": 0.010638131119681137
+            },
+            {
+              "min": -1.952387809753418,
+              "max": 1.270398497581482,
+              "mean": -0.00020773133589315474,
+              "std": 0.004813903592442353
+            },
+            {
+              "min": -0.9436307549476624,
+              "max": 1.0201048851013184,
+              "mean": 5.7273974906647556e-05,
+              "std": 0.003535653748622788
+            },
+            {
+              "min": 1.2175994015706237e-05,
+              "max": 19.38547134399414,
+              "mean": 0.002702420570609571,
+              "std": 0.04980437415760551
+            },
+            {
+              "min": -1.5537378787994385,
+              "max": 1.4554443359375,
+              "mean": 4.314174864819038e-05,
+              "std": 0.004786677657065547
+            },
+            {
+              "min": -1.0427874326705933,
+              "max": 1.831966757774353,
+              "mean": -4.080337492144018e-06,
+              "std": 0.004636278476227269
+            },
+            {
+              "min": 1.679814431554405e-06,
+              "max": 2.2703874111175537,
+              "mean": 0.0002827526836172399,
+              "std": 0.006231526514663588
+            }
+          ]
+        },
+        "ans": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "channels": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "data": {
+          "shape": [
+            594441,
+            1
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        },
+        "dataType": {
+          "shape": [
+            1
+          ],
+          "dtype": "<U7"
+        },
+        "fileId": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "fileNames": {
+          "shape": [
+            1,
+            9
+          ],
+          "dtype": "object"
+        },
+        "k": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "m": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "n": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "t": {
+          "shape": [
+            771,
+            771
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        }
+      },
+      "mask_member": "train_masks/mask35.png",
+      "mask_shape": [
+        771,
+        771
+      ],
+      "publisher_T_key_present": true,
+      "matching_spatial_shape": true
+    },
+    {
+      "member": "train_images_9ch/image40.mat",
+      "sha256": "286cb52de7c61785a9b5f1bb8580d78aa567eb9897dc9d8c1a03009917a3c091",
+      "bytes": 13222687,
+      "crc32_verified": true,
+      "variables": {
+        "T": {
+          "shape": [
+            521,
+            521,
+            9
+          ],
+          "dtype": "float64",
+          "all_finite": true,
+          "channels": [
+            {
+              "min": 5.248833622317761e-05,
+              "max": 0.017299741506576538,
+              "mean": 0.002950538422745094,
+              "std": 0.001941699147833789
+            },
+            {
+              "min": -0.007705559488385916,
+              "max": 0.002774469554424286,
+              "mean": -0.00020117057716990586,
+              "std": 0.0002169232230408404
+            },
+            {
+              "min": -0.012841599993407726,
+              "max": 0.002359930658712983,
+              "mean": -0.002026201206834279,
+              "std": 0.0014028170934211582
+            },
+            {
+              "min": -0.0005586645565927029,
+              "max": 0.001189011731185019,
+              "mean": 8.056535949775636e-05,
+              "std": 0.00011739846183901375
+            },
+            {
+              "min": -0.0011984006268903613,
+              "max": 0.0008893901249393821,
+              "mean": -0.00010721382781510854,
+              "std": 0.00013178943120249433
+            },
+            {
+              "min": 6.337647937471047e-05,
+              "max": 0.012136910110712051,
+              "mean": 0.001652963389669867,
+              "std": 0.0010537344339732724
+            },
+            {
+              "min": -0.0009121397160924971,
+              "max": 0.00031092893914319575,
+              "mean": -8.786084280278744e-05,
+              "std": 9.276280783086698e-05
+            },
+            {
+              "min": -0.0004230992926750332,
+              "max": 0.0008529978222213686,
+              "mean": 7.036343536763638e-05,
+              "std": 9.142893329400694e-05
+            },
+            {
+              "min": 9.738237167766783e-06,
+              "max": 0.0004949846770614386,
+              "mean": 8.211902645978936e-05,
+              "std": 3.59818015017501e-05
+            }
+          ]
+        },
+        "ans": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "channels": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "data": {
+          "shape": [
+            271441,
+            1
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        },
+        "dataType": {
+          "shape": [
+            1
+          ],
+          "dtype": "<U7"
+        },
+        "fileId": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "fileNames": {
+          "shape": [
+            1,
+            9
+          ],
+          "dtype": "object"
+        },
+        "k": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "m": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "n": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "t": {
+          "shape": [
+            521,
+            521
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        }
+      },
+      "mask_member": "train_masks/mask40.png",
+      "mask_shape": [
+        521,
+        520
+      ],
+      "publisher_T_key_present": true,
+      "matching_spatial_shape": false
+    }
+  ],
+  "scope": "Shape/key/numeric checks do not establish geospatial alignment, physical calibration, or independent source scenes."
+}

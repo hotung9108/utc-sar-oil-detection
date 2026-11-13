@@ -8,7 +8,7 @@ phải được xác nhận thực tế. Không dùng nhật ký tự động th
 ## Nguồn nội dung
 
 - `narrative.json`: nội dung chương và kết luận, gắn với vị trí trong mẫu gốc.
-- `bibliography.json`: 10 tài liệu tham khảo được trích trong nội dung.
+- `bibliography.json`: 13 tài liệu tham khảo được trích trong nội dung, gồm nguồn hiệu chuẩn Sentinel-1, ERA5 và QPOSD bổ sung.
 - `template_contract.md`: quy tắc dùng mẫu, phạm vi thay đổi và các bước kiểm tra.
 - Các bảng lấy trực tiếp từ `results/sos/*.json`; hình từ `report_figures/` và
   `diagnostics/`. Không gõ lại bảng kết quả bằng tay.
@@ -48,5 +48,5 @@ mục lục với trang thực tế. Các audit trong cache chỉ chứng minh p
 
 `render_progress.json` lưu những trang đã xem và các lỗi phát hiện, gắn với hash
 DOCX/PDF của đúng vòng render. Không chuyển trạng thái duyệt từ bản cũ sang bản mới
-chỉ vì mục lục khớp. Bản v6 đã được xem đủ 36 trang; sau đó đã sửa cách căn tài liệu
-tham khảo và giữ liền khối giả mã, nên bản dựng tiếp theo cần được kiểm tra lại.
+chỉ vì mục lục khớp. Bản v7 đã kiểm tra đủ 36 trang. Bản cập nhật tiếp theo bổ sung
+hiệu chuẩn, gió, GUI/video và thẩm định QPOSD; phải kiểm tra lại các trang thay đổi.

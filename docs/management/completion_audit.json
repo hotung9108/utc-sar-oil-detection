@@ -61,24 +61,25 @@
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
       "status": "missing_labels",
-      "evidence": "SOS chỉ có dầu/nền; chưa có đánh giá theo lớp look-alike"
+      "evidence": "SOS chỉ có dầu/nền; chưa có đánh giá theo lớp look-alike. Đã kiểm kê 41 mask QPOSD với lớp look-alike chung và đọc prefix của 41 MAT: 24 cặp khớp kích thước, 17 cặp lệch (qposd_shape_audit.json). Chưa xác nhận căn chỉnh, CRC/giá trị toàn bộ MAT hoặc chạy mô hình trên QPOSD; chưa có nhãn nguyên nhân gió yếu/màng sinh học/mưa."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
       "status": "draft_layout_verified_submission_pending",
       "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
-      "limit": "Bản v7 khớp hash đã được duyệt đủ 36 trang: 32 trang có pixel giống bản v6 đã duyệt và 4 trang đổi được xem trực tiếp, theo docs/report/render_progress.json. Metadata bìa, chữ ký, điểm đóng góp, biên bản thật và đối chiếu mẫu cuối còn thiếu; chưa phải bản nộp hoàn chỉnh."
+      "limit": "Bản v8 tại deliverables/report/ đã được duyệt đủ 38 trang, 26 trang nội dung chính: 27 trang có pixel giống v7 và 11 trang đổi được xem trực tiếp, theo docs/report/render_progress.json. Đã bổ sung vật lý, gió, GUI/video và QPOSD. Metadata bìa, chữ ký, điểm đóng góp, biên bản thật và đối chiếu mẫu cuối còn thiếu; chưa phải bản nộp hoàn chỉnh."
     },
     {
       "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
-      "status": "unfinished",
-      "evidence": "18 slide tại deliverables/presentation/SAR_SOS_review_v1.pptx đã xem từng trang và kiểm tra cấu trúc; docs/management/slides_audit.json. Video demo, phụ lục đóng góp và nhật ký thật vẫn chưa hoàn thành."
+      "status": "artifacts_verified_authentic_records_pending",
+      "evidence": "20 slide tại deliverables/presentation/SAR_SOS_review_v2.pptx đã được kiểm tra theo slides_audit.json, đồng bộ phần vật lý/gió, GUI/video và QPOSD. Video deliverables/video/SAR_demo_v1.mp4 dài 360 giây, 720 khung hình; giải mã toàn bộ và 24 phụ đề đạt video_audit.json; 9 khung hình đại diện đã được xem theo video_visual_review.json.",
+      "limit": "Video tự động có phụ đề, không âm thanh; không thay thế thuyết trình của thành viên. Hồ sơ đóng góp, chữ ký và nhật ký thật còn thiếu."
     },
     {
       "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
-      "status": "partial",
-      "evidence": "run_experiments.py --workers 6 đã hoàn tất 10 bước; results/sos/runner_reproduce.json passed=true; 5 notebook và 6 tests đạt",
-      "limit": "Runner dùng checkpoint hợp lệ cho benchmark gốc; chưa đóng gói toàn bộ tài liệu nộp"
+      "status": "review_package_verified_full_reproduction_partial",
+      "evidence": "Runner SOS đã hoàn tất 10 bước theo runner_reproduce.json. Gói deliverables/packages/SAR_review_v1.zip có 204 tệp, manifest SHA-256 và CRC đã kiểm tra. Sau giải nén riêng, run_experiments.py --verify-only đạt đối chiếu số liệu, output 5 notebook và 22 tests; docs/management/package_audit.json.",
+      "limit": "Gói là bản review tại thời điểm đóng, không tự cập nhật theo workspace. Đã cài theo uv.lock trong venv mới trên cùng máy Windows, 22 tests và startup Qt/hai mô hình đạt theo package_environment_audit.json; chưa thử hệ điều hành khác. Dữ liệu ảnh gốc và legacy không đóng gói. Chưa có một lệnh tái tạo cả Word/PPTX/video và các đánh giá bên ngoài còn thiếu."
     }
   ]
 }

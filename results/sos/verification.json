@@ -8,8 +8,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 1.6600000890321098e-05,
-      "reference_seconds": 9.60000033956021e-06,
+      "numpy_seconds": 1.3499999113264494e-05,
+      "reference_seconds": 6.199999916134402e-06,
       "passed": true
     },
     {
@@ -20,8 +20,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0013269999999465654,
-      "reference_seconds": 0.002757799999017152,
+      "numpy_seconds": 0.0008633999987068819,
+      "reference_seconds": 0.0011355000006005866,
       "passed": true
     },
     {
@@ -32,8 +32,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0024290000001201406,
-      "reference_seconds": 0.001618800000869669,
+      "numpy_seconds": 0.001139700001658639,
+      "reference_seconds": 0.0009507000013400102,
       "passed": true
     },
     {
@@ -44,8 +44,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 2.220446049250313e-16,
-      "numpy_seconds": 0.0018306000001757639,
-      "reference_seconds": 0.0009200999993481673,
+      "numpy_seconds": 0.0015166000011959113,
+      "reference_seconds": 0.0002494000000297092,
       "passed": true
     },
     {
@@ -56,8 +56,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 2.220446049250313e-16,
-      "numpy_seconds": 0.000772700001107296,
-      "reference_seconds": 0.00035650000063469633,
+      "numpy_seconds": 0.000392699999792967,
+      "reference_seconds": 0.00015669999993406236,
       "passed": true
     },
     {
@@ -69,8 +69,8 @@
         "looks": 1
       },
       "max_abs_error": 3.1807889655510735e-14,
-      "numpy_seconds": 0.001259599999684724,
-      "reference_seconds": 0.0004139000011491589,
+      "numpy_seconds": 0.0009669000010035234,
+      "reference_seconds": 0.00032640000063111074,
       "passed": true
     },
     {
@@ -82,8 +82,8 @@
         "looks": 4
       },
       "max_abs_error": 8.681944052568724e-14,
-      "numpy_seconds": 0.000884899998709443,
-      "reference_seconds": 0.0002982000005431473,
+      "numpy_seconds": 0.0005817999990540557,
+      "reference_seconds": 0.00018379999892204069,
       "passed": true
     },
     {
@@ -95,8 +95,8 @@
         "looks": 1
       },
       "max_abs_error": 8.326672684688674e-15,
-      "numpy_seconds": 0.0009117000008700415,
-      "reference_seconds": 0.00029279999944265,
+      "numpy_seconds": 0.0007187999999587191,
+      "reference_seconds": 0.00021470000137924217,
       "passed": true
     },
     {
@@ -108,8 +108,8 @@
         "looks": 4
       },
       "max_abs_error": 5.1181281435219717e-14,
-      "numpy_seconds": 0.0008385999990423443,
-      "reference_seconds": 0.0003113000002485933,
+      "numpy_seconds": 0.0005227000001468696,
+      "reference_seconds": 0.00017449999904783908,
       "passed": true
     },
     {
@@ -121,8 +121,8 @@
         "looks": 1
       },
       "max_abs_error": 6.439293542825908e-15,
-      "numpy_seconds": 0.0008560999995097518,
-      "reference_seconds": 0.000282599999991362,
+      "numpy_seconds": 0.00046160000056261197,
+      "reference_seconds": 0.00015659999917261302,
       "passed": true
     },
     {
@@ -134,8 +134,8 @@
         "looks": 4
       },
       "max_abs_error": 4.340972026284362e-14,
-      "numpy_seconds": 0.00087100000018836,
-      "reference_seconds": 0.00028059999931429047,
+      "numpy_seconds": 0.0004811999988305615,
+      "reference_seconds": 0.0001525999996374594,
       "passed": true
     },
     {
@@ -249,257 +249,257 @@
     {
       "check": "filter",
       "case": 1,
-      "config": {
-        "name": "none"
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 1.5800000255694613e-05,
-      "reference_seconds": 7.300001016119495e-06,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "median",
-        "size": 3
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005212000014580553,
-      "reference_seconds": 0.00017729999854054768,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "median",
-        "size": 5
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.00046940000174799934,
-      "reference_seconds": 0.00016350000078091398,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "gaussian",
-        "sigma": 0.8
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005264999999781139,
-      "reference_seconds": 0.00022509999871545006,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "gaussian",
-        "sigma": 1.2
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004560999987006653,
-      "reference_seconds": 0.00018959999943035655,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 3,
-        "looks": 1
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006429000004573027,
-      "reference_seconds": 0.0001953999999386724,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 3,
-        "looks": 4
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0011412000003474532,
-      "reference_seconds": 0.00021809999998367857,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 5,
-        "looks": 1
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0007673000000067987,
-      "reference_seconds": 0.00018900000031862874,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 5,
-        "looks": 4
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.000513400000272668,
-      "reference_seconds": 0.00012539999988803174,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 7,
-        "looks": 1
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004668000001402106,
-      "reference_seconds": 0.00015829999938432593,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 1,
-      "config": {
-        "name": "lee",
-        "size": 7,
-        "looks": 4
-      },
-      "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006522000003315043,
-      "reference_seconds": 0.00018060000002151355,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "otsu"
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 15,
-        "k": 0.2
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 15,
-        "k": 0.5
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 15,
-        "k": 0.8
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 31,
-        "k": 0.2
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 31,
-        "k": 0.5
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 31,
-        "k": 0.8
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 51,
-        "k": 0.2
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 51,
-        "k": 0.5
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "threshold",
-      "case": 1,
-      "config": {
-        "name": "niblack",
-        "size": 51,
-        "k": 0.8
-      },
-      "disagreement": 0,
-      "passed": true
-    },
-    {
-      "check": "filter",
-      "case": 2,
       "config": {
         "name": "none"
       },
       "max_abs_error": 0.0,
       "numpy_seconds": 8.999999408842996e-06,
-      "reference_seconds": 4.100000296602957e-06,
+      "reference_seconds": 4.699999408330768e-06,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "median",
+        "size": 3
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.00033350000012433156,
+      "reference_seconds": 0.00012070000047970098,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "median",
+        "size": 5
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.00045429999954649247,
+      "reference_seconds": 0.00011180000001331791,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0005559999990509823,
+      "reference_seconds": 0.00013689999832422473,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0002714000002015382,
+      "reference_seconds": 0.0002077999997709412,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.00043989999903715216,
+      "reference_seconds": 0.0005528000001504552,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0009879999997792765,
+      "reference_seconds": 0.0002505999982531648,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0006456999999500113,
+      "reference_seconds": 0.0001329000006080605,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0004245000000082655,
+      "reference_seconds": 0.00011210000047867652,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0004308000006858492,
+      "reference_seconds": 0.00011350000022503082,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 1,
+      "config": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 0.0004202999989502132,
+      "reference_seconds": 0.00011180000001331791,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "otsu"
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.2
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.5
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 15,
+        "k": 0.8
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.8
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "threshold",
+      "case": 1,
+      "config": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.8
+      },
+      "disagreement": 0,
+      "passed": true
+    },
+    {
+      "check": "filter",
+      "case": 2,
+      "config": {
+        "name": "none"
+      },
+      "max_abs_error": 0.0,
+      "numpy_seconds": 5.399999281507917e-06,
+      "reference_seconds": 2.599999788799323e-06,
       "passed": true
     },
     {
@@ -510,8 +510,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.000565199999982724,
-      "reference_seconds": 0.00014879999980621506,
+      "numpy_seconds": 0.00030979999974078964,
+      "reference_seconds": 9.519999912299681e-05,
       "passed": true
     },
     {
@@ -522,8 +522,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0004417000000103144,
-      "reference_seconds": 0.00015460000031453092,
+      "numpy_seconds": 0.0002865999995265156,
+      "reference_seconds": 9.630000022298191e-05,
       "passed": true
     },
     {
@@ -534,8 +534,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005285999995976454,
-      "reference_seconds": 0.00021330000163288787,
+      "numpy_seconds": 0.0003249000001233071,
+      "reference_seconds": 0.00013500000022759195,
       "passed": true
     },
     {
@@ -546,8 +546,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00045510000018111896,
-      "reference_seconds": 0.00018490000002202578,
+      "numpy_seconds": 0.00029850000100850593,
+      "reference_seconds": 0.00012310000056459103,
       "passed": true
     },
     {
@@ -559,8 +559,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006374999993568053,
-      "reference_seconds": 0.00017149999985122122,
+      "numpy_seconds": 0.0004194000011921162,
+      "reference_seconds": 0.00011380000069038942,
       "passed": true
     },
     {
@@ -572,8 +572,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006435000013880199,
-      "reference_seconds": 0.00016320000031555537,
+      "numpy_seconds": 0.00044040000102540944,
+      "reference_seconds": 0.00011760000052163377,
       "passed": true
     },
     {
@@ -585,8 +585,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006317000006674789,
-      "reference_seconds": 0.0001675000003160676,
+      "numpy_seconds": 0.0003876999999192776,
+      "reference_seconds": 0.00010369999836257193,
       "passed": true
     },
     {
@@ -598,8 +598,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006495999987237155,
-      "reference_seconds": 0.00016010000035748817,
+      "numpy_seconds": 0.000382099999114871,
+      "reference_seconds": 0.00010099999963131268,
       "passed": true
     },
     {
@@ -611,8 +611,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006355000004987232,
-      "reference_seconds": 0.000161899999511661,
+      "numpy_seconds": 0.0004065000011905795,
+      "reference_seconds": 0.0001033000007737428,
       "passed": true
     },
     {
@@ -624,8 +624,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006395000000338769,
-      "reference_seconds": 0.0001655000014579855,
+      "numpy_seconds": 0.0003923999993276084,
+      "reference_seconds": 0.00010160000056202989,
       "passed": true
     },
     {
@@ -743,8 +743,8 @@
         "name": "none"
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 7.3999999585794285e-06,
-      "reference_seconds": 3.899998773704283e-06,
+      "numpy_seconds": 4.600000465870835e-06,
+      "reference_seconds": 2.3000011424301192e-06,
       "passed": true
     },
     {
@@ -755,8 +755,8 @@
         "size": 3
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00036279999949329067,
-      "reference_seconds": 0.00010420000035082921,
+      "numpy_seconds": 0.00023090000104275532,
+      "reference_seconds": 6.949999988137279e-05,
       "passed": true
     },
     {
@@ -767,8 +767,8 @@
         "size": 5
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.00033819999953266233,
-      "reference_seconds": 0.0005166999999346444,
+      "numpy_seconds": 0.00022320000061881728,
+      "reference_seconds": 6.719999873894267e-05,
       "passed": true
     },
     {
@@ -779,8 +779,8 @@
         "sigma": 0.8
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0013796000002912479,
-      "reference_seconds": 0.0006115000014688121,
+      "numpy_seconds": 0.0002834999995684484,
+      "reference_seconds": 0.00011759999870264437,
       "passed": true
     },
     {
@@ -791,8 +791,8 @@
         "sigma": 1.2
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005653000007441733,
-      "reference_seconds": 0.0002623999989737058,
+      "numpy_seconds": 0.0002643999996507773,
+      "reference_seconds": 0.00010959999963233713,
       "passed": true
     },
     {
@@ -804,8 +804,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0007218000009743264,
-      "reference_seconds": 0.00020849999964411836,
+      "numpy_seconds": 0.00034749999940686394,
+      "reference_seconds": 0.00010139999903913122,
       "passed": true
     },
     {
@@ -817,8 +817,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006701000002067303,
-      "reference_seconds": 0.000610499999311287,
+      "numpy_seconds": 0.0003429000007599825,
+      "reference_seconds": 9.890000001178123e-05,
       "passed": true
     },
     {
@@ -830,8 +830,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0007133999988582218,
-      "reference_seconds": 0.00019870000141963828,
+      "numpy_seconds": 0.00033260000054724514,
+      "reference_seconds": 0.00010040000051958486,
       "passed": true
     },
     {
@@ -843,8 +843,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0006580999997822801,
-      "reference_seconds": 0.0001731000011204742,
+      "numpy_seconds": 0.0003269000008003786,
+      "reference_seconds": 0.00035340000067662913,
       "passed": true
     },
     {
@@ -856,8 +856,8 @@
         "looks": 1
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005968000004941132,
-      "reference_seconds": 0.00016630000027362257,
+      "numpy_seconds": 0.0008570999998482876,
+      "reference_seconds": 0.00016090000099211466,
       "passed": true
     },
     {
@@ -869,8 +869,8 @@
         "looks": 4
       },
       "max_abs_error": 0.0,
-      "numpy_seconds": 0.0005486000009113923,
-      "reference_seconds": 0.0001543000016681617,
+      "numpy_seconds": 0.0005736000002798392,
+      "reference_seconds": 0.0001627000001462875,
       "passed": true
     },
     {

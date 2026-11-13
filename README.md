@@ -35,6 +35,9 @@ CLI có từng bước `prepare`, `verify`, `screen`, `benchmark`, `select`, `ev
 
 ## Tài liệu
 
+- [Hướng dẫn bàn giao](deliverables/README.md), [gói review ZIP](deliverables/packages/SAR_review_v1.zip): 204 tệp kèm manifest, chưa phải bản nộp hoàn chỉnh.
+- [Báo cáo DOCX/PDF bản review v8](deliverables/report/README.md): đã kiểm tra bố cục; còn thông tin nhóm và yêu cầu khoa học chưa hoàn tất.
+- [Video demo 6 phút và kiểm chứng](deliverables/video/README.md), [slide 20 trang](deliverables/presentation/README.md).
 - [Mục tiêu](docs/MUC_TIEU_DU_AN.md), [giao thức](docs/GIAO_THUC_THUC_NGHIEM.md).
 - [Phân công mới](docs/management/KE_HOACH_SOS_NOTEBOOK.md), [workbook](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx).
 - [Kiểm kê dữ liệu](docs/management/KIEM_TRA_REFINED_SOS.md), [manifest](data/manifest.json).

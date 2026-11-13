@@ -8,5 +8,8 @@
   {"number": 7, "citation": "scikit-learn, ‘DecisionTreeClassifier,’ documentation, version 1.9.1. Truy cập ngày 13/11/2026.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"},
   {"number": 8, "citation": "C. Cortes and V. Vapnik, ‘Support-vector networks,’ Machine Learning, vol. 20, pp. 273–297, 1995, doi: 10.1007/BF00994018.", "url": "https://doi.org/10.1007/BF00994018"},
   {"number": 9, "citation": "scikit-learn, ‘LinearSVC,’ documentation, version 1.9.1. Truy cập ngày 13/11/2026.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html"},
-  {"number": 10, "citation": "Y.-J. Yang and S. Singha, ‘Oil slicks, look-alikes and other remarkable SAR signatures in Sentinel-1 imagery in the Eastern Mediterranean Sea in 2019,’ PANGAEA, 2025, doi: 10.1594/PANGAEA.980773.", "url": "https://doi.pangaea.de/10.1594/PANGAEA.980773"}
+  {"number": 10, "citation": "Y.-J. Yang and S. Singha, ‘Oil slicks, look-alikes and other remarkable SAR signatures in Sentinel-1 imagery in the Eastern Mediterranean Sea in 2019,’ PANGAEA, 2025, doi: 10.1594/PANGAEA.980773.", "url": "https://doi.pangaea.de/10.1594/PANGAEA.980773"},
+  {"number": 11, "citation": "Sentinel-1 Level 1 Detailed Algorithm Definition, DI-MPC-IPFDPM, phiên bản 2.5, 2022. Tài liệu trong thư viện SentiWiki, mục hiệu chuẩn bức xạ.", "url": "https://sentiwiki.copernicus.eu/web/s1-documents"},
+  {"number": 12, "citation": "Open-Meteo, ‘Historical Weather API,’ tài liệu mô hình ERA5 và tham số truy vấn. Truy cập ngày 13/11/2026.", "url": "https://open-meteo.com/en/docs/historical-weather-api"},
+  {"number": 13, "citation": "‘Quad-Polarization Dataset for Marine Oil Spill and Look-Alike Segmentation,’ QPOSD, Zenodo, bản ghi 19258036, 2026, doi: 10.5281/zenodo.19258036. Kiểm kê trực tiếp mask và ba mảng đặc trưng của bản này.", "url": "https://zenodo.org/records/19258036"}
 ]

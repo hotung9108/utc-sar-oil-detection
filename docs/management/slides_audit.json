@@ -1,14 +1,20 @@
 {
   "status": "review_copy_verified",
   "submission_ready": false,
-  "file": "deliverables/presentation/SAR_SOS_review_v1.pptx",
-  "sha256": "dd1c66203dc2d1b6e1096cf76a40f5d4554bd0da580716d85b2af14fdfcf9254",
-  "slide_count": 18,
+  "file": "deliverables/presentation/SAR_SOS_review_v2.pptx",
+  "sha256": "499154ccbb8f43e74eaaf366ab9c9bcd93a4974da8659b5b4a6416aac4426138",
+  "slide_count": 20,
   "visual_review": {
     "slides_individually_inspected": [
+      3,
+      17,
+      18,
+      19,
+      20
+    ],
+    "pixel_identical_to_reviewed_v1": [
       1,
       2,
-      3,
       4,
       5,
       6,
@@ -21,16 +27,14 @@
       13,
       14,
       15,
-      16,
-      17,
-      18
+      16
     ],
     "clipping_or_overlap_observed": false,
-    "method": "Artifact Tool PNG render of byte-identical draft; full-size individual inspection",
+    "method": "Changed/new slides inspected at full resolution; unchanged slides compared pixel by pixel against reviewed v1",
     "render_sha256": {
       "1": "7ab800350309f526901e5e6fa97110250da0cac4d24d28c8bfed57d97aa97a03",
       "2": "91abf270f2340f2c734ad4961db78ffca7b261f2d928b8a0bd61b274d01e0cf0",
-      "3": "59b327fae7d5db7ab16ebacdbca4f1509060f025da0fce4d98b8cec9907d6f2f",
+      "3": "ffccd71dbd4f904cff5918f061ab1d4a1f45e1f2b4e21dacdf532f393048664c",
       "4": "6dd84525fc4bcf6ed0350c5590f1d365232b7b082632b6bdb6821fefb835f7e0",
       "5": "40eef5ecd21999bd2d1914d5f13055cf2daf83105d85e503cf26c5922d0bc8e9",
       "6": "ed4c26eaee36dfe1a022a067320177b82ee84b606d7cfaffd370c8a6ec4e761e",
@@ -44,22 +48,24 @@
       "14": "336b69c3ca8041bca08d101785942fcfeb1bd7cd13894f9f86540ba241605dfc",
       "15": "25dd8fc40d5e4544c3587c005b5dd8e584d22a4e9a7433b059121fdd13d935fb",
       "16": "9d3b5a9c02c3f2693a88500a35ad62125b43bc1f4e008e2694c163846922af63",
-      "17": "8aeda812657090d9c9fc5e5016f3e91c8df4796d2e684a1fd7ad39fc956780f5",
-      "18": "19fbd15c1070d6f586a3bd1a6e1a9315ae1daa0055e8d68667e22f0d3c67b189"
+      "17": "db3b6710426a807db0069f235f06918814e79dff6c3a1b02b268c0384213578f",
+      "18": "3e5ff2628678f3066295f12f95bd813715334816cb49b1f1120dae1909a08c58",
+      "19": "65bc5dc0f97b8ab7d18bca2cc34bbf482bbfd54adfd92a302a3d2e1bed8fd934",
+      "20": "13278833ebdf4d5feda8008ba536cb30137d5e12ea7904077545194c4efad8bd"
     }
   },
-  "validation": {
+  "finalization": {
     "schemaVersion": "presentation-finalization.v1",
-    "finalSha256": "dd1c66203dc2d1b6e1096cf76a40f5d4554bd0da580716d85b2af14fdfcf9254",
-    "byteCount": 1173932,
+    "finalSha256": "499154ccbb8f43e74eaaf366ab9c9bcd93a4974da8659b5b4a6416aac4426138",
+    "byteCount": 1180214,
     "packageIntegrity": {
       "chart_count": 0,
       "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
       "finding_count": 0,
       "findings": [],
-      "notes_parts_skipped": 18,
-      "relationship_part_count": 46,
-      "slide_count": 18,
+      "notes_parts_skipped": 20,
+      "relationship_part_count": 50,
+      "slide_count": 20,
       "status": "pass",
       "exitCode": 0,
       "findingCount": 0,
@@ -69,18 +75,18 @@
       "finding_count": 0,
       "findings": [],
       "font_policy": {
-        "checked_text_script_count": 160,
+        "checked_text_script_count": 172,
         "native_font_rendering_verified": false,
         "observed_font_families": [
           "Arial"
         ],
         "observed_font_use_counts": {
-          "Arial": 160
+          "Arial": 172
         },
         "passed": true,
         "performed": true
       },
-      "slide_count": 18,
+      "slide_count": 20,
       "slide_size_in": [
         13.3333,
         7.5
@@ -90,13 +96,13 @@
       "exitCode": 0,
       "findingCount": 0,
       "fontPolicy": {
-        "checked_text_script_count": 160,
+        "checked_text_script_count": 172,
         "native_font_rendering_verified": false,
         "observed_font_families": [
           "Arial"
         ],
         "observed_font_use_counts": {
-          "Arial": 160
+          "Arial": 172
         },
         "passed": true,
         "performed": true
@@ -110,13 +116,13 @@
       "scriptFonts": {},
       "referenceSha256": null,
       "referenceFontsVerifiedInEncodedText": false,
-      "checked_text_script_count": 160,
+      "checked_text_script_count": 172,
       "native_font_rendering_verified": false,
       "observed_font_families": [
         "Arial"
       ],
       "observed_font_use_counts": {
-        "Arial": 160
+        "Arial": 172
       },
       "passed": true,
       "performed": true
@@ -124,8 +130,8 @@
     "firstPartyImport": {
       "performed": true,
       "passed": true,
-      "slideCount": 18,
-      "sha256": "dd1c66203dc2d1b6e1096cf76a40f5d4554bd0da580716d85b2af14fdfcf9254",
+      "slideCount": 20,
+      "sha256": "499154ccbb8f43e74eaaf366ab9c9bcd93a4974da8659b5b4a6416aac4426138",
       "runtimeNodeModules": "C:\\Users\\hotung\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules",
       "nodeExecutable": "C:\\Users\\hotung\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
     },
@@ -178,11 +184,11 @@
         },
         {
           "reason": "no_numeric_amounts",
-          "slide": 18,
+          "slide": 20,
           "table": 1
         }
       ],
-      "slide_count": 18,
+      "slide_count": 20,
       "warning_count": 0,
       "warnings": []
     },
@@ -194,9 +200,9 @@
       "native_chart_count": 0,
       "native_powerpoint_verified": false,
       "passed": true,
-      "presentation_sha256": "dd1c66203dc2d1b6e1096cf76a40f5d4554bd0da580716d85b2af14fdfcf9254",
+      "presentation_sha256": "499154ccbb8f43e74eaaf366ab9c9bcd93a4974da8659b5b4a6416aac4426138",
       "schema_version": "presentation-native-chart-titles.v1",
-      "slide_count": 18,
+      "slide_count": 20,
       "source_text_emitted": false,
       "unresolved_linked_title_count": 0
     },
@@ -220,11 +226,11 @@
       "--require-native-table-slide",
       "13",
       "--require-native-table-slide",
-      "18",
+      "20",
       "--cover-role",
       "none",
       "--expected-slide-count",
-      "18",
+      "20",
       "--approved-font-family",
       "Arial"
     ],
@@ -237,10 +243,11 @@
       "passed": true
     }
   },
-  "limitations": [
-    "Not opened in native PowerPoint",
-    "Project still lacks incidence-angle/wind validation and physical look-alike subtype labels",
-    "DARTIS inference pending; slide 17 states preparation status",
-    "Slides 15 and 16 have small diagnostic panel labels; main captions summarize measured failure counts"
+  "native_powerpoint_opened": false,
+  "limits": [
+    "Physical branch not validated against oil labels",
+    "Look-alike cause labels and independent adaptive test missing",
+    "DARTIS evaluation pending complete downloads",
+    "Authentic student contributions and cover metadata pending"
   ]
 }

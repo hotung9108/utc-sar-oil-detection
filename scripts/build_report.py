@@ -231,7 +231,7 @@ fill_table(tables[4], [['Từ viết tắt', 'Tiếng Anh', 'Tiếng Việt'],
     ['SVM', 'Support Vector Machine', 'Máy vector hỗ trợ']], [2.6, 6.1, 7.3])
 caption(paragraphs[73], 'Bảng', 1, 1, 'Chức năng và người phụ trách theo kế hoạch')
 fill_table(tables[5], [['Bước', 'Chức năng và tình trạng', 'Phụ trách'],
-    ['Tiền xử lý', 'Lọc NumPy; chưa có dữ liệu để chuẩn hóa góc tới', 'TV3'],
+    ['Tiền xử lý', 'Lọc NumPy; hiệu chuẩn góc tới minh họa riêng, chưa chấm phát hiện', 'TV3'],
     ['Ứng viên', 'So sánh Otsu và Niblack; liên thông và hình thái', 'TV3, TV4'],
     ['Phân lớp', 'Tám đặc trưng; CART và SVM; nhãn dầu/nền', 'TV4, TV2'],
     ['Đánh giá', 'Precision, Recall, F1 đối tượng; IoU pixel; chưa có nhãn từng loại look-alike', 'TV5'],

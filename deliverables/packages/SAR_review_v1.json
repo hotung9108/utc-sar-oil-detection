@@ -1,0 +1,14 @@
+{
+  "file": "deliverables/packages/SAR_review_v1.zip",
+  "sha256": "908c05f80ec8fee3f4de6b820907835183d699f58e09fbe9d2e64a84d601f681",
+  "bytes": 35695315,
+  "members": 204,
+  "zip_crc_and_sha256_verified": true,
+  "submission_ready": false,
+  "isolated_execution_verified": true,
+  "isolated_execution_scope": "Extracted code and saved evidence checks; does not rerun training, GUI interaction, or external dataset evaluations",
+  "environment": "Existing workspace Python environment reused; not a clean dependency install",
+  "fresh_venv_verified": true,
+  "fresh_venv_audit": "docs/management/package_environment_audit.json",
+  "fresh_venv_scope": "New venv on the same Windows host, installed from the frozen lock. No claim of another OS, full retraining, or real-image GUI validation in this environment."
+}

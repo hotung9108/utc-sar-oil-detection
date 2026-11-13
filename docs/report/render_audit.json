@@ -1,11 +1,11 @@
 {
-  "docx_sha256": "fd57367bef1cdb4cfe6f2cc27036161841333af347ec1c224593c9637bdd4cdb",
-  "pdf_sha256": "64797804315e17a84bbdd33318c77faa2f4709af849f0adcb0982184117d4764",
-  "render": ".cache\\report\\render-fields-v7\\Bao_cao_SAR_SOS_fields.pdf",
-  "pages": 36,
+  "docx_sha256": "ebd56eb2fa772d5abbc40074dc4c953039bfe9885eb637da093121d3363977e8",
+  "pdf_sha256": "ce5832f885e5e766b2ecf9136ab1e2e45dc7b4a218cc837ba9cd4ccbb03abace",
+  "render": ".cache\\report\\render-fields-v8\\Bao_cao_SAR_SOS_fields.pdf",
+  "pages": 38,
   "main_start": 9,
-  "main_end": 33,
-  "main_page_count": 25,
+  "main_end": 34,
+  "main_page_count": 26,
   "latest_template_20_to_35": true,
   "original_guide_25_to_40": true,
   "toc_checks": [
@@ -143,44 +143,44 @@
     },
     {
       "target": "KẾT LUẬN",
-      "cached_page": 25,
-      "pdf_page": 33,
-      "found": true
-    },
-    {
-      "target": "TÀI LIỆU THAM KHẢO",
       "cached_page": 26,
       "pdf_page": 34,
       "found": true
     },
     {
-      "target": "PHỤ LỤC",
+      "target": "TÀI LIỆU THAM KHẢO",
       "cached_page": 27,
       "pdf_page": 35,
+      "found": true
+    },
+    {
+      "target": "PHỤ LỤC",
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "A. Bảng phân công công việc và tự đánh giá đóng góp",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "B. Biên bản họp nhóm",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "C. Khai báo sử dụng công cụ AI",
-      "cached_page": 28,
-      "pdf_page": 36,
+      "cached_page": 30,
+      "pdf_page": 38,
       "found": true
     },
     {
       "target": "D. Hướng dẫn cài đặt và chạy chương trình",
-      "cached_page": 28,
-      "pdf_page": 36,
+      "cached_page": 30,
+      "pdf_page": 38,
       "found": true
     },
     {
@@ -293,20 +293,20 @@
     },
     {
       "target": "Bảng PL.1. Phân công kiểm tra và bàn giao",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "Bảng PL.2. Xác nhận đóng góp thực tế",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "Bảng PL.3. Khai báo hỗ trợ bằng AI",
-      "cached_page": 28,
-      "pdf_page": 36,
+      "cached_page": 30,
+      "pdf_page": 38,
       "found": true
     }
   ],
