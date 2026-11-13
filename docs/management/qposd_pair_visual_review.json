@@ -322,6 +322,91 @@
       ],
       "png_path": ".cache/qposd/pair_previews/pair28.png",
       "png_sha256": "416bd2df2dc70843351559b04525ba54bb7fb8989cc720e4aebe52e3c457654f"
+    },
+    {
+      "number": 32,
+      "mat_sha256": "e1f5ad3b029b747527b1c246d9876c03533a99298634694265f3fd8bb697612a",
+      "mask_sha256": "d7dad81036c860c21a02e66c8f92cc5b3977784ab4bfb8c73d3c44ef00555136",
+      "shape": [
+        2051,
+        2051,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -42.50000439580213,
+        -14.417493012006064
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair32.png",
+      "png_sha256": "01e2e54dd648a8ea21262bbb41d1979d72f49145ae8db8a82db51fc019cd90c0"
+    },
+    {
+      "number": 33,
+      "mat_sha256": "3e57f7084f0c0442be672df621d0407db94fcc413f96d30d8d9103dfda29d48d",
+      "mask_sha256": "52ef5c0b8533015e689e7748ab8476e0cd52762d1a527634c25acf68c6a37eb9",
+      "shape": [
+        1031,
+        1031,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -41.34416074732324,
+        -11.858925002107217
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair33.png",
+      "png_sha256": "177efa8a112e65f1ee31d0159db22d7e97c6aee6795ad972c989acee10d7f835"
+    },
+    {
+      "number": 34,
+      "mat_sha256": "fd7380f5feaa368f00823bb691dbe0859a0da4c2585909022fa6f1b40418a64d",
+      "mask_sha256": "ea6a2cb23f978206cdad230d1d8ccee2a1b02cc1bc8860fb38cd08d7112b1901",
+      "shape": [
+        1031,
+        1031,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -37.29040210136317,
+        -16.25863955952148
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair34.png",
+      "png_sha256": "01de9ecf39dd774a050cee079aaf5c45fce374ccd83f03332402ad4db833de0d"
+    },
+    {
+      "number": 36,
+      "mat_sha256": "e1849a6236bde3515333f1079b69301c9ce11aa372fd4949f90daa42253ddaa8",
+      "mask_sha256": "06da92625e852b9a35e3047388ce43d23659179cedd10037973c7210415d6e29",
+      "shape": [
+        1551,
+        1551,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -43.22415033446434,
+        -19.586868208691943
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair36.png",
+      "png_sha256": "8c53b32d51a57f37b1470a17c3cacde5ceb387eacc86b62c84677f6507a4e1bb"
+    },
+    {
+      "number": 39,
+      "mat_sha256": "bcc47f4696c0a2145f864c7b513b75a02fb1b9f947c394f96137fcbe4a1a3386",
+      "mask_sha256": "ae5cabcfa86c09c2547914dcc3bcd27911f40f35ca638b662b5032adf7c788cb",
+      "shape": [
+        1031,
+        1031,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -40.66170575453874,
+        -20.859435620466996
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair39.png",
+      "png_sha256": "6127e0b4dc9bd97e350f8218d730063b4e0c4eab8b714324f11bebb813cfe1cb"
     }
   ],
   "scope": "Visual preview only; no quantitative registration, classification, or physical calibration.",
@@ -343,7 +428,12 @@
     25,
     26,
     28,
+    32,
+    33,
+    34,
     35,
+    36,
+    39,
     41
   ],
   "visual_review_completed": true,
@@ -367,7 +457,12 @@
     "24": "Test structural review: look-alike reference follows multiple dark textured branches near the top/right coast, with land also marked. Several boundaries simplify fine dark structure. No causal look-alike type inferred and no prediction scored.",
     "25": "Test structural review: generic look-alike reference covers broad dark branching textures in the upper/right portions, with numerous fine components. Reference outlines approximate the texture; no physical cause inferred and no model score computed.",
     "26": "Generic look-alike reference covers dark branching textures and narrow coastal margins in water partly enclosed by visible land. Land outlines correspond approximately. This coastal/enclosed-water context is not representative evidence for open-ocean performance or a specific physical look-alike cause.",
-    "28": "Broad oil reference covers most of the upper image, including heterogeneous and relatively bright areas; its lower boundary roughly follows a major intensity transition. Bright point targets occur within/near the annotation. Dark thresholding alone need not reproduce the full reference extent; no parameter changes made."
+    "28": "Broad oil reference covers most of the upper image, including heterogeneous and relatively bright areas; its lower boundary roughly follows a major intensity transition. Bright point targets occur within/near the annotation. Dark thresholding alone need not reproduce the full reference extent; no parameter changes made.",
+    "32": "Look-alike reference broadly follows branching dark textures on the left and a lower dark patch; contains three isolated one-pixel oil components elsewhere. These tiny published oil labels are retained, not silently removed. Display review cannot establish whether they are annotation errors or physical oil.",
+    "33": "Oil reference is fragmented around visible islands/coastal structures; broad dark regions roughly correspond, with many tiny components and complex land boundaries. Counted raster components are not independent physical spill events. No labels edited.",
+    "34": "Look-alike reference follows multiple branching dark structures in the upper/right image; small land boundaries are marked at the edge. Some fine structures lie outside simplified reference outlines. No causal subtype or precise registration established.",
+    "36": "Look-alike reference surrounds the large central/lower dark heterogeneous area and small branches. Broad boundary correspondence is visible but blurred transitions and variable intensity make exact boundaries uncertain; no physical subtype inferred.",
+    "39": "Oil reference follows the large lower-right dark textured region clipped by bottom/right borders, with holes and small detached components. Boundaries correspond approximately; no independent physical confirmation."
   },
   "limits": "Visual correspondence only; no proof of physical oil identity, precise boundary registration, or scene independence. Do not remove samples based on model performance.",
   "preview_script_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5"

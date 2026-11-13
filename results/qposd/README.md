@@ -2,8 +2,11 @@
 
 SOS vẫn là tập chính. QPOSD cung cấp nhãn dầu/tương tự dầu chung trên UAVSAR
 L-band, không có nhãn nguyên nhân gió yếu, màng sinh học và mưa. Hiện đã cố
-định giao thức và trích một phần đặc trưng; **chưa có điểm phân lớp hoặc
-phát hiện QPOSD**.
+định giao thức ban đầu và trích đủ đặc trưng train/validation; **chưa có
+điểm phân lớp hoặc phát hiện QPOSD**. Kiểm tra 276 cặp đã phát hiện vùng
+trùng chính xác giữa ảnh 21 (test) và ảnh 22 (train). Giao thức v1 hiện
+**bị chặn trước huấn luyện**; cần nhóm các ảnh trùng cùng một tập và lưu
+giao thức sửa đổi trước khi chạy mô hình.
 
 ## Giao thức trước huấn luyện
 
@@ -69,11 +72,12 @@ Lệnh trích đặc trưng chỉ nhận ảnh train/validation và từ chối 
 mã NumPy và mã tham chiếu, cùng đặc trưng hai cách tính cho từng đối tượng.
 Muốn tái tạo cần dùng bản sao thư mục kết quả, không xóa bằng chứng gốc.
 
-Đã trích 285 vùng của 14 ảnh train/validation: 4, 8, 10, 13, 15, 16, 17,
-19, 20, 22, 26, 28, 35, 41.
+Đã trích 721 vùng của toàn bộ 19 ảnh train/validation theo giao thức v1:
+519 vùng train (317 dầu, 202 tương tự dầu), 202 vùng validation (24 dầu,
+178 tương tự dầu). Các đặc trưng này chưa được dùng để fit hoặc chọn mô hình.
 Sai số lớn nhất trên tất cả đặc trưng:
 `6.516835210357286e-9`; trên ảnh chuẩn hóa:
-`1.8385559610381574e-6`. Số liệu chỉ thuộc 14 ảnh đã trích đặc trưng này. Thời gian trong JSON
+`1.8385559610381574e-6`. Số liệu chỉ thuộc 19 ảnh đã trích đặc trưng này. Thời gian trong JSON
 là một lần chạy và nhánh NumPy gồm cả gán nhãn; không phải phép so tốc độ
 công bằng của hai pipeline hoàn chỉnh. Thêm ảnh 10 bằng lệnh
 `scripts/extract_qposd_regions.py --numbers` kèm ID ảnh chưa xử lý trong cùng
@@ -174,9 +178,17 @@ khớp trong trường hợp kiểm tra và hòa điểm chọn đúng thứ t�
 thí nghiệm độ chính xác QPOSD. Lần chạy kiểm tra dữ liệu hiện tại dừng trước
 fit do chưa có hồ sơ đầy đủ 24 MAT; chưa có `classifier_selection.json`.
 
-Tiến trình tải và kiểm tra toàn bộ 24 MAT còn chạy. Trước khi fit cần đủ
-kiểm tra toàn mảng, hash/CRC, giá trị hữu hạn và xem các cặp ảnh/nhãn. Nếu
-phát hiện lỗi cấu trúc làm thay đổi tập đủ điều kiện, phải dừng và tạo phiên
-bản giao thức mới, không âm thầm bỏ mẫu. Kiểm tra trực quan chỉ cho thấy
+Đã tải đủ 24 MAT, kiểm tra CRC/hash, giá trị hữu hạn, khớp kích thước và
+xem toàn bộ 24 cặp ảnh/nhãn. `qposd_matched_full_audit.json` lưu bằng chứng.
+Kiểm tra đủ 276 cặp (`qposd_overlap_all24.json`) tìm thấy bốn cặp có toàn
+bộ vùng giao trùng chính xác: 19/20 (76.351 pixel), 21/22 (7.601 pixel),
+22/33 (33.711 pixel), 22/35 (447.951 pixel). Các nhóm liên thông là
+{19,20} và {21,22,33,35}; những ảnh còn lại chưa phát hiện giao trùng theo
+phép kiểm tra này. Cặp 21/22 vượt ranh giới train/test của v1, nên lệnh
+kiểm tra trước huấn luyện đã thực sự dừng với lỗi này. Không có mô hình
+hoặc điểm test nào được tạo từ cách chia bị lỗi.
+
+Phải tạo phiên bản giao thức mới trước khi fit, không âm thầm bỏ mẫu hoặc
+báo cáo kết quả từ cách chia cũ. Kiểm tra trực quan chỉ cho thấy
 tương ứng hình ảnh, không chứng minh đường biên chính xác hoặc nguồn nhãn
 được xác nhận bằng đo đạc tại hiện trường.
