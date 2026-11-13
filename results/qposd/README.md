@@ -22,6 +22,16 @@ train lấy 10+4, validation 3+2, test 3+2. Ba pixel dầu trong ảnh 32 vẫn 
 nhãn dầu. Tỉ lệ này là lựa chọn thiết kế cho tập nhỏ, không phải tỉ lệ tối
 ưu được chứng minh bằng định lý. Chưa có ID cảnh để chứng minh độc lập cảnh.
 
+Đã kiểm tra trùng lặp chính xác trên 7 ảnh tải trước (4, 8, 10, 13, 14, 35,
+41), gồm 21 cặp: lấy ô T11 5×5, bước 64 pixel, tìm giá trị ô giống hệt trong
+ảnh thứ hai. Không tìm thấy ô khớp ở lần chạy này. Mã tại
+`scripts/audit_qposd_overlap.py`, kết quả thực tại
+`docs/management/qposd_overlap_first7.json`. Mã đã qua kiểm tra tìm đúng độ
+dịch và toàn bộ vùng giao khi cắt một ảnh giả lập, đồng thời không coi ảnh
+hằng là bằng chứng trùng lặp. Đây là kiểm tra lấy mẫu, không phát hiện chắc
+chắn ảnh cùng cảnh đã đổi thang, xoay hoặc lấy mẫu lại; không được dùng kết
+quả âm tính để khẳng định độc lập cảnh. Sẽ cần mở rộng kiểm tra khi đủ 24 ảnh.
+
 Giao thức quy định 10 cấu hình SVM/CART, chọn bằng macro-F1 phân lớp trên
 validation; sau đó chọn trong 10 cấu hình tạo vùng bằng trung bình F1 mức
 đối tượng của hai lớp trên validation. Test chỉ chấm sau khi lưu mô hình và
