@@ -288,6 +288,23 @@
       ],
       "png_path": ".cache/qposd/pair_previews/pair25.png",
       "png_sha256": "e26abbb38f494553a2d8f71d5b2322f8623c90830caacbf5bf3d7e46ed0e8250"
+    },
+    {
+      "number": 26,
+      "mat_sha256": "950f5d91d3b1d9d0e15e2bd547707e54916b48915147c0681a6269c5a173d0cd",
+      "mask_sha256": "b450125daefb43e946f5ecae989e569047962d60597efc49011bb5f2ceca5853",
+      "shape": [
+        1551,
+        1551,
+        9
+      ],
+      "published_prefix_matches": true,
+      "display_db_limits": [
+        -38.4582177340818,
+        -5.083738454671058
+      ],
+      "png_path": ".cache/qposd/pair_previews/pair26.png",
+      "png_sha256": "94d8884986575af0e6c811645618b6e80936332ef9eab56f3197d5cb900d51be"
     }
   ],
   "scope": "Visual preview only; no quantitative registration, classification, or physical calibration.",
@@ -307,6 +324,7 @@
     22,
     24,
     25,
+    26,
     35,
     41
   ],
@@ -329,7 +347,8 @@
     "21": "Test structural review: oil regions roughly follow the right-hand dark coastal structures and small central patches; land follows visible shoreline. No predictions scored.",
     "22": "Broad heterogeneous oil reference follows dark structures approximately. The upper-right pattern visually resembles image35, both assigned train; exact-overlap screen should cover this pair when auditing the full population.",
     "24": "Test structural review: look-alike reference follows multiple dark textured branches near the top/right coast, with land also marked. Several boundaries simplify fine dark structure. No causal look-alike type inferred and no prediction scored.",
-    "25": "Test structural review: generic look-alike reference covers broad dark branching textures in the upper/right portions, with numerous fine components. Reference outlines approximate the texture; no physical cause inferred and no model score computed."
+    "25": "Test structural review: generic look-alike reference covers broad dark branching textures in the upper/right portions, with numerous fine components. Reference outlines approximate the texture; no physical cause inferred and no model score computed.",
+    "26": "Generic look-alike reference covers dark branching textures and narrow coastal margins in water partly enclosed by visible land. Land outlines correspond approximately. This coastal/enclosed-water context is not representative evidence for open-ocean performance or a specific physical look-alike cause."
   },
   "limits": "Visual correspondence only; no proof of physical oil identity, precise boundary registration, or scene independence. Do not remove samples based on model performance.",
   "preview_script_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5"
