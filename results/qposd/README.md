@@ -98,6 +98,26 @@ không suy ra độ chính xác thực tế từ các kiểm tra này. Lần ch�
 cấu hình trên dữ liệu hiện tại dừng trước chấm validation do thiếu hồ sơ
 24 MAT. Chưa có `detection_selection.json`.
 
+Sau khi đã lưu đủ hai lựa chọn, chấm test bằng:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/evaluate_qposd_test.py --preflight-only
+.\.venv\Scripts\python.exe scripts/evaluate_qposd_test.py
+```
+
+Lệnh kiểm tra không trích đặc trưng test hoặc chấm điểm. Lệnh chạy thật sẽ
+lưu `evaluation.json`, mask lớp 0/1/2 cho NumPy và thư viện, kết quả từng ảnh
+và đặc trưng vùng tham chiếu trong `test/`. Mask PNG được đọc lại để xác
+minh không đổi pixel. Kết quả phân lớp có sẵn vùng và kết quả phát hiện
+đầu-cuối được lưu riêng. Nếu đã có thư mục `test/` hoặc kết quả tổng hợp,
+lệnh từ chối ghi đè; nếu lần chạy bị gián đoạn phải kiểm tra bằng chứng dở
+dang trước khi quyết định cách phục hồi, không âm thầm chạy lại.
+
+Đã kiểm tra bằng dữ liệu giả lập rằng bước kiểm tra test từ chối phương án
+thắng không đúng quy tắc validation, điểm tổng hợp bị sửa và tập validation
+thiếu ảnh. Trên dữ liệu thực hiện tại, lệnh dừng trước test vì chưa đủ hồ
+sơ MAT; **chưa tạo `evaluation.json` hay thư mục `test/`**.
+
 Mã `scripts/train_qposd_classifiers.py` đã có hai chế độ:
 
 ```powershell

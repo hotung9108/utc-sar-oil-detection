@@ -1,0 +1,22 @@
+{
+  "synthetic_test_gate_checks": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -p test_qposd_test_gate.py -v",
+    "tests_run": 2,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0
+  },
+  "real_data_preflight": {
+    "command": ".venv/Scripts/python.exe scripts/evaluate_qposd_test.py --preflight-only",
+    "exit_code": 1,
+    "reason": "Full 24-pair MAT audit is not complete",
+    "test_scored": false,
+    "evaluation_exists": false,
+    "test_artifact_directory_exists": false
+  },
+  "source_sha256": {
+    "scripts/evaluate_qposd_test.py": "385195d6fdab20ccf11ce7df8e2406b335bee5992250824c67126c1f0d9c91b4",
+    "tests/test_qposd_test_gate.py": "bf40ed430c4d2988879eb81aad7154c06ad51ea5d648361d920683bad218a442"
+  },
+  "scope": "Control-flow checks only. No QPOSD model accuracy claim."
+}
