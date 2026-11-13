@@ -60,9 +60,9 @@
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
-      "status": "generic_lookalike_classification_validated_detection_running",
-      "evidence": "All 24 eligible MAT pairs downloaded, CRC/hash/finite checks and visual review complete. All 276 pairwise overlap checks complete; protocol v1 rejected before fitting for overlap across splits. Protocol v2 keeps exact-overlap groups together with 14/5/5 images. All 10 classifiers fitted and converged using train only; validation winner CART depth5/min_leaf1, conditional macro-F1 0.6238049911020982 (oil F1 0.3835616438356164). results/qposd/classifier_selection.json stores all comparisons and frozen models. Complete 10-by-5 candidate validation is running; no detection winner or test result yet. NumPy feature optimization passed exact equality on 1474 real candidate regions and 24 QPOSD tests.",
-      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Conditional reference-region classification is not end-to-end detection. Real notebook 10 execution, detection/test results and report integration remain pending."
+      "status": "generic_lookalike_classification_and_detection_test_complete_notebook_pending",
+      "evidence": "All 24 eligible MAT pairs and 276 pairwise overlap checks complete; v2 keeps exact-overlap groups in 14/5/5 source-image splits. All 10 classifiers converged; conditional validation winner CART depth5/min_leaf1, macro-F1 0.6238049911. All 50 validation candidate comparisons completed; no candidate filter + Otsu won with object macro-F1 0.0563380282. Frozen winner committed before test. All five test images evaluated: detection macro-F1 0.0637296643, oil F1 0.1132075472, look-alike F1 0.0142517815; conditional classification macro-F1 0.5214138612. NumPy/reference masks exactly equal on all five test images. results/qposd/REPORT.md verifies hashes and recomputes pooled counts. Notebook 10 rerun is in progress.",
+      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Notebook visual review and Word/slides/package integration remain pending."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",

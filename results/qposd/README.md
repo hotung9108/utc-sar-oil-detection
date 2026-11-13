@@ -9,7 +9,11 @@ hình tìm vùng × 5 ảnh validation. Cấu hình thắng là không lọc tr�
 Otsu, diện tích tối thiểu 64, không hình thái: macro-F1 đối tượng 0,0563380.
 Ảnh dùng trích đặc trưng vẫn được lọc Lee 7×7, L=4 theo giao thức cố định.
 Lựa chọn đã lưu trong `detection_selection.json` và commit trước khi chạy test.
-Đánh giá năm ảnh test đang chạy; chưa có kết quả test hoàn chỉnh.
+Đánh giá đủ năm ảnh test đã hoàn tất: macro-F1 phát hiện 0,0637297, F1 dầu
+0,1132075 và F1 tương tự dầu 0,0142518. NumPy/thư viện có mask bằng nhau
+từng pixel trên cả năm ảnh. Phân lớp có sẵn vùng đạt macro-F1 0,5214139;
+không dùng số này thay F1 phát hiện. Chi tiết, confusion và số đếm tại
+[`REPORT.md`](REPORT.md), được tạo bằng `scripts/report_qposd.py` sau kiểm tra hash.
 
 V1 bị từ chối trước fit vì ảnh 21 (test) trùng 7.601 pixel với ảnh 22
 (train). Toàn bộ giao thức và đặc trưng v1 được giữ tại `archive/protocol_v1/`.
