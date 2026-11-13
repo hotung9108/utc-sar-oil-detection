@@ -4,8 +4,12 @@ SOS vẫn là tập chính. QPOSD cung cấp nhãn dầu/tương tự dầu chun
 L-band, không có nhãn nguyên nhân gió yếu, màng sinh học và mưa. Đã sửa
 cách chia theo nhóm ảnh trùng trước khi fit, lưu giao thức v2 và chạy đủ
 10 cấu hình phân lớp. CART độ sâu 5, min_leaf=1 đạt macro-F1 validation
-cao nhất 0,6238049911 khi được cung cấp vùng tham chiếu. Nhánh tìm vùng
-đang được so sánh riêng; chưa có kết quả phát hiện cuối hoặc điểm test.
+cao nhất 0,6238049911 khi được cung cấp vùng tham chiếu. Đã chạy đủ 10 cấu
+hình tìm vùng × 5 ảnh validation. Cấu hình thắng là không lọc trước tìm vùng,
+Otsu, diện tích tối thiểu 64, không hình thái: macro-F1 đối tượng 0,0563380.
+Ảnh dùng trích đặc trưng vẫn được lọc Lee 7×7, L=4 theo giao thức cố định.
+Lựa chọn đã lưu trong `detection_selection.json` và commit trước khi chạy test.
+Đánh giá năm ảnh test đang chạy; chưa có kết quả test hoàn chỉnh.
 
 V1 bị từ chối trước fit vì ảnh 21 (test) trùng 7.601 pixel với ảnh 22
 (train). Toàn bộ giao thức và đặc trưng v1 được giữ tại `archive/protocol_v1/`.
@@ -41,7 +45,8 @@ hay điểm dự đoán; không gọi test mới là tập chưa từng xem.
 dịch và toàn bộ vùng giao khi cắt một ảnh giả lập, đồng thời không coi ảnh
 hằng là bằng chứng trùng lặp. Đây là kiểm tra lấy mẫu, không phát hiện chắc
 chắn ảnh cùng cảnh đã đổi thang, xoay hoặc lấy mẫu lại; không được dùng kết
-quả âm tính để khẳng định độc lập cảnh. Sẽ cần mở rộng kiểm tra khi đủ 24 ảnh.
+quả âm tính để khẳng định độc lập cảnh. Lượt mở rộng đủ 24 ảnh đã hoàn tất,
+phát hiện bốn cặp giao trùng; chi tiết ở cuối tài liệu.
 
 Sau đó, khi ảnh 22 tải xong, kiểm tra cặp 22/35 phát hiện vùng giao
 **771×581 = 447.951 pixel T11 giống hệt nhau**, độ dịch ảnh đích so với ảnh
@@ -202,7 +207,7 @@ phép kiểm tra này. Cặp 21/22 vượt ranh giới train/test của v1, nên
 kiểm tra trước huấn luyện đã thực sự dừng với lỗi này. Không có mô hình
 hoặc điểm test nào được tạo từ cách chia bị lỗi.
 
-Phải tạo phiên bản giao thức mới trước khi fit, không âm thầm bỏ mẫu hoặc
+Đã tạo giao thức v2 trước khi fit, không âm thầm bỏ mẫu hoặc
 báo cáo kết quả từ cách chia cũ. Kiểm tra trực quan chỉ cho thấy
 tương ứng hình ảnh, không chứng minh đường biên chính xác hoặc nguồn nhãn
 được xác nhận bằng đo đạc tại hiện trường.
