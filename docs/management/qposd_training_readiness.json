@@ -1,0 +1,20 @@
+{
+  "synthetic_integration_test": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -p test_qposd_training.py -v",
+    "tests_run": 1,
+    "failures": 0,
+    "errors": 0,
+    "observed_exit_code": 0,
+    "scope": "Synthetic separable data, not QPOSD accuracy"
+  },
+  "preflight": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Preflight stopped before fitting: Full 24-pair MAT audit is not complete\n",
+    "classifier_selection_exists": false
+  },
+  "source_sha256": {
+    "scripts/train_qposd_classifiers.py": "e379e14efe2506c1959a2e3331201a506009e541dbc246158009477af7995966",
+    "tests/test_qposd_training.py": "8b330b595a9d7c926dfa9cbca150dc473a2c5dba00db94bc0b5a3c4968b29150"
+  }
+}

@@ -84,6 +84,26 @@ theo cùng công thức, không phải so với một bộ xử lý SAR độc l
 
 ## Điều kiện còn thiếu trước huấn luyện
 
+Mã `scripts/train_qposd_classifiers.py` đã có hai chế độ:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/train_qposd_classifiers.py --preflight-only
+.\.venv\Scripts\python.exe scripts/train_qposd_classifiers.py
+```
+
+Chế độ kiểm tra xác minh đủ 24 MAT và hồ sơ xem ảnh, SHA-256 ảnh/mask,
+đúng giao thức và đủ đặc trưng train/validation. Chế độ huấn luyện còn lưu
+điểm của từng vùng validation cho cả NumPy và thư viện, cảnh báo hội tụ,
+ma trận nhầm lẫn, mô hình JSON và kiểm tra điểm không đổi sau lưu/đọc lại.
+Chỉ cấu hình NumPy hội tụ mới đủ điều kiện lựa chọn; không có cấu hình đủ
+điều kiện thì dừng. Không ghi đè thư mục mô hình/kết quả đã có.
+
+Kiểm tra tích hợp với dữ liệu giả lập đã qua: hai loại mô hình dùng cùng
+train, không lấy thống kê chuẩn hóa từ validation, dự đoán NumPy/thư viện
+khớp trong trường hợp kiểm tra và hòa điểm chọn đúng thứ tự. Đây không phải
+thí nghiệm độ chính xác QPOSD. Lần chạy kiểm tra dữ liệu hiện tại dừng trước
+fit do chưa có hồ sơ đầy đủ 24 MAT; chưa có `classifier_selection.json`.
+
 Tiến trình tải và kiểm tra toàn bộ 24 MAT còn chạy. Trước khi fit cần đủ
 kiểm tra toàn mảng, hash/CRC, giá trị hữu hạn và xem các cặp ảnh/nhãn. Nếu
 phát hiện lỗi cấu trúc làm thay đổi tập đủ điều kiện, phải dừng và tạo phiên
