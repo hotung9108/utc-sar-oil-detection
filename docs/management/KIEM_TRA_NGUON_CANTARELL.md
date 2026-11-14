@@ -30,6 +30,21 @@ Cả 24 annotation ghi `thermalNoiseCorrectionPerformed=false`. Giao thức hi�
 
 ## Nhật ký kiểm chứng ban đầu
 
+### Chuẩn bị DN toàn tập và ghép gió
+
+```powershell
+.venv/Scripts/python.exe scripts/prepare_cantarell_physical.py --workers 2
+.venv/Scripts/python.exe scripts/fetch_cantarell_wind.py
+```
+
+Mã chuẩn bị DN tái dùng các byte-range có kiểm tra hash theo từng cảnh; lưu sigma0, gamma0 suy từ góc tới, góc tới và mask trên cùng lưới đã căn chỉnh. Nội suy và phép dịch NumPy đều đối chiếu SciPy; chỉ đọc nhãn sau khi tính đăng ký ảnh và tiêu chí chất lượng. Cắt 8 pixel mỗi cạnh cho mọi nhánh, ghi số đối tượng ngoài crop hoặc chạm biên, không xóa đối tượng nhỏ. Cache kết quả gắn hash giao thức, metadata, mã và phiên bản thư viện; không trộn các phiên bản. `--retry-errors` chỉ thử lại lỗi vận hành, không nới điều kiện chất lượng.
+
+**Lần tái dựng toàn tập đang được thực thi; chưa công bố hoàn tất.** Kết quả tổng hợp cuối được ghi vào `cantarell_physical_preparation_audit.json` khi tiến trình kết thúc. Chỉ dùng audit có hash mã hiện hành và `complete_preparation=true`; audit chạy thử hai tile hoặc cache một phần không chứng minh đủ 173 mẫu. Chưa huấn luyện/chấm mô hình Cantarell.
+
+Ghép gió đã hoàn thành truy vấn: **172/173 tile có dữ liệu**, tile `IMG_19_TILE_019` có tâm ngoài miền geolocation nên không tự tạo thời điểm thu nhận. Thời điểm từng tile còn lại được nội suy từ `azimuthTime` của metadata; gió được nội suy theo thành phần u/v giữa hai giờ UTC. Tốc độ từ **0,292171 đến 10,648501 m/s**; khoảng cách xa nhất giữa tâm tile và tâm ô gió trả về **18,005587 km**; sai số đối chiếu nội suy u/v với SciPy bằng **0** trong dữ liệu đã chạy.
+
+Nguồn gió là ERA5 chọn tường minh qua [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api), lưới danh nghĩa 0,25°, theo giờ; dùng ô gần nhất và tắt hiệu chỉnh độ cao. Kiểm tra thứ tự vị trí trả về, đơn vị m/s và UTC. JSON nguồn/URL/hash, tọa độ yêu cầu và ô trả về, hai giờ nội suy và trường hợp thiếu dữ liệu đều nằm trong `cantarell_wind_audit.json`. Gió lưới thô không phải quan trắc từng pixel SAR, không xác nhận vùng tối là do gió yếu, và chưa được dùng để thay nhãn hoặc chọn thuật toán.
+
 Nguồn: [Garcia-INPE/oilspill-detection-dataset](https://github.com/Garcia-INPE/oilspill-detection-dataset), revision `1b9a62c30a9da9698eb470562aa976f9bd1e8fc3`. Đã tải tài liệu, giấy phép, bảng CSV, ba split và **một** cặp raster/mask; kiểm tra tiếp vector của mẫu, mã remap của tác giả, catalog ASF và metadata Sentinel-1. Script xử lý Git LFS và xác nhận kích thước/SHA-256 theo pointer; từng nguồn có receipt trong `cantarell_source_audit.json`.
 
 Chạy lại từ thư mục gốc:
