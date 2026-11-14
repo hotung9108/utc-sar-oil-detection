@@ -49,6 +49,12 @@ Cả 24 annotation ghi `thermalNoiseCorrectionPerformed=false`. Giao thức hi�
 
 Toàn bộ hàng số liệu, hash input/mã và giới hạn nằm trong `cantarell_operator_verification.json`. Phần tích hợp mô hình sẽ được đánh giá bằng thí nghiệm đã khóa sau khi đủ gate dữ liệu.
 
+### Khóa mẫu và sàng lọc ứng viên
+
+`scripts/cantarell_experiment_data.py` chỉ tạo manifest sau khi xác minh toàn tập đạt, đối chiếu hash mã/metadata và kiểm chứng toán tử. Manifest ghi đúng mẫu, split, cảnh, hash NPZ, crop và gió; chưa có manifest hợp lệ khi DN còn đang chạy. `scripts/screen_cantarell.py` yêu cầu manifest/giao thức/mã đã được commit và giữ nguyên trước khi tính điểm validation. Test bị từ chối trong hàm đọc dữ liệu dùng cho sàng lọc/fit; chỉ nhánh đánh giá test được phép mở sau khi có selection đã commit.
+
+Đã thử hai trường hợp từ chối: tạo manifest khi thiếu xác minh cuối và sàng lọc khi manifest chưa khóa. Mã sàng lọc lưu từng ảnh/cấu hình/backend vào checkpoint có hash nguồn, rồi tổng hợp đủ 50 phép so sánh; không dùng thời gian làm tie-break. **Chưa chạy sàng lọc thực tế hoặc công bố thứ hạng; các lệnh trên đang chờ hoàn tất dữ liệu.**
+
 ### Chuẩn bị DN toàn tập và ghép gió
 
 ```powershell
