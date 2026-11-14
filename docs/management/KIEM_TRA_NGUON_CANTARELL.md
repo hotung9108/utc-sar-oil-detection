@@ -4,6 +4,32 @@ Mục đích: tìm ảnh SAR có nhãn và thông tin vật lý để đánh gi�
 
 **Cập nhật:** đã kiểm kê đủ 173 TIFF/mask/GeoJSON và xác định đủ 24 cảnh Sentinel. Xem [kiểm kê toàn bộ](CANTARELL_FULL_INVENTORY.md), bao gồm mã polygon lặp qua train/test. Các mục dưới đây giữ quá trình kiểm chứng ban đầu trên một rồi hai tile; chúng không thay thế kiểm tra căn chỉnh toàn bộ tập.
 
+## Giao thức dữ liệu vật lý đã khóa
+
+`cantarell_data_protocol_v1.json` được tạo bằng `scripts/freeze_cantarell_data_protocol.py` và commit **5fd0330**, trước khi tái dựng DN toàn tập hoặc chấm mô hình. Nối các nhóm cảnh dùng chung mã polygon; nếu một nhóm nối chứa test thì giữ cả nhóm trong test. Do đó `IMG_18` chuyển từ train sang test cùng `IMG_17`; không sửa split gốc của nhà phát hành.
+
+| Tập bổ sung mới | Tile | Cảnh |
+|---|---:|---:|
+| Train | 103 | 15 |
+| Validation | 43 | 4 |
+| Test | 27 | 5 |
+
+Đây là cách xử lý bảo thủ mã polygon chưa rõ, không phải khẳng định hai polygon là cùng sự kiện. Hai tile phát triển căn chỉnh vẫn ở train. Chưa huấn luyện mô hình hay chọn thuật toán bằng điểm test Cantarell.
+
+Điều kiện chất lượng đã ghi trước: kiểm tra hash/miền nội suy, độ dịch tuyệt đối ≤3 pixel, sai khác độ dịch cục bộ với toàn ảnh ≤0,5 pixel, tương quan sau đăng ký ≥0,70, và ít nhất 3 cảnh hợp lệ mỗi split. Các ngưỡng là tiêu chí kỹ thuật, không phải định lý hoặc bảo đảm chính xác định vị. Ghi mọi mẫu bị loại và lý do; không nới ngưỡng theo điểm test. Nhánh so sánh dự kiến dùng sigma0 và sigma0/cos(góc tới), cùng lưới, cùng phạm vi đánh giá; gamma chỉ hiệu chỉnh hệ số diện tích hình học, không loại hết phụ thuộc góc của mặt biển.
+
+## Metadata vật lý toàn bộ cảnh
+
+```powershell
+.venv/Scripts/python.exe scripts/fetch_cantarell_physical_metadata.py
+```
+
+Đã tải/kiểm tra đủ **24/24** bộ annotation VV và calibration VV, tổng **67.963.469 byte**, mỗi tệp có URL và SHA-256. Lưới geolocation của 13 cảnh có kích thước 10×21, 11 cảnh có kích thước 11×21; góc tới toàn các cảnh trong **30,79937–46,22010°**. LUT sigma0/gamma đều hữu hạn, dương, tọa độ tăng và có lưới chữ nhật hợp lệ.
+
+Cả 24 annotation ghi `thermalNoiseCorrectionPerformed=false`. Giao thức hiện không trừ nhiễu nhiệt; hai nhánh giữ cùng điều kiện này, không gọi kết quả là hiệu chuẩn đã xử lý đầy đủ tương đương SNAP. Bằng chứng: `cantarell_physical_metadata_audit.json`. Đây mới là metadata; chưa phải 173 tile DN đã căn chỉnh và chưa có kết quả phát hiện cho nhánh vật lý.
+
+## Nhật ký kiểm chứng ban đầu
+
 Nguồn: [Garcia-INPE/oilspill-detection-dataset](https://github.com/Garcia-INPE/oilspill-detection-dataset), revision `1b9a62c30a9da9698eb470562aa976f9bd1e8fc3`. Đã tải tài liệu, giấy phép, bảng CSV, ba split và **một** cặp raster/mask; kiểm tra tiếp vector của mẫu, mã remap của tác giả, catalog ASF và metadata Sentinel-1. Script xử lý Git LFS và xác nhận kích thước/SHA-256 theo pointer; từng nguồn có receipt trong `cantarell_source_audit.json`.
 
 Chạy lại từ thư mục gốc:
