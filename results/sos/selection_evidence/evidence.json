@@ -1,0 +1,2227 @@
+{
+  "split": "validation",
+  "images": 671,
+  "controlled_protocol": {
+    "threshold": "otsu",
+    "morphology": "none",
+    "min_area": 16,
+    "classifier": null
+  },
+  "controlled_filters": [
+    {
+      "filter": {
+        "name": "none"
+      },
+      "metrics": {
+        "tp": 518,
+        "fp": 39283,
+        "fn": 2222,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10498412,
+        "union": 24577784,
+        "predicted_pixels": 21538206,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 472,
+        "interior_gt": 853,
+        "interior_tp": 46,
+        "precision": 0.013014748373156453,
+        "recall": 0.18905109489051095,
+        "f1": 0.024352977127947158,
+        "pixel_iou": 0.42715047052248484,
+        "dice": 0.5986060746153887,
+        "fp_per_image": 58.543964232488825,
+        "edge_recall": 0.25013248542660305,
+        "interior_recall": 0.053927315357561546
+      },
+      "original_id": "31a02dc6231ed606",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.061167975097717285,
+      "paired_patch_bootstrap_95_interval": [
+        0.05337422008062099,
+        0.06933512735115559
+      ]
+    },
+    {
+      "filter": {
+        "name": "median",
+        "size": 3
+      },
+      "metrics": {
+        "tp": 758,
+        "fp": 50479,
+        "fn": 1982,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10596644,
+        "union": 22166615,
+        "predicted_pixels": 19225269,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 670,
+        "interior_gt": 853,
+        "interior_tp": 88,
+        "precision": 0.014793996525948046,
+        "recall": 0.27664233576642333,
+        "f1": 0.028086036645237785,
+        "pixel_iou": 0.478045204466266,
+        "dice": 0.6468614126573916,
+        "fp_per_image": 75.22950819672131,
+        "edge_recall": 0.35506094329623744,
+        "interior_recall": 0.10316529894490035
+      },
+      "original_id": "57eb21ff94172623",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.057434915580426654,
+      "paired_patch_bootstrap_95_interval": [
+        0.050752736117993635,
+        0.06452302604910992
+      ]
+    },
+    {
+      "filter": {
+        "name": "median",
+        "size": 5
+      },
+      "metrics": {
+        "tp": 910,
+        "fp": 36046,
+        "fn": 1830,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10670397,
+        "union": 20361136,
+        "predicted_pixels": 17493543,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 769,
+        "interior_gt": 853,
+        "interior_tp": 141,
+        "precision": 0.02462387704297002,
+        "recall": 0.33211678832116787,
+        "f1": 0.0458484482063684,
+        "pixel_iou": 0.5240570565414425,
+        "dice": 0.6877131722754399,
+        "fp_per_image": 53.71982116244411,
+        "edge_recall": 0.4075251722310546,
+        "interior_recall": 0.1652989449003517
+      },
+      "original_id": "7f823288948a31d5",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.03967250401929604,
+      "paired_patch_bootstrap_95_interval": [
+        0.03459538704345683,
+        0.045092583745675714
+      ]
+    },
+    {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 0.8
+      },
+      "metrics": {
+        "tp": 794,
+        "fp": 47039,
+        "fn": 1946,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10510858,
+        "union": 21677662,
+        "predicted_pixels": 18650530,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 694,
+        "interior_gt": 853,
+        "interior_tp": 100,
+        "precision": 0.016599418811280915,
+        "recall": 0.28978102189781024,
+        "f1": 0.0314001542324956,
+        "pixel_iou": 0.4848704625065194,
+        "dice": 0.6530811606125414,
+        "fp_per_image": 70.10283159463488,
+        "edge_recall": 0.3677795442501325,
+        "interior_recall": 0.11723329425556858
+      },
+      "original_id": "0683f7c699a2896e",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.054120797993168844,
+      "paired_patch_bootstrap_95_interval": [
+        0.047649065372225234,
+        0.060781657549273935
+      ]
+    },
+    {
+      "filter": {
+        "name": "gaussian",
+        "sigma": 1.2
+      },
+      "metrics": {
+        "tp": 895,
+        "fp": 40877,
+        "fn": 1845,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10556631,
+        "union": 20627296,
+        "predicted_pixels": 17645937,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 755,
+        "interior_gt": 853,
+        "interior_tp": 140,
+        "precision": 0.021425835487886624,
+        "recall": 0.3266423357664234,
+        "f1": 0.040213874910136595,
+        "pixel_iou": 0.5117796826108473,
+        "dice": 0.6770559076796197,
+        "fp_per_image": 60.91952309985097,
+        "edge_recall": 0.40010598834128247,
+        "interior_recall": 0.16412661195779601
+      },
+      "original_id": "e33923ecdb9e7a70",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.04530707731552785,
+      "paired_patch_bootstrap_95_interval": [
+        0.039777765550882124,
+        0.0513144853610523
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 1
+      },
+      "metrics": {
+        "tp": 821,
+        "fp": 46341,
+        "fn": 1919,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10504557,
+        "union": 21397252,
+        "predicted_pixels": 18363819,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 715,
+        "interior_gt": 853,
+        "interior_tp": 106,
+        "precision": 0.01740808277850812,
+        "recall": 0.29963503649635037,
+        "f1": 0.03290449280589956,
+        "pixel_iou": 0.4909301904749264,
+        "dice": 0.658555569685719,
+        "fp_per_image": 69.06259314456035,
+        "edge_recall": 0.3789083200847907,
+        "interior_recall": 0.1242672919109027
+      },
+      "original_id": "2d2193cf780f9d7c",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.05261645941976488,
+      "paired_patch_bootstrap_95_interval": [
+        0.04624415547429199,
+        0.059174402057554365
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 3,
+        "looks": 4
+      },
+      "metrics": {
+        "tp": 822,
+        "fp": 46897,
+        "fn": 1918,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10435558,
+        "union": 21267050,
+        "predicted_pixels": 18164618,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 710,
+        "interior_gt": 853,
+        "interior_tp": 112,
+        "precision": 0.01722584295563612,
+        "recall": 0.3,
+        "f1": 0.032580907271249925,
+        "pixel_iou": 0.49069137468525253,
+        "dice": 0.658340663960517,
+        "fp_per_image": 69.89120715350224,
+        "edge_recall": 0.3762586115527292,
+        "interior_recall": 0.13130128956623682
+      },
+      "original_id": "fc4b5e624bdf731e",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.05294004495441452,
+      "paired_patch_bootstrap_95_interval": [
+        0.04658720713884638,
+        0.05948625849006982
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 1
+      },
+      "metrics": {
+        "tp": 961,
+        "fp": 32247,
+        "fn": 1779,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10581140,
+        "union": 19723890,
+        "predicted_pixels": 16767040,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 800,
+        "interior_gt": 853,
+        "interior_tp": 161,
+        "precision": 0.0289388099253192,
+        "recall": 0.35072992700729927,
+        "f1": 0.05346611772560365,
+        "pixel_iou": 0.5364631419055774,
+        "dice": 0.6983091585786254,
+        "fp_per_image": 48.05812220566319,
+        "edge_recall": 0.4239533651298357,
+        "interior_recall": 0.18874560375146543
+      },
+      "original_id": "696b4f2f5e563595",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.032054834500060796,
+      "paired_patch_bootstrap_95_interval": [
+        0.02776513790416906,
+        0.03670924325688198
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 5,
+        "looks": 4
+      },
+      "metrics": {
+        "tp": 967,
+        "fp": 32486,
+        "fn": 1773,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10497725,
+        "union": 19602525,
+        "predicted_pixels": 16562260,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 804,
+        "interior_gt": 853,
+        "interior_tp": 163,
+        "precision": 0.02890622664633964,
+        "recall": 0.3529197080291971,
+        "f1": 0.0534357472439422,
+        "pixel_iou": 0.535529223913756,
+        "dice": 0.6975174624795475,
+        "fp_per_image": 48.41430700447094,
+        "edge_recall": 0.4260731319554849,
+        "interior_recall": 0.1910902696365768
+      },
+      "original_id": "608052049b0b0cba",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.032085204981722244,
+      "paired_patch_bootstrap_95_interval": [
+        0.02810725431118844,
+        0.036616047170707176
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "metrics": {
+        "tp": 1034,
+        "fp": 20770,
+        "fn": 1706,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10657001,
+        "union": 18877021,
+        "predicted_pixels": 15996032,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 849,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.047422491286002566,
+        "recall": 0.37737226277372266,
+        "f1": 0.08425684485006518,
+        "pixel_iou": 0.5645488766474329,
+        "dice": 0.7216762417255598,
+        "fp_per_image": 30.953800298062593,
+        "edge_recall": 0.44992050874403816,
+        "interior_recall": 0.21688159437280188
+      },
+      "original_id": "fb6730989f402f81",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.0012641073755992605,
+      "paired_patch_bootstrap_95_interval": [
+        -0.0004391554527122182,
+        0.003128761679309646
+      ]
+    },
+    {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "metrics": {
+        "tp": 1049,
+        "fp": 20743,
+        "fn": 1691,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10548979,
+        "union": 18739516,
+        "predicted_pixels": 15750505,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 854,
+        "interior_gt": 853,
+        "interior_tp": 195,
+        "precision": 0.04813693098384728,
+        "recall": 0.38284671532846715,
+        "f1": 0.08552095222566444,
+        "pixel_iou": 0.5629269720733449,
+        "dice": 0.7203496799681923,
+        "fp_per_image": 30.913561847988078,
+        "edge_recall": 0.45257021727609964,
+        "interior_recall": 0.22860492379835873
+      },
+      "original_id": "a1159901d4a94442",
+      "supplementary_after_selection": false,
+      "lee_minus_filter_f1": 0.0,
+      "paired_patch_bootstrap_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "metrics": {
+        "tp": 999,
+        "fp": 22856,
+        "fn": 1741,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10731812,
+        "union": 19311573,
+        "predicted_pixels": 16505395,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 834,
+        "interior_gt": 853,
+        "interior_tp": 165,
+        "precision": 0.04187801299517921,
+        "recall": 0.3645985401459854,
+        "f1": 0.0751269035532995,
+        "pixel_iou": 0.5557192052661893,
+        "dice": 0.7144209615527678,
+        "fp_per_image": 34.06259314456036,
+        "edge_recall": 0.4419713831478537,
+        "interior_recall": 0.19343493552168817
+      },
+      "original_id": null,
+      "supplementary_after_selection": true,
+      "lee_minus_filter_f1": 0.010394048672364944,
+      "paired_patch_bootstrap_95_interval": [
+        0.007538969854600624,
+        0.013423744324181398
+      ]
+    },
+    {
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "metrics": {
+        "tp": 1033,
+        "fp": 20787,
+        "fn": 1707,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10660628,
+        "union": 18880784,
+        "predicted_pixels": 16003422,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 849,
+        "interior_gt": 853,
+        "interior_tp": 184,
+        "precision": 0.047341888175985336,
+        "recall": 0.377007299270073,
+        "f1": 0.08412052117263843,
+        "pixel_iou": 0.5646284603435959,
+        "dice": 0.7217412627399123,
+        "fp_per_image": 30.97913561847988,
+        "edge_recall": 0.44992050874403816,
+        "interior_recall": 0.21570926143024619
+      },
+      "original_id": null,
+      "supplementary_after_selection": true,
+      "lee_minus_filter_f1": 0.0014004310530260078,
+      "paired_patch_bootstrap_95_interval": [
+        -0.0003070496339300985,
+        0.0032667398279547792
+      ]
+    }
+  ],
+  "supplementary_numpy_checks": [
+    {
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "images": 671,
+      "max_abs_error": 0.0,
+      "passed": true
+    },
+    {
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "images": 671,
+      "max_abs_error": 7.298606163885779e-13,
+      "passed": true
+    }
+  ],
+  "family_best_over_screen": [
+    {
+      "id": "31a02dc6231ed606",
+      "config": {
+        "filter": {
+          "name": "none"
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 518,
+        "fp": 39283,
+        "fn": 2222,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10498412,
+        "union": 24577784,
+        "predicted_pixels": 21538206,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 472,
+        "interior_gt": 853,
+        "interior_tp": 46,
+        "precision": 0.013014748373156453,
+        "recall": 0.18905109489051095,
+        "f1": 0.024352977127947158,
+        "pixel_iou": 0.42715047052248484,
+        "dice": 0.5986060746153887,
+        "fp_per_image": 58.543964232488825,
+        "edge_recall": 0.25013248542660305,
+        "interior_recall": 0.053927315357561546
+      },
+      "seconds": 3.0165045000017017,
+      "configurations_tried": 10
+    },
+    {
+      "id": "7f823288948a31d5",
+      "config": {
+        "filter": {
+          "name": "median",
+          "size": 5
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 910,
+        "fp": 36046,
+        "fn": 1830,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10670397,
+        "union": 20361136,
+        "predicted_pixels": 17493543,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 769,
+        "interior_gt": 853,
+        "interior_tp": 141,
+        "precision": 0.02462387704297002,
+        "recall": 0.33211678832116787,
+        "f1": 0.0458484482063684,
+        "pixel_iou": 0.5240570565414425,
+        "dice": 0.6877131722754399,
+        "fp_per_image": 53.71982116244411,
+        "edge_recall": 0.4075251722310546,
+        "interior_recall": 0.1652989449003517
+      },
+      "seconds": 28.36468949999744,
+      "configurations_tried": 20
+    },
+    {
+      "id": "e33923ecdb9e7a70",
+      "config": {
+        "filter": {
+          "name": "gaussian",
+          "sigma": 1.2
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 895,
+        "fp": 40877,
+        "fn": 1845,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10556631,
+        "union": 20627296,
+        "predicted_pixels": 17645937,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 755,
+        "interior_gt": 853,
+        "interior_tp": 140,
+        "precision": 0.021425835487886624,
+        "recall": 0.3266423357664234,
+        "f1": 0.040213874910136595,
+        "pixel_iou": 0.5117796826108473,
+        "dice": 0.6770559076796197,
+        "fp_per_image": 60.91952309985097,
+        "edge_recall": 0.40010598834128247,
+        "interior_recall": 0.16412661195779601
+      },
+      "seconds": 3.318478599999821,
+      "configurations_tried": 20
+    },
+    {
+      "id": "a1159901d4a94442",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 1049,
+        "fp": 20743,
+        "fn": 1691,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10548979,
+        "union": 18739516,
+        "predicted_pixels": 15750505,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 854,
+        "interior_gt": 853,
+        "interior_tp": 195,
+        "precision": 0.04813693098384728,
+        "recall": 0.38284671532846715,
+        "f1": 0.08552095222566444,
+        "pixel_iou": 0.5629269720733449,
+        "dice": 0.7203496799681923,
+        "fp_per_image": 30.913561847988078,
+        "edge_recall": 0.45257021727609964,
+        "interior_recall": 0.22860492379835873
+      },
+      "seconds": 4.874386400002663,
+      "configurations_tried": 60
+    }
+  ],
+  "screen_rows": 110,
+  "validation_rows": 729,
+  "screen_top3": [
+    {
+      "id": "a1159901d4a94442",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 1049,
+        "fp": 20743,
+        "fn": 1691,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10548979,
+        "union": 18739516,
+        "predicted_pixels": 15750505,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 854,
+        "interior_gt": 853,
+        "interior_tp": 195,
+        "precision": 0.04813693098384728,
+        "recall": 0.38284671532846715,
+        "f1": 0.08552095222566444,
+        "pixel_iou": 0.5629269720733449,
+        "dice": 0.7203496799681923,
+        "fp_per_image": 30.913561847988078,
+        "edge_recall": 0.45257021727609964,
+        "interior_recall": 0.22860492379835873
+      },
+      "seconds": 4.874386400002663
+    },
+    {
+      "id": "fb6730989f402f81",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 1034,
+        "fp": 20770,
+        "fn": 1706,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10657001,
+        "union": 18877021,
+        "predicted_pixels": 15996032,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 849,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.047422491286002566,
+        "recall": 0.37737226277372266,
+        "f1": 0.08425684485006518,
+        "pixel_iou": 0.5645488766474329,
+        "dice": 0.7216762417255598,
+        "fp_per_image": 30.953800298062593,
+        "edge_recall": 0.44992050874403816,
+        "interior_recall": 0.21688159437280188
+      },
+      "seconds": 4.918660799998861
+    },
+    {
+      "id": "608052049b0b0cba",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 5,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 967,
+        "fp": 32486,
+        "fn": 1773,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10497725,
+        "union": 19602525,
+        "predicted_pixels": 16562260,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 804,
+        "interior_gt": 853,
+        "interior_tp": 163,
+        "precision": 0.02890622664633964,
+        "recall": 0.3529197080291971,
+        "f1": 0.0534357472439422,
+        "pixel_iou": 0.535529223913756,
+        "dice": 0.6975174624795475,
+        "fp_per_image": 48.41430700447094,
+        "edge_recall": 0.4260731319554849,
+        "interior_recall": 0.1910902696365768
+      },
+      "seconds": 4.952543699998159
+    }
+  ],
+  "strict_f1_winner": {
+    "id": "2a9d104af96eaf05_all_svm_4e452bd6650829fb",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "group": "all",
+    "kind": "svm",
+    "params": {
+      "C": 10
+    },
+    "metrics": {
+      "tp": 1007,
+      "fp": 2117,
+      "fn": 1733,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 10350030,
+      "union": 15828905,
+      "predicted_pixels": 12640945,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 832,
+      "interior_gt": 853,
+      "interior_tp": 175,
+      "precision": 0.32234314980793854,
+      "recall": 0.36751824817518247,
+      "f1": 0.34345156889495226,
+      "pixel_iou": 0.6538689820932023,
+      "dice": 0.7907143663407239,
+      "fp_per_image": 3.1549925484351715,
+      "edge_recall": 0.44091149973502913,
+      "interior_recall": 0.205158264947245
+    },
+    "training": {
+      "positive": 10658,
+      "negative": 26313,
+      "ambiguous": 2543,
+      "used": 20000
+    },
+    "seconds": 0.15544890000001033
+  },
+  "selected_id": "b09dd86237118107_all_svm_4e452bd6650829fb",
+  "selection_rule": {
+    "f1_band": 0.005,
+    "priority": [
+      "recall descending",
+      "recorded seconds ascending",
+      "id ascending"
+    ]
+  },
+  "near_best_candidates": [
+    {
+      "id": "b09dd86237118107_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2215,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258568,
+        "union": 15725468,
+        "predicted_pixels": 12446046,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3144537294955122,
+        "recall": 0.3708029197080292,
+        "f1": 0.34031150561045054,
+        "pixel_iou": 0.6523537487087825,
+        "dice": 0.7896054331205514,
+        "fp_per_image": 3.301043219076006,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.149947300000008
+    },
+    {
+      "id": "b09dd86237118107_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2215,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258568,
+        "union": 15725468,
+        "predicted_pixels": 12446046,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3144537294955122,
+        "recall": 0.3708029197080292,
+        "f1": 0.34031150561045054,
+        "pixel_iou": 0.6523537487087825,
+        "dice": 0.7896054331205514,
+        "fp_per_image": 3.301043219076006,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.16567059999999856
+    },
+    {
+      "id": "b09dd86237118107_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2213,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258530,
+        "union": 15725477,
+        "predicted_pixels": 12446017,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3146484979869929,
+        "recall": 0.3708029197080292,
+        "f1": 0.3404255319148936,
+        "pixel_iou": 0.6523509588930116,
+        "dice": 0.7896033895003184,
+        "fp_per_image": 3.2980625931445604,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.18679880000001958
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2118,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350030,
+        "union": 15829022,
+        "predicted_pixels": 12641062,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.32224,
+        "recall": 0.36751824817518247,
+        "f1": 0.3433930093776641,
+        "pixel_iou": 0.6538641490295484,
+        "dice": 0.7907108324625353,
+        "fp_per_image": 3.156482861400894,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.15085019999992255
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2117,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350030,
+        "union": 15828905,
+        "predicted_pixels": 12640945,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.32234314980793854,
+        "recall": 0.36751824817518247,
+        "f1": 0.34345156889495226,
+        "pixel_iou": 0.6538689820932023,
+        "dice": 0.7907143663407239,
+        "fp_per_image": 3.1549925484351715,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.15544890000001033
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2119,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350359,
+        "union": 15828575,
+        "predicted_pixels": 12640944,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.3221369161868202,
+        "recall": 0.36751824817518247,
+        "f1": 0.3433344698261166,
+        "pixel_iou": 0.6539033993900272,
+        "dice": 0.7907395312582246,
+        "fp_per_image": 3.157973174366617,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.17943829999990157
+    },
+    {
+      "id": "239c950efd867ffb_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "open_close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 996,
+        "fp": 2144,
+        "fn": 1744,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10195671,
+        "union": 15655466,
+        "predicted_pixels": 12313147,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 811,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.31719745222929935,
+        "recall": 0.3635036496350365,
+        "f1": 0.33877551020408164,
+        "pixel_iou": 0.6512531150462082,
+        "dice": 0.7887986512933648,
+        "fp_per_image": 3.195230998509687,
+        "edge_recall": 0.429782723900371,
+        "interior_recall": 0.21688159437280188
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 25422,
+        "ambiguous": 2447,
+        "used": 20000
+      },
+      "seconds": 0.1554530999999315
+    },
+    {
+      "id": "239c950efd867ffb_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "open_close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 996,
+        "fp": 2143,
+        "fn": 1744,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10195671,
+        "union": 15655366,
+        "predicted_pixels": 12313047,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 811,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.31729850270786875,
+        "recall": 0.3635036496350365,
+        "f1": 0.33883313488688555,
+        "pixel_iou": 0.6512572749816261,
+        "dice": 0.7888017026164172,
+        "fp_per_image": 3.1937406855439643,
+        "edge_recall": 0.429782723900371,
+        "interior_recall": 0.21688159437280188
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 25422,
+        "ambiguous": 2447,
+        "used": 20000
+      },
+      "seconds": 0.1608810000000176
+    },
+    {
+      "id": "239c950efd867ffb_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "open_close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 996,
+        "fp": 2141,
+        "fn": 1744,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10195388,
+        "union": 15654887,
+        "predicted_pixels": 12312285,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 811,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.31750079693975136,
+        "recall": 0.3635036496350365,
+        "f1": 0.3389484430832057,
+        "pixel_iou": 0.6512591243871643,
+        "dice": 0.7888030591550766,
+        "fp_per_image": 3.1907600596125185,
+        "edge_recall": 0.429782723900371,
+        "interior_recall": 0.21688159437280188
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 25422,
+        "ambiguous": 2447,
+        "used": 20000
+      },
+      "seconds": 0.17727790000003552
+    },
+    {
+      "id": "2a9d104af96eaf05_intensity_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 990,
+        "fp": 2120,
+        "fn": 1750,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10186676,
+        "union": 15487654,
+        "predicted_pixels": 12136340,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 822,
+        "interior_gt": 853,
+        "interior_tp": 168,
+        "precision": 0.3183279742765273,
+        "recall": 0.3613138686131387,
+        "f1": 0.3384615384615385,
+        "pixel_iou": 0.657728794819409,
+        "dice": 0.7935300356426049,
+        "fp_per_image": 3.15946348733234,
+        "edge_recall": 0.4356120826709062,
+        "interior_recall": 0.1969519343493552
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.14934930000003988
+    },
+    {
+      "id": "ca047276fe4c29b3_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 971,
+        "fp": 1961,
+        "fn": 1769,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10124537,
+        "union": 15814889,
+        "predicted_pixels": 12401436,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 789,
+        "interior_gt": 853,
+        "interior_tp": 182,
+        "precision": 0.33117326057298774,
+        "recall": 0.3543795620437956,
+        "f1": 0.3423836389280677,
+        "pixel_iou": 0.6401902030422092,
+        "dice": 0.7806292244092062,
+        "fp_per_image": 2.9225037257824145,
+        "edge_recall": 0.41812400635930047,
+        "interior_recall": 0.21336459554513482
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.43270739999979924
+    },
+    {
+      "id": "ca047276fe4c29b3_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 971,
+        "fp": 1956,
+        "fn": 1769,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10118932,
+        "union": 15813229,
+        "predicted_pixels": 12394171,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 789,
+        "interior_gt": 853,
+        "interior_tp": 182,
+        "precision": 0.33173898189272294,
+        "recall": 0.3543795620437956,
+        "f1": 0.34268572436915473,
+        "pixel_iou": 0.6399029572012143,
+        "dice": 0.7804156390977212,
+        "fp_per_image": 2.9150521609538003,
+        "edge_recall": 0.41812400635930047,
+        "interior_recall": 0.21336459554513482
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.528733000000102
+    },
+    {
+      "id": "ca047276fe4c29b3_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 971,
+        "fp": 1961,
+        "fn": 1769,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10124537,
+        "union": 15814889,
+        "predicted_pixels": 12401436,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 789,
+        "interior_gt": 853,
+        "interior_tp": 182,
+        "precision": 0.33117326057298774,
+        "recall": 0.3543795620437956,
+        "f1": 0.3423836389280677,
+        "pixel_iou": 0.6401902030422092,
+        "dice": 0.7806292244092062,
+        "fp_per_image": 2.9225037257824145,
+        "edge_recall": 0.41812400635930047,
+        "interior_recall": 0.21336459554513482
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.5393696000001
+    },
+    {
+      "id": "ca047276fe4c29b3_intensity_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 959,
+        "fp": 1936,
+        "fn": 1781,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10012483,
+        "union": 15437605,
+        "predicted_pixels": 11912098,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 783,
+        "interior_gt": 853,
+        "interior_tp": 176,
+        "precision": 0.3312607944732297,
+        "recall": 0.35,
+        "f1": 0.3403726708074534,
+        "pixel_iou": 0.6485774833596274,
+        "dice": 0.786832878534644,
+        "fp_per_image": 2.8852459016393444,
+        "edge_recall": 0.4149443561208267,
+        "interior_recall": 0.2063305978898007
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.5038392999999814
+    },
+    {
+      "id": "ca047276fe4c29b3_intensity_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 959,
+        "fp": 1937,
+        "fn": 1781,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10012377,
+        "union": 15437584,
+        "predicted_pixels": 11911971,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 783,
+        "interior_gt": 853,
+        "interior_tp": 176,
+        "precision": 0.331146408839779,
+        "recall": 0.35,
+        "f1": 0.3403122782114975,
+        "pixel_iou": 0.6485714992708703,
+        "dice": 0.7868284749041462,
+        "fp_per_image": 2.886736214605067,
+        "edge_recall": 0.4149443561208267,
+        "interior_recall": 0.2063305978898007
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.5279626999999891
+    },
+    {
+      "id": "ca047276fe4c29b3_intensity_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "close",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 959,
+        "fp": 1937,
+        "fn": 1781,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10012377,
+        "union": 15437584,
+        "predicted_pixels": 11911971,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 783,
+        "interior_gt": 853,
+        "interior_tp": 176,
+        "precision": 0.331146408839779,
+        "recall": 0.35,
+        "f1": 0.3403122782114975,
+        "pixel_iou": 0.6485714992708703,
+        "dice": 0.7868284749041462,
+        "fp_per_image": 2.886736214605067,
+        "edge_recall": 0.4149443561208267,
+        "interior_recall": 0.2063305978898007
+      },
+      "training": {
+        "positive": 10140,
+        "negative": 23057,
+        "ambiguous": 2399,
+        "used": 20000
+      },
+      "seconds": 0.6097970000000714
+    }
+  ],
+  "validation_top10": [
+    {
+      "id": "b09dd86237118107_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2215,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258568,
+        "union": 15725468,
+        "predicted_pixels": 12446046,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3144537294955122,
+        "recall": 0.3708029197080292,
+        "f1": 0.34031150561045054,
+        "pixel_iou": 0.6523537487087825,
+        "dice": 0.7896054331205514,
+        "fp_per_image": 3.301043219076006,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.149947300000008
+    },
+    {
+      "id": "b09dd86237118107_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2215,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258568,
+        "union": 15725468,
+        "predicted_pixels": 12446046,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3144537294955122,
+        "recall": 0.3708029197080292,
+        "f1": 0.34031150561045054,
+        "pixel_iou": 0.6523537487087825,
+        "dice": 0.7896054331205514,
+        "fp_per_image": 3.301043219076006,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.16567059999999856
+    },
+    {
+      "id": "b09dd86237118107_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 1016,
+        "fp": 2213,
+        "fn": 1724,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10258530,
+        "union": 15725477,
+        "predicted_pixels": 12446017,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 833,
+        "interior_gt": 853,
+        "interior_tp": 183,
+        "precision": 0.3146484979869929,
+        "recall": 0.3708029197080292,
+        "f1": 0.3404255319148936,
+        "pixel_iou": 0.6523509588930116,
+        "dice": 0.7896033895003184,
+        "fp_per_image": 3.2980625931445604,
+        "edge_recall": 0.44144144144144143,
+        "interior_recall": 0.21453692848769051
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.18679880000001958
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2118,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350030,
+        "union": 15829022,
+        "predicted_pixels": 12641062,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.32224,
+        "recall": 0.36751824817518247,
+        "f1": 0.3433930093776641,
+        "pixel_iou": 0.6538641490295484,
+        "dice": 0.7907108324625353,
+        "fp_per_image": 3.156482861400894,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.15085019999992255
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2117,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350030,
+        "union": 15828905,
+        "predicted_pixels": 12640945,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.32234314980793854,
+        "recall": 0.36751824817518247,
+        "f1": 0.34345156889495226,
+        "pixel_iou": 0.6538689820932023,
+        "dice": 0.7907143663407239,
+        "fp_per_image": 3.1549925484351715,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.15544890000001033
+    },
+    {
+      "id": "2a9d104af96eaf05_all_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 1007,
+        "fp": 2119,
+        "fn": 1733,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10350359,
+        "union": 15828575,
+        "predicted_pixels": 12640944,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 832,
+        "interior_gt": 853,
+        "interior_tp": 175,
+        "precision": 0.3221369161868202,
+        "recall": 0.36751824817518247,
+        "f1": 0.3433344698261166,
+        "pixel_iou": 0.6539033993900272,
+        "dice": 0.7907395312582246,
+        "fp_per_image": 3.157973174366617,
+        "edge_recall": 0.44091149973502913,
+        "interior_recall": 0.205158264947245
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 26313,
+        "ambiguous": 2543,
+        "used": 20000
+      },
+      "seconds": 0.17943829999990157
+    },
+    {
+      "id": "b09dd86237118107_intensity_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 1002,
+        "fp": 2188,
+        "fn": 1738,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10077268,
+        "union": 15403558,
+        "predicted_pixels": 11942836,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 824,
+        "interior_gt": 853,
+        "interior_tp": 178,
+        "precision": 0.3141065830721003,
+        "recall": 0.3656934306569343,
+        "f1": 0.33794266441821247,
+        "pixel_iou": 0.6542169023546378,
+        "dice": 0.7909687072153784,
+        "fp_per_image": 3.2608047690014903,
+        "edge_recall": 0.43667196608373077,
+        "interior_recall": 0.20867526377491208
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.13115750000008575
+    },
+    {
+      "id": "b09dd86237118107_intensity_svm_ecc50b4dbfea3823",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 1
+      },
+      "metrics": {
+        "tp": 1002,
+        "fp": 2188,
+        "fn": 1738,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10077268,
+        "union": 15403558,
+        "predicted_pixels": 11942836,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 824,
+        "interior_gt": 853,
+        "interior_tp": 178,
+        "precision": 0.3141065830721003,
+        "recall": 0.3656934306569343,
+        "f1": 0.33794266441821247,
+        "pixel_iou": 0.6542169023546378,
+        "dice": 0.7909687072153784,
+        "fp_per_image": 3.2608047690014903,
+        "edge_recall": 0.43667196608373077,
+        "interior_recall": 0.20867526377491208
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.14621620000002622
+    },
+    {
+      "id": "b09dd86237118107_intensity_svm_580addbb60c27d56",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "group": "intensity",
+      "kind": "svm",
+      "params": {
+        "C": 0.1
+      },
+      "metrics": {
+        "tp": 1001,
+        "fp": 2187,
+        "fn": 1739,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10077148,
+        "union": 15403453,
+        "predicted_pixels": 11942611,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 823,
+        "interior_gt": 853,
+        "interior_tp": 178,
+        "precision": 0.3139899623588457,
+        "recall": 0.36532846715328465,
+        "f1": 0.33771929824561403,
+        "pixel_iou": 0.6542135714634894,
+        "dice": 0.7909662727343049,
+        "fp_per_image": 3.2593144560357676,
+        "edge_recall": 0.43614202437731847,
+        "interior_recall": 0.20867526377491208
+      },
+      "training": {
+        "positive": 11092,
+        "negative": 25946,
+        "ambiguous": 2492,
+        "used": 20000
+      },
+      "seconds": 0.16184399999997368
+    },
+    {
+      "id": "239c950efd867ffb_all_svm_4e452bd6650829fb",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "otsu"
+        },
+        "morphology": {
+          "operation": "open_close",
+          "min_area": 64
+        }
+      },
+      "group": "all",
+      "kind": "svm",
+      "params": {
+        "C": 10
+      },
+      "metrics": {
+        "tp": 996,
+        "fp": 2144,
+        "fn": 1744,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 10195671,
+        "union": 15655466,
+        "predicted_pixels": 12313147,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 811,
+        "interior_gt": 853,
+        "interior_tp": 185,
+        "precision": 0.31719745222929935,
+        "recall": 0.3635036496350365,
+        "f1": 0.33877551020408164,
+        "pixel_iou": 0.6512531150462082,
+        "dice": 0.7887986512933648,
+        "fp_per_image": 3.195230998509687,
+        "edge_recall": 0.429782723900371,
+        "interior_recall": 0.21688159437280188
+      },
+      "training": {
+        "positive": 10658,
+        "negative": 25422,
+        "ambiguous": 2447,
+        "used": 20000
+      },
+      "seconds": 0.1554530999999315
+    }
+  ],
+  "bootstrap": {
+    "seed": 2026,
+    "replicates": 2000,
+    "unit": "patch",
+    "interpretation": "Exploratory percentile intervals; post-selection, not scene-independent, no multiplicity correction"
+  },
+  "source_sha256": {
+    "screen.json": "a7988781375cb30cc497224dcb34882f2402afb8711c968cb3d471b13f94c69c",
+    "validation.json": "0238e5ca84fd773fec0c55d66bd3fd5d7a6008060be124c32e5574c495d6659c",
+    "selected.json": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966"
+  },
+  "script_sha256": "a30c7af9b4e871a43b899856262487552af9e4a87af28b4776e031d2f4360049"
+}

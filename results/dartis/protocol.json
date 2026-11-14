@@ -1,0 +1,28 @@
+{
+  "status": "frozen_before_inference",
+  "dataset": "10.1594/PANGAEA.980773",
+  "population": "All 2290 catalog no-oil patches: 1939 water and 351 coast",
+  "model": "Frozen SOS selected model; no retraining or parameter tuning",
+  "selected_sha256": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966",
+  "model_sha256": "cdc7b063e7bae8e8601b0c70a8277f4bb0359fcee61ac84dc022687c235d434b",
+  "input": "Native patch dimensions, PIL grayscale uint8 divided by 255; no resizing, cropping or contrast adjustment",
+  "backend": "numpy",
+  "decision": "A patch is a false alarm if any predicted oil region is retained (score > 0); report count of retained regions and predicted oil pixel fraction",
+  "metrics": [
+    "False-alarm patches / all patches",
+    "Retained predicted regions / patch",
+    "Predicted oil pixels / total pixels"
+  ],
+  "strata": [
+    "water",
+    "coast",
+    "K-means cluster (descriptive, not physical class)"
+  ],
+  "limitations": [
+    "No-oil-only evaluation cannot measure oil recall or overall F1",
+    "Scene/patch dependence; do not claim independent patch confidence intervals",
+    "Different preprocessing and native scale from SOS; external domain test",
+    "No labels proving individual rain, low-wind or biogenic subtype",
+    "Report failed downloads/inferences; never silently drop them"
+  ]
+}
