@@ -54,6 +54,31 @@ def main():
         return process.stdout
 
     run('saved_evidence_and_tests', ['run_experiments.py', '--verify-only'])
+    run('qposd_report', ['scripts/report_qposd.py'])
+    qposd_models = json.loads(run('qposd_saved_models', ['-c', '''
+import json,sys
+from pathlib import Path
+import numpy as np
+root=Path.cwd();sys.path.insert(0,str(root/'src'))
+from sar_oil.models import RegionModel
+base=root/'results/qposd'
+protocol=json.loads((base/'protocol.json').read_text())
+selection=json.loads((base/'classifier_selection.json').read_text())
+rows=[]
+for number in protocol['splits']['validation']:
+    for row in json.loads((base/'regions'/f'image{number}.json').read_text())['rows']:
+        rows.append((number,row))
+X=np.asarray([r['features'] for _,r in rows],float)
+checks=[]
+for config in selection['configurations']:
+    saved=config['validation_rows']
+    assert [(n,r['object_id']) for n,r in rows]==[(r['image'],r['object_id']) for r in saved]
+    scores=RegionModel.load(root/config['model_path']).scores(X)
+    np.testing.assert_array_equal(scores,[r['numpy_score'] for r in saved])
+    checks.append(config['index'])
+assert len(checks)==10
+print(json.dumps({'model_indices':checks,'validation_objects':len(rows),'scores_exactly_equal':True,'scope':'Recompute model scores from saved real validation features; does not rerun feature extraction or image inference.'}))
+''']))
     info = json.loads(run('environment', ['-c',
         'import sys,json,importlib.metadata as m; print(json.dumps({"python":sys.version,"prefix":sys.prefix,"base_prefix":sys.base_prefix,"executable":sys.executable,"packages":{d.metadata["Name"]:d.version for d in m.distributions()}}))']))
     assert Path(info['prefix']).resolve() == (project / '.venv').resolve()
@@ -85,6 +110,7 @@ print(json.dumps({'qt_startup':True,'models_loaded':checks,'input':'Constant syn
              'all_extracted_files_verified_before_execution': bool(args.package),
              'environment': info, 'runner': runner,
              'qt_and_models': json.loads(smoke), 'fresh_venv_verified': True,
+             'qposd_report_verified': True, 'qposd_saved_models': qposd_models,
              'lock_and_project_match_package': True, 'system_site_packages': False,
              'logs': str(log_dir), 'submission_ready': False,
              'scope': 'New venv on the same Windows host, installed from the frozen lock. No claim of another OS, full retraining, or real-image GUI validation in this environment.'}

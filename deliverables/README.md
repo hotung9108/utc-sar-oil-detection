@@ -2,16 +2,16 @@
 
 Đây là bộ tài liệu và mã nguồn để nhóm chạy, rà soát và hoàn thiện. **Chưa phải bản nộp đầy đủ Đề 18**; tình trạng từng yêu cầu nằm trong `docs/management/completion_audit.json`.
 
-Gói v3: `packages/SAR_review_v3.zip`, gồm báo cáo v10, slide v4 và các kết quả
-DARTIS/PALSAR bổ sung. Trạng thái kiểm tra và hash của từng gói nằm trong
+Gói v4: `packages/SAR_review_v4.zip`, gồm báo cáo v11, slide v5, 10 notebook
+và các kết quả SOS, DARTIS/PALSAR, QPOSD. Trạng thái kiểm tra và hash của từng gói nằm trong
 tệp JSON cùng tên bên cạnh ZIP; không chuyển xác nhận từ gói cũ sang gói mới.
 
 ## Các sản phẩm
 
 | Sản phẩm | Điểm mở |
 |---|---|
-| Báo cáo mới 41 trang, 29 trang nội dung chính, có kết quả QPOSD | `report/Bao_cao_SAR_SOS_review_v11.docx` hoặc `.pdf` (chưa nằm trong ZIP v3) |
-| Slide mới 24 trang, có kết quả và ca thất bại QPOSD | `presentation/SAR_SOS_review_v5.pptx` (chưa nằm trong ZIP v3) |
+| Báo cáo 41 trang, 29 trang nội dung chính, có kết quả QPOSD | `report/Bao_cao_SAR_SOS_review_v11.docx` hoặc `.pdf` |
+| Slide 24 trang, có kết quả và ca thất bại QPOSD | `presentation/SAR_SOS_review_v5.pptx` |
 | Video tự động 6 phút có phụ đề, không âm thanh | `video/SAR_demo_v1.mp4` |
 | Giao diện PyQt | `scripts/demo_qt.py` từ thư mục gốc |
 | Năm notebook SOS theo nhiệm vụ | `notebooks/01_...` đến `05_...` |
@@ -63,8 +63,8 @@ python scripts/verify_package_environment.py --project <thu-muc-giai-nen>
 ## Phần còn thiếu
 
 - Nhãn và căn chỉnh hợp lệ để đánh giá tác động hiệu chuẩn/gió lên phát hiện dầu.
-- Đánh giá dầu/look-alike, đặc biệt theo từng nguyên nhân vật lý; QPOSD còn sai lệch ảnh–mask.
-- Test độc lập mới cho nhánh Niblack; không dùng kết quả Otsu thay thế.
+- Nhãn theo từng nguyên nhân vật lý của look-alike; QPOSD đã đánh giá lớp chung trên 24 cặp hợp lệ, chưa chứng minh độc lập cảnh.
+- Test Sentinel độc lập mới cho nhánh Niblack; đã có phép thử PALSAR bổ sung, không dùng kết quả Otsu thay thế.
 - Thông tin bìa, mã sinh viên, xác nhận đóng góp, chữ ký và biên bản họp thật.
 
 Các ô chưa xác nhận được giữ trống. Video và kết quả tự động không thay thế thuyết trình, buổi họp hay công việc thực tế của từng thành viên.
