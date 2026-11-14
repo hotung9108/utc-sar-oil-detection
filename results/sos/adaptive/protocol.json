@@ -1,0 +1,144 @@
+{
+  "scope": "Supplementary post-selection validation analysis; no test read or tuning",
+  "selection": "Top 3 adaptive proposal configurations by strict F1 then recall then ID",
+  "stage2": "Fixed no morphology/min_area64 and all 8 features; 9 classifier settings per configuration",
+  "limitations": "Not exhaustive; fixed stage2 choices inherited from previous experiment; same validation reused",
+  "finalists": [
+    {
+      "id": "780a2ee3d304f5b0",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.2
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 702,
+        "fp": 39799,
+        "fn": 2038,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 7498974,
+        "union": 23502543,
+        "predicted_pixels": 17463527,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 582,
+        "interior_gt": 853,
+        "interior_tp": 120,
+        "precision": 0.017332905360361472,
+        "recall": 0.2562043795620438,
+        "f1": 0.032469184338937584,
+        "pixel_iou": 0.319070749067452,
+        "dice": 0.48378110013132586,
+        "fp_per_image": 59.31296572280179,
+        "edge_recall": 0.30842607313195547,
+        "interior_recall": 0.1406799531066823
+      },
+      "seconds": 8.245489899997096
+    },
+    {
+      "id": "66314cf158bec659",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 4
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.2
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 696,
+        "fp": 40268,
+        "fn": 2044,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 7375112,
+        "union": 23457290,
+        "predicted_pixels": 17294412,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 575,
+        "interior_gt": 853,
+        "interior_tp": 121,
+        "precision": 0.016990528268723756,
+        "recall": 0.25401459854014596,
+        "f1": 0.03185063152114223,
+        "pixel_iou": 0.31440596931700127,
+        "dice": 0.47840009351201374,
+        "fp_per_image": 60.011922503725785,
+        "edge_recall": 0.3047164811870694,
+        "interior_recall": 0.141852286049238
+      },
+      "seconds": 8.15485550000244
+    },
+    {
+      "id": "8be3b5f4368430f4",
+      "config": {
+        "filter": {
+          "name": "lee",
+          "size": 7,
+          "looks": 1
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.5
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 16
+        }
+      },
+      "metrics": {
+        "tp": 776,
+        "fp": 58772,
+        "fn": 1964,
+        "images": 671,
+        "empty_images": 32,
+        "intersection": 5653668,
+        "union": 20256936,
+        "predicted_pixels": 12372614,
+        "truth_pixels": 13537990,
+        "edge_gt": 1887,
+        "edge_tp": 559,
+        "interior_gt": 853,
+        "interior_tp": 217,
+        "precision": 0.01303150399677571,
+        "recall": 0.2832116788321168,
+        "f1": 0.02491651682507064,
+        "pixel_iou": 0.27909788528729124,
+        "dice": 0.43639800909311105,
+        "fp_per_image": 87.5886736214605,
+        "edge_recall": 0.2962374138844727,
+        "interior_recall": 0.2543962485345838
+      },
+      "seconds": 8.121351899997421
+    }
+  ],
+  "protected_original_sha256": {
+    "selected.json": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966",
+    "svm_model.json": "cdc7b063e7bae8e8601b0c70a8277f4bb0359fcee61ac84dc022687c235d434b",
+    "cart_model.json": "99b35e072206e938c4174c3b7deeb6c8c1dc211747e3b9ec6f8ef8a67fab26e3",
+    "evaluation.json": "03edf61be8c2656a5de5a99d99386f5c7646f874b14d1e595c1cbe2031b8fc92"
+  },
+  "script_sha256": "08d100d82d966a785c0acc2a49e3f3bea5530b8c7202459a2893ae2f5fda999b"
+}

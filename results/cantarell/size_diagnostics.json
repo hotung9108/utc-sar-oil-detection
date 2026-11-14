@@ -1,0 +1,3131 @@
+{
+  "evaluation_sha256": "4a36a22807b4c3cb310b52fe9307709bb309162468d3c804cdf976be751b49c7",
+  "script_sha256": "fa164515dc5c4cad9b7aab7ceb72226892f1ac6e0a9e2987a39754e719df5933",
+  "roles": {
+    "primary": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 20,
+          "recall": 0.16393442622950818
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "gamma_unrestricted": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 20,
+          "recall": 0.16393442622950818
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "sigma_unrestricted": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 20,
+          "recall": 0.16393442622950818
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "sigma_adaptive": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 20,
+          "recall": 0.16393442622950818
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "paired_sigma_same_model": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 20,
+          "recall": 0.16393442622950818
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 3
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "filtered_adaptive": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 14,
+          "recall": 0.11475409836065574
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    },
+    "paired_sigma_filtered_model": {
+      "totals": {
+        "below_32": {
+          "gt": 358,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "32_to_63": {
+          "gt": 65,
+          "matched": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 122,
+          "matched": 14,
+          "recall": 0.11475409836065574
+        }
+      },
+      "per_image": [
+        {
+          "sample": "IMG_07_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_07_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 1,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 10,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 5,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 13,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 6,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 27,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 7,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_17_TILE_007",
+          "sizes": {
+            "below_32": {
+              "gt": 5,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 9,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 31,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 8,
+              "matched": 1
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 8,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_18_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 28,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 10,
+              "matched": 2
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 24,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 3,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 2,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 6,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_003",
+          "sizes": {
+            "below_32": {
+              "gt": 51,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 13,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_004",
+          "sizes": {
+            "below_32": {
+              "gt": 37,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 5,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_005",
+          "sizes": {
+            "below_32": {
+              "gt": 22,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 2,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 4,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_20_TILE_006",
+          "sizes": {
+            "below_32": {
+              "gt": 3,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 4,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 7,
+              "matched": 4
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_001",
+          "sizes": {
+            "below_32": {
+              "gt": 0,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 1,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 1,
+              "matched": 0
+            }
+          }
+        },
+        {
+          "sample": "IMG_26_TILE_002",
+          "sizes": {
+            "below_32": {
+              "gt": 12,
+              "matched": 0
+            },
+            "32_to_63": {
+              "gt": 0,
+              "matched": 0
+            },
+            "at_least_64": {
+              "gt": 3,
+              "matched": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "retuning_performed": false,
+  "interpretation": "With minimum predicted component area 64 and IoU >= 0.5, a GT component below 32 pixels cannot match even if fully contained. Size strata describe missed objects; they do not replace full-population scores or justify removing small GT.",
+  "caution": "Minimum area 64 was fixed in the physical protocol, inherited from the coursework search design; it is not an empirically established optimum for every sensor or resolution."
+}

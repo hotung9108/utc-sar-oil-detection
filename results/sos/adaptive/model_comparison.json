@@ -1,0 +1,169 @@
+[
+  {
+    "id": "7b5c505ee3be8bb6",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "cart",
+    "params": {
+      "max_depth": 3,
+      "min_leaf": 5
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 672,
+      "fp": 5879,
+      "fn": 2068,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6937579,
+      "union": 15617777,
+      "predicted_pixels": 9017366,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 561,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.10257975881544802,
+      "recall": 0.24525547445255474,
+      "f1": 0.14465611882466903,
+      "pixel_iou": 0.4442104020309677,
+      "dice": 0.6151602306786911,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.2972972972972973,
+      "interior_recall": 0.13012895662368112
+    },
+    "seconds": 1.646183299999393,
+    "reference_metrics": {
+      "tp": 672,
+      "fp": 5879,
+      "fn": 2068,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 6937579,
+      "union": 15617777,
+      "predicted_pixels": 9017366,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 561,
+      "interior_gt": 853,
+      "interior_tp": 111,
+      "precision": 0.10257975881544802,
+      "recall": 0.24525547445255474,
+      "f1": 0.14465611882466903,
+      "pixel_iou": 0.4442104020309677,
+      "dice": 0.6151602306786911,
+      "fp_per_image": 8.761549925484351,
+      "edge_recall": 0.2972972972972973,
+      "interior_recall": 0.13012895662368112
+    },
+    "agreement": 1.0,
+    "converged": true,
+    "fit_seconds": {
+      "reference": 0.06031450000045879,
+      "numpy": 0.07223089999934018
+    }
+  },
+  {
+    "id": "624920693b7583af",
+    "config": {
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    "kind": "svm",
+    "params": {
+      "C": 10
+    },
+    "group": "all",
+    "training": {
+      "positive": 19458,
+      "negative": 68044,
+      "ambiguous": 4563,
+      "used": 20000
+    },
+    "metrics": {
+      "tp": 673,
+      "fp": 6344,
+      "fn": 2067,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7164048,
+      "union": 16058799,
+      "predicted_pixels": 9684857,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 560,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09590993301980903,
+      "recall": 0.2456204379562044,
+      "f1": 0.13795223941785384,
+      "pixel_iou": 0.446113560547087,
+      "dice": 0.6169827497894638,
+      "fp_per_image": 9.454545454545455,
+      "edge_recall": 0.296767355590885,
+      "interior_recall": 0.1324736225087925
+    },
+    "seconds": 0.16381010000077367,
+    "reference_metrics": {
+      "tp": 673,
+      "fp": 6344,
+      "fn": 2067,
+      "images": 671,
+      "empty_images": 32,
+      "intersection": 7164048,
+      "union": 16058799,
+      "predicted_pixels": 9684857,
+      "truth_pixels": 13537990,
+      "edge_gt": 1887,
+      "edge_tp": 560,
+      "interior_gt": 853,
+      "interior_tp": 113,
+      "precision": 0.09590993301980903,
+      "recall": 0.2456204379562044,
+      "f1": 0.13795223941785384,
+      "pixel_iou": 0.446113560547087,
+      "dice": 0.6169827497894638,
+      "fp_per_image": 9.454545454545455,
+      "edge_recall": 0.296767355590885,
+      "interior_recall": 0.1324736225087925
+    },
+    "agreement": 1.0,
+    "converged": true,
+    "fit_seconds": {
+      "reference": 0.029272499999933643,
+      "numpy": 0.14022819999991043
+    }
+  }
+]
