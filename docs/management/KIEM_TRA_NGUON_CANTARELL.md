@@ -20,6 +20,12 @@ Mục đích: tìm ảnh SAR có nhãn và thông tin vật lý để đánh gi�
 
 ## Metadata vật lý toàn bộ cảnh
 
+Giao thức mô hình được ghi riêng tại `cantarell_model_protocol_v1.json`, tạo bởi `scripts/freeze_cantarell_model_protocol.py` trước khi fit/chấm phát hiện. Lưới gồm 5 bộ lọc × 5 ngưỡng × 2 nhánh sigma0/gamma0 = **50 phép so sánh validation**, mỗi phép chạy NumPy và thư viện. Giữ hợp của top 3 tổng thể và top 3 Niblack cho từng nhánh; so sánh 7 cấu hình SVM/CART trên các ứng viên giữ lại (tối đa 84 cặp tự cài/thư viện). Đây là tìm kiếm theo giai đoạn, không chứng minh tối ưu toàn cục.
+
+Nghiệm chính của nhánh vật lý bị ràng buộc dùng gamma0 và Niblack để thực hiện chuẩn hóa góc tới cùng ngưỡng thích nghi. Phải công bố đánh đổi so với nghiệm không ràng buộc, không gọi nghiệm bị ràng buộc là tốt nhất toàn bộ. Khi kiểm tra tác động góc tới trên test, **giữ nguyên mô hình đã train trên gamma0 và toàn bộ cấu hình**, chỉ đổi đầu vào gamma0 ↔ sigma0. Các nghiệm được tối ưu riêng theo từng nhánh là đối chứng khác, không dùng chúng để quy toàn bộ chênh lệch cho góc tới.
+
+Giao thức cũng quy định fit scaler trên train, không lọc GT nhỏ, ghép đối tượng IoU≥0,5, giữ nguyên lỗi/hội tụ của mọi cấu hình và bootstrap ghép cặp theo cảnh. Danh sách mẫu thật sự đạt gate dữ liệu và hash mã chạy phải được ghi/commit trước khi tính điểm phát hiện đầu tiên. **Chưa có kết quả mô hình; các lựa chọn trên là thiết kế phép thử, không phải bằng chứng thuật toán tốt hơn.**
+
 ```powershell
 .venv/Scripts/python.exe scripts/fetch_cantarell_physical_metadata.py
 ```
