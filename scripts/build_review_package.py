@@ -38,6 +38,7 @@ def collect():
     selected.discard('deliverables/presentation/SAR_SOS_review_v1.pptx')
     selected.discard('deliverables/presentation/SAR_SOS_review_v2.pptx')
     selected.discard('deliverables/presentation/SAR_SOS_review_v3.pptx')
+    selected.discard('deliverables/presentation/SAR_SOS_review_v4.pptx')
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v8.docx')
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v8.pdf')
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v9.docx')
@@ -89,7 +90,7 @@ def main():
                     'git_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip(),
                     'contains_worktree_changes': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT)),
                     'files': entries, 'exclusions': ['raw imagery', 'virtual environment', 'caches',
-                    'legacy history', 'Git history', 'historical presentations v1/v2/v3 and reports v8/v9/v10'],
+                    'legacy history', 'Git history', 'historical presentations v1/v2/v3/v4 and reports v8/v9/v10'],
                     'scope': 'Review materials and saved evidence. Does not include source imagery needed to rerun inference/training.',
                     'required_next_steps': 'Read docs/management/completion_audit.json and deliverables/README.md'}
         archive.writestr('PACKAGE_MANIFEST.json', json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')

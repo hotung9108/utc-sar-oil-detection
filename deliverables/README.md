@@ -11,12 +11,13 @@ tệp JSON cùng tên bên cạnh ZIP; không chuyển xác nhận từ gói cũ
 | Sản phẩm | Điểm mở |
 |---|---|
 | Báo cáo mới 41 trang, 29 trang nội dung chính, có kết quả QPOSD | `report/Bao_cao_SAR_SOS_review_v11.docx` hoặc `.pdf` (chưa nằm trong ZIP v3) |
-| Slide 21 trang | `presentation/SAR_SOS_review_v4.pptx` |
+| Slide mới 24 trang, có kết quả và ca thất bại QPOSD | `presentation/SAR_SOS_review_v5.pptx` (chưa nằm trong ZIP v3) |
 | Video tự động 6 phút có phụ đề, không âm thanh | `video/SAR_demo_v1.mp4` |
 | Giao diện PyQt | `scripts/demo_qt.py` từ thư mục gốc |
 | Năm notebook SOS theo nhiệm vụ | `notebooks/01_...` đến `05_...` |
 | Nhánh Sentinel-1 gốc và gió ERA5 | `notebooks/external/07_sentinel_calibration.ipynb` |
 | DARTIS: 2.290 ảnh đã đánh giá, báo nhầm 63,2751% | `results/dartis/REPORT.md` |
+| QPOSD: đối chiếu NumPy/thư viện, 5 ảnh test và nhầm lẫn dầu/tương tự dầu | `results/qposd/REPORT.md`; `notebooks/external/10_qposd_classification_detection.ipynb` |
 
 ## Chạy sau khi giải nén
 

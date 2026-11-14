@@ -1,6 +1,6 @@
 {
   "scope": "Rebuild reports and rerun notebook computations from frozen evidence; not full retraining or DOCX/PPTX/video production",
-  "script_sha256": "ef721619e7093441a0cda9da700aba4254a654eb0b1c234bf4b9450f1b839ae3",
+  "script_sha256": "10a40b64b884bac71b712668c601c39fca728362f9b85e7bfad570b2fb7a0580",
   "protected_sha256": {
     "data/manifest.json": "572d38f21c25a628d419181d108f50e6e43ebd52cb9b85368f4cd4771c9bed7e",
     "results/sos/selected.json": "1d977deea26de46d78bdcf710433e7d4c75ef597fb5fbee341bfacc6abc55966",
@@ -14,16 +14,91 @@
     "results/dartis/evaluation.json": "7c631987279c78b263f780fd43a2f53a42b791a4121130f68648b9282ceae7fe",
     "results/sos/external_palsar_train/protocol.json": "d09231a5d193139c0a7bbaec6775cf91a8440b76424285655fcec3a53690feb2",
     "results/sos/external_palsar_train/otsu.json": "117ef9118d55f69788877f794d0d993988451019b099abcd0ac7f58d74a016ee",
-    "results/sos/external_palsar_train/niblack.json": "9b79badb80f99eb5015efcb0ac0ade7f53fb64eea9a921b423faf5e83be263dd"
+    "results/sos/external_palsar_train/niblack.json": "9b79badb80f99eb5015efcb0ac0ade7f53fb64eea9a921b423faf5e83be263dd",
+    "results/qposd/archive/protocol_v1/protocol.json": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+    "results/qposd/archive/protocol_v1/regions/image10.json": "a8fa0fec28caacac0ed913713fc16a1f77e6ac0b3b6120cb1b854d821820b99a",
+    "results/qposd/archive/protocol_v1/regions/image13.json": "f31a59cf1f00cd6818397fc936e499757293020957214b4f884d1ce124bb6ee6",
+    "results/qposd/archive/protocol_v1/regions/image15.json": "8eae7deaa0ecca26b57739693a5acd59301d54576cba6f15dfa623f2dadf4168",
+    "results/qposd/archive/protocol_v1/regions/image16.json": "d520ca37d9e7e278b66a2e65f6045eb76a1f354929caa06d298a613a6b116ecc",
+    "results/qposd/archive/protocol_v1/regions/image17.json": "f034f8796bfbae0852cc0e5b0f45c31c54ed21171c550f1847e29bd50cebaaf8",
+    "results/qposd/archive/protocol_v1/regions/image19.json": "d6a0ca973bfa45caf1ab3766d089ca224b1f76e43e1ba0a33d2619b766c4347a",
+    "results/qposd/archive/protocol_v1/regions/image20.json": "edca8db728825c89e9aa82d4d5ebcac71793d4217b204b5b29805f89fab15c53",
+    "results/qposd/archive/protocol_v1/regions/image22.json": "7d94d44e3261fdd07e0fa09e55507b28ca73f119aedfa66c9ab562d0db977523",
+    "results/qposd/archive/protocol_v1/regions/image26.json": "871f5548b641a602b125d158fb3118112f9a869cdeab4738ec09003ee8777dc6",
+    "results/qposd/archive/protocol_v1/regions/image28.json": "d20ade89b180cf6212e6c601df7668c894d70d61a6147412018bc6d115901929",
+    "results/qposd/archive/protocol_v1/regions/image32.json": "2492a5aaecdc9092cda65582e1708051fdcd9250301470a4740ab0bd7804f60a",
+    "results/qposd/archive/protocol_v1/regions/image33.json": "ab3c45c2da4a56c67c29ddfaac902a151a5da337514f0d6258ea38ad55dbc27c",
+    "results/qposd/archive/protocol_v1/regions/image34.json": "7be48f2efa92f1812f437c92ac5d0b097c6d48824cb135862548b90375af6684",
+    "results/qposd/archive/protocol_v1/regions/image35.json": "cfc2f07f7b52ed9ce639a357d121cf693e9218cb2c0ad16e769d9554d61ac793",
+    "results/qposd/archive/protocol_v1/regions/image36.json": "f4293fa4d6b93ff542a40d07b135d062de051f1db62be03a216aafd0747c2f03",
+    "results/qposd/archive/protocol_v1/regions/image39.json": "e1ebda279977775c7ce2afc779aafa41bcf2cd2f4dc9c0570f8e7aa3883bb1b8",
+    "results/qposd/archive/protocol_v1/regions/image4.json": "630ce06b12ba1558b4ed4d5b8960b9c9daffd2b15a61201dee92c3ca0d37395d",
+    "results/qposd/archive/protocol_v1/regions/image41.json": "18863d0bd20ed49c4dd30d678a7619a83b7e817464a5b5c45af59b15454d2045",
+    "results/qposd/archive/protocol_v1/regions/image8.json": "933c5224be94e8a3bef06c42e3a6d1373e61fbf954289ae5e18a541f7a4a4155",
+    "results/qposd/classifier_selection.json": "36323b031d7831bb3d429ac5b10d5b318099185d6c779a14a6e3e4ac1ec7e686",
+    "results/qposd/detection_selection.json": "67ef82c6b4aa2e1f5b303b90abb53a9be0faf5aba626af4b6f43b155bf57698b",
+    "results/qposd/evaluation.json": "445967a2e0d20b09504cdeb4f15434e9753f110f5693ca13510cc7dd9c418bd2",
+    "results/qposd/models/model0.json": "f779a0d9805f1e9aa1a16aaa233c90ddcdb6f4a3eb4d30b831f58dfa184de479",
+    "results/qposd/models/model1.json": "00e2ce4e56173b77d6ec2e47881b4abfcf7c527ade0e3004b501b532cf447cca",
+    "results/qposd/models/model2.json": "dd287577e3716e98321b4ac392eebe1e487a0a55edbc22b54b88fef18be9a5ef",
+    "results/qposd/models/model3.json": "2c1203c00181bc222f0dc7adef3c2cb77876d6a6ecc441eb452636e6cacc368a",
+    "results/qposd/models/model4.json": "1e7376ac1b24e16dbd75f211b6d2f9d7828cf66b4d88c2402c83be33fbe9505b",
+    "results/qposd/models/model5.json": "27bc69a73baa5f3c95d8356cf209ff2d2db2ee1fccca84a4f2817db1397778ff",
+    "results/qposd/models/model6.json": "40e956bde04679c62f7ec383d9f06f35d41932034ffca32031c7b53d7798d826",
+    "results/qposd/models/model7.json": "0808e0fb488a1abf22edc9011e820d7ee911463116fcb48e577319f6c1713beb",
+    "results/qposd/models/model8.json": "ee51fd08b3be652ed4b9cd2b0c98a9823bf4da79bfbf0808c9dc49e5dedca7e2",
+    "results/qposd/models/model9.json": "0ed68dc2c94959eab8f3c394b683ba4da486fb174fa048d0ac577cedfc59ee64",
+    "results/qposd/protocol.json": "ead2603c6b06574da90201160451ad5e0d5fa71427af1635befcce5601989100",
+    "results/qposd/regions/image10.json": "6856757f00625df34e2d858685f1564cb463ff65b687459aa563f326dfe9e49b",
+    "results/qposd/regions/image13.json": "97855d3b9e52e777899683bde8f85281bf0c8545671d35b4ff73c7e77a57aa86",
+    "results/qposd/regions/image15.json": "1793f72a2414dbfe7877b32907fd1cb91d72d8006e62f0e12a9791e639eaea69",
+    "results/qposd/regions/image16.json": "efd532c7afef6750aeeaee3202ccdceeb12de9459de458c5688340ae6207f8c4",
+    "results/qposd/regions/image19.json": "c15816b246d0c61279115103b0589e2a22c14d8fd07d9057042f097f9c13dc29",
+    "results/qposd/regions/image20.json": "a3126e5aa35930337dc905b5c286afd9746ed92d03a3dba0b93b5ce6b1ae9f37",
+    "results/qposd/regions/image21.json": "bcf01de04afc926dec38b239c562fc519a074f09cea219d9198daa84b5df43a0",
+    "results/qposd/regions/image22.json": "25a706c51d07e3cf192f62817976ee8152a6b7e6e522ae5eb62144512d5f6f8a",
+    "results/qposd/regions/image26.json": "6179592783de1574a5532f09d1720ad97917121a36c28d8610a933def6d64b34",
+    "results/qposd/regions/image28.json": "90bc5d0c91161cfaf483fc950fb2ef62b54c1223ef4416e8feb165b1883a7c86",
+    "results/qposd/regions/image32.json": "23f0f2b46e04e4b973d8adf41b1aab69769c3230e6399f0d6390689a80d46e7c",
+    "results/qposd/regions/image33.json": "ab983f9f3e1531d65221ea159395a68cedaf59537f3810fc445e02345467d93e",
+    "results/qposd/regions/image34.json": "ea8f3f0982ef2864cb3c835098dde19d06c1b035245172e333159dca82d05d4c",
+    "results/qposd/regions/image35.json": "3f3a7ccccbeb82cabe2ad97d65f26d53dfbc513bfd400a5c3385f64377908ecc",
+    "results/qposd/regions/image36.json": "b279257de148dd8ce0913fc146a54a7fcdb2752af895c1baedd29eb0e60fe55e",
+    "results/qposd/regions/image39.json": "b7d8fc0a88c1376189a840365c233db0fbf95a2e920f98a2bb7fb15d542aa780",
+    "results/qposd/regions/image4.json": "18782c87da812d48f503c324d03aa009ba914184c0d02e9067085d19c6d6549e",
+    "results/qposd/regions/image41.json": "b52365661ed932fd16163340e8a3050d49b9531a8723057a480be171ca96ca0a",
+    "results/qposd/regions/image8.json": "9f2146273656fd00e4761d587be0b392db52958756b9b2514d2968fbab92f54e",
+    "results/qposd/test/image14_evaluation.json": "40386ea83650d630670d690a890d3d9eb9ee26d27448294334b46daa7dfcc517",
+    "results/qposd/test/image14_reference_regions.json": "850ff6305810d6be0b3edd2cc4438e108ee9e28987128383e38a5282cd01e1f8",
+    "results/qposd/test/image17_evaluation.json": "e783397291dc4aa8060f6b13e19c2640adf8f9ab66dabb1da668c0973f0a4020",
+    "results/qposd/test/image17_reference_regions.json": "690e3722584d606fb32bc961cbbd01779e6523815b68c21e52a53a96db4b0c17",
+    "results/qposd/test/image18_evaluation.json": "8c4e796e1b16b255501bfb6fdba2ada46bcd7cb9d461b3506dcd825e6946ce22",
+    "results/qposd/test/image18_reference_regions.json": "ba6caf359292324298402cd8119c1d7ff2ad03c683a16919b2725f6a7ce1facc",
+    "results/qposd/test/image24_evaluation.json": "437222cb12da014d9c96825f3aae65a1ccdd0cfa54722150118cdb731a1ac068",
+    "results/qposd/test/image24_reference_regions.json": "a5e35e9e4bb46436801f842b26c0e291a7d7ce055b241674b9f10a348a37682a",
+    "results/qposd/test/image25_evaluation.json": "2bc59b0e38ec85dbdb47aa6cde614a0154f4497fdb86d43af14eaf5474009ed5",
+    "results/qposd/test/image25_reference_regions.json": "6ca02f45b9fe584f57fa709ee6f46a93b894961a4d44512a84b35ee8193fcc57",
+    "results/qposd/test/image14_numpy_classes.png": "347654238419cef1076064948bca3affbdf0259b1ee767b61f130fd824b1d072",
+    "results/qposd/test/image14_reference_classes.png": "347654238419cef1076064948bca3affbdf0259b1ee767b61f130fd824b1d072",
+    "results/qposd/test/image17_numpy_classes.png": "887896bae766b8531c3e05e9df48ccf14d292ede77d0c505789a7fe74539891e",
+    "results/qposd/test/image17_reference_classes.png": "887896bae766b8531c3e05e9df48ccf14d292ede77d0c505789a7fe74539891e",
+    "results/qposd/test/image18_numpy_classes.png": "05c8e3d87cf95d3051e8b2fb316040486e64d5480e21869ae1fc34d5810d2dc8",
+    "results/qposd/test/image18_reference_classes.png": "05c8e3d87cf95d3051e8b2fb316040486e64d5480e21869ae1fc34d5810d2dc8",
+    "results/qposd/test/image24_numpy_classes.png": "6c49d07a85ac99f828e0b9a09736479e6015a8fc18a0179eaa87c16e0ead1906",
+    "results/qposd/test/image24_reference_classes.png": "6c49d07a85ac99f828e0b9a09736479e6015a8fc18a0179eaa87c16e0ead1906",
+    "results/qposd/test/image25_numpy_classes.png": "f4d778ad19dec2c044cedea5560f5b09694b1782b7da16da9e128ae6db95c7a0",
+    "results/qposd/test/image25_reference_classes.png": "f4d778ad19dec2c044cedea5560f5b09694b1782b7da16da9e128ae6db95c7a0",
+    "results/physical/calibration.json": "40fb86ccab2f8bec1a23565fd4b29f5e8d813e9ed4fba921023a5e67cf279c8e",
+    "results/physical/wind.json": "9c5e91deada233af6286b2b820b9f9379683a6d8beffcc79d4fdadcb1ca07475"
   },
-  "expected_steps": 14,
+  "expected_steps": 16,
   "steps": [
     {
       "command": [
         "scripts/verify_outputs.py"
       ],
       "exit_code": 0,
-      "seconds": 4.5453629000003275,
+      "seconds": 3.4940161999993506,
       "frozen_sources_unchanged": true
     },
     {
@@ -31,7 +106,7 @@
         "scripts/summarize_results.py"
       ],
       "exit_code": 0,
-      "seconds": 0.16878779999933613,
+      "seconds": 0.4597471000006408,
       "frozen_sources_unchanged": true
     },
     {
@@ -39,7 +114,7 @@
         "scripts/report_dartis.py"
       ],
       "exit_code": 0,
-      "seconds": 43.35037790000024,
+      "seconds": 18.20245840000007,
       "frozen_sources_unchanged": true
     },
     {
@@ -47,7 +122,15 @@
         "scripts/report_palsar_holdout.py"
       ],
       "exit_code": 0,
-      "seconds": 60.18974960000014,
+      "seconds": 47.35440819999985,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/report_qposd.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3.022248000000218,
       "frozen_sources_unchanged": true
     },
     {
@@ -57,7 +140,7 @@
         "notebooks/01_data_and_ground_truth.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 11.477172999999311,
+      "seconds": 6.98557400000027,
       "frozen_sources_unchanged": true
     },
     {
@@ -67,7 +150,7 @@
         "notebooks/02_filter_threshold_benchmark.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 10.724722400000246,
+      "seconds": 6.447545099999843,
       "frozen_sources_unchanged": true
     },
     {
@@ -77,7 +160,7 @@
         "notebooks/03_regions_and_features.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 9.156785500001206,
+      "seconds": 6.04372770000009,
       "frozen_sources_unchanged": true
     },
     {
@@ -87,7 +170,7 @@
         "notebooks/04_cart_svm_numpy.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 13.080223799999658,
+      "seconds": 7.264267999999902,
       "frozen_sources_unchanged": true
     },
     {
@@ -97,7 +180,7 @@
         "notebooks/05_final_pipeline.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 11.021860499999093,
+      "seconds": 6.878113300000223,
       "frozen_sources_unchanged": true
     },
     {
@@ -107,7 +190,7 @@
         "notebooks/external/06_dartis_false_alarms.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 15.842045700001108,
+      "seconds": 8.395591600000444,
       "frozen_sources_unchanged": true
     },
     {
@@ -117,7 +200,7 @@
         "notebooks/external/07_sentinel_calibration.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 11.927084200000536,
+      "seconds": 7.320096999999805,
       "frozen_sources_unchanged": true
     },
     {
@@ -127,7 +210,7 @@
         "notebooks/external/08_qposd_audit.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 28.90451580000081,
+      "seconds": 13.153860800000075,
       "frozen_sources_unchanged": true
     },
     {
@@ -137,7 +220,17 @@
         "notebooks/external/09_palsar_frozen_pipelines.ipynb"
       ],
       "exit_code": 0,
-      "seconds": 7.891304499999023,
+      "seconds": 7.501770900000338,
+      "frozen_sources_unchanged": true
+    },
+    {
+      "command": [
+        "scripts/run_notebooks.py",
+        "--notebook",
+        "notebooks/external/10_qposd_classification_detection.ipynb"
+      ],
+      "exit_code": 0,
+      "seconds": 26.301192099999753,
       "frozen_sources_unchanged": true
     },
     {
@@ -145,7 +238,7 @@
         "scripts/verify_outputs.py"
       ],
       "exit_code": 0,
-      "seconds": 2.868066099999851,
+      "seconds": 3.202720600000248,
       "frozen_sources_unchanged": true
     }
   ],

@@ -1,79 +1,100 @@
 {
-  "compared_to_git_commit": "a043b9d87cc31a5f4b9fb7f705cec01a2d9acae9",
+  "compared_to_git_commit": "995d82b2b8f69d0c1807f25700f6b157d8fc798f",
   "notebooks": [
     {
       "notebook": "notebooks/01_data_and_ground_truth.ipynb",
-      "previous_sha256": "6069ac7ee61c8ca75bc0d1adcb72a00a2628e8f3627242cf00d75ab1a4451b7f",
-      "current_sha256": "5da80703389f5903a420f696633cea5135e72d3a73a5962fad0808e135f71ec3",
+      "previous_sha256": "391b70749e051573aff9b818372622e2549cdacf05ce19ea1cf4e9d796a40984",
+      "current_sha256": "3a83e5ebb763fcaf840046e8097acd0b237b138b56aaa247e31398ebbf57ab84",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 1
+      "figures": 1,
+      "executed_cells": 3
     },
     {
       "notebook": "notebooks/02_filter_threshold_benchmark.ipynb",
-      "previous_sha256": "920e1c313525c23d9f0d93ae7d0b065b4c0858d4121afc0f05b88385da940ea0",
-      "current_sha256": "8f47952db1df7f0137c883a3200e8e1642bfd598b91078f4cc165f9daee80b21",
+      "previous_sha256": "70aacdbeefd59a25db4a0971436a45801d2174d79473ada8503c6a791189e4fc",
+      "current_sha256": "d75c2d9f83fccc56feb86c3e71fe57bb5f4c8d9ad312342391c705853f69ed81",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 3
+      "figures": 3,
+      "executed_cells": 5
     },
     {
       "notebook": "notebooks/03_regions_and_features.ipynb",
-      "previous_sha256": "5ab4d37b5f817fe763c4b4adeb700c0ebea7812e955cba167c131f992d4ed306",
-      "current_sha256": "d49fc07d0dcbe7f8821cab52fb8de2c087eb2b1bc0b05fc689f7a42756d6c2f4",
+      "previous_sha256": "f526f8247c1f0b0316986b5d11a437308bf0a13d073c854341f2ff5a94cea6e5",
+      "current_sha256": "dec620bd1ad196ba89af95985f3c4481859218e12efb672f052e724d4508a263",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 1
+      "figures": 1,
+      "executed_cells": 3
     },
     {
       "notebook": "notebooks/04_cart_svm_numpy.ipynb",
-      "previous_sha256": "eaeead1e79550cd1a85476ddce2cec2613e7363223e1a066d694b2ec63e8ad9d",
-      "current_sha256": "05501b3710add78a9dff3d60e636ae47fb27027d6e79d57820131a86fa37b332",
+      "previous_sha256": "f75df4fe8c66d1d1bb99e727fa82d7adcc7a818eb6198f54cf28416f528eca78",
+      "current_sha256": "dee0e77a2a07532696a4f9727ec1b2d2bfbf298961026fe2d0e50867b274690b",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 1
+      "figures": 1,
+      "executed_cells": 3
     },
     {
       "notebook": "notebooks/05_final_pipeline.ipynb",
-      "previous_sha256": "c359509f31887c67ea0a88451893296c272d59f45e8313231de06512606da508",
-      "current_sha256": "c3f75606a0898e5299d619c0044079a773b35f9cb65448f37098b635c6cc39a8",
+      "previous_sha256": "15aecf7383c233676522b0a0cde10d984d5ee900e3a93a2041d70a6bca12a461",
+      "current_sha256": "13c617c62c300a04237a107f95b274e0c5dc4e27687fa9e9b8bc44a8fd969c7f",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 4
+      "figures": 4,
+      "executed_cells": 4
     },
     {
       "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
-      "previous_sha256": "99c35e3edac3fc66117a559dc60cd1583ed67750be7a381b7a453585ad906c93",
-      "current_sha256": "553eddb037f7697f83a6948a594ec85c9dfb858544f65586be9e6a5e8da4afaf",
+      "previous_sha256": "9b86ae9e781591833e046a6a9d1e939c0a4197a2297f4beed6b4b912487ab6b8",
+      "current_sha256": "3a8694304a3ee24b539bd57dad53696f3ca4fee6a6994f1bbe44a71097dc36b3",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 3
+      "figures": 3,
+      "executed_cells": 4
     },
     {
       "notebook": "notebooks/external/07_sentinel_calibration.ipynb",
-      "previous_sha256": "5a1e353014c0b16ec430ab70b80c9eea4c1bc9d12db70b359a07a474b5e54a84",
-      "current_sha256": "263206ea5f8ef80b57f5b95f28b2dff8b10aad655fe50361324f30f7accead50",
+      "previous_sha256": "b08380ccdd7a8ab679e14a12d6b9202b7b84624b02be9a0d1206b3044b4aee40",
+      "current_sha256": "40275f2c0a6ddebf207c73b933d96aa5c8c43b57357c498015ef06870ae7b29a",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 2
+      "figures": 2,
+      "executed_cells": 3
     },
     {
       "notebook": "notebooks/external/08_qposd_audit.ipynb",
-      "previous_sha256": "f39be23cb7a1648d9bd86dd4affd1c863c5406ea6c65191a27c321279ebf5943",
-      "current_sha256": "e8476bccd6b4b4c2e60edadbb5c4ef9b5f6d3f50ff1fc69500355dc79c07111b",
+      "previous_sha256": "cdbfac0f10b2dc40d2bae057f7469378ac9f1137134a6c78619269aa64d01223",
+      "current_sha256": "01d9ceb77076e189034805c7f4aab29fee96fdb6135890373bf38fd66406a134",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 2
+      "figures": 2,
+      "executed_cells": 4
     },
     {
       "notebook": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
-      "previous_sha256": "51d397c5abb79cdb734a494eaa48d208c2ae2f540874d50a2a506c28e3d09815",
-      "current_sha256": "749e0046c4899240406db5aa60bb7eb7dac17deb71a79eba456f1e02af893945",
+      "previous_sha256": "041b19bb3cad6c177ccebb01e53ca5a03e863c3058319f5d1aa2e6e021ab338c",
+      "current_sha256": "e842918fa15e6e53cd51afc736ed03db534c1e32afbae1662f7c114cbe06be28",
       "outputs_equal": true,
       "figures_equal": true,
-      "figures": 2
+      "figures": 2,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/external/10_qposd_classification_detection.ipynb",
+      "previous_sha256": "e15e4af057bb6e1a1718205ba4814911b7b6671707ebb0cc1d202a4ae3da3a8c",
+      "current_sha256": "22b6aa3ac89ffe9f1cfbbe0d827bcf881d14a1dc01db5960243d07fa58e2f95b",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 7,
+      "executed_cells": 5
     }
   ],
   "all_outputs_equal": true,
-  "all_figures_equal": true
+  "all_figures_equal": true,
+  "total_figures": 26,
+  "protected_files": 88,
+  "scope": "All ten notebooks reexecuted; outputs and figure bytes exactly match prior committed evidence. Execution metadata may differ. No refitting or new selection."
 }

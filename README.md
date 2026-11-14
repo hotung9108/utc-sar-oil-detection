@@ -11,17 +11,24 @@ SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 
 
 ## Chạy
 
-Tái tạo báo cáo số liệu và chạy lại cả **9 notebook** từ các mô hình/kết quả
+Tái tạo báo cáo số liệu và chạy lại cả **10 notebook** từ các mô hình/kết quả
 đã khóa (cần đủ dữ liệu SOS, DARTIS, Sentinel-1 và QPOSD cục bộ):
 
 ```powershell
 .venv/Scripts/python.exe scripts/rebuild_evidence.py
 ```
 
-Lệnh đã chạy đủ 14 bước; output và 19 hình của chín notebook khớp bản đã lưu.
+Lệnh đã chạy đủ 16 bước; output và 26 hình của mười notebook khớp bản đã lưu,
+88 tệp kết quả/mô hình/giao thức được bảo vệ không đổi.
 Nhật ký: `docs/management/evidence_rebuild_audit.json` và
 `notebook_rebuild_comparison.json`. Đây là tái tạo báo cáo và phép tính notebook,
 không huấn luyện lại toàn bộ, tải dữ liệu hoặc dựng Word/PPTX/video.
+
+QPOSD bổ sung nhãn dầu/tương tự dầu chung trên UAVSAR: đã so sánh 10 bộ
+phân lớp và 10 cấu hình tìm vùng, rồi chấm đủ 5 ảnh test. Macro-F1 phát hiện
+0,06373; phân lớp có sẵn vùng 0,52141. Hai phép đo không thay thế nhau.
+Xem [bảng kết quả](results/qposd/REPORT.md) và
+[notebook 10](notebooks/external/10_qposd_classification_detection.ipynb).
 
 Một lệnh chạy chuỗi thực nghiệm SOS đã triển khai, phân tích bổ sung và notebook: `.venv/Scripts/python.exe run_experiments.py --workers 6`. Lệnh dùng checkpoint khi có; không tải dữ liệu tự động. Chỉ kiểm tra artifact đã lưu: thêm `--verify-only` (không được gọi đây là chạy lại thực nghiệm). Nhật ký từng bước lưu tại `results/sos/runner_*.json`.
 

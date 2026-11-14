@@ -60,9 +60,9 @@
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
-      "status": "generic_lookalike_test_notebook_report_verified_slides_package_pending",
+      "status": "generic_lookalike_test_notebook_report_slides_verified_package_pending",
       "evidence": "All 24 eligible MAT pairs and 276 pairwise overlap checks complete; v2 keeps exact-overlap groups in 14/5/5 source-image splits. All 10 classifiers converged; conditional validation winner CART depth5/min_leaf1, macro-F1 0.6238049911. All 50 validation candidate comparisons completed; no candidate filter + Otsu won with object macro-F1 0.0563380282. Frozen winner committed before test. All five test images evaluated: detection macro-F1 0.0637296643, oil F1 0.1132075472, look-alike F1 0.0142517815; conditional classification macro-F1 0.5214138612. NumPy/reference masks exactly equal on all five test images. results/qposd/REPORT.md verifies hashes and recomputes pooled counts. Notebook 10 reran both backends on all five test images with exact saved-mask and metric equality; all five code cells and seven figures verified (qposd_notebook10_audit.json).",
-      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Word report v11 includes the complete comparisons and test results. Slides/package integration remains pending."
+      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Word report v11 includes the complete comparisons and test results. Slides v5 (24 slides) includes the QPOSD results and failure case. Package integration remains pending."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
@@ -73,13 +73,13 @@
     {
       "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",
       "status": "artifacts_verified_authentic_records_pending",
-      "evidence": "21 slides in SAR_SOS_review_v4.pptx: slide 14 directly reviewed, twenty slides pixel-identical to v3. Ten native tables; finalization passed. Video v1 remains verified by video_audit.json and video_visual_review.json.",
+      "evidence": "24 slides in SAR_SOS_review_v5.pptx: slides20-24 directly reviewed; slides1-19 pixel-identical to reviewed v4. Twelve native tables; QPOSD cells checked against JSON; finalization passed. Video v1 remains verified.",
       "limit": "Video tự động có phụ đề, không âm thanh; không thay thế thuyết trình của thành viên. Hồ sơ đóng góp, chữ ký và nhật ký thật còn thiếu."
     },
     {
       "item": "Một lệnh tái tạo mọi bảng/hình và gói bàn giao",
       "status": "review_package_verified_full_reproduction_partial",
-      "evidence": "SAR_review_v3.zip: 233 files plus manifest; CRC and SHA-256 verified. Fresh isolated Windows venv installed from uv.lock; saved SOS evidence, 22 tests, Qt startup and both saved models passed. package_environment_audit_v3.json binds verification to ZIP SHA-256. Report v10 and slides v4 included. One-command scripts/rebuild_evidence.py completed all 14 steps, three numeric reports and all nine notebooks; all outputs and 19 figures match the prior committed execution. See evidence_rebuild_audit.json and notebook_rebuild_comparison.json.",
+      "evidence": "SAR_review_v3.zip: 233 files plus manifest; CRC and SHA-256 verified. Fresh isolated Windows venv installed from uv.lock; saved SOS evidence, 22 tests, Qt startup and both saved models passed. package_environment_audit_v3.json binds verification to ZIP SHA-256. Report v10 and slides v4 included. One-command scripts/rebuild_evidence.py completed all 14 steps, three numeric reports and all nine notebooks; all outputs and 19 figures match the prior committed execution. See evidence_rebuild_audit.json and notebook_rebuild_comparison.json. Updated rebuild runner completed all 16 steps, four numeric reports and ten notebooks; all outputs and 26 figures match prior committed evidence, with 88 frozen files unchanged. See latest evidence_rebuild_audit.json and notebook_rebuild_comparison.json.",
       "limit": "Frozen ZIP v3 predates the new report/notebook rebuild runner. Raw imagery and history excluded. Runner regenerates numeric reports and notebook computations, not full training or reviewed Word/PPTX/video. Scientific label and scene limitations remain."
     },
     {

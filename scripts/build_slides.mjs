@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const runtime = process.env.ARTIFACT_RUNTIME || 'C:/Users/hotung/.cache/codex-runtimes/codex-primary-runtime/dependencies';
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.join(runtime, 'node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs')).href);
-const out = path.join(root, '.cache/slides-v4');
+const out = path.join(root, '.cache/slides-v5');
 await fs.mkdir(out, {recursive:true});
 const read = async p => JSON.parse(await fs.readFile(path.join(root,p),'utf8'));
 const results = await read('results/sos/evaluation.json');
@@ -13,6 +13,10 @@ const comparison = await read('results/sos/model_comparison.json');
 const physical = await read('results/physical/calibration.json');
 const wind = await read('results/physical/wind.json');
 const dartis = await read('results/dartis/evaluation.json');
+const qposd = await read('results/qposd/evaluation.json');
+const qclasses = await read('results/qposd/classifier_selection.json');
+const qcandidates = await read('results/qposd/detection_selection.json');
+if (!qposd.complete || qposd.images.length !== 5) throw new Error('Complete QPOSD evaluation required');
 if (!dartis.complete || dartis.completed !== 2290) throw new Error('Complete DARTIS evaluation required');
 const deck = Presentation.create({slideSize:{width:1280,height:720}});
 const FONT = 'Arial';
@@ -99,19 +103,41 @@ s=slide('DARTIS: báo nhầm khi chuyển miền dữ liệu','Nguồn: results/
 const negativeGroups=[['Toàn bộ',dartis.overall],['Bờ',dartis.by_subset.nc],['Biển',dartis.by_subset.nw]];
 table(s,[['Tập no-oil','Ảnh báo nhầm / tổng','Tỷ lệ'],...negativeGroups.map(([name,r])=>[name,`${r.false_alarm_images} / ${r.images}`,`${(100*r.false_alarm_rate).toFixed(2)}%`])],[340,480,316],175,290);
 text(s,'Báo nhầm cao: chưa phù hợp triển khai trực tiếp ngoài tập SOS.\nKhông dùng tỷ lệ này thay F1 đối tượng hoặc nhãn nguyên nhân.',72,510,1136,120,29,true);
-s=slide('Giới hạn dữ liệu và bước kiểm chứng tiếp theo','Nguồn: docs/management/completion_audit.json; qposd_mask_audit.json; qposd_shape_audit.json; qposd_matched_lookalike_audit.json. QPOSD dùng UAVSAR, lớp look-alike chung không xác định nguyên nhân vật lý. Header toàn bộ 41 MAT đã đọc; bốn MAT 7, 35, 40, 41 đã tải đủ và kiểm tra CRC.');
-lines(s,['QPOSD: 11/41 mask chứa look-alike, 2.117 pixel ngoài bảng màu.',
- '41 cặp: 24 khớp kích thước, 17 lệch; chưa xác minh căn chỉnh pixel.',
- 'Mẫu 41 đã đọc đủ: có look-alike, không có dầu; chưa chấm F1.',
- 'Chưa đánh giá theo nguyên nhân look-alike hoặc biển miền Trung.']);
+s=slide('QPOSD bổ sung nhãn dầu và tương tự dầu','Nguồn: https://zenodo.org/records/19258036 (CC BY 4.0); results/qposd/protocol.json; docs/management/qposd_overlap_all24.json. Đã kiểm tra CRC/hash, hữu hạn và xem toàn bộ 24 cặp hợp lệ. V1 bị từ chối trước fit vì giao trùng 21/22 vượt split. V2 giữ nhóm {19,20}, {21,22,33,35}; chưa chứng minh độc lập cảnh. Test đã được xem để kiểm tra ảnh–nhãn, không phải đánh giá mù.');
+lines(s,['UAVSAR L-band: dùng 24 cặp khớp kích thước, loại 17 cặp lệch.',
+ '14 ảnh train / 5 validation / 5 test; giữ nhóm giao trùng cùng tập.',
+ 'Nhãn tương tự dầu chung; chưa có nhãn nguyên nhân vật lý.',
+ 'SOS vẫn là tập chính; chưa đánh giá trên biển miền Trung.']);
+s=slide('Lựa chọn QPOSD dựa trên validation','Nguồn: results/qposd/classifier_selection.json, detection_selection.json. Bảng chỉ trích bốn dòng; toàn bộ 10 classifier và 10 cấu hình tạo vùng có trong notebook 10. Hàng phân lớp dùng hình học GT; hàng tạo vùng dùng macro-F1 đối tượng IoU>=0.5, cùng CART đã khóa, không so trực tiếp hai phép đo. Cả 10 classifier NumPy hội tụ; chọn CART depth5/min_leaf1. Không lọc + Otsu thắng tìm vùng; ảnh đặc trưng vẫn dùng Lee7L4. Không chứng minh Lee luôn tốt hơn.');
+const qclass8=qclasses.configurations[8],qclass9=qclasses.configurations[9];
+const qdet0=qcandidates.configurations[0],qdet4=qcandidates.configurations[4];
+table(s,[['Phép đo / cấu hình','F1 NumPy','F1 thư viện'],
+ ['Có sẵn vùng: CART d5, lá1',qclass8.numpy_validation.macro_f1.toFixed(5),qclass8.reference_validation.macro_f1.toFixed(5)],
+ ['Có sẵn vùng: CART d5, lá5',qclass9.numpy_validation.macro_f1.toFixed(5),qclass9.reference_validation.macro_f1.toFixed(5)],
+ ['Tìm vùng: không lọc + Otsu',qdet0.numpy_summary.macro_f1.toFixed(5),qdet0.reference_summary.macro_f1.toFixed(5)],
+ ['Tìm vùng: Niblack 51, k=0,5',qdet4.numpy_summary.macro_f1.toFixed(5),qdet4.reference_summary.macro_f1.toFixed(5)]],[650,243,243],175,330);
+text(s,'Trích 4 dòng từ 10 bộ phân lớp và 10 cấu hình tạo vùng.\nF1 phân lớp có sẵn vùng không thay thế F1 phát hiện.',72,540,1136,100,29,true);
+s=slide('QPOSD trên toàn bộ năm ảnh test','Nguồn: results/qposd/evaluation.json, REPORT.md; notebook 10. Lựa chọn lưu và commit trước test. Phát hiện dầu TP3 FP35 FN12, tương tự dầu TP6 FP658 FN172. Phân lớp có sẵn vùng: ma trận [look-alike, oil] [[125,53],[6,9]], oil->look-alike40%, look-alike->oil29.7753%. Không dùng ma trận có điều kiện thay Recall phát hiện.');
+const qtestRows=[];
+for(const [title,result] of [['Có sẵn vùng',qposd.conditional_classification],['Phát hiện',qposd.numpy_summary]])
+ for(const [name,r] of Object.entries(result.classes)) qtestRows.push([`${title}: ${name==='oil'?'dầu':'tương tự dầu'}`,...['precision','recall','f1'].map(k=>r[k].toFixed(5))]);
+table(s,[['Phép đo / lớp','Precision','Recall','F1'],...qtestRows],[530,202,202,202],175,330);
+text(s,'Hai bản cài cho mask giống nhau từng pixel trên 5 ảnh test.\nPhát hiện vẫn kém; không điều chỉnh mô hình từ điểm test.',72,540,1136,100,29,true);
+s=slide('QPOSD ảnh 24: tương tự dầu bị gọi là dầu','Nguồn: notebooks/external/10_qposd_classification_detection.ipynb, hình ảnh test24 đã chạy và đối chiếu mask. T11 đổi log chỉ để hiển thị. Nhãn gốc xanh lá=tương tự dầu, đỏ=dầu, xanh lam=nền, đen=đất liền. Dự đoán không dùng GT để che đất. Đây là ví dụ thất bại có chủ đích, không phải mẫu đại diện ngẫu nhiên hoặc bằng chứng nguyên nhân vật lý.');
+const qnb=await read('notebooks/external/10_qposd_classification_detection.ipynb');
+const qfigs=qnb.cells.flatMap(c=>(c.outputs||[]).filter(o=>o.data?.['image/png']).map(o=>o.data['image/png']));
+if(qfigs.length!==7) throw new Error('Expected seven executed QPOSD figures');
+await fs.writeFile(path.join(out,'qposd_image24.png'),Buffer.from(qfigs[5],'base64'));
+await image(s,'.cache/slides-v5/qposd_image24.png');
+text(s,'Nhãn xanh lá: tương tự dầu. Nhiều vùng bị dự đoán đỏ: dầu.',72,635,1136,45,25);
 s=slide('Đóng góp và phân công kiểm tra','Nguồn: docs/management/thanh_vien.json; PHAN_CONG_MA_NGUON.md. Đây là phân công dự kiến, không thay cho xác nhận đóng góp cá nhân. Mã và báo cáo có hỗ trợ Codex; thành viên cần đọc, chạy lại và xác nhận.');
 table(s,[['Phụ trách','Nội dung'],['TV1 / TV2','Tích hợp pipeline / CART và SVM'],['TV3 / TV4','Lọc, ngưỡng / Vùng và đặc trưng'],['TV5','Dữ liệu, đánh giá và kiểm chứng']], [400,736],175,280);
 text(s,'Kết quả có thể chạy lại, so sánh hai cách cài và truy số đếm từng ảnh.\nChưa đủ bằng chứng triển khai cảnh báo dầu ngoài thực địa.',72,515,1136,120,29,true);
-if(deck.slides.items.length!==21) throw new Error('Expected 21 slides');
+if(deck.slides.items.length!==24) throw new Error('Expected 24 slides');
 await (await PresentationFile.exportPptx(deck)).save(path.join(out,'SAR_SOS_draft.pptx'));
 for(let i=0;i<deck.slides.items.length;i++) {
  const blob=await deck.export({slide:deck.slides.items[i],format:'png',scale:1});
  await fs.writeFile(path.join(out,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await blob.arrayBuffer()));
- console.log(`Rendered ${i+1}/21`);
+ console.log(`Rendered ${i+1}/24`);
 }
 console.log('Draft exported; finalization and visual review remain.');

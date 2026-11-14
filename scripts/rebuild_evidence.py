@@ -1,4 +1,4 @@
-"""Rebuild numeric reports and execute all nine notebooks from frozen results.
+"""Rebuild numeric reports and execute all ten notebooks from frozen results.
 
 Requires the previously downloaded raw data. Does not download, fit, select new
 models, or regenerate reviewed Word/PowerPoint/video deliverables.
@@ -21,7 +21,8 @@ def main():
     primary = sorted((ROOT / 'notebooks').glob('*.ipynb'))
     extra = [ROOT / 'notebooks/external' / name for name in (
         '06_dartis_false_alarms.ipynb', '07_sentinel_calibration.ipynb',
-        '08_qposd_audit.ipynb', '09_palsar_frozen_pipelines.ipynb')]
+        '08_qposd_audit.ipynb', '09_palsar_frozen_pipelines.ipynb',
+        '10_qposd_classification_detection.ipynb')]
     assert len(primary) == 5 and all(p.is_file() for p in extra)
     protected = [ROOT / name for name in (
         'data/manifest.json', 'results/sos/selected.json', 'results/sos/svm_model.json',
@@ -31,9 +32,13 @@ def main():
         'results/dartis/evaluation.json', 'results/sos/external_palsar_train/protocol.json',
         'results/sos/external_palsar_train/otsu.json',
         'results/sos/external_palsar_train/niblack.json')]
+    protected += sorted((ROOT/'results/qposd').rglob('*.json'))
+    protected += sorted((ROOT/'results/qposd/test').glob('*.png'))
+    protected += sorted((ROOT/'results/physical').glob('*.json'))
     before = {p.relative_to(ROOT).as_posix(): sha(p) for p in protected}
     commands = [['scripts/verify_outputs.py'], ['scripts/summarize_results.py'],
-                ['scripts/report_dartis.py'], ['scripts/report_palsar_holdout.py']]
+                ['scripts/report_dartis.py'], ['scripts/report_palsar_holdout.py'],
+                ['scripts/report_qposd.py']]
     commands += [['scripts/run_notebooks.py', '--notebook', p.relative_to(ROOT).as_posix()]
                  for p in primary + extra]
     commands += [['scripts/verify_outputs.py']]
@@ -53,7 +58,7 @@ def main():
         output.write_text(json.dumps(log, indent=2) + '\n', encoding='utf-8')
         if process.returncode or not unchanged:
             raise SystemExit(process.returncode or 'Frozen evidence changed during rebuild')
-    print('All reports and nine notebooks completed; frozen models/protocols unchanged.')
+    print('All reports and ten notebooks completed; frozen models/protocols unchanged.')
 
 
 if __name__ == '__main__':
