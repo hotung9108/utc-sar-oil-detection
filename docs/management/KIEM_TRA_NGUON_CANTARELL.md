@@ -2,6 +2,8 @@
 
 Mục đích: tìm ảnh SAR có nhãn và thông tin vật lý để đánh giá tác động chuẩn hóa góc tới. SOS vẫn là tập chính; kiểm tra này chưa tạo thí nghiệm hay thay kết quả đã khóa.
 
+**Cập nhật:** đã kiểm kê đủ 173 TIFF/mask/GeoJSON và xác định đủ 24 cảnh Sentinel. Xem [kiểm kê toàn bộ](CANTARELL_FULL_INVENTORY.md), bao gồm mã polygon lặp qua train/test. Các mục dưới đây giữ quá trình kiểm chứng ban đầu trên một rồi hai tile; chúng không thay thế kiểm tra căn chỉnh toàn bộ tập.
+
 Nguồn: [Garcia-INPE/oilspill-detection-dataset](https://github.com/Garcia-INPE/oilspill-detection-dataset), revision `1b9a62c30a9da9698eb470562aa976f9bd1e8fc3`. Đã tải tài liệu, giấy phép, bảng CSV, ba split và **một** cặp raster/mask; kiểm tra tiếp vector của mẫu, mã remap của tác giả, catalog ASF và metadata Sentinel-1. Script xử lý Git LFS và xác nhận kích thước/SHA-256 theo pointer; từng nguồn có receipt trong `cantarell_source_audit.json`.
 
 Chạy lại từ thư mục gốc:
