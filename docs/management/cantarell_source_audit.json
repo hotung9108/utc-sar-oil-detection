@@ -1,0 +1,250 @@
+{
+  "repository": "https://github.com/Garcia-INPE/oilspill-detection-dataset",
+  "revision": "1b9a62c30a9da9698eb470562aa976f9bd1e8fc3",
+  "scope": "metadata tables and one raster/mask; not a full dataset audit",
+  "receipts": [
+    {
+      "path": "DATASET_CARD.md",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/DATASET_CARD.md",
+      "bytes": 6220,
+      "sha256": "017c91e4b0bd58257ddaffb8263f0a0c5ac2943e5d87a58c8ed33d0f4e0ae463"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/README.md",
+      "bytes": 5386,
+      "sha256": "5dbb478b3f4e9fc9439af39d5b8fee5f07972460729e446369c3055a74c3edad"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/LICENSE",
+      "bytes": 2553,
+      "sha256": "a16626e333cc43c25150d218e7905d61b7dbf91e68b9c80202ebfebce7dc8ce8"
+    },
+    {
+      "path": "CSV/Oil_Stats_manual_windows_16bits_800x600.csv",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/CSV/Oil_Stats_manual_windows_16bits_800x600.csv",
+      "bytes": 306652,
+      "sha256": "f22ede2086e80000cba29f7d4c661424eba52fb21e050bc78eb87f2104a379b2"
+    },
+    {
+      "path": "splits/train.csv",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/splits/train.csv",
+      "bytes": 10092,
+      "sha256": "44dda706a3556cf74920c49ff5e91bb8427e9d349a89ed3d9a7cf3b90c553914"
+    },
+    {
+      "path": "splits/val.csv",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/splits/val.csv",
+      "bytes": 4047,
+      "sha256": "7dcb217ecb10ced60c081d91cf91bd03a23c916cb559686fcef17660920896d6"
+    },
+    {
+      "path": "splits/test.csv",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/splits/test.csv",
+      "bytes": 2094,
+      "sha256": "e2536cd9575db96cd5479e24c975d91fe9aa0ad2e60c55c0404c48e5b537e167"
+    },
+    {
+      "path": "RASTER/IMG-TIFF/16-BIT/IMG_01_TILE_001.tiff",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/RASTER/IMG-TIFF/16-BIT/IMG_01_TILE_001.tiff",
+      "bytes": 132,
+      "sha256": "d6410b649baebf5a3b8a8668b607ef36bb4f5a30c7552a089eed548883728d66"
+    },
+    {
+      "path": "RASTER/IMG-TIFF/16-BIT/IMG_01_TILE_001.tiff",
+      "url": "https://media.githubusercontent.com/media/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/RASTER/IMG-TIFF/16-BIT/IMG_01_TILE_001.tiff",
+      "bytes": 1922166,
+      "sha256": "2ebb54619f7c4f434e1b2101ed96c7d1de3f5fc01dfccd7cdeaa97af61794d85",
+      "verified_against_lfs_pointer": true
+    },
+    {
+      "path": "IMAGES/LABELS-1D/IMG_01_TILE_001_1D.png",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/IMAGES/LABELS-1D/IMG_01_TILE_001_1D.png",
+      "bytes": 129,
+      "sha256": "5a8ad809ad0aeda0b2f0cf404c05a8b0a4c347f6026a01725c196cc695b2b9d6"
+    },
+    {
+      "path": "IMAGES/LABELS-1D/IMG_01_TILE_001_1D.png",
+      "url": "https://media.githubusercontent.com/media/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/IMAGES/LABELS-1D/IMG_01_TILE_001_1D.png",
+      "bytes": 1889,
+      "sha256": "8cb48f7c4b49768fb79e119393c7f8bc38c7877bff8893efb6f0238e3b4d9af0",
+      "verified_against_lfs_pointer": true
+    }
+  ],
+  "polygon_rows": 385,
+  "csv_columns": [
+    "IMG_FNAME",
+    "IDX_POLY",
+    "ID_POLY",
+    "SATELITE",
+    "BEAM_MODE",
+    "RESULT_BASENAME",
+    "COMPOSITE_BASENAME",
+    "TARGET_TILE_WIDTH",
+    "TARGET_TILE_HEIGHT",
+    "CLIPPED_WIDTH",
+    "CLIPPED_HEIGHT",
+    "GRID_COLS",
+    "GRID_ROWS",
+    "COMPOSITE_WIDTH",
+    "COMPOSITE_HEIGHT",
+    "PAD_LEFT",
+    "PAD_RIGHT",
+    "PAD_TOP",
+    "PAD_BOTTOM",
+    "IS_COMPOSITE",
+    "PANEL_INDEX",
+    "PANEL_ROW",
+    "PANEL_COL",
+    "PANEL_COUNT",
+    "POLYS_IN_PANEL",
+    "POLYS_IN_GROUP",
+    "CENTR_KM_LAT",
+    "CENTR_KM_LON",
+    "UTM_ZONE",
+    "AREA_KM2",
+    "PERIM_KM",
+    "COMPLEX_MEAS",
+    "SPREAD",
+    "SHP_FACT",
+    "HU_MOM1",
+    "HU_MOM2",
+    "HU_MOM3",
+    "HU_MOM4",
+    "HU_MOM5",
+    "HU_MOM6",
+    "HU_MOM7",
+    "CIRCULARITY",
+    "PERI_AREA_RATIO",
+    "FG_STD",
+    "FG_VAR",
+    "FG_MIN",
+    "FG_MAX",
+    "FG_MEAN",
+    "FG_MEDIAN",
+    "FG_VAR_COEF",
+    "BG_STD",
+    "BG_VAR",
+    "BG_MIN",
+    "BG_MAX",
+    "BG_MEAN",
+    "BG_MEDIAN",
+    "BG_VAR_COEF",
+    "FG_DARK_INTENS",
+    "FG_BG_KS_STAT",
+    "FG_BG_KS_RES",
+    "FG_BG_MW_STAT",
+    "FG_BG_MW_RES",
+    "FG_BG_RAT_ARI",
+    "FG_BG_RAT_QUA",
+    "AREA_KM_DS",
+    "PERIM_KM_DS",
+    "CLASSE"
+  ],
+  "classes": {
+    "SEEPAGE SLICK": 58,
+    "OIL SPILL": 327
+  },
+  "source_images": [
+    "01 S1A_IW_GRDH_1SDV_20200117T001541_NR_Orb_Cal_TC.tif",
+    "02 S1A_IW_GRDH_1SDV_20200210T001540_NR_Orb_Cal_TC.tif",
+    "04 S1A_IW_GRDH_1SDV_20200609T001544_NR_Orb_Cal_TC.tif",
+    "05 S1A_IW_GRDH_1SDV_20200621T001544_NR_Orb_Cal_TC.tif",
+    "06 S1A_IW_GRDH_1SDV_20200715T001545_NR_Orb_Cal_TC.tif",
+    "07 S1A_IW_GRDH_1SDV_20200727T001546_NR_Orb_Cal_TC.tif",
+    "08 S1A_IW_GRDH_1SDV_20200808T001547_NR_Orb_Cal_TC.tif",
+    "09 S1A_IW_GRDH_1SDV_20200820T001548_NR_Orb_Cal_TC.tif",
+    "10 S1A_IW_GRDH_1SDV_20200901T001548_NR_Orb_Cal_TC.tif",
+    "11 S1B_IW_GRDH_1SDV_20200320T120027_NR_Orb_Cal_TC.tif",
+    "12 S1B_IW_GRDH_1SDV_20200425T120028_NR_Orb_Cal_TC.tif",
+    "13 S1B_IW_GRDH_1SDV_20200519T120029_NR_Orb_Cal_TC.tif",
+    "14 S1B_IW_GRDH_1SDV_20200612T120030_NR_Orb_Cal_TC.tif",
+    "15 S1B_IW_GRDH_1SDV_20200624T120031_NR_Orb_Cal_TC.tif",
+    "16 S1B_IW_GRDH_1SDV_20200706T120032_NR_Orb_Cal_TC.tif",
+    "17 S1B_IW_GRDH_1SDV_20200709T001514_NR_Orb_Cal_TC.tif",
+    "18 S1B_IW_GRDH_1SDV_20200718T120032_NR_Orb_Cal_TC.tif",
+    "19 S1B_IW_GRDH_1SDV_20200721T001515_NR_Orb_Cal_TC.tif",
+    "20 S1B_IW_GRDH_1SDV_20200730T120033_NR_Orb_Cal_TC.tif",
+    "21 S1B_IW_GRDH_1SDV_20200802T001516_NR_Orb_Cal_TC.tif",
+    "22 S1B_IW_GRDH_1SDV_20200811T120034_NR_Orb_Cal_TC.tif",
+    "23 S1B_IW_GRDH_1SDV_20200823T120035_NR_Orb_Cal_TC.tif",
+    "25 S1B_IW_GRDH_1SDV_20200904T120035_NR_Orb_Cal_TC.tif",
+    "26 S1B_IW_GRDH_1SDV_20200907T001518_NR_Orb_Cal_TC.tif"
+  ],
+  "split_counts": {
+    "train": 108,
+    "val": 43,
+    "test": 22
+  },
+  "split_source_groups": {
+    "train": [
+      "IMG_01",
+      "IMG_02",
+      "IMG_04",
+      "IMG_05",
+      "IMG_06",
+      "IMG_08",
+      "IMG_09",
+      "IMG_10",
+      "IMG_11",
+      "IMG_14",
+      "IMG_16",
+      "IMG_18",
+      "IMG_21",
+      "IMG_22",
+      "IMG_23",
+      "IMG_25"
+    ],
+    "val": [
+      "IMG_12",
+      "IMG_13",
+      "IMG_15",
+      "IMG_19"
+    ],
+    "test": [
+      "IMG_07",
+      "IMG_17",
+      "IMG_20",
+      "IMG_26"
+    ]
+  },
+  "cross_split_groups": {
+    "train/val": [],
+    "train/test": [],
+    "val/test": []
+  },
+  "sample": {
+    "name": "IMG_01_TILE_001",
+    "shape": [
+      600,
+      800
+    ],
+    "dtype": "float32",
+    "finite_min": -48.88187789916992,
+    "finite_max": 17.69975471496582,
+    "tags": {
+      "ModelPixelScaleTag": "(0.0001796630568239043, 0.0001796630568239043, 0.0)",
+      "ModelTiepointTag": "(0.0, 0.0, 0.0, -92.10709711090368, 19.432375895346706, 0.0)",
+      "GeoKeyDirectoryTag": "(1, 1, 0, 7, 1024, 0, 1, 2, 1025, 0, 1, 1, 2048, 0, 1, 4326, 2049, 34737, 7, 0, 2054, 0, 1, 9102, 2057, 34736, 1, 1, 2059, 34736, 1, 0)",
+      "GeoAsciiParamsTag": "WGS 84|"
+    },
+    "mask_shape": [
+      600,
+      800
+    ],
+    "mask_counts": {
+      "0": 476426,
+      "2": 3574
+    },
+    "same_grid_dimensions": true
+  },
+  "eligibility": {
+    "labelled_georeferenced_candidate": true,
+    "physical_units_confirmed": false,
+    "per_pixel_incidence_available_in_inspected_assets": false,
+    "original_safe_identity_and_alignment_verified": false,
+    "eligible_for_calibration_benefit_claim": false,
+    "next_gate": "Resolve full SAFE identity, radiometric units, polarization, processing history and label-to-native-grid alignment before freezing an experiment."
+  }
+}
