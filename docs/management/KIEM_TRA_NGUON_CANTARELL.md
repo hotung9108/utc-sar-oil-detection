@@ -52,3 +52,17 @@ Script ánh xạ tự cài nội suy song tuyến tính và đạo hàm bằng N
 Nếu **tạm giả định** giá trị ảnh xuất là VV sigma0-dB, tương quan Pearson với ảnh mới là **0,525317**, chênh trung vị **+0,471058 dB**, RMSE **2,545727 dB**. Các số này kiểm tra giả thuyết, không xác nhận đơn vị hoặc phân cực của ảnh xuất. [Hình đối chiếu](cantarell_native_comparison.png) đã được xem trực tiếp: cấu trúc sáng và vùng polygon tương ứng về bố cục tổng thể, nhưng không đủ chứng minh khớp ở độ chính xác pixel. Cần kiểm tra sai lệch đăng ký ảnh và lịch sử xử lý trước khi dùng để đo lợi ích hiệu chuẩn.
 
 Chi tiết có thể tái kiểm tra: `cantarell_mapping_audit.json`, `cantarell_native_audit.json`. Mã không thay SOS, không chọn thuật toán bằng nhãn mẫu này và chưa công bố điểm phát hiện.
+
+## Chẩn đoán độ lệch bằng nội dung ảnh
+
+```powershell
+.venv/Scripts/python.exe scripts/check_cantarell_registration.py
+```
+
+Script **không đọc mask**. Trừ trung bình, dùng cửa sổ Hann, tính tương quan pha FFT bằng NumPy và đối chiếu vị trí đỉnh nguyên pixel với `skimage.registration.phase_cross_correlation`. Hai cách cùng cho dịch chuyển **[0, −1] pixel**. Kiểm tra dấu dịch trên ảnh tổng hợp dịch biết trước [5, −7] cho nghiệm đúng [−5, 7]. Phần tinh chỉnh dưới pixel dùng skimage với hệ số 100, không gọi đây là phần tự cài NumPy.
+
+Ước lượng toàn ảnh: dịch ảnh SAR đã lấy mẫu **[+0,04 hàng, −0,88 cột]** để khớp ảnh xuất. Chín block cố định, không chồng nhau, có dịch hàng trong **[0,03; 0,05]**, dịch cột trong **[−0,89; −0,87]**. Không bỏ block có kết quả xấu và không chọn vùng theo nhãn.
+
+Trên miền trong bỏ 8 pixel mỗi cạnh (457.856 pixel), tương quan tăng **0,529939 → 0,894977**, RMSE dưới giả thuyết sigma0-dB giảm **2,545847 → 1,451130**. Chênh trung vị sau dịch vẫn **+0,417032 dB**. Kết quả chỉ ra thành phần sai lệch đăng ký ảnh, nhưng chưa xác định nguyên nhân hoặc xác nhận quy trình bức xạ của ảnh xuất.
+
+Các thống kê trước/sau dùng chính ảnh đã ước lượng dịch: **chẩn đoán mô tả, không phải validation độc lập**. Cần kiểm tra trên mẫu khác trước khi dùng quy tắc căn chỉnh trong thí nghiệm. Mã không ghi đè ảnh hoặc nhãn; số liệu từng block và giới hạn nằm trong `cantarell_registration_audit.json`.
