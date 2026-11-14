@@ -66,3 +66,23 @@ Script **không đọc mask**. Trừ trung bình, dùng cửa sổ Hann, tính t
 Trên miền trong bỏ 8 pixel mỗi cạnh (457.856 pixel), tương quan tăng **0,529939 → 0,894977**, RMSE dưới giả thuyết sigma0-dB giảm **2,545847 → 1,451130**. Chênh trung vị sau dịch vẫn **+0,417032 dB**. Kết quả chỉ ra thành phần sai lệch đăng ký ảnh, nhưng chưa xác định nguyên nhân hoặc xác nhận quy trình bức xạ của ảnh xuất.
 
 Các thống kê trước/sau dùng chính ảnh đã ước lượng dịch: **chẩn đoán mô tả, không phải validation độc lập**. Cần kiểm tra trên mẫu khác trước khi dùng quy tắc căn chỉnh trong thí nghiệm. Mã không ghi đè ảnh hoặc nhãn; số liệu từng block và giới hạn nằm trong `cantarell_registration_audit.json`.
+
+## Kiểm tra chuyển độ dịch sang tile thứ hai
+
+Giao thức `cantarell_registration_protocol.json` đã được commit trong `50f13c2` **trước khi tải ảnh thứ hai**. Chọn `IMG_01_TILE_002`, giữ nguyên dịch `[0,04; −0,88]`, không dùng nhãn. Ngưỡng kiểm tra kỹ thuật 0,25 pixel được ghi trước, không phải định lý hoặc khoảng tin cậy thống kê.
+
+```powershell
+.venv/Scripts/python.exe scripts/check_cantarell_transfer.py
+```
+
+Đã thực thi xong; bounding box hai tile **không giao nhau** (tỉ lệ chồng bằng 0). Trên cùng 457.856 pixel nội vùng:
+
+| Phép đo | Trước dịch | Sau dịch cố định |
+|---|---:|---:|
+| Tương quan Pearson | 0,393955 | 0,882135 |
+| RMSE dưới giả thuyết sigma0-dB | 2,735976 | 1,589774 |
+| Chênh trung vị ảnh gốc đã lấy mẫu − ảnh xuất | +0,594605 | +0,536722 |
+
+Độ dịch ước lượng riêng của tile kiểm tra lệch tối đa **0,02 pixel** so với quy tắc đã khóa. Cả ba điều kiện đạt: sai khác dịch ≤0,25 pixel, tương quan tăng, số pixel hữu hạn giữ nguyên. Không thay độ dịch cố định bằng nghiệm mới khi báo cáo phép thử chuyển.
+
+Đây là kiểm tra trên tile khác **cùng một cảnh**, không phải đánh giá tổng quát sang cảnh Sentinel độc lập. Không chồng bounding box không làm hai tile độc lập về thời tiết, sensor hoặc xử lý nguồn. Kết quả chưa chứng minh đơn vị ảnh xuất, nhãn tuyệt đối, hay lợi ích chuẩn hóa góc tới đối với phát hiện dầu. Bằng chứng đầy đủ gồm hash giao thức, ảnh nguồn, các byte-range DN và số liệu tại `cantarell_transfer_audit.json`.

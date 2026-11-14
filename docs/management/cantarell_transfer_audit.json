@@ -1,0 +1,152 @@
+{
+  "protocol_sha256": "fc0e4082ac02176d9abf662985116e2bbe007888cdd4fe51fe69f7f57aecc16b",
+  "source_audit_sha256": "ba2fcaa2d1ab786ae7e4d730eaec30cbeefe5368de4ce5bab268b44884a309eb",
+  "script_sha256": "6af8f09d057f2e7afc51aa2201ec9561d696882a6bb2800c05ae37b6b56fa922",
+  "sample": "IMG_01_TILE_002",
+  "mask_read": false,
+  "exported_tiff": {
+    "url": "https://media.githubusercontent.com/media/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/RASTER/IMG-TIFF/16-BIT/IMG_01_TILE_002.tiff",
+    "sha256": "de0a24bd0e8605a956d433ca54a6f3996978531942c364b918ea8160ecdddaec",
+    "bytes": 1922166,
+    "pointer_sha256": "1909913bf252cf1e6d26706c2db84c871e5bcee393063f13d93b6f24227b1434"
+  },
+  "development_bounds_wsen": [
+    -92.10709711090368,
+    19.324578061252364,
+    -91.96336666544455,
+    19.432375895346706
+  ],
+  "check_bounds_wsen": [
+    -92.27544139514768,
+    19.241933055113368,
+    -92.13171094968855,
+    19.34973088920771
+  ],
+  "check_overlap_fraction": 0.0,
+  "native_download": {
+    "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/measurement/iw-vv.tiff",
+    "origin_line_pixel": [
+      5120,
+      7168
+    ],
+    "shape": [
+      3072,
+      3072
+    ],
+    "ranges": [
+      {
+        "offset": 0,
+        "bytes": 16384,
+        "sha256": "ae0e0461f2e6ebfd8f9e6ed38936c22ddf8497f7dace9c3e72901208011007f6"
+      },
+      {
+        "offset": 288591130,
+        "bytes": 1106376,
+        "sha256": "87da773b9669d8fecd94c43510ff4da2376dfd6890e6c2e268107516da08c3cd"
+      },
+      {
+        "offset": 289697514,
+        "bytes": 1098829,
+        "sha256": "883d491b965f1c5e5b259fc2621812bb731cf1003fa4c34adb437fb87d2966e8"
+      },
+      {
+        "offset": 290796351,
+        "bytes": 1087694,
+        "sha256": "e647458b2fd24c35fef602bcd7c84a41ef7e6470994f52a646b44bf655ee3a28"
+      },
+      {
+        "offset": 315113220,
+        "bytes": 1115984,
+        "sha256": "15d34c3e30e8434bfde2e7dd03a584287085dc0104e6883cf1abe835c3750be4"
+      },
+      {
+        "offset": 316229212,
+        "bytes": 1112240,
+        "sha256": "8cc06f89a6c36bf3217221754a6b2c006c989b7cfaa8c7c36ba26042c19ed8a3"
+      },
+      {
+        "offset": 317341460,
+        "bytes": 1090631,
+        "sha256": "2d7d5e5d2a8c5079ac590794b27496f4e51cbfe705dded70b0907926611c7c22"
+      },
+      {
+        "offset": 341672556,
+        "bytes": 1126746,
+        "sha256": "5e7c98abcf2725a5d3b3694e4de8f41b1af89782c382e2a21a9ec36cfaf09f52"
+      },
+      {
+        "offset": 342799310,
+        "bytes": 1115335,
+        "sha256": "05d8256c07723053fa9dc0a37cefb74b3e7d63a2b7d132f531d3ecc669e11e91"
+      },
+      {
+        "offset": 343914653,
+        "bytes": 1102756,
+        "sha256": "5c3fded42610658bf046ddf07aada7f10d8a010ba6a7238f80ff4c19d0a77487"
+      }
+    ],
+    "downloaded_bytes": 9972975,
+    "sha256": "b01ec1c8f0c09b60c8fa862f981eb9b6bf5cb947019486f6060bbc7b12443f76"
+  },
+  "roundtrip_max_abs_degrees": {
+    "latitude": 1.0658141036401503e-14,
+    "longitude": 5.684341886080802e-14
+  },
+  "numpy_scipy_resampling_max_abs_error": 3.552713678800501e-15,
+  "fixed_shift": [
+    0.04,
+    -0.88
+  ],
+  "before": {
+    "pixels": 457856,
+    "pearson_correlation": 0.3939554061873975,
+    "rmse_under_db_assumption": 2.7359762387523303,
+    "median_moving_minus_reference": 0.5946047952198352
+  },
+  "after_fixed_shift": {
+    "pixels": 457856,
+    "pearson_correlation": 0.8821349268075461,
+    "rmse_under_db_assumption": 1.589774103085648,
+    "median_moving_minus_reference": 0.5367216710186362
+  },
+  "independent_shift_diagnostic": {
+    "numpy_integer_shift": [
+      0.0,
+      -1.0
+    ],
+    "skimage_integer_shift": [
+      0.0,
+      -1.0
+    ],
+    "skimage_subpixel_shift": [
+      0.03,
+      -0.9
+    ],
+    "before_on_interior": {
+      "pixels": 457856,
+      "pearson_correlation": 0.3939554061873975,
+      "rmse_under_db_assumption": 2.7359762387523303,
+      "median_moving_minus_reference": 0.5946047952198352
+    },
+    "after_on_interior": {
+      "pixels": 457856,
+      "pearson_correlation": 0.8826101854178319,
+      "rmse_under_db_assumption": 1.5768088953666917,
+      "median_moving_minus_reference": 0.5395090030301297
+    }
+  },
+  "shift_difference_max_abs": 0.020000000000000018,
+  "checks": {
+    "shift_transfer": true,
+    "correlation_increased": true,
+    "coverage_unchanged": true
+  },
+  "passed": true,
+  "sampled_sha256": "c004fe47174cbe71169d708b020799f0021f970de0c1dec36f184199f623de48",
+  "limitations": [
+    "Passing these checks only supports within-acquisition transfer of a registration estimate.",
+    "Image correlation and the chosen 0.25-pixel tolerance do not establish absolute geolocation accuracy.",
+    "Radiometric units, thermal-noise correction and exporter processing history remain separate questions.",
+    "No detection score, algorithm ranking or calibration-benefit claim is authorized by this check alone."
+  ]
+}
