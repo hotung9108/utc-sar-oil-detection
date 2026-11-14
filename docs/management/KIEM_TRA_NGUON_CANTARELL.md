@@ -36,6 +36,19 @@ Cả 24 annotation ghi `thermalNoiseCorrectionPerformed=false`. Giao thức hi�
 
 ## Nhật ký kiểm chứng ban đầu
 
+### Hàm xử lý ảnh và kiểm chứng trước khi chấm mô hình
+
+`scripts/cantarell_pipeline.py` chỉ nhận ảnh cường độ tuyến tính, cấu hình và mô hình; không nhận GT. Mean 7×7 dùng `core.mean_filter` NumPy và `scipy.ndimage.uniform_filter(mode="mirror")` làm đối chứng; không sửa mã SOS đã khóa. Các bộ lọc khác, ngưỡng, liên thông và tám đặc trưng tái dùng thuật toán hiện có theo giao thức mới.
+
+Đã chạy `python scripts/verify_cantarell_operators.py`: **100 phép so sánh trên hai tile train IMG_01** (25 cấu hình × 2 nhánh × 2 tile), cộng **75 ca tổng hợp** và 3 kiểm tra từ chối đầu vào không hợp lệ. Không đọc nhãn để đo độ chính xác, không fit hoặc xếp hạng cấu hình.
+
+- Sai khác mask ứng viên NumPy/thư viện: **0 pixel** trên cả 100 phép đối chiếu thật và 75 ca tổng hợp.
+- Sai số cường độ sau lọc tối đa: **4,06159×10⁻¹¹**; sai số sau chuẩn hóa tối đa: **1,25104×10⁻⁹**.
+- Trên **31.706 lượt vùng** của các cấu hình (không phải 31.706 đối tượng GT độc lập), sai số đặc trưng tối đa **3,35732×10⁻¹³**. Tất cả đạt `atol=1e-6`, `rtol=1e-5`.
+- Đối chiếu đặc trưng dùng chung ảnh và nhãn vùng NumPy để tách sai khác công thức; sai khác mask của hai pipeline được đo riêng. Chưa kết luận tương đương trên mọi cảnh hoặc độ chính xác phát hiện dầu.
+
+Toàn bộ hàng số liệu, hash input/mã và giới hạn nằm trong `cantarell_operator_verification.json`. Phần tích hợp mô hình sẽ được đánh giá bằng thí nghiệm đã khóa sau khi đủ gate dữ liệu.
+
 ### Chuẩn bị DN toàn tập và ghép gió
 
 ```powershell
