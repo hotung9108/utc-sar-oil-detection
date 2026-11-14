@@ -35,3 +35,20 @@ Truy vấn catalog ASF theo nền tảng, mức xử lý và thời điểm, l�
 **Chưa đủ điều kiện dùng để tuyên bố chuẩn hóa góc tới cải thiện phát hiện dầu.** Encoding nhị phân và vector đã được đối chiếu cho một mẫu; đã có cảnh ứng viên và metadata vật lý. Cần xác nhận phân cực, đơn vị bức xạ, lịch sử xử lý và phép ánh xạ với ảnh gốc. Sau đó mới kiểm kê các mẫu còn lại, khóa protocol, chia tập theo cảnh và chạy đối chứng có/không chuẩn hóa trên cùng nhãn.
 
 Phạm vi kiểm kê chỉ là một cặp ảnh, không phải xác minh toàn bộ 173 cặp. Chưa chạy mô hình trên nguồn này, chưa có Precision/Recall/F1 và chưa thêm nguồn vào gói review v4 bất biến.
+
+## Ánh xạ và tải SAR gốc đã thực hiện
+
+```powershell
+.venv/Scripts/python.exe scripts/map_cantarell_native_grid.py
+.venv/Scripts/python.exe scripts/fetch_cantarell_native.py
+```
+
+Script ánh xạ tự cài nội suy song tuyến tính và đạo hàm bằng NumPy, giải nghịch đảo lưới geolocation bằng Newton trên đủ 480.000 tâm pixel. Hội tụ sau 4 vòng; miền tương ứng trên ảnh gốc là dòng 6601,68–8031,87, cột 9618,35–11324,34. Góc tới nội suy trong tile là **37,20443–38,25841°**.
+
+Đối chiếu nội suy với SciPy trên toàn tile: sai số tuyệt đối tối đa kinh độ 4,27×10⁻¹⁴ độ, góc tới 2,14×10⁻¹⁴ độ. Đối chiếu nghiệm nghịch đảo bằng `scipy.optimize.least_squares` tại 9 điểm: sai số lớn nhất 2,04×10⁻¹⁰ pixel. Đây là độ nhất quán số học trên cùng metadata, **không phải sai số định vị thực địa**. Phương pháp song tuyến tính này chưa thay thế range-Doppler terrain correction.
+
+Đã tải các block TIFF VV phủ miền trên bằng HTTP range, **6.533.766 byte**, dựng vùng DN uint16 2048×3072. Mỗi byte-range và tệp có SHA-256. Nội suy LUT sigma0, tính DN²/LUT² trên lưới gốc rồi nội suy cường độ tuyến tính sang lưới tile; đối chiếu bước lấy mẫu với SciPy, sai số tối đa 7,11×10⁻¹⁵. Chưa trừ thermal noise.
+
+Nếu **tạm giả định** giá trị ảnh xuất là VV sigma0-dB, tương quan Pearson với ảnh mới là **0,525317**, chênh trung vị **+0,471058 dB**, RMSE **2,545727 dB**. Các số này kiểm tra giả thuyết, không xác nhận đơn vị hoặc phân cực của ảnh xuất. [Hình đối chiếu](cantarell_native_comparison.png) đã được xem trực tiếp: cấu trúc sáng và vùng polygon tương ứng về bố cục tổng thể, nhưng không đủ chứng minh khớp ở độ chính xác pixel. Cần kiểm tra sai lệch đăng ký ảnh và lịch sử xử lý trước khi dùng để đo lợi ích hiệu chuẩn.
+
+Chi tiết có thể tái kiểm tra: `cantarell_mapping_audit.json`, `cantarell_native_audit.json`. Mã không thay SOS, không chọn thuật toán bằng nhãn mẫu này và chưa công bố điểm phát hiện.
