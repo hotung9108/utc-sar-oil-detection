@@ -50,7 +50,14 @@ Script không ghi đè gói đã có; khi cập nhật cần chọn tên phiên 
 
 ### Kiểm tra cài đặt mới đã thực hiện
 
-Đã tạo `.venv` mới trong thư mục giải nén gói v1, cài `uv sync --frozen --extra demo` với Python 3.13.5 và `include-system-site-packages=false`. Kiểm chứng số liệu/output notebook và 22 tests đạt. Qt khởi động được; cả hai mô hình đã lưu chạy được trên ảnh hằng tổng hợp 32×32. Đây là kiểm tra nạp và ghép nối chương trình, không phải số đo độ chính xác SAR. Bằng chứng ngoài ZIP tại `docs/management/package_environment_audit.json`, gắn với hash gói v1. Gói ZIP đã phát hành không bị sửa.
+Gói v4 đã được giải nén vào thư mục mới, cài `uv sync --frozen --extra demo`
+với Python 3.13.5 và `include-system-site-packages=false`. Cả 41 kiểm thử đạt;
+Qt khởi động được và hai mô hình SOS chạy trên ảnh hằng tổng hợp 32×32.
+Báo cáo QPOSD được kiểm tra lại; cả 10 mô hình tính lại điểm trên 202 vùng
+validation đã lưu, giống chính xác điểm gốc. Đây không phải chạy lại trích
+đặc trưng từ SAR thô. Bằng chứng ngoài ZIP tại
+`docs/management/package_environment_audit_v4.json`, gắn với hash gói v4.
+ZIP giữ nguyên sau kiểm tra; tệp JSON bên cạnh ghi trạng thái xác minh mới nhất.
 
 Để kiểm tra lại từ repository sau khi giải nén và cài môi trường riêng:
 
@@ -58,7 +65,7 @@ Script không ghi đè gói đã có; khi cập nhật cần chọn tên phiên 
 python scripts/verify_package_environment.py --project <thu-muc-giai-nen>
 ```
 
-Đã thử trên cùng máy Windows với môi trường ảo mới; chưa thử trên hệ điều hành khác. Script kiểm tra môi trường được bổ sung sau khi đóng gói v1 nên lấy từ repository hiện tại.
+Đã thử trên cùng máy Windows với môi trường ảo mới; chưa thử trên hệ điều hành khác.
 
 ## Phần còn thiếu
 

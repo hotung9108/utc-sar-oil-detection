@@ -1,0 +1,13 @@
+{
+  "file": "deliverables/packages/SAR_review_v4.zip",
+  "sha256": "875a9442a5deeb74f7df6f6117da19f3215e099adfb2a73ed13eadc706e41080",
+  "bytes": 55883712,
+  "members": 363,
+  "zip_crc_and_sha256_verified": true,
+  "submission_ready": false,
+  "isolated_execution_verified": true,
+  "environment_audit": "docs/management/package_environment_audit_v4.json",
+  "environment_audit_sha256": "aef72801d7f7126429b5ed4f3fabff967f5a98b6267fadd260ec0dfaa9bae00f",
+  "unit_tests_passed": 41,
+  "qposd_saved_models_verified": 10
+}
