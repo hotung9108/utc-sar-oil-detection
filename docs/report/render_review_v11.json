@@ -1,0 +1,188 @@
+{
+  "render": ".cache/report/render-fields-v11",
+  "pages": 41,
+  "directly_reviewed": [
+    5,
+    7,
+    13,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "pixel_comparison_to_reviewed_v10": [
+    {
+      "new": 1,
+      "old": 1
+    },
+    {
+      "new": 2,
+      "old": 2
+    },
+    {
+      "new": 3,
+      "old": 3
+    },
+    {
+      "new": 4,
+      "old": 4
+    },
+    {
+      "new": 5,
+      "old": null
+    },
+    {
+      "new": 6,
+      "old": 6
+    },
+    {
+      "new": 7,
+      "old": null
+    },
+    {
+      "new": 8,
+      "old": 8
+    },
+    {
+      "new": 9,
+      "old": 9
+    },
+    {
+      "new": 10,
+      "old": 10
+    },
+    {
+      "new": 11,
+      "old": 11
+    },
+    {
+      "new": 12,
+      "old": 12
+    },
+    {
+      "new": 13,
+      "old": null
+    },
+    {
+      "new": 14,
+      "old": 14
+    },
+    {
+      "new": 15,
+      "old": 15
+    },
+    {
+      "new": 16,
+      "old": 16
+    },
+    {
+      "new": 17,
+      "old": 17
+    },
+    {
+      "new": 18,
+      "old": 18
+    },
+    {
+      "new": 19,
+      "old": 19
+    },
+    {
+      "new": 20,
+      "old": 20
+    },
+    {
+      "new": 21,
+      "old": 21
+    },
+    {
+      "new": 22,
+      "old": 22
+    },
+    {
+      "new": 23,
+      "old": 23
+    },
+    {
+      "new": 24,
+      "old": 24
+    },
+    {
+      "new": 25,
+      "old": 25
+    },
+    {
+      "new": 26,
+      "old": 26
+    },
+    {
+      "new": 27,
+      "old": 27
+    },
+    {
+      "new": 28,
+      "old": 28
+    },
+    {
+      "new": 29,
+      "old": 29
+    },
+    {
+      "new": 30,
+      "old": 30
+    },
+    {
+      "new": 31,
+      "old": 31
+    },
+    {
+      "new": 32,
+      "old": 32
+    },
+    {
+      "new": 33,
+      "old": null
+    },
+    {
+      "new": 34,
+      "old": null
+    },
+    {
+      "new": 35,
+      "old": null
+    },
+    {
+      "new": 36,
+      "old": null
+    },
+    {
+      "new": 37,
+      "old": null
+    },
+    {
+      "new": 38,
+      "old": null
+    },
+    {
+      "new": 39,
+      "old": null
+    },
+    {
+      "new": 40,
+      "old": null
+    },
+    {
+      "new": 41,
+      "old": null
+    }
+  ],
+  "issues": [
+    "Table 4.7 title too long in table list; shortened before next render. Appendix commands extended for QPOSD."
+  ],
+  "final_delivery_approved": false
+}

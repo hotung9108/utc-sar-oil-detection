@@ -1,11 +1,11 @@
 {
-  "docx_sha256": "48171e737356a20fbd6dce69c37bec6d96d2da8cfecbc12d2d81a9118fdf9450",
-  "pdf_sha256": "7c517f63a7b46f5fb27d340718dc676484c798d3ea66f9980330b3df2c5808f6",
-  "render": ".cache\\report\\render-fields-v10\\Bao_cao_SAR_SOS_fields.pdf",
-  "pages": 39,
+  "docx_sha256": "076b6d33dccb6d38eaadbf6915add74e4c19c93903b155d19ad3e1475ebe4072",
+  "pdf_sha256": "884b306bdf97e12ac57b9f5465d4e5f1f57bfc2c38612367ab3e74eace17b6b1",
+  "render": ".cache\\report\\render-fields-v13\\Bao_cao_SAR_SOS_fields.pdf",
+  "pages": 41,
   "main_start": 9,
-  "main_end": 35,
-  "main_page_count": 27,
+  "main_end": 37,
+  "main_page_count": 29,
   "latest_template_20_to_35": true,
   "original_guide_25_to_40": true,
   "toc_checks": [
@@ -143,44 +143,44 @@
     },
     {
       "target": "KẾT LUẬN",
-      "cached_page": 27,
-      "pdf_page": 35,
+      "cached_page": 29,
+      "pdf_page": 37,
       "found": true
     },
     {
       "target": "TÀI LIỆU THAM KHẢO",
-      "cached_page": 28,
-      "pdf_page": 36,
+      "cached_page": 30,
+      "pdf_page": 38,
       "found": true
     },
     {
       "target": "PHỤ LỤC",
-      "cached_page": 30,
-      "pdf_page": 38,
+      "cached_page": 32,
+      "pdf_page": 40,
       "found": true
     },
     {
       "target": "A. Bảng phân công công việc và tự đánh giá đóng góp",
-      "cached_page": 30,
-      "pdf_page": 38,
+      "cached_page": 32,
+      "pdf_page": 40,
       "found": true
     },
     {
       "target": "B. Biên bản họp nhóm",
-      "cached_page": 30,
-      "pdf_page": 38,
+      "cached_page": 32,
+      "pdf_page": 40,
       "found": true
     },
     {
       "target": "C. Khai báo sử dụng công cụ AI",
-      "cached_page": 31,
-      "pdf_page": 39,
+      "cached_page": 33,
+      "pdf_page": 41,
       "found": true
     },
     {
       "target": "D. Hướng dẫn cài đặt và chạy chương trình",
-      "cached_page": 31,
-      "pdf_page": 39,
+      "cached_page": 33,
+      "pdf_page": 41,
       "found": true
     },
     {
@@ -304,25 +304,43 @@
       "found": true
     },
     {
+      "target": "Bảng 4.6. Phân lớp vùng QPOSD trên validation",
+      "cached_page": 26,
+      "pdf_page": 34,
+      "found": true
+    },
+    {
+      "target": "Bảng 4.7. So sánh tạo vùng QPOSD trên validation",
+      "cached_page": 27,
+      "pdf_page": 35,
+      "found": true
+    },
+    {
+      "target": "Bảng 4.8. QPOSD trên toàn bộ năm ảnh test",
+      "cached_page": 28,
+      "pdf_page": 36,
+      "found": true
+    },
+    {
       "target": "Bảng PL.1. Phân công kiểm tra và bàn giao",
-      "cached_page": 30,
-      "pdf_page": 38,
+      "cached_page": 32,
+      "pdf_page": 40,
       "found": true
     },
     {
       "target": "Bảng PL.2. Xác nhận đóng góp thực tế",
-      "cached_page": 30,
-      "pdf_page": 38,
+      "cached_page": 32,
+      "pdf_page": 40,
       "found": true
     },
     {
       "target": "Bảng PL.3. Khai báo hỗ trợ bằng AI",
-      "cached_page": 31,
-      "pdf_page": 39,
+      "cached_page": 33,
+      "pdf_page": 41,
       "found": true
     }
   ],
   "toc_all_found": true,
-  "layout_verified": false,
-  "note": "Text-level audit is not visual verification"
+  "layout_verified": true,
+  "note": "Visual review and pixel-equality chain cover all 41 pages; see render_progress.json. Submission/scientific completion not implied."
 }

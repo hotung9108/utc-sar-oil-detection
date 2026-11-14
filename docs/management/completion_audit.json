@@ -60,15 +60,15 @@
     },
     {
       "item": "Phân biệt dầu với gió yếu, màng sinh học, mưa và đo nhầm lẫn",
-      "status": "generic_lookalike_test_and_notebook_verified_report_integration_pending",
+      "status": "generic_lookalike_test_notebook_report_verified_slides_package_pending",
       "evidence": "All 24 eligible MAT pairs and 276 pairwise overlap checks complete; v2 keeps exact-overlap groups in 14/5/5 source-image splits. All 10 classifiers converged; conditional validation winner CART depth5/min_leaf1, macro-F1 0.6238049911. All 50 validation candidate comparisons completed; no candidate filter + Otsu won with object macro-F1 0.0563380282. Frozen winner committed before test. All five test images evaluated: detection macro-F1 0.0637296643, oil F1 0.1132075472, look-alike F1 0.0142517815; conditional classification macro-F1 0.5214138612. NumPy/reference masks exactly equal on all five test images. results/qposd/REPORT.md verifies hashes and recomputes pooled counts. Notebook 10 reran both backends on all five test images with exact saved-mask and metric equality; all five code cells and seven figures verified (qposd_notebook10_audit.json).",
-      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Word/slides/package integration remains pending."
+      "limit": "Generic look-alike only, no wind/biofilm/rain cause labels. Exact-overlap screening does not prove scene independence. Test images visually audited, not a blind test. Detection is poor despite higher conditional classification scores. Word report v11 includes the complete comparisons and test results. Slides/package integration remains pending."
     },
     {
       "item": "Báo cáo DOCX/PDF theo mẫu mới, tài liệu tham khảo",
       "status": "draft_layout_verified_submission_pending",
       "evidence": "scripts/build_report.py dựng bản nháp từ mẫu và JSON số liệu; docs/report/render_audit.json ghi hash, số trang và kiểm tra mục lục của bản render được audit gần nhất. Không lấy số trang từ nhật ký vòng render cũ. Nội dung đã bổ sung mục tiêu MOST theo nguồn NASA và đánh đổi định lượng của classifier.",
-      "limit": "Report v10: 39 pages, 27 main pages; ten pages directly reviewed, 29 pixel-identical to v9. Includes DARTIS and supplemental 3101-patch PALSAR evaluation. Missing authentic cover/contribution records and scientific label/scene constraints remain."
+      "limit": "Report v11: 41 pages, 29 main pages. Includes complete QPOSD comparisons and test results, DARTIS and supplemental PALSAR. All pages covered by direct visual review and pixel-equality chains, TOC targets verified. User-requested blank cover/contribution records and scientific label/scene limitations remain."
     },
     {
       "item": "Slide, video demo, phụ lục đóng góp và nhật ký thật",

@@ -10,7 +10,7 @@ tệp JSON cùng tên bên cạnh ZIP; không chuyển xác nhận từ gói cũ
 
 | Sản phẩm | Điểm mở |
 |---|---|
-| Báo cáo 39 trang, 27 trang nội dung chính | `report/Bao_cao_SAR_SOS_review_v10.docx` hoặc `.pdf` |
+| Báo cáo mới 41 trang, 29 trang nội dung chính, có kết quả QPOSD | `report/Bao_cao_SAR_SOS_review_v11.docx` hoặc `.pdf` (chưa nằm trong ZIP v3) |
 | Slide 21 trang | `presentation/SAR_SOS_review_v4.pptx` |
 | Video tự động 6 phút có phụ đề, không âm thanh | `video/SAR_demo_v1.mp4` |
 | Giao diện PyQt | `scripts/demo_qt.py` từ thư mục gốc |

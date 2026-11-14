@@ -1,0 +1,179 @@
+{
+  "render": ".cache/report/render-fields-v12",
+  "pages": 41,
+  "directly_reviewed": [
+    7,
+    35,
+    41
+  ],
+  "pixel_comparison_to_v11": [
+    {
+      "new": 1,
+      "old": 1
+    },
+    {
+      "new": 2,
+      "old": 2
+    },
+    {
+      "new": 3,
+      "old": 3
+    },
+    {
+      "new": 4,
+      "old": 4
+    },
+    {
+      "new": 5,
+      "old": 5
+    },
+    {
+      "new": 6,
+      "old": 6
+    },
+    {
+      "new": 7,
+      "old": null
+    },
+    {
+      "new": 8,
+      "old": 8
+    },
+    {
+      "new": 9,
+      "old": 9
+    },
+    {
+      "new": 10,
+      "old": 10
+    },
+    {
+      "new": 11,
+      "old": 11
+    },
+    {
+      "new": 12,
+      "old": 12
+    },
+    {
+      "new": 13,
+      "old": 13
+    },
+    {
+      "new": 14,
+      "old": 14
+    },
+    {
+      "new": 15,
+      "old": 15
+    },
+    {
+      "new": 16,
+      "old": 16
+    },
+    {
+      "new": 17,
+      "old": 17
+    },
+    {
+      "new": 18,
+      "old": 18
+    },
+    {
+      "new": 19,
+      "old": 19
+    },
+    {
+      "new": 20,
+      "old": 20
+    },
+    {
+      "new": 21,
+      "old": 21
+    },
+    {
+      "new": 22,
+      "old": 22
+    },
+    {
+      "new": 23,
+      "old": 23
+    },
+    {
+      "new": 24,
+      "old": 24
+    },
+    {
+      "new": 25,
+      "old": 25
+    },
+    {
+      "new": 26,
+      "old": 26
+    },
+    {
+      "new": 27,
+      "old": 27
+    },
+    {
+      "new": 28,
+      "old": 28
+    },
+    {
+      "new": 29,
+      "old": 29
+    },
+    {
+      "new": 30,
+      "old": 30
+    },
+    {
+      "new": 31,
+      "old": 31
+    },
+    {
+      "new": 32,
+      "old": 32
+    },
+    {
+      "new": 33,
+      "old": 33
+    },
+    {
+      "new": 34,
+      "old": 34
+    },
+    {
+      "new": 35,
+      "old": null
+    },
+    {
+      "new": 36,
+      "old": 36
+    },
+    {
+      "new": 37,
+      "old": 37
+    },
+    {
+      "new": 38,
+      "old": 38
+    },
+    {
+      "new": 39,
+      "old": 39
+    },
+    {
+      "new": 40,
+      "old": 40
+    },
+    {
+      "new": 41,
+      "old": null
+    }
+  ],
+  "issues": [
+    "Long command paths caused overly stretched justified spacing in appendix; changed this paragraph to left alignment."
+  ],
+  "final_delivery_approved": false
+}

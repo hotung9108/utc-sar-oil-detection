@@ -1,22 +1,13 @@
 {
-  "render": ".cache\\report\\render-fields-v10\\Bao_cao_SAR_SOS_fields.pdf",
-  "docx_sha256": "48171e737356a20fbd6dce69c37bec6d96d2da8cfecbc12d2d81a9118fdf9450",
-  "pdf_sha256": "7c517f63a7b46f5fb27d340718dc676484c798d3ea66f9980330b3df2c5808f6",
-  "total_pages": 39,
-  "main_pages": 27,
+  "render": ".cache\\report\\render-fields-v13\\Bao_cao_SAR_SOS_fields.pdf",
+  "docx_sha256": "076b6d33dccb6d38eaadbf6915add74e4c19c93903b155d19ad3e1475ebe4072",
+  "pdf_sha256": "884b306bdf97e12ac57b9f5465d4e5f1f57bfc2c38612367ab3e74eace17b6b1",
+  "total_pages": 41,
+  "main_pages": 29,
   "directly_reviewed_pdf_pages": [
-    5,
-    7,
-    10,
-    11,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39
+    41
   ],
-  "pixel_identical_to_reviewed_v9_pages": [
+  "pixel_identical_to_reviewed_v12_pages": [
     {
       "new": 1,
       "old": 1
@@ -34,8 +25,16 @@
       "old": 4
     },
     {
+      "new": 5,
+      "old": 5
+    },
+    {
       "new": 6,
       "old": 6
+    },
+    {
+      "new": 7,
+      "old": 7
     },
     {
       "new": 8,
@@ -44,6 +43,14 @@
     {
       "new": 9,
       "old": 9
+    },
+    {
+      "new": 10,
+      "old": 10
+    },
+    {
+      "new": 11,
+      "old": 11
     },
     {
       "new": 12,
@@ -132,18 +139,46 @@
     {
       "new": 33,
       "old": 33
+    },
+    {
+      "new": 34,
+      "old": 34
+    },
+    {
+      "new": 35,
+      "old": 35
+    },
+    {
+      "new": 36,
+      "old": 36
+    },
+    {
+      "new": 37,
+      "old": 37
+    },
+    {
+      "new": 38,
+      "old": 38
+    },
+    {
+      "new": 39,
+      "old": 39
+    },
+    {
+      "new": 40,
+      "old": 40
     }
+  ],
+  "review_chain": [
+    "docs/report/render_review_v12.json",
+    "docs/report/render_review_v11.json",
+    "docs/report/render_progress_v10.json"
   ],
   "all_pages_covered": true,
   "layout_verified": true,
-  "findings": [
-    "All ten changed pages visually inspected; no clipping or overlap.",
-    "29 other page rasters exactly match reviewed v9.",
-    "All TOC targets found, including PALSAR table 4.5."
-  ],
   "submission_ready": false,
-  "pending": [
-    "Cover metadata and authentic contribution records",
-    "Complete outstanding scientific requirements"
+  "notes": [
+    "QPOSD comparisons and test evidence integrated. Final appendix spacing fixed; all unchanged pages covered through pixel equality and direct review chain.",
+    "Unconfirmed user metadata remains blank. Scientific limitations remain disclosed."
   ]
 }

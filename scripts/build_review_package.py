@@ -42,6 +42,8 @@ def collect():
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v8.pdf')
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v9.docx')
     selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v9.pdf')
+    selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v10.docx')
+    selected.discard('deliverables/report/Bao_cao_SAR_SOS_review_v10.pdf')
     for name in selected:
         parts = Path(name).parts
         if any(p in {'.git', '.cache', '__pycache__', '.venv', 'legacy'} for p in parts):
@@ -61,8 +63,8 @@ def main():
     audits = [json.loads((ROOT / name).read_text(encoding='utf-8')) for name in audit_paths]
     report, slides, video, visual = audits
     expected = {
-        'deliverables/report/Bao_cao_SAR_SOS_review_v10.docx': report['docx_sha256'],
-        'deliverables/report/Bao_cao_SAR_SOS_review_v10.pdf': report['pdf_sha256'],
+        'deliverables/report/Bao_cao_SAR_SOS_review_v11.docx': report['docx_sha256'],
+        'deliverables/report/Bao_cao_SAR_SOS_review_v11.pdf': report['pdf_sha256'],
         slides['file']: slides['sha256'],
         'deliverables/video/SAR_demo_v1.mp4': video['sha256'],
     }
@@ -87,7 +89,7 @@ def main():
                     'git_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip(),
                     'contains_worktree_changes': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT)),
                     'files': entries, 'exclusions': ['raw imagery', 'virtual environment', 'caches',
-                    'legacy history', 'Git history', 'historical presentations v1/v2/v3 and reports v8/v9'],
+                    'legacy history', 'Git history', 'historical presentations v1/v2/v3 and reports v8/v9/v10'],
                     'scope': 'Review materials and saved evidence. Does not include source imagery needed to rerun inference/training.',
                     'required_next_steps': 'Read docs/management/completion_audit.json and deliverables/README.md'}
         archive.writestr('PACKAGE_MANIFEST.json', json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')

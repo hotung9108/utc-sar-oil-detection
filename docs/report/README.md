@@ -48,6 +48,8 @@ mục lục với trang thực tế. Các audit trong cache chỉ chứng minh p
 
 `render_progress.json` lưu những trang đã xem và các lỗi phát hiện, gắn với hash
 DOCX/PDF của đúng vòng render. Không chuyển trạng thái duyệt từ bản cũ sang bản mới
-chỉ vì mục lục khớp. Bản v9 đã kiểm tra đủ 38 trang: hai trang thay đổi được xem
-trực tiếp, 36 trang còn lại giống pixel với v8 đã duyệt. Bản này bổ sung kết quả
-DARTIS và kiểm kê đủ 41 cặp QPOSD; DOCX/PDF ở `deliverables/report/`.
+chỉ vì mục lục khớp. Bản bàn giao v11 có 41 trang, 29 trang nội dung chính,
+bổ sung đủ so sánh classifier, tạo vùng và test QPOSD. Toàn bộ trang được
+kiểm tra qua xem trực tiếp và chuỗi so sánh pixel với bản đã duyệt; các vòng
+render v11–v13 sửa tiêu đề bảng dài và khoảng cách đoạn lệnh trong phụ lục.
+DOCX/PDF ở `deliverables/report/`; `render_progress.json` ghi đúng hash bản cuối.
