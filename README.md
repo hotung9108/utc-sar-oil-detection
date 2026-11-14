@@ -1,6 +1,6 @@
 # Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
-Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Giao diện học tập là 5 Jupyter notebook; chạy hàng loạt bằng CLI.
+Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 5 notebook bổ sung; chạy hàng loạt bằng CLI.
 
 Demo desktop: `uv run --frozen --extra demo python scripts/demo_qt.py`.
 Xem [hướng dẫn GUI](docs/DEMO_GUI.md). Nhánh bổ sung trên Sentinel-1 gốc và
@@ -48,15 +48,15 @@ Python 3.13+, cài theo `pyproject.toml` bằng `uv sync`. Dữ liệu từ [Ref
 
 Đầu ra suy luận: `results/prediction/mask.png`, `overlay.png`, `regions.json`. Score là điểm quyết định, không phải xác suất. Mở notebook 01–05 trong Jupyter hoặc VS Code và chọn Python `.venv`. Notebook đọc chứng cứ benchmark đã thực thi, đồng thời chạy trực tiếp các ví dụ NumPy; thiếu kết quả sẽ báo lệnh cần chạy.
 
-Suy luận bằng nhánh ngưỡng thích nghi bổ sung: `.venv/Scripts/python.exe scripts/sos.py predict --selection results/sos/adaptive/selected.json --image <anh.png> --output results/prediction_adaptive`. Nhánh này chỉ được đánh giá validation, chưa có kết quả test độc lập mới.
+Suy luận bằng nhánh ngưỡng thích nghi bổ sung: `.venv/Scripts/python.exe scripts/sos.py predict --selection results/sos/adaptive/selected.json --image <anh.png> --output results/prediction_adaptive`. Nhánh này đã được đánh giá validation và trên 3.101 patch PALSAR bổ sung; chưa có test Sentinel độc lập theo cảnh.
 
 CLI có từng bước `prepare`, `verify`, `screen`, `benchmark`, `select`, `evaluate`, `predict`. Benchmark có checkpoint tại `results/sos/validation/`, cache tại `.cache/sos/`. Toàn bộ grid có thể tốn nhiều thời gian/dung lượng; không dùng sample nhỏ rồi báo là toàn bộ test.
 
 ## Tài liệu
 
-- [Hướng dẫn bàn giao](deliverables/README.md), [gói review ZIP](deliverables/packages/SAR_review_v1.zip): 204 tệp kèm manifest, chưa phải bản nộp hoàn chỉnh.
-- [Báo cáo DOCX/PDF bản review v8](deliverables/report/README.md): đã kiểm tra bố cục; còn thông tin nhóm và yêu cầu khoa học chưa hoàn tất.
-- [Video demo 6 phút và kiểm chứng](deliverables/video/README.md), [slide 20 trang](deliverables/presentation/README.md).
+- [Hướng dẫn bàn giao](deliverables/README.md), [gói review ZIP v4](deliverables/packages/SAR_review_v4.zip): 363 tệp kèm manifest, chưa phải bản nộp hoàn chỉnh.
+- [Báo cáo DOCX/PDF bản review v11](deliverables/report/README.md): 41 trang, đã kiểm tra bố cục; thông tin nhóm chưa xác nhận được để trống theo yêu cầu.
+- [Video demo 6 phút và kiểm chứng](deliverables/video/README.md), [slide 24 trang](deliverables/presentation/README.md).
 - [Mục tiêu](docs/MUC_TIEU_DU_AN.md), [giao thức](docs/GIAO_THUC_THUC_NGHIEM.md).
 - [Phân công mới](docs/management/KE_HOACH_SOS_NOTEBOOK.md), [workbook](docs/management/KE_HOACH_PHAN_CONG_1008_1111_2026.xlsx).
 - [Kiểm kê dữ liệu](docs/management/KIEM_TRA_REFINED_SOS.md), [manifest](data/manifest.json).
@@ -67,6 +67,6 @@ CLI có từng bước `prepare`, `verify`, `screen`, `benchmark`, `select`, `ev
 - [Thống kê toàn tập và ba ca thất bại](results/sos/diagnostics/REPORT.md): số liệu micro/macro, độ lệch chuẩn giữa các ảnh và hình từng bước; không chọn lại mô hình theo test.
 - [Ví dụ Lee 5×5 tính bằng số hữu tỉ](results/sos/worked_example/REPORT.md): giải thích trọng số, đối chiếu NumPy/SciPy và giới hạn của lập luận lý thuyết.
 - [Nhánh Niblack đáp ứng thao tác ngưỡng thích nghi](results/sos/adaptive/REPORT.md): thực nghiệm bổ sung trên validation; kết quả test của nhánh Otsu không áp dụng cho nhánh này.
-- Nguồn dựng báo cáo theo mẫu: `docs/report/narrative.json`, `bibliography.json`, `source_audit.json`. Đây chưa phải DOCX/PDF hoàn chỉnh. Tái tạo hình báo cáo bằng `python scripts/report_figures.py`; kiểm tra nguồn bằng `python scripts/verify_report_sources.py`.
+- Nguồn dựng báo cáo theo mẫu: `docs/report/narrative.json`, `bibliography.json`, `source_audit.json`. DOCX/PDF hiện tại nằm trong `deliverables/report/`. Tái tạo hình báo cáo bằng `python scripts/report_figures.py`; kiểm tra nguồn bằng `python scripts/verify_report_sources.py`.
 
 Mã theo chức năng tại `src/sar_oil/`; notebook không sao chép thuật toán. Bản cũ ở `legacy/pre_refactor_20261112/`, không import vào pipeline mới hoặc dùng số liệu cũ làm bằng chứng. Kiểm tra bảo toàn bằng `python scripts/verify_archive.py`. Dữ liệu thô không đưa lên Git.
