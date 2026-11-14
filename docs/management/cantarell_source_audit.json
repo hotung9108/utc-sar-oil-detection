@@ -22,6 +22,12 @@
       "sha256": "a16626e333cc43c25150d218e7905d61b7dbf91e68b9c80202ebfebce7dc8ce8"
     },
     {
+      "path": "pipeline_ml/scripts/common.py",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/pipeline_ml/scripts/common.py",
+      "bytes": 5825,
+      "sha256": "3015db86191615c8fc2b9dfc40035b124aeb2550bf1019cba56385dde80b5721"
+    },
+    {
       "path": "CSV/Oil_Stats_manual_windows_16bits_800x600.csv",
       "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/CSV/Oil_Stats_manual_windows_16bits_800x600.csv",
       "bytes": 306652,
@@ -70,6 +76,43 @@
       "bytes": 1889,
       "sha256": "8cb48f7c4b49768fb79e119393c7f8bc38c7877bff8893efb6f0238e3b4d9af0",
       "verified_against_lfs_pointer": true
+    },
+    {
+      "path": "RASTER/LABELS-VECTOR/GEOJSON/IMG_01_TILE_001.geojson",
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/RASTER/LABELS-VECTOR/GEOJSON/IMG_01_TILE_001.geojson",
+      "bytes": 130,
+      "sha256": "71a3b56d78a5869ae9013d2439f5c698e31fc2d4e29afbf4e660817ff2385d51"
+    },
+    {
+      "path": "RASTER/LABELS-VECTOR/GEOJSON/IMG_01_TILE_001.geojson",
+      "url": "https://media.githubusercontent.com/media/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/RASTER/LABELS-VECTOR/GEOJSON/IMG_01_TILE_001.geojson",
+      "bytes": 50925,
+      "sha256": "1dbe564c14647333312687828313dc85d709d783798a8e6ca9a6c5542a0b503b",
+      "verified_against_lfs_pointer": true
+    },
+    {
+      "path": "source/asf_search.json",
+      "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-01-17T00%3A15%3A40Z&end=2020-01-17T00%3A15%3A42Z&output=geojson",
+      "bytes": 5186,
+      "sha256": "f486d6e23b600edaac30522da13351ca2a5e23b7137cefaba3232637e6f0302c"
+    },
+    {
+      "path": "source/productInfo.json",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/productInfo.json",
+      "bytes": 3080,
+      "sha256": "9013fcd56420859e65748e45d38a6af212b91e11f28b83825fb7cc569a6264ef"
+    },
+    {
+      "path": "source/iw-vv.xml",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/annotation/iw-vv.xml",
+      "bytes": 1695777,
+      "sha256": "658f7596b91369ef51a9a6cb89de16b359868ac9ee52b4d11965de6721539e41"
+    },
+    {
+      "path": "source/calibration-iw-vv.xml",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/annotation/calibration/calibration-iw-vv.xml",
+      "bytes": 1007005,
+      "sha256": "86f1215e8916738ee4e696420c5eceff9b94ed4e8bb74fef9ae8429a4132aa80"
     }
   ],
   "polygon_rows": 385,
@@ -238,6 +281,39 @@
       "2": 3574
     },
     "same_grid_dimensions": true
+  },
+  "label_followup": {
+    "vector_properties": [
+      {
+        "index": 0,
+        "Id": 1,
+        "ID_POLY": "OS03000GXS1",
+        "DATE": "2020-01-17",
+        "TIME_ACQ": "00 15 41",
+        "IMG_NUMBER": 1,
+        "SATELITE": "SENTINEL-1",
+        "BEAM_MODE": "IW",
+        "CLASSE": "SEEPAGE SLICK",
+        "SUBCLASSE": "CANTAREL",
+        "AREA_KM": 1.34082662404,
+        "PERIM_KM": 29.8906695243
+      }
+    ],
+    "pixel_center_vector_foreground": 3574,
+    "mask_foreground": 3574,
+    "vector_mask_disagreement_pixels": 0,
+    "publisher_code_merges_positive_values": true,
+    "scope": "One sample only; binary foreground comparison, not global semantic encoding proof."
+  },
+  "source_followup": {
+    "candidate_scene": "S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE",
+    "matching_acquisitions": 1,
+    "product_id_confirmed": true,
+    "geolocation_points": 210,
+    "angle_min": 30.80162927150979,
+    "angle_max": 46.21077797508928,
+    "calibration_vectors": 27,
+    "scope": "Acquisition identity candidate and VV metadata retrieved; exported tile polarization, units and native-grid alignment remain unverified."
   },
   "eligibility": {
     "labelled_georeferenced_candidate": true,

@@ -3,13 +3,16 @@ import csv
 import hashlib
 import io
 import json
+import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
 from urllib.request import urlopen
+from urllib.parse import urlencode
 
 import numpy as np
 import tifffile
 from PIL import Image
+from matplotlib.path import Path as PolygonPath
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = '1b9a62c30a9da9698eb470562aa976f9bd1e8fc3'
@@ -20,17 +23,18 @@ def main():
     cache = ROOT / '.cache/cantarell_source' / REVISION
     receipts = []
 
-    def fetch(path):
+    def fetch(path, url=None):
+        url = url or BASE + path
         target = cache / path
         if not target.exists():
-            with urlopen(BASE + path, timeout=45) as response:
+            with urlopen(url, timeout=45) as response:
                 raw = response.read(20_000_001)
             if len(raw) > 20_000_000:
                 raise ValueError('Source exceeds inspection download limit')
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(raw)
         raw = target.read_bytes()
-        receipts.append(dict(path=path, url=BASE + path, bytes=len(raw),
+        receipts.append(dict(path=path, url=url, bytes=len(raw),
                              sha256=hashlib.sha256(raw).hexdigest()))
         if raw.startswith(b'version https://git-lfs.github.com/spec/v1'):
             fields = dict(line.split(' ', 1) for line in raw.decode().splitlines())
@@ -56,6 +60,7 @@ def main():
     fetch('DATASET_CARD.md')
     fetch('README.md')
     fetch('LICENSE')
+    publisher_code = fetch('pipeline_ml/scripts/common.py').decode('utf-8')
     rows = list(csv.DictReader(io.StringIO(fetch(
         'CSV/Oil_Stats_manual_windows_16bits_800x600.csv').decode('utf-8-sig')), delimiter=';'))
     split_rows = {}
@@ -72,12 +77,48 @@ def main():
     with tifffile.TiffFile(io.BytesIO(raw)) as tif:
         page = tif.pages[0]
         pixels = page.asarray()
+        scale = page.tags['ModelPixelScaleTag'].value
+        tie = page.tags['ModelTiepointTag'].value
         tags = {tag.name: str(tag.value) for tag in page.tags.values()
                 if tag.name in ('ImageDescription', 'ModelPixelScaleTag', 'ModelTiepointTag',
                                 'GeoKeyDirectoryTag', 'GeoAsciiParamsTag', 'GDAL_METADATA', 'GDAL_NODATA')}
     if sample_mask_path is None:
         raise ValueError('Inspection sample missing from split manifests')
     mask = np.asarray(Image.open(io.BytesIO(fetch(sample_mask_path))))
+    vector = json.loads(fetch('RASTER/LABELS-VECTOR/GEOJSON/IMG_01_TILE_001.geojson'))
+    yy, xx = np.indices(mask.shape)
+    coords = np.column_stack(((tie[3] + (xx + .5 - tie[0]) * scale[0]).ravel(),
+                              (tie[4] - (yy + .5 - tie[1]) * scale[1]).ravel()))
+    inside = np.zeros(mask.size, dtype=bool)
+    for feature in vector['features']:
+        geometry = feature['geometry']
+        if geometry['type'] not in ('Polygon', 'MultiPolygon'):
+            raise ValueError('Unsupported geometry')
+        polygons = [geometry['coordinates']] if geometry['type'] == 'Polygon' else geometry['coordinates']
+        for rings in polygons:
+            region = PolygonPath(np.asarray(rings[0])).contains_points(coords)
+            for hole in rings[1:]:
+                region &= ~PolygonPath(np.asarray(hole)).contains_points(coords)
+            inside |= region
+    inside = inside.reshape(mask.shape)
+    params = {'platform': 'Sentinel-1A', 'processingLevel': 'GRD_HD',
+              'start': '2020-01-17T00:15:40Z', 'end': '2020-01-17T00:15:42Z', 'output': 'geojson'}
+    catalog = json.loads(fetch('source/asf_search.json',
+                         'https://api.daac.asf.alaska.edu/services/search/param?' + urlencode(params)))
+    matches = [f for f in catalog['features']
+               if f['properties']['sceneName'].startswith('S1A_IW_GRDH_1SDV_20200117T001541_')]
+    if len(matches) != 1:
+        raise ValueError('Source acquisition match is not unique')
+    scene = matches[0]['properties']['sceneName']
+    source_base = f'https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/{scene}/'
+    product = json.loads(fetch('source/productInfo.json', source_base + 'productInfo.json'))
+    if product['id'] != scene:
+        raise ValueError('Product identity mismatch')
+    annotation = ET.fromstring(fetch('source/iw-vv.xml', source_base + 'annotation/iw-vv.xml'))
+    points = annotation.findall('.//geolocationGridPoint')
+    angles = [float(p.findtext('incidenceAngle')) for p in points]
+    calibration = ET.fromstring(fetch('source/calibration-iw-vv.xml',
+                         source_base + 'annotation/calibration/calibration-iw-vv.xml'))
     finite = pixels[np.isfinite(pixels)]
     audit = {
         'repository': 'https://github.com/Garcia-INPE/oilspill-detection-dataset',
@@ -94,6 +135,19 @@ def main():
                    'mask_shape': list(mask.shape),
                    'mask_counts': {str(k): int(v) for k, v in zip(*np.unique(mask, return_counts=True))},
                    'same_grid_dimensions': pixels.shape == mask.shape},
+        'label_followup': {
+            'vector_properties': [f['properties'] for f in vector['features']],
+            'pixel_center_vector_foreground': int(inside.sum()),
+            'mask_foreground': int((mask > 0).sum()),
+            'vector_mask_disagreement_pixels': int(np.count_nonzero(inside != (mask > 0))),
+            'publisher_code_merges_positive_values': 'return (mask_np > 0).astype(np.int64)' in publisher_code,
+            'scope': 'One sample only; binary foreground comparison, not global semantic encoding proof.'},
+        'source_followup': {
+            'candidate_scene': scene, 'matching_acquisitions': len(matches),
+            'product_id_confirmed': product['id'] == scene,
+            'geolocation_points': len(points), 'angle_min': min(angles), 'angle_max': max(angles),
+            'calibration_vectors': len(calibration.findall('.//calibrationVector')),
+            'scope': 'Acquisition identity candidate and VV metadata retrieved; exported tile polarization, units and native-grid alignment remain unverified.'},
         'eligibility': {
             'labelled_georeferenced_candidate': True,
             'physical_units_confirmed': False,
