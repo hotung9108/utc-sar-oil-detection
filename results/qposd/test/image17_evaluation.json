@@ -1,0 +1,273 @@
+{
+  "number": 17,
+  "mat_sha256": "72314d7827a2219fda145dc016ab74d570d9c14a4ebfa79e49bf31fdfdc7359f",
+  "mask_sha256": "9cf9f83b9c93800fc60abd83187e439a5671e451f185daee1219cc446f05d364",
+  "published_prefix_matches": true,
+  "numpy": {
+    "classes": {
+      "oil": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333333333333333,
+        "below_64": {
+          "gt": 4,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 1,
+          "tp": 1,
+          "recall": 1.0
+        }
+      },
+      "look_alike": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "below_64": {
+          "gt": 0,
+          "tp": 0,
+          "recall": null
+        },
+        "at_least_64": {
+          "gt": 0,
+          "tp": 0,
+          "recall": null
+        }
+      }
+    },
+    "macro_f1": null,
+    "ignored_pixels": 0,
+    "spatial_confusion": {
+      "class_order": [
+        "oil",
+        "look_alike"
+      ],
+      "true_by_predicted": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "unmatched_truth": [
+        4,
+        0
+      ],
+      "unmatched_predictions": [
+        0,
+        0
+      ],
+      "scope": "Class-agnostic spatial matching; different assignment from class-aware F1 may occur."
+    },
+    "class_aware_matches": [
+      {
+        "predicted_id": 1,
+        "truth_id": 1,
+        "iou": 0.837947306331105
+      }
+    ],
+    "spatial_matches": [
+      {
+        "predicted_id": 1,
+        "truth_id": 1,
+        "predicted_class": 1,
+        "truth_class": 1,
+        "iou": 0.837947306331105
+      }
+    ]
+  },
+  "reference": {
+    "classes": {
+      "oil": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.3333333333333333,
+        "below_64": {
+          "gt": 4,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "at_least_64": {
+          "gt": 1,
+          "tp": 1,
+          "recall": 1.0
+        }
+      },
+      "look_alike": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "below_64": {
+          "gt": 0,
+          "tp": 0,
+          "recall": null
+        },
+        "at_least_64": {
+          "gt": 0,
+          "tp": 0,
+          "recall": null
+        }
+      }
+    },
+    "macro_f1": null,
+    "ignored_pixels": 0,
+    "spatial_confusion": {
+      "class_order": [
+        "oil",
+        "look_alike"
+      ],
+      "true_by_predicted": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "unmatched_truth": [
+        4,
+        0
+      ],
+      "unmatched_predictions": [
+        0,
+        0
+      ],
+      "scope": "Class-agnostic spatial matching; different assignment from class-aware F1 may occur."
+    },
+    "class_aware_matches": [
+      {
+        "predicted_id": 1,
+        "truth_id": 1,
+        "iou": 0.837947306331105
+      }
+    ],
+    "spatial_matches": [
+      {
+        "predicted_id": 1,
+        "truth_id": 1,
+        "predicted_class": 1,
+        "truth_class": 1,
+        "iou": 0.837947306331105
+      }
+    ]
+  },
+  "numpy_regions": [
+    {
+      "region_id": 1,
+      "area": 85274,
+      "features": [
+        0.08022307497641024,
+        8.236803250004238,
+        0.26853892954765896,
+        290.05351004702095,
+        0.17708041485211162,
+        0.14760606325532963,
+        0.029803768376173545,
+        0.685610653250693
+      ],
+      "score": 0.23684210526315785,
+      "predicted_class": 1
+    }
+  ],
+  "reference_regions": [
+    {
+      "region_id": 1,
+      "area": 85274,
+      "features": [
+        0.08022307497641024,
+        8.236803250004241,
+        0.26853892954765896,
+        290.05351004702095,
+        0.17708041485208026,
+        0.1476060632553502,
+        0.02980376837618635,
+        0.6856106532507604
+      ],
+      "score": 0.23684210526315785,
+      "predicted_class": 1
+    }
+  ],
+  "numpy_seconds_single_run": 0.383636700000352,
+  "reference_seconds_single_run": 0.22470770000018092,
+  "candidate_disagreement_pixels": 0,
+  "prediction_disagreement_pixels": 0,
+  "saved_masks": {
+    "numpy": {
+      "path": "results/qposd/test/image17_numpy_classes.png",
+      "sha256": "887896bae766b8531c3e05e9df48ccf14d292ede77d0c505789a7fe74539891e",
+      "classes": {
+        "0": "background",
+        "1": "oil",
+        "2": "look_alike"
+      }
+    },
+    "reference": {
+      "path": "results/qposd/test/image17_reference_classes.png",
+      "sha256": "887896bae766b8531c3e05e9df48ccf14d292ede77d0c505789a7fe74539891e",
+      "classes": {
+        "0": "background",
+        "1": "oil",
+        "2": "look_alike"
+      }
+    }
+  },
+  "conditional_classification": {
+    "class_order": [
+      "look_alike",
+      "oil"
+    ],
+    "confusion_true_by_predicted": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "classes": {
+      "oil": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8888888888888888
+      },
+      "look_alike": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    "macro_f1": 0.4444444444444444,
+    "oil_as_look_alike_rate": 0.2,
+    "look_alike_as_oil_rate": null
+  },
+  "reference_region_features": {
+    "path": "results/qposd/test/image17_reference_regions.json",
+    "sha256": "690e3722584d606fb32bc961cbbd01779e6523815b68c21e52a53a96db4b0c17"
+  }
+}

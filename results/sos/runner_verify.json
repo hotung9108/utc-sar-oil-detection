@@ -1,0 +1,25 @@
+{
+  "mode": "verify_only",
+  "steps": [
+    {
+      "command": [
+        "scripts/verify_outputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 5.381927000009455
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 4.267416900023818
+    }
+  ],
+  "passed": true
+}

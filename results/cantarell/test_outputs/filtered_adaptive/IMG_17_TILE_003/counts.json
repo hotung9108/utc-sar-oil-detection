@@ -1,0 +1,62 @@
+{
+  "binding": {
+    "manifest_sha256": "a191010bcbf30740456dd1685b67cde19e997863ae7c1794443a871f4eabfe49",
+    "selection_sha256": "cdfa343169408dc4a3b90fd4d03ceebce34653e86211b88573ecff9a768e86ab",
+    "script_sha256": "724dfbbfd9e431ece5f2ca2409a5831651539ad1298faec0765f43887ab5b300",
+    "helper_sha256": "016a9944dbc7cad252dae10e622f8ba146a0d35c72c34d9c2ebc76b921dc8dc0",
+    "required_filter_selection_sha256": "c099202c0da26af1a1f1c409cdb9302e7a8ca520f3d1ada62ec4928556ed84e5",
+    "required_filter_protocol_sha256": "be95c3ef7b4375be032a6227d0ce8756c1e3d0f527e3cd317cddceac7407d288"
+  },
+  "sample": "IMG_17_TILE_003",
+  "scene": "S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A",
+  "input_sha256": "c320402876fed2ad6c9c53794c96b6e17c4db60ae31ed1af3ed870865d8c7c1f",
+  "role": "filtered_adaptive",
+  "branch": "gamma0",
+  "model_sha256": "5ba0e48bc3ed370d171765eac0c7e49e999455efe325769227a87890e8015516",
+  "counts": {
+    "numpy": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 8,
+      "images": 1,
+      "empty_images": 0,
+      "intersection": 756,
+      "union": 2791,
+      "predicted_pixels": 2789,
+      "truth_pixels": 758,
+      "edge_gt": 0,
+      "edge_tp": 0,
+      "interior_gt": 9,
+      "interior_tp": 1
+    },
+    "reference": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 8,
+      "images": 1,
+      "empty_images": 0,
+      "intersection": 756,
+      "union": 2791,
+      "predicted_pixels": 2789,
+      "truth_pixels": 758,
+      "edge_gt": 0,
+      "edge_tp": 0,
+      "interior_gt": 9,
+      "interior_tp": 1
+    }
+  },
+  "mask_disagreement_pixels": 0,
+  "seconds_single_run": {
+    "numpy": 0.5180811999998696,
+    "reference": 0.5018877000002249
+  },
+  "wind_speed_m_s": 6.033014280840732,
+  "artifact_sha256": {
+    "input.png": "9b06596ed265de42a945752425417d724bc234bc68ef7ce6c0d9d006872639c0",
+    "mask.png": "1b1d6f59631007d562dd9826a497a4c4001976b1689ba5960618d7f8148ae2aa",
+    "truth.png": "de755f6b79cb856fbe71e8ed89399ddfbb9a605c4f4e7439ea18bccf0754b678",
+    "overlay.png": "a7ed6c3013a196485cb27a6f57a8512eb3a25e31cc5690581897a349fb2cdcf4",
+    "candidate.png": "eb1b92623a143de2179e29d187ec1c9eb0b8519e5b7e529d811f2c84cac3dab0",
+    "regions.npz": "30f381a8cfaeb4db0ed1a921797c7f42438f07da0c09959f73581f2c74523de8"
+  }
+}
