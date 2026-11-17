@@ -1,6 +1,7 @@
 """Read-only physical-SAR UI adapter, enabled only after frozen test completion."""
 import json
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -15,10 +16,19 @@ from sar_oil.core import FEATURES
 
 
 def ready():
-    return (ROOT / 'results/cantarell/evaluation.json').exists()
+    return ((ROOT / 'results/cantarell/evaluation.json').exists() and
+            (ROOT / 'docs/management/cantarell_results_verification.json').exists())
 
 
 def setup():
+    if not ready():
+        raise ValueError('Complete test evaluation and independent result verification are required')
+    verification = json.loads((ROOT / 'docs/management/cantarell_results_verification.json').read_text())
+    if not verification['passed'] or verification['script_sha256'] != sha(ROOT/'scripts/verify_cantarell_results.py'):
+        raise ValueError('Physical result verification is missing or stale')
+    for name, expected in verification['input_sha256'].items():
+        if sha(ROOT/'results/cantarell'/name) != expected:
+            raise ValueError('Physical evidence changed after independent verification')
     manifest, _ = load_manifest()
     path = ROOT / 'results/cantarell/selection.json'
     require_committed(path)
@@ -42,6 +52,7 @@ def samples():
 
 
 def run_sample(sample_id):
+    started = time.perf_counter()
     manifest, selected, model_path = setup()
     sample = next(r for r in manifest['samples'] if r['sample'] == sample_id and r['split'] == 'test')
     path = ROOT / sample['file']
@@ -62,7 +73,7 @@ def run_sample(sample_id):
             'metadata': {'sample': sample_id, 'input_sha256': sample['sha256'],
                 'branch': selected['branch'], 'config': selected['config'],
                 'model_sha256': selected['model_sha256'], 'regions': regions,
-                'seconds_including_preview': output['seconds_single_run'],
+                'seconds_including_preview': time.perf_counter() - started,
                 'wind_speed_m_s': sample['wind_speed_m_s'],
                 'incidence_degrees_min_max': [float(angles.min()), float(angles.max())],
                 'ground_truth_used_for_inference': False, 'score_semantics': 'decision score, not probability'}}
