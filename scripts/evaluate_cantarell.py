@@ -1,9 +1,14 @@
 """Frozen test evaluation and paired scene bootstrap; no fitting or selection."""
 import json
+import os
+import platform
+import sys
+from importlib.metadata import version
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
+from threadpoolctl import threadpool_info
 
 from cantarell_experiment_data import ROOT, MANIFEST, load_manifest, load_input, sha, require_committed
 from cantarell_pipeline import infer, normalize_power
@@ -110,6 +115,11 @@ def main():
     write(DEST / 'evaluation.json', {'binding': binding, 'test_samples': len(test), 'roles': summaries,
           'complete': all(len(v['per_image']) == len(test) for v in summaries.values()),
           'angle_bootstrap_sha256': sha(DEST / 'angle_bootstrap.json'),
+          'environment': {'python': sys.version, 'platform': platform.platform(),
+              'logical_cpus': os.cpu_count(), 'image_workers': 1,
+              'packages': {p:version(p) for p in ('numpy','scipy','scikit-image','scikit-learn','Pillow')},
+              'threadpools': threadpool_info(),
+              'timing_scope': 'Single-run wall time, no isolated-machine or repeated performance benchmark claim'},
           'limits': protocol['honesty_limits'], 'models_fitted_on_test': False})
 
 
