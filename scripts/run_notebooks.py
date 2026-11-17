@@ -12,10 +12,13 @@ from nbclient import NotebookClient
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--notebook', type=Path, action='append',
+selection = parser.add_mutually_exclusive_group()
+selection.add_argument('--notebook', type=Path, action='append',
                     help='Notebook path relative to project root; repeat to run several. Default: five SOS notebooks.')
+selection.add_argument('--all', action='store_true', help='Execute every notebook including external datasets; does not build reports or train models.')
 args = parser.parse_args()
-paths = args.notebook or sorted((ROOT / 'notebooks').glob('*.ipynb'))
+paths = (sorted((ROOT / 'notebooks').rglob('*.ipynb')) if args.all else
+         args.notebook or sorted((ROOT / 'notebooks').glob('*.ipynb')))
 paths = [(ROOT / p).resolve() if not p.is_absolute() else p.resolve() for p in paths]
 for path in paths:
     if not path.is_relative_to((ROOT / 'notebooks').resolve()) or not path.is_file():

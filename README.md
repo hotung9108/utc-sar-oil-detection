@@ -26,6 +26,16 @@ khi lựa chọn model và các model đã được commit; không gọi mã đ�
 
 ## Chạy
 
+Chạy lại riêng toàn bộ notebook hiện có (không dựng báo cáo, slide hoặc video):
+
+```powershell
+uv run --frozen --extra web python scripts/run_notebooks.py --all
+```
+
+Lệnh cần các dữ liệu cục bộ và kết quả thực nghiệm mà từng notebook sử dụng;
+không tự tải dữ liệu hoặc huấn luyện lại. Chạy riêng một notebook bằng
+`--notebook notebooks/external/11_cantarell_physical_candidates.ipynb`.
+
 Tái tạo báo cáo số liệu và chạy lại cả **10 notebook** từ các mô hình/kết quả
 đã khóa (cần đủ dữ liệu SOS, DARTIS, Sentinel-1 và QPOSD cục bộ):
 
