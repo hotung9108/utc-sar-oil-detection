@@ -38,7 +38,9 @@ def setup():
         raise ValueError('Physical evaluation does not verify the current selection')
     if evaluation['binding']['manifest_sha256'] != sha(ROOT / 'docs/management/cantarell_eligible_manifest.json'):
         raise ValueError('Physical evaluation input manifest differs')
-    chosen = selection['winners']['primary']
+    required = ROOT/'results/cantarell/requirements_selection.json'
+    require_committed(required)
+    chosen = json.loads(required.read_text())['selected']
     model_path = ROOT / chosen['model_file']
     require_committed(model_path)
     if sha(model_path) != chosen['model_sha256']:
@@ -72,6 +74,7 @@ def run_sample(sample_id):
             'mask': output['prediction'], 'overlay': rgb,
             'metadata': {'sample': sample_id, 'input_sha256': sample['sha256'],
                 'branch': selected['branch'], 'config': selected['config'],
+                'role':'filtered_adaptive',
                 'model_sha256': selected['model_sha256'], 'regions': regions,
                 'seconds_including_preview': time.perf_counter() - started,
                 'wind_speed_m_s': sample['wind_speed_m_s'],

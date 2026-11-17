@@ -39,6 +39,7 @@ from scripts import streamlit_physical as physical
 base = ROOT/'results/cantarell'
 manifest, protocol = load_manifest()
 selection = json.loads((base/'selection.json').read_text())
+required_filter = json.loads((base/'requirements_selection.json').read_text())
 validation = json.loads((base/'validation.json').read_text())
 evaluation = json.loads((base/'evaluation.json').read_text())
 features = json.loads((base/'feature_verification.json').read_text())
@@ -80,6 +81,9 @@ display(table)
 display(pd.DataFrame([{'role':role, 'branch':r['branch'], 'candidate':r['config_id'],
                       'model':r['model_id'], 'validation_f1':r['metrics']['numpy']['f1']}
                      for role,r in selection['winners'].items()]))
+print('Required-filter supplement:', required_filter['selected']['config'])
+print('Validation F1 tradeoff:', required_filter['validation_f1_difference_from_original_primary'])
+print(required_filter['disclosure'])
 '''),
         nbf.v4.new_code_cell('''fig, axes = plt.subplots(1,2, figsize=(13,4), sharey=True)
 for ax, branch in zip(axes, ['sigma0','gamma0']):
@@ -129,6 +133,12 @@ fig, ax = plt.subplots(figsize=(8,3))
 ax.hist(values, bins=30); ax.axvline(0,color='black',linestyle='--')
 ax.set(xlabel='F1 gamma0 - F1 sigma0 (fixed gamma-trained model)', ylabel='Bootstrap draws')
 plt.show()
+filtered_bootstrap = json.loads((base/'angle_bootstrap_filtered.json').read_text())
+filtered_rebuilt = scene_bootstrap(evaluation['roles']['filtered_adaptive']['per_image'],
+                                  evaluation['roles']['paired_sigma_filtered_model']['per_image'])
+assert all(filtered_rebuilt[k]==filtered_bootstrap[k] for k in filtered_rebuilt)
+assert evaluation['angle_bootstrap_filtered_sha256']==sha(base/'angle_bootstrap_filtered.json')
+print('Required-filter detector 95% CI:', filtered_bootstrap['ci95'])
 '''),
         nbf.v4.new_markdown_cell('''## Chạy lại ảnh test đầu tiên theo ID
 
@@ -138,7 +148,7 @@ GT được đọc riêng sau suy luận để tính lại metric.
         nbf.v4.new_code_cell('''sample = sorted(physical.samples(), key=lambda r:r['sample'])[0]
 result = physical.run_sample(sample['sample'])
 actual = physical.assess_sample(result)
-saved = next(r for r in evaluation['roles']['primary']['per_image'] if r['sample']==sample['sample'])
+saved = next(r for r in evaluation['roles']['filtered_adaptive']['per_image'] if r['sample']==sample['sample'])
 assert actual['metrics'] == summarize([saved['counts']['numpy']])
 assert not result['metadata']['ground_truth_used_for_inference']
 fig, axes = plt.subplots(1,4, figsize=(16,4))

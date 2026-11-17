@@ -8,6 +8,7 @@ from PIL import Image
 from cantarell_experiment_data import ROOT, MANIFEST, load_manifest, sha
 from sar_oil.evaluation import counts, summarize
 from evaluate_cantarell import scene_bootstrap
+from select_cantarell_required_filter import choose, PROTOCOL as FILTER_PROTOCOL
 
 BASE = ROOT / 'results/cantarell'
 
@@ -83,11 +84,22 @@ def main():
         require(all(winner[k]==v for k,v in selection['winners'][role].items()), 'Winner violates frozen rule')
     require(evaluation['binding']['selection_sha256']==sha(BASE/'selection.json') and
             evaluation['binding']['script_sha256']==sha(ROOT/'scripts/evaluate_cantarell.py'), 'Evaluation binding changed')
-    require(set(evaluation['roles']) == {r[0] for r in roles} | {'paired_sigma_same_model'}, 'Missing test role')
+    supplement = read('requirements_selection.json')
+    expected_filter = choose(training['rows'])
+    require(supplement['protocol_sha256']==sha(FILTER_PROTOCOL) and
+            all(expected_filter[k]==v for k,v in supplement['selected'].items()), 'Required-filter winner mismatch')
+    require(evaluation['binding']['required_filter_selection_sha256']==sha(BASE/'requirements_selection.json'), 'Required-filter test binding changed')
+    require(set(evaluation['roles']) == {r[0] for r in roles} | {'paired_sigma_same_model','filtered_adaptive','paired_sigma_filtered_model'}, 'Missing test role')
     verified_masks = 0
     for role, group in evaluation['roles'].items():
-        selected = (dict(selection['winners']['primary'],branch='sigma0') if role=='paired_sigma_same_model'
-                    else selection['winners'][role])
+        if role=='paired_sigma_same_model':
+            selected = dict(selection['winners']['primary'],branch='sigma0')
+        elif role=='filtered_adaptive':
+            selected = supplement['selected']
+        elif role=='paired_sigma_filtered_model':
+            selected = dict(supplement['selected'],branch='sigma0')
+        else:
+            selected = selection['winners'][role]
         require(group['selection']==selected, 'Test did not use the frozen model/configuration')
         require(len(group['per_image'])==len(population['test']) and
                 {r['sample'] for r in group['per_image']} == set(population['test']), 'Test population changed')
@@ -111,9 +123,13 @@ def main():
     bootstrap = read('angle_bootstrap.json')
     rebuilt = scene_bootstrap(evaluation['roles']['primary']['per_image'],evaluation['roles']['paired_sigma_same_model']['per_image'])
     require(all(bootstrap[k]==v for k,v in rebuilt.items()), 'Paired bootstrap differs')
+    filtered_bootstrap = read('angle_bootstrap_filtered.json')
+    rebuilt_filtered = scene_bootstrap(evaluation['roles']['filtered_adaptive']['per_image'], evaluation['roles']['paired_sigma_filtered_model']['per_image'])
+    require(all(filtered_bootstrap[k]==v for k,v in rebuilt_filtered.items()), 'Filtered paired bootstrap differs')
     output = {'passed':True,'candidate_comparisons':len(expected_grid),'model_pairs':len(expected_models),
               'verified_test_masks':verified_masks,'script_sha256':sha(Path(__file__)),
-              'input_sha256':{n:sha(BASE/n) for n in ('screen.json','validation.json','selection.json','evaluation.json','angle_bootstrap.json')},
+              'input_sha256':{n:sha(BASE/n) for n in ('screen.json','validation.json','selection.json','requirements_selection.json',
+                                                    'evaluation.json','angle_bootstrap.json','angle_bootstrap_filtered.json')},
               'scope':'Reconstructed grids, train-only scalers, winner rules, saved-mask object counts and paired bootstrap; not a new model fit'}
     path = ROOT/'docs/management/cantarell_results_verification.json'
     path.write_text(json.dumps(output,indent=2)+'\n',encoding='utf-8')

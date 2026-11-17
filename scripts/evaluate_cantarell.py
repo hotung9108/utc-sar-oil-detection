@@ -15,6 +15,7 @@ from cantarell_pipeline import infer, normalize_power
 from sar_oil.evaluation import counts, summarize
 from sar_oil.models import RegionModel
 from train_cantarell import write
+from select_cantarell_required_filter import PROTOCOL as FILTER_PROTOCOL, OUTPUT as FILTER_SELECTION, choose
 
 DEST = ROOT / 'results/cantarell'
 
@@ -46,7 +47,8 @@ def scene_bootstrap(primary, counterfactual, repeats=2000, seed=2026):
 
 
 def main():
-    manifest, protocol = load_manifest(['scripts/evaluate_cantarell.py', 'scripts/train_cantarell.py'])
+    manifest, protocol = load_manifest(['scripts/evaluate_cantarell.py', 'scripts/train_cantarell.py',
+                                       'scripts/select_cantarell_required_filter.py'])
     selection_path = DEST / 'selection.json'
     require_committed(selection_path)
     selection = json.loads(selection_path.read_text())
@@ -54,11 +56,25 @@ def main():
         raise ValueError('Selected model input manifest mismatch')
     if sha(DEST / 'validation.json') != selection['validation_sha256']:
         raise ValueError('Validation evidence changed after selection')
+    require_committed(FILTER_PROTOCOL)
+    require_committed(FILTER_SELECTION)
+    filtered = json.loads(FILTER_SELECTION.read_text())
+    if (filtered['protocol_sha256']!=sha(FILTER_PROTOCOL) or
+            filtered['script_sha256']!=sha(ROOT/'scripts/select_cantarell_required_filter.py') or
+            filtered['validation_sha256']!=sha(DEST/'validation.json') or
+            filtered['original_selection_sha256']!=sha(selection_path)):
+        raise ValueError('Required-filter selection provenance mismatch')
+    expected = choose(json.loads((DEST/'validation.json').read_text())['rows'])
+    if not all(expected[k]==v for k,v in filtered['selected'].items()):
+        raise ValueError('Required-filter selection violates validation rule')
     test = sorted([r for r in manifest['samples'] if r['split'] == 'test'], key=lambda r:r['sample'])
     binding = {'manifest_sha256': sha(MANIFEST), 'selection_sha256': sha(selection_path),
-               'script_sha256': sha(Path(__file__)), 'helper_sha256': sha(ROOT / 'scripts/train_cantarell.py')}
+               'script_sha256': sha(Path(__file__)), 'helper_sha256': sha(ROOT / 'scripts/train_cantarell.py'),
+               'required_filter_selection_sha256':sha(FILTER_SELECTION), 'required_filter_protocol_sha256':sha(FILTER_PROTOCOL)}
     runs = dict(selection['winners'])
     runs['paired_sigma_same_model'] = {**selection['winners']['primary'], 'branch': 'sigma0'}
+    runs['filtered_adaptive'] = filtered['selected']
+    runs['paired_sigma_filtered_model'] = {**filtered['selected'], 'branch':'sigma0'}
     summaries = {}
     for role, selected in runs.items():
         model_path = ROOT / selected['model_file']
@@ -112,9 +128,13 @@ def main():
     paired = scene_bootstrap(summaries['primary']['per_image'], summaries['paired_sigma_same_model']['per_image'],
                              protocol['test']['bootstrap']['replicates'], protocol['test']['bootstrap']['seed'])
     write(DEST / 'angle_bootstrap.json', {'binding': binding, **paired})
+    filtered_pair = scene_bootstrap(summaries['filtered_adaptive']['per_image'], summaries['paired_sigma_filtered_model']['per_image'],
+                                   protocol['test']['bootstrap']['replicates'], protocol['test']['bootstrap']['seed'])
+    write(DEST/'angle_bootstrap_filtered.json', {'binding':binding, **filtered_pair})
     write(DEST / 'evaluation.json', {'binding': binding, 'test_samples': len(test), 'roles': summaries,
           'complete': all(len(v['per_image']) == len(test) for v in summaries.values()),
           'angle_bootstrap_sha256': sha(DEST / 'angle_bootstrap.json'),
+          'angle_bootstrap_filtered_sha256':sha(DEST/'angle_bootstrap_filtered.json'),
           'environment': {'python': sys.version, 'platform': platform.platform(),
               'logical_cpus': os.cpu_count(), 'image_workers': 1,
               'packages': {p:version(p) for p in ('numpy','scipy','scikit-image','scikit-learn','Pillow')},
