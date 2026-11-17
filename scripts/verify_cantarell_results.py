@@ -1,11 +1,13 @@
 """Independently reconstruct grids, winner selection and test counts from artifacts."""
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
 
 from cantarell_experiment_data import ROOT, MANIFEST, load_manifest, sha
+sys.path.insert(0,str(ROOT/'src'))
 from sar_oil.evaluation import counts, summarize
 from evaluate_cantarell import scene_bootstrap
 from select_cantarell_required_filter import choose, PROTOCOL as FILTER_PROTOCOL
