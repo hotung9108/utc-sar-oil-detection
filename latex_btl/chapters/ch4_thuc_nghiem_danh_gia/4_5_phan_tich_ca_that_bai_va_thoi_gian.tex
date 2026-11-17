@@ -1,0 +1,39 @@
+\section{Phân tích trường hợp thất bại và thời gian tính toán}
+\label{sec:that_bai_thoi_gian}
+
+\subsection{Phân tích ba trường hợp thất bại cực đoan điển hình}
+
+Nhằm xác định rõ giới hạn của phương pháp xử lý ảnh truyền thống, 3 ca thất bại tiêu biểu được phân tích chi tiết:
+
+\begin{enumerate}
+    \item \textbf{Ca nhiều cảnh báo sai (FP) đối tượng nhất --- Ảnh \texttt{val/sentinel\_440.png} (Chế độ $R_4$ ngập $100\%$ dầu):}
+    Do toàn bộ khung ảnh nằm trọn trong mảng dầu khổng lồ, biểu đồ histogram có dạng đơn đỉnh hẹp. Thuật toán Otsu toàn cục buộc phải chia đôi chính mảng dầu thành $35$ mảnh ứng viên nhỏ. Mặc dù toàn bộ 35 mảnh này đều có độ tinh khiết $\mathrm{Purity} = 1.00$ (nằm hoàn toàn trên dầu thật), diện tích của từng mảnh riêng lẻ đều quá nhỏ so với mặt nạ Ground Truth nguyên khối duy nhất, dẫn đến không mảnh nào đạt $\IoU \ge 0.5$. Hệ quả là hệ thống nhận $0$ TP, $35$ FP và $1$ FN đối tượng.
+
+    \item \textbf{Ca bỏ sót (FN) đối tượng nhiều nhất --- Ảnh \texttt{val/sentinel\_25.png} (Chế độ $R_2$):}
+    Cảnh chụp chứa các dải dầu mảnh hẹp, đứt đoạn có độ tương phản mức xám yếu so với nền biển. Ngưỡng Otsu toàn cục bị nâng lên quá cao bởi diện tích nền biển sáng rộng lớn, khiến các dải dầu mảnh bị xóa nhòa ngay từ Giai đoạn 1 (tạo ứng viên), gây ra $20$ FN đối tượng. Điều này giải thích vì sao chỉ số \texttt{Interior Recall} của hệ thống chỉ đạt $10.48\%$.
+
+    \item \textbf{Ca tổng điểm ảnh sai lớn nhất --- Ảnh \texttt{val/sentinel\_591.png} (Chế độ $R_3$):}
+    Mảng dầu diện rộng bao phủ hơn $70\%$ khung ảnh. Bước phân ngưỡng ban đầu làm mất hơn $38\,000$ điểm ảnh dầu do phân bố mức xám không đều. Tiếp đó, do mảng dầu quá lớn làm rỗng vành đai nền 5 pixel ngoài biên, thuật toán chuyển sang cơ chế fallback tính $\mu_{\text{bg}}$ trên phần điểm ảnh sáng còn lại của mảng dầu, làm sai lệch hoàn toàn đặc trưng tương phản nền $f_7$ và khiến bộ phân loại bác bỏ nhầm toàn bộ các ứng viên dầu thật.
+\end{enumerate}
+
+\subsection{Đánh giá thời gian chạy thực tế và hiệu năng tính toán trên CPU}
+
+Bảng~\ref{tab:thoi_gian_chay} so sánh thời gian thực thi trung bình trên mỗi ảnh $256 \times 256$ đo lường qua thực thi song song 4 tiến trình worker trên toàn bộ 839 ảnh Test.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Thời gian thực thi trung bình và tổng thời gian xử lý 839 ảnh Test trên CPU.}
+\label{tab:thoi_gian_chay}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Cấu hình phương pháp} & \textbf{Thời gian trung bình / ảnh} & \textbf{Tổng thời gian} & \textbf{Tốc độ thông lượng} \\ \hline
+\textit{Baseline thô (Không lọc + Otsu)} & $107.8 \pm 34.2\text{ ms}$ & $90.46\text{ giây}$ & $\sim 9.3\text{ ảnh/giây}$ \\ \hline
+\textbf{Pipeline đầy đủ + LinearSVM} & $\mathbf{50.2 \pm 14.7\text{ ms}}$ & $\mathbf{42.11\text{ giây}}$ & $\mathbf{\sim 19.9\text{ ảnh/giây}}$ \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\noindent\textbf{So sánh tốc độ giữa pipeline đề xuất và baseline không lọc:}
+Dù thực hiện thêm lọc Lee $7 \times 7$, trích xuất 8 đặc trưng và suy luận LinearSVM, thời gian xử lý trung bình của pipeline đầy đủ giảm từ $107.8\text{ ms}$ xuống $50.2\text{ ms/ảnh}$. Ở cấu hình không lọc, nhiễu đốm khiến Otsu sinh ra $49\,608$ mảnh nhiễu li ti làm chậm bước gán nhãn liên thông và trích xuất vùng; ngược lại, lọc Lee $7 \times 7$ kết hợp ngưỡng $A_{\min} = 64$ đã loại bỏ hơn $72\%$ mảnh vụn, thu gọn số vùng liên thông cần xử lý xuống còn $13\,513$ vùng trên toàn tập ảnh và tăng tốc độ xử lý gần 2 lần.

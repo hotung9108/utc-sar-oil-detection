@@ -1,0 +1,65 @@
+\section{Dẫn xuất toán học và ví dụ số tính tay kiểm chứng bộ lọc Lee}
+\label{sec:dan_xuat_vi_du_so}
+
+\subsection{Dẫn xuất toán học của trọng số tối ưu MMSE cục bộ}
+
+Để làm rõ cơ sở toán học của công thức trọng số Lee~\eqref{eq:lee_weight}, xét mô hình suy biến cục bộ trong cửa sổ trượt $Y = X + N$, trong đó $Y$ là mức xám quan sát, $X$ là tín hiệu không nhiễu cần ước lượng với kỳ vọng $m = \E[X]$, và $N$ là thành phần nhiễu có $\E[N] = 0$, phương sai $\Var(N) = \sigma_N^2$, không tương quan thống kê với tín hiệu gốc ($\mathrm{Cov}(X, N) = 0$). Xét bộ ước lượng tuyến tính dạng affine $\hat{X} = m + a(Y - m)$ với trọng số $a \in \mathbb{R}$. Sai số ước lượng là $e(a) = \hat{X} - X = (a - 1)(X - m) + aN$. Do $\mathrm{Cov}(X, N) = 0$ và $\E[N] = 0$, số hạng chéo $\E[(X - m)N] = 0$ triệt tiêu, nên hàm rủi ro sai số toàn phương trung bình (MSE) thu gọn thành:
+\begin{equation}
+R(a) = \E\left[ (\hat{X} - X)^2 \right] = (a - 1)^2 \Var(X) + a^2 \Var(N)
+\label{eq:risk_function}
+\end{equation}
+Lấy đạo hàm bậc nhất theo $a$ bằng $0$ và kiểm tra điều kiện lồi qua đạo hàm bậc hai:
+\begin{equation}
+\frac{dR(a)}{da} = 2(a - 1)\Var(X) + 2a\Var(N) = 0 \iff a^* = \frac{\Var(X)}{\Var(X) + \Var(N)} = 1 - \frac{\Var(N)}{\Var(Y)}
+\label{eq:optimal_weight_form}
+\end{equation}
+với $\frac{d^2 R(a)}{da^2} = 2\Var(X) + 2\Var(N) = 2\Var(Y) > 0$, chứng minh $a^*$ là điểm cực tiểu toàn cục duy nhất. Khi áp dụng vào ảnh SAR, thay $\Var(Y)$ bằng phương sai mẫu cục bộ $v(x, y)$ và xấp xỉ $\Var(N) \approx \frac{m(x, y)^2}{L}$ kèm phép kẹp dưới $\max(\cdot, 0)$, ta thu được công thức trọng số Lee~\eqref{eq:lee_weight}.
+
+\subsection{Ví dụ số tính tay từng bước trên ma trận nhỏ $5 \times 5$}
+
+Để kiểm chứng thuật toán, ma trận mẫu $5 \times 5$ (nền $0.2$, tâm $(2, 2)$ bằng $0.9$) được lọc bằng cửa sổ Lee $3 \times 3$ ($L = 4$, đệm đối xứng \textit{reflect}). Ma trận đầu vào và ma trận đầu ra hoàn chỉnh được đặt đối chiếu tại Bảng~\ref{tab:input_matrix_5x5} và Bảng~\ref{tab:output_matrix_5x5}.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{minipage}[t]{0.42\textwidth}
+\centering
+\caption{Ma trận đầu vào $5 \times 5$ (tâm $(2,2) = 0.9$).}
+\label{tab:input_matrix_5x5}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$y \backslash x$ & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\ \hline
+\textbf{0} & 0.2 & 0.2 & 0.2 & 0.2 & 0.2 \\ \hline
+\textbf{1} & 0.2 & 0.2 & 0.2 & 0.2 & 0.2 \\ \hline
+\textbf{2} & 0.2 & 0.2 & \textbf{0.9} & 0.2 & 0.2 \\ \hline
+\textbf{3} & 0.2 & 0.2 & 0.2 & 0.2 & 0.2 \\ \hline
+\textbf{4} & 0.2 & 0.2 & 0.2 & 0.2 & 0.2 \\ \hline
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\centering
+\caption{Ma trận đầu ra sau lọc Lee $3 \times 3$ ($L=4$).}
+\label{tab:output_matrix_5x5}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$y \backslash x$ & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\ \hline
+\textbf{0} & 0.200000 & 0.200000 & 0.200000 & 0.200000 & 0.200000 \\ \hline
+\textbf{1} & 0.200000 & 0.252445 & 0.264491 & 0.252445 & 0.200000 \\ \hline
+\textbf{2} & 0.200000 & 0.264491 & \textbf{0.651984} & 0.264491 & 0.200000 \\ \hline
+\textbf{3} & 0.200000 & 0.252445 & 0.264491 & 0.252445 & 0.200000 \\ \hline
+\textbf{4} & 0.200000 & 0.200000 & 0.200000 & 0.200000 & 0.200000 \\ \hline
+\end{tabular}%
+}
+\end{minipage}
+\end{table}
+
+Các bước tính toán bằng phân số hữu tỉ chính xác tại điểm ảnh trung tâm $(2, 2)$ (lân cận $3 \times 3$ gồm 8 điểm mang giá trị $0.2 = \frac{1}{5}$ và 1 điểm tâm mang giá trị $0.9 = \frac{9}{10}$):
+\begin{align}
+\text{(1) Mô-men bậc 1, 2:} \quad & m = \frac{8 \times 0.2 + 0.9}{9} = \frac{5}{18} \approx 0.277778, \; \E[I^2] = \frac{8 \times 0.04 + 0.81}{9} = \frac{113}{900} \nonumber \\
+\text{(2) Phương sai:} \quad & v = \frac{113}{900} - \left(\frac{5}{18}\right)^2 = \frac{98}{2025} \approx 0.048395, \; \sigma_{\text{noise}}^2 = \frac{m^2}{4} = \frac{25}{1296} \approx 0.019290 \nonumber \\
+\text{(3) Trọng số Lee:} \quad & W = 1 - \frac{25/1296}{98/2025} = 1 - \frac{50625}{127008} = \frac{943}{1568} \approx 0.601403 \nonumber \\
+\text{(4) Đầu ra tại $(2,2)$:} \quad & \hat{R}(2, 2) = \frac{5}{18} + \frac{943}{1568}\left(\frac{9}{10} - \frac{5}{18}\right) = \frac{1643}{2520} \approx \mathbf{0.651984126984}
+\end{align}
+
+Script \texttt{scripts/worked\_example.py} (Phụ lục~\ref{app:kiem_chung_vi_du_so}) dùng \texttt{fractions.Fraction} đối chiếu kết quả tính tay với hàm tự cài \texttt{core.filter\_image} (NumPy) và \texttt{SciPy}, ghi nhận sai lệch tuyệt đối lớn nhất $\max |\hat{R}_{\text{NumPy}} - \hat{R}_{\text{Hand}}| = 1.943 \times 10^{-16}$ và $\text{MSE} = 6.933 \times 10^{-33}$.

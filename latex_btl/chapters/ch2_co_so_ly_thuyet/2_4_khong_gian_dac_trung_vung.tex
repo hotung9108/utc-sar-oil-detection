@@ -1,0 +1,36 @@
+\section{Không gian 8 đặc trưng vùng vật lý}
+\label{sec:khong_gian_dac_trung}
+
+\subsection{Định nghĩa toán học và ý nghĩa vật lý của 8 đặc trưng vùng}
+
+Để cung cấp thông tin phân biệt giữa vết dầu loang thực tế và các vùng tối giả mạo trên biển, với mỗi vùng ứng viên liên thông $\Omega_i$ ($i = 1, \dots, K$), hệ thống trích xuất một vector đặc trưng đa chiều $\mathbf{x}_i = [f_0, f_1, \dots, f_7]^T \in \mathbb{R}^8$. Vector này kết hợp 4 đặc trưng hình học và 4 đặc trưng bức xạ/biên như được trình bày chi tiết trong Bảng~\ref{tab:dinh_nghia_8_dac_trung}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Định nghĩa toán học và ý nghĩa vật lý của 8 đặc trưng vùng trích xuất cho mỗi ứng viên $\Omega_i$.}
+\label{tab:dinh_nghia_8_dac_trung}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|l|c|p{4.3cm}|p{6.5cm}|}
+\hline
+\textbf{Ký hiệu} & \textbf{Tên đặc trưng} & \textbf{Nhóm} & \textbf{Công thức toán học} & \textbf{Ý nghĩa vật lý và phạm vi diễn giải} \\ \hline
+$f_0$ & \texttt{area\_fraction} & Hình học & $A_i / (H \cdot W)$ & Tỷ lệ diện tích vùng so với diện tích khung ảnh ($256 \times 256$). \\ \hline
+$f_1$ & \texttt{elongation} & Hình học & $\sqrt{\frac{\lambda_2 + 10^{-6}}{\lambda_1 + 10^{-6}}}$ & Độ thuôn dài từ 2 trị riêng $\lambda_1 \le \lambda_2$ của ma trận hiệp phương sai tọa độ. \\ \hline
+$f_2$ & \texttt{extent} & Hình học & $A_i / (W_{\text{bbox}} \cdot H_{\text{bbox}})$ & Tỷ lệ lấp đầy diện tích vùng so với hộp chữ nhật bao ngoài nhỏ nhất. \\ \hline
+$f_3$ & \texttt{complexity} & Hình học & $P_i^2 / (4\pi A_i)$ & Độ phức tạp biên (chu vi lưới $P_i$ tính bằng tổng số cạnh chuyển tiếp pixel). \\ \hline
+$f_4$ & \texttt{mean} & Bức xạ & $\mu_i = \frac{1}{A_i}\sum_{(x,y) \in \Omega_i} I_f(x, y)$ & Cường độ mức xám SAR trung bình bên trong vùng ứng viên. \\ \hline
+$f_5$ & \texttt{std} & Bức xạ & $\sigma_i = \sqrt{\frac{1}{A_i}\sum_{(x,y) \in \Omega_i} (I_f - \mu_i)^2}$ & Độ biến thiên cường độ mức xám nội vùng ($\text{ddof} = 0$). \\ \hline
+$f_6$ & \texttt{boundary\_gradient} & Biên & $\frac{1}{|\partial \Omega_i|}\sum_{(x,y) \in \partial \Omega_i} \|\nabla I_f(x, y)\|$ & Độ dốc biên trung bình (Sobel tính trên vành biên trong $\partial \Omega_i = \Omega_i \setminus (\Omega_i \ominus B_1)$). \\ \hline
+$f_7$ & \texttt{background\_contrast} & Tương phản & $\frac{\mu_{\mathrm{bg}} - \mu_i}{|\mu_{\mathrm{bg}}| + 10^{-6}}$ & Độ tương phản bức xạ giữa vành đai nền biển 5px bao ngoài và nội vùng. \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Cơ chế xử lý ca biên và tính chất tự tham chiếu của vành đai nền}
+
+Các ca biên bất thường trên dữ liệu thực tế được xử lý như sau:
+\begin{enumerate}
+    \item \textbf{Hộp bao cục bộ và chu vi lưới:} Thuật toán cắt mảng con theo hộp bao mở rộng lề 5 pixel $[y_{\min}-5 : y_{\max}+6, x_{\min}-5 : x_{\max}+6]$ kẹp trong $[0, H) \times [0, W)$ để giảm bộ nhớ và tăng tốc xử lý. Chu vi lưới $P_i$ và biên trong $\partial \Omega_i$ được tính trên mặt nạ đệm ngoại vi bằng \texttt{False} để bảo toàn chính xác các cạnh chạm mép ảnh.
+    \item \textbf{Vành đai nền biển tham chiếu (background ring):} Xác định bởi $\mathrm{Ring}_i = (\Omega_i \oplus B_5) \cap \{ \text{labels} == 0 \}$. Nếu vành đai rỗng (khi các vết dầu nằm sát nhau hoặc ngập khung hình), thuật toán tự động chuyển sang tính $\mu_{\mathrm{bg}}$ trên toàn bộ các điểm ảnh nền $\{ \text{labels} == 0 \}$ của ảnh, hoặc dùng trung bình toàn khung ảnh nếu không còn điểm ảnh nền.
+    \item \textbf{Lý do loại trừ đặc trưng kết cấu GLCM:} Ảnh PNG trong bộ dữ liệu SOS đã qua làm mượt khiến cấu trúc hạt vi mô bị triệt tiêu (biến thiên mức xám đã được đại diện bởi $f_5 = \sigma_i$), đồng thời tính ma trận đồng xuất hiện 2D trên từng vùng bất kỳ làm tăng mạnh thời gian xử lý.
+\end{enumerate}

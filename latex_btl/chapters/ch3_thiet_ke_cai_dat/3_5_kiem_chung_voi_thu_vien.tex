@@ -1,0 +1,57 @@
+\section{Kiểm chứng tính đúng đắn số học so với thư viện chuẩn}
+\label{sec:kiem_chung_thu_vien}
+
+\subsection{Đối chứng số học các thuật toán xử lý ảnh trên tập ảnh viễn thám thực tế}
+
+Để kiểm chứng tính đúng đắn của các thuật toán tự cài đặt bằng NumPy thuần, giao thức kiểm thử đối chứng kép được thiết lập:
+\begin{enumerate}
+    \item Bộ kiểm thử đơn vị tự động gồm 118 phép kiểm định ca biên tổng hợp (\texttt{tests/test\_core.py} và \texttt{src/sar\_oil/verification.py}), bao gồm ảnh toàn số 0, ảnh toàn số 1, ảnh nhiễu ngẫu nhiên, ảnh có kích thước lẻ/chẵn, và các đối tượng chạm sát biên khung hình. Toàn bộ 118 ca kiểm thử đều đạt kết quả $\texttt{passed} = \texttt{True}$.
+    \item Kiểm chứng thực nghiệm trên 8 ảnh SAR thực tế được lấy mẫu đại diện từ tập Validation với hạt giống $\texttt{seed} = 2026$. Trên 8 ảnh này, hệ thống thực thi song song toàn bộ 24 cấu hình thuật toán khác nhau giữa bản tự cài NumPy và bản thư viện chuẩn (\texttt{SciPy}, \texttt{scikit-image}), tạo thành tổng cộng 192 phép đối chứng số học.
+\end{enumerate}
+
+Bảng~\ref{tab:doi_chung_sai_so_thu_vien} tổng hợp sai số tuyệt đối lớn nhất ($\max |\Delta|$) và sai số bình phương trung bình lớn nhất ($\text{MSE}$) ghi nhận trên toàn bộ 8 ảnh viễn thám thực tế.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Kết quả đối chứng số học giữa triển khai NumPy thuần và hàm thư viện chuẩn (\texttt{SciPy}, \texttt{scikit-image}) trên 8 ảnh Validation thực tế (24 cấu hình $\times 8$ ảnh $= 192$ phép kiểm định).}
+\label{tab:doi_chung_sai_so_thu_vien}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Nhóm thuật toán} & \textbf{Cấu hình kiểm thử} & \textbf{Sai số tuyệt đối lớn nhất} & \textbf{MSE lớn nhất} \\ \hline
+\textbf{Lọc không gian} & Không lọc (\texttt{none}) \& Trung vị $3\times 3, 5\times 5$ & $0.000 \times 10^{0}$ & $0.000 \times 10^{0}$ \\ \cline{2-4}
+& Lọc Gaussian $\sigma \in \{0.8, 1.2\}$ & $3.331 \times 10^{-16}$ & $6.102 \times 10^{-33}$ \\ \cline{2-4}
+& Lọc Lee $3 \times 3$ \& $5 \times 5$ ($L \in \{1, 4\}$) & $\le 1.382 \times 10^{-11}$ & $\le 5.785 \times 10^{-26}$ \\ \cline{2-4}
+& Lọc Lee $7 \times 7$ ($L=1$) & $6.274 \times 10^{-13}$ & $2.584 \times 10^{-27}$ \\ \cline{2-4}
+& \textbf{Lọc Lee $7 \times 7$ ($L=4$) [Chọn]} & $\mathbf{2.737 \times 10^{-12}}$ & $\mathbf{4.337 \times 10^{-27}}$ \\ \hline
+\textbf{Phân ngưỡng} & Ngưỡng toàn cục Otsu (256 bin) & $0.000 \times 10^{0}$ & $0.000 \times 10^{0}$ \\ \cline{2-4}
+& Niblack $15\times 15, 31\times 31, 51\times 51$ ($k \in \{0.2, 0.5, 0.8\}$) & $0.000 \times 10^{0}$ & $0.000 \times 10^{0}$ \\ \hline
+\textbf{Hình thái \&} & Không hình thái (\texttt{none}) \& Đóng (\texttt{close}) & $\le 3.109 \times 10^{-14}$ & $\le 2.338 \times 10^{-30}$ \\ \cline{2-4}
+\textbf{Đặc trưng vùng} & Mở -- Đóng (\texttt{open\_close}) & $1.101 \times 10^{-13}$ & $1.367 \times 10^{-29}$ \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+Số liệu trong Bảng~\ref{tab:doi_chung_sai_so_thu_vien} cho thấy: (i) Otsu, Niblack và lọc trung vị đạt sai số tuyệt đối $0.000$ (trùng khớp từng điểm ảnh với \texttt{scikit-image}); (ii) lọc Gaussian lệch ở mức $10^{-16}$ (giới hạn machine epsilon 64-bit); và (iii) lọc Lee MMSE lệch tối đa $1.382 \times 10^{-11}$ do khác biệt thứ tự cộng dồn dấu phẩy động giữa bảng tích lũy SAT và cửa sổ trượt \texttt{SciPy}.
+
+\subsection{Đối chứng bộ phân loại học máy tự cài đặt với scikit-learn}
+
+Mô hình LinearSVM và CART tự cài đặt trong \texttt{models.py} được đối sánh trực tiếp với \texttt{LinearSVC} và \texttt{DecisionTreeClassifier} của \texttt{scikit-learn} trên cùng tập đặc trưng Validation ($9\,287$ mẫu ứng viên).
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Đối chứng hiệu năng, độ đồng thuận dự đoán và giá trị mục tiêu giữa mô hình tự cài đặt bằng NumPy và thư viện \texttt{scikit-learn}.}
+\label{tab:doi_chung_classifier}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Mô hình} & \textbf{Độ đồng thuận} & \textbf{F1 NumPy} & \textbf{F1 sklearn} & \textbf{Giá trị hàm mục tiêu $J^*$} & \textbf{Hội tụ} \\ \hline
+\textbf{CART} & $\mathbf{1.0000}$ ($100\%$) & 0.3373 & 0.3373 & -- & Đạt \\ \hline
+\textbf{LinearSVM} & $\mathbf{1.0000}$ ($100\%$) & 0.3403 & 0.3403 & $|J_{\text{NumPy}}^* - J_{\text{sklearn}}^*| = 2.88 \times 10^{-12}$ & Đạt ($177$ vòng) \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+Bảng~\ref{tab:doi_chung_classifier} xác nhận cả hai mô hình tự cài đặt đạt độ đồng thuận dự đoán $\mathbf{100\%}$ ($\text{Agreement} = 1.0000$) trên toàn bộ $9\,287$ mẫu. Bộ giải NAG đạt giá trị mục tiêu $J_{\text{NumPy}}^* = 4.0531228859$, lệch chỉ $2.88 \times 10^{-12}$ so với \texttt{LIBLINEAR} ($J_{\text{sklearn}}^* = 4.0531228859$), và dừng hội tụ sau 177 vòng lặp với $\|\nabla J\|_\infty = 9.94 \times 10^{-7} \le 10^{-6}$.

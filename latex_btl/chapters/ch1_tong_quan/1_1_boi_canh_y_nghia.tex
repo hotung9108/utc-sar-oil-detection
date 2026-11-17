@@ -1,0 +1,13 @@
+\section{Bối cảnh thực tiễn và ý nghĩa nghiên cứu}
+\label{sec:boi_canh}
+
+Sự cố tràn dầu trên biển là mối đe dọa sinh thái đối với môi trường hàng hải. Lớp màng dầu lan rộng trên bề mặt làm suy giảm lượng oxy hòa tan, phá hủy rạn san hô, nhiễm độc sinh vật phù du và ảnh hưởng trực tiếp đến ngành đánh bắt thủy hải sản cũng như kinh tế ven biển~\cite{fingas2014review}. Các sự cố quy mô lớn như vụ nổ giàn khoan Deepwater Horizon năm 2010 tại Vịnh Mexico hay sự cố tại khu vực Al-Khafji năm 2017 ở Vịnh Ba Tư~\cite{zhu2022oil} đã để lại những tác động môi trường kéo dài. Tại Việt Nam, với hơn $3\,260\text{ km}$ bờ biển tiếp giáp tuyến hàng hải ở Biển Đông, hiện tượng dầu vón cục và vệt dầu trôi dạt vào vùng biển miền Trung được ghi nhận nhiều năm, đòi hỏi công cụ phát hiện sớm và khoanh vùng quy mô vệt dầu ngoài khơi.
+
+Trong giám sát biển diện rộng, radar khẩu độ tổng hợp (Synthetic Aperture Radar --- SAR) đặt trên vệ tinh (như Sentinel-1 của ESA hay ALOS PALSAR của JAXA) là công cụ quan trắc hữu hiệu~\cite{brekke2005oil,topouzelis2008oil}. Khác với ảnh quang học bị hạn chế bởi mây mù và ánh sáng mặt trời, radar SAR là cảm biến chủ động phát sóng vi ba ở các băng tần như băng C (bước sóng $\sim 5.6\text{ cm}$) hay băng L (bước sóng $\sim 23.6\text{ cm}$), thu nhận dữ liệu cả ngày lẫn đêm và xuyên qua tầng mây dày. Cơ chế vật lý tạo ảnh vệt dầu dựa trên tương tác giữa sóng điện từ và bề mặt nước: trên mặt biển sạch, gió kích hoạt sóng mao dẫn và sóng trọng lực ngắn (sóng Bragg) gây tán xạ ngược bức xạ vi ba về ăng-ten vệ tinh tạo nền sáng xám; khi có màng dầu, độ nhớt động học cục bộ tăng làm tắt gợn sóng Bragg, khiến bức xạ radar phản xạ gương ra khỏi hướng thu và tạo nên các vùng tối (dark formations)~\cite{yang2025oil}.
+
+Tuy vậy, tự động hóa phát hiện vết dầu từ ảnh SAR (theo quy trình 2 giai đoạn trình bày tại Hình~\ref{fig:pipeline_overview_ch3}) gặp ba thách thức kỹ thuật chính:
+\begin{itemize}
+    \item \textbf{Nhiễu đốm nhân (multiplicative speckle noise):} Giao thoa sóng tán xạ kết hợp tạo nhiễu đốm có phương sai tỷ lệ thuận với cường độ tín hiệu, làm mờ biên và khiến phân ngưỡng thông thường dễ sinh mảnh vụn giả mạo~\cite{lee1980digital}.
+    \item \textbf{Vùng tối giả mạo (look-alikes):} Vùng biển lặng gió ($< 2\text{--}3\text{ m/s}$), màng sinh học, dòng chảy nội hoặc bóng mưa cũng làm giảm tán xạ ngược, tạo các vùng tối có độ tương phản tương tự vết dầu~\cite{solberg2007oil}.
+    \item \textbf{Biến thiên quy mô diện tích và hình học:} Vết dầu trên biển biến thiên mạnh từ dạng dải hẹp vài điểm ảnh đến các mảng loang bao phủ phần lớn khung ảnh.
+\end{itemize}

@@ -1,0 +1,12 @@
+### Mô tả bộ dữ liệu: Bộ dữ liệu Deep-SAR Oil Spill (SOS)
+
+Nhằm đánh giá các mô hình phát hiện vết dầu loang, nghiên cứu này sử dụng bộ dữ liệu công khai Deep-SAR Oil Spill (SOS), được giới thiệu lần đầu bởi Zhu và cộng sự (2021) và lưu trữ trên kho dữ liệu Zenodo ([https://zenodo.org/records/15298010](https://zenodo.org/records/15298010)). Bộ dữ liệu được xây dựng từ 21 cảnh ảnh vệ tinh Radar khẩu độ tổng hợp (SAR) thô bao phủ hai khu vực xảy ra sự cố tràn dầu lớn trên biển:
+
+1. **Vịnh Mexico (Sự cố tràn dầu Deepwater Horizon, năm 2010):** Bao gồm 14 cảnh ảnh ALOS PALSAR băng tần L (sản phẩm mức 1.5) được thu thập trong khoảng thời gian từ tháng 5 đến tháng 8 năm 2010. Dữ liệu có khoảng cách điểm ảnh không gian là $12.5\text{ m}$ và sử dụng kênh phân cực HH.
+2. **Vịnh Ba Tư (Khu vực mỏ dầu Al-Khafji, năm 2017):** Bao gồm 7 cảnh ảnh Sentinel-1A băng tần C chế độ quét rộng giao thoa (IW) mức 1 (GRD) được thu nhận vào tháng 8 năm 2017. Các ảnh này có độ phân giải không gian $5\text{ m} \times 20\text{ m}$, góc tới dao động từ $29.1^\circ$ đến $46^\circ$, và sử dụng kênh phân cực VV sau khi trải qua các bước tiền xử lý tiêu chuẩn bao gồm lọc nhiễu đốm (speckle filtering), hiệu chỉnh bức xạ và hiệu chỉnh địa hình.
+
+Sau giai đoạn tiền xử lý, 21 cảnh ảnh mức xám SAR gốc được chia thành 6.456 mảnh ảnh kích thước $416 \times 416$ pixels và được các chuyên gia Hệ thống Thông tin Địa lý (GIS) giải đoán, gán nhãn thủ công ở cấp độ điểm ảnh. Nhằm nâng cao khả năng tổng quát hóa của mô hình và giảm thiểu tình trạng mất cân bằng lớp giữa đối tượng vết dầu loang và nền biển, các kỹ thuật tăng cường dữ liệu (cắt, xoay và thêm nhiễu) cùng quá trình sàng lọc mẫu đã được áp dụng. Bộ dữ liệu chuẩn cuối cùng bao gồm **8.070 mảnh ảnh đã gán nhãn** với kích thước chuẩn hóa là **$256 \times 256$ pixels**. Theo tỷ lệ phân chia tập huấn luyện – kiểm thử là 8:2, phân tập Vịnh Mexico gồm 3.101 ảnh huấn luyện và 776 ảnh kiểm thử, trong khi phân tập Vịnh Ba Tư gồm 3.354 ảnh huấn luyện và 839 ảnh kiểm thử.
+
+#### Tài liệu tham khảo
+
+> Q. Zhu, Y. Zhang, Z. Li, X. Yan, Q. Guan, Y. Zhong, L. Zhang, and D. Li, "Oil Spill Contextual and Boundary-Supervised Detection Network Based on Marine SAR Images," *IEEE Transactions on Geoscience and Remote Sensing*, vol. 60, pp. 1–10, 2022, Art no. 5213910, doi: 10.1109/TGRS.2021.3115492. (Dataset archived at: [https://zenodo.org/records/15298010](https://zenodo.org/records/15298010)).

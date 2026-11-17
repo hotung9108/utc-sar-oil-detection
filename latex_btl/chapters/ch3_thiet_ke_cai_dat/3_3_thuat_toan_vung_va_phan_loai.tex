@@ -1,0 +1,61 @@
+\section{Thiết kế giả mã trích xuất đặc trưng và phân loại học máy}
+\label{sec:thuat_toan_vung_phan_loai}
+
+\subsection{Thuật toán 3.3: Gán nhãn liên thông 8 hướng và trích xuất 8 đặc trưng vùng}
+
+Thuật toán~\ref{alg:ccl_features} mô tả quy trình chuyển đổi mặt nạ nhị phân thành tập các đối tượng vùng rời rạc và tính toán vector đặc trưng vật lý $\mathbb{R}^8$.
+
+\begin{algorithm}[!htbp]
+\small\setstretch{1.05}
+\caption{Gán nhãn liên thông 8 hướng và trích xuất đặc trưng vùng theo hộp bao cục bộ}
+\label{alg:ccl_features}
+\textbf{Đầu vào:} Mặt nạ nhị phân $B_{\text{clean}} \in \{0, 1\}^{H \times W}$, ảnh lọc $I_f \in [0, 1]^{H \times W}$, ngưỡng $A_{\min} = 64$. \\
+\textbf{Đầu ra:} Danh sách $K$ vùng ứng viên kèm vector đặc trưng $\{\mathbf{x}_i \in \mathbb{R}^8\}_{i=1}^K$.
+\begin{algorithmic}[1]
+\STATE Gán nhãn liên thông 8 hướng qua RLE và Union-Find: $L_{\text{map}} \leftarrow \text{connected\_components}(B_{\text{clean}}, \text{connectivity}=8)$
+\STATE Thống kê diện tích $A_k \leftarrow |\{(y, x) \mid L_{\text{map}}(y, x) == k\}|$ và lọc $\mathcal{K} \leftarrow \{k \mid A_k \ge A_{\min}\}$; khởi tạo $\mathcal{R} \leftarrow \emptyset$
+\FOR{mỗi nhãn vùng $k \in \mathcal{K}$}
+    \STATE Tọa độ hộp bao mở rộng lề 5px: $y_0 = \max(0, y_{\min}-5), y_1 = \min(H, y_{\max}+6), x_0 = \max(0, x_{\min}-5), x_1 = \min(W, x_{\max}+6)$
+    \STATE Cắt mảng con $M_{\text{sub}} \leftarrow (L_{\text{map}}[y_0:y_1, x_0:x_1] == k)$ và $I_{\text{sub}} \leftarrow I_f[y_0:y_1, x_0:x_1]$
+    \STATE $f_0 \leftarrow A_k / (H \cdot W)$; $f_2 \leftarrow A_k / ((y_{\max} - y_{\min} + 1)(x_{\max} - x_{\min} + 1))$
+    \STATE Trị riêng hiệp phương sai tọa độ $\lambda_1 \le \lambda_2 \implies f_1 \leftarrow \sqrt{\frac{\lambda_2 + 10^{-6}}{\lambda_1 + 10^{-6}}}$; chu vi cạnh lưới $P_k \implies f_3 \leftarrow \frac{P_k^2}{4\pi A_k}$
+    \STATE $f_4 \leftarrow \text{mean}(I_{\text{sub}}[M_{\text{sub}}])$; $f_5 \leftarrow \text{std}(I_{\text{sub}}[M_{\text{sub}}])$
+    \STATE Vành biên trong $\partial M \leftarrow M_{\text{sub}} \setminus (M_{\text{sub}} \ominus B_1) \implies f_6 \leftarrow \text{mean}(\|\nabla I_{\text{sub}}\|[\partial M])$
+    \STATE Vành đai nền 5px $\text{Ring} \leftarrow (M_{\text{sub}} \oplus B_5) \cap \{L_{\text{sub}} == 0\}$, tính $\mu_{\text{bg}} \implies f_7 \leftarrow \frac{\mu_{\text{bg}} - f_4}{|\mu_{\text{bg}}| + 10^{-6}}$
+    \STATE Thêm vector đặc trưng $\mathbf{x}_k = [f_0, f_1, f_2, f_3, f_4, f_5, f_6, f_7]^T$ vào danh sách $\mathcal{R}$
+\ENDFOR
+\RETURN $\mathcal{R}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Thuật toán 3.4: Huấn luyện mô hình LinearSVM bằng Nesterov Accelerated Gradient}
+
+Thuật toán~\ref{alg:linearsvm_nag} trình bày chi tiết thuật toán tối ưu hóa lồi có điều chuẩn $L_2$ với hàm mất mát Squared-Hinge Loss.
+
+\begin{algorithm}[!htbp]
+\small\setstretch{1.05}
+\caption{Huấn luyện LinearSVM bằng gradient tăng tốc Nesterov (NAG)}
+\label{alg:linearsvm_nag}
+\textbf{Đầu vào:} Ma trận đặc trưng $\mathbf{Z} \in \mathbb{R}^{n \times 9}$ (kèm bias 1), nhãn $y^* \in \{-1, +1\}^n$, $C = 10.0$, $\text{tol} = 10^{-6}$, $\text{max\_iter} = 1000$. \\
+\textbf{Đầu ra:} Vector trọng số tối ưu $\mathbf{w}^* \in \mathbb{R}^9$.
+\begin{algorithmic}[1]
+\STATE Khởi tạo: $\mathbf{w}_0 \leftarrow \mathbf{0}_9$, $\mathbf{v}_0 \leftarrow \mathbf{0}_9$, $\theta_0 \leftarrow 1.0$, $\eta \leftarrow 1.0 / \rho$, giá trị mục tiêu $J_0 \leftarrow J(\mathbf{w}_0)$ theo~\eqref{eq:svm_objective}
+\FOR{$t = 0$ đến $\text{max\_iter}-1$}
+    \STATE Điểm thăm dò Nesterov: $\mathbf{y}_t \leftarrow \mathbf{w}_t + \beta_t (\mathbf{w}_t - \mathbf{w}_{t-1})$ với $\beta_t = \frac{\theta_{t-1} - 1}{\theta_t}$
+    \STATE Tính vector gradient $\nabla J(\mathbf{y}_t)$ theo công thức~\eqref{eq:svm_gradient}
+    \IF{$\|\nabla J(\mathbf{y}_t)\|_\infty \le \text{tol}$}
+        \STATE $\mathbf{w}^* \leftarrow \mathbf{y}_t$; Dừng vòng lặp thành công
+    \ENDIF
+    \WHILE{$J(\mathbf{y}_t - \eta \nabla J(\mathbf{y}_t)) > J(\mathbf{y}_t) - \frac{\eta}{2}\|\nabla J(\mathbf{y}_t)\|_2^2$}
+        \STATE $\eta \leftarrow 0.5 \times \eta$ \COMMENT{Tìm bước nhảy quay lui (backtracking line search)}
+    \ENDWHILE
+    \STATE Cập nhật điểm mới: $\mathbf{w}_{t+1} \leftarrow \mathbf{y}_t - \eta \nabla J(\mathbf{y}_t)$
+    \IF{$(\mathbf{w}_{t+1} - \mathbf{w}_t)^T \nabla J(\mathbf{y}_t) > 0$ (xung lượng đối nghịch)}
+        \STATE Kích hoạt thích nghi (adaptive restart): $\mathbf{y}_t \leftarrow \mathbf{w}_t$, $\theta_{t+1} \leftarrow 1.0$
+    \ELSE
+        \STATE Cập nhật hệ số xung lượng: $\theta_{t+1} \leftarrow \frac{1 + \sqrt{1 + 4\theta_t^2}}{2}$
+    \ENDIF
+\ENDFOR
+\RETURN $\mathbf{w}^*$
+\end{algorithmic}
+\end{algorithm}

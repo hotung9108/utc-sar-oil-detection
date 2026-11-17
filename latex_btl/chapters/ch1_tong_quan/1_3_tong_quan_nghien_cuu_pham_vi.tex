@@ -1,0 +1,48 @@
+\section{Tổng quan các hướng tiếp cận hiện có và phạm vi nghiên cứu}
+\label{sec:tong_quan_pham_vi}
+
+\subsection{Tổng quan các hướng nghiên cứu hiện có}
+
+Nghiên cứu phát hiện vết dầu loang từ ảnh radar SAR tập trung vào ba chủ đề kỹ thuật: khử nhiễu đốm, phân đoạn tách vùng tối ứng viên, và trích xuất đặc trưng kết hợp phân loại nhằm phân biệt vết dầu với các vùng tối nền biển~\cite{fingas2014review,brekke2005oil}. Bảng~\ref{tab:so_sanh_cac_phuong_phap} tổng hợp so sánh các hướng tiếp cận chính và xác lập vị trí nghiên cứu của đề tài.
+
+\begin{table}[!htbp]
+\centering
+\caption{Tổng hợp các hướng tiếp cận phát hiện vết dầu trên ảnh SAR và vị trí của đề tài.}
+\label{tab:so_sanh_cac_phuong_phap}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{3.0cm}|p{4.2cm}|p{4.6cm}|p{3.9cm}|}
+\hline
+\textbf{Nhóm phương pháp} & \textbf{Các đại diện tiêu biểu} & \textbf{Ưu điểm và hạn chế} & \textbf{Vị trí và lựa chọn của đề tài} \\ \hline
+\textbf{1. Khử nhiễu đốm không gian} & 
+Lọc trung vị, trung bình hộp; lọc thích nghi Lee~\cite{lee1980digital}, Frost~\cite{frost1982model}, Kuan~\cite{kuan1985adaptive} & 
++ Bảo toàn biên tốt hơn lọc tuyến tính. \newline 
+- Dễ suy biến khi tham số không khớp dữ liệu nén 8-bit. & 
+Tự cài đặt bộ lọc Lee MMSE qua bảng tổng tích lũy $\mathcal{O}(HW)$ độc lập kích thước cửa sổ. \\ \hline
+\textbf{2. Phân đoạn tách vùng tối ứng viên} & 
+Ngưỡng toàn cục Otsu~\cite{otsu1979threshold}; ngưỡng cục bộ Niblack~\cite{niblack1986introduction}, Sauvola~\cite{sauvola2000adaptive}; Level Set & 
++ Otsu chạy nhanh trên histogram 256 bin. \newline 
+- Niblack dễ báo nhầm ở biển đồng nhất; Level Set chậm. & 
+Chọn Otsu toàn cục kết hợp lọc diện tích $A_{\min} = 64$ và gán nhãn liên thông 8 hướng. \\ \hline
+\textbf{3. Phân loại theo vùng vật lý} & 
+Mô hình CART~\cite{breiman1984classification}, SVM~\cite{cortes1995support}; đặc trưng Solberg~\cite{solberg2007oil}, Topouzelis~\cite{topouzelis2008oil} & 
++ Vector đặc trưng gọn (8 chiều), giải thích được vật lý. \newline 
+- Phụ thuộc chất lượng vùng ứng viên bước trước. & 
+Xây dựng 8 đặc trưng vùng và tự cài đặt LinearSVM tối ưu bằng NAG, đối sánh với CART. \\ \hline
+\textbf{4. Học sâu phân đoạn điểm ảnh} & 
+Mạng CBD-Net~\cite{zhu2022oil}, UNet, DeepLabv3+~\cite{krestenitis2019oil} & 
++ Độ chính xác điểm ảnh cao. \newline 
+- Đòi hỏi GPU, khó diễn giải quy tắc quyết định. & 
+Sử dụng bộ dữ liệu Refined SOS~\cite{zuenko2025refined} để kiểm chứng đường cơ sở nhẹ chạy trên CPU. \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Phạm vi nghiên cứu và giới hạn thực tế}
+
+Để bảo đảm tính khách quan khoa học, phạm vi và các giới hạn thực tế của đề tài được xác định như sau:
+\begin{enumerate}
+    \item \textbf{Dữ liệu thực nghiệm:} Toàn bộ thí nghiệm thực hiện trên tập ảnh cắt mảnh $256 \times 256$ định dạng PNG của bộ dữ liệu công khai \textit{Refined Deep-SAR Oil Spill (SOS)}~\cite{zuenko2025refined}. Do ảnh PNG đã qua cắt mảnh và nén dải mức xám về $[0, 255]$ bởi nhà phát hành, dữ liệu không còn ở thang công suất tuyến tính $\sigma^0$ nguyên gốc; nhóm không coi phép chia cho $255$ là chuẩn hóa góc tới radar.
+    \item \textbf{Thông tin phụ trợ:} Bộ dữ liệu không kèm tọa độ địa lý, dấu thời gian và mã cảnh gốc (scene ID). Do đó, đề tài không ghép dữ liệu trường gió tái phân tích (ECMWF ERA5) hay định vị tàu thuyền AIS, và không suy diễn kết quả thành cảnh báo tại một vị trí cụ thể ở bờ biển Việt Nam.
+    \item \textbf{Phân lớp nhãn dữ liệu:} Mặt nạ tham chiếu của SOS chỉ phân tách nhị phân giữa \textit{vết dầu} và \textit{nền biển}, chưa có nhãn riêng cho từng loại hiện tượng tương tự dầu (màng sinh học, vùng lặng gió, bóng mưa). Vì vậy, kết quả phân loại phản ánh khả năng phân biệt vùng dầu thật với các vùng tối nền biển sinh ra do phân ngưỡng.
+\end{enumerate}

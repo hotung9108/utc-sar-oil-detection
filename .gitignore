@@ -31,5 +31,33 @@ Desktop.ini
 *.tmp
 *.swp
 
+# LaTeX auxiliary / build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.nav
+*.nlo
+*.nls
+*.out
+*.snm
+*.spl
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.toc
+*.vrb
+
 /data
 # Legacy source and artifacts are deliberately retained, including former ignored exports.

@@ -24,6 +24,21 @@
       "notebook": "05_final_pipeline.ipynb",
       "executed_cells": 4,
       "figures": 4
+    },
+    {
+      "notebook": "06_algorithm_research_review.ipynb",
+      "executed_cells": 8,
+      "figures": 6
+    },
+    {
+      "notebook": "07_methodology_en.ipynb",
+      "executed_cells": 7,
+      "figures": 4
+    },
+    {
+      "notebook": "07_methodology_vi.ipynb",
+      "executed_cells": 7,
+      "figures": 4
     }
   ],
   "all_executed": true,

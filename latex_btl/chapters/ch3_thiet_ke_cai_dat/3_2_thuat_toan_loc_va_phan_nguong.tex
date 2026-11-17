@@ -1,0 +1,62 @@
+\section{Thiết kế giả mã thuật toán lọc đốm và phân đoạn}
+\label{sec:thuat_toan_loc_phan_nguong}
+
+\subsection{Thuật toán 3.1: Lọc thống kê Lee MMSE tối ưu hóa qua bảng tổng tích lũy}
+
+Thuật toán~\ref{alg:lee_sat} mô tả quy trình khử nhiễu đốm Lee MMSE với chi phí tuyến tính $\mathcal{O}(HW)$ độc lập với bán kính cửa sổ lọc $r$.
+
+\begin{algorithm}[!htbp]
+\small\setstretch{1.05}
+\caption{Bộ lọc thống kê Lee MMSE tối ưu hóa qua bảng tổng tích lũy}
+\label{alg:lee_sat}
+\textbf{Đầu vào:} Ảnh mức xám $I \in [0, 1]^{H \times W}$, bán kính cửa sổ $r \in \mathbb{N}$ (kích thước $k = 2r+1$), số looks $L > 0$, hằng số bảo vệ $\varepsilon = 10^{-12}$. \\
+\textbf{Đầu ra:} Ảnh sau khử nhiễu $\hat{R} \in [0, 1]^{H \times W}$.
+\begin{algorithmic}[1]
+\STATE Khởi tạo mảng đệm đối xứng (reflect padding không lặp pixel mép) kích thước $(H+2r) \times (W+2r)$: $\tilde{I} \leftarrow \text{pad}(I, r, \text{mode}=\text{'reflect'})$
+\STATE Tính bảng tích lũy bậc 1 và bậc 2: $S(y, x) \leftarrow \sum_{j \le y, i \le x} \tilde{I}(j, i)$, $S_2(y, x) \leftarrow \sum_{j \le y, i \le x} \tilde{I}^2(j, i)$
+\STATE Khởi tạo mảng kết quả $\hat{R}$ kích thước $H \times W$
+\FOR{mỗi tọa độ $(y, x)$ từ $0$ đến $H-1, W-1$}
+    \STATE Xác định tọa độ cửa sổ trên bảng đệm: $y_1 = y, y_2 = y + 2r + 1, x_1 = x, x_2 = x + 2r + 1$
+    \STATE Truy vấn tổng mức xám: $\Sigma \leftarrow S(y_2, x_2) - S(y_1, x_2) - S(y_2, x_1) + S(y_1, x_1)$
+    \STATE Truy vấn tổng bình phương: $\Sigma_2 \leftarrow S_2(y_2, x_2) - S_2(y_1, x_2) - S_2(y_2, x_1) + S_2(y_1, x_1)$
+    \STATE Trung bình và phương sai cục bộ: $m(y, x) \leftarrow \frac{\Sigma}{(2r+1)^2}$, $v(y, x) \leftarrow \max\left( \frac{\Sigma_2}{(2r+1)^2} - m(y, x)^2, 0 \right)$
+    \STATE Phương sai nhiễu và trọng số: $\sigma_{\text{noise}}^2 \leftarrow \frac{m(y, x)^2}{L}$, $W(y, x) \leftarrow \max\left(0, \frac{v(y, x) - \sigma_{\text{noise}}^2}{\max(v(y, x), \varepsilon)}\right)$
+    \STATE Cập nhật điểm ảnh sau lọc: $\hat{R}(y, x) \leftarrow m(y, x) + W(y, x) \cdot [I(y, x) - m(y, x)]$
+\ENDFOR
+\RETURN $\hat{R}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Thuật toán 3.2: Phân ngưỡng tự động toàn cục Otsu trên biểu đồ mức xám}
+
+Thuật toán~\ref{alg:otsu} trình bày giải thuật tìm ngưỡng phân tách tối đa hóa phương sai giữa hai lớp đối tượng theo Otsu.
+
+\begin{algorithm}[!htbp]
+\small\setstretch{1.05}
+\caption{Phân ngưỡng tự động toàn cục Otsu 256 bin}
+\label{alg:otsu}
+\textbf{Đầu vào:} Ảnh sau lọc $I_f \in [0, 1]^{H \times W}$, số bin biểu đồ $B = 256$. \\
+\textbf{Đầu ra:} Mặt nạ nhị phân ứng viên $B_{\text{mask}} \in \{0, 1\}^{H \times W}$, ngưỡng tối ưu $t^*$, tỷ số phương sai $\eta$.
+\begin{algorithmic}[1]
+\STATE Tính biểu đồ tần số $256$ bin trên $[0, 1]$: $H_c \leftarrow \text{histogram}(I_f, \text{bins}=256)$
+\STATE Xác suất và tâm bin: $p(i) \leftarrow \frac{H_c(i)}{H \cdot W}$, $c(i) \leftarrow \frac{i + 0.5}{256}$ với $i = 0, \dots, 255$
+\STATE Khởi tạo: $\mu_T \leftarrow \sum_{i=0}^{255} c(i) \cdot p(i)$, $\sigma_T^2 \leftarrow \sum_{i=0}^{255} (c(i) - \mu_T)^2 \cdot p(i)$
+\IF{$\sigma_T^2 \le 10^{-12}$ (ảnh hằng hoặc gần hằng)}
+    \RETURN $B_{\text{mask}} \leftarrow \mathbf{0}_{H \times W}$, $t^* \leftarrow 0.0$, $\eta \leftarrow 0.0$
+\ENDIF
+\STATE Khởi tạo $\omega_0 \leftarrow 0$, $\mu_{\text{sum}} \leftarrow 0$, $\sigma_{B,\max}^2 \leftarrow -1$, $t^* \leftarrow 0$
+\FOR{$t = 0$ đến $254$}
+    \STATE $\omega_0 \leftarrow \omega_0 + p(t)$, $\omega_1 \leftarrow 1.0 - \omega_0$
+    \IF{$\omega_0 == 0$ hoặc $\omega_1 == 0$}
+        \STATE Tiếp tục vòng lặp tiếp theo
+    \ENDIF
+    \STATE $\mu_{\text{sum}} \leftarrow \mu_{\text{sum}} + c(t) \cdot p(t)$; $\mu_0 \leftarrow \frac{\mu_{\text{sum}}}{\omega_0}$, $\mu_1 \leftarrow \frac{\mu_T - \mu_{\text{sum}}}{\omega_1}$
+    \STATE Phương sai giữa hai lớp: $\sigma_B^2 \leftarrow \omega_0 \cdot \omega_1 \cdot (\mu_0 - \mu_1)^2$
+    \IF{$\sigma_B^2 > \sigma_{B,\max}^2$}
+        \STATE $\sigma_{B,\max}^2 \leftarrow \sigma_B^2$; $t^* \leftarrow c(t)$
+    \ENDIF
+\ENDFOR
+\STATE Sinh mặt nạ ứng viên vùng tối: $B_{\text{mask}}(y, x) \leftarrow [I_f(y, x) < t^*]$; tỷ số phân tách: $\eta \leftarrow \frac{\sigma_{B,\max}^2}{\sigma_T^2}$
+\RETURN $B_{\text{mask}}, t^*, \eta$
+\end{algorithmic}
+\end{algorithm}

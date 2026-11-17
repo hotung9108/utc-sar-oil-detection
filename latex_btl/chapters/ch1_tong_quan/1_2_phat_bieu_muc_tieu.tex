@@ -1,0 +1,21 @@
+\section{Phát biểu bài toán và mục tiêu nghiên cứu}
+\label{sec:phat_bieu_muc_tieu}
+
+\subsection{Phát biểu bài toán theo dạng đầu vào --- đầu ra --- ràng buộc}
+
+Bài toán phát hiện vết dầu loang trên ảnh SAR được xác định qua ba thành phần:
+\begin{itemize}
+    \item \textbf{Đầu vào (input):} Khung ảnh radar SAR đơn kênh mức xám 8-bit PNG kích thước $H \times W = 256 \times 256$ điểm ảnh từ vệ tinh Sentinel-1A (băng C, phân cực VV) và ALOS PALSAR (băng L, phân cực HH), được chuyển sang số thực $\texttt{float64}$ và chuẩn hóa về đoạn $[0, 1]$ qua phép chia cho $255$.
+    \item \textbf{Đầu ra (output):} (1) Mặt nạ nhị phân dự đoán $\hat{M} \in \{0, 1\}^{H \times W}$ ($1$: vết dầu, $0$: nền biển/vùng tối giả); (2) Ảnh lớp phủ màu (overlay) đánh dấu hộp bao (bounding box) và tâm vùng dầu; (3) Tệp JSON lưu vector 8 đặc trưng và điểm quyết định (decision score) của từng vùng ứng viên.
+    \item \textbf{Ràng buộc kỹ thuật (constraints):} (1) Các giải thuật cốt lõi (lọc thống kê Lee, bảng tổng tích lũy $\mathcal{O}(HW)$, phân ngưỡng Otsu, gán nhãn liên thông 8 hướng, trích xuất 8 đặc trưng vùng, bộ phân loại LinearSVM và CART) được tự cài đặt bằng NumPy thuần; (2) Suy luận hoạt động độc lập, không nhận mặt nạ ground truth; (3) Thực thi trực tiếp trên CPU với thời gian trung bình dưới $100\text{ ms/ảnh}$.
+\end{itemize}
+
+\subsection{Mục tiêu nghiên cứu cụ thể và đo được}
+
+Đề tài hướng tới 4 mục tiêu định lượng:
+\begin{enumerate}
+    \item \textbf{Kiểm chứng số học thuật toán tự cài đặt:} Đạt sai số tuyệt đối lớn nhất $\max |\Delta| < 10^{-11}$ và $\text{MSE} < 10^{-25}$ so với thư viện chuẩn (\texttt{SciPy}, \texttt{scikit-image}); bộ phân loại LinearSVM và CART đạt độ đồng thuận dự đoán $100\%$ và độ lệch hàm mục tiêu tối ưu $< 10^{-11}$ so với \texttt{scikit-learn}.
+    \item \textbf{Giảm tỷ lệ cảnh báo sai:} Mô hình phân loại vùng giảm trên $70\%$ số lượng vùng tối báo nhầm sinh ra từ bước phân ngưỡng thô (đưa $\text{FP/ảnh}$ từ $>14.0$ xuống dưới $4.0$ trên tập kiểm thử Sentinel-1A), đồng thời giữ lại trên $95\%$ số đối tượng vết dầu đúng của giai đoạn tạo ứng viên.
+    \item \textbf{Đánh giá cấp đối tượng theo giao thức Hungarian:} Ghép cặp một-một ở ngưỡng $\IoU \ge 0.5$ và phân tầng theo 5 chế độ diện tích dầu ($R_0 \to R_4$), đạt $\text{Pixel IoU} \ge 0.60$ trên $839$ ảnh Test Sentinel-1A và kiểm tra khả năng chuyển giao ngoài cảm biến trên $776$ ảnh ALOS PALSAR.
+    \item \textbf{Xây dựng công cụ thực nghiệm tái lập:} Cung cấp giao diện CLI và 5 sổ tay Jupyter Notebook tương tác, cho phép tái lập toàn bộ bảng số liệu và biểu đồ qua lệnh chạy tự động.
+\end{enumerate}

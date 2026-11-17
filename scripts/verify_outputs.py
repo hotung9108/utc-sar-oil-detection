@@ -17,7 +17,7 @@ preview = ROOT / ".cache/notebook_previews"
 preview.mkdir(parents=True, exist_ok=True)
 evidence = []
 paths = sorted((ROOT / "notebooks").glob("*.ipynb"))
-assert len(paths) == 5
+assert len(paths) >= 5
 for path in paths:
     nb = nbformat.read(path, as_version=4)
     nbformat.validate(nb)

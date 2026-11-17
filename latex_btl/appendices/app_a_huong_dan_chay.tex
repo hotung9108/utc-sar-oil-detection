@@ -1,0 +1,61 @@
+\section{Thông tin kho mã nguồn và cấu trúc thư mục}
+
+Toàn bộ mã nguồn, tài liệu thiết kế và kịch bản thực nghiệm của dự án được lưu trữ công khai tại kho mã nguồn GitHub:
+\begin{center}
+\url{https://github.com/hotung9108/utc-sar-oil-detection}
+\end{center}
+
+Dữ liệu thực nghiệm \textit{Refined Deep-SAR Oil Spill (SOS)} tải về từ Zenodo~\cite{zuenko2025refined} được bố trí trong thư mục theo cấu trúc:
+\begin{lstlisting}[language=bash]
+data/Refined-Deep-SAR/
+|-- images/images/{train,val}/*.png
+`-- masks/masks/{train,val}/*.png
+\end{lstlisting}
+
+\section{Thiết lập môi trường và lệnh tái lập thực nghiệm}
+
+Dự án yêu cầu môi trường Python 3.10+ (khuyến nghị Python 3.13). Các lệnh cài đặt môi trường và gói phụ thuộc:
+
+\begin{lstlisting}[language=bash]
+# 1. Khoi tao moi truong ao Python
+python -m venv .venv
+
+# 2. Kich hoat moi truong ao (Windows PowerShell)
+.venv\Scripts\Activate.ps1
+
+# 3. Cai dat cac goi thu vien phu thuoc
+pip install -r requirements.txt
+\end{lstlisting}
+
+Để tái tạo lại toàn bộ kết quả thực nghiệm, ma trận nhầm lẫn, bảng số liệu và các báo cáo JSON trong Chương 4:
+
+\begin{lstlisting}[language=bash]
+# Chay toan bo quy trinh thuc nghiem tren 6 tien trinh CPU song song
+python run_experiments.py --workers 6
+
+# Neu chi can xac thuc lai toan ven cac artifact da luu
+python run_experiments.py --verify-only
+\end{lstlisting}
+
+\section{Các lệnh thực thi thành phần và suy luận ảnh mới}
+
+Người dùng có thể thực thi độc lập từng giai đoạn thông qua giao diện dòng lệnh \texttt{scripts/sos.py}:
+
+\begin{lstlisting}[language=bash]
+# 1. Kiem tra tinh toan ven ma bam du lieu
+python scripts/sos.py verify
+
+# 2. Tai lap bang doi chung bo loc (Bang 4.2)
+python scripts/explain_selection.py --workers 6
+
+# 3. Kiem chung vi du so tinh tay bang phan so huu ti
+python scripts/worked_example.py
+
+# 4. Chay kiem thu don vi tu dong
+python -m unittest discover -s tests -v
+
+# 5. Suy luan truc tiep phat hien vet dau tren mot anh SAR bat ky
+python scripts/sos.py predict --image path/to/sar_image.png --output results/prediction
+\end{lstlisting}
+
+Kết quả suy luận được lưu tại thư mục chỉ định bao gồm: mặt nạ nhị phân dự đoán \texttt{mask.png}, ảnh trực quan hóa lớp phủ \texttt{overlay.png}, và danh sách tọa độ các vệt dầu phát hiện kèm vector 8 đặc trưng trong \texttt{regions.json}.

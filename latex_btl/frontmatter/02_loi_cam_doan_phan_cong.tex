@@ -1,0 +1,52 @@
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Lời cam đoan}
+\chapter*{Lời cam đoan}
+
+Nhóm chúng em xin cam đoan báo cáo bài tập lớn học phần Xử lý ảnh với đề tài \textbf{"Đề tài 18: Phát hiện vết dầu tràn trên biển từ ảnh SAR"} là kết quả làm việc của các thành viên trong nhóm dưới sự hướng dẫn của TS. Cao Thị Luyên.
+
+Các số liệu và kết quả trong báo cáo do nhóm tự thực hiện trên bộ dữ liệu \textit{Refined Deep-SAR Oil Spill (SOS)}, không sao chép của nhóm khác. Tài liệu, mã nguồn, bộ dữ liệu và mô hình của tác giả khác đều được trích dẫn tại vị trí sử dụng và liệt kê trong mục Tài liệu tham khảo. Phần sử dụng công cụ AI được khai báo tại Phụ lục C.
+
+Nhóm xin chịu trách nhiệm về nội dung cam đoan này.
+
+\vspace{0.4cm}
+\begin{flushright}
+    \textit{Hà Nội, ngày 15 tháng 11 năm 2026}
+\end{flushright}
+\vspace{0.2cm}
+
+\begin{center}
+\begin{tabular}{|c|p{5.5cm}|p{3.5cm}|p{3.2cm}|}
+\hline
+\textbf{STT} & \textbf{Họ và tên} & \textbf{Mã sinh viên} & \textbf{Chữ ký} \\ \hline
+1 & Trần Tiến Sơn & & \\[0.8cm] \hline
+2 & Lương Tiến Dũng & & \\[0.8cm] \hline
+3 & Hồ Việt Tùng & & \\[0.8cm] \hline
+4 & Nguyễn Hải Hiếu & & \\[0.8cm] \hline
+5 & Phạm Minh Tuấn & & \\[0.8cm] \hline
+\end{tabular}
+\end{center}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bảng phân công nhiệm vụ thành viên}
+\chapter*{Bảng phân công nhiệm vụ và đóng góp}
+
+Theo quy chế học phần và hướng dẫn thực hiện Bài tập lớn Xử lý ảnh, cơ cấu nhóm 5 sinh viên được phân định trách nhiệm theo 5 vai trò chuyên trách. Bảng~\ref{tab:phan_cong_nhiem_vu} chi tiết hóa phân công công việc, file mã nguồn phụ trách, các mục báo cáo viết chính và tỷ lệ đóng góp của từng thành viên.
+
+\begin{table}[H]
+\centering
+\caption{Phân công nhiệm vụ, phụ trách mô-đun mã nguồn và tỷ lệ đóng góp của 5 thành viên.}
+\label{tab:phan_cong_nhiem_vu}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|p{2.8cm}|p{4.2cm}|p{3.6cm}|p{2.8cm}|c|c|}
+\hline
+\textbf{Vai trò} & \textbf{Họ và tên} & \textbf{Trách nhiệm chính} & \textbf{Mô-đun mã nguồn / Notebook} & \textbf{Mục báo cáo phụ trách} & \textbf{Đóng góp} & \textbf{Ký tên} \\ \hline
+\textbf{TV1} & Trần Tiến Sơn & Quản lý tiến độ, repo Git, tích hợp pipeline, CLI và ứng dụng demo & \texttt{pipeline.py}, \newline \texttt{scripts/sos.py}, \newline \texttt{05\_final\_\allowbreak pipeline.ipynb} & Chương 1, Mục 3.1, 3.4, Chương 5 & 20\% & \\ \hline
+\textbf{TV2} & Lương Tiến Dũng & Dẫn xuất công thức, ví dụ số tính tay, bộ phân loại CART và LinearSVM NumPy & \texttt{models.py}, \newline \texttt{04\_cart\_\allowbreak svm\_\allowbreak numpy.ipynb} & Chương 2, Mục 3.5 & 20\% & \\ \hline
+\textbf{TV3} & Hồ Việt Tùng & Cài đặt bộ lọc không gian, bộ lọc thống kê Lee MMSE $\mathcal{O}(HW)$ và phân ngưỡng Otsu/Niblack & \texttt{core.py}, \newline \texttt{reference.py}, \newline \texttt{02\_filter\_\allowbreak threshold.ipynb} & Mục 3.2, Mục 4.2 & 20\% & \\ \hline
+\textbf{TV4} & Nguyễn Hải Hiếu & Cài đặt hình thái học, gán nhãn liên thông 8 hướng và trích xuất 8 đặc trưng vùng & \texttt{core.py}, \newline \texttt{03\_regions\_\allowbreak and\_\allowbreak features.ipynb} & Mục 3.3, Mục 4.3 & 20\% & \\ \hline
+\textbf{TV5} & Phạm Minh Tuấn & Chuẩn bị dữ liệu SOS, manifest, script thực nghiệm, đánh giá Hungarian IoU & \texttt{data.py}, \newline \texttt{evaluation.py}, \newline \texttt{01\_data\_\allowbreak ground\_\allowbreak truth.ipynb} & Mục 4.1, 4.4, 4.5 & 20\% & \\ \hline
+\end{tabular}%
+}
+\end{table}

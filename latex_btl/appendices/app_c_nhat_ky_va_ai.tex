@@ -1,0 +1,54 @@
+\section{Nhật ký làm việc nhóm qua các giai đoạn}
+
+Bảng~\ref{tab:nhat_ky_nhom} tóm tắt tiến độ thực hiện và kiểm tra chéo các gói công việc giữa 5 thành viên nhóm nghiên cứu.
+
+\begin{table}[H]
+\centering
+\caption{Nhật ký triển khai và nghiệm thu các gói công việc chính của nhóm.}
+\label{tab:nhat_ky_nhom}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|p{5.5cm}|p{5.5cm}|c|}
+\hline
+\textbf{Mã việc} & \textbf{Thực hiện} & \textbf{Nội dung công việc triển khai} & \textbf{Tiêu chí và Sản phẩm nghiệm thu} & \textbf{Người soát} \\ \hline
+\textbf{S01-TV1} & Trần Tiến Sơn & Xây dựng giao diện dòng lệnh CLI \texttt{scripts/sos.py}, tách luồng suy luận & CLI chạy từ thư mục gốc, không truyền nhãn GT vào hàm \texttt{predict} & Lương Tiến Dũng \\ \hline
+\textbf{S01-TV2} & Lương Tiến Dũng & Tự cài đặt CART Gini và LinearSVM NAG bằng NumPy thuần & Cùng hàm mục tiêu với \texttt{scikit-learn}, lưu và đọc checkpoint JSON & Hồ Việt Tùng \\ \hline
+\textbf{S01-TV3} & Hồ Việt Tùng & Cài đặt bộ lọc Lee qua Bảng tích lũy SAT $\mathcal{O}(HW)$ và Otsu/Niblack & Sai số số học $< 10^{-11}$, xử lý đệm reflect không lặp pixel mép & Nguyễn Hải Hiếu \\ \hline
+\textbf{S01-TV4} & Nguyễn Hải Hiếu & Cài đặt gán nhãn liên thông 8 hướng và trích xuất 8 đặc trưng vùng & Chu vi lưới thống nhất, xử lý an toàn ca mặt nạ rỗng và nền rỗng & Phạm Minh Tuấn \\ \hline
+\textbf{S01-TV5} & Phạm Minh Tuấn & Kiểm kê bộ dữ liệu SOS, lập mã băm \texttt{manifest.json}, chia 3 tập & Không trùng lặp mã băm giữa các tập, đóng băng tập Test độc lập & Trần Tiến Sơn \\ \hline
+\textbf{S02-TV1} & Trần Tiến Sơn & Chạy thực nghiệm quét lưới tích hợp $110 \times 729$ cấu hình & Đầy đủ dữ liệu lưu vết checkpoint, không mở tập Test để chọn tham số & Lương Tiến Dũng \\ \hline
+\textbf{S02-TV2} & Lương Tiến Dũng & Khảo sát 9 cấu hình classifier $\times$ 3 nhóm đặc trưng & Kiểm tra độ đồng thuận dự đoán và đồ thị hội tụ NAG & Hồ Việt Tùng \\ \hline
+\textbf{S02-TV3} & Hồ Việt Tùng & Phân tích định lượng bảng 110 cấu hình lọc/ngưỡng & Giải thích hiện tượng suy biến của Lee và thất bại của Niblack & Nguyễn Hải Hiếu \\ \hline
+\textbf{S02-TV4} & Nguyễn Hải Hiếu & Phân tích Ablation nghiên cứu tác động của $A_{\min}$ và hình thái & So sánh nhóm đặc trưng \texttt{shape} vs. \texttt{intensity} vs. \texttt{all} & Phạm Minh Tuấn \\ \hline
+\textbf{S02-TV5} & Phạm Minh Tuấn & Cài đặt thuật toán Hungarian ghép cặp đối tượng một-một & Đánh giá phân tầng 5 chế độ diện tích $R_0 \to R_4$ & Trần Tiến Sơn \\ \hline
+\textbf{S03} & Toàn nhóm & Hoàn thiện 5 sổ tay Jupyter Notebook, chẩn đoán 3 ca lỗi và viết báo cáo & Tái lập $100\%$ kết quả bằng một lệnh, chuẩn bị slide bảo vệ & Toàn nhóm \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Khai báo minh bạch về việc sử dụng công cụ trí tuệ nhân tạo (AI)}
+
+Thực hiện quy định về liêm chính học thuật trong hướng dẫn bài tập lớn môn Xử lý ảnh, việc sử dụng công cụ AI hỗ trợ trong quá trình thực hiện đề tài được khai báo trong Bảng~\ref{tab:khai_bao_ai}.
+
+\begin{table}[H]
+\centering
+\caption{Khai báo phạm vi sử dụng công cụ AI hỗ trợ và quy trình kiểm chứng của nhóm.}
+\label{tab:khai_bao_ai}
+\begin{tabular}{|p{3.2cm}|p{4.5cm}|p{4.5cm}|p{3.5cm}|}
+\hline
+\textbf{Công cụ AI sử dụng} & \textbf{Phần việc hỗ trợ} & \textbf{Phương pháp kiểm chứng lại} & \textbf{Trách nhiệm giải trình} \\ \hline
+\textbf{Google DeepMind Antigravity / Gemini} & 
+- Hỗ trợ rà soát cú pháp lệnh LaTeX \newline 
+- Gợi ý định dạng bảng biểu và cấu trúc thư mục module hóa \newline 
+- Tối ưu hóa văn phong kỹ thuật và phát hiện lỗi chính tả & 
+- Thực thi biên dịch tự động bằng \texttt{pdflatex} kiểm tra cảnh báo \newline 
+- Kiểm tra chéo toàn bộ công thức và số liệu với tệp \texttt{evaluation.json} gốc \newline 
+- Đối chiếu quy định của học phần & 
+Từng thành viên nhóm đọc kỹ, kiểm chứng độc lập mọi công thức, kết quả và chịu trách nhiệm giải thích được từng dòng mã khi bảo vệ. \\ \hline
+\end{tabular}
+\end{table}
+
+Nhóm cam kết:
+\begin{itemize}
+    \item Công cụ AI chỉ đóng vai trò trợ lý hỗ trợ định dạng trình bày và kiểm tra cú pháp; không sử dụng AI để tạo số liệu giả hay làm sai lệch kết quả thực nghiệm.
+    \item Mọi số liệu số học, ma trận nhầm lẫn, biểu đồ và chỉ số hiệu năng đều được sinh ra từ các tệp mã nguồn Python có thể kiểm tra độc lập tại kho lưu trữ của nhóm.
+\end{itemize}

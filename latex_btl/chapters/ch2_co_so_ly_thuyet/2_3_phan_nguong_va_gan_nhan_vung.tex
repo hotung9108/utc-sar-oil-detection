@@ -1,0 +1,33 @@
+\section{Phân đoạn tách vùng ứng viên và gán nhãn thành phần liên thông}
+\label{sec:phan_nguong_vung}
+
+\subsection{Phân ngưỡng tự động toàn cục Otsu}
+
+Sau bước làm mượt nhiễu đốm, các vệt dầu loang trên mặt biển xuất hiện dưới dạng các cấu trúc tối có cường độ tán xạ ngược thấp hơn nền nước biển xung quanh. Thuật toán phân ngưỡng toàn cục của Otsu~\cite{otsu1979threshold} xác định ngưỡng tối ưu $t^*$ bằng cách phân chia biểu đồ tần số mức xám (histogram) $B = 256$ bin của ảnh sau lọc $I_f \in [0, 1]$ thành hai lớp: lớp $\omega_0$ (vùng tối ứng viên, $I_f < t$) và lớp $\omega_1$ (nền biển, $I_f \ge t$). Gọi $p(i)$ là xác suất xuất hiện của mức xám thứ $i$ ($i = 0, \dots, 255$). Xác suất tích lũy $\omega_0(t) = \sum_{i=0}^{t} p(i)$, $\omega_1(t) = 1 - \omega_0(t)$ và cường độ trung bình của hai lớp là $\mu_0(t) = \frac{1}{\omega_0(t)}\sum_{i=0}^{t} i \cdot p(i)$, $\mu_1(t) = \frac{1}{\omega_1(t)}\sum_{i=t+1}^{255} i \cdot p(i)$. Phương sai giữa hai lớp (between-class variance) và ngưỡng tối ưu $t^*$ được xác định bởi:
+\begin{equation}
+\sigma_B^2(t) = \omega_0(t)\omega_1(t) \left[ \mu_0(t) - \mu_1(t) \right]^2, \quad t^* = \arg\max_{t} \sigma_B^2(t)
+\label{eq:otsu_between}
+\end{equation}
+Mặt nạ nhị phân ứng viên thô $B(x, y)$ và tỷ số phương sai phân tách $\eta$ (với tổng phương sai toàn ảnh $\sigma_T^2 = \sum_{i=0}^{255} (i - \mu_T)^2 p(i)$) được xác định bởi:
+\begin{equation}
+B(x, y) = [I_f(x, y) < t^*], \quad \eta = \frac{\sigma_B^2(t^*)}{\sigma_T^2} \in [0, 1]
+\label{eq:binary_candidate_mask}
+\end{equation}
+
+\subsection{Phân ngưỡng thích nghi cục bộ Niblack}
+
+Đối với khung cảnh biển có nền biến thiên, thuật toán phân ngưỡng thích nghi cục bộ Niblack~\cite{niblack1986introduction} tính ngưỡng động riêng cho từng điểm ảnh $(x, y)$ dựa trên trung bình $m_W(x, y)$ và độ lệch chuẩn cục bộ $s_W(x, y) = \sqrt{v_W(x, y)}$ (tính qua bảng tổng tích lũy) trong cửa sổ trượt $W \times W$:
+\begin{equation}
+T_{\text{Niblack}}(x, y) = m_W(x, y) - k \cdot s_W(x, y), \quad B_{\text{Niblack}}(x, y) = [I_f(x, y) < T_{\text{Niblack}}(x, y)]
+\label{eq:niblack_formula}
+\end{equation}
+trong đó $k > 0$ là hệ số điều chỉnh mức độ nhạy (quy ước dấu âm $-k$ đối với bài toán dò tìm đối tượng tối trên nền biển sáng).
+
+\subsection{Hậu xử lý lọc diện tích và gán nhãn thành phần liên thông 8 hướng}
+
+Để triệt tiêu các đốm nhiễu li ti phân bố rải rác trên mặt biển mà không làm biến dạng đường biên tự nhiên của các vệt dầu lớn, hệ thống áp dụng bộ lọc diện tích thành phần liên thông tối thiểu với ngưỡng chuẩn $A_{\min} = 64$ điểm ảnh:
+\begin{equation}
+B_{\text{clean}} = \bigcup \left\{ \Omega_k \subset B \mid |\Omega_k| \ge A_{\min} \right\}
+\label{eq:area_filtering}
+\end{equation}
+Tiếp theo, mặt nạ nhị phân sạch $B_{\text{clean}}$ được chuyển đổi sang cấp độ các đối tượng vùng rời rạc $\{\Omega_1, \Omega_2, \dots, \Omega_K\}$ thông qua thuật toán gán nhãn thành phần liên thông (Connected Component Labeling --- CCL) theo lân cận 8 hướng. Thuật toán được cài đặt dựa trên cấu trúc Disjoint-Set / Union-Find kết hợp nén đường đi (path compression) và mã hóa loạt dài (run-length encoding) theo hàng, hợp nhất các đoạn kề nhau theo phương ngang, dọc và đường chéo trong thời gian gần tuyến tính $\mathcal{O}(HW \cdot \alpha(HW))$.

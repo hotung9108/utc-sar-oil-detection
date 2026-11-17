@@ -1,0 +1,29 @@
+\section{Phân loại vùng bằng LinearSVM và cây quyết định CART}
+\label{sec:phan_loai_svm_cart}
+
+\subsection{Gán nhãn huấn luyện, cân bằng lớp và chuẩn hóa đặc trưng}
+
+Trong giai đoạn huấn luyện, nhãn giám sát $y_i \in \{0, 1\}$ của từng vùng ứng viên $\Omega_i$ được xác định dựa trên độ tinh khiết điểm ảnh (pixel purity) so với mặt nạ tham chiếu Ground Truth $G$, cùng phép chuẩn hóa Z-score theo thống kê $(\mu_k, \sigma_k)$ của tập huấn luyện:
+\begin{equation}
+\mathrm{Purity}(\Omega_i) = \frac{|\Omega_i \cap G|}{|\Omega_i|}, \quad z_{i,k} = \frac{x_{i,k} - \mu_k}{\max(\sigma_k, 10^{-12})} \quad (k = 0, \dots, 7)
+\label{eq:purity_definition}
+\end{equation}
+Quy tắc gán nhãn phân tách: vùng có $\mathrm{Purity}(\Omega_i) \ge 0.50$ được gán nhãn dương ($y_i = 1$, vết dầu thật); vùng có $\mathrm{Purity}(\Omega_i) \le 0.05$ được gán nhãn âm ($y_i = 0$, vùng tối báo nhầm); các vùng ranh giới trung gian ($0.05 < \mathrm{Purity} < 0.50$) được loại bỏ khỏi tập huấn luyện để tránh gây nhiễu mặt phẳng phân chia. Trên $2\,683$ ảnh huấn luyện Sentinel-1A, bước tạo ứng viên sinh ra $39\,530$ vùng ($11\,092$ dương, $25\,946$ âm, $2\,492$ trung gian). Phương pháp lấy mẫu giảm ngẫu nhiên (undersampling, $\texttt{seed} = 2026$) chọn đúng $10\,000$ mẫu dương và $10\,000$ mẫu âm ($n = 20\,000$ mẫu cân bằng $50:50$). Vector chuẩn hóa được ghép thêm phần tử hằng số $1$ cho hệ số chặn bias: $\mathbf{z}_i = [z_{i,0}, \dots, z_{i,7}, 1]^T \in \mathbb{R}^9$.
+
+\subsection{Sự khác biệt cấu trúc giữa nhãn huấn luyện (purity) và thước đo đánh giá (Hungarian IoU)}
+
+Về mặt lý thuyết, nhãn huấn luyện $\mathrm{Purity}(\Omega_i) = \frac{|\Omega_i \cap G|}{|\Omega_i|}$ chuẩn hóa theo diện tích của \textit{chính mảnh ứng viên nhỏ} $|\Omega_i|$, nên nếu một vết dầu lớn $G_q$ bị bước phân đoạn Otsu cắt vụn thành nhiều mảnh con nằm lọt trong vết dầu, từng mảnh con đều có $\mathrm{Purity} = 1.0$ và được bộ phân loại giữ lại như mẫu dương hợp lệ. Ngược lại, thước đo đánh giá cấp đối tượng ($\IoU_{p,q} = \frac{|\hat{\Omega}_p \cap G_q|}{|\hat{\Omega}_p \cup G_q|} \ge 0.50$) chuẩn hóa theo diện tích hợp với \textit{đối tượng Ground Truth nguyên khối} $G_q$; từng mảnh con nhỏ lẻ dù tinh khiết $100\%$ nhưng diện tích nhỏ so với $G_q$ sẽ có $\IoU < 0.50$ (hoặc dư thừa do ghép cặp một-một) và bị tính thành False Positive.
+
+\subsection{Bộ phân loại LinearSVM với tối ưu hóa gradient tăng tốc Nesterov (NAG) và cây CART}
+
+Mô hình máy vectơ hỗ trợ tuyến tính (LinearSVM) tối ưu hóa hàm mục tiêu lồi điều chuẩn $L_2$ trên toàn bộ vector $\mathbf{w} \in \mathbb{R}^9$ với hàm mất mát khả vi bậc một Squared-Hinge Loss ($y_i^* = 2y_i - 1 \in \{-1, +1\}$, $C = 10.0$):
+\begin{equation}
+\min_{\mathbf{w}} J(\mathbf{w}) = \frac{1}{2n}\|\mathbf{w}\|_2^2 + \frac{C}{n}\sum_{i=1}^n \max\left(0, 1 - y_i^* (\mathbf{z}_i^T \mathbf{w})\right)^2
+\label{eq:svm_objective}
+\end{equation}
+Vector gradient $\nabla J(\mathbf{w})$ trên tập mẫu vi phạm lề $\mathcal{V} = \{i \mid 1 - y_i^* \mathbf{z}_i^T \mathbf{w} > 0\}$ và điều kiện dừng hội tụ:
+\begin{equation}
+\nabla J(\mathbf{w}) = \frac{1}{n}\mathbf{w} - \frac{2C}{n}\sum_{i \in \mathcal{V}} y_i^* \left(1 - y_i^* \mathbf{z}_i^T \mathbf{w}\right)\mathbf{z}_i, \quad \|\nabla J(\mathbf{w})\|_\infty \le 10^{-6}
+\label{eq:svm_gradient}
+\end{equation}
+Bài toán được giải bằng Nesterov Accelerated Gradient (NAG) kết hợp tìm bước nhảy quay lui (backtracking line search) và khởi động lại xung lượng thích nghi (adaptive restart). Vùng ứng viên $\Omega_i$ được phân loại là vết dầu khi $\mathbf{z}_i^T \mathbf{w} > 0$. Song song với LinearSVM, mô hình cây quyết định CART~\cite{breiman1984classification} được tự cài đặt bằng NumPy làm cơ sở đối sánh, sử dụng độ giảm tạp chất Gini $\Delta G = n G(p) - n_L G(p_L) - n_R G(p_R)$ với $G(p) = 2p(1-p)$, cố định độ sâu tối đa $\text{max\_depth} = 3$ và $\text{min\_leaf} = 20$.

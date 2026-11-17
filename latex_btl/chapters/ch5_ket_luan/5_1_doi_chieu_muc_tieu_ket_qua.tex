@@ -1,0 +1,25 @@
+\section{Đối chiếu mục tiêu đề tài và kết quả thực tế đạt được}
+\label{sec:doi_chieu_muc_tieu}
+
+Nhằm tổng kết đánh giá kết quả thực hiện, Bảng~\ref{tab:doi_chieu_muc_tieu} đối chiếu chi tiết từng mục tiêu đề ra tại Chương 1 và các yêu cầu chức năng của đề tài với kết quả thực tế đo đạc được trên hệ thống.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Bảng đối chiếu từng mục tiêu ban đầu với kết quả thực tế đạt được trong bài tập lớn.}
+\label{tab:doi_chieu_muc_tieu}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{4.0cm}|c|p{7.5cm}|}
+\hline
+\textbf{Mục tiêu đề ra tại Chương 1} & \textbf{Tình trạng} & \textbf{Bằng chứng số liệu và kết quả thực tế} \\ \hline
+\textbf{1. Tự cài đặt các thuật toán cốt lõi bằng NumPy thuần} & \textbf{Đạt} & Toàn bộ 6 khối chức năng được tự viết trong \texttt{core.py} và \texttt{models.py}; kiểm chứng 118 ca biên và 192 phép toán thực tế trên ảnh SOS đạt $\max |\Delta| < 1.4 \times 10^{-11}$. \\ \hline
+\textbf{2. Kiểm chứng bộ phân loại học máy với scikit-learn} & \textbf{Đạt} & Cả LinearSVM và CART tự cài đặt đều đạt độ đồng thuận dự đoán 100\% ($\text{Agreement} = 1.0000$); độ lệch hàm mục tiêu tối ưu đạt $2.88 \times 10^{-12}$. \\ \hline
+\textbf{3. Cắt giảm trên 70\% số lượng vùng tối báo nhầm} & \textbf{Đạt} & LinearSVM cắt giảm $76.6\%$ số vùng báo nhầm trên tập Test (từ $14.89$ xuống $3.48$ FP/ảnh), giảm $99.2\%$ báo nhầm trên ảnh biển sạch $R_0$ (từ $24.32$ xuống $0.19$ FP/ảnh). \\ \hline
+\textbf{4. Bảo toàn trên 95\% số đối tượng đúng của giai đoạn 1} & \textbf{Đạt} & Mô hình giữ lại được $97.8\%$ số đối tượng đúng do bước tạo ứng viên đề xuất ($996/1\,018$ TP), chỉ làm mất 22 đối tượng. \\ \hline
+\textbf{5. Đạt độ bao phủ điểm ảnh $\text{Pixel IoU} \ge 0.60$} & \textbf{Đạt} & Đạt Global Pixel IoU $= 0.6614$ trên tập Test độc lập Sentinel-1A và $0.6423$ trên tập ALOS PALSAR. \\ \hline
+\textbf{6. Đánh giá khách quan chuẩn ghép cặp Hungarian} & \textbf{Đạt} & Thiết lập thuật toán Hungarian ở ngưỡng $\IoU \ge 0.5$, ghi nhận Object F1 $= 0.2805$ trên 839 ảnh Test Sentinel-1A và $0.3724$ trên 776 ảnh ALOS PALSAR. \\ \hline
+\textbf{7. Chuẩn hóa góc tới và ghép trường gió} & \textit{Chưa đạt} & Bộ dữ liệu Refined SOS dạng ảnh PNG cắt sẵn thiếu siêu dữ liệu góc tới và dấu thời gian/tọa độ để ghép dữ liệu gió ECMWF ERA5. \\ \hline
+\textbf{8. Phân biệt riêng các loại tương tự dầu (look-alikes)} & \textit{Chưa đạt} & Mặt nạ tham chiếu SOS chỉ có nhãn nhị phân dầu/nền, chưa có nhãn phân tách riêng cho màng sinh học, vùng lặng gió hay bóng mưa. \\ \hline
+\end{tabular}%
+}
+\end{table}

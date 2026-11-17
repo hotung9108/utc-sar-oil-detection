@@ -1,0 +1,203 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+% --- Ngôn ngữ và font chữ ---
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{mathptmx} % Font Times New Roman tương thích pdfLaTeX
+
+% --- Định dạng trang và căn lề ---
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.3} % Giãn dòng 1.3 theo quy định BTL
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{2pt}
+
+% --- Định dạng danh sách và khoảng cách float ---
+\usepackage{enumitem}
+\setlist{itemsep=1pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+\setlength{\textfloatsep}{7pt plus 2pt minus 2pt}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.88}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.8}
+
+% --- Định dạng tiêu đề chương và Heading 1 ---
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+  {\normalfont\LARGE\bfseries\centering}
+  {\chaptertitlename\ \thechapter:}
+  {0.5em}
+  {}
+\titleformat{name=\chapter,numberless}[block]
+  {\normalfont\LARGE\bfseries\centering}
+  {}
+  {0pt}
+  {}
+\titlespacing*{\chapter}{0pt}{-20pt}{10pt}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\numberwithin{equation}{chapter}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{4pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayskip}{4pt plus 2pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{2pt plus 1pt minus 1pt}%
+  \setlength{\belowdisplayshortskip}{2pt plus 1pt minus 1pt}%
+}
+
+% --- Bảng biểu, hình ảnh và chú thích ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\captionsetup[table]{position=top,skip=4pt,labelfont=bf,textfont=bf,font=small}
+\captionsetup[figure]{position=bottom,skip=4pt,labelfont=it,textfont=it,font=small}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+% --- TikZ và đồ họa ---
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
+
+% --- Trình bày mã nguồn & Giả mã ---
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\floatname{algorithm}{Thuật toán}
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    tabsize=2,
+    showstringspaces=false
+}
+
+% --- Liên kết và màu sắc ---
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=blue!80!black,
+    urlcolor=teal!80!black
+}
+
+% --- Mathematical Macros (latex_template standard) ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\IoU}{\mathrm{IoU}}
+
+\begin{document}
+
+% ==================== PHẦN MỞ ĐẦU (FRONTMATTER) ====================
+\pagenumbering{roman}
+
+% 1. Trang bìa chính và trang phụ bìa
+\input{frontmatter/01_trang_bia.tex}
+
+% 2. Lời cam đoan, Lời nói đầu và Bảng phân công thành viên
+\input{frontmatter/02_loi_cam_doan_phan_cong.tex}
+
+% 3. Mục lục, Danh mục hình vẽ, Danh mục bảng biểu (Màu chữ đen)
+\begingroup
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{1}
+\setstretch{1.15}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Mục lục}
+\tableofcontents
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Danh mục hình vẽ}
+\listoffigures
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Danh mục bảng biểu}
+\listoftables
+\endgroup
+
+% 4. Danh mục ký hiệu và từ viết tắt
+\input{frontmatter/03_danh_muc_ky_hieu.tex}
+
+% ==================== NỘI DUNG CHÍNH (MAIN CONTENT) ====================
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% CHƯƠNG 1: TỔNG QUAN BÀI TOÁN
+\chapter{Tổng quan bài toán}
+\label{chap:tong_quan}
+\input{chapters/ch1_tong_quan/1_1_boi_canh_y_nghia.tex}
+\input{chapters/ch1_tong_quan/1_2_phat_bieu_muc_tieu.tex}
+\input{chapters/ch1_tong_quan/1_3_tong_quan_nghien_cuu_pham_vi.tex}
+
+% CHƯƠNG 2: CƠ SỞ LÝ THUYẾT
+\chapter{Cơ sở lý thuyết}
+\label{chap:co_so_ly_thuyet}
+\input{chapters/ch2_co_so_ly_thuyet/2_1_mo_hinh_sar_va_loc_speckle.tex}
+\input{chapters/ch2_co_so_ly_thuyet/2_2_dan_xuat_va_vi_du_tinh_tay.tex}
+\input{chapters/ch2_co_so_ly_thuyet/2_3_phan_nguong_va_gan_nhan_vung.tex}
+\input{chapters/ch2_co_so_ly_thuyet/2_4_khong_gian_dac_trung_vung.tex}
+\input{chapters/ch2_co_so_ly_thuyet/2_5_phan_loai_svm_va_cart.tex}
+
+% CHƯƠNG 3: THIẾT KẾ VÀ CÀI ĐẶT
+\chapter{Thiết kế và cài đặt hệ thống}
+\label{chap:thiet_ke_cai_dat}
+\input{chapters/ch3_thiet_ke_cai_dat/3_1_kien_truc_va_cau_truc_ma_nguon.tex}
+\input{chapters/ch3_thiet_ke_cai_dat/3_2_thuat_toan_loc_va_phan_nguong.tex}
+\input{chapters/ch3_thiet_ke_cai_dat/3_3_thuat_toan_vung_va_phan_loai.tex}
+\input{chapters/ch3_thiet_ke_cai_dat/3_4_do_phuc_tap_va_ky_thuat_cai_dat.tex}
+\input{chapters/ch3_thiet_ke_cai_dat/3_5_kiem_chung_voi_thu_vien.tex}
+
+% CHƯƠNG 4: THỰC NGHIỆM VÀ ĐÁNH GIÁ
+\chapter{Thực nghiệm và đánh giá}
+\label{chap:thuc_nghiem_danh_gia}
+\input{chapters/ch4_thuc_nghiem_danh_gia/4_1_moi_truong_du_lieu_va_chi_so.tex}
+\input{chapters/ch4_thuc_nghiem_danh_gia/4_2_thi_nghiem_loc_va_phan_nguong.tex}
+\input{chapters/ch4_thuc_nghiem_danh_gia/4_3_thi_nghiem_dac_trung_va_ablation.tex}
+\input{chapters/ch4_thuc_nghiem_danh_gia/4_4_danh_gia_test_va_phan_tang.tex}
+\input{chapters/ch4_thuc_nghiem_danh_gia/4_5_phan_tich_ca_that_bai_va_thoi_gian.tex}
+
+% CHƯƠNG 5: KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
+\chapter{Kết luận và hướng phát triển}
+\label{chap:ket_luan}
+\input{chapters/ch5_ket_luan/5_1_doi_chieu_muc_tieu_ket_qua.tex}
+\input{chapters/ch5_ket_luan/5_2_han_che_va_huong_phat_trien.tex}
+
+% ==================== TÀI LIỆU THAM KHẢO ====================
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+% ==================== PHẦN PHỤ LỤC (APPENDICES) ====================
+\clearpage
+\appendix
+\chapter{Hướng dẫn cài đặt, tái lập thực nghiệm và mã nguồn}
+\label{app:huong_dan_chay}
+\input{appendices/app_a_huong_dan_chay.tex}
+
+\chapter{Mã nguồn kiểm chứng ví dụ số tính tay}
+\label{app:kiem_chung_vi_du_so}
+\input{appendices/app_b_kiem_chung_vi_du_so.tex}
+
+\chapter{Nhật ký nhóm và khai báo sử dụng công cụ AI}
+\label{app:nhat_ky_va_ai}
+\input{appendices/app_c_nhat_ky_va_ai.tex}
+
+\end{document}

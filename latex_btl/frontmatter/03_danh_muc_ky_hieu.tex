@@ -1,0 +1,57 @@
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Danh mục ký hiệu và từ viết tắt}
+\chapter*{Danh mục ký hiệu và từ viết tắt}
+
+\begingroup
+\small
+\setstretch{1.28}
+\section*{1. Ký hiệu toán học}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabularx}{\textwidth}{p{3.0cm}X}
+\toprule
+\textbf{Ký hiệu} & \textbf{Ý nghĩa toán học và quy ước} \\
+\midrule
+$H, W$ & Chiều cao và chiều rộng của khung ảnh radar ($256 \times 256$ điểm ảnh). \\
+$I(x, y), R(x, y)$ & Cường độ mức xám quan sát ($I \in [0, 1]$) và suất phản xạ tán xạ ngược thực tế ($\sigma^0$). \\
+$u(x, y), L$ & Nhiễu đốm nhân phân phối Gamma ($\E[u] = 1$) và số looks danh định ($\Var(u) = 1/L$). \\
+$\text{ENL}_{\text{eff}}$ & Số looks hiệu dụng ước lượng trên vùng biển đồng nhất: $m^2 / v$. \\
+$m(x, y), v(x, y)$ & Trung bình cục bộ và phương sai cục bộ trong cửa sổ trượt $k \times k$. \\
+$W(x, y)$ & Trọng số thích nghi của bộ lọc Lee MMSE, $W(x, y) \in [0, 1]$. \\
+$S(y, x), S_2(y, x)$ & Bảng tổng tích lũy (summed-area table) bậc 1 và bậc 2. \\
+$t^*, \sigma_B^2(t), \eta$ & Ngưỡng tối ưu Otsu, phương sai giữa hai lớp và tỷ số phân tách $\sigma_B^2(t^*) / \sigma_T^2$. \\
+$A_{\min}, \Omega_i$ & Ngưỡng diện tích tối thiểu ($A_{\min} = 64$) và vùng ứng viên liên thông thứ $i$. \\
+$\mathbf{x}_i \in \mathbb{R}^8, \mathbf{z}_i \in \mathbb{R}^9$ & Vector 8 đặc trưng vùng vật lý và vector chuẩn hóa Z-score kèm bias 1. \\
+$\mathrm{Purity}(\Omega_i)$ & Độ tinh khiết điểm ảnh của vùng ứng viên: $|\Omega_i \cap G| / |\Omega_i|$. \\
+$J(\mathbf{w}), \nabla J(\mathbf{w})$ & Hàm mục tiêu mất mát Squared-Hinge lồi và vector đạo hàm của LinearSVM. \\
+$\IoU_{p, q}$ & Chỉ số giao trên hợp giữa vùng dự đoán và đối tượng tham chiếu ground truth. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{-0.2cm}
+
+
+\section*{2. Danh mục từ viết tắt}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabularx}{\textwidth}{p{2.8cm}p{5.8cm}X}
+\toprule
+\textbf{Từ viết tắt} & \textbf{Thuật ngữ tiếng Anh} & \textbf{Ý nghĩa tiếng Việt} \\
+\midrule
+\textbf{SAR / SOS} & Synthetic Aperture Radar / SAR Oil Spill & Radar khẩu độ tổng hợp / Bộ dữ liệu vết dầu SAR \\
+\textbf{MMSE} & Minimum Mean Square Error & Sai số toàn phương trung bình tối thiểu \\
+\textbf{SAT} & Summed-Area Table & Bảng tổng tích lũy (ảnh tích phân) \\
+\textbf{CCL} & Connected Component Labeling & Gán nhãn thành phần liên thông \\
+\textbf{GLCM} & Gray-Level Co-occurrence Matrix & Ma trận đồng xuất hiện mức xám \\
+\textbf{SVM / CART} & Support Vector Machine / Decision Trees & Máy vector hỗ trợ / Cây phân loại và hồi quy \\
+\textbf{NAG} & Nesterov Accelerated Gradient & Gradient tăng tốc Nesterov \\
+\textbf{IoU} & Intersection over Union & Tỷ lệ giao trên hợp \\
+\textbf{TP / FP / FN} & True Positive / False Positive / False Negative & Đúng dương tính / báo nhầm / bỏ sót \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\endgroup

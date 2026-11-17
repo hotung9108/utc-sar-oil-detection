@@ -1,0 +1,21 @@
+\section{Hạn chế phương pháp luận và hướng phát triển tương lai}
+\label{sec:han_che_huong_phat_trien}
+
+\subsection{Bốn hạn chế về mặt phương pháp luận}
+
+Từ các phân tích thực nghiệm và phân tích lỗi, 4 hạn chế chính của nghiên cứu gồm:
+\begin{enumerate}
+    \item \textbf{Suy biến trọng số Lee trên ảnh nén 8-bit:} Trên ảnh SAR 8-bit đã qua làm mượt đa nhìn như SOS, tỷ số $v/m^2$ tại vùng biển đồng nhất nhỏ hơn $1/L$ ($L \in \{1, 4\}$), khiến trọng số $W(x, y) = 0$ trên diện rộng và bộ lọc Lee $7 \times 7$ hoạt động tương đương lọc trung bình hộp Mean $7 \times 7$ ($\Delta\text{F1} = +0.0014$, không có ý nghĩa thống kê).
+    \item \textbf{Lệch pha giữa nhãn độ tinh khiết và thước đo Hungarian IoU:} Dù LinearSVM đạt F1 $= 80.74\%$ theo nhãn $\mathrm{Purity} \ge 0.50$, hơn $56\%$ số dự đoán dương tính bị tính là FP đối tượng thực chất là các mảnh dầu thật bị Otsu cắt vụn và không đạt ngưỡng ghép cặp một-một $\IoU \ge 0.50$ với mặt nạ Ground Truth nguyên khối.
+    \item \textbf{Nút cổ chai độ thu hồi (recall bottleneck) do Otsu toàn cục:} Trần Recall toàn hệ thống bị khống chế bởi bước phân ngưỡng Otsu ($\text{Recall} \le 0.3199$); bộ phân loại không thể khôi phục vùng bị bỏ sót nên các vệt dầu nhỏ nội vùng chỉ đạt \texttt{Interior Recall} $= 10.48\%$.
+    \item \textbf{Đa cộng tuyến đặc trưng và giới hạn cấp độ mảnh cắt (patch-level):} Đặc trưng \texttt{boundary\_gradient} ($f_6$) đóng vai trò biến ức chế ($w_6 = -0.639$) do tương quan mạnh với độ tương phản nền. Đồng thời, bộ dữ liệu SOS thiếu mã cảnh gốc (scene ID) nên việc phân chia và đánh giá mới dừng ở cấp độ mảnh $256 \times 256$.
+\end{enumerate}
+
+\subsection{Ba hướng phát triển kỹ thuật}
+
+Các hướng phát triển tiếp theo gồm:
+\begin{enumerate}
+    \item \textbf{Hợp nhất vùng hậu phân loại (spatial region merging):} Gom cụm không gian các mảnh ứng viên lân cận cùng được dự đoán là dầu nhằm nối liền các vệt dầu bị phân mảnh, thu hẹp khoảng cách giữa nhãn Purity và chỉ số Hungarian IoU.
+    \item \textbf{Ước lượng tự động $\text{ENL}_{\text{eff}}$ và cổng kiểm định đa đỉnh (bimodality gate):} Ước lượng số looks hiệu dụng từ vùng biển đồng nhất để hiệu chỉnh tham số $L$ cho ảnh 8-bit; đồng thời tích hợp cổng kiểm định đa đỉnh trước bước phân ngưỡng để tránh ép cắt Otsu trên ảnh biển sạch ($R_0$) hoặc ngập dầu ($R_4$).
+    \item \textbf{Mở rộng trên dữ liệu Sentinel-1 Level-1 GRD tại Biển Đông:} Thử nghiệm trên các cảnh SAR nguyên gốc có đầy đủ góc tới, ghép nối trường gió tái phân tích ECMWF ERA5 và định vị tàu thuyền AIS tại vùng biển Việt Nam.
+\end{enumerate}

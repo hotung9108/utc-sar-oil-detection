@@ -6,7 +6,7 @@
         "scripts/verify_outputs.py"
       ],
       "exit_code": 0,
-      "seconds": 11.048427199999423
+      "seconds": 5.381927000009455
     },
     {
       "command": [
@@ -18,7 +18,7 @@
         "-v"
       ],
       "exit_code": 0,
-      "seconds": 4.722055599999294
+      "seconds": 4.267416900023818
     }
   ],
   "passed": true

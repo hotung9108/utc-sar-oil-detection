@@ -1,0 +1,49 @@
+\section{Mô hình tạo ảnh SAR và các phương pháp lọc nhiễu đốm}
+\label{sec:mo_hinh_sar}
+
+\subsection{Mô hình nhiễu đốm nhân trên ảnh radar SAR}
+
+Trong viễn thám radar khẩu độ tổng hợp, tín hiệu tán xạ ngược thu nhận tại ăng-ten vệ tinh là sự chồng chập pha kết hợp của các sóng điện từ phản xạ từ các mục tiêu tán xạ thứ cấp trong mỗi ô phân giải không gian (resolution cell). Hiện tượng giao thoa tăng cường và triệt tiêu ngẫu nhiên tạo nên nhiễu đốm (speckle noise) trên toàn bộ khung ảnh.
+
+Trên ảnh cường độ tuyến tính, nhiễu đốm được mô hình hóa dưới dạng nhiễu nhân:
+\begin{equation}
+I(x, y) = R(x, y) \cdot u(x, y), \quad \text{với } \E[u] = 1, \quad \Var(u) = \sigma_u^2 = \frac{1}{L}
+\label{eq:speckle_model}
+\end{equation}
+trong đó $I(x, y)$ là cường độ mức xám quan sát tại tọa độ $(x, y)$, $R(x, y)$ là suất phản xạ tán xạ ngược thực tế ($\sigma^0$) cần ước lượng, và $u(x, y)$ là thành phần nhiễu nhân ngẫu nhiên độc lập thống kê với $R(x, y)$, có phương sai phụ thuộc vào số looks danh định $L$ của hệ thống radar. Từ mô hình~\eqref{eq:speckle_model}, phương sai tín hiệu quan sát tại vùng đồng nhất tỷ lệ với bình phương giá trị trung bình mức xám: $\Var(I) = \E[R]^2 \Var(u) = \frac{m^2}{L}$. Các bộ lọc không gian tuyến tính thông thường xử lý đồng nhất trên toàn ảnh có xu hướng làm mờ đường biên giữa vết dầu và nền biển, đồng thời làm đứt đoạn các dải dầu hẹp.
+
+\subsection{Bộ lọc thống kê cục bộ Lee MMSE}
+
+Để làm phẳng nhiễu tại vùng đồng nhất và bảo toàn cấu trúc biên, Lee~\cite{lee1980digital} đề xuất bộ lọc sai số toàn phương trung bình tối thiểu (Minimum Mean Square Error --- MMSE) cục bộ. Phép biến đổi xấp xỉ tuyến tính hóa hệ số phản xạ tại từng điểm ảnh $(x, y)$ theo công thức:
+\begin{equation}
+\hat{R}(x, y) = m(x, y) + W(x, y) \cdot \left[ I(x, y) - m(x, y) \right]
+\label{eq:lee_formula}
+\end{equation}
+trong đó $m(x, y)$ và $v(x, y)$ là giá trị trung bình và phương sai cục bộ tính trong cửa sổ trượt kích thước $k \times k$ (với $k = 2r + 1$ lẻ) bao quanh điểm ảnh $(x, y)$. Trọng số thích nghi $W(x, y) \in [0, 1]$ được xác định dựa trên tỷ số giữa phương sai cục bộ quan sát và phương sai nhiễu lý thuyết:
+\begin{equation}
+W(x, y) = \max\left(0, \frac{v(x, y) - \frac{m(x, y)^2}{L}}{\max(v(x, y), \varepsilon)}\right)
+\label{eq:lee_weight}
+\end{equation}
+với hằng số bảo vệ $\varepsilon = 10^{-12}$ để tránh chia cho không khi gặp vùng ảnh hằng ($v(x, y) = 0$).
+
+Cơ chế điều chỉnh trọng số $W(x, y)$:
+\begin{itemize}
+    \item \textbf{Tại vùng đồng nhất (vùng biển hoặc mảng dầu phẳng):} Phương sai cục bộ $v(x, y)$ nhỏ, xấp xỉ mức phương sai nhiễu $m^2/L$. Khi đó, tử số trong~\eqref{eq:lee_weight} tiến về 0, dẫn tới $W(x, y) \to 0$. Giá trị sau lọc quy về trung bình cục bộ $\hat{R}(x, y) \approx m(x, y)$, giúp làm mượt nhiễu hạt.
+    \item \textbf{Tại vùng ranh giới biên dầu --- biển (vùng có độ dốc cao):} Phương sai cục bộ $v(x, y)$ lớn hơn nhiều so với phương sai nhiễu $m^2/L$. Khi đó, trọng số tiến dần về $1$ ($W(x, y) \to 1$). Công thức~\eqref{eq:lee_formula} giữ lại giá trị ảnh gốc $\hat{R}(x, y) \approx I(x, y)$, hạn chế làm nhòe đường biên.
+\end{itemize}
+
+\subsection{Tính toán mô-men cục bộ bằng bảng tổng tích lũy (SAT)}
+
+Nếu tính toán trực tiếp trung bình và phương sai cục bộ bằng cách trượt cửa sổ $k \times k$ qua từng điểm ảnh, chi phí tính toán cho ảnh kích thước $H \times W$ là $\mathcal{O}(H \cdot W \cdot k^2)$. Khi tăng kích thước cửa sổ lên $7 \times 7$ hoặc $11 \times 11$, thời gian xử lý tăng theo hàm bậc hai của kích thước cửa sổ.
+
+Để giải quyết vấn đề này, thuật toán bảng tổng tích lũy (summed-area table --- SAT) hai chiều được áp dụng:
+\begin{equation}
+S(y, x) = \sum_{j \le y} \sum_{i \le x} I(j, i), \quad S_2(y, x) = \sum_{j \le y} \sum_{i \le x} I^2(j, i)
+\label{eq:sat_definition}
+\end{equation}
+Sau khi khởi tạo hai bảng $S$ và $S_2$ với một lượt quét mảng có độ phức tạp $\mathcal{O}(HW)$, tổng các phần tử $\Sigma$ và tổng bình phương $\Sigma_2$ trong cửa sổ $[y-r : y+r, x-r : x+r]$ được tính trong thời gian $\mathcal{O}(1)$ thông qua 4 phép truy vấn góc:
+\begin{equation}
+\Sigma = S(y+r, x+r) - S(y-r-1, x+r) - S(y+r, x-r-1) + S(y-r-1, x-r-1)
+\label{eq:sat_query}
+\end{equation}
+Từ đó, giá trị trung bình $m(x, y) = \frac{\Sigma}{(2r+1)^2}$ và phương sai $v(x, y) = \max\left(\frac{\Sigma_2}{(2r+1)^2} - m(x, y)^2, 0\right)$ được tính với chi phí toàn ảnh là $\mathcal{O}(HW)$, độc lập với bán kính cửa sổ lọc $r$.

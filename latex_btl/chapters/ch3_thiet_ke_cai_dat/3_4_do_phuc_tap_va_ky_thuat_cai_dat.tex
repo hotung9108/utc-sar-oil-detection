@@ -1,0 +1,38 @@
+\section{Phân tích độ phức tạp thuật toán và kỹ thuật tối ưu hóa NumPy}
+\label{sec:do_phuc_tap_ky_thuat}
+
+\subsection{Phân tích độ phức tạp thời gian và không gian bộ nhớ}
+
+Bảng~\ref{tab:do_phuc_tap} tổng hợp phân tích lý thuyết về độ phức tạp thời gian tính toán và bộ nhớ phụ trợ của các khối chức năng chính trong quy trình phát hiện vết dầu loang, với $H, W$ là kích thước ảnh viễn thám ($256 \times 256$), $B = 256$ là số bin histogram, $K$ là số lượng vùng ứng viên liên thông sau phân đoạn, $n = 20\,000$ là số lượng mẫu huấn luyện mô hình, và $d = 8$ là số chiều vector đặc trưng vùng.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Phân tích độ phức tạp thời gian và không gian bộ nhớ của từng bước trong pipeline.}
+\label{tab:do_phuc_tap}
+\begin{tabular}{|l|c|c|p{5.5cm}|}
+\hline
+\textbf{Khối chức năng} & \textbf{Thời gian} & \textbf{Bộ nhớ} & \textbf{Ghi chú kỹ thuật} \\ \hline
+\textbf{1. Bảng tích lũy SAT} & $\mathcal{O}(HW)$ & $\mathcal{O}(HW)$ & Tính 2 bảng $S$ và $S_2$ với đúng một lượt duyệt mảng 2 chiều bằng \texttt{np.cumsum}. \\ \hline
+\textbf{2. Lọc Lee MMSE} & $\mathcal{O}(HW)$ & $\mathcal{O}(HW)$ & Truy vấn 4 góc SAT trong $\mathcal{O}(1)$, hoàn toàn độc lập với kích thước cửa sổ $k \times k$. \\ \hline
+\textbf{3. Phân ngưỡng Otsu} & $\mathcal{O}(HW + B)$ & $\mathcal{O}(B)$ & Quét ảnh tạo histogram $\mathcal{O}(HW)$, quét tìm $t^*$ tối ưu trên $B=256$ bin trong $\mathcal{O}(B)$. \\ \hline
+\textbf{4. Gán nhãn liên thông CCL} & $\mathcal{O}(HW \cdot \alpha)$ & $\mathcal{O}(HW)$ & Kỹ thuật RLE kết hợp Union-Find nén đường đi, $\alpha(\cdot) \le 4$ là hàm nghịch đảo Ackermann. \\ \hline
+\textbf{5. Trích xuất đặc trưng} & $\mathcal{O}(K \cdot \bar{A})$ & $\mathcal{O}(\bar{A})$ & Duyệt theo hộp bao cục bộ mở rộng lề 5px, $\bar{A}$ là diện tích trung bình của hộp bao vùng. \\ \hline
+\textbf{6. Suy luận LinearSVM} & $\mathcal{O}(K \cdot d)$ & $\mathcal{O}(K)$ & Tích vô hướng vector nhanh qua phép nhân ma trận mảng $\mathbf{Z} \mathbf{w}$. \\ \hline
+\textbf{7. Huấn luyện NAG SVM} & $\mathcal{O}(T \cdot n \cdot d)$ & $\mathcal{O}(n \cdot d)$ & $T = 177$ vòng lặp hội tụ, vector hóa toàn bộ phép tính sai số lề trên mảng $20\,000 \times 9$. \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Các khó khăn kỹ thuật và giải pháp tối ưu hóa trên NumPy}
+
+Trong quá trình cài đặt hệ thống bằng NumPy thuần, 4 thách thức kỹ thuật cốt lõi được giải quyết:
+\begin{enumerate}
+    \item \textbf{Hiện tượng tràn số nguyên \texttt{uint8} và triệt tiêu số học:}
+    Tính trực tiếp tổng bình phương trên \texttt{uint8} sẽ tràn qua $255$, trong khi công thức $\E[I^2] - (\E[I])^2$ trên số thực có thể nhận giá trị âm siêu nhỏ ($\sim -10^{-17}$) tại vùng ảnh hằng do sai số dấu phẩy động. Giải pháp: ép kiểu mảng ảnh sang $\texttt{float64} \in [0, 1]$ ngay từ đầu và áp dụng phép kẹp dưới phương sai cục bộ $v(x, y) = \max\left( \frac{\Sigma_2}{(2r+1)^2} - m(x, y)^2, 0 \right)$.
+    \item \textbf{Chuẩn hóa cơ chế đệm biên đối xứng (reflect padding):}
+    Đệm biên bằng $0$ (zero-padding) tạo dải tối nhân tạo ở 4 cạnh khiến Otsu nhận nhầm viền ảnh là dầu, còn đệm lặp điểm ảnh mép (replicate) làm lệch phương sai biên. Giải pháp: áp dụng đệm phản xạ không lặp điểm ảnh mép ($I[-1] = I[1]$), khớp với \texttt{mode='mirror'} của \texttt{scipy.ndimage.generic\_filter}.
+    \item \textbf{Xử lý các ca biên suy biến (degenerate edge cases):}
+    Để tránh lỗi $\texttt{NaN} / \texttt{Inf}$: (i) với ảnh hằng ($\sigma_T^2 \le 10^{-12}$), Otsu trả về mặt nạ toàn $0$ và $\eta = 0.0$; (ii) với vùng suy biến thẳng hàng ($\lambda_1 = 0$), độ thuôn dài cộng hằng số $\varepsilon = 10^{-6}$ vào cả tử và mẫu $\sqrt{(\lambda_2 + \varepsilon)/(\lambda_1 + \varepsilon)}$; (iii) với khung ảnh ngập dầu làm rỗng vành đai 5px, $\mu_{\text{bg}}$ tự động chuyển sang tính trên phần nền còn lại hoặc trung bình toàn ảnh.
+    \item \textbf{Tăng tốc tính toán bằng kỹ thuật vector hóa và hộp bao cục bộ:}
+    Thay vì duyệt toàn bộ khung ảnh $256 \times 256$ cho từng vùng liên thông (mất $>1.5\text{ s}$ cho ảnh 50 ứng viên), phạm vi tính gradient Sobel và phép giãn vành đai được cắt gọn vào hộp bao cục bộ mở rộng lề 5px ($[y_{\min}-5 : y_{\max}+6, x_{\min}-5 : x_{\max}+6]$), giảm thời gian trích xuất xuống dưới $8\text{ ms/ảnh}$.
+\end{enumerate}

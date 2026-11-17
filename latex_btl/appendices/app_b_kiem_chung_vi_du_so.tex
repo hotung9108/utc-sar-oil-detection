@@ -1,0 +1,61 @@
+\section{Mã nguồn Python kiểm chứng ví dụ số tính tay bộ lọc Lee}
+
+Đoạn mã Python dưới đây (trích từ \texttt{scripts/worked\_example.py}) sử dụng lớp \texttt{Fraction} trong thư viện chuẩn của Python để tính toán chính xác các bước phân số hữu tỉ trong ví dụ số tính tay Chương~\ref{chap:co_so_ly_thuyet}, đồng thời đối chiếu trực tiếp với hàm \texttt{core.filter\_image} (NumPy) và bản tham chiếu \texttt{SciPy}.
+
+\begin{lstlisting}[language=Python]
+from fractions import Fraction
+import numpy as np
+from sar_oil import core, reference
+
+# 1. Khoi tao ma tran mau 5x5 voi gia tri nen 0.2 va tam 0.9
+matrix = np.full((5, 5), 0.2, dtype=np.float64)
+matrix[2, 2] = 0.9
+
+# 2. Tinh toan chinh xac bang so huu ti Fraction cho diem tam (2, 2)
+# Cua so 3x3 tai tam gom tam gia tri 1/5 va mot gia tri 9/10
+val_bg = Fraction(1, 5)
+val_center = Fraction(9, 10)
+pixels = [val_bg] * 8 + [val_center]
+
+# a. Trung binh cuc bo
+m = sum(pixels) / Fraction(9, 1) # m = 5/18
+
+# b. Trung binh binh phuong va phuong sai cuc bo
+e_x2 = sum(p * p for p in pixels) / Fraction(9, 1) # 113/900
+v = e_x2 - m * m                                    # v = 98/2025
+
+# c. Phuong sai nhieu uoc luong voi L = 4
+noise = (m * m) / Fraction(4, 1)                   # noise = 25/1296
+
+# d. Trong so thich nghi Lee MMSE
+w = (v - noise) / v                                # w = 943/1568
+
+# e. Gia tri dau ra sau loc tai tam
+y_exact = m + w * (val_center - m)                 # y = 1643/2520
+y_float_hand = float(y_exact)                      # ~ 0.651984126984127
+
+# 3. Chay ham tu cai dat bang NumPy qua Bang tong tich luy SAT
+out_numpy = core.filter_image(
+    matrix, {"name": "lee", "size": 3, "looks": 4}
+)
+
+# 4. Chay ban doi chung tham chieu su dung SciPy generic_filter
+out_reference = reference.filter_image(
+    matrix, {"name": "lee", "size": 3, "looks": 4}
+)
+
+# 5. So sanh do lech so hoc
+diff_hand_vs_numpy = abs(out_numpy[2, 2] - y_float_hand)
+diff_numpy_vs_scipy = np.max(np.abs(out_numpy - out_reference))
+mse_numpy_vs_scipy = np.mean((out_numpy - out_reference) ** 2)
+
+print(f"Gia tri phan so ly thuyet: {y_exact} = {y_float_hand:.12f}")
+print(f"Gia tri ham NumPy tinh ra: {out_numpy[2, 2]:.12f}")
+print(f"Do lech giua tinh tay va NumPy: {diff_hand_vs_numpy:.3e}")
+print(f"Sai so tuyet doi lon nhat so voi SciPy: {diff_numpy_vs_scipy:.3e}")
+print(f"MSE so voi SciPy: {mse_numpy_vs_scipy:.3e}")
+
+assert diff_hand_vs_numpy < 1e-15, "Do lech tinh tay vuot nguong!"
+assert diff_numpy_vs_scipy < 1e-15, "Do lech voi SciPy vuot nguong!"
+print("Kiem chung hoan toan thanh cong!")
+\end{lstlisting}
