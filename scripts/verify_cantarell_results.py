@@ -70,7 +70,9 @@ def main():
         X, y = np.asarray(samples['features']), np.asarray(samples['labels'])
         require(len(X) == len(y) == len(samples['rows']) == row['training_regions'], 'Training rows incomplete')
         require(np.bincount(y,minlength=2).tolist() == row['class_counts'], 'Training class counts mismatch')
-        mean, scale = X.mean(axis=0), X.std(axis=0)
+        # Match RegionModel's selected-column array layout/reduction order exactly.
+        selected_X = X[:,saved['columns']]
+        mean, scale = selected_X.mean(axis=0), selected_X.std(axis=0)
         scale[scale<1e-12] = 1
         require(np.array_equal(mean, saved['mean']) and np.array_equal(scale, saved['scale']), 'Scaler differs from train-only statistics')
     require(selection['validation_sha256']==sha(BASE/'validation.json'), 'Selection validation hash changed')

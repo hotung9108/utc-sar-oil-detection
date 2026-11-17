@@ -1,5 +1,6 @@
 """Run with: uv run --frozen --extra web streamlit run streamlit_app.py."""
 import json
+import re
 
 import streamlit as st
 
@@ -7,6 +8,21 @@ from scripts.demo_engine import SELECTIONS
 from scripts.streamlit_service import (
     ROOT, assess_bytes, download_zip, examples, fingerprint, infer_bytes,
 )
+
+
+def show_evidence_markdown(path):
+    """Serve local figures through Streamlit instead of broken relative web URLs."""
+    source = path.read_text(encoding='utf-8')
+    offset = 0
+    for match in re.finditer(r'!\[([^\]]*)\]\(([^)]+)\)', source):
+        st.markdown(source[offset:match.start()])
+        asset = (path.parent / match.group(2)).resolve()
+        if asset.is_relative_to(ROOT.resolve()) and asset.is_file():
+            st.image(str(asset), caption=match.group(1), width='stretch')
+        else:
+            st.caption(f'Hình chưa có cục bộ: {match.group(1)}')
+        offset = match.end()
+    st.markdown(source[offset:])
 
 st.set_page_config(page_title='SAR • Phát hiện dầu tràn', page_icon='🌊', layout='wide')
 st.title('Phát hiện dầu tràn từ ảnh SAR')
@@ -207,9 +223,25 @@ elif page == 'Bằng chứng thực nghiệm':
         if evaluated.exists():
             evaluation = json.loads(evaluated.read_text(encoding='utf-8'))
             st.markdown('**Kết quả test sau khi khóa lựa chọn**')
+            st.caption('filtered_adaptive là nhánh có đủ lọc speckle, góc tới và ngưỡng thích nghi. primary là winner theo giao thức ban đầu, có thể không lọc. Các nhánh paired giữ nguyên mô hình và chỉ đổi đầu vào bức xạ.')
             st.dataframe([{'vai trò': name, **{k:r['metrics']['numpy'][k]
                 for k in ('precision', 'recall', 'f1', 'fp_per_image')}}
                 for name, r in evaluation['roles'].items()], width='stretch')
+            for name, filename in [('Winner ban đầu','angle_bootstrap.json'),
+                                   ('Nhánh có lọc speckle','angle_bootstrap_filtered.json')]:
+                path = ROOT/'results/cantarell'/filename
+                if path.exists():
+                    interval = json.loads(path.read_text())
+                    st.write({'ablation':name, 'CI 95% của F1 gamma0 − sigma0':interval['ci95'],
+                              'số cảnh':len(interval['scenes'])})
+            st.caption('CI chứa 0 không chứng minh gamma0 cải thiện F1. Đây là phép đo trên mô hình cố định và số cảnh ít, không phải kết luận phổ quát.')
+            diagnostics_path = ROOT/'results/cantarell/size_diagnostics.json'
+            if diagnostics_path.exists():
+                diagnostics = json.loads(diagnostics_path.read_text())
+                st.markdown('**Đối tượng nhỏ và bỏ sót — nhánh có lọc**')
+                st.dataframe([{'diện tích GT (pixel)':name, **row}
+                    for name,row in diagnostics['roles']['filtered_adaptive']['totals'].items()], width='stretch')
+                st.caption('Ứng viên tối thiểu 64 pixel không thể ghép IoU ≥0,5 với GT dưới 32 pixel. Các GT này vẫn được giữ trong điểm toàn tập; không loại để làm đẹp số liệu.')
         else:
             st.caption('Chưa có kết quả test Cantarell. Không dùng test để lựa chọn cấu hình.')
     path = ROOT / 'results/sos/evaluation.json'
@@ -232,7 +264,7 @@ elif page == 'Bằng chứng thực nghiệm':
         with st.expander(title):
             path = ROOT / relative
             if path.exists():
-                st.markdown(path.read_text(encoding='utf-8'))
+                show_evidence_markdown(path)
             else:
                 st.info(f'Chưa có {relative}')
 else:
@@ -247,7 +279,7 @@ else:
 
 **QPOSD:** trang Dầu và look-alike chạy suy luận trên ảnh test UAVSAR T11 cục bộ đã xác minh; dùng mô hình riêng, không áp dụng trực tiếp cho PNG Sentinel-1.
 
-**Cantarell:** nhánh Sentinel-1 vật lý riêng, cần hoàn tất kiểm chứng và mô hình trước khi đưa vào giao diện.
+**Cantarell:** trang Sentinel-1 vật lý dùng nhánh đã xác minh có đủ Lee, gamma0, Niblack và SVM. Chất lượng test còn thấp; nhánh không lọc có điểm cao hơn và được giữ trong bảng đối chứng. Gió ERA5 là thông tin bối cảnh, không phải nhãn look-alike.
 
 Kết quả hiện có chưa chứng minh hiệu quả cảnh báo tại biển miền Trung. Ứng dụng không suy ra tàu xả thải hoặc nguyên nhân vùng tối từ một mask.
 ''')

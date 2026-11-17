@@ -1,6 +1,6 @@
 # Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
-Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 6 notebook bổ sung; chạy hàng loạt bằng CLI.
+Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 7 notebook bổ sung; chạy hàng loạt bằng CLI.
 
 Giao diện Streamlit: `uv run --frozen --extra web streamlit run streamlit_app.py`.
 Mở `http://127.0.0.1:8501`: chọn ảnh mẫu hoặc tải ảnh, xem các bước xử lý,
@@ -18,11 +18,25 @@ SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 
 
 Nhánh **Cantarell vật lý** đã xác minh đủ 173 lần chuẩn bị dữ liệu, giữ 154 mẫu
 hợp lệ (94 train / 35 validation / 25 test), theo 15/4/5 cảnh. Manifest được commit
-trước chấm điểm. Đã chạy đủ 50 cấu hình ứng viên trên validation với hai backend;
-đây chưa phải kết quả detector sau phân lớp. Xem [notebook 11 đã chạy](notebooks/external/11_cantarell_physical_candidates.ipynb)
-và `results/cantarell/screen.json`. Mã train/validation: `scripts/train_cantarell.py`;
-mã test và bootstrap góc tới: `scripts/evaluate_cantarell.py`. Test chỉ chạy sau
-khi lựa chọn model và các model đã được commit; không gọi mã đã viết là kết quả đã chạy.
+trước chấm điểm. Đã chạy đủ 50 cấu hình ứng viên và 84 cặp mô hình NumPy/thư viện,
+khóa lựa chọn trước test, đánh giá 25 ảnh test với 7 vai trò đối chứng và kiểm tra
+lại 175 mask đầu ra. Xem [notebook 11](notebooks/external/11_cantarell_physical_candidates.ipynb),
+[notebook 12](notebooks/external/12_cantarell_models_and_angle.ipynb) và `results/cantarell/`.
+
+Winner ban đầu gamma0 + không lọc + Niblack + SVM đạt test F1 **0,05891**.
+Nhánh có đủ Lee + gamma0 + Niblack + SVM đạt **0,03825** và là nhánh được chạy
+ở trang **Sentinel-1 vật lý**. Nhánh có lọc được bổ sung vì yêu cầu môn học sau khi
+đã xem một phần validation, trước mọi điểm test; không thay thế hoặc che winner ban đầu.
+Hai bootstrap ghép cặp theo cảnh đều chưa chứng minh góc tới cải thiện F1.
+358/545 đối tượng GT dưới 32 pixel không thể khớp IoU≥0,5 với ứng viên tối thiểu
+64 pixel; chúng vẫn được giữ trong điểm toàn tập. Ngưỡng 64 là giới hạn của giao thức,
+không phải giá trị tối ưu đã được chứng minh cho Cantarell.
+
+Mã train: `scripts/train_cantarell.py`; lựa chọn bổ sung:
+`scripts/select_cantarell_required_filter.py`; test: `scripts/evaluate_cantarell.py`;
+kiểm tra kết quả: `scripts/verify_cantarell_results.py`; phân tích kích thước:
+`scripts/analyze_cantarell_failures.py`. Không chỉnh tham số theo test rồi gọi là
+đánh giá độc lập. Dữ liệu này chưa kiểm chứng khả năng cảnh báo tại Việt Nam.
 
 ## Chạy
 
