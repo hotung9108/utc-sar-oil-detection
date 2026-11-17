@@ -52,7 +52,7 @@ Không lấy việc “có góc tới ở Cantarell” cộng với “có look-
 | Notebook trực quan | 12 notebook đã chạy, 31 hình; [audit triển khai](management/project_streamlit_acceptance.json) |
 | Streamlit | Có SOS tải ảnh, QPOSD mẫu, Cantarell mẫu; xuất mask/overlay/đặc trưng; đánh giá GT sau suy luận |
 | Kiểm thử | 62 kiểm thử đạt ở đợt nghiệm thu phần mềm; kiểm tra mới trong lần đối chiếu này chỉ xác minh tài liệu/nguồn và bảng số liệu, không gọi là huấn luyện lại |
-| Kiểm tra trình duyệt | AppTest kiểm chứng tương tác; chưa có kiểm tra bố cục trực tiếp trong trình duyệt do giới hạn công cụ |
+| Kiểm tra trình duyệt | Bổ sung cùng ngày sau cải tiến UX: 13 kiểm thử web đạt; Edge headless chạy mẫu thật SOS/QPOSD/Cantarell, mở đối chiếu/bằng chứng/trợ giúp; đã xem ảnh chụp desktop và trang đầu rộng 390 px. Xem [cách tái kiểm tra](STREAMLIT.md). Chưa kiểm tra mọi thiết bị hoặc usability với người dùng thực tế |
 | NASA #6 | Là mã tham chiếu trong đề môn học. [Khảo sát nguồn NASA](NGUON_DU_LIEU_SAR_DAU_TRAN.md) không đồng nghĩa dự án được NASA chứng nhận hoặc đáp ứng một chuẩn NASA riêng |
 
 ## 5. Phần cần làm để có cơ sở tuyên bố đầy đủ hơn
@@ -61,6 +61,6 @@ Không lấy việc “có góc tới ở Cantarell” cộng với “có look-
 2. Kiểm tra tài liệu nguồn nhãn để xác định các nguyên nhân look-alike được đại diện. Không tự suy nhãn nguyên nhân từ ảnh tối hoặc tốc độ gió.
 3. Nếu tuyên bố ứng dụng miền Trung: cần case study có ảnh thực và nhãn độc lập theo sự kiện, cộng phép đo thời gian xử lý/khả năng phát hiện sớm. Ảnh Việt Nam không nhãn chỉ cho minh họa, không cho P/R/F1.
 4. Nếu tiếp tục tối ưu diện tích ứng viên hay đặc trưng: dùng train/validation và giao thức phiên bản mới. Test hiện tại đã được xem; muốn tuyên bố cải tiến độc lập cần holdout mới hoặc thiết kế đánh giá phù hợp, không tiếp tục tune theo test cũ.
-5. Rà soát giao diện trực quan và luồng tải tệp trên trình duyệt thực trước khi gọi demo là đã kiểm tra đầy đủ giao diện.
+5. Kiểm tra giao diện cơ bản đã được bổ sung ở lần cải tiến UX cùng ngày: Edge chạy ba nhánh, AppTest kiểm tra upload và dữ liệu lỗi. Muốn tuyên bố trải nghiệm đã được người dùng xác nhận, cần thêm thử nghiệm sử dụng với người dùng thực tế; không suy điều đó từ kiểm thử tự động.
 
 AIS/trôi dầu có thể phát triển sau; không phải lý do đánh trượt ba chức năng bắt buộc. Không có căn cứ để tự chấm điểm tối đa hoặc tự gắn phần trăm đạt đề.

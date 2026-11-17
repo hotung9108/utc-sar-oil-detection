@@ -3,6 +3,7 @@ import json
 import re
 
 import streamlit as st
+from scripts import streamlit_ux as ux
 
 from scripts.demo_engine import SELECTIONS
 from scripts.streamlit_service import (
@@ -25,18 +26,25 @@ def show_evidence_markdown(path):
     st.markdown(source[offset:])
 
 st.set_page_config(page_title='SAR • Phát hiện dầu tràn', page_icon='🌊', layout='wide')
-st.title('Phát hiện dầu tràn từ ảnh SAR')
-st.caption('Đề 18 · Xử lý ảnh NumPy · Kết quả thực nghiệm có nhãn tham chiếu')
+st.caption('PHÁT HIỆN DẦU TRÀN TỪ ẢNH SAR · Đề 18 · Xử lý ảnh NumPy')
 
 with st.sidebar:
     st.header('Không gian làm việc')
     page = st.radio('Chức năng', ['Phân tích ảnh', 'Dầu và look-alike', 'Sentinel-1 vật lý', 'Bằng chứng thực nghiệm', 'Phạm vi và hướng dẫn'])
     st.caption('Ứng dụng phục vụ nghiên cứu và báo cáo môn học. Chưa được kiểm chứng cho cảnh báo ngoài thực địa.')
+    with st.expander('Bắt đầu ở đâu?'):
+        st.write('Lần đầu sử dụng: chọn **Phân tích ảnh**, giữ ảnh mẫu rồi bấm phân tích. Muốn hiểu các thuật ngữ, mở **Phạm vi và hướng dẫn**.')
+
+ux.introduction(page)
 
 if page == 'Phân tích ảnh':
-    st.subheader('Tìm vùng nghi dầu')
-    selection_name = st.selectbox('Pipeline đã lưu', list(SELECTIONS))
+    st.subheader('1. Chọn ảnh và cách xử lý')
+    with st.expander('Cách xử lý · mặc định dùng SOS đã đánh giá test'):
+        selection_name = st.selectbox('Pipeline đã lưu', list(SELECTIONS))
+        ux.explain_config(SELECTIONS[selection_name])
     selection = SELECTIONS[selection_name]
+    if 'chỉ validation' in selection_name:
+        st.info('Đây là nhánh bổ sung mới đánh giá validation. Không coi điểm của nhánh này là kết quả test độc lập.')
     source = st.radio('Nguồn ảnh', ['Ảnh mẫu có nhãn', 'Tải ảnh của bạn'], horizontal=True)
     data, truth, input_name = None, None, None
     if source == 'Ảnh mẫu có nhãn':
@@ -57,8 +65,9 @@ if page == 'Phân tích ảnh':
         if truth_upload:
             truth = truth_upload.getvalue()
     st.caption('Không tự đổi kích thước. Tối đa 1.048.576 pixel và 16 MB. PNG không chứa đủ thông tin để hiệu chỉnh góc tới.')
+    valid_input = ux.preview(data)
     try:
-        identity = fingerprint(data, selection) if data else None
+        identity = fingerprint(data, selection) if valid_input else None
     except (OSError, ValueError, KeyError) as exc:
         st.error(f'Không đọc được cấu hình/mô hình: {exc}')
         identity = None
@@ -75,6 +84,8 @@ if page == 'Phân tích ảnh':
             st.error(f'Không thể phân tích: {exc}')
     result = st.session_state.get('result')
     if result is not None:
+        st.subheader('2. Đọc kết quả phân tích')
+        ux.result_summary(result)
         regions = result['metadata']['regions']
         cols = st.columns(3)
         cols[0].metric('Vùng ứng viên', len(regions))
@@ -82,12 +93,14 @@ if page == 'Phân tích ảnh':
         cols[2].metric('Thời gian xử lý', f"{result['metadata']['seconds_including_preview']:.3f} s")
         visual, feature_tab, eval_tab = st.tabs(['Ảnh từng bước', 'Đặc trưng và điểm', 'Đối chiếu nhãn'])
         with visual:
+            st.caption('Đọc từ ảnh gốc → lọc nhiễu → vùng tối → mask dự đoán → lớp phủ. Trắng trong mask là dầu dự đoán; đỏ trong lớp phủ là cùng vùng đó trên ảnh gốc.')
             columns = st.columns(3)
             for i, (key, caption) in enumerate([
                 ('image', 'Ảnh đầu vào'), ('filtered', 'Sau lọc speckle'),
                 ('candidates', 'Vùng tối ứng viên'), ('mask', 'Mask kết quả'), ('overlay', 'Vùng nghi dầu (đỏ)')]):
                 columns[i % 3].image(result[key].astype(float), caption=caption, clamp=True, width='stretch')
         with feature_tab:
+            ux.feature_help()
             st.caption('Score là điểm quyết định, không phải xác suất. Nhãn âm không xác định nguyên nhân look-alike.')
             st.dataframe([{'id': r['id'], 'oil': r['oil'], 'score': r['score'], **r['features']}
                           for r in regions], width='stretch')
@@ -98,17 +111,21 @@ if page == 'Phân tích ảnh':
             if truth:
                 try:
                     evaluation = assess_bytes(result, truth)
+                    ux.truth_comparison(result, truth)
                     metrics = evaluation['metrics']
                     columns = st.columns(3)
                     for col, name in zip(columns, ['precision', 'recall', 'f1']):
                         value = metrics[name]
                         col.metric(f'Object {name}', 'Không xác định' if value is None else f'{value:.4f}')
-                    st.json(metrics)
+                    ux.metric_help(metrics)
+                    with st.expander('Tất cả số đo của ảnh này'):
+                        st.json(metrics)
                     st.caption('Ghép đối tượng một-một IoU ≥0,5. Mask nhãn chỉ được dùng sau suy luận. Điểm một ảnh không thay thế đánh giá toàn tập.')
                 except (OSError, ValueError) as exc:
                     st.error(f'Không thể đánh giá mask: {exc}')
             else:
                 st.info('Chưa có mask tham chiếu; không tính độ chính xác từ ảnh chưa có nhãn.')
+        st.caption('ZIP gồm ảnh gốc, ảnh lọc, ứng viên, mask, lớp phủ và regions.json chứa đặc trưng/cấu hình/đánh giá.')
         st.download_button('Tải kết quả ZIP', download_zip(result, evaluation),
                            file_name='sar_result.zip', mime='application/zip')
 
@@ -116,6 +133,7 @@ elif page == 'Dầu và look-alike':
     from scripts import streamlit_qposd as qposd
     st.subheader('QPOSD — dầu và vùng tương tự dầu')
     st.caption('UAVSAR T11 tuyến tính. Đỏ: dầu; xanh: look-alike chung. Chưa phân biệt gió yếu, màng sinh học và mưa.')
+    st.write('Chọn một ảnh test rồi bấm **Phân tích QPOSD**. Lớp tương tự dầu là các vùng tối dễ gây nhầm; không có nghĩa đã xác định nguyên nhân gây tối.')
     try:
         available = qposd.samples()
         if not available:
@@ -130,11 +148,16 @@ elif page == 'Dầu và look-alike':
                     st.session_state['qposd_result'] = qposd.run_sample(number)
             result = st.session_state.get('qposd_result')
             if result is not None:
+                st.info('Đỏ = dầu dự đoán · Xanh lá = tương tự dầu dự đoán. Các vùng không tô màu chưa được nhận là một trong hai lớp; vẫn có thể có vùng bị bỏ sót.')
                 columns = st.columns(3)
                 for col, key, title in zip(columns, ['image', 'feature_image', 'overlay'],
                                            ['T11 hiển thị', 'Ảnh trích đặc trưng', 'Dầu / look-alike']):
                     col.image(result[key], caption=title, width='stretch', clamp=True)
-                st.dataframe(result['rows'], width='stretch')
+                with st.expander('Xem vùng tối trước khi phân lớp'):
+                    st.image(result['candidate_mask'].astype(float), caption='Trắng = ứng viên; chưa phải kết luận dầu', width='stretch')
+                with st.expander('Đặc trưng và quyết định từng vùng'):
+                    ux.feature_help()
+                    st.dataframe(result['rows'], width='stretch')
                 evaluation = qposd.assess_sample(result)
                 st.markdown('**Đánh giá phát hiện sau suy luận**')
                 metrics = evaluation['metrics']
@@ -147,6 +170,7 @@ elif page == 'Dầu và look-alike':
                 with st.expander('Ghép vùng và nhầm lẫn chi tiết'):
                     st.json(metrics)
                 st.caption('Điểm trên vùng GT có sẵn khác với điểm phát hiện đầu-cuối ở đây. Nhãn không tham gia suy luận.')
+                st.caption('TP = phát hiện đúng; FP = báo nhầm; FN = bỏ sót. Macro-F1 là trung bình F1 các lớp theo quy ước đánh giá; xem chi tiết khi có lớp không xác định. ZIP giữ riêng dầu và tương tự dầu, không gộp thành một lớp.')
                 st.download_button('Tải kết quả QPOSD', qposd.export_zip(result, evaluation),
                                    file_name=f'qposd_{number}.zip', mime='application/zip')
     except (OSError, ValueError, KeyError) as exc:
@@ -156,6 +180,8 @@ elif page == 'Sentinel-1 vật lý':
     from scripts import streamlit_physical as physical
     st.subheader('Sentinel-1 — góc tới và ngưỡng thích nghi')
     st.caption('Nhánh Cantarell: gamma0 + Niblack + mô hình được chọn trên validation. Gió ERA5 chỉ là thông tin bối cảnh.')
+    with st.expander('Góc tới và gió giúp hiểu ảnh như thế nào?'):
+        st.write('Góc tới là góc radar chiếu xuống bề mặt. Gamma0 hiệu chỉnh diện tích hình học trước lọc Lee và tìm vùng tối bằng Niblack. Gió ERA5 đi kèm để hiểu điều kiện quan sát; hiện không tham gia phân lớp và không xác nhận dầu. Dữ liệu ở Cantarell, chưa phải biển miền Trung.')
     if not physical.ready():
         st.info('Thực nghiệm Cantarell chưa hoàn tất đánh giá test. Chế độ suy luận vật lý sẽ khả dụng khi có kết quả đã kiểm chứng.')
     else:
@@ -171,19 +197,29 @@ elif page == 'Sentinel-1 vật lý':
                     st.session_state['physical_result'] = physical.run_sample(sample['sample'])
             result = st.session_state.get('physical_result')
             if result is not None:
+                ux.result_summary(result)
                 columns = st.columns(3)
                 for col, field, title in zip(columns, ['image', 'filtered', 'overlay'],
                                              ['Gamma0 hiển thị', 'Sau lọc và chuẩn hóa', 'Vùng nghi dầu']):
                     col.image(result[field], caption=title, width='stretch', clamp=True)
-                st.write({'góc tới (độ)': result['metadata']['incidence_degrees_min_max'],
-                          'gió ERA5 (m/s)': result['metadata']['wind_speed_m_s']})
-                st.dataframe([{'id':r['id'], 'oil':r['oil'], 'score':r['score'], **r['features']}
-                              for r in result['metadata']['regions']], width='stretch')
+                angles = result['metadata']['incidence_degrees_min_max']
+                wind = result['metadata']['wind_speed_m_s']
+                st.write(f'Góc tới trong ảnh: **{angles[0]:.2f}–{angles[1]:.2f}°** · Gió ERA5: **{wind:.2f} m/s**'
+                         if wind is not None else f'Góc tới: **{angles[0]:.2f}–{angles[1]:.2f}°** · Chưa có gió đi kèm')
+                with st.expander('Xem vùng tối và mask cuối'):
+                    before, after = st.columns(2)
+                    before.image(result['candidates'].astype(float), caption='Ứng viên trước phân lớp', width='stretch')
+                    after.image(result['mask'].astype(float), caption='Mask dầu sau phân lớp', width='stretch')
+                with st.expander('Đặc trưng và quyết định từng vùng'):
+                    ux.feature_help()
+                    st.dataframe([{'id':r['id'], 'oil':r['oil'], 'score':r['score'], **r['features']}
+                                  for r in result['metadata']['regions']], width='stretch')
                 evaluation = physical.assess_sample(result)
                 columns = st.columns(3)
                 for col, name in zip(columns, ['precision','recall','f1']):
                     value = evaluation['metrics'][name]
                     col.metric(f'Object {name}', 'Không xác định' if value is None else f'{value:.4f}')
+                ux.metric_help(evaluation['metrics'])
                 with st.expander('Số đếm và đánh giá chi tiết'):
                     st.json(evaluation['metrics'])
                 st.download_button('Tải kết quả Sentinel-1', download_zip(result, evaluation),
@@ -192,8 +228,9 @@ elif page == 'Sentinel-1 vật lý':
             st.error(f'Không thể xử lý dữ liệu vật lý: {exc}')
 
 elif page == 'Bằng chứng thực nghiệm':
+    ux.evidence_overview()
     st.subheader('Kết quả đã lưu của dự án')
-    with st.expander('Sentinel-1 vật lý — Cantarell', expanded=True):
+    with st.expander('Sentinel-1 vật lý — Cantarell', expanded=False):
         physical = ROOT / 'docs/management/cantarell_physical_verification.json'
         screen = ROOT / 'results/cantarell/screen.json'
         trained = ROOT / 'results/cantarell/validation.json'
@@ -268,6 +305,7 @@ elif page == 'Bằng chứng thực nghiệm':
             else:
                 st.info(f'Chưa có {relative}')
 else:
+    ux.guide()
     st.subheader('Phạm vi sử dụng')
     st.markdown('''
 1. Chọn ảnh mẫu hoặc tải PNG/JPEG SAR hiển thị 8-bit lên.
