@@ -2,7 +2,14 @@
 
 Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 5 notebook bổ sung; chạy hàng loạt bằng CLI.
 
-Demo desktop: `uv run --frozen --extra demo python scripts/demo_qt.py`.
+Giao diện Streamlit: `uv run --frozen --extra web streamlit run streamlit_app.py`.
+Mở `http://127.0.0.1:8501`: chọn ảnh mẫu hoặc tải ảnh, xem các bước xử lý,
+đánh giá mask tùy chọn và tải ZIP kết quả. Xem [hướng dẫn Streamlit](docs/STREAMLIT.md).
+
+Theo phạm vi cập nhật ngày 17/11/2026, việc hoàn thiện tập trung vào mã nguồn,
+dữ liệu, thực nghiệm, notebook và Streamlit; không làm thêm video, slide hoặc báo cáo.
+
+Demo desktop cũ vẫn có thể chạy: `uv run --frozen --extra demo python scripts/demo_qt.py`.
 Xem [hướng dẫn GUI](docs/DEMO_GUI.md). Nhánh bổ sung trên Sentinel-1 gốc và
 gió ERA5 nằm ở [notebook 07](notebooks/external/07_sentinel_calibration.ipynb),
 chưa thay thế đánh giá phát hiện dầu có nhãn của SOS.
