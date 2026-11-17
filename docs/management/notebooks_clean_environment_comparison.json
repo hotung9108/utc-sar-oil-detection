@@ -1,0 +1,61 @@
+{
+  "scope": "Clean-environment execution compared to committed prior notebook sources and outputs; execution metadata excluded",
+  "rows": [
+    {
+      "notebook": "notebooks/01_data_and_ground_truth.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/02_filter_threshold_benchmark.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/03_regions_and_features.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/04_cart_svm_numpy.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/05_final_pipeline.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/07_sentinel_calibration.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/08_qposd_audit.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/10_qposd_classification_detection.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    },
+    {
+      "notebook": "notebooks/external/11_cantarell_physical_candidates.ipynb",
+      "sources_equal": true,
+      "outputs_equal": true
+    }
+  ],
+  "all_equal": true
+}

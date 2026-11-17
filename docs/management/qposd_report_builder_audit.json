@@ -1,0 +1,15 @@
+{
+  "scope": "Report generation readiness only; not a real QPOSD test evaluation or executed notebook",
+  "checks": {
+    "python_compile_report": true,
+    "synthetic_render_with_classification_and_detection_fields": true,
+    "real_report_refused_without_evaluation_json": true
+  },
+  "sources_sha256": {
+    "scripts/report_qposd.py": "9aafe4769968b713d0a2b6c352519bb074be1034b65c5bb7e6252d36b76ff7db",
+    "scripts/build_qposd_evaluation_notebook.py": "d2789d542c646b11ea1bd380ceb850b50baa5a1b0d558ecff84365d6a5546bc7"
+  },
+  "real_evaluation_complete": false,
+  "real_report_generated": false,
+  "real_notebook_executed": false
+}

@@ -11,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class StructureTests(unittest.TestCase):
     def test_no_active_legacy_imports(self):
-        for path in (ROOT / "src").rglob("*.py"):
+        active = list((ROOT / "src").rglob("*.py"))
+        active += list((ROOT / "scripts").glob("*.py"))
+        active += [ROOT / "streamlit_app.py"]
+        for path in active:
             for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
                 if isinstance(node, ast.Import):
                     names = [item.name for item in node.names]
@@ -41,7 +44,7 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(config["tool"]["pytest"]["ini_options"]["testpaths"], ["tests"])
         self.assertIn("legacy", config["tool"]["ruff"]["extend-exclude"])
         self.assertFalse((ROOT / "app.py").exists())
-        self.assertFalse((ROOT / "streamlit_app.py").exists())
+        self.assertIn("legacy", config["tool"]["pytest"]["ini_options"]["norecursedirs"])
 
     def test_sos_assignment_owners_and_dependencies(self):
         tasks = json.loads((ROOT / "docs/management/sos_tasks.json").read_text(encoding="utf-8"))

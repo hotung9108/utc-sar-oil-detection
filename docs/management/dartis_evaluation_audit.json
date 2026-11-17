@@ -1,0 +1,9 @@
+{
+  "all_2290_images_present_and_hashed": true,
+  "per_image_counts_reaggregated": true,
+  "model_and_protocol_hashes_match": true,
+  "evaluation_sha256": "7c631987279c78b263f780fd43a2f53a42b791a4121130f68648b9282ceae7fe",
+  "report_sha256": "94227d4c644de6593a19335b26724417bedbf89e5e8621ec8fa5baf3934dd9f7",
+  "validator_sha256": "8a1b0c0bfb4daac333285c98a1fd35e0f627f5b6bd312b0abdc75f721a7171ca",
+  "scope": "Evidence consistency, not independent validation of publisher labels"
+}

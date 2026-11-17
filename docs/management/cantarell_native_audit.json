@@ -1,0 +1,82 @@
+{
+  "mapping_audit_sha256": "25b6b2bec62785e5eff04f4d790458dcd426de8a6095d1001379137da7bab750",
+  "script_sha256": "aa61999a15e119b10de32fce3b03bd6d6c177b55033aa00c08ae6580dfd692da",
+  "download": {
+    "source_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/measurement/iw-vv.tiff",
+    "scene_shape": [
+      16741,
+      25634
+    ],
+    "origin_line_pixel": [
+      6144,
+      9216
+    ],
+    "shape": [
+      2048,
+      3072
+    ],
+    "dtype": "uint16",
+    "blocks": [
+      165,
+      166,
+      167,
+      191,
+      192,
+      193
+    ],
+    "ranges": [
+      {
+        "offset": 0,
+        "bytes": 16384,
+        "sha256": "ae0e0461f2e6ebfd8f9e6ed38936c22ddf8497f7dace9c3e72901208011007f6"
+      },
+      {
+        "offset": 317341460,
+        "bytes": 1090631,
+        "sha256": "2d7d5e5d2a8c5079ac590794b27496f4e51cbfe705dded70b0907926611c7c22"
+      },
+      {
+        "offset": 318432099,
+        "bytes": 1081775,
+        "sha256": "5b53779a46ef27eb1d18bf224cda34074b352a8a3ae1f41fa95ec01428854624"
+      },
+      {
+        "offset": 319513882,
+        "bytes": 1063674,
+        "sha256": "0958fb5f7beaa5ac12f433a0142f686092570150e92018af1168ce81065c25bf"
+      },
+      {
+        "offset": 343914653,
+        "bytes": 1102756,
+        "sha256": "5c3fded42610658bf046ddf07aada7f10d8a010ba6a7238f80ff4c19d0a77487"
+      },
+      {
+        "offset": 345017417,
+        "bytes": 1099341,
+        "sha256": "b9ea09f6f2759fa09053c3d663f81e4e7031437b71e7512223c66465e1210408"
+      },
+      {
+        "offset": 346116766,
+        "bytes": 1079205,
+        "sha256": "81305fa5c0b61ee78498075f8a3b38175da7aa6f82341a845ec94deba2f4f843"
+      }
+    ],
+    "downloaded_bytes": 6533766,
+    "sha256": "3f22a33f679916aeca4311a34a77ea82250a32df9dfc580ba5f2403c510c7299"
+  },
+  "resampling_max_abs_error": 7.105427357601002e-15,
+  "comparison": {
+    "assumption": "Exported float values compared AS IF they were VV sigma0 dB; not confirmed units.",
+    "pearson_correlation": 0.5253170258983997,
+    "median_db_difference_under_assumption": 0.4710577648142058,
+    "rmse_under_assumption": 2.545726581664331
+  },
+  "sampled_sha256": "99ff505cffef88585f31154e7baef68e4d7afc52dd346853a2b0b1dbe8cc76de",
+  "figure": "docs/management/cantarell_native_comparison.png",
+  "figure_sha256": "849a94736cb32fce1023be3bc4cde3779adde26fa63b95fd0cb9be82f849779c",
+  "limits": [
+    "No thermal-noise removal; exported processing history remains unknown.",
+    "Bilinear geolocation approximation, not terrain correction.",
+    "No detection evaluation and no claim of confirmed exported units or polarization."
+  ]
+}

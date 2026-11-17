@@ -1,5 +1,7 @@
 import sys
 import unittest
+import tempfile
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -12,7 +14,10 @@ from sar_oil.verification import verify
 
 class AlgorithmTests(unittest.TestCase):
     def test_reference_equivalence_and_edge_cases(self):
-        result = verify()
+        # Verification writes a result file; tests must not alter frozen evidence.
+        with tempfile.TemporaryDirectory() as directory:
+            with patch('sar_oil.verification.OUT', Path(directory)):
+                result = verify()
         self.assertTrue(result["passed"], [c for c in result["checks"] if not c["passed"]])
 
     def test_cached_region_metrics_equal_pixel_matching(self):

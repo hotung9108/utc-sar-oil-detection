@@ -1,0 +1,1646 @@
+{
+  "protocol_sha256": "ded8a123ea931167b987e6486ccbe6659219352e3096e6cfddec90a21c695878",
+  "script_sha256": "99164fed949dd04117d462504079efd77cb9c826b6aeb47c6226f49a65fcd207",
+  "expected_scenes": 24,
+  "verified_scenes": 24,
+  "complete": true,
+  "errors": [],
+  "results": [
+    {
+      "group": "IMG_01",
+      "scene": "S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/annotation/iw-vv.xml",
+          "bytes": 1695777,
+          "sha256": "658f7596b91369ef51a9a6cb89de16b359868ac9ee52b4d11965de6721539e41"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "86f1215e8916738ee4e696420c5eceff9b94ed4e8bb74fef9ae8429a4132aa80"
+        }
+      ],
+      "shape": [
+        16741,
+        25634
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16740
+        ],
+        [
+          0,
+          25633
+        ]
+      ],
+      "incidence_range": [
+        30.80162927150979,
+        46.21077797508928
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25633.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7835,
+          661.975
+        ],
+        "gamma": [
+          463.9136,
+          613.3763
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_02",
+      "scene": "S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/2/10/IW/DV/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/annotation/iw-vv.xml",
+          "bytes": 1695758,
+          "sha256": "f797c28184314e50693ebc4c72b114059708aeab1b4e9e9529705db901aecb8f"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/2/10/IW/DV/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "cc09323f74a27c63ce69f818380244b825cde2f40c4f941b4e3b2956c5de1d26"
+        }
+      ],
+      "shape": [
+        16742,
+        25633
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25632
+        ]
+      ],
+      "incidence_range": [
+        30.80323858245627,
+        46.21735799189376
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25632.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7801,
+          661.9603
+        ],
+        "gamma": [
+          463.9077,
+          613.358
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_04",
+      "scene": "S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/9/IW/DV/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/annotation/iw-vv.xml",
+          "bytes": 1692157,
+          "sha256": "8b4f2aeb40f7a453bf4f0e25e37a431ef909d09c01fde8f1a570b8870ca973f5"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/9/IW/DV/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "9cd64ca559494b3f10200ab65bd568aeee3e4a6e24d3eb00232dc95ab57f2b5b"
+        }
+      ],
+      "shape": [
+        16742,
+        25629
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25628
+        ]
+      ],
+      "incidence_range": [
+        30.80938882050615,
+        46.22010115240671
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25628.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7673,
+          661.9035
+        ],
+        "gamma": [
+          463.8854,
+          613.2866
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_05",
+      "scene": "S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/21/IW/DV/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/annotation/iw-vv.xml",
+          "bytes": 1695852,
+          "sha256": "8c9d8fbe90ad5c8900b992af4a5503ae46f357fc339610de1e343e584ac795b8"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/21/IW/DV/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "b6e0db43059235a54f61bbe0a50af73a1124c32147cb1ce67da59f8a6c0b168a"
+        }
+      ],
+      "shape": [
+        16742,
+        25629
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25628
+        ]
+      ],
+      "incidence_range": [
+        30.80935678294674,
+        46.22007874775785
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25628.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7674,
+          661.9038
+        ],
+        "gamma": [
+          463.8857,
+          613.2869
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_06",
+      "scene": "S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/15/IW/DV/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/annotation/iw-vv.xml",
+          "bytes": 1695420,
+          "sha256": "10c99e8872b9d474af60ca0d60f36e9680084c47ea40a554b283ac1695dcd223"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/15/IW/DV/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "cb1c6eae2cfb5c7792782e104ddb7e9b3e79b02c95983e90fa15d251d09be81a"
+        }
+      ],
+      "shape": [
+        16742,
+        25630
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25629
+        ]
+      ],
+      "incidence_range": [
+        30.8060981982999,
+        46.2178899863294
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25629.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7776,
+          661.936
+        ],
+        "gamma": [
+          463.9034,
+          613.3274
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_07",
+      "scene": "S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/27/IW/DV/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/annotation/iw-vv.xml",
+          "bytes": 1695883,
+          "sha256": "dc8ff5ad9f960df7c784b267819409695ab3900b100d4d76186f28bcadec4dc1"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/27/IW/DV/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "9143d020af80f87944af8489e8b7efbc9e0f04891bd8bb41b668a5ca39983647"
+        }
+      ],
+      "shape": [
+        16742,
+        25629
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25628
+        ]
+      ],
+      "incidence_range": [
+        30.80904190204824,
+        46.21981593375124
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25628.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7686,
+          661.9069
+        ],
+        "gamma": [
+          463.8878,
+          613.2908
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_08",
+      "scene": "S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/8/IW/DV/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/annotation/iw-vv.xml",
+          "bytes": 1695730,
+          "sha256": "ee0e384415155155e18b68520a37225cb4b057e8d66ed42bf5f63a8fc8d6a272"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/8/IW/DV/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "5c1cec71a50a30cfd611deb65515d18ff00e5eeaeb04206b8fdccc97ddee461b"
+        }
+      ],
+      "shape": [
+        16742,
+        25630
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25629
+        ]
+      ],
+      "incidence_range": [
+        30.80725302200267,
+        46.21886367415105
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25629.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7731,
+          661.9243
+        ],
+        "gamma": [
+          463.8955,
+          613.3127
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_09",
+      "scene": "S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/20/IW/DV/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/annotation/iw-vv.xml",
+          "bytes": 1650614,
+          "sha256": "ad7dd813e3c617e0712718b1dfc2ae8c83ad360b82b089395aec01994121bafa"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/20/IW/DV/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 999175,
+          "sha256": "e9088ceeb6afe1e4dfdb29e709f27897d25888a6cede90e1899fb4540716f630"
+        }
+      ],
+      "shape": [
+        16755,
+        25410
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16754
+        ],
+        [
+          0,
+          25409
+        ]
+      ],
+      "incidence_range": [
+        30.80802425942143,
+        46.10734356528564
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        637
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17425
+        ],
+        [
+          0.0,
+          25409.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.2879,
+          661.9169
+        ],
+        "gamma": [
+          464.789,
+          613.3035
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_10",
+      "scene": "S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/1/IW/DV/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/annotation/iw-vv.xml",
+          "bytes": 1695723,
+          "sha256": "76cab36581c0e34fd91f56a12f8ff49f96d201cb5fac3ef4717bd0c00d150d9e"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/1/IW/DV/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1007005,
+          "sha256": "7d8d9c2fa3206b01c012898579f42e0ac1d7f217cf71373eead8d63940e71a64"
+        }
+      ],
+      "shape": [
+        16742,
+        25629
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16741
+        ],
+        [
+          0,
+          25628
+        ]
+      ],
+      "incidence_range": [
+        30.80838332221031,
+        46.2192639234973
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        642
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17412
+        ],
+        [
+          0.0,
+          25628.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          557.7712,
+          661.9136
+        ],
+        "gamma": [
+          463.8922,
+          613.2992
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_11",
+      "scene": "S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/3/20/IW/DV/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/annotation/iw-vv.xml",
+          "bytes": 1858467,
+          "sha256": "cc2aa5c3cbd56e2c6279a080417ad1e23ee2cc18d4a0e92098bc9d27a3d552aa"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/3/20/IW/DV/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "9d8e9361e22af4b02c99b70e2a2b64850c42aa04302626b6617f0e577255284f"
+        }
+      ],
+      "shape": [
+        19476,
+        25177
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19475
+        ],
+        [
+          0,
+          25176
+        ]
+      ],
+      "incidence_range": [
+        30.81123415207033,
+        45.9897651808589
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25176.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8142,
+          662.0207
+        ],
+        "gamma": [
+          465.7279,
+          613.4462
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_12",
+      "scene": "S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/4/25/IW/DV/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/annotation/iw-vv.xml",
+          "bytes": 1858033,
+          "sha256": "f190f15dae693771741bcdeaeefa0598b7456e7228ec1d000376e1eafa7edd42"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/4/25/IW/DV/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "9204692b58568c60e38e58ba5338f5dfb23ccdd016b1589ed0eff6cf7de3812e"
+        }
+      ],
+      "shape": [
+        19478,
+        25179
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19477
+        ],
+        [
+          0,
+          25178
+        ]
+      ],
+      "incidence_range": [
+        30.8053424290948,
+        45.98581620365624
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25178.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.832,
+          662.0778
+        ],
+        "gamma": [
+          465.7586,
+          613.518
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_13",
+      "scene": "S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/5/19/IW/DV/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/annotation/iw-vv.xml",
+          "bytes": 1858151,
+          "sha256": "d58442b8dccddbdbe95da82db48fe62ceb0bb6fde5982dd4dfb6c20f69ac012a"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/5/19/IW/DV/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "db12259737e0642008af308bc34317117f4203db5421ee2fe6ca0afed615b08f"
+        }
+      ],
+      "shape": [
+        19484,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19483
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80832248913045,
+        45.98778982100195
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8229,
+          662.0489
+        ],
+        "gamma": [
+          465.743,
+          613.4816
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_14",
+      "scene": "S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/12/IW/DV/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/annotation/iw-vv.xml",
+          "bytes": 1858113,
+          "sha256": "56905e070072eb1fffd89895b9a0529e444da99878dbb4e36d96d73afcfe67ba"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/12/IW/DV/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "8403795814b71ee69a7902bc030bd7577f88dc9460883cc0b14de3349f640e53"
+        }
+      ],
+      "shape": [
+        19482,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19481
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80760638311336,
+        45.98716728740224
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8257,
+          662.0558
+        ],
+        "gamma": [
+          465.7477,
+          613.4903
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_15",
+      "scene": "S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/24/IW/DV/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/annotation/iw-vv.xml",
+          "bytes": 1858129,
+          "sha256": "f4f6f92d06c3f8c07ecabf3afe834b41b429ea2ceac203c65b4b5d9a83400086"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/24/IW/DV/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "06e7bfb5d3d324e5be2c91a68c56ecfc223015d4f9d3bef66684afa3a67c6ad3"
+        }
+      ],
+      "shape": [
+        19482,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19481
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80806628332434,
+        45.98754262620782
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.824,
+          662.0514
+        ],
+        "gamma": [
+          465.7448,
+          613.4847
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_16",
+      "scene": "S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/6/IW/DV/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/annotation/iw-vv.xml",
+          "bytes": 1860481,
+          "sha256": "358ed09de9c084e869bb67ca5b505c5fe9cf254ee04976a118b8839c2bb58d4f"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/6/IW/DV/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "07d051301e41050ecc72dae4503dd34d29fd180f823e32b3aa34eecdb5363d31"
+        }
+      ],
+      "shape": [
+        19484,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19483
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80918725088539,
+        45.98846120681318
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8196,
+          662.0406
+        ],
+        "gamma": [
+          465.7373,
+          613.4712
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_17",
+      "scene": "S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/9/IW/DV/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/annotation/iw-vv.xml",
+          "bytes": 1597673,
+          "sha256": "c10d80e22190a48e6ee57fd633640af7569338ad05acdde045c7b1fc597d18ba"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/9/IW/DV/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 989779,
+          "sha256": "cb53580d2bf0a2b967ec86fa2691fb3311688af37aad1f8ca7c509ab9ec32a8c"
+        }
+      ],
+      "shape": [
+        16774,
+        25193
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16773
+        ],
+        [
+          0,
+          25192
+        ]
+      ],
+      "incidence_range": [
+        30.79937098133028,
+        45.98862180383742
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17444
+        ],
+        [
+          0.0,
+          25192.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.7969,
+          661.938
+        ],
+        "gamma": [
+          465.698,
+          613.3422
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_18",
+      "scene": "S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/18/IW/DV/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/annotation/iw-vv.xml",
+          "bytes": 1858582,
+          "sha256": "5a03a5e9373848c7b0c03ef1bf65130829b4e6b9c9db6eae8182d74c5122ceaa"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/18/IW/DV/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "83bde86bbc07f01cc11f207b90d51f210f339b2ea65d6e56076d35fab4d79f6f"
+        }
+      ],
+      "shape": [
+        19482,
+        25179
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19481
+        ],
+        [
+          0,
+          25178
+        ]
+      ],
+      "incidence_range": [
+        30.80712329517235,
+        45.98725700924287
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25178.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8252,
+          662.0605
+        ],
+        "gamma": [
+          465.7469,
+          613.4963
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_19",
+      "scene": "S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/21/IW/DV/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/annotation/iw-vv.xml",
+          "bytes": 1597770,
+          "sha256": "2bd9636d12fef958403129a12be510710c8f7fc8181e039049107b66ced99290"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/21/IW/DV/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 989779,
+          "sha256": "1123b6d368aafb3b2708b5cbc68e505c8b327f24cae0f8850a91b082bf990503"
+        }
+      ],
+      "shape": [
+        16773,
+        25192
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16772
+        ],
+        [
+          0,
+          25191
+        ]
+      ],
+      "incidence_range": [
+        30.80104510895641,
+        45.98948937129486
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17444
+        ],
+        [
+          0.0,
+          25191.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.7928,
+          661.9218
+        ],
+        "gamma": [
+          465.6909,
+          613.3218
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_20",
+      "scene": "S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/30/IW/DV/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/annotation/iw-vv.xml",
+          "bytes": 1858498,
+          "sha256": "5d8c36b3aed55035afc805cbe31bc5401470d9cfa9a5780c7039c5371d3efa80"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/30/IW/DV/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "b5760ad6858d2c799b53e43212110231d81a6cf30d11bb16dd1cb64185daa22e"
+        }
+      ],
+      "shape": [
+        19484,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19483
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80742165962314,
+        45.98702149901619
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8264,
+          662.0576
+        ],
+        "gamma": [
+          465.749,
+          613.4926
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_21",
+      "scene": "S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/2/IW/DV/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/annotation/iw-vv.xml",
+          "bytes": 1597651,
+          "sha256": "23632c445075fc42c93ffb4e35edaa35acbc7e52603ac14547df8a001d24d2d7"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/2/IW/DV/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 989779,
+          "sha256": "887c267814380eabeba60a8fd147a1b1b6af34d2723bc727bdd6b550debe47d9"
+        }
+      ],
+      "shape": [
+        16773,
+        25192
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16772
+        ],
+        [
+          0,
+          25191
+        ]
+      ],
+      "incidence_range": [
+        30.80080440888397,
+        45.98930549187471
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17444
+        ],
+        [
+          0.0,
+          25191.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.7936,
+          661.924
+        ],
+        "gamma": [
+          465.6924,
+          613.3246
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_22",
+      "scene": "S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/11/IW/DV/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/annotation/iw-vv.xml",
+          "bytes": 1858491,
+          "sha256": "51da4b8aa5b3650c8c8b870bb64dfa08df0ccbf3728342f3eea7f714896b6cbf"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/11/IW/DV/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "933ccb9d87d0e5019cb10e334e861e494ff2556feaea45aa16410aed96d1b908"
+        }
+      ],
+      "shape": [
+        19478,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19477
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80922973565779,
+        45.98850612508124
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8195,
+          662.0402
+        ],
+        "gamma": [
+          465.7371,
+          613.4706
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_23",
+      "scene": "S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/23/IW/DV/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/annotation/iw-vv.xml",
+          "bytes": 1858004,
+          "sha256": "f99c9beb72dd73c76f8cdccc05334aadfea5defa8d5b1667ac85b3def52961a1"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/23/IW/DV/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "8cd8e83fe00e9674e92d214815af80fd3f1b2148924fd38d64251fc330f9bf54"
+        }
+      ],
+      "shape": [
+        19477,
+        25178
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19476
+        ],
+        [
+          0,
+          25177
+        ]
+      ],
+      "incidence_range": [
+        30.80806221788401,
+        45.98751777093543
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25177.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.824,
+          662.0514
+        ],
+        "gamma": [
+          465.7448,
+          613.4847
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_25",
+      "scene": "S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/4/IW/DV/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/annotation/iw-vv.xml",
+          "bytes": 1858052,
+          "sha256": "077c2799f1de346384ccaa9cba28f92aa0a469591897235045ef54726f10a46f"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/4/IW/DV/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 1172949,
+          "sha256": "643ee572dc11af046239db6ac119efd41926197c607d9f52be020048acda33b6"
+        }
+      ],
+      "shape": [
+        19476,
+        25179
+      ],
+      "polarization": "VV",
+      "geolocation_points": 231,
+      "geolocation_shape": [
+        11,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          19475
+        ],
+        [
+          0,
+          25178
+        ]
+      ],
+      "incidence_range": [
+        30.80549028320637,
+        45.98594098080979
+      ],
+      "calibration_vectors": 32,
+      "calibration_shape": [
+        32,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          20799
+        ],
+        [
+          0.0,
+          25178.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.8314,
+          662.0764
+        ],
+        "gamma": [
+          465.7577,
+          613.5161
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    },
+    {
+      "group": "IMG_26",
+      "scene": "S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A",
+      "files": [
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/annotation-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/7/IW/DV/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/annotation/iw-vv.xml",
+          "bytes": 1597690,
+          "sha256": "d9c5db719d0b3b1bd05bd23fa9eef479492e409057aa4ab7bf49d1960384dce5"
+        },
+        {
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/physical_metadata/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/calibration-vv.xml",
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/7/IW/DV/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/annotation/calibration/calibration-iw-vv.xml",
+          "bytes": 989779,
+          "sha256": "31cf39901e218cc304da15d2a6a9e37a1f4d7185cd17689e315f7f50af54f586"
+        }
+      ],
+      "shape": [
+        16773,
+        25192
+      ],
+      "polarization": "VV",
+      "geolocation_points": 210,
+      "geolocation_shape": [
+        10,
+        21
+      ],
+      "geolocation_support_line_pixel": [
+        [
+          0,
+          16772
+        ],
+        [
+          0,
+          25191
+        ]
+      ],
+      "incidence_range": [
+        30.80275672733621,
+        45.99093582072695
+      ],
+      "calibration_vectors": 27,
+      "calibration_shape": [
+        27,
+        631
+      ],
+      "calibration_support_line_pixel": [
+        [
+          0,
+          17444
+        ],
+        [
+          0.0,
+          25191.0
+        ]
+      ],
+      "lut_ranges": {
+        "sigmaNought": [
+          558.7859,
+          661.9045
+        ],
+        "gamma": [
+          465.6791,
+          613.3001
+        ]
+      },
+      "thermal_noise_correction_performed_in_source": "false"
+    }
+  ],
+  "limits": [
+    "Metadata verification only; does not establish image registration or detection quality.",
+    "No thermal-noise correction has been added to the frozen preparation protocol."
+  ]
+}

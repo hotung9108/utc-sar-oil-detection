@@ -1,0 +1,168 @@
+{
+  "record": "https://zenodo.org/api/records/19258036",
+  "selection": [
+    41
+  ],
+  "selection_reason": "Smallest compressed MAT among dimension-matching pairs with look-alike labels; structural inspection only, not a benchmark split",
+  "http_bytes": 50667821,
+  "pairs": [
+    {
+      "member": "train_images_9ch/image41.mat",
+      "sha256": "0b15946e9ef2a9789062730204f9ad4b74c012f5b6ed4ca0f9320bd7f990704e",
+      "bytes": 50758204,
+      "crc32_verified": true,
+      "variables": {
+        "T": {
+          "shape": [
+            1031,
+            1031,
+            9
+          ],
+          "dtype": "float64",
+          "all_finite": true,
+          "channels": [
+            {
+              "min": 0.00029727164655923843,
+              "max": 28.475704193115234,
+              "mean": 0.020141825393960363,
+              "std": 0.049217392103645355
+            },
+            {
+              "min": -2.805361747741699,
+              "max": 7.346279621124268,
+              "mean": 0.0013011215507275646,
+              "std": 0.01771782752637103
+            },
+            {
+              "min": -0.3017943799495697,
+              "max": 38.59272766113281,
+              "mean": -0.001703462288734011,
+              "std": 0.04741441509182449
+            },
+            {
+              "min": -1.4316625595092773,
+              "max": 0.5787779688835144,
+              "mean": -0.0012791159035983096,
+              "std": 0.004542886194505018
+            },
+            {
+              "min": -0.496565580368042,
+              "max": 0.48010697960853577,
+              "mean": -0.0005778642326196955,
+              "std": 0.0039264107708618465
+            },
+            {
+              "min": 0.00022738745610695332,
+              "max": 88.82518768310547,
+              "mean": 0.011077974238336162,
+              "std": 0.13990073316074902
+            },
+            {
+              "min": -1.7424490451812744,
+              "max": 0.5404697060585022,
+              "mean": 0.00013235359281046812,
+              "std": 0.004252017669854531
+            },
+            {
+              "min": -0.893079936504364,
+              "max": 1.0913584232330322,
+              "mean": 0.00016322996173498747,
+              "std": 0.0041840784227368125
+            },
+            {
+              "min": 3.494403790682554e-05,
+              "max": 0.9183253049850464,
+              "mean": 0.0018581830681456924,
+              "std": 0.006798353782537335
+            }
+          ]
+        },
+        "ans": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "channels": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "data": {
+          "shape": [
+            1062961,
+            1
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        },
+        "dataType": {
+          "shape": [
+            1
+          ],
+          "dtype": "<U7"
+        },
+        "fileId": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "fileNames": {
+          "shape": [
+            1,
+            9
+          ],
+          "dtype": "object"
+        },
+        "k": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint8",
+          "all_finite": true
+        },
+        "m": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "n": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "uint16",
+          "all_finite": true
+        },
+        "t": {
+          "shape": [
+            1031,
+            1031
+          ],
+          "dtype": "float64",
+          "all_finite": true
+        }
+      },
+      "mask_member": "train_masks/mask41.png",
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "publisher_T_key_present": true,
+      "matching_spatial_shape": true
+    }
+  ],
+  "scope": "Shape/key/numeric checks do not establish geospatial alignment, physical calibration, or independent source scenes."
+}

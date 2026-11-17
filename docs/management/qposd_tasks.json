@@ -1,0 +1,12 @@
+{
+  "scope": "Phân công kiểm tra QPOSD bổ sung, không xác nhận đóng góp thực tế",
+  "deadline": "2026-11-15T23:59:00+07:00",
+  "tasks": [
+    {"id": "Q01-TV5", "owner": "TV5", "reviewer": "TV1", "task": "Dữ liệu, nhãn và giao thức chia theo nhóm giao trùng v2", "depends_on": [], "evidence": ["docs/management/qposd_matched_full_audit.json", "docs/management/qposd_pair_visual_review.json", "docs/management/qposd_overlap_all24.json", "results/qposd/protocol.json"], "member_confirmation": null, "actual_hours": null},
+    {"id": "Q02-TV2", "owner": "TV2", "reviewer": "TV3", "task": "Mười cấu hình CART/SVM, hội tụ và so sánh NumPy/thư viện", "depends_on": ["Q01-TV5"], "evidence": ["scripts/train_qposd_classifiers.py", "results/qposd/classifier_selection.json"], "member_confirmation": null, "actual_hours": null},
+    {"id": "Q03-TV3", "owner": "TV3", "reviewer": "TV4", "task": "Mười cấu hình lọc/ngưỡng trên toàn bộ năm ảnh validation", "depends_on": ["Q02-TV2", "Q04-TV4"], "evidence": ["scripts/select_qposd_detection.py", "results/qposd/detection_selection.json"], "member_confirmation": null, "actual_hours": null},
+    {"id": "Q04-TV4", "owner": "TV4", "reviewer": "TV5", "task": "Tám đặc trưng và kiểm chứng tối ưu gom tọa độ NumPy", "depends_on": ["Q01-TV5"], "evidence": ["scripts/benchmark_qposd_features.py", "docs/management/qposd_grouped_feature_benchmark_repeat.json"], "member_confirmation": null, "actual_hours": null},
+    {"id": "Q05-TV1", "owner": "TV1", "reviewer": "TV2", "task": "Test đã khóa, notebook 10, báo cáo và gói bàn giao", "depends_on": ["Q03-TV3"], "evidence": ["scripts/evaluate_qposd_test.py", "results/qposd/evaluation.json", "notebooks/external/10_qposd_classification_detection.ipynb", "results/qposd/REPORT.md"], "member_confirmation": null, "actual_hours": null}
+  ],
+  "note": "Các đường dẫn bằng chứng gồm cả đầu ra yêu cầu còn chờ tạo; sự có mặt trong kế hoạch không chứng minh đã hoàn thành."
+}

@@ -42,4 +42,42 @@ Deadline: 23:59 ngày 15/11/2026, Asia/Saigon. Các việc S01–S03 nối tiế
 
 Mỗi việc ước lượng 4 giờ, không phải giờ đã làm. TV3/TV4 sửa các hàm khác nhau trong core.py và reference.py, cần phối hợp trước khi merge. TV5 khóa split và giao thức trước benchmark; TV1 chỉ mở test sau khi TV2/3/4 kiểm chứng xong. Mỗi notebook phải Restart & Run All được bằng cùng môi trường.
 
+## Phần bổ sung sau benchmark — giao việc kiểm tra lại
+
+Các sản phẩm dưới đây được trợ lý hỗ trợ xây dựng; bảng này giao trách nhiệm
+kiểm tra và giải thích, **không xác nhận thành viên đã thực hiện hoặc số giờ đã làm**.
+Không tự điền điểm đóng góp hay chữ ký từ các artifact tự động.
+
+| Phụ trách | Việc cần kiểm tra | Bằng chứng/đầu ra | Điều kiện nghiệm thu |
+|---|---|---|---|
+| TV1 — Tiến Sơn Trần | Demo PyQt, xuất kết quả, video và gói bàn giao | `scripts/demo_qt.py`, `demo_engine.py`, `record_demo_video.py`, `docs/DEMO_GUI.md` | Chạy cả hai nhánh và hai ca lỗi; kiểm tra chọn file/lưu thư mục thủ công; video đủ 5–7 phút, phụ đề đúng kết quả |
+| TV2 — Lương Tiến Dũng | Giải thích hiệu chuẩn DN/LUT và giới hạn so sánh thư viện | `scripts/sentinel_calibration_demo.py`, `results/physical/calibration.json` | Tái tạo sai số NumPy–SciPy; phân biệt gamma hình học với loại hết phụ thuộc góc/gió; không gọi đây là đối chứng SNAP |
+| TV3 — Hồ Việt Tùng | Kiểm tra góc tới và phép ghép gió | `scripts/fetch_scene_wind.py`, notebook 07, `results/physical/wind.json` | Kiểm tra UTC, đơn vị m/s, khoảng cách ô lưới, quy ước hướng FROM và nội suy u/v; không gán metadata này cho SOS |
+| TV4 — Nguyễn Hải Hiếu | Kiểm tra liên hệ vùng ứng viên, đặc trưng và ca thất bại trong GUI | Bảng đặc trưng GUI; `results/sos/diagnostics/` | Đối chiếu số vùng, score và mask với pipeline; giải thích khác biệt TP pixel với TP đối tượng |
+| TV5 — Phạm Minh Tuấn | Hoàn tất DARTIS và kiểm tra phạm vi nhãn tham chiếu | `results/dartis/`, notebook 06, `scripts/dartis_results.py` | Tôn trọng giới hạn tải; đủ 2.290 ảnh và hash trước đánh giá; không diễn giải cụm K-means là nhãn mưa/gió yếu/màng sinh học |
+
+Các việc chưa thể xác nhận hoàn thành: đánh giá nhánh vật lý trên mẫu có nhãn
+đã căn chỉnh, nhãn nguyên nhân look-alike, thông tin bìa chính thức, biên bản
+và đóng góp thật. Theo dõi riêng tại `completion_audit.json`.
+
 Giao thức, thuật toán và tiêu chí lựa chọn: [GIAO_THUC_THUC_NGHIEM.md](../GIAO_THUC_THUC_NGHIEM.md). Phân công máy đọc: sos_tasks.json; workbook giữ các ô minh chứng và giờ thực tế cho người thực hiện.
+
+## Bổ sung QPOSD — kiểm tra trước bàn giao 15/11
+
+SOS vẫn là benchmark chính. QPOSD bổ sung nhãn dầu/tương tự dầu chung trên
+UAVSAR; không thay thế nhãn nguyên nhân mưa, gió yếu hoặc màng sinh học.
+Các nhiệm vụ dưới đây giao trách nhiệm kiểm tra sản phẩm, không ghi nhận
+thành viên đã làm. Mã máy đọc: `qposd_tasks.json`. Không thay lịch sử S01–S03.
+
+| ID / phụ trách | Việc cần làm | Bằng chứng và điều kiện nghiệm thu | Người kiểm tra |
+|---|---|---|---|
+| Q01-TV5 — Phạm Minh Tuấn | Giải thích chất lượng nhãn và giao thức v2 | 24 cặp hợp lệ/17 cặp lệch; giữ nhãn 255 bỏ qua; giải thích lỗi giao trùng v1, nhóm {19,20}/{21,22,33,35}, chia 14/5/5; không tuyên bố độc lập cảnh | Tiến Sơn Trần |
+| Q02-TV2 — Lương Tiến Dũng | Kiểm tra 10 cấu hình CART/SVM, hội tụ và lựa chọn validation | Đối chiếu `classifier_selection.json`, confusion và score NumPy/thư viện; giải thích đây là phân lớp có sẵn vùng; không fit/chọn lại theo test | Hồ Việt Tùng |
+| Q03-TV3 — Hồ Việt Tùng | Đối chiếu 10 cấu hình lọc/ngưỡng trên 5 ảnh validation | Đủ 50 lượt, macro-F1 từ tổng TP/FP/FN; cùng classifier đã khóa; không bỏ cấu hình điểm thấp; giải thích Lee trên T11 tuyến tính khác Lee trên SOS PNG | Nguyễn Hải Hiếu |
+| Q04-TV4 — Nguyễn Hải Hiếu | Kiểm tra 8 đặc trưng và tối ưu gom tọa độ NumPy | Chạy `benchmark_qposd_features.py` ra file mới; ID/8 cột bằng mã cũ; phân biệt sai số đặc trưng với tốc độ toàn pipeline; giải thích mọi công thức và GT nhỏ vẫn được tính | Phạm Minh Tuấn |
+| Q05-TV1 — Tiến Sơn Trần | Tích hợp kết quả test đã khóa, notebook 10, báo cáo và gói bàn giao | Đủ 5 ảnh, mask hai backend khớp khi chạy lại; tách F1 phân lớp/phát hiện, nhầm lẫn có điều kiện và bỏ sót; báo cả kết quả kém; kiểm tra artifact/hash trước đóng gói | Lương Tiến Dũng |
+
+Thứ tự phụ thuộc: Q01 → Q02 → Q03 → Q05; Q04 kiểm chứng trước khi chạy
+Q03 với bản tối ưu. Lượt chạy tự động không thay thế việc thành viên đọc,
+chạy lại, giải thích và ký xác nhận. Thông tin lớp, nhóm, giảng viên, mã sinh
+viên, đóng góp và biên bản chưa xác nhận tiếp tục để trống theo yêu cầu.

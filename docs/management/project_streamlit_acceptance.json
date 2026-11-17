@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-17",
+  "scope": "Coursework implementation and Streamlit on existing labelled datasets; excludes new video/slides/formal reports per user instruction.",
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "scikit-image": "0.26.0",
+    "streamlit": "1.67.0"
+  },
+  "tests": {
+    "clean_environment": ".cache/streamlit_clean_env",
+    "full_suite_count": 62,
+    "full_suite_exit_code": 0,
+    "skipped": 0,
+    "final_local_markdown_image_render_fix_targeted_tests": 4,
+    "targeted_exit_code": 0,
+    "browser_layout_review": "Not completed: computer-use could not confidently determine the browser URL; AppTest verified application interactions."
+  },
+  "notebooks": [
+    {
+      "path": "notebooks/01_data_and_ground_truth.ipynb",
+      "sha256": "72c191a8636090b7bfafd73ae8f927f43ae8f989ba4a7bbc388f7328a22cb0b4",
+      "code_cells": 3,
+      "figures": 1
+    },
+    {
+      "path": "notebooks/02_filter_threshold_benchmark.ipynb",
+      "sha256": "a1eba3aab5a2cd64165b3cae0de6761dae8a64279a3fb9fb1142d1ef94c007c6",
+      "code_cells": 5,
+      "figures": 3
+    },
+    {
+      "path": "notebooks/03_regions_and_features.ipynb",
+      "sha256": "b894be8084cf694906e7ff130060c3b0894bb3658828510526e65f7420d93ff2",
+      "code_cells": 3,
+      "figures": 1
+    },
+    {
+      "path": "notebooks/04_cart_svm_numpy.ipynb",
+      "sha256": "c3e2c268f1c810fe931ef69fa660887ef5e890f29513646b1852ba7da027b779",
+      "code_cells": 3,
+      "figures": 1
+    },
+    {
+      "path": "notebooks/05_final_pipeline.ipynb",
+      "sha256": "69eced5c001013c77f27a6ed4303497c8c31ec47619d719fea59669541726cff",
+      "code_cells": 4,
+      "figures": 4
+    },
+    {
+      "path": "notebooks/external/06_dartis_false_alarms.ipynb",
+      "sha256": "8cdfcdaa1db204b7265d980ac5579a607d53af7683c2a5491cf24027994eb0a4",
+      "code_cells": 4,
+      "figures": 3
+    },
+    {
+      "path": "notebooks/external/07_sentinel_calibration.ipynb",
+      "sha256": "67eba5f77d61615c9123b894752ccd1554b610582d09b3e51381d7222eb484b8",
+      "code_cells": 3,
+      "figures": 2
+    },
+    {
+      "path": "notebooks/external/08_qposd_audit.ipynb",
+      "sha256": "5b9a0d41fb879ded4b8411fb6debda8ae68192c1fbfb9590f24c85f5537bb394",
+      "code_cells": 4,
+      "figures": 2
+    },
+    {
+      "path": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
+      "sha256": "cfc87e1c1d936038cf5141cbd5af0cfe352907e81ac724d12fd38914dc94c9b8",
+      "code_cells": 3,
+      "figures": 2
+    },
+    {
+      "path": "notebooks/external/10_qposd_classification_detection.ipynb",
+      "sha256": "d5cfda21336fa7430eeedff4a3091c94545cbc5ea4c29f30d2865d304e12a151",
+      "code_cells": 5,
+      "figures": 7
+    },
+    {
+      "path": "notebooks/external/11_cantarell_physical_candidates.ipynb",
+      "sha256": "fea1d6c66f9a32defefc04769d72b7a66d8a5335ca64dd07580fc2494e4bcded",
+      "code_cells": 4,
+      "figures": 2
+    },
+    {
+      "path": "notebooks/external/12_cantarell_models_and_angle.ipynb",
+      "sha256": "d9f7786eb4718071369ebe8eb0cb3c9c37b142d95232a172b0b2963b5bd2a899",
+      "code_cells": 6,
+      "figures": 3
+    }
+  ],
+  "notebook12_visual_review": {
+    "figures": [
+      {
+        "path": ".cache/cantarell_notebook12_review/figure_1.png",
+        "sha256": "20e0a02e99a9575a811418c312f7ade386f1b53e402616e8dfab54002435c848"
+      },
+      {
+        "path": ".cache/cantarell_notebook12_review/figure_2.png",
+        "sha256": "f28d66d2da4e004b752099048e2cbb6b30f45538fe902b1f34f5c0a7d65047f8"
+      },
+      {
+        "path": ".cache/cantarell_notebook12_review/figure_3.png",
+        "sha256": "cd59e43a53b55dd18e51e012b7dd01642c19b0d8d09ecc21811804a2d1c19cb8"
+      }
+    ],
+    "passed": true,
+    "observations": "Three rendered figures directly reviewed: validation curves and legends readable; all-zero original paired bootstrap accurately shown; four sample panels complete. No claim of oil detection success on the first sample."
+  },
+  "physical_verification": {
+    "passed": true,
+    "candidate_comparisons": 50,
+    "model_pairs": 84,
+    "verified_test_masks": 175,
+    "script_sha256": "24cc08c4136978cc45061cb796032b9865accf52dd7ed4cabd8bc6bebbdf0c46",
+    "input_sha256": {
+      "screen.json": "1c7799b0fc2b39b9de813f9f5a96378d1d02732f4248e499d8001db9f60d87cd",
+      "validation.json": "cc38ad18ffcd212713b988ae8b27e24b13595336698480c21066abb53676618e",
+      "selection.json": "cdfa343169408dc4a3b90fd4d03ceebce34653e86211b88573ecff9a768e86ab",
+      "requirements_selection.json": "c099202c0da26af1a1f1c409cdb9302e7a8ca520f3d1ada62ec4928556ed84e5",
+      "evaluation.json": "4a36a22807b4c3cb310b52fe9307709bb309162468d3c804cdf976be751b49c7",
+      "angle_bootstrap.json": "4f5a5114cd6acd67fc7695f47cdc1f2e5e395d7235602cec87ef8e5e148fc830",
+      "angle_bootstrap_filtered.json": "db4e65cb1c4cdd361773dc134fee58c6b1bd6ba2b4d6d52bd2504f95fc3756d2"
+    },
+    "scope": "Reconstructed grids, train-only scalers, winner rules, saved-mask object counts and paired bootstrap; not a new model fit"
+  },
+  "code_sha256": {
+    "streamlit_app.py": "ae66108668f44142fe9ed7a998edac3d6fcff0c5160cb5838d2448325a7ad141",
+    "scripts/streamlit_service.py": "684c2408aed6dc6e0d1a07e0f37f1ca74f73dc857922c69c1a53b98164ca1807",
+    "scripts/streamlit_qposd.py": "4efc8fceac8aabd73aa93aa9579ca33f4b764db653ee5629ea553f7690f29ac2",
+    "scripts/streamlit_physical.py": "7b56e3d9ae9ae9607b24acd9017a24b44925e6fa9fd9d58d16a07dc599857ff7",
+    "scripts/train_cantarell.py": "016a9944dbc7cad252dae10e622f8ba146a0d35c72c34d9c2ebc76b921dc8dc0",
+    "scripts/evaluate_cantarell.py": "724dfbbfd9e431ece5f2ca2409a5831651539ad1298faec0765f43887ab5b300",
+    "scripts/verify_cantarell_results.py": "24cc08c4136978cc45061cb796032b9865accf52dd7ed4cabd8bc6bebbdf0c46",
+    "scripts/select_cantarell_required_filter.py": "a5ce7fee177d4248b238abbc1cb07689822685c4765d62b5aedcd4a85b1f8adc",
+    "scripts/analyze_cantarell_failures.py": "fa164515dc5c4cad9b7aab7ceb72226892f1ac6e0a9e2987a39754e719df5933",
+    "pyproject.toml": "0fee12dc95837b54d03b3e7cd86738b82d52e77b3ca0458924919db814508e54",
+    "uv.lock": "437e0d140da5a870c14370ef1e1c7671615390d863f296d3c8764df96711da4a"
+  },
+  "implemented_requirements": {
+    "labelled_evaluation": "SOS, QPOSD and physically prepared Cantarell retained with frozen manifests and source hashes",
+    "speckle_angle_adaptive": "Filtered-adaptive Streamlit mode: Lee7 L4, gamma0, Niblack31 k0.5, SVM C0.1; separate no-filter winner preserved",
+    "features": "Eight region features with NumPy/reference checks; all retained-config validation feature comparisons within tolerance",
+    "model_comparison": "50 candidate configurations, 84 SVM/CART NumPy/reference pairs, committed selection before test",
+    "metrics": "Object P/R/F1, FP/image, look-alike QPOSD metrics, paired scene bootstrap, post-test size strata",
+    "application": "SOS upload/sample workflow; QPOSD sample workflow; physical sample workflow; downloads and ground-truth evaluation separated from inference"
+  },
+  "remaining_scientific_limits": [
+    "Low detection quality; not validated for operational oil-spill alerts.",
+    "No labelled central-Vietnam deployment evaluation or separate weak-wind/biological-film/rain classes.",
+    "Original protocol minimum candidate area 64 excludes possible IoU matches to GT below 32 pixels; all GT remains in metrics.",
+    "Required-filter supplement introduced after partial validation observation but before any physical test scoring; original primary unchanged.",
+    "Angle correction has not shown a statistically clear object-F1 improvement in these fixed-model comparisons.",
+    "No AIS attribution or drift forecast module; these remain optional future extensions."
+  ]
+}

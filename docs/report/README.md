@@ -8,7 +8,7 @@ phải được xác nhận thực tế. Không dùng nhật ký tự động th
 ## Nguồn nội dung
 
 - `narrative.json`: nội dung chương và kết luận, gắn với vị trí trong mẫu gốc.
-- `bibliography.json`: 10 tài liệu tham khảo được trích trong nội dung.
+- `bibliography.json`: 13 tài liệu tham khảo được trích trong nội dung, gồm nguồn hiệu chuẩn Sentinel-1, ERA5 và QPOSD bổ sung.
 - `template_contract.md`: quy tắc dùng mẫu, phạm vi thay đổi và các bước kiểm tra.
 - Các bảng lấy trực tiếp từ `results/sos/*.json`; hình từ `report_figures/` và
   `diagnostics/`. Không gõ lại bảng kết quả bằng tay.
@@ -40,6 +40,16 @@ mục lục với trang thực tế. Các audit trong cache chỉ chứng minh p
 
 - Bố cục toàn bộ bản render mới nhất, đặc biệt bảng nhiều trang và hình thất bại.
 - Số thứ tự công thức sát lề phải và dẫn chiếu đủ từng hình/bảng.
-- Quy định độ dài bản hướng dẫn trước so với mẫu mới 20–35 trang nội dung chính.
-- Thông số phần cứng chạy thử; thông tin bìa và xác nhận của thành viên.
+- Độ dài sau mỗi lần sửa phải được kiểm tra lại trong `render_audit.json`: nội dung
+  chính cần nằm trong giao của hai hướng dẫn, tức 25–35 trang.
+- Thông tin bìa và xác nhận của thành viên. Phần cứng đã ghi trong `environment.json`
+  tại lúc chuẩn bị báo cáo; đây không phải nhật ký tải máy khi benchmark.
 - DOCX/PDF cuối, slides và video demo trong bộ bàn giao.
+
+`render_progress.json` lưu những trang đã xem và các lỗi phát hiện, gắn với hash
+DOCX/PDF của đúng vòng render. Không chuyển trạng thái duyệt từ bản cũ sang bản mới
+chỉ vì mục lục khớp. Bản bàn giao v11 có 41 trang, 29 trang nội dung chính,
+bổ sung đủ so sánh classifier, tạo vùng và test QPOSD. Toàn bộ trang được
+kiểm tra qua xem trực tiếp và chuỗi so sánh pixel với bản đã duyệt; các vòng
+render v11–v13 sửa tiêu đề bảng dài và khoảng cách đoạn lệnh trong phụ lục.
+DOCX/PDF ở `deliverables/report/`; `render_progress.json` ghi đúng hash bản cuối.

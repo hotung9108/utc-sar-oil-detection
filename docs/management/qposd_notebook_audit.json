@@ -1,0 +1,34 @@
+{
+  "notebook": "notebooks/external/08_qposd_audit.ipynb",
+  "sha256": "9c90ac7488f6ef601567316fbf239662b64602971ed3f00ff9407ba4b3bddcec",
+  "code_cells": 4,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "errors": 0,
+  "figures": [
+    {
+      "path": ".cache/qposd/notebook-review/figure-1.png",
+      "sha256": "e14a6fbcc26cf5f7a03db270c2d84233fecccb64a322dc2753b5ccad4b661fde",
+      "visually_reviewed": true
+    },
+    {
+      "path": ".cache/qposd/notebook-review/figure-2.png",
+      "sha256": "ae75e94ebde11b9d5f1954589f84af4fbc7bf453026236236b326e9e145f9994",
+      "visually_reviewed": true
+    }
+  ],
+  "checks": [
+    "All 41 original mask SHA-256 and exact RGB class counts",
+    "All 41 saved MAT prefix SHA-256 and parsed dimensions",
+    "Three full MAT SHA-256 and dimensions"
+  ],
+  "visual_findings": [
+    "Class-count plot readable; logarithmic scale explicitly labelled",
+    "Three image-mask pairs displayed separately with actual dimensions; no resizing or overlay"
+  ],
+  "scope": "Executed data audit only; does not validate pixel registration, source-scene independence, or detection performance."
+}

@@ -1,0 +1,27 @@
+{
+  "image": 13,
+  "candidate_configuration_index": 1,
+  "mat_sha256": "b04df68c653fe5f98e9c77f36f73de5bb9bb71c595012b0efe310d87dd0bd97a",
+  "mask_sha256": "07f3543c21c413d5d9743252f93c8d39fda3cad2458c9f25435d797cf53c515a",
+  "published_prefix_matches": true,
+  "objects": 1474,
+  "ids_equal": true,
+  "features_exactly_equal": true,
+  "max_abs_error_by_column": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "original_seconds_single_run": 20.080406300000504,
+  "grouped_seconds_single_run": 1.4159053000003041,
+  "core_sha256": "f18abf40ce140cb1a97f4d2fd210551f41897fe7254845f0220f026bb652468d",
+  "grouped_code_sha256": "3885397e59a8e5ccb36029858555b23c7a4133cd07b403c59e27d5aba842004c",
+  "benchmark_script_sha256": "74ed209f9a324d142c5dc501bf672d326ebdda114ac7e554b8c438d94c48d339",
+  "protocol_sha256": "ead2603c6b06574da90201160451ad5e0d5fa71427af1635befcce5601989100",
+  "scope": "One fixed validation candidate population; single-run timing, not a universal speed claim. No model fitting or configuration selection."
+}

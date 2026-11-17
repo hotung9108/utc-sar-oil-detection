@@ -219,9 +219,9 @@ Bằng chứng: [kế hoạch mới](management/KE_HOACH_SOS_NOTEBOOK.md), [nhi�
 - Render nhiều vòng và sửa lỗi cột bìa, danh mục hình/bảng, thứ tự bảng và vị trí số công thức.
 - Viết kiểm tra tự động đối chiếu mục lục với nội dung PDF và bảo vệ bằng hash.
 
-**Bản render mới nhất đã kiểm tra tự động:** 35 trang tổng cộng, 24 trang nội dung chính. Mọi mục lục được kiểm tra đều tìm thấy nội dung ở đúng trang. Độ dài này đạt mẫu mới 20–35 trang nhưng chưa đạt ngưỡng 25–40 trang của hướng dẫn gốc. Chưa hoàn tất kiểm tra trực quan mọi trang; **không coi đây là bản nộp cuối**.
+**Cập nhật ngày 13/11/2026:** bản v8 có 38 trang tổng cộng, 26 trang nội dung chính. Toàn bộ trang đã được kiểm tra theo `report/render_progress.json`: 27 trang giống pixel với v7 đã duyệt, 11 trang thay đổi được xem trực tiếp. Đã đồng bộ GUI, hiệu chuẩn, gió và thẩm định QPOSD. Bản này vẫn là bản review, thiếu metadata bìa/hồ sơ nhóm thật và còn yêu cầu khoa học chưa hoàn tất.
 
-File làm việc hiện nằm trong `.cache/report/`; bản render mới nhất ở `render-fields-v5/`. Cache không thay cho thư mục bàn giao cuối và có thể không đi cùng repository khi clone.
+File làm việc nằm trong `.cache/report/`; bản render được duyệt mới nhất ở `render-fields-v8/`. DOCX/PDF đúng hash đã được sao chép vào `deliverables/report/` để nhóm rà soát, không chỉ lưu trong cache.
 
 Bằng chứng: [hướng dẫn dựng báo cáo](report/README.md), [code dựng](../scripts/build_report.py), [code cập nhật Word](../scripts/update_report_fields.ps1), [code nhập trường](../scripts/import_report_fields.py), [audit render mới nhất](report/render_audit.json).
 
@@ -231,21 +231,27 @@ Lưu ý khi đọc các audit: `completion_audit.json` và `render_progress.json
 
 | Phần còn lại | Tình trạng |
 |---|---|
-| Chuẩn hóa theo góc tới | Thiếu dữ liệu/metadata phù hợp; chưa triển khai và kiểm chứng nhánh vật lý |
-| Gió tái phân tích | Chưa ghép đúng thời gian/vị trí ảnh |
+| Chuẩn hóa theo góc tới | Đã hiệu chuẩn tile DN Sentinel-1 bằng LUT và đối chiếu NumPy–SciPy trong notebook 07; chưa có nhãn dầu/căn chỉnh patch để đánh giá phát hiện |
+| Gió tái phân tích | Đã ghép ERA5 theo vị trí/thời gian tile, vận tốc nội suy 3,3454 m/s; chưa kiểm chứng cải thiện phát hiện dầu |
 | Dầu so với từng loại look-alike | Chưa có nhãn phân biệt gió yếu, màng sinh học, mưa và ma trận nhầm lẫn tương ứng |
 | Test độc lập cho nhánh thích nghi | Chưa có; hiện chỉ công bố validation bổ sung |
-| Đối chiếu đầy đủ mục tiêu NASA #6 | Cần hoàn thiện bằng nguồn chính thức của thử thách |
-| GUI demo theo hướng dẫn môn học | Đã có notebook/CLI; chưa hoàn thiện ứng dụng GUI riêng |
+| Đối chiếu đầy đủ mục tiêu NASA #6 | Đã bổ sung bối cảnh NASA–NOAA/MOST trong báo cáo; chưa có bằng chứng MOST chính là mục số 6 của danh mục môn học |
+| GUI demo theo hướng dẫn môn học | Đã có PyQt, kiểm tra thao tác Qt tự động, xuất mask/overlay/JSON; chưa thử thủ công hộp thoại hệ điều hành |
 | Báo cáo DOCX/PDF cuối | Còn kiểm tra mọi trang, hoàn thiện độ dài/cấu trúc theo yêu cầu và metadata bìa |
-| Slides 15–20 trang | Chưa hoàn thiện bộ mới |
-| Video demo 5–7 phút | Chưa hoàn thiện |
+| Slides 15–20 trang | Đã có bản review v2 gồm 20 trang, đồng bộ vật lý/gió, GUI/video và QPOSD; đã kiểm tra đủ các slide |
+| Video demo 5–7 phút | Đã có video tự động 6 phút, phụ đề tiếng Việt, không âm thanh; giải mã toàn bộ và xem 9 khung hình đại diện |
 | Đóng góp và hồ sơ nhóm | Cần mã sinh viên, chữ ký, điểm đánh giá chéo và biên bản họp thật |
 | Mô phỏng trôi dầu và AIS | Chưa thực hiện; là hướng phát triển, không phải kết quả đã có |
 | Gói bàn giao và tái tạo toàn bộ tài liệu | Chưa đóng gói hoàn chỉnh; runner thực nghiệm chưa bao gồm toàn bộ quy trình Word/slides/video |
 
 ## 11. Trạng thái Git và phạm vi xác nhận
 
-Tại thời điểm tổng hợp, `git status` còn nhiều file sửa và file mới chưa được theo dõi. **Đợt thay đổi hiện tại chưa được commit/push trong phần công việc này.** Không suy ra các thay đổi trong workspace đã có trên GitHub.
+Mã nguồn, GUI, nhánh hiệu chuẩn/gió, slide và video đã được commit tại `a07d34f` trên `main`. Chưa push. Các cập nhật kiểm chứng video và khảo sát QPOSD sau commit này còn trong working tree; kiểm tra `git status` để biết trạng thái hiện tại.
 
-Tài liệu này được tạo bằng cách đối chiếu mã nguồn, các JSON kết quả, nhật ký chạy và audit đang có. Khi tạo tài liệu tổng hợp không chạy lại toàn bộ grid 110/729 cấu hình; các kết quả được lấy từ bằng chứng đã lưu và kiểm tra lại số lượng/số liệu. Mục tiêu tổng thể vẫn tạm dừng; việc tạo file tổng hợp không tự động tiếp tục các phần đang dang dở.
+Tài liệu này được tạo bằng cách đối chiếu mã nguồn, các JSON kết quả, nhật ký chạy và audit đang có. Khi cập nhật tài liệu không chạy lại toàn bộ grid 110/729 cấu hình; các kết quả lấy từ bằng chứng đã lưu. Mục tiêu hoàn thiện dự án đang tiếp tục, chưa được xác nhận hoàn thành.
+
+## 12. Nhánh khảo sát nhãn look-alike bổ sung
+
+Đã đọc đủ 41 mask QPOSD từ bản Zenodo 19258036 có giấy phép CC BY 4.0; lưu số đếm từng lớp, hash và các màu không hợp lệ. Có 4.780.381 pixel look-alike và 2.117 pixel ngoài bảng màu. Đã cài bộ giải mã giữ pixel không hợp lệ ở nhãn bỏ qua, kèm kiểm tra tự động. Xem [thẩm định QPOSD](management/QPOSD_THAM_DINH.md).
+
+Đây là khảo sát dữ liệu UAVSAR bổ sung, không thay thế lựa chọn SOS của nhóm. Chưa có kết quả mô hình trên QPOSD và không dùng lớp look-alike chung để kết luận riêng về gió yếu, màng sinh học hay mưa.

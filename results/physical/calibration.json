@@ -1,0 +1,77 @@
+{
+  "scope": "One unlabelled native Sentinel-1 tile; no detection accuracy or algorithm superiority claim",
+  "scene": "S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0",
+  "tile_sha256": "2358547d7bc72e0998cab048686ff622365d9fbd2bb6e074e1cf342532ad28a9",
+  "metadata_files": [
+    {
+      "file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/productInfo.json",
+      "url": "https://roda.sentinel-hub.com/sentinel-s1-l1c/GRD/2019/1/5/IW/DV/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/productInfo.json",
+      "bytes": 3067,
+      "sha256": "3abae75a9499f11342b50056155cfa9ceed7c5ec4f8bff96303249b5cfbddacd"
+    },
+    {
+      "file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/iw-vv.xml",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2019/1/5/IW/DV/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/iw-vv.xml",
+      "bytes": 1669043,
+      "sha256": "cf90e463b69be346788c667b83c7519106873d7a634e3d08c4cfe4a4598418d4"
+    },
+    {
+      "file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/calibration/calibration-iw-vv.xml",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2019/1/5/IW/DV/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/calibration/calibration-iw-vv.xml",
+      "bytes": 1010137,
+      "sha256": "cd3a0c419705dd480b20cc8b41171cbc40b68f3a1a2c83ffea6a68a19fc375c3"
+    },
+    {
+      "file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/calibration/noise-iw-vv.xml",
+      "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2019/1/5/IW/DV/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/annotation/calibration/noise-iw-vv.xml",
+      "bytes": 412487,
+      "sha256": "fc0b1702a333bcd4f24100787dcd6d49a671b26bdc8ddad918ef99eb5ed6a6ba"
+    }
+  ],
+  "script_sha256": "8ed984aa95e61ebfaa4c035ec680e9d5e321eed5a5b86d26bf953c46ca754d86",
+  "shape": [
+    1024,
+    1024
+  ],
+  "angle_min": 38.62887385883345,
+  "angle_max": 39.24549190619312,
+  "formula": "backscatter = DN^2 / interpolated_LUT^2",
+  "reference": "SciPy RegularGridInterpolator, linear, same grid and boundaries; not SNAP end-to-end equivalence",
+  "checks": {
+    "incidence_interpolation": {
+      "max_abs": 2.1316282072803006e-14,
+      "mse": 2.3268555957351877e-29
+    },
+    "sigmaNought_lut_interpolation": {
+      "max_abs": 3.410605131648481e-13,
+      "mse": 4.54662447914459e-27
+    },
+    "sigmaNought_calibrated": {
+      "max_abs": 5.329070518200751e-15,
+      "mse": 5.097690817972775e-34
+    },
+    "gamma_lut_interpolation": {
+      "max_abs": 3.410605131648481e-13,
+      "mse": 3.5526104347595385e-27
+    },
+    "gamma_calibrated": {
+      "max_abs": 1.4210854715202004e-14,
+      "mse": 1.0336860872038874e-33
+    }
+  },
+  "allclose_tolerance": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "allclose_passed": true,
+  "sigma_over_cos_vs_gamma_lut_max_abs_db": 0.0033069978644294003,
+  "thermal_noise_correction_performed_in_source": "false",
+  "thermal_noise_correction_applied_here": false,
+  "limits": [
+    "No oil ground truth",
+    "No wind joined",
+    "Gamma normalization removes geometric area factor, not complete ocean scattering dependence",
+    "No map from this tile to SOS or a labelled DARTIS patch",
+    "Interpolation reference is not an independent SAR processor"
+  ]
+}

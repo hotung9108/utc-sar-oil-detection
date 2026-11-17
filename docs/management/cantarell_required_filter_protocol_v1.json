@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "purpose": "Expose a complete coursework pipeline with speckle filtering, angle correction and adaptive thresholding while preserving the original unconstrained comparisons and primary role.",
+  "introduced_after": "Candidate screening and partial model-validation scores were observed. No Cantarell test detection scores have been computed.",
+  "reason": "The original gamma0-plus-Niblack primary constraint permits the no-filter control. A separate required-filter role makes the mandatory filtering operation executable without falsely calling it the overall validation winner.",
+  "training_changes": "None. Use only already frozen, retained candidate configurations and the original seven trained classifier configurations; no new fitting or hyperparameter search.",
+  "eligible": {
+    "branch": "gamma0",
+    "threshold": "niblack",
+    "filter_not": "none",
+    "model_eligible": true
+  },
+  "ranking": ["validation pooled object F1 descending", "Recall descending", "candidate ID ascending", "model ID ascending"],
+  "selection_artifact": "results/cantarell/requirements_selection.json",
+  "preserve_original": "Do not modify results/cantarell/selection.json or replace its primary winner.",
+  "test_roles": ["filtered_adaptive", "paired_sigma_filtered_model"],
+  "paired_ablation": "Keep the selected gamma0-trained filtered model, scaler, filter and threshold fixed; replace gamma0 with sigma0 on the same eligible test samples.",
+  "bootstrap": {"unit": "source scene", "paired": true, "replicates": 2000, "seed": 2026},
+  "freeze": "Commit this amendment, execution code, the additional selection and its model before any test scoring.",
+  "disclosure": "Report the validation tradeoff against the original primary; this late validation-stage amendment is requirement-driven and is not a claim of fully prospective model selection. Never retune using test results."
+}

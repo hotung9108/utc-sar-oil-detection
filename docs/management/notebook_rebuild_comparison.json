@@ -1,0 +1,100 @@
+{
+  "compared_to_git_commit": "995d82b2b8f69d0c1807f25700f6b157d8fc798f",
+  "notebooks": [
+    {
+      "notebook": "notebooks/01_data_and_ground_truth.ipynb",
+      "previous_sha256": "391b70749e051573aff9b818372622e2549cdacf05ce19ea1cf4e9d796a40984",
+      "current_sha256": "3a83e5ebb763fcaf840046e8097acd0b237b138b56aaa247e31398ebbf57ab84",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/02_filter_threshold_benchmark.ipynb",
+      "previous_sha256": "70aacdbeefd59a25db4a0971436a45801d2174d79473ada8503c6a791189e4fc",
+      "current_sha256": "d75c2d9f83fccc56feb86c3e71fe57bb5f4c8d9ad312342391c705853f69ed81",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 3,
+      "executed_cells": 5
+    },
+    {
+      "notebook": "notebooks/03_regions_and_features.ipynb",
+      "previous_sha256": "f526f8247c1f0b0316986b5d11a437308bf0a13d073c854341f2ff5a94cea6e5",
+      "current_sha256": "dec620bd1ad196ba89af95985f3c4481859218e12efb672f052e724d4508a263",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/04_cart_svm_numpy.ipynb",
+      "previous_sha256": "f75df4fe8c66d1d1bb99e727fa82d7adcc7a818eb6198f54cf28416f528eca78",
+      "current_sha256": "dee0e77a2a07532696a4f9727ec1b2d2bfbf298961026fe2d0e50867b274690b",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 1,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/05_final_pipeline.ipynb",
+      "previous_sha256": "15aecf7383c233676522b0a0cde10d984d5ee900e3a93a2041d70a6bca12a461",
+      "current_sha256": "13c617c62c300a04237a107f95b274e0c5dc4e27687fa9e9b8bc44a8fd969c7f",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 4,
+      "executed_cells": 4
+    },
+    {
+      "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
+      "previous_sha256": "9b86ae9e781591833e046a6a9d1e939c0a4197a2297f4beed6b4b912487ab6b8",
+      "current_sha256": "3a8694304a3ee24b539bd57dad53696f3ca4fee6a6994f1bbe44a71097dc36b3",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 3,
+      "executed_cells": 4
+    },
+    {
+      "notebook": "notebooks/external/07_sentinel_calibration.ipynb",
+      "previous_sha256": "b08380ccdd7a8ab679e14a12d6b9202b7b84624b02be9a0d1206b3044b4aee40",
+      "current_sha256": "40275f2c0a6ddebf207c73b933d96aa5c8c43b57357c498015ef06870ae7b29a",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/external/08_qposd_audit.ipynb",
+      "previous_sha256": "cdbfac0f10b2dc40d2bae057f7469378ac9f1137134a6c78619269aa64d01223",
+      "current_sha256": "01d9ceb77076e189034805c7f4aab29fee96fdb6135890373bf38fd66406a134",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2,
+      "executed_cells": 4
+    },
+    {
+      "notebook": "notebooks/external/09_palsar_frozen_pipelines.ipynb",
+      "previous_sha256": "041b19bb3cad6c177ccebb01e53ca5a03e863c3058319f5d1aa2e6e021ab338c",
+      "current_sha256": "e842918fa15e6e53cd51afc736ed03db534c1e32afbae1662f7c114cbe06be28",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 2,
+      "executed_cells": 3
+    },
+    {
+      "notebook": "notebooks/external/10_qposd_classification_detection.ipynb",
+      "previous_sha256": "e15e4af057bb6e1a1718205ba4814911b7b6671707ebb0cc1d202a4ae3da3a8c",
+      "current_sha256": "22b6aa3ac89ffe9f1cfbbe0d827bcf881d14a1dc01db5960243d07fa58e2f95b",
+      "outputs_equal": true,
+      "figures_equal": true,
+      "figures": 7,
+      "executed_cells": 5
+    }
+  ],
+  "all_outputs_equal": true,
+  "all_figures_equal": true,
+  "total_figures": 26,
+  "protected_files": 88,
+  "scope": "All ten notebooks reexecuted; outputs and figure bytes exactly match prior committed evidence. Execution metadata may differ. No refitting or new selection."
+}

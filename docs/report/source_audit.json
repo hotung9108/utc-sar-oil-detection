@@ -3,8 +3,8 @@
   "reference_sha256": "3f02d4a480267f093eeed08cd9ca2dfc9034a1e45c7c979caae1e196cb6b915d",
   "source_paragraphs": 185,
   "replacement_blocks": 17,
-  "narrative_word_count": 4820,
-  "references": 10,
+  "narrative_word_count": 6255,
+  "references": 13,
   "cited_numbers": [
     1,
     2,
@@ -15,7 +15,10 @@
     7,
     8,
     9,
-    10
+    10,
+    11,
+    12,
+    13
   ],
   "anchors_valid": true,
   "citations_complete": true,

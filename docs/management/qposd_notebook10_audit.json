@@ -1,0 +1,63 @@
+{
+  "notebook": "notebooks/external/10_qposd_classification_detection.ipynb",
+  "notebook_sha256": "78fd35d1f9a87797f4ddd61947c21f0931da6d8911eb65ca801029dfa478a7ab",
+  "execution_exit_code": 0,
+  "executed_code_cells": 5,
+  "error_outputs": 0,
+  "figures": [
+    {
+      "cell": 3,
+      "path": ".cache/qposd/notebook10_review/figure1.png",
+      "sha256": "c374183d2a693fcb8b37f505736ec360b0d2294cf58b27a43d5295e222320a1b",
+      "visually_reviewed": true,
+      "observation": "All ten model labels and two series visible; CART depth5/min_leaf5 differs between implementations."
+    },
+    {
+      "cell": 5,
+      "path": ".cache/qposd/notebook10_review/figure2.png",
+      "sha256": "4e6345f150b56ac55f8e8fdfdc25b07697cead83d4c768a107b916364494590a",
+      "visually_reviewed": true,
+      "observation": "All ten candidate configurations visible on full 0-to-1 axis; low detection scores preserved."
+    },
+    {
+      "cell": 7,
+      "path": ".cache/qposd/notebook10_review/figure3.png",
+      "sha256": "99483ad9fe53e5d54b9c964f1de96724f478fb1368ddecea8015514c4f69c062",
+      "visually_reviewed": true,
+      "observation": "Image14: oil structure partly recovered; extensive false look-alike background predictions."
+    },
+    {
+      "cell": 7,
+      "path": ".cache/qposd/notebook10_review/figure4.png",
+      "sha256": "c16ddb4753021ddf9e1eb8b7511a0ad6f55a1d266b9d0c66a52da3d93406812e",
+      "visually_reviewed": true,
+      "observation": "Image17: oil strip appears narrower than reference; macro-F1 undefined for this image because no look-alike GT or prediction, not omitted from pooled counts."
+    },
+    {
+      "cell": 7,
+      "path": ".cache/qposd/notebook10_review/figure5.png",
+      "sha256": "bf0d21e46e9ab34e9310164ed2a139791ca26e499e322a5b22e8f044fe47661d",
+      "visually_reviewed": true,
+      "observation": "Image18: main oil strip detected, false look-alike regions elsewhere."
+    },
+    {
+      "cell": 7,
+      "path": ".cache/qposd/notebook10_review/figure6.png",
+      "sha256": "7add9eb90288cbac6e5408217e10960da23ab7ea58c7728fbc8824e79855fd64",
+      "visually_reviewed": true,
+      "observation": "Image24: multiple true look-alike structures predicted as oil; coastal land remains unmasked at inference."
+    },
+    {
+      "cell": 7,
+      "path": ".cache/qposd/notebook10_review/figure7.png",
+      "sha256": "2c77db2726111d9a7bcde84788817413c8cf5c7c1361403d73ec0df6ff653858",
+      "visually_reviewed": true,
+      "observation": "Image25: extensive look-alike-to-oil confusion and fragmented segmentation."
+    }
+  ],
+  "all_figures_reviewed": true,
+  "reran_both_backends_on_all_five_test_images": true,
+  "predicted_masks_equal_saved_pixelwise": true,
+  "metrics_recomputed_equal_saved": true,
+  "scope": "Successful notebook re-execution and direct review of all seven figures; not evidence of good detection or scene independence."
+}

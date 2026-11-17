@@ -1,0 +1,8 @@
+{
+  "script_sha256": "ec9fdb31005a5429b5100699f965a971f5e0d801a639def4ba2a4770c4187fa7",
+  "template_validation": "nbformat.validate and compile on five code cells passed in a temporary directory",
+  "real_notebook_created": false,
+  "real_notebook_executed": false,
+  "reason": "Frozen QPOSD test evaluation is not yet available",
+  "scope": "Template syntax validation only; no placeholder results published."
+}

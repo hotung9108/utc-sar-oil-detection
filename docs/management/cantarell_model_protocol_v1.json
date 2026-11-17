@@ -1,0 +1,580 @@
+{
+  "version": 1,
+  "data_protocol_sha256": "ded8a123ea931167b987e6486ccbe6659219352e3096e6cfddec90a21c695878",
+  "generator_sha256": "2de924c88ebc4ff727cfe00eb285faf22928d451cf0260ce083be4cacd2bb09a",
+  "existing_algorithm_source_hashes": {
+    "src/sar_oil/core.py": "f18abf40ce140cb1a97f4d2fd210551f41897fe7254845f0220f026bb652468d",
+    "src/sar_oil/reference.py": "ea8753b3affb644a3ab92bdc3cf65c8de1df892024180089b10ac41fcf7d9e9d",
+    "src/sar_oil/models.py": "dafd98f4d2122def5e54ec8d7068a31bc2a206a44145f45bb60001bf75a72d0e",
+    "src/sar_oil/evaluation.py": "4df8cfb78099b394024ce96e4560ffdc9cda3fdb9d7806c4a6f67db51e91e740",
+    "scripts/qposd_fast_features.py": "3885397e59a8e5ccb36029858555b23c7a4133cd07b403c59e27d5aba842004c",
+    "scripts/prepare_cantarell_physical.py": "3b8931d3560c15be9a0903dcd367e23f25cf81834e353d6a32b297a34211a83c"
+  },
+  "scope": "Separate binary physical-SAR supplement; SOS remains primary, QPOSD remains the generic oil/look-alike evidence.",
+  "prerequisites": [
+    "Finish all 173 preparation attempts with no unresolved operational errors.",
+    "Run strict complete-array verifier; require frozen per-split scene-count and wind-coverage gates.",
+    "Write and commit exact eligible sample manifest, input hashes and execution-code hashes before first detection score or model fitting."
+  ],
+  "radiometry_branches": [
+    "sigma0",
+    "gamma0"
+  ],
+  "image_pipeline": [
+    "Use the aligned common 584x784 physical crop, no resizing.",
+    "Apply candidate speckle filter in LINEAR power.",
+    "Convert to 10*log10(max(value,1e-12)); clip and scale per-image 1st/99th percentiles to [0,1]; constant range maps to zero.",
+    "Apply Otsu or local Niblack, then minimum candidate area 64 with no morphology.",
+    "Extract the same eight existing features from the filtered normalized image and candidate regions."
+  ],
+  "candidate_configs": [
+    {
+      "id": 0,
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 1,
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 2,
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 3,
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 4,
+      "filter": {
+        "name": "none"
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 5,
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 6,
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 7,
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 8,
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 9,
+      "filter": {
+        "name": "mean",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 10,
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 11,
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 12,
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 13,
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 14,
+      "filter": {
+        "name": "median",
+        "size": 7
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 15,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 16,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 17,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 18,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 19,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 1
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 20,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "otsu"
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 21,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 22,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 31,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 23,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.2
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    },
+    {
+      "id": 24,
+      "filter": {
+        "name": "lee",
+        "size": 7,
+        "looks": 4
+      },
+      "threshold": {
+        "name": "niblack",
+        "size": 51,
+        "k": 0.5
+      },
+      "morphology": {
+        "operation": "none",
+        "min_area": 64
+      }
+    }
+  ],
+  "candidate_grid_rationale": "Controlled 7x7 comparison of none/mean/median/Lee L1/L4 follows existing SOS coursework evidence; two Niblack windows and two k values test local scale/offset. This is a prespecified finite grid, not an exhaustive search or a theorem that Lee is best.",
+  "screening": {
+    "split": "val",
+    "backends": [
+      "numpy",
+      "reference"
+    ],
+    "with_classifier": false,
+    "comparisons": 50,
+    "comparison_count_note": "25 configurations x 2 radiometry branches; both operator backends for every comparison.",
+    "ranking": [
+      "pooled object F1 descending",
+      "pooled object Recall descending",
+      "candidate id ascending"
+    ],
+    "undefined_metric_rank": "below all defined values",
+    "retention": "For each radiometry branch, retain union of best three unrestricted configurations and best three Niblack configurations. Maximum six per branch.",
+    "limitation": "Staged search may discard a candidate generator that would become better after classification."
+  },
+  "features": [
+    "area/image_area",
+    "covariance_elongation",
+    "bbox_extent",
+    "grid_perimeter_squared/(4*pi*area)",
+    "mean",
+    "std",
+    "mean_inner_boundary_sobel_magnitude",
+    "background_ring_contrast"
+  ],
+  "feature_verification": {
+    "numpy": "existing grouped-coordinate NumPy helper, same eight definitions as frozen SOS core",
+    "reference": "existing regionprops/ndimage reference with matching grid-perimeter convention",
+    "scope": "All retained-config validation regions; additionally compare grouped NumPy with original NumPy core on first eligible validation image per source scene.",
+    "measurements": [
+      "max absolute error",
+      "max relative error with denominator max(abs(reference),1e-12)",
+      "MSE",
+      "region ID/partition agreement"
+    ],
+    "failure_rule": "Investigate numerical/definition mismatches before selecting a winning model; never hide changed connected components."
+  },
+  "training": {
+    "split": "train",
+    "seed": 2026,
+    "labels": "region GT foreground fraction >=0.5 positive; <=0.05 negative; intermediate regions excluded only from training",
+    "max_regions_per_class": 10000,
+    "sampling": "deterministic NumPy generator, sorted sample and region order, separately per branch/config; store selected rows",
+    "scaler": "mean/std fit on selected train rows only, zero std replaced with 1",
+    "models": [
+      {
+        "id": 0,
+        "kind": "svm",
+        "C": 0.1
+      },
+      {
+        "id": 1,
+        "kind": "svm",
+        "C": 1.0
+      },
+      {
+        "id": 2,
+        "kind": "svm",
+        "C": 10.0
+      },
+      {
+        "id": 3,
+        "kind": "cart",
+        "max_depth": 3,
+        "min_leaf": 5
+      },
+      {
+        "id": 4,
+        "kind": "cart",
+        "max_depth": 3,
+        "min_leaf": 20
+      },
+      {
+        "id": 5,
+        "kind": "cart",
+        "max_depth": 5,
+        "min_leaf": 5
+      },
+      {
+        "id": 6,
+        "kind": "cart",
+        "max_depth": 5,
+        "min_leaf": 20
+      }
+    ],
+    "numpy_and_library_each": true,
+    "svm": "Same squared-hinge L2 objective and regularized constant feature as frozen SOS; NumPy max_iter=10000, max_abs_gradient tolerance=1e-6; sklearn matching objective.",
+    "cart": "Same Gini criterion and depths/leaves; record tie/float-precision disagreement rather than require identical trees.",
+    "ineligible_model": "Record one-class training, nonfinite scores or failed NumPy SVM convergence; do not silently select failed models or omit failed grid rows."
+  },
+  "selection": {
+    "split": "val",
+    "metric": "pooled object F1 of full NumPy detector",
+    "tie_break": [
+      "pooled Recall descending",
+      "candidate id ascending",
+      "model id ascending"
+    ],
+    "primary": "Best gamma0 detector constrained to Niblack, because the required final physical branch includes angle normalization and adaptive thresholding.",
+    "comparators": [
+      "Best unrestricted gamma0 detector",
+      "Best unrestricted sigma0 detector",
+      "Best Niblack sigma0 detector"
+    ],
+    "disclosure": "Report the unrestricted-vs-constrained validation tradeoff; do not call the constrained winner globally optimal.",
+    "freeze": "Commit selected config/model hashes and validation comparison tables before evaluating detection on test."
+  },
+  "test": {
+    "split": "test",
+    "ground_truth": "all cropped semantic-foreground 8-connected components, no minimum GT area",
+    "matching": "one-to-one maximum valid matches then maximum IoU, threshold IoU>=0.5, existing evaluator",
+    "primary_paired_ablation": "Apply the SAME gamma0-trained Niblack winner and all its parameters to gamma0 versus sigma0 on every eligible test tile. No classifier refit or threshold adjustment in this pair.",
+    "additional_pipelines": "Frozen best unrestricted gamma0, unrestricted sigma0 and Niblack sigma0 winners; deduplicate identical pipelines but retain their role labels.",
+    "backend_comparison": "Both NumPy/reference image operators on every test tile, with the SAME frozen NumPy classifier, report pixel and metric disagreement.",
+    "metrics": [
+      "pooled object Precision/Recall/F1",
+      "pixel IoU/Dice",
+      "FP per image",
+      "edge/interior GT Recall",
+      "per-image and per-scene counts",
+      "single-run wall time with environment/worker count"
+    ],
+    "bootstrap": {
+      "unit": "whole source scene",
+      "paired": true,
+      "replicates": 2000,
+      "seed": 2026,
+      "interval": "2.5/97.5 percentiles of paired F1 difference; disclose few scene clusters and undefined draws"
+    },
+    "interpretation": "Paired effect applies to this fixed gamma-trained detector. Independently optimized branch winners change multiple factors and are not a pure angle-normalization ablation."
+  },
+  "wind": {
+    "use": "Report context and per-scene/per-image values only; no wind-based GT editing, sample filtering, threshold tuning or causal look-alike claims."
+  },
+  "outputs": [
+    "all candidate validation rows",
+    "all model training/validation rows including failures",
+    "portable model/scaler files",
+    "frozen selection manifest",
+    "test per-image counts/masks/overlays",
+    "paired scene bootstrap replicates",
+    "executed Jupyter notebook with figures and source hashes"
+  ],
+  "honesty_limits": [
+    "Oil seepage is pooled with oil spill, not relabelled as oil-like background.",
+    "Object metrics count connected components per tile, not unique physical spill events; overlapping tiles within scenes can repeat a labelled region.",
+    "Gamma conversion is a geometric-area correction; uncorrected thermal noise and approximate registration remain.",
+    "No test result is available at protocol creation; no algorithm superiority is claimed in advance."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "notebook": "notebooks/external/07_sentinel_calibration.ipynb",
+  "sha256": "2dafb96fe23b4bb733e101a2a29882e42b44503255e481ca50d74d125a3b314a",
+  "executed_cells": 3,
+  "figures": 2,
+  "no_cell_errors": true,
+  "calibration_sha256": "40fb86ccab2f8bec1a23565fd4b29f5e8d813e9ed4fba921023a5e67cf279c8e",
+  "wind_sha256": "9c5e91deada233af6286b2b820b9f9379683a6d8beffcc79d4fdadcb1ca07475",
+  "tests": "14 unittest tests passed",
+  "scope": "Real unlabeled SAR tile calibration and ERA5 match; no detection validation"
+}

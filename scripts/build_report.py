@@ -231,7 +231,7 @@ fill_table(tables[4], [['Từ viết tắt', 'Tiếng Anh', 'Tiếng Việt'],
     ['SVM', 'Support Vector Machine', 'Máy vector hỗ trợ']], [2.6, 6.1, 7.3])
 caption(paragraphs[73], 'Bảng', 1, 1, 'Chức năng và người phụ trách theo kế hoạch')
 fill_table(tables[5], [['Bước', 'Chức năng và tình trạng', 'Phụ trách'],
-    ['Tiền xử lý', 'Lọc NumPy; chưa có dữ liệu để chuẩn hóa góc tới', 'TV3'],
+    ['Tiền xử lý', 'Lọc NumPy; hiệu chuẩn góc tới minh họa riêng, chưa chấm phát hiện', 'TV3'],
     ['Ứng viên', 'So sánh Otsu và Niblack; liên thông và hình thái', 'TV3, TV4'],
     ['Phân lớp', 'Tám đặc trưng; CART và SVM; nhãn dầu/nền', 'TV4, TV2'],
     ['Đánh giá', 'Precision, Recall, F1 đối tượng; IoU pixel; chưa có nhãn từng loại look-alike', 'TV5'],
@@ -312,7 +312,7 @@ new_table(p, [['Đặc trưng', 'Định nghĩa trong code', 'Ý nghĩa và gi�
     ['mean', 'μR', 'Mức xám trung bình trên ảnh lọc'],
     ['std', 'σR với ddof=0', 'Độ phân tán trong vùng'],
     ['boundary_gradient', 'Mean độ lớn Sobel trên biên', 'Kernel Sobel chia 8; biên lấy bằng R trừ erosion'],
-    ['background_contrast', '(μB−μR)/(|μB|+ε)', 'B là vành ngoài bán kính 5, chỉ lấy pixel label=0']],
+    ['background_\ncontrast', '(μB−μR)/(|μB|+ε)', 'B là vành ngoài bán kính 5, chỉ lấy pixel label=0']],
     2, 3, 'Định nghĩa và giới hạn đặc trưng vùng', [4, 5, 7])
 p = after(p, 'Nếu vành ngoài không có pixel nền, code dùng toàn bộ nền của ảnh; nếu cả ảnh không có nền, dùng trung bình toàn ảnh. Quy tắc dự phòng này tránh NaN nhưng làm đặc trưng tương phản mất ý nghĩa nền cục bộ trong trường hợp vùng phủ gần hết ảnh. Bản NumPy và bản tham chiếu cùng dùng quy tắc đó, vì khác định nghĩa vùng nền có thể tạo sai số dù cả hai chương trình đều chạy đúng.')
 p = after(p, 'Nhóm đặc trưng hình dạng dùng bốn cột đầu; nhóm cường độ dùng bốn cột cuối; nhóm đầy đủ dùng cả tám. So sánh ba nhóm giữ cùng cách tạo ứng viên nhằm đo ảnh hưởng của thông tin đầu vào classifier. Chuẩn hóa z-score dùng trung bình và độ lệch chuẩn chỉ tính trên tập train; cột gần hằng có hệ số chia bảo vệ. Một vùng ở test được biến đổi bằng chính các thống kê train đã lưu.')
@@ -331,9 +331,18 @@ algorithms = [
     ['Thuật toán 2  CART tại một nút', 'Vào: X, y, depth, min_leaf', '1. Nếu lá thuần hoặc đạt giới hạn sâu: tạo lá.', '2. Với từng cột: sắp xếp ổn định các mẫu.', '3. Tính tổng nhãn tích lũy và Gini hai nhánh.', '4. Bỏ điểm chia vi phạm min_leaf.', '5. Chọn gain lớn nhất theo quy tắc hòa xác định.', '6. Nếu gain không dương: tạo lá; nếu không: đệ quy.', 'Mã: models.py, lớp CART.'],
     ['Thuật toán 3  SVM squared hinge', 'Vào: X đã chuẩn hóa, y∈{−1,+1}, C, tol', '1. Thêm cột hằng và khởi tạo trọng số.', '2. Tính Q và gradient theo (2.5).', '3. Backtracking để chọn bước giảm Q hợp lệ.', '4. Cập nhật trọng số với tăng tốc và restart.', '5. Dừng nếu chuẩn gradient đạt tol.', '6. Nếu hết vòng lặp: lưu trạng thái chưa hội tụ.', 'Mã: models.py, lớp LinearSVM.']]
 p = paragraphs[114]
-text(p, algorithms[0][0])
-for line in algorithms[0][1:] + [''] + algorithms[1] + [''] + algorithms[2]:
-    p = after(p, line, code=True)
+for algorithm_index, lines in enumerate(algorithms):
+    for line_index, line in enumerate(lines):
+        if algorithm_index == 0 and line_index == 0:
+            text(p, line)
+        else:
+            p = after(p, line, code=True)
+        p.paragraph_format.keep_together = True
+        p.paragraph_format.keep_with_next = line_index < len(lines) - 1
+        if line_index == 0:
+            p.paragraph_format.space_before = Pt(10)
+            for run in p.runs:
+                run.bold = True
 for i in range(115, 120):
     remove(paragraphs[i])
 caption(paragraphs[120], 'Bảng', 3, 3, 'Sai số đối chiếu trên tám ảnh validation')
@@ -416,10 +425,83 @@ new_table(p, rows, 4, 3, 'Thống kê từng ảnh test với độ lệch chu�
 p = after(p, 'Micro F1=0,28052 không bằng trung bình F1 từng ảnh=0,34912 vì hai cách gộp có trọng số khác nhau. Không nên chọn cách gộp sau khi xem điểm nào lớn hơn. Khi so sánh với bài báo khác còn phải giữ cùng quy tắc đối tượng, ngưỡng ghép, tập kiểm tra và cách xử lý ảnh rỗng. Do các điều kiện đó chưa được chứng minh tương đương với kết quả CBD-Net [3], báo cáo không lập bảng tuyên bố hơn hoặc kém mô hình công bố chỉ từ các con số khác giao thức.')
 after(p, 'Dice pixel được tính bằng 2|A∩B|/(|A|+|B|), còn FP/ảnh là tổng số đối tượng dự đoán không ghép được chia số ảnh. Các độ đo pixel và đối tượng bổ sung cho nhau: Dice hoặc IoU cao vẫn có thể đi cùng nhiều FP đối tượng do phân mảnh. MSE trong Bảng 3.3 lại đo sai khác giữa hai triển khai, không đo chất lượng phân đoạn so với mask. Cần giữ riêng ba câu hỏi về độ phủ, số đối tượng và tính đúng cài đặt.')
 
+dartis = load('results/dartis/evaluation.json')
+assert dartis['complete'] and dartis['completed'] == 2290
+dartis_rows = [['Tập no-oil', 'Ảnh', 'Ảnh báo nhầm', 'Tỷ lệ', 'Vùng/ảnh']]
+for label, result in [('Toàn bộ', dartis['overall']), ('Bờ', dartis['by_subset']['nc']), ('Biển', dartis['by_subset']['nw'])]:
+    dartis_rows.append([label, str(result['images']), str(result['false_alarm_images']),
+                        f"{result['false_alarm_rate']:.4%}", f"{result['retained_regions_per_image']:.4f}"])
+new_table(tails[145], dartis_rows, 4, 4, 'Báo nhầm của mô hình SOS cố định trên DARTIS', [3.5, 2, 3.5, 3.5, 3.5])
+palsar_node = deepcopy(body_pattern)
+tails[145]._p.getnext().getnext().addnext(palsar_node)
+palsar_paragraph = Paragraph(palsar_node, doc._body)
+text(palsar_paragraph, 'Bảng 4.5 bổ sung phép thử trên toàn bộ 3101 patch PALSAR external_train của SOS [2]. Tập này mang tên train của nhà phát hành nhưng không tham gia fit/chọn cấu hình trong pipeline hiện tại. Giao thức khóa cả hai mô hình trước suy luận; không đổi tham số hoặc chọn lại mô hình từ kết quả. Kiểm tra hash đủ 8070 cặp và pixel grayscale không phát hiện ảnh trùng hoàn toàn liên quan tới tập này; vẫn chưa loại trừ patch chồng lấn hoặc chung cảnh. Không gộp với 776 ảnh PALSAR external_val đã đánh giá trước đó.')
+palsar_paragraph = after(palsar_paragraph, 'Cả hai nhánh được chấm đủ 3101 ảnh theo cùng quy tắc ghép đối tượng. Otsu–SVM đạt F1=0,33965, Niblack–CART đạt 0,24948. Hai pipeline khác cả tham số Lee và classifier nên không quy chênh lệch riêng cho phân ngưỡng. Reporter kiểm tra hash nguồn và tổng hợp lại TP/FP/FN; notebook 09 chạy lại ảnh có ID nhỏ nhất để đối chiếu số đếm. Đây là phép thử bổ sung chuyển sensor, không phải kiểm chứng mù, độc lập theo cảnh hoặc đánh giá Sentinel-1 tại Việt Nam.')
+palsar_rows = [['Nhánh cố định', 'Precision', 'Recall', 'F1 đối tượng', 'IoU pixel']]
+for name, label in [('otsu', 'Otsu–SVM'), ('niblack', 'Niblack–CART')]:
+    result = load(f'results/sos/external_palsar_train/{name}.json')
+    assert result['complete'] and result['completed'] == 3101
+    palsar_rows.append([label] + [f"{result['metrics'][key]:.5f}" for key in ['precision', 'recall', 'f1', 'pixel_iou']])
+new_table(palsar_paragraph, palsar_rows, 4, 5, 'Hai pipeline cố định trên 3101 patch PALSAR bổ sung', [4, 3, 3, 3, 3])
+
+# Append the completed QPOSD experiment; all numeric table cells read frozen JSON.
+qposd = load('results/qposd/evaluation.json')
+qclasses = load('results/qposd/classifier_selection.json')
+qcandidates = load('results/qposd/detection_selection.json')
+qprotocol = load('results/qposd/protocol.json')
+assert qposd['complete'] and [r['number'] for r in qposd['images']] == qprotocol['splits']['test']
+assert qposd['classifier']['selection_sha256'] == hashlib.sha256((ROOT/'results/qposd/classifier_selection.json').read_bytes()).hexdigest()
+assert qposd['detector']['selection_sha256'] == hashlib.sha256((ROOT/'results/qposd/detection_selection.json').read_bytes()).hexdigest()
+qnode = deepcopy(body_pattern)
+palsar_paragraph._p.getnext().getnext().addnext(qnode)
+qp = Paragraph(qnode, doc._body)
+text(qp, 'Thực nghiệm QPOSD bổ sung được khóa riêng trước fit. Kiểm tra đủ 276 cặp ảnh phát hiện bốn cặp có vùng giao trùng chính xác: 19/20, 21/22, 22/33 và 22/35. Giao thức v1 bị từ chối trước huấn luyện vì 21/22 nằm khác split. Giao thức v2 giữ các nhóm {19,20} và {21,22,33,35} cùng split, với 14 ảnh train, 5 validation và 5 test; không dùng điểm mô hình để sửa cách chia. Kiểm tra lấy mẫu không loại trừ cảnh chung đã đổi thang hoặc xoay; ảnh test đã được xem để kiểm tra ảnh–nhãn nên không gọi là đánh giá mù.')
+qp = after(qp, 'Đầu vào là kênh T11 tuyến tính của QPOSD, không phải PNG SOS hoặc Sentinel VV. Nhánh đặc trưng cố định lọc Lee 7×7, L=4, đổi 10log10 và chặn/chuẩn hóa theo phân vị 1–99% từng ảnh. Trên 527 vùng train và 202 vùng validation, so sánh 4 SVM và 6 CART. Hai cài đặt nhận cùng đặc trưng NumPy; chỉ fit chuẩn hóa trên train. Bảng 4.6 dùng macro-F1 khi hình học vùng tham chiếu đã được cung cấp, không đo khả năng tìm vùng. Cả 10 bản NumPy hội tụ; chọn CART độ sâu 5, min_leaf=1 theo validation.')
+
+def qnext_table(anchor, rows, number, title, widths):
+    new_table(anchor, rows, 4, number, title, widths)
+    node = deepcopy(body_pattern)
+    anchor._p.getnext().getnext().addnext(node)
+    p = Paragraph(node, doc._body)
+    text(p, '')
+    return p
+
+qrows = [['ID', 'Bộ phân lớp', 'F1 NumPy', 'F1 thư viện']]
+for r in qclasses['configurations']:
+    params = r['config']['params']
+    label = (f"SVM C={params['C']:g}" if r['config']['kind'] == 'svm' else
+             f"CART d={params['max_depth']}, lá={params['min_leaf']}")
+    qrows.append([str(r['index']), label, f"{r['numpy_validation']['macro_f1']:.5f}", f"{r['reference_validation']['macro_f1']:.5f}"])
+qp = qnext_table(qp, qrows, 6, 'Phân lớp vùng QPOSD trên validation', [1.2, 6.8, 4, 4])
+text(qp, 'Bảng 4.7 so sánh đủ 10 cấu hình tạo ứng viên trên cùng 5 ảnh validation, cùng CART đã khóa. Không hình thái; chỉ bỏ ứng viên dưới 64 pixel, không bỏ GT nhỏ. Ghép một-một IoU≥0,5 theo lớp, cộng TP/FP/FN toàn tập rồi tính F1 mỗi lớp và lấy trung bình hai lớp. Hòa điểm chọn ID nhỏ hơn. Otsu không lọc trước tìm vùng thắng; điều này không chứng minh Lee tốt hơn trên QPOSD. Ảnh dùng tính đặc trưng vẫn có Lee cố định. Đây là tìm kiếm giới hạn, không chứng minh tối ưu toàn bộ không gian thuật toán.')
+qrows = [['ID', 'Lọc tạo vùng', 'Ngưỡng', 'F1 NumPy', 'F1 thư viện']]
+for r in qcandidates['configurations']:
+    c = r['config']; t = c['threshold']
+    label = 'Otsu' if t['name'] == 'otsu' else f"Niblack w={t['size']}, k={t['k']:g}"
+    qrows.append([str(r['index']), 'Không' if c['filter'] == 'none' else 'Lee 7, L=4', label,
+                  f"{r['numpy_summary']['macro_f1']:.5f}", f"{r['reference_summary']['macro_f1']:.5f}"])
+qp = qnext_table(qp, qrows, 7, 'So sánh tạo vùng QPOSD trên validation', [1, 3.5, 5.5, 3, 3])
+text(qp, 'Lựa chọn đã được commit trước khi chấm đủ năm ảnh test 14, 17, 18, 24, 25. Bảng 4.8 tách phân lớp có sẵn vùng với phát hiện đầu-cuối. Macro-F1 lần lượt là 0,52141 và 0,06373; dầu chỉ phát hiện đúng 3/15 đối tượng, tương tự dầu 6/178. Không gộp QPOSD với SOS do khác sensor, nhãn và đơn vị ảnh. Kết quả kém được giữ nguyên; không chỉnh mô hình sau khi xem test.')
+qrows = [['Phép đo', 'Lớp', 'Precision', 'Recall', 'F1']]
+for label, result in [('Có sẵn vùng', qposd['conditional_classification']), ('Phát hiện', qposd['numpy_summary'])]:
+    for name, r in result['classes'].items():
+        qrows.append([label, 'Dầu' if name == 'oil' else 'Tương tự dầu'] + [f"{r[k]:.5f}" for k in ('precision', 'recall', 'f1')])
+qp = qnext_table(qp, qrows, 8, 'QPOSD trên toàn bộ năm ảnh test', [3.5, 3.5, 3, 3, 3])
+text(qp, 'Phân lớp có sẵn vùng có ma trận hàng thật/cột dự đoán [tương tự dầu, dầu] là [[125,53],[6,9]]: nhầm dầu thành tương tự dầu 40%, chiều ngược lại 29,7753%. Đây là lỗi có điều kiện trên vùng tham chiếu. Với phát hiện, phải báo thêm 35 FP dầu, 12 FN dầu, 658 FP tương tự dầu và 172 FN tương tự dầu; ma trận trên các đối tượng ghép được không thay thế Recall. Cả hai backend cho mask giống nhau từng pixel trên năm ảnh test, nhưng không đúng với nhãn thật.')
+qp = after(qp, 'Notebook 10 chạy lại suy luận hai backend trên đủ năm ảnh và đối chiếu mask, số đếm với JSON đã lưu; bảy hình được xem trực tiếp. Ảnh 14 có nhiều nền bị gọi là tương tự dầu; ảnh 24 và 25 có vùng tương tự dầu bị gọi là dầu. Nhãn phân đoạn có thể chia một cấu trúc thành nhiều đối tượng; số vùng không phải số sự kiện dầu độc lập. Tối ưu gom tọa độ cho 8 đặc trưng NumPy giữ nguyên toàn bộ giá trị trên 1.474 ứng viên đã kiểm tra; hai lần đo đơn cho khoảng 18,83–20,08 giây so với 1,31–1,42 giây, không suy rộng thành tốc độ toàn pipeline. scripts/report_qposd.py kiểm tra hash và tổng hợp lại số đếm trước khi tạo bảng Markdown.')
+
 # References and appendices retain source locations and formatting.
 for index in range(153, 157):
     remove(paragraphs[index])
-block(152, [f"[{r['number']}] {r['citation']} {r['url']}" for r in load('docs/report/bibliography.json')])
+reference_end = block(152, [f"[{r['number']}] {r['citation']} {r['url']}" for r in load('docs/report/bibliography.json')])
+reference_node = paragraphs[152]._p
+while True:
+    reference_paragraph = Paragraph(reference_node, doc._body)
+    reference_paragraph.alignment = 0
+    reference_paragraph.paragraph_format.keep_together = True
+    if reference_node is reference_end._p:
+        break
+    reference_node = reference_node.getnext()
 caption(paragraphs[160], 'Bảng', 'PL', 1, 'Phân công kiểm tra và bàn giao')
 fill_table(tables[10], [['Thành viên', 'Nhiệm vụ', 'Sản phẩm kiểm tra']] + [[m['name'], m['role'], m['modules']] for m in members], [3.8, 5.4, 6.8])
 caption(paragraphs[163], 'Bảng', 'PL', 2, 'Xác nhận đóng góp thực tế')
@@ -435,7 +517,10 @@ text(paragraphs[179], 'Repository: https://github.com/hotung9108/utc-sar-oil-det
 commands = ['python -m venv .venv', '.venv/Scripts/python.exe -m pip install -r requirements.txt', '.venv/Scripts/python.exe run_experiments.py --workers 6', '.venv/Scripts/python.exe run_experiments.py --verify-only']
 for i, value in zip(range(180, 184), commands):
     text(paragraphs[i], value, True)
-text(paragraphs[184], 'Bảng 4.1 đọc evaluation.json; Bảng 4.2 được tái tạo bằng scripts/explain_selection.py; ví dụ số dùng scripts/worked_example.py. Mã ở src/sar_oil, lệnh chạy ở scripts, notebook ở notebooks và mọi số liệu ở results/sos. Lệnh verify-only chỉ kiểm tra kết quả đã lưu, không phải chạy lại toàn bộ thực nghiệm.')
+text(paragraphs[184], 'Bảng 4.1 đọc results/sos/evaluation.json; Bảng 4.2 được tái tạo bằng scripts/explain_selection.py; ví dụ số dùng scripts/worked_example.py. Số liệu QPOSD ở results/qposd; chạy python scripts/report_qposd.py để kiểm tra nguồn và tạo bảng, hoặc python scripts/run_notebooks.py --notebook notebooks/external/10_qposd_classification_detection.ipynb để chạy lại suy luận. Phân công bổ sung ở docs/management/qposd_tasks.json. Mã ở src/sar_oil, lệnh chạy ở scripts, notebook ở notebooks. Lệnh verify-only chỉ kiểm tra kết quả đã lưu, không phải chạy lại toàn bộ thực nghiệm.')
+
+# Long reproducibility paths should not stretch spaces under full justification.
+paragraphs[184].alignment = 0
 
 # Delete all remaining instructional paragraphs, not real bracket citations.
 for p in list(doc.paragraphs):

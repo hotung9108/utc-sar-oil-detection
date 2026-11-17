@@ -1,0 +1,13 @@
+{
+  "command": ".venv/Scripts/python.exe -m unittest discover -s tests -p test_qposd_metrics.py -v",
+  "exit_code": 0,
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "observed_runtime_seconds": 0.004,
+  "source_sha256": {
+    "scripts/qposd_metrics.py": "ced3cc80064e42ec23fefb2955217e3ff2472c3530aa9e9601bf626b011296da",
+    "tests/test_qposd_metrics.py": "4b16158be6c078435749383ec1973595902b52e96b2a937627e76d007d776b7b"
+  },
+  "scope": "Synthetic edge-case verification of evaluator only; not measured model performance on QPOSD."
+}

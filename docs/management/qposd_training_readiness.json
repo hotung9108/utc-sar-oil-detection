@@ -1,0 +1,20 @@
+{
+  "synthetic_integration_test": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -p test_qposd_training.py -v",
+    "tests_run": 3,
+    "failures": 0,
+    "errors": 0,
+    "observed_exit_code": 0,
+    "scope": "Synthetic model comparison plus guards rejecting exact overlap across splits; not QPOSD accuracy."
+  },
+  "preflight": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Preflight stopped before fitting: Full 24-pair MAT audit is not complete\n",
+    "classifier_selection_exists": false
+  },
+  "source_sha256": {
+    "scripts/train_qposd_classifiers.py": "aadb42bff932110b49ee07a885eea3b11ebb0d19a1aa22c54e88e121829e48a7",
+    "tests/test_qposd_training.py": "9c69d3b1e2dfbfc5fc26816cac670d5637c921eb56f5cf6d5938ecb9d3078def"
+  }
+}

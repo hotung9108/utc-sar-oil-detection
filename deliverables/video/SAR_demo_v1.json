@@ -1,0 +1,164 @@
+{
+  "video": "D:\\Codin\\utc-code\\HK4_1\\XLA\\BTL\\deliverables\\video\\SAR_demo_v1.mp4",
+  "sha256": "010c7ac2c81f0b892124237fbc0b472a5edc0c39343e7cbfef8d523e5dd1da77",
+  "frames": 720,
+  "fps": 2,
+  "expected_duration_seconds": 360.0,
+  "meets_5_to_7_minutes": true,
+  "audio": false,
+  "capture": "Automated Qt offscreen application capture; captions; not a student performance recording",
+  "wall_clock_seconds": 359.64423370000077,
+  "sources_sha256": {
+    "scripts\\record_demo_video.py": "4e550865a6e74a013e0f3a18e5b1caa9d80ec7e528793bd4ffea71c749587120",
+    "scripts\\demo_qt.py": "147975bc03e6e5296a784f55f2f7dd85ad1bb91315b9224ef5a2a8f8ef8e54b5",
+    "scripts\\demo_engine.py": "bb7a7db543e12ed1e76494507dae19ba1a3c514b522a97f6efcbf68e1884ba2e"
+  },
+  "timeline": [
+    {
+      "start_seconds": 0,
+      "title": "Mục tiêu",
+      "caption": "Demo tự động của ứng dụng PyQt. Chạy mô hình NumPy đã cố định; phụ đề thay lời thuyết minh. Đây không phải ghi hình thao tác của thành viên nhóm.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-01.png"
+    },
+    {
+      "start_seconds": 15,
+      "title": "Đầu vào",
+      "caption": "Chọn ảnh đầu danh sách test SOS và mask đi kèm. Mask chỉ phục vụ đối chiếu sau suy luận; không truyền vào mô hình.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-02.png"
+    },
+    {
+      "start_seconds": 30,
+      "title": "Chạy Otsu / SVM",
+      "caption": "Bấm chạy phát hiện. Worker xử lý ảnh ở nền; giao diện không huấn luyện lại hoặc chọn tham số theo ảnh đang xem.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-03.png"
+    },
+    {
+      "start_seconds": 45,
+      "title": "Các bước xử lý",
+      "caption": "Ảnh gốc → lọc Lee → vùng tối ứng viên → phân lớp vùng. Overlay đỏ là vùng nghi dầu, không phải xác nhận ngoài hiện trường.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-04.png"
+    },
+    {
+      "start_seconds": 60,
+      "title": "Đối chiếu nhãn",
+      "caption": "Bên trái là mask tham chiếu. Bên phải: TP pixel xanh lá, FP đỏ, FN lam. Chỉ số đối tượng phía dưới dùng ghép một-một với IoU ≥ 0,5.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-05.png"
+    },
+    {
+      "start_seconds": 75,
+      "title": "Tám đặc trưng",
+      "caption": "Bảng vùng gồm hình dạng và cường độ: diện tích, độ thuôn dài, độ lấp đầy, độ phức tạp biên, trung bình, độ lệch chuẩn, gradient và tương phản nền.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-06.png"
+    },
+    {
+      "start_seconds": 90,
+      "title": "Điểm phân lớp",
+      "caption": "Điểm quyết định SVM lớn hơn 0 thì giữ vùng. Điểm này không phải xác suất. Bảng đặc trưng chỉ đọc; xuất JSON giữ nguyên số thực.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-07.png"
+    },
+    {
+      "start_seconds": 105,
+      "title": "Cấu hình có thể truy vết",
+      "caption": "Tab cấu hình lưu lựa chọn, hash ảnh và model. Lựa chọn chính từ validation; ảnh mẫu không được dùng để điều chỉnh mô hình.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-08.png"
+    },
+    {
+      "start_seconds": 120,
+      "title": "Lý do chọn thuật toán",
+      "caption": "110 cấu hình lọc/ngưỡng và 729 tổ hợp tiếp theo có số liệu lưu trong results/sos. Không khẳng định đã duyệt mọi thuật toán hoặc mọi tham số có thể có.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-09.png"
+    },
+    {
+      "start_seconds": 135,
+      "title": "Giới hạn bằng chứng Lee",
+      "caption": "Thí nghiệm bổ sung chưa chứng minh Lee vượt Mean 7: khoảng bootstrap của chênh lệch F1 chứa 0. Xem selection_evidence; không chỉ dựa vào lý thuyết để kết luận tốt hơn.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-10.png"
+    },
+    {
+      "start_seconds": 150,
+      "title": "Nhánh ngưỡng thích nghi",
+      "caption": "Chuyển sang Niblack + CART. Nhánh này được khảo sát bổ sung trên validation; không lấy chỉ số test Otsu để đại diện cho nó.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-11.png"
+    },
+    {
+      "start_seconds": 165,
+      "title": "Chạy Niblack / CART",
+      "caption": "Chạy lại trên cùng ảnh và cùng mask. Phân ngưỡng cục bộ thay đổi các vùng ứng viên, do đó kết quả phân lớp có thể khác.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-12.png"
+    },
+    {
+      "start_seconds": 180,
+      "title": "So sánh trực quan",
+      "caption": "Quan sát các vùng nhỏ xuất hiện trong nhánh Niblack. Một ảnh minh họa không đủ kết luận nhánh nào tốt hơn trên toàn tập.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-13.png"
+    },
+    {
+      "start_seconds": 195,
+      "title": "Đối chiếu Niblack",
+      "caption": "Đọc TP/FP/FN và F1 của đúng ảnh đang xem. Số liệu validation của nhánh bổ sung được báo riêng trong results/sos/adaptive.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-14.png"
+    },
+    {
+      "start_seconds": 210,
+      "title": "Ca thất bại: phân mảnh",
+      "caption": "Chuyển lại Otsu/SVM và chạy sentinel_440. Đây là ca lỗi đã chọn theo tiêu chí công bố, không loại khỏi đánh giá.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-15.png"
+    },
+    {
+      "start_seconds": 225,
+      "title": "Phân mảnh và F1 đối tượng",
+      "caption": "Ground truth phủ patch, nhưng dự đoán bị chia nhỏ: TP=0, FP=35, FN=1. Pixel đúng vẫn có thể nhiều trong khi không ghép được đối tượng ở IoU ≥ 0,5.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-16.png"
+    },
+    {
+      "start_seconds": 240,
+      "title": "Ca thất bại: bỏ sót",
+      "caption": "Chạy sentinel_591. Không thay ngưỡng hoặc cấu hình để làm đẹp ảnh minh họa.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-17.png"
+    },
+    {
+      "start_seconds": 255,
+      "title": "Vùng dầu bị loại",
+      "caption": "Classifier loại toàn bộ vùng ứng viên: TP=0, FP=0, FN=1. Precision không xác định khi không dự đoán vùng nào; giao diện ghi N/A.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-18.png"
+    },
+    {
+      "start_seconds": 270,
+      "title": "Xuất kết quả thật",
+      "caption": "Video gọi bộ xử lý xuất dùng chung của GUI, không thao tác hộp thoại hệ điều hành. Ba tệp được ghi thật: mask.png, overlay.png, regions.json.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-19.png"
+    },
+    {
+      "start_seconds": 285,
+      "title": "Không có nhãn thì không có độ chính xác",
+      "caption": "Bỏ mask tham chiếu. Dự đoán giữ nguyên, nhưng không còn báo Precision/Recall/F1 cho ảnh này.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-20.png"
+    },
+    {
+      "start_seconds": 300,
+      "title": "Kết quả toàn tập SOS",
+      "caption": "Trên 839 ảnh test: Precision=0.25415, Recall=0.31301, F1 đối tượng=0.28052. TP=996, FP=2923, FN=2186. Không lấy F1 ảnh mẫu thay số toàn tập.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-21.png"
+    },
+    {
+      "start_seconds": 315,
+      "title": "Nhánh vật lý riêng",
+      "caption": "Notebook 07 dùng DN Sentinel-1 thật, LUT góc tới/hiệu chuẩn và gió ERA5. Tile đó chưa có nhãn dầu; nhánh này chưa tích hợp vào demo SOS.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-22.png"
+    },
+    {
+      "start_seconds": 330,
+      "title": "Phạm vi và giới hạn",
+      "caption": "SOS có dầu/nền, chưa có nhãn riêng mưa, màng sinh học, gió yếu. Chưa kiểm chứng cảnh báo ngoài khơi miền Trung. Tỷ lệ báo nhầm DARTIS chỉ công bố khi đủ dữ liệu.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-23.png"
+    },
+    {
+      "start_seconds": 345,
+      "title": "Chạy lại và kiểm tra",
+      "caption": "Mở demo: uv run --frozen --extra demo python scripts/demo_qt.py. Notebook và mã kiểm chứng nằm trong repo; hướng dẫn chi tiết: docs/DEMO_GUI.md.",
+      "preview": ".cache/video/SAR_demo_v1/chapter-24.png"
+    }
+  ],
+  "script_sha256": "4e550865a6e74a013e0f3a18e5b1caa9d80ec7e528793bd4ffea71c749587120",
+  "reviewed": false
+}
