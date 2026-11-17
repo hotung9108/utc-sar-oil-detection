@@ -1,5 +1,10 @@
 # Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
+**Đối chiếu yêu cầu ngày 17/11/2026: chưa xác nhận đạt 100% Đề 18.** Phần mềm
+đã có các nhánh thực nghiệm chạy được, nhưng chưa có cùng pipeline Sentinel-1
+được kiểm chứng đầy đủ dầu/look-alike hoặc kiểm chứng tại miền Trung.
+Xem [ma trận yêu cầu, bằng chứng và phần còn thiếu](docs/DANH_GIA_DU_AN_VA_DOI_CHIEU_DE_18.md).
+
 Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 7 notebook bổ sung; chạy hàng loạt bằng CLI.
 
 Giao diện Streamlit: `uv run --frozen --extra web streamlit run streamlit_app.py`.

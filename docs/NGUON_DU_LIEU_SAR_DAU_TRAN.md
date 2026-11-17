@@ -2,7 +2,7 @@
 
 Ngày tổng hợp: **12/11/2026**.
 
-Tài liệu tập hợp các nguồn đã tìm được để nhóm xem xét trước khi refactor dự án. Ưu tiên nguồn NASA, dữ liệu có nhãn dầu/tương tự dầu (look-alike), và khả năng truy về cảnh SAR gốc. Đây là danh mục khảo sát, **chưa phải quyết định chọn dataset**. Chưa tải và kiểm tra toàn bộ dữ liệu; các số lượng và dung lượng dưới đây là thông tin nhà phát hành công bố.
+Tài liệu lưu quá trình khảo sát nguồn trước và trong refactor. Các trạng thái “chưa tải/chưa mở” trong phần khảo sát ban đầu là lịch sử, không phải trạng thái mới nhất. Ngày 17/11/2026: SOS đã kiểm kê 8.070 cặp; QPOSD đã đánh giá 24 cặp hợp lệ; Cantarell đã kiểm kê 173 tile và giữ 154 mẫu đạt chốt vật lý. Xem [đối chiếu và bằng chứng hiện tại](DANH_GIA_DU_AN_VA_DOI_CHIEU_DE_18.md). Thông tin công bố của nhà phát hành cần phân biệt với số liệu đã kiểm chứng cục bộ.
 
 Mục tiêu của nhóm: tự cài CART và SVM, so sánh giữa các thuật toán và giữa bản tự cài với thư viện; cải tiến tập trung giảm báo nhầm look-alike. Việc chọn thuật toán sẽ dựa trên thực nghiệm sau khi chốt dữ liệu và cách đánh giá.
 

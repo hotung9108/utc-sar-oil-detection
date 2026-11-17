@@ -2,6 +2,12 @@
 
 Chốt ngày 12/11/2026 theo yêu cầu của nhóm. Tài liệu này thay định hướng cũ “không ML/DL”.
 
+**Cập nhật 17/11/2026:** đã hoàn thiện luồng phần mềm với Streamlit, 12 notebook và
+thực nghiệm bổ sung Cantarell/QPOSD. **Chưa đủ căn cứ xác nhận đạt 100% Đề 18**;
+xem [đối chiếu hiện tại](DANH_GIA_DU_AN_VA_DOI_CHIEU_DE_18.md). Các mốc kế hoạch
+12–15/11 dưới đây là lịch sử, không phải xác nhận đã đủ mọi yêu cầu.
+Theo yêu cầu mới, không làm thêm video, slide hoặc báo cáo Word/PDF.
+
 ## Bài toán
 
 Phát hiện vết dầu tràn trên biển từ ảnh SAR — Đề 18, liên hệ NASA #6 trong tài liệu môn học. Bối cảnh ứng dụng là phát hiện sớm ngoài khơi để hỗ trợ giảm ảnh hưởng tới du lịch và ngư nghiệp miền Trung Việt Nam. Dữ liệu và bằng chứng phải quyết định phương pháp được sử dụng.
@@ -38,6 +44,6 @@ AIS truy nguồn tàu và mô phỏng trôi dầu là hướng phát triển sau
 
 Thực hiện pipeline NumPy và bản thư viện, CLI và 5 notebook Jupyter theo thành viên; chạy số liệu thật trước khi quyết định thuật toán. So sánh 110 cấu hình lọc/ngưỡng, rồi 729 cấu hình hình thái/đặc trưng/classifier trên validation. Chọn bản NumPy đã kiểm chứng và hội tụ; giữ nguyên test cuối. Chi tiết tại [giao thức](GIAO_THUC_THUC_NGHIEM.md) và [phân công](management/KE_HOACH_SOS_NOTEBOOK.md).
 
-SOS thiếu metadata góc tới, gió và nhãn look-alike. Vì vậy kết quả hiện tại chỉ đo dầu/nền trên PNG, **chưa hoàn tất toàn bộ yêu cầu Đề 18**. Không suy góc tới, không giả lập gió, không gọi nền là từng loại gió yếu/màng sinh học/mưa. Cần nguồn bổ sung để đánh giá những yêu cầu đó.
+SOS thiếu metadata góc tới, gió và nhãn look-alike; riêng nhánh SOS chỉ đo dầu/nền trên PNG. Đã bổ sung Cantarell cho dữ liệu vật lý/góc tới/gió và QPOSD cho dầu/look-alike chung, nhưng chưa kiểm chứng tất cả trên một pipeline Sentinel-1. **Chưa hoàn tất toàn bộ minh chứng của Đề 18**. Không suy góc tới từ PNG, không giả lập gió và không gọi nền là từng loại gió yếu/màng sinh học/mưa.
 
 Đầu ra cuối gồm mask, overlay, đặc trưng/điểm từng vùng, Precision/Recall/F1 đối tượng, pixel IoU/Dice, FP/ảnh, ablation và phân tích lỗi. Mục tiêu cải tiến là giảm báo nhầm bằng vùng nền cục bộ và phân lớp vùng; chỉ kết luận có cải thiện khi số liệu test xác nhận, kể cả khi kết quả kém. Hạn bàn giao: 23:59 ngày 15/11/2026, Asia/Saigon.

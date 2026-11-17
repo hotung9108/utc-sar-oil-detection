@@ -1,5 +1,7 @@
 # Chạy và kiểm tra ứng dụng Streamlit
 
+Trạng thái triển khai không đồng nghĩa đạt 100% đề: xem [đối chiếu Đề 18](DANH_GIA_DU_AN_VA_DOI_CHIEU_DE_18.md). QPOSD và Cantarell là hai nhánh dữ liệu/cảm biến khác nhau; không ghép các điểm số thành một chứng nhận toàn hệ thống.
+
 ## Khởi động
 
 Từ thư mục gốc dự án, chạy:
