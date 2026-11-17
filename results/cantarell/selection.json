@@ -1,0 +1,313 @@
+{
+  "binding": {
+    "manifest_sha256": "a191010bcbf30740456dd1685b67cde19e997863ae7c1794443a871f4eabfe49",
+    "screen_sha256": "1c7799b0fc2b39b9de813f9f5a96378d1d02732f4248e499d8001db9f60d87cd",
+    "script_sha256": "016a9944dbc7cad252dae10e622f8ba146a0d35c72c34d9c2ebc76b921dc8dc0",
+    "model_protocol_sha256": "840335be32b0c7eeeef53441786f9945672c693ed94f1608ccece733e86730fc"
+  },
+  "winners": {
+    "primary": {
+      "branch": "gamma0",
+      "config_id": 4,
+      "config": {
+        "id": 4,
+        "filter": {
+          "name": "none"
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.5
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "model_id": 0,
+      "model_config": {
+        "id": 0,
+        "kind": "svm",
+        "C": 0.1
+      },
+      "model_file": "results/cantarell/models/gamma0_04_0.json",
+      "model_sha256": "8e29a3f6d221e3c9705801d94d4d5d3f0becd2c5d51f6e566f734c4b604bc00d",
+      "metrics": {
+        "numpy": {
+          "tp": 66,
+          "fp": 284,
+          "fn": 797,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 190313,
+          "union": 488370,
+          "predicted_pixels": 227738,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 61,
+          "precision": 0.18857142857142858,
+          "recall": 0.07647740440324449,
+          "f1": 0.10882110469909316,
+          "pixel_iou": 0.38969019391035487,
+          "dice": 0.560830314005213,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07322929171668667
+        },
+        "reference": {
+          "tp": 66,
+          "fp": 284,
+          "fn": 797,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 190313,
+          "union": 488370,
+          "predicted_pixels": 227738,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 61,
+          "precision": 0.18857142857142858,
+          "recall": 0.07647740440324449,
+          "f1": 0.10882110469909316,
+          "pixel_iou": 0.38969019391035487,
+          "dice": 0.560830314005213,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07322929171668667
+        }
+      }
+    },
+    "gamma_unrestricted": {
+      "branch": "gamma0",
+      "config_id": 4,
+      "config": {
+        "id": 4,
+        "filter": {
+          "name": "none"
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.5
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "model_id": 0,
+      "model_config": {
+        "id": 0,
+        "kind": "svm",
+        "C": 0.1
+      },
+      "model_file": "results/cantarell/models/gamma0_04_0.json",
+      "model_sha256": "8e29a3f6d221e3c9705801d94d4d5d3f0becd2c5d51f6e566f734c4b604bc00d",
+      "metrics": {
+        "numpy": {
+          "tp": 66,
+          "fp": 284,
+          "fn": 797,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 190313,
+          "union": 488370,
+          "predicted_pixels": 227738,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 61,
+          "precision": 0.18857142857142858,
+          "recall": 0.07647740440324449,
+          "f1": 0.10882110469909316,
+          "pixel_iou": 0.38969019391035487,
+          "dice": 0.560830314005213,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07322929171668667
+        },
+        "reference": {
+          "tp": 66,
+          "fp": 284,
+          "fn": 797,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 190313,
+          "union": 488370,
+          "predicted_pixels": 227738,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 61,
+          "precision": 0.18857142857142858,
+          "recall": 0.07647740440324449,
+          "f1": 0.10882110469909316,
+          "pixel_iou": 0.38969019391035487,
+          "dice": 0.560830314005213,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07322929171668667
+        }
+      }
+    },
+    "sigma_unrestricted": {
+      "branch": "sigma0",
+      "config_id": 4,
+      "config": {
+        "id": 4,
+        "filter": {
+          "name": "none"
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.5
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "model_id": 0,
+      "model_config": {
+        "id": 0,
+        "kind": "svm",
+        "C": 0.1
+      },
+      "model_file": "results/cantarell/models/sigma0_04_0.json",
+      "model_sha256": "363d3673b279981336733702debe9a22df136740d190c51e44b968cfcd3b404f",
+      "metrics": {
+        "numpy": {
+          "tp": 68,
+          "fp": 284,
+          "fn": 795,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 191212,
+          "union": 489837,
+          "predicted_pixels": 230104,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 63,
+          "precision": 0.19318181818181818,
+          "recall": 0.07879490150637311,
+          "f1": 0.11193415637860082,
+          "pixel_iou": 0.3903584253537401,
+          "dice": 0.5615220050246017,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07563025210084033
+        },
+        "reference": {
+          "tp": 68,
+          "fp": 284,
+          "fn": 795,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 191212,
+          "union": 489837,
+          "predicted_pixels": 230104,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 63,
+          "precision": 0.19318181818181818,
+          "recall": 0.07879490150637311,
+          "f1": 0.11193415637860082,
+          "pixel_iou": 0.3903584253537401,
+          "dice": 0.5615220050246017,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07563025210084033
+        }
+      }
+    },
+    "sigma_adaptive": {
+      "branch": "sigma0",
+      "config_id": 4,
+      "config": {
+        "id": 4,
+        "filter": {
+          "name": "none"
+        },
+        "threshold": {
+          "name": "niblack",
+          "size": 51,
+          "k": 0.5
+        },
+        "morphology": {
+          "operation": "none",
+          "min_area": 64
+        }
+      },
+      "model_id": 0,
+      "model_config": {
+        "id": 0,
+        "kind": "svm",
+        "C": 0.1
+      },
+      "model_file": "results/cantarell/models/sigma0_04_0.json",
+      "model_sha256": "363d3673b279981336733702debe9a22df136740d190c51e44b968cfcd3b404f",
+      "metrics": {
+        "numpy": {
+          "tp": 68,
+          "fp": 284,
+          "fn": 795,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 191212,
+          "union": 489837,
+          "predicted_pixels": 230104,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 63,
+          "precision": 0.19318181818181818,
+          "recall": 0.07879490150637311,
+          "f1": 0.11193415637860082,
+          "pixel_iou": 0.3903584253537401,
+          "dice": 0.5615220050246017,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07563025210084033
+        },
+        "reference": {
+          "tp": 68,
+          "fp": 284,
+          "fn": 795,
+          "images": 35,
+          "empty_images": 0,
+          "intersection": 191212,
+          "union": 489837,
+          "predicted_pixels": 230104,
+          "truth_pixels": 450945,
+          "edge_gt": 30,
+          "edge_tp": 5,
+          "interior_gt": 833,
+          "interior_tp": 63,
+          "precision": 0.19318181818181818,
+          "recall": 0.07879490150637311,
+          "f1": 0.11193415637860082,
+          "pixel_iou": 0.3903584253537401,
+          "dice": 0.5615220050246017,
+          "fp_per_image": 8.114285714285714,
+          "edge_recall": 0.16666666666666666,
+          "interior_recall": 0.07563025210084033
+        }
+      }
+    }
+  },
+  "validation_sha256": "cc38ad18ffcd212713b988ae8b27e24b13595336698480c21066abb53676618e",
+  "test_accessed": false,
+  "must_commit_before_test": true
+}
