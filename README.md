@@ -1,6 +1,6 @@
 # Phát hiện dầu tràn từ ảnh SAR — Đề 18
 
-Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 5 notebook bổ sung; chạy hàng loạt bằng CLI.
+Dự án xử lý ảnh theo hướng **nhãn tham chiếu → thực nghiệm → chọn thuật toán → pipeline NumPy**, sử dụng Refined Deep-SAR Oil Spill (SOS). Có 5 Jupyter notebook SOS và 6 notebook bổ sung; chạy hàng loạt bằng CLI.
 
 Giao diện Streamlit: `uv run --frozen --extra web streamlit run streamlit_app.py`.
 Mở `http://127.0.0.1:8501`: chọn ảnh mẫu hoặc tải ảnh, xem các bước xử lý,
@@ -15,6 +15,14 @@ gió ERA5 nằm ở [notebook 07](notebooks/external/07_sentinel_calibration.ipy
 chưa thay thế đánh giá phát hiện dầu có nhãn của SOS.
 
 SOS hiện có PNG và mask dầu/nền. **Chưa đáp ứng đầy đủ Đề 18** vì thiếu góc tới, thời gian/vị trí để ghép gió, và nhãn riêng các loại tương tự dầu. Không gọi phép chia 255 là chuẩn hóa góc tới hoặc suy kết quả thành khả năng cảnh báo thực tế tại miền Trung.
+
+Nhánh **Cantarell vật lý** đã xác minh đủ 173 lần chuẩn bị dữ liệu, giữ 154 mẫu
+hợp lệ (94 train / 35 validation / 25 test), theo 15/4/5 cảnh. Manifest được commit
+trước chấm điểm. Đã chạy đủ 50 cấu hình ứng viên trên validation với hai backend;
+đây chưa phải kết quả detector sau phân lớp. Xem [notebook 11 đã chạy](notebooks/external/11_cantarell_physical_candidates.ipynb)
+và `results/cantarell/screen.json`. Mã train/validation: `scripts/train_cantarell.py`;
+mã test và bootstrap góc tới: `scripts/evaluate_cantarell.py`. Test chỉ chạy sau
+khi lựa chọn model và các model đã được commit; không gọi mã đã viết là kết quả đã chạy.
 
 ## Chạy
 
