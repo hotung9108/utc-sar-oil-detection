@@ -29,7 +29,9 @@ Trang Bằng chứng thực nghiệm đọc JSON/Markdown đã lưu trong reposi
 
 ## Phạm vi
 
-Trang suy luận hiện dùng hai pipeline SOS đã lưu. QPOSD hiện được trình bày qua kết quả nghiên cứu, chưa có chế độ suy luận riêng trong UI. Cantarell cần hoàn tất mô hình và đánh giá trước khi tích hợp. PNG SOS không hỗ trợ hiệu chỉnh góc tới; không dùng model khác miền rồi tuyên bố đã kiểm chứng.
+Trang Phân tích ảnh dùng hai pipeline SOS đã lưu. Trang Dầu và look-alike chạy mô hình QPOSD riêng trên các mẫu test T11 cục bộ đã xác minh, hiển thị dầu màu đỏ và look-alike màu xanh. ZIP QPOSD giữ mã pixel 0=nền, 1=dầu, 2=look-alike; không chuyển sang mask dầu/nền rồi mất lớp tương tự dầu. Mask tham chiếu chỉ được đọc để đánh giá sau suy luận.
+
+Cantarell cần hoàn tất mô hình và đánh giá trước khi tích hợp suy luận; trang Bằng chứng đã có bảng 50 cấu hình ứng viên trên validation. PNG SOS không hỗ trợ hiệu chỉnh góc tới; không dùng model khác miền rồi tuyên bố đã kiểm chứng.
 
 Không cần PyQt để chạy Streamlit. Giữ ứng dụng desktop cũ để tham chiếu, không import giao diện Qt vào ứng dụng web.
 

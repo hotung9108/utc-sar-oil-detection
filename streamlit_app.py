@@ -14,7 +14,7 @@ st.caption('Đề 18 · Xử lý ảnh NumPy · Kết quả thực nghiệm có 
 
 with st.sidebar:
     st.header('Không gian làm việc')
-    page = st.radio('Chức năng', ['Phân tích ảnh', 'Bằng chứng thực nghiệm', 'Phạm vi và hướng dẫn'])
+    page = st.radio('Chức năng', ['Phân tích ảnh', 'Dầu và look-alike', 'Sentinel-1 vật lý', 'Bằng chứng thực nghiệm', 'Phạm vi và hướng dẫn'])
     st.caption('Ứng dụng phục vụ nghiên cứu và báo cáo môn học. Chưa được kiểm chứng cho cảnh báo ngoài thực địa.')
 
 if page == 'Phân tích ảnh':
@@ -96,6 +96,85 @@ if page == 'Phân tích ảnh':
         st.download_button('Tải kết quả ZIP', download_zip(result, evaluation),
                            file_name='sar_result.zip', mime='application/zip')
 
+elif page == 'Dầu và look-alike':
+    from scripts import streamlit_qposd as qposd
+    st.subheader('QPOSD — dầu và vùng tương tự dầu')
+    st.caption('UAVSAR T11 tuyến tính. Đỏ: dầu; xanh: look-alike chung. Chưa phân biệt gió yếu, màng sinh học và mưa.')
+    try:
+        available = qposd.samples()
+        if not available:
+            st.info('Chưa có ảnh QPOSD cục bộ. Xem bằng chứng thực nghiệm đã lưu ở trang bên cạnh.')
+        else:
+            number = st.selectbox('Ảnh test QPOSD đã có nhãn', available)
+            if st.session_state.get('qposd_number') != number:
+                st.session_state.pop('qposd_result', None)
+                st.session_state['qposd_number'] = number
+            if st.button('Phân tích QPOSD', type='primary'):
+                with st.spinner('Đang đọc T11, tìm vùng và phân lớp bằng mô hình đã khóa…'):
+                    st.session_state['qposd_result'] = qposd.run_sample(number)
+            result = st.session_state.get('qposd_result')
+            if result is not None:
+                columns = st.columns(3)
+                for col, key, title in zip(columns, ['image', 'feature_image', 'overlay'],
+                                           ['T11 hiển thị', 'Ảnh trích đặc trưng', 'Dầu / look-alike']):
+                    col.image(result[key], caption=title, width='stretch', clamp=True)
+                st.dataframe(result['rows'], width='stretch')
+                evaluation = qposd.assess_sample(result)
+                st.markdown('**Đánh giá phát hiện sau suy luận**')
+                metrics = evaluation['metrics']
+                columns = st.columns(3)
+                for col, label, value in zip(columns, ['F1 dầu', 'F1 look-alike', 'Macro-F1'],
+                        [metrics['classes']['oil']['f1'], metrics['classes']['look_alike']['f1'], metrics['macro_f1']]):
+                    col.metric(label, 'Không xác định' if value is None else f'{value:.4f}')
+                st.dataframe([{'lớp':name, **{k:row[k] for k in ['tp','fp','fn','precision','recall','f1']}}
+                              for name, row in metrics['classes'].items()], width='stretch')
+                with st.expander('Ghép vùng và nhầm lẫn chi tiết'):
+                    st.json(metrics)
+                st.caption('Điểm trên vùng GT có sẵn khác với điểm phát hiện đầu-cuối ở đây. Nhãn không tham gia suy luận.')
+                st.download_button('Tải kết quả QPOSD', qposd.export_zip(result, evaluation),
+                                   file_name=f'qposd_{number}.zip', mime='application/zip')
+    except (OSError, ValueError, KeyError) as exc:
+        st.error(f'Không thể xử lý QPOSD: {exc}')
+
+elif page == 'Sentinel-1 vật lý':
+    from scripts import streamlit_physical as physical
+    st.subheader('Sentinel-1 — góc tới và ngưỡng thích nghi')
+    st.caption('Nhánh Cantarell: gamma0 + Niblack + mô hình được chọn trên validation. Gió ERA5 chỉ là thông tin bối cảnh.')
+    if not physical.ready():
+        st.info('Thực nghiệm Cantarell chưa hoàn tất đánh giá test. Chế độ suy luận vật lý sẽ khả dụng khi có kết quả đã kiểm chứng.')
+    else:
+        try:
+            rows = physical.samples()
+            sample = st.selectbox('Mẫu Sentinel-1 đã kiểm chứng', rows, format_func=lambda r:r['sample'])
+            key = (sample['sample'], sample['sha256'], (ROOT/'results/cantarell/selection.json').read_bytes())
+            if st.session_state.get('physical_key') != key:
+                st.session_state.pop('physical_result', None)
+                st.session_state['physical_key'] = key
+            if st.button('Phân tích Sentinel-1', type='primary'):
+                with st.spinner('Đang chạy pipeline vật lý đã khóa…'):
+                    st.session_state['physical_result'] = physical.run_sample(sample['sample'])
+            result = st.session_state.get('physical_result')
+            if result is not None:
+                columns = st.columns(3)
+                for col, field, title in zip(columns, ['image', 'filtered', 'overlay'],
+                                             ['Gamma0 hiển thị', 'Sau lọc và chuẩn hóa', 'Vùng nghi dầu']):
+                    col.image(result[field], caption=title, width='stretch', clamp=True)
+                st.write({'góc tới (độ)': result['metadata']['incidence_degrees_min_max'],
+                          'gió ERA5 (m/s)': result['metadata']['wind_speed_m_s']})
+                st.dataframe([{'id':r['id'], 'oil':r['oil'], 'score':r['score'], **r['features']}
+                              for r in result['metadata']['regions']], width='stretch')
+                evaluation = physical.assess_sample(result)
+                columns = st.columns(3)
+                for col, name in zip(columns, ['precision','recall','f1']):
+                    value = evaluation['metrics'][name]
+                    col.metric(f'Object {name}', 'Không xác định' if value is None else f'{value:.4f}')
+                with st.expander('Số đếm và đánh giá chi tiết'):
+                    st.json(evaluation['metrics'])
+                st.download_button('Tải kết quả Sentinel-1', download_zip(result, evaluation),
+                                   file_name=f"{sample['sample']}.zip", mime='application/zip')
+        except (OSError, ValueError, KeyError) as exc:
+            st.error(f'Không thể xử lý dữ liệu vật lý: {exc}')
+
 elif page == 'Bằng chứng thực nghiệm':
     st.subheader('Kết quả đã lưu của dự án')
     with st.expander('Sentinel-1 vật lý — Cantarell', expanded=True):
@@ -166,7 +245,7 @@ else:
 
 **SOS:** nhãn dầu/nền; chưa có góc tới, tọa độ/thời gian hay nhãn nguyên nhân look-alike.
 
-**QPOSD:** bằng chứng bổ sung dầu/look-alike chung trên UAVSAR; chưa tích hợp suy luận QPOSD trong trang phân tích ảnh này.
+**QPOSD:** trang Dầu và look-alike chạy suy luận trên ảnh test UAVSAR T11 cục bộ đã xác minh; dùng mô hình riêng, không áp dụng trực tiếp cho PNG Sentinel-1.
 
 **Cantarell:** nhánh Sentinel-1 vật lý riêng, cần hoàn tất kiểm chứng và mô hình trước khi đưa vào giao diện.
 
