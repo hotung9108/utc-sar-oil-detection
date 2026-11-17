@@ -1,0 +1,59 @@
+{
+  "complete_population_verified": true,
+  "images_per_pipeline": 3101,
+  "protocol_sha256": "d09231a5d193139c0a7bbaec6775cf91a8440b76424285655fcec3a53690feb2",
+  "result_sha256": {
+    "otsu": "117ef9118d55f69788877f794d0d993988451019b099abcd0ac7f58d74a016ee",
+    "niblack": "9b79badb80f99eb5015efcb0ac0ade7f53fb64eea9a921b423faf5e83be263dd"
+  },
+  "metrics": {
+    "otsu": {
+      "tp": 6170,
+      "fp": 11014,
+      "fn": 12978,
+      "images": 3101,
+      "empty_images": 97,
+      "intersection": 31822461,
+      "union": 49637553,
+      "predicted_pixels": 41239625,
+      "truth_pixels": 40220389,
+      "edge_gt": 10962,
+      "edge_tp": 4588,
+      "interior_gt": 8186,
+      "interior_tp": 1582,
+      "precision": 0.35905493482309125,
+      "recall": 0.32222686442448295,
+      "f1": 0.3396454915776726,
+      "pixel_iou": 0.6410964899901492,
+      "dice": 0.7813026155384653,
+      "fp_per_image": 3.5517574975814252,
+      "edge_recall": 0.4185367633643496,
+      "interior_recall": 0.19325677986806744
+    },
+    "niblack": {
+      "tp": 5180,
+      "fp": 17199,
+      "fn": 13968,
+      "images": 3101,
+      "empty_images": 97,
+      "intersection": 24780391,
+      "union": 50109042,
+      "predicted_pixels": 34669044,
+      "truth_pixels": 40220389,
+      "edge_gt": 10962,
+      "edge_tp": 4114,
+      "interior_gt": 8186,
+      "interior_tp": 1066,
+      "precision": 0.23146700031279324,
+      "recall": 0.270524336745352,
+      "f1": 0.24947624437113203,
+      "pixel_iou": 0.49452933065453536,
+      "dice": 0.6617860493081847,
+      "fp_per_image": 5.54627539503386,
+      "edge_recall": 0.3752964787447546,
+      "interior_recall": 0.13022233080869777
+    }
+  },
+  "scene_independence_verified": false,
+  "scope": "Reaggregated counts and verified image/mask/model provenance, not an independent reimplementation of the object matcher."
+}

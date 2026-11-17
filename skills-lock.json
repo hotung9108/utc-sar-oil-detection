@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "sciwrite": {
+      "source": "labarba/sciwrite",
+      "sourceType": "github",
+      "skillPath": "skills/sciwrite/SKILL.md",
+      "computedHash": "aed017510984b78c29ee623420d8551da677a5192440f5f49098db55140eb13c"
+    }
+  }
+}

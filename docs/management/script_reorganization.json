@@ -1,0 +1,591 @@
+{
+  "date": "2026-11-18",
+  "moves": {
+    "scripts/streamlit_service.py": "scripts/web/streamlit_service.py",
+    "scripts/streamlit_physical.py": "scripts/web/streamlit_physical.py",
+    "scripts/streamlit_qposd.py": "scripts/web/streamlit_qposd.py",
+    "scripts/streamlit_ux.py": "scripts/web/streamlit_ux.py",
+    "scripts/verify_streamlit_browser.py": "scripts/web/verify_streamlit_browser.py",
+    "scripts/audit_report_render.py": "scripts/publishing/audit_report_render.py",
+    "scripts/build_report.py": "scripts/publishing/build_report.py",
+    "scripts/build_slides.mjs": "scripts/publishing/build_slides.mjs",
+    "scripts/finalize_slides.mjs": "scripts/publishing/finalize_slides.mjs",
+    "scripts/generate_latex_figures.py": "scripts/publishing/generate_latex_figures.py",
+    "scripts/import_report_fields.py": "scripts/publishing/import_report_fields.py",
+    "scripts/inspect_report_template.py": "scripts/publishing/inspect_report_template.py",
+    "scripts/record_demo_video.py": "scripts/publishing/record_demo_video.py",
+    "scripts/report_figures.py": "scripts/publishing/report_figures.py",
+    "scripts/update_report_fields.ps1": "scripts/publishing/update_report_fields.ps1",
+    "scripts/verify_demo_video.py": "scripts/publishing/verify_demo_video.py",
+    "scripts/verify_report_sources.py": "scripts/publishing/verify_report_sources.py",
+    "scripts/build_review_package.py": "scripts/packaging/build_review_package.py",
+    "scripts/verify_package_environment.py": "scripts/packaging/verify_package_environment.py",
+    "scripts/verify_review_package.py": "scripts/packaging/verify_review_package.py",
+    "scripts/verify_archive.py": "scripts/packaging/verify_archive.py",
+    "scripts/analyze_cantarell_failures.py": "scripts/cantarell/analyze_cantarell_failures.py",
+    "scripts/audit_cantarell_all.py": "scripts/cantarell/audit_cantarell_all.py",
+    "scripts/audit_cantarell_source.py": "scripts/cantarell/audit_cantarell_source.py",
+    "scripts/cantarell_experiment_data.py": "scripts/cantarell/cantarell_experiment_data.py",
+    "scripts/cantarell_pipeline.py": "scripts/cantarell/cantarell_pipeline.py",
+    "scripts/check_cantarell_registration.py": "scripts/cantarell/check_cantarell_registration.py",
+    "scripts/check_cantarell_transfer.py": "scripts/cantarell/check_cantarell_transfer.py",
+    "scripts/evaluate_cantarell.py": "scripts/cantarell/evaluate_cantarell.py",
+    "scripts/fetch_cantarell_native.py": "scripts/cantarell/fetch_cantarell_native.py",
+    "scripts/fetch_cantarell_physical_metadata.py": "scripts/cantarell/fetch_cantarell_physical_metadata.py",
+    "scripts/fetch_cantarell_wind.py": "scripts/cantarell/fetch_cantarell_wind.py",
+    "scripts/freeze_cantarell_data_protocol.py": "scripts/cantarell/freeze_cantarell_data_protocol.py",
+    "scripts/freeze_cantarell_model_protocol.py": "scripts/cantarell/freeze_cantarell_model_protocol.py",
+    "scripts/map_cantarell_native_grid.py": "scripts/cantarell/map_cantarell_native_grid.py",
+    "scripts/prepare_cantarell_physical.py": "scripts/cantarell/prepare_cantarell_physical.py",
+    "scripts/report_cantarell_inventory.py": "scripts/cantarell/report_cantarell_inventory.py",
+    "scripts/report_cantarell_physical.py": "scripts/cantarell/report_cantarell_physical.py",
+    "scripts/resolve_cantarell_scenes.py": "scripts/cantarell/resolve_cantarell_scenes.py",
+    "scripts/screen_cantarell.py": "scripts/cantarell/screen_cantarell.py",
+    "scripts/select_cantarell_required_filter.py": "scripts/cantarell/select_cantarell_required_filter.py",
+    "scripts/train_cantarell.py": "scripts/cantarell/train_cantarell.py",
+    "scripts/verify_cantarell_operators.py": "scripts/cantarell/verify_cantarell_operators.py",
+    "scripts/verify_cantarell_results.py": "scripts/cantarell/verify_cantarell_results.py",
+    "scripts/audit_dartis.py": "scripts/dartis/audit_dartis.py",
+    "scripts/audit_dartis_geolocation.py": "scripts/dartis/audit_dartis_geolocation.py",
+    "scripts/dartis_results.py": "scripts/dartis/dartis_results.py",
+    "scripts/download_dartis.py": "scripts/dartis/download_dartis.py",
+    "scripts/evaluate_dartis.py": "scripts/dartis/evaluate_dartis.py",
+    "scripts/report_dartis.py": "scripts/dartis/report_dartis.py",
+    "scripts/demo_engine.py": "scripts/desktop/demo_engine.py",
+    "scripts/demo_qt.py": "scripts/desktop/demo_qt.py",
+    "scripts/verify_demo_qt.py": "scripts/desktop/verify_demo_qt.py",
+    "scripts/fetch_scene_wind.py": "scripts/physical/fetch_scene_wind.py",
+    "scripts/fetch_sentinel_metadata.py": "scripts/physical/fetch_sentinel_metadata.py",
+    "scripts/fetch_sentinel_window.py": "scripts/physical/fetch_sentinel_window.py",
+    "scripts/sentinel_calibration_demo.py": "scripts/physical/sentinel_calibration_demo.py",
+    "scripts/audit_qposd.py": "scripts/qposd/audit_qposd.py",
+    "scripts/audit_qposd_objects.py": "scripts/qposd/audit_qposd_objects.py",
+    "scripts/audit_qposd_overlap.py": "scripts/qposd/audit_qposd_overlap.py",
+    "scripts/audit_qposd_shapes.py": "scripts/qposd/audit_qposd_shapes.py",
+    "scripts/benchmark_qposd_features.py": "scripts/qposd/benchmark_qposd_features.py",
+    "scripts/evaluate_qposd_test.py": "scripts/qposd/evaluate_qposd_test.py",
+    "scripts/extract_qposd_regions.py": "scripts/qposd/extract_qposd_regions.py",
+    "scripts/inspect_qposd_features.py": "scripts/qposd/inspect_qposd_features.py",
+    "scripts/prepare_qposd_protocol.py": "scripts/qposd/prepare_qposd_protocol.py",
+    "scripts/preview_qposd_pairs.py": "scripts/qposd/preview_qposd_pairs.py",
+    "scripts/qposd_fast_features.py": "scripts/qposd/qposd_fast_features.py",
+    "scripts/qposd_labels.py": "scripts/qposd/qposd_labels.py",
+    "scripts/qposd_metrics.py": "scripts/qposd/qposd_metrics.py",
+    "scripts/qposd_pipeline.py": "scripts/qposd/qposd_pipeline.py",
+    "scripts/report_qposd.py": "scripts/qposd/report_qposd.py",
+    "scripts/select_qposd_detection.py": "scripts/qposd/select_qposd_detection.py",
+    "scripts/train_qposd_classifiers.py": "scripts/qposd/train_qposd_classifiers.py",
+    "scripts/adaptive_experiment.py": "scripts/sos_experiments/adaptive_experiment.py",
+    "scripts/analyze_failures.py": "scripts/sos_experiments/analyze_failures.py",
+    "scripts/audit_palsar_holdout.py": "scripts/sos_experiments/audit_palsar_holdout.py",
+    "scripts/audit_refined_sos.py": "scripts/sos_experiments/audit_refined_sos.py",
+    "scripts/evaluate_palsar_holdout.py": "scripts/sos_experiments/evaluate_palsar_holdout.py",
+    "scripts/explain_selection.py": "scripts/sos_experiments/explain_selection.py",
+    "scripts/report_palsar_holdout.py": "scripts/sos_experiments/report_palsar_holdout.py",
+    "scripts/summarize_results.py": "scripts/sos_experiments/summarize_results.py",
+    "scripts/verify_real_data.py": "scripts/sos_experiments/verify_real_data.py",
+    "scripts/worked_example.py": "scripts/sos_experiments/worked_example.py",
+    "scripts/rebuild_evidence.py": "scripts/validation/rebuild_evidence.py",
+    "scripts/verify_outputs.py": "scripts/validation/verify_outputs.py"
+  },
+  "baseline_git_commit": "36eefcccb69904ba95f36bee3f084478d98a5642",
+  "source_relocations": {
+    "scripts/web/streamlit_service.py": {
+      "old_path": "scripts/streamlit_service.py",
+      "old_sha256": "684c2408aed6dc6e0d1a07e0f37f1ca74f73dc857922c69c1a53b98164ca1807",
+      "new_sha256": "f81ee1614696345e841fe4dec2a9782e2ca346770209f4dad58c18da97bfd7b4"
+    },
+    "scripts/web/streamlit_physical.py": {
+      "old_path": "scripts/streamlit_physical.py",
+      "old_sha256": "7b56e3d9ae9ae9607b24acd9017a24b44925e6fa9fd9d58d16a07dc599857ff7",
+      "new_sha256": "49ae339b0f6b7b2cb9d4db43b600182e8b207de942c1b757360f2117851ec31f"
+    },
+    "scripts/web/streamlit_qposd.py": {
+      "old_path": "scripts/streamlit_qposd.py",
+      "old_sha256": "4efc8fceac8aabd73aa93aa9579ca33f4b764db653ee5629ea553f7690f29ac2",
+      "new_sha256": "7bb0ffc6aaa32d06dc65a71722194949f68e69f7f4250f46c962d7780674f084"
+    },
+    "scripts/web/streamlit_ux.py": {
+      "old_path": "scripts/streamlit_ux.py",
+      "old_sha256": "a27b8f6241fe64a22f91c839291e34535b8aa5e202b9ec424eaa6149849b824c",
+      "new_sha256": "9f67e332d78e8d2f2ba37071fd6ed3faf7263bb49b2f3c3c9bb8973070c1cc20"
+    },
+    "scripts/web/verify_streamlit_browser.py": {
+      "old_path": "scripts/verify_streamlit_browser.py",
+      "old_sha256": "f68a7d485dcbd8e071f52c678ba20e2d4b0c15949a399df6b8851a4e194214a8",
+      "new_sha256": "a728b41a5db8b44f1b04a50411dacd6971857391a6083dc3472c7825562fb002"
+    },
+    "scripts/publishing/audit_report_render.py": {
+      "old_path": "scripts/audit_report_render.py",
+      "old_sha256": "b96fd17100ed5bc8dfe5589aa44d7c6b16d4039fb29b31d1a212ecef7934619f",
+      "new_sha256": "1e2c54b825cfe7f10cb9e8a4097c74c33ea1628039fe54c4a888cf074f12950e"
+    },
+    "scripts/publishing/build_report.py": {
+      "old_path": "scripts/build_report.py",
+      "old_sha256": "7c948c0c8d80878f3413c0709721d11435538b0e535afb2c0785fedbcf010cb5",
+      "new_sha256": "6e229851fb05b47ad75a057ce62dda1b2f0000993dbd1eea8a753bdfff668a17"
+    },
+    "scripts/publishing/build_slides.mjs": {
+      "old_path": "scripts/build_slides.mjs",
+      "old_sha256": "fef86f36bec08e3f21ec9087591589fb8e207d5f042fb438f24ac329e3fca98a",
+      "new_sha256": "b32193340ce56aa8faaee3312c20e4e18f162cce75893d773ad40afe81dda42f"
+    },
+    "scripts/publishing/finalize_slides.mjs": {
+      "old_path": "scripts/finalize_slides.mjs",
+      "old_sha256": "456caf1fe84b8b1fafab3bca603383ecce3d6bb58c6a0a9eb4ef6b4d7fd03673",
+      "new_sha256": "6bb4a21938dc9b0d0f85112d1f04a6aaf7af59774ef8e9164718e7a00743adf2"
+    },
+    "scripts/publishing/generate_latex_figures.py": {
+      "old_path": "scripts/generate_latex_figures.py",
+      "old_sha256": "68b71afcfb485b8aa736ec9edbb271ea39b7a51b15e542e9767c45ca6f5e6b4a",
+      "new_sha256": "2a01052d61c6486b59fd01fe569a0a2faa83afe9d415968d0896da03ef1069c3"
+    },
+    "scripts/publishing/import_report_fields.py": {
+      "old_path": "scripts/import_report_fields.py",
+      "old_sha256": "d38e61ed0bcdfa240827fcd990e940e373bf5b237942eed78386df05265c6093",
+      "new_sha256": "5a84963652a36977498669a316becfdbc2a5ac11d5de2c42bb585dcd86661a05"
+    },
+    "scripts/publishing/inspect_report_template.py": {
+      "old_path": "scripts/inspect_report_template.py",
+      "old_sha256": "807f8ff13e90a31e2e0902b143a6abdbe230059e4a4b570cdef9041a3693e257",
+      "new_sha256": "3871f410651ecde98fc58bdb53659a91b067af920d85d2442aa12ecefad7c6a3"
+    },
+    "scripts/publishing/record_demo_video.py": {
+      "old_path": "scripts/record_demo_video.py",
+      "old_sha256": "4e550865a6e74a013e0f3a18e5b1caa9d80ec7e528793bd4ffea71c749587120",
+      "new_sha256": "2cfe28734bbaf9357cfa60131b5bc5b4fabab9ea2138f44e4497abec891d806c"
+    },
+    "scripts/publishing/report_figures.py": {
+      "old_path": "scripts/report_figures.py",
+      "old_sha256": "407e1dd83098547506727678732ce11f4a98d8d36a3138179c4dcc71b5c15579",
+      "new_sha256": "03d91d77571aa1aa72f9fedfefd7c12bf8486593474398b3cae5a3d39af055a6"
+    },
+    "scripts/publishing/update_report_fields.ps1": {
+      "old_path": "scripts/update_report_fields.ps1",
+      "old_sha256": "1ef6223e534ff9515565df8986e24f44e60dd24334dd16e91016a8a22b7a29d2",
+      "new_sha256": "83e5c33fadbe6b53fe00b4d5944e7c4513725e24b6a98755a22c772c71f9500f"
+    },
+    "scripts/publishing/verify_demo_video.py": {
+      "old_path": "scripts/verify_demo_video.py",
+      "old_sha256": "740081b3f4ebd9fc8333ec83f9446d26de218e6102b23f44e0322a69d7c4e72d",
+      "new_sha256": "9705eb585ade72f0b58da22dbb0cf9304d275174556c8fca7408ae4907cae5d5"
+    },
+    "scripts/publishing/verify_report_sources.py": {
+      "old_path": "scripts/verify_report_sources.py",
+      "old_sha256": "be18ed98b72d42cc4d9ee26341d2648b433d3d3a2b85d954bf3b656cd960b2b9",
+      "new_sha256": "1e255488417e960b2f26733bc27f79b1870bde6fe4d4df064a18aec1c139f91a"
+    },
+    "scripts/packaging/build_review_package.py": {
+      "old_path": "scripts/build_review_package.py",
+      "old_sha256": "d0529278572671285397149d4fcad49bfafd0eeb51906888fbe26d93bd8c52f9",
+      "new_sha256": "e1f79a57d5da1c9b797d53b5e289848b1d401145103d9bf14653f42faf1e5434"
+    },
+    "scripts/packaging/verify_package_environment.py": {
+      "old_path": "scripts/verify_package_environment.py",
+      "old_sha256": "ad20f62a84cb117ddee156438b0d4bff313ee39ef22da362dec79a6be96abec5",
+      "new_sha256": "18e3736664fa6972de761750e7958ab5834f8ecccac1daedee60e3bf6f4476fa"
+    },
+    "scripts/packaging/verify_review_package.py": {
+      "old_path": "scripts/verify_review_package.py",
+      "old_sha256": "83050ffea039ce64685cb8d516a7816e1fca9172352b206e163c4ace96db4b05",
+      "new_sha256": "c54591699b041e4432abf2dd3796b985ebb55cdca29432a32c86f0595698ed22"
+    },
+    "scripts/packaging/verify_archive.py": {
+      "old_path": "scripts/verify_archive.py",
+      "old_sha256": "cca25882960cc8aa8f291e69af2316190e12574807c27a1c0b66fba82b743e08",
+      "new_sha256": "84d9814211d1b2dc6be7c12190442e3f24d8f2d4bdabc3bc235ade5e3b45aabd"
+    },
+    "scripts/cantarell/analyze_cantarell_failures.py": {
+      "old_path": "scripts/analyze_cantarell_failures.py",
+      "old_sha256": "fa164515dc5c4cad9b7aab7ceb72226892f1ac6e0a9e2987a39754e719df5933",
+      "new_sha256": "d219c7b5b2ef7bbfaf70124edb14bb4d71a2641d830387442523fa479b453de6"
+    },
+    "scripts/cantarell/audit_cantarell_all.py": {
+      "old_path": "scripts/audit_cantarell_all.py",
+      "old_sha256": "5f2319bc87c7fe31a4be3c87dfce04d9777552081088e2ad1fccad1372251c19",
+      "new_sha256": "17b355520cf6f2ad211433bf77f10b693a97c429e3098321339debd5a20b54ef"
+    },
+    "scripts/cantarell/audit_cantarell_source.py": {
+      "old_path": "scripts/audit_cantarell_source.py",
+      "old_sha256": "5dcbabb23cc0cd655d3e22c35211055f143b789ef6498ad4d6737212749eed56",
+      "new_sha256": "0b4084baf16b65d9fbe066aa297942c535d7a64fd49e212db352ad3cfd90f743"
+    },
+    "scripts/cantarell/cantarell_experiment_data.py": {
+      "old_path": "scripts/cantarell_experiment_data.py",
+      "old_sha256": "8aac83e9f0638c231008edb796cd43bee4075b8daa098316a8cb533f202bd5e3",
+      "new_sha256": "984f984c0a05143537ad8cbcc62c2075461bbcf7bc03561668fdeb258b10a776"
+    },
+    "scripts/cantarell/cantarell_pipeline.py": {
+      "old_path": "scripts/cantarell_pipeline.py",
+      "old_sha256": "97d63e5108a52cebe54a41c09b2e0ad5983f06b8a5ee1bcde68d650836a1c23b",
+      "new_sha256": "127ee9f323de1e6738bb4d32e5d511e84f6b6aa285c47b3736fce78d2cc1cb5c"
+    },
+    "scripts/cantarell/check_cantarell_registration.py": {
+      "old_path": "scripts/check_cantarell_registration.py",
+      "old_sha256": "8df5d7d5f205bbb95fa98b20b9f0e9dee59da81f095c02904a9f489127400464",
+      "new_sha256": "61bb0d4498613af8160cf874118541962516bc069916c8749ba573357c03c1f8"
+    },
+    "scripts/cantarell/check_cantarell_transfer.py": {
+      "old_path": "scripts/check_cantarell_transfer.py",
+      "old_sha256": "6af8f09d057f2e7afc51aa2201ec9561d696882a6bb2800c05ae37b6b56fa922",
+      "new_sha256": "1608f2c3f13e8c78c1f20825cae281eaab8433c772d5ccf8cdcfd5456ede76c6"
+    },
+    "scripts/cantarell/evaluate_cantarell.py": {
+      "old_path": "scripts/evaluate_cantarell.py",
+      "old_sha256": "724dfbbfd9e431ece5f2ca2409a5831651539ad1298faec0765f43887ab5b300",
+      "new_sha256": "7aa29183c63fee88ec6454ee97a76c2379759cbad155300ec6a88085e3b33379"
+    },
+    "scripts/cantarell/fetch_cantarell_native.py": {
+      "old_path": "scripts/fetch_cantarell_native.py",
+      "old_sha256": "aa61999a15e119b10de32fce3b03bd6d6c177b55033aa00c08ae6580dfd692da",
+      "new_sha256": "e2cc229270e6e232ae040fef37dd333a7cac6a645d533c044499594ce6d98518"
+    },
+    "scripts/cantarell/fetch_cantarell_physical_metadata.py": {
+      "old_path": "scripts/fetch_cantarell_physical_metadata.py",
+      "old_sha256": "99164fed949dd04117d462504079efd77cb9c826b6aeb47c6226f49a65fcd207",
+      "new_sha256": "71209089009c4c44b39a9ce797fc8d1495b82ff67464f0ff635e7ad8e98ef3dd"
+    },
+    "scripts/cantarell/fetch_cantarell_wind.py": {
+      "old_path": "scripts/fetch_cantarell_wind.py",
+      "old_sha256": "764541858909f7c8518100a947ac5b692eef6d2127330b847474e834cc265861",
+      "new_sha256": "6ebe20a13511700cb39d4956876b2b4ef87ce82b896087387859ff4de568fb2b"
+    },
+    "scripts/cantarell/freeze_cantarell_data_protocol.py": {
+      "old_path": "scripts/freeze_cantarell_data_protocol.py",
+      "old_sha256": "8136bd2bf4900ca8eb178c6acffd863715d686ece30795d30b5c6685400e4907",
+      "new_sha256": "e7171b86d9e7fb6d55bfaa384b83a9922788aef23007927d32406484f60dc331"
+    },
+    "scripts/cantarell/freeze_cantarell_model_protocol.py": {
+      "old_path": "scripts/freeze_cantarell_model_protocol.py",
+      "old_sha256": "2de924c88ebc4ff727cfe00eb285faf22928d451cf0260ce083be4cacd2bb09a",
+      "new_sha256": "31f725d8358c628ff827bbc219d061be16d4bf888ed9c0a798fb87484b1dd63f"
+    },
+    "scripts/cantarell/map_cantarell_native_grid.py": {
+      "old_path": "scripts/map_cantarell_native_grid.py",
+      "old_sha256": "ce857092b4df5f40ebbace13d95761fbc8176e5c2a8a7b2e8529d07a6723e463",
+      "new_sha256": "18e07378a99c29ff90532050209a4cd45fc18c65e84700c0fbadbd55c685eaef"
+    },
+    "scripts/cantarell/prepare_cantarell_physical.py": {
+      "old_path": "scripts/prepare_cantarell_physical.py",
+      "old_sha256": "3b8931d3560c15be9a0903dcd367e23f25cf81834e353d6a32b297a34211a83c",
+      "new_sha256": "e8dce032bd1869f3e32243baf393c1a475f6a44115dc23c4dc78652a4a9d3795"
+    },
+    "scripts/cantarell/report_cantarell_inventory.py": {
+      "old_path": "scripts/report_cantarell_inventory.py",
+      "old_sha256": "70d32ac39d2d31f4c9d20fb7936b447361b8f694f481327b1ff6f687c270e303",
+      "new_sha256": "dbb96836b2c62230fa8b1a3911ac95c9ee8c67b16a219999463596d22e6516c0"
+    },
+    "scripts/cantarell/report_cantarell_physical.py": {
+      "old_path": "scripts/report_cantarell_physical.py",
+      "old_sha256": "ff775b26a91e3a7624f001bfebd52ce0eb50075900873a5025740cd3f21de5e5",
+      "new_sha256": "60b1b1089fec87512bfc5854c5853d7d3d37903449c6c94abf8c0d719fc31eba"
+    },
+    "scripts/cantarell/resolve_cantarell_scenes.py": {
+      "old_path": "scripts/resolve_cantarell_scenes.py",
+      "old_sha256": "f17132c0616f328a635dcfb06efb20f3fb3e69f16865ff8256bef983b3c86d9f",
+      "new_sha256": "36700c080a6537d2f7f186586f8e953875fab1d26804aa1c4fa1ee87456edb70"
+    },
+    "scripts/cantarell/screen_cantarell.py": {
+      "old_path": "scripts/screen_cantarell.py",
+      "old_sha256": "3cf41630cbfcf9a5188e6bb0f8277d5f10ed659e8a0f1eb78110b618b0e13d8c",
+      "new_sha256": "233c891517a79c87a941caebcd8a09cc90c47c9e02dc0c6132b44692e66e232c"
+    },
+    "scripts/cantarell/select_cantarell_required_filter.py": {
+      "old_path": "scripts/select_cantarell_required_filter.py",
+      "old_sha256": "a5ce7fee177d4248b238abbc1cb07689822685c4765d62b5aedcd4a85b1f8adc",
+      "new_sha256": "2a13233d882bacd76f942ab34469d0140824a914c0e84e0b3a345eec4c0d5dc4"
+    },
+    "scripts/cantarell/train_cantarell.py": {
+      "old_path": "scripts/train_cantarell.py",
+      "old_sha256": "016a9944dbc7cad252dae10e622f8ba146a0d35c72c34d9c2ebc76b921dc8dc0",
+      "new_sha256": "4e745b0054e66628f0f4d1ed32eb8715736a8a02b10f5f6c9f4b5321302e4b56"
+    },
+    "scripts/cantarell/verify_cantarell_operators.py": {
+      "old_path": "scripts/verify_cantarell_operators.py",
+      "old_sha256": "3346a45c67037112e3f32e5cb7017a6af77a9368a1b38f8d7257f670adcc3850",
+      "new_sha256": "fdbbaca83bdfbf01bc161583dd5bd62ccb805ba60dab746729e8c98fd5ffa298"
+    },
+    "scripts/cantarell/verify_cantarell_results.py": {
+      "old_path": "scripts/verify_cantarell_results.py",
+      "old_sha256": "24cc08c4136978cc45061cb796032b9865accf52dd7ed4cabd8bc6bebbdf0c46",
+      "new_sha256": "3c53623c38ae27091028424f23be657d6b973cd962ff92afdfb7ef2a5b428254"
+    },
+    "scripts/dartis/audit_dartis.py": {
+      "old_path": "scripts/audit_dartis.py",
+      "old_sha256": "cfd0384afa2b03fbb028222b9ee2ab427a6743fd94bc89ec7d85dbef74378968",
+      "new_sha256": "2e358c733bee00eb26b921e2699de90722cd1bd5288842b2f5d4b1b1bcfe4458"
+    },
+    "scripts/dartis/audit_dartis_geolocation.py": {
+      "old_path": "scripts/audit_dartis_geolocation.py",
+      "old_sha256": "a3ffbf72a489f588a9fceeee0986465c980b684c3cb8ba87de284f6ccbcdae08",
+      "new_sha256": "56be0b028efeea0e1e9f90380ad5e62bfa99f3cce9ca617cb8933e88bdae635a"
+    },
+    "scripts/dartis/dartis_results.py": {
+      "old_path": "scripts/dartis_results.py",
+      "old_sha256": "8a1b0c0bfb4daac333285c98a1fd35e0f627f5b6bd312b0abdc75f721a7171ca",
+      "new_sha256": "cd69720796c19ca2cd6ffe20fd19de3f37b98e0eb06ea581b355f29b32d3338d"
+    },
+    "scripts/dartis/download_dartis.py": {
+      "old_path": "scripts/download_dartis.py",
+      "old_sha256": "28307658e2885f67edb0572f67c4f9377b428297010b0ed602d6684f7c0c9875",
+      "new_sha256": "5bae75164805f5de8bb25011601e92f50dfba6e789f4c88568c8da9d5486f995"
+    },
+    "scripts/dartis/evaluate_dartis.py": {
+      "old_path": "scripts/evaluate_dartis.py",
+      "old_sha256": "b48bd373f0534b596cdbe0022b38b0ca1a9537afd07207bc3f4735483a6602f9",
+      "new_sha256": "31f6cb67d941f39bc5ad67ca181fc330f3984e44814ea0754edfcd7f374b4241"
+    },
+    "scripts/dartis/report_dartis.py": {
+      "old_path": "scripts/report_dartis.py",
+      "old_sha256": "00e1fb9989b723812656618bd996001ea82c8b5fbebe14556eeec717a08bab86",
+      "new_sha256": "a7a0e15f4647c25ddd7a6abee5246b1be454830815c08225f3e4ea2a80006d2b"
+    },
+    "scripts/desktop/demo_engine.py": {
+      "old_path": "scripts/demo_engine.py",
+      "old_sha256": "bb7a7db543e12ed1e76494507dae19ba1a3c514b522a97f6efcbf68e1884ba2e",
+      "new_sha256": "67a78326757bf76ab15fd779b82c4fa5df6091990fe7ce1c650f7936f448cddd"
+    },
+    "scripts/desktop/demo_qt.py": {
+      "old_path": "scripts/demo_qt.py",
+      "old_sha256": "147975bc03e6e5296a784f55f2f7dd85ad1bb91315b9224ef5a2a8f8ef8e54b5",
+      "new_sha256": "32c5c360bbb985f7e90aeaca288be4865b96648b95965f7595c170b807110482"
+    },
+    "scripts/desktop/verify_demo_qt.py": {
+      "old_path": "scripts/verify_demo_qt.py",
+      "old_sha256": "0883c69777510f95e0a0dd6649a899a6e1b40e891fbcacae696012b7f02e21a3",
+      "new_sha256": "ce3ea8c1a1d6934b8b710df5317e17bb7d4ef1a3d78e5d712dc432835caa5f47"
+    },
+    "scripts/physical/fetch_scene_wind.py": {
+      "old_path": "scripts/fetch_scene_wind.py",
+      "old_sha256": "5161ab4dd65a690629d40e57b9172034ac27f794ed7ca80fbb83cb5d6b450a3b",
+      "new_sha256": "5ddc82ebfe0739c09c9dc5a544f2623d5a252871fc989ae0c26dcfd7a15166ea"
+    },
+    "scripts/physical/fetch_sentinel_metadata.py": {
+      "old_path": "scripts/fetch_sentinel_metadata.py",
+      "old_sha256": "8cb1d8f33b83bca04133a62c06afa319e0fe54f4ff2d719540a70d2c51ac370d",
+      "new_sha256": "9c7c30b0b8a5940fea1b3eab01f976d279100039781dd08a8bac821ab33bd63f"
+    },
+    "scripts/physical/fetch_sentinel_window.py": {
+      "old_path": "scripts/fetch_sentinel_window.py",
+      "old_sha256": "986b42d699b7a7a97d2e8263a5426c2feb902215c1d6e3da8eedaec5224a0e65",
+      "new_sha256": "77aa46d8c5c7d9af3ea7a289392b12f8bab641ea31120a65f48d68766a115ad6"
+    },
+    "scripts/physical/sentinel_calibration_demo.py": {
+      "old_path": "scripts/sentinel_calibration_demo.py",
+      "old_sha256": "8ed984aa95e61ebfaa4c035ec680e9d5e321eed5a5b86d26bf953c46ca754d86",
+      "new_sha256": "79876adb45ccb3cb327a21d81e8780eb47f3359251402cb4db18d6e483c1548c"
+    },
+    "scripts/qposd/audit_qposd.py": {
+      "old_path": "scripts/audit_qposd.py",
+      "old_sha256": "6274dd25f223cb06f6f8b1a33e5a47d153954fd73c3981c7c9cb80e43aea5dc7",
+      "new_sha256": "5fcfe470cab3aeabec2be8971df88ef8235c1a51ccc9b2350261073b8ded4d63"
+    },
+    "scripts/qposd/audit_qposd_objects.py": {
+      "old_path": "scripts/audit_qposd_objects.py",
+      "old_sha256": "0362a7e400f82b5dca974ff94e11652d0627dd1298ca5daab29c9f820eaa1a16",
+      "new_sha256": "98484777519ce38f01918ad821599a8a4f3a673f2511ba1074ffaf092e21103d"
+    },
+    "scripts/qposd/audit_qposd_overlap.py": {
+      "old_path": "scripts/audit_qposd_overlap.py",
+      "old_sha256": "adf5d80f528944d951b9daf7097c2408006d74cee25c48f3ed1f5a7eac79b4ea",
+      "new_sha256": "a0d28b3d08fdb1932bf66921896adbec59d0441b4fa7a556aabb8b380ef650ef"
+    },
+    "scripts/qposd/audit_qposd_shapes.py": {
+      "old_path": "scripts/audit_qposd_shapes.py",
+      "old_sha256": "a5903fbaae89542df071417f745ada3be5402c0e97e7bcb0551b582f51c4e977",
+      "new_sha256": "94183c9f9ad2b09831116c3ec995336dd8ad5776b636bd72f8637e32971a1f97"
+    },
+    "scripts/qposd/benchmark_qposd_features.py": {
+      "old_path": "scripts/benchmark_qposd_features.py",
+      "old_sha256": "74ed209f9a324d142c5dc501bf672d326ebdda114ac7e554b8c438d94c48d339",
+      "new_sha256": "11fb090024d98d6a827f5b210fa3b2516fa8d1ced3bcccfc55247c205da1bc94"
+    },
+    "scripts/qposd/evaluate_qposd_test.py": {
+      "old_path": "scripts/evaluate_qposd_test.py",
+      "old_sha256": "aa103ba533784789eb7cb14785f63ad792bde6e70de2df0e0487ceb4ead9cb3b",
+      "new_sha256": "2ee6d2bf96b1b86d1da5440db704050c6bc3ebdc7bd2cd75a0a72e5679d6c65b"
+    },
+    "scripts/qposd/extract_qposd_regions.py": {
+      "old_path": "scripts/extract_qposd_regions.py",
+      "old_sha256": "35945ff575238ea2b7258afda47bd5827f42b3bdddd2537cc28fd3de57d666b3",
+      "new_sha256": "47490402daaf343104b41441acafdcc6827ead8ea6c20b0406afee0b303aa094"
+    },
+    "scripts/qposd/inspect_qposd_features.py": {
+      "old_path": "scripts/inspect_qposd_features.py",
+      "old_sha256": "80bb628447e567bea9982746bee91af868f237dbaae5376e89fe36c23176e732",
+      "new_sha256": "6521f31625192a3279d61dadf812fe1dd13e2895a723bbefd912bb617a543e8d"
+    },
+    "scripts/qposd/prepare_qposd_protocol.py": {
+      "old_path": "scripts/prepare_qposd_protocol.py",
+      "old_sha256": "c669c793f88ba275c1a2ff6553f8a308baf8212ae38fed533e162591e5e89cef",
+      "new_sha256": "a4e40ad299c77b264b00075daa4807356d1974252896c45e8d0ffdd5ef7d427e"
+    },
+    "scripts/qposd/preview_qposd_pairs.py": {
+      "old_path": "scripts/preview_qposd_pairs.py",
+      "old_sha256": "c69bfae8f5634f1f654871f6e8d0bbe6c78b19639d90ebc88689378f1ce7f2c5",
+      "new_sha256": "e1a767ca2741712843b187a4b02fdad285cce4bf03557f03381c69573fca64b3"
+    },
+    "scripts/qposd/qposd_fast_features.py": {
+      "old_path": "scripts/qposd_fast_features.py",
+      "old_sha256": "3885397e59a8e5ccb36029858555b23c7a4133cd07b403c59e27d5aba842004c",
+      "new_sha256": "90963d4164b5993ff595fd24c6ce81ba33dbb565d07bcf7e4ebffd551a6d0e62"
+    },
+    "scripts/qposd/qposd_labels.py": {
+      "old_path": "scripts/qposd_labels.py",
+      "old_sha256": "97443b5b15759842aa52e6b5f19127f8f72ef3d5c8e03f72af1eb39078098b38",
+      "new_sha256": "0d18d8bcc063df68d56624f288a2f2c2b3c3d66ec8c8b28046ec81e58e28b07a"
+    },
+    "scripts/qposd/qposd_metrics.py": {
+      "old_path": "scripts/qposd_metrics.py",
+      "old_sha256": "ced3cc80064e42ec23fefb2955217e3ff2472c3530aa9e9601bf626b011296da",
+      "new_sha256": "461894e6b4e48870b19ab82f6b91dea9ddc47c1bc85f2878b43fd3f2bd5a18a4"
+    },
+    "scripts/qposd/qposd_pipeline.py": {
+      "old_path": "scripts/qposd_pipeline.py",
+      "old_sha256": "f0ba3a84472e7e8eb6047499b04c68aa2e7cad614c04370cd3e449c8239df892",
+      "new_sha256": "10c313fadde5697d9ef049431377e66a6445252551c7af35a56e37f2ed540c53"
+    },
+    "scripts/qposd/report_qposd.py": {
+      "old_path": "scripts/report_qposd.py",
+      "old_sha256": "9aafe4769968b713d0a2b6c352519bb074be1034b65c5bb7e6252d36b76ff7db",
+      "new_sha256": "1ac86f792551d4b129c7c73260e1f6294dcb298dd9f10ced9548358d399908f8"
+    },
+    "scripts/qposd/select_qposd_detection.py": {
+      "old_path": "scripts/select_qposd_detection.py",
+      "old_sha256": "faf1dee8ae6e86598900b08c5047aa751cdd2b5d83d20421bf0f2dc615bb6abc",
+      "new_sha256": "150af350812ab40de445e46e790f0a0587a4811acad700698648238292f6d3df"
+    },
+    "scripts/qposd/train_qposd_classifiers.py": {
+      "old_path": "scripts/train_qposd_classifiers.py",
+      "old_sha256": "aadb42bff932110b49ee07a885eea3b11ebb0d19a1aa22c54e88e121829e48a7",
+      "new_sha256": "c44b9c9c019ac325a2bf89a6199dbada5c673f8010be1125b412cc2032b914c9"
+    },
+    "scripts/sos_experiments/adaptive_experiment.py": {
+      "old_path": "scripts/adaptive_experiment.py",
+      "old_sha256": "08d100d82d966a785c0acc2a49e3f3bea5530b8c7202459a2893ae2f5fda999b",
+      "new_sha256": "6316b3f750737e39ecdc476329ca36e3c739493fec0212972a058e7250effdf9"
+    },
+    "scripts/sos_experiments/analyze_failures.py": {
+      "old_path": "scripts/analyze_failures.py",
+      "old_sha256": "e47c22b51ac6fa5c07badc0fc629c7731e3231abc22529c5b7df6c37f72db6d9",
+      "new_sha256": "a717f0f7756a9810fd93dcc882e5c9afa8b39ff79fdf073a55e0bde69748d1a5"
+    },
+    "scripts/sos_experiments/audit_palsar_holdout.py": {
+      "old_path": "scripts/audit_palsar_holdout.py",
+      "old_sha256": "134d809071a1bc97b50337bf2fb8a8a8663d780098b85111b7c3d154ac214daf",
+      "new_sha256": "a9ac5ef463f2db51ba0fb6045a441fd991fd78495301837d458aa3ae5be556fe"
+    },
+    "scripts/sos_experiments/audit_refined_sos.py": {
+      "old_path": "scripts/audit_refined_sos.py",
+      "old_sha256": "06856af2cab6ac3347e5b40e28556b3d9608c2505a4fdbf18816d0b5f950e22c",
+      "new_sha256": "7cd17e85aa5fa8a05f15bce0d8318af81c17dbed44756971ee59864b50199c12"
+    },
+    "scripts/sos_experiments/evaluate_palsar_holdout.py": {
+      "old_path": "scripts/evaluate_palsar_holdout.py",
+      "old_sha256": "d19121c24fbdc9d2d1276041b3543dd0c28fcbbe039a9b87a912c1e6b0497658",
+      "new_sha256": "a181fd531dc05b007a503634ce0464f03aaff1e8a9930cbb3d16898ba5dce3e7"
+    },
+    "scripts/sos_experiments/explain_selection.py": {
+      "old_path": "scripts/explain_selection.py",
+      "old_sha256": "a30c7af9b4e871a43b899856262487552af9e4a87af28b4776e031d2f4360049",
+      "new_sha256": "f5b5a7ec8230c01974cbe66741a76a80744b3ee58b831fa88446afae010fc1f2"
+    },
+    "scripts/sos_experiments/report_palsar_holdout.py": {
+      "old_path": "scripts/report_palsar_holdout.py",
+      "old_sha256": "00db3bd56bb7abd293393440edd533c7a60ddec52d6f80819431c7e0f9a474a7",
+      "new_sha256": "2df48bf07da36d338f35e2154ff2c5d9b83a92d1f2c903cf755e71cb9817baaf"
+    },
+    "scripts/sos_experiments/summarize_results.py": {
+      "old_path": "scripts/summarize_results.py",
+      "old_sha256": "4cb626a9df8ea6b79ac852383bd52ac4ede699c4de0341b9e6b1abfee44341ec",
+      "new_sha256": "d5b08a48e8c28803ef5fa306bf917333c5eb44bc1d3354a482f2524bad4e07e3"
+    },
+    "scripts/sos_experiments/verify_real_data.py": {
+      "old_path": "scripts/verify_real_data.py",
+      "old_sha256": "7dd4823900e2bd62617352b7186bd4f3cb787f0cffd777560f1274dda65fa7f2",
+      "new_sha256": "2a77489efb1d28e80896b39973184e20321859a62f1b1967a4e3d731a532b926"
+    },
+    "scripts/sos_experiments/worked_example.py": {
+      "old_path": "scripts/worked_example.py",
+      "old_sha256": "989914e4ba56a94d98369115361a4ee973ab5e529a83b4cceab74bdda44d69d3",
+      "new_sha256": "b04d706bcaa63b378369108938b1d47a2166859b045833abb405662765fa5747"
+    },
+    "scripts/validation/rebuild_evidence.py": {
+      "old_path": "scripts/rebuild_evidence.py",
+      "old_sha256": "10a40b64b884bac71b712668c601c39fca728362f9b85e7bfad570b2fb7a0580",
+      "new_sha256": "1fc2ac911269d9782527ec0542fcec70e2e786d54197964898023276574f904a"
+    },
+    "scripts/validation/verify_outputs.py": {
+      "old_path": "scripts/verify_outputs.py",
+      "old_sha256": "fb62f4b32b8a9d5ac8f7a4aa63c53de1aaf63031a657fd51387a3a02ab8a5857",
+      "new_sha256": "dcc593158dc8921815e3fb14e0b2b201c1c7073e187864ce4d146ef8ed8dae3a"
+    }
+  },
+  "scope": "Explicit source relocation lineage, not a new scientific run. Results and models remain unchanged.",
+  "removed_one_time_tools": {
+    "date": "2026-11-18",
+    "reason": "Edit saved notebooks directly; run scripts/run_notebooks.py. One-time generators retired.",
+    "sources": {
+      "scripts/notebook_tools/build_07_notebooks.py": {
+        "old_path": "scripts/build_07_notebooks.py",
+        "old_sha256": "b30a95d52c2259d14f19ae6de037b4c846bb450efc1354d0489f341bc594e7f2",
+        "new_sha256": "168c38e59a35223e3ea234e609089848c0f64f81ee3f78b39d9c780356185524"
+      },
+      "scripts/notebook_tools/build_cantarell_model_notebook.py": {
+        "old_path": "scripts/build_cantarell_model_notebook.py",
+        "old_sha256": "105d16a84ccc99cddf02ef0864fddbb4c2f7d021c646a6528e4d7bdfd00b2f8d",
+        "new_sha256": "aa1203f4cdbec824b351cc1d901e15b002a881b997757807a5c030e2fb088d74"
+      },
+      "scripts/notebook_tools/build_cantarell_screen_notebook.py": {
+        "old_path": "scripts/build_cantarell_screen_notebook.py",
+        "old_sha256": "b50092bf01a74e96cda6ef41d5dae48763aa3861e3fb46acf48fb8c5fede1659",
+        "new_sha256": "9c8cd7e59f617ec8ebe7957d87ba71e2b826ee8efd5e29ee5f4635193ecd5c08"
+      },
+      "scripts/notebook_tools/build_dartis_notebook.py": {
+        "old_path": "scripts/build_dartis_notebook.py",
+        "old_sha256": "fbbb3ba58545726a4012fb76689ba04af59b3a27f52736237604863ae7d08fa0",
+        "new_sha256": "beb4634c4861af0dc899fc2a7165c6c22daba8c06fdadfce85af89039bc7a828"
+      },
+      "scripts/notebook_tools/build_notebooks.py": {
+        "old_path": "scripts/build_notebooks.py",
+        "old_sha256": "439456e50e2425a1a98649cc4dc7f02a8a96c26f8901e6b1836747a9fca2e573",
+        "new_sha256": "a95240cee21577feb9bf1b0f458d0188b40bc891998f4dede8fa5854b155de76"
+      },
+      "scripts/notebook_tools/build_palsar_notebook.py": {
+        "old_path": "scripts/build_palsar_notebook.py",
+        "old_sha256": "f4e32257b15230a6d1d88d9fa632c3965b8c9d30e5339b5d3664ef60019de3fb",
+        "new_sha256": "0f17110dae54dcf71ba01589906e55bafcdb64be9ef3c28a46fc19dc31add6fe"
+      },
+      "scripts/notebook_tools/build_physical_notebook.py": {
+        "old_path": "scripts/build_physical_notebook.py",
+        "old_sha256": "242ad0deb9d83773768b0ea0236aec117a5d7d8ed29f479a3387599b57393275",
+        "new_sha256": "cbc7e9999df7af31837800e631fd3588a1159beed5881f91c90824d9fa083a3c"
+      },
+      "scripts/notebook_tools/build_qposd_evaluation_notebook.py": {
+        "old_path": "scripts/build_qposd_evaluation_notebook.py",
+        "old_sha256": "d2789d542c646b11ea1bd380ceb850b50baa5a1b0d558ecff84365d6a5546bc7",
+        "new_sha256": "e6ee88ae3a1c638b9a58f2cb6918f6f95d4d53bd9cba410d4efa3ccfb4af2251"
+      },
+      "scripts/notebook_tools/build_qposd_notebook.py": {
+        "old_path": "scripts/build_qposd_notebook.py",
+        "old_sha256": "28bb03b42d26415f6e45cdccbd27b94ddfa59c055131c38e12b027141939b7bb",
+        "new_sha256": "a2b7322424970e2e8c4f2126a0b2c9ce8a26fae8ac5fe2703888b027f3a2ffdb"
+      },
+      "scripts/notebook_tools/build_research_notebook.py": {
+        "old_path": "scripts/build_research_notebook.py",
+        "old_sha256": "f15077f2f0b97ee882146dd31586d90b91d4bbebe3e539c267edc36c0b0c4d14",
+        "new_sha256": "a97dda5588530f4675702f9e56ef506e50c7c5995f6ed7a83c1537b6c6c95a65"
+      },
+      "scripts/notebook_tools/execute_06_notebook.py": {
+        "old_path": "scripts/execute_06_notebook.py",
+        "old_sha256": "8b6bcca3fe39e0890359bced8018d66fb6f5f5858960dd07412886f679e8f808",
+        "new_sha256": "996fc3008329c205ff7473be089c64f9246ed73b0fe118ed6b88f93705ad48c1"
+      },
+      "scripts/notebook_tools/fix_katex.py": {
+        "old_path": "scripts/fix_katex.py",
+        "old_sha256": "c97d0294281b835e9868bead6285f66958a16150d99bf73b65f51ef8d12b3f60",
+        "new_sha256": "70a37938f398841239594119ff65de3a45d66feabf2d844cda4ca945b2449479"
+      }
+    }
+  }
+}

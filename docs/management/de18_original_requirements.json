@@ -1,0 +1,15 @@
+{
+  "source": "docs/00_tai_lieu_goc/huong_dan_btl_docx/ĐỀ TÀI LIÊN QUAN ĐẾN NASA.docx",
+  "sha256": "fd4d31a50220250558b910a73ba8548d565a9fedc8012e97f07efa23c9b93939",
+  "paragraphs": [
+    "Đề 18. Phát hiện vết dầu tràn trên biển từ ảnh SAR (★★★) — NASA #6",
+    "Vấn đề Việt Nam: dầu vón cục và dầu tràn trôi dạt vào bờ biển miền Trung gần như mỗi năm, ảnh hưởng du lịch và ngư nghiệp; cần phát hiện sớm ngoài khơi.",
+    "Dữ liệu: Sentinel-1 trên vùng biển ngoài khơi; bộ dữ liệu dầu tràn SAR công khai để huấn luyện và kiểm tra; gió bề mặt từ sản phẩm tái phân tích.",
+    "Chức năng bắt buộc (3):",
+    "Lọc speckle và chuẩn hóa theo góc tới; phân ngưỡng thích nghi để tìm vùng tối ứng viên.",
+    "Trích đặc trưng hình dạng và cường độ (độ thuôn dài, độ phức tạp biên, gradient biên, tương phản với nền) cho từng vùng.",
+    "Phân lớp “dầu” và “tương tự dầu” (vùng gió yếu, màng sinh học, mưa) bằng SVM hoặc cây quyết định.",
+    "Ý tưởng phát triển tiếp: mô phỏng trôi dầu theo dòng chảy và gió để dự báo bãi biển bị ảnh hưởng; kết hợp dữ liệu AIS để truy tìm tàu xả thải.",
+    "Đánh giá: Precision, Recall, F1 mức đối tượng trên tập kiểm tra; tỉ lệ nhầm lẫn giữa dầu và tương tự dầu."
+  ]
+}

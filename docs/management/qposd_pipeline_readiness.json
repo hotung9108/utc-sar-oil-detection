@@ -1,0 +1,21 @@
+{
+  "unit_tests": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -p test_qposd_pipeline.py -v",
+    "tests_run": 3,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "scope": "Synthetic image-only inference with deterministic classifier stub, not QPOSD accuracy"
+  },
+  "selection_preflight": {
+    "exit_code": 1,
+    "reason": "Full 24-pair MAT audit is not complete",
+    "validation_scored": false,
+    "test_scored": false
+  },
+  "source_sha256": {
+    "scripts/qposd_pipeline.py": "a0a862474be0b1245c21cf66c65884b0f8809af6458fdc2b9947023ce60060ec",
+    "scripts/select_qposd_detection.py": "b8cb19f0bee0fc42c0cea7fa8781193a48b7a609368c56e8d2e6fa355a398bd7",
+    "tests/test_qposd_pipeline.py": "9f2d9c00ae96d7c4c2091819425ce627f9d42ac4baf23f3f573a3caad12018be"
+  }
+}

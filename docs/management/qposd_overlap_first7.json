@@ -1,0 +1,307 @@
+{
+  "script_sha256": "adf5d80f528944d951b9daf7097c2408006d74cee25c48f3ed1f5a7eac79b4ea",
+  "selection": [
+    4,
+    8,
+    10,
+    13,
+    14,
+    35,
+    41
+  ],
+  "protocol_sha256": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+  "stride": 64,
+  "patch_size": 5,
+  "inputs": {
+    "4": {
+      "mat_sha256": "40c618aa566eb74b21472195c7cb25c8504992f08ad930c75c5cc67b2a059965",
+      "mask_sha256": "896b359f5e1a5559c318c3379f84f84d22c67f6de8e96eb128dcfba8d1028f97",
+      "published_prefix_matches": true
+    },
+    "8": {
+      "mat_sha256": "7d802eae25f1988af1f47123e9b1ef0539cd529c172faf4136cc15676568a6ee",
+      "mask_sha256": "493fb19bc42f2ff9bb498944a527c87cc1e50475b0be72609c06a053797e2fc5",
+      "published_prefix_matches": true
+    },
+    "10": {
+      "mat_sha256": "4169057ffc93a6ed762a0ecbe1b058a44e248d036857e040b9eeb9703ada5e79",
+      "mask_sha256": "ea4c333171156633d571fe79cb8705be84bf610469951794cf613f76e387c2d3",
+      "published_prefix_matches": true
+    },
+    "13": {
+      "mat_sha256": "b04df68c653fe5f98e9c77f36f73de5bb9bb71c595012b0efe310d87dd0bd97a",
+      "mask_sha256": "07f3543c21c413d5d9743252f93c8d39fda3cad2458c9f25435d797cf53c515a",
+      "published_prefix_matches": true
+    },
+    "14": {
+      "mat_sha256": "306b982d1a5b4024c98ceb9540f78d037d8815467546422397dd510d4d9e59ca",
+      "mask_sha256": "908ce8b0f12b91bbb8c153f8f2f99031cc7df4cd9b00ee7bac8fec1ca16633a7",
+      "published_prefix_matches": true
+    },
+    "35": {
+      "mat_sha256": "bce74b0bdb6e58c0ddc9706e7e30cad4a0354bd6aeb1a793eda6d89e75ac0d54",
+      "mask_sha256": "dfa7197b6ea243c8554458c0797f6408aff8ff5c0b423b538d39f84f2257b198",
+      "published_prefix_matches": true
+    },
+    "41": {
+      "mat_sha256": "0b15946e9ef2a9789062730204f9ad4b74c012f5b6ed4ca0f9320bd7f990704e",
+      "mask_sha256": "378916f662bfe5606e11d55da091e96d1576bf6a2a0383b4549cecb491e1f983",
+      "published_prefix_matches": true
+    }
+  },
+  "pairs": [
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 8,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 10,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 13,
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 14,
+      "splits": [
+        "train",
+        "test"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 35,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 4,
+      "second": 41,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 8,
+      "second": 10,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 8,
+      "second": 13,
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 8,
+      "second": 14,
+      "splits": [
+        "train",
+        "test"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 8,
+      "second": 35,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 8,
+      "second": 41,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 10,
+      "second": 13,
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 10,
+      "second": 14,
+      "splits": [
+        "train",
+        "test"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 10,
+      "second": 35,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 10,
+      "second": 41,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 13,
+      "second": 14,
+      "splits": [
+        "validation",
+        "test"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 13,
+      "second": 35,
+      "splits": [
+        "validation",
+        "train"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 13,
+      "second": 41,
+      "splits": [
+        "validation",
+        "train"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 14,
+      "second": 35,
+      "splits": [
+        "test",
+        "train"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 1024,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 14,
+      "second": 41,
+      "splits": [
+        "test",
+        "train"
+      ],
+      "cross_split": true
+    },
+    {
+      "sampled_nonconstant_patches": 144,
+      "scalar_searches_truncated": 0,
+      "translations": [],
+      "first": 35,
+      "second": 41,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    }
+  ],
+  "scope": "Exact, unrotated, untranslated-value T11 patch screen with translated overlap verification. No model predictions. Missing matches do not establish independent scenes; non-exact/resampled/unsampled overlap may be missed."
+}

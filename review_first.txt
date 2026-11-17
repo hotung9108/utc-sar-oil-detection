@@ -1,0 +1,104 @@
+
+2. Các vấn đề nghiêm trọng
+2.1. Mâu thuẫn số liệu giữa văn bản, bảng và hình
+Các giá trị đọc từ hình là xấp xỉ, nhưng độ lệch quá lớn để là sai số đọc.
+Nội dung
+Văn bản / Bảng
+Hình
+Trọng số SVM
+w₇ = +0.54, w₁ = +0.31, w₄ = −0.48 (âm mạnh nhất là mean)
+Hình 6: background_contrast ≈ +0.8; area_fraction ≈ +0.38 (cao thứ hai, văn bản không nhắc); elongation ≈ +0.2; âm mạnh nhất là complexity ≈ −0.18, mean chỉ ≈ −0.14
+Hàm mục tiêu
+J* = 4.0531
+Hình 6: đường loss đi ngang ở ≈ 4.4. J(0) ≈ 5.4, trong khi Eq. (12) với w = 0 cho J(0) = C = 10, nên cài đặt không khớp công thức
+Lee 7×7 + Otsu, Candidate F1
+0.0855 (mục 5.1) nhưng 0.1220 (Bảng 3)
+Hình 4: ≈ 0.095. Mean 7×7 còn cao hơn (≈ 0.10)
+Lee 7×7 + Otsu, Pixel IoU
+0.5867
+Hình 4: ≈ 0.50
+Cross-sensor
+Bảng 3: Sentinel F1 = 0.2805, IoU = 0.6614, FP = 3.48; PALSAR F1 = 0.3724, IoU = 0.6423, FP = 2.97
+Hình 8 (phải): Sentinel F1 ≈ 0.19, IoU ≈ 0.51, FP ≈ 4.3; PALSAR F1 ≈ 0.30, IoU ≈ 0.56, FP ≈ 4.9
+Phân tầng R1–R4
+"Object F1 đạt đỉnh ở R1 và R2"
+Hình 8: R1 chỉ ≈ 0.08, thấp nhất trong các chế độ có dầu
+Phân tầng R4
+"Pixel IoU cao nhất ở R4"
+Hình 8: R3 ≈ 0.75 > R4 ≈ 0.53
+Số ảnh kiểm định
+Bảng 3: "671 ảnh Sentinel-1"
+Bảng 2 và cột "Số ảnh": 839 ảnh. 671 ≈ 0.8 × 839, gợi ý có một lần chia lại tập test chưa được giải thích
+Hệ số η
+Văn bản: lưỡng đỉnh "chỉ rõ ở R2"
+Hình 2: ảnh biển sạch R0 có η = 0.845, cao hơn các ảnh R2 (0.482; 0.767; 0.711)
+Dòng CART (Bảng 3)
+P = 0.2215, R = 0.3012, FP = 4.12
+Các dòng khác đều ngầm định ≈ 3.180 đối tượng GT trên 839 ảnh. Dòng CART lại ra ≈ 3.265, nên cần kiểm tra lại
+Từ số liệu Bảng 3 còn suy ra một điều thú vị: bộ phân loại loại ≈ 9.500 FP nhưng chỉ mất ≈ 22 TP (1.017 → 995). Đây là điểm mạnh của bộ phân loại, nhưng bài không khai thác.
+Tôi không thể xác nhận số liệu nào là đúng. Mọi con số trong Hình 4, 6, 8 phải được sinh lại từ cùng một lần chạy với Bảng 3.
+2.2. Giao thức dữ liệu: nguy cơ rò rỉ và không có validation
+• Bộ SOS chỉ có 21 cảnh gốc (14 PALSAR, 7 Sentinel), nhưng được cắt thành 6.456 mảnh, tăng cường (cắt, xoay, thêm nhiễu), rồi chia ngẫu nhiên 8:2 thành 8.070 ảnh. Nếu việc chia diễn ra sau tăng cường, hoặc ở cấp patch thay vì cấp cảnh, thì train và test có thể chứa các bản sao biến đổi của cùng một vùng biển. Mô hình tuyến tính 8 chiều ít bị ảnh hưởng hơn deep net, nhưng các siêu tham số của pipeline (A_min = 64, cửa sổ 7×7, L = 4, C = 10, ngưỡng purity 0.5/0.05) vẫn có thể bị "học" từ dữ liệu test.
+• Bảng 2 ghi "Val/Test" là một tập duy nhất. Không có tập validation riêng, và không nói siêu tham số được chọn thế nào. Hình 4 được chạy "trên tập kiểm định", tức chính tập báo cáo kết quả cuối.
+• Giao thức huấn luyện không được mô tả: SVM huấn luyện trên ảnh nào, bao nhiêu vùng ứng viên dương/âm, có xử lý mất cân bằng lớp không, siêu tham số của CART là gì.
+• Yêu cầu: chia theo cảnh (leave-one-scene-out hoặc k-fold theo cảnh), tách validation, xác nhận tăng cường chỉ áp dụng sau khi chia, công bố số vùng ứng viên theo lớp.
+2.3. Baseline yếu khiến con số tiêu đề bị thổi phồng
+• "Giảm 94.1% FP (58.62 → 3.48)" và "F1 tăng 17 lần" so với Raw + Otsu. Raw + Otsu trên ảnh đốm nhiễu, không lọc, không loại vùng nhỏ, hiển nhiên sinh hàng chục vùng vụn. Đây là baseline giả định (straw man). Con số công bằng là so với Lee + Otsu + area-opening: giảm 76.6% FP, F1 0.122 → 0.281. Abstract và kết luận nên dùng con số này.
+• Niblack: công thức Niblack chuẩn là T = m + k·s với k âm (thường −0.2) cho đối tượng tối trên nền sáng. Với k = +0.2 và điều kiện "<", khoảng 58% pixel của một vùng đồng nhất bị gán là tối, nên "bùng nổ FP" có thể chỉ do cấu hình. Cần giải thích, hoặc thử k âm và Sauvola (được nhắc nhưng không có trích dẫn, không có thực nghiệm).
+• Không có baseline nào ngoài Otsu/Niblack. Tối thiểu cần: CFAR/ngưỡng dựa trên phân phối gamma (phương pháp chuẩn trong SAR), thuật toán phân ngưỡng không giả định lưỡng đỉnh (Kittler-Illingworth, multi-Otsu), các bộ phân loại khác (Logistic Regression, Random Forest, SVM kernel), và một mạng phân đoạn nhẹ (U-Net/MobileNet) trên cùng split. Bài trích dẫn CBD-Net [2] nhưng không so sánh, dù SOS chính là benchmark của công trình đó.
+• Với kết quả "chưa tối ưu" như Recall 0.31 và Precision 0.25, cụm từ "xuất sắc", "vượt trội" là quá lời. Hệ thống bỏ sót khoảng 69% vệt dầu ở ngưỡng IoU 0.5, và 3 trong 4 cảnh báo là sai.
+2.4. Phát biểu về khái quát hóa đa cảm biến chưa có cơ sở
+• Mô hình "ngoài miền" (F1 = 0.3724) đạt kết quả cao hơn mô hình trong miền (0.2805). Điều này đáng ngờ hơn là đáng mừng. Cách giải thích hợp lý hơn: tập PALSAR/Deepwater Horizon vốn dễ hơn (vệt lớn, tương phản cao, ≈ 5.1 đối tượng GT/ảnh so với ≈ 3.8 ở Sentinel theo số liệu ngầm định).
+• Để kết luận gì về "bất biến với bước sóng", cần thêm: (a) PALSAR → Sentinel (chiều ngược lại); (b) mô hình huấn luyện trong miền trên PALSAR; (c) kết quả của Lee + Otsu không classifier trên PALSAR, để thấy mức tăng do classifier.
+• Chuyển miền ở đây đồng thời thay đổi băng tần, phân cực (VV → HH), góc tới, địa điểm, sự kiện và loại dầu. Không thể quy hiệu năng cho riêng bước sóng. Mục 6 lại nêu hiệu chuẩn σ⁰ theo góc tới là việc tương lai, tức tác giả cũng thừa nhận dữ liệu chưa chuẩn hóa góc tới.
+• area_fraction chuẩn hóa theo khung 256² px, trong khi pixel của hai cảm biến có kích thước vật lý khác nhau (12.5 m so với 5×20 m), nên đặc trưng này không bất biến theo nghĩa vật lý. Đáng chú ý là nó lại có trọng số dương lớn thứ hai trong Hình 6.
+2.5. Giai đoạn 1 là nút cổ chai, và các phát hiện của chính bài chưa được dùng
+• Recall của Lee + Otsu (0.3199) gần bằng Recall sau classifier (0.3130). Bộ phân loại chỉ lọc vùng, không thể tạo thêm TP hay sửa ranh giới. Do đó Recall bị khóa ở trần do Otsu + area-opening quyết định. Đây là hạn chế cốt lõi của kiến trúc và cần được thảo luận rõ, thay vì chỉ nhấn mạnh việc giảm FP.
+• Hệ số η (Eq. 8) được định nghĩa và vẽ trong Hình 2 nhưng không được dùng để làm gì trong pipeline. Hơn nữa, theo Hình 2, η không phản ánh tính lưỡng đỉnh (ảnh biển sạch có η = 0.845). Với một phân phối đơn đỉnh Gaussian, Otsu luôn cho η ≈ 0.64, nên η không phân biệt được R0 và R4 với R2.
+• Hình 2 và Hình 3 cho thấy lỗi cấu trúc. Với R0 và R4 (histogram đơn đỉnh), Otsu vẫn cắt đôi ảnh. Hình 3 hàng cuối (ảnh 100% dầu) cho 35 vùng ứng viên và bản đồ lỗi nửa xanh nửa lam. Pixel IoU ở R4 ≈ 0.53 là rất thấp cho trường hợp tưởng như dễ nhất. Với R1 (vết dầu nhỏ, đúng kịch bản "dầu mới rò rỉ" nêu trong mục 4.2), F1 chỉ ≈ 0.08.
+• Hình 3 hàng 3 (sentinel_1): bản đồ W(x, y) gần như bằng 0 trên toàn ảnh. Khi đó Lee thoái hóa thành bộ lọc trung bình 7×7, tức giả thiết L = 4 không khớp với dữ liệu. Điều này giải thích vì sao Hình 4 cho thấy Mean 7×7 ngang hoặc hơn Lee 7×7, và mâu thuẫn với kết luận "Lee bảo toàn biên tốt nhất". Bài không có chỉ số bảo toàn biên (EPI) hay ENL nào để chứng minh điều này.
+• Tiêu đề: không có thành phần "hình thái học thích nghi" thực sự nào. Hậu xử lý chỉ là area-opening với A_min cố định; phần thích nghi là bộ lọc Lee (thống kê, không phải hình thái học). Cần đổi tiêu đề hoặc bổ sung thao tác hình thái học thật (opening/closing, fill-hole) và A_min thích nghi theo độ phân giải.
+2.6. Không có bằng chứng về khả năng phân biệt look-alike
+Abstract và đóng góp nhấn mạnh việc phân biệt vệt dầu với look-alike (biển lặng gió, màng tảo...). Nhưng nhãn SOS chỉ là nhị phân dầu/nền. Không có phân tích nào cho thấy các FP bị loại thuộc loại look-alike chứ không phải đốm nhiễu hoặc mảnh vụn của Otsu. Nên phân loại thủ công một mẫu FP bị loại, hoặc đánh giá trên dữ liệu có nhãn look-alike (như bộ Mediterranean [4] mà chính bài đã trích dẫn). Nếu không, hãy bỏ khẳng định này.
+2.7. Tính thực tiễn và lập luận "edge computing"
+• FP/ảnh = 3.48 trên patch 256×256 là rất cao so với thực tế vận hành. Giả sử ~10–12.5 m/pixel, một patch ≈ 6–10 km², nên một cảnh Sentinel-1 IW (≈ 250 × 170 km) sẽ sinh hàng chục nghìn cảnh báo giả (ước lượng thô). Dữ liệu thực tế chủ yếu là biển sạch, trong khi SOS đã được sàng lọc và cân bằng; tỉ lệ R0 không được báo cáo.
+• Luận điểm "tối ưu cho edge computing" không có đo đạc nào: không có thời gian chạy, bộ nhớ, so với CPU/GPU. Với ảnh 256×256, một U-Net nhỏ cũng chạy được trên CPU. Cần số liệu cụ thể (ms/ảnh, MB, FLOPs).
+• Bài chưa thử trên cảnh đầy đủ, nơi tồn tại gradient theo góc tới, tàu thuyền, sóng nội, mà Otsu toàn cục không xử lý được.
+3. Các vấn đề phương pháp khác
+Lọc đốm Lee (mục 3.1)
+• Mô hình Var(u) = 1/L chỉ đúng cho ảnh cường độ. Không rõ ảnh SOS là amplitude, intensity hay dB (PNG 8-bit). L = 4 cố định, không ước lượng ENL từ vùng đồng nhất.
+• Theo mô tả mục 4.1, ảnh Sentinel đã qua lọc đốm trong tiền xử lý, rồi bộ dữ liệu lại thêm nhiễu khi tăng cường. Thống kê nhiễu vì vậy không còn là nhiễu nhân gamma như giả thiết, và điều này mâu thuẫn với việc gọi ảnh là "ảnh gốc/Raw".
+• Integral image: tính phương sai bằng E[I²] − m² dễ gây triệt tiêu số học trên ảnh lớn nếu dùng float32. Cần ghi rõ độ chính xác (float64). Ngoài ra "độ phức tạp hằng số O(HW)" là cách nói không chính xác (đó là tuyến tính theo số pixel, O(1) mỗi pixel). Kỹ thuật này cũng chuẩn, và bộ lọc trung bình tách (running sums) cho kết quả tương tự, nên không nên xem là đóng góp. Với ảnh 256×256 và cửa sổ 7×7, lợi ích tốc độ không đáng kể và không có phép đo nào kèm theo.
+Otsu
+• Chạy trên miền tuyến tính của ảnh bị nhiễu nhân nên dễ lệch do giá trị sáng bất thường (tàu, sóng). Nên thử ngưỡng trong miền log hoặc theo phân phối gamma.
+Đặc trưng và nhãn
+• f₄ và f₇ gần như đồng tuyến tính (f₇ = (µ_bg − µ)/µ_bg), nên diễn giải trọng số từng đặc trưng (mục 5.2) không đáng tin. Hình 5 cho thấy area_fraction và complexity cực kỳ lệch/nhiều ngoại lai, nên chuẩn hóa Z-score không phù hợp; cần log-transform hoặc robust scaling.
+• Văn bản nói vệt dầu có complexity lớn hơn và boundary_gradient rõ rệt hơn; nhưng Hình 6 gán cả hai trọng số âm, và Hình 5 cho complexity gần như trùng lặp giữa hai lớp. Lập luận "hoàn toàn nhất quán với quy luật vật lý" cần xem lại.
+• Chưa mô tả cách xử lý vùng chạm biên ảnh (chu vi, bbox, vành nền 5 px bị cắt) và vùng không có vành nền (R3/R4).
+• Nhãn huấn luyện dùng purity ≥ 0.5, còn đánh giá dùng IoU ≥ 0.5 giữa đối tượng. Một mảnh vụn có purity cao vẫn có thể thành FP ở đánh giá. Hơn nữa, vùng có purity trung gian (0.05–0.5) bị loại khi huấn luyện nhưng vẫn phải phân loại khi suy luận, gây lệch phân phối.
+• Pixel IoU dạng micro-pooled bị chi phối bởi các ảnh có vệt khổng lồ (R3/R4), nên 0.66 che giấu hiệu năng trên vệt nhỏ và vừa. Cần IoU trung bình theo ảnh và theo chế độ.
+Tối ưu hóa (mục 3.6)
+• NAG cho bài toán lồi trơn là đúng, nhưng với vài nghìn mẫu và 9 tham số, LinearSVC/L-BFGS giải xong trong mili giây, và nghiệm giống hệt. Vì vậy NAG, adaptive restart và "hội tụ toàn cục" (hiển nhiên với bài toán lồi) không phải là đóng góp, và nên bỏ khỏi danh sách đóng góp.
+• Hình 6: đường loss chỉ nối ba điểm (vòng lặp 0, 50, 200), nên gần như không có thông tin. Nên ghi mỗi vòng lặp.
+• Hệ số 1/n trước ‖w‖² trong Eq. (12) lạ so với dạng chuẩn, và ký hiệu w vs w_nobias không nhất quán (bias có/không bị điều chuẩn).
+4. Thống kê và giao thức đánh giá
+• Không có khoảng tin cậy, không có kiểm định ý nghĩa. Chênh lệch SVM vs CART (F1 0.2805 vs 0.2552; P 0.2541 vs 0.2215) khá nhỏ. Cần bootstrap theo ảnh/cảnh và nhiều lần huấn luyện/chia. Kết luận "SVM tốt hơn CART nhờ chống quá khớp" chưa có bằng chứng (không có đường cong học, không có so sánh train/test, không rõ độ sâu CART).
+• Thiếu: ablation theo nhóm đặc trưng (chỉ hình học, chỉ bức xạ), ablation trên A_min, cửa sổ, L; đường cong Precision–Recall theo điểm số SVM thay vì một ngưỡng cố định 0.
+• IoU ≥ 0.5 ở cấp đối tượng rất khắt khe cho vệt hẹp/phân mảnh. Nên báo cáo thêm ở IoU 0.1/0.3/0.5 hoặc AP.
+• Bảng phân bố số ảnh và số đối tượng theo R0–R4 và FP/ảnh theo từng chế độ bị thiếu (mục 5.4 khẳng định "R0 báo nhầm tối thiểu" nhưng Hình 8 không có thanh nào cho R0).
+• Hình 7 chỉ chọn 4 cảnh thuận lợi, bản đồ màu xanh dương khó đối chiếu với GT, không có ví dụ thất bại.
+5. Trình bày và tài liệu tham khảo
+• Cần định nghĩa "Candidate F1"; "quy trình 2 giai đoạn (5 bước)" không được liệt kê (Hình 1 có 6 khối). Hình 4 được nhắc trước Hình 3.
+• Còn dấu markdown **...** rò vào bản LaTeX (mục 3.6, 4.1, 4.3) và dấu ngoặc kép lỗi ("hộp đen").
+• Chỉ có 11 tài liệu tham khảo. Thiếu các công trình nền tảng về phát hiện dầu tràn bằng SAR (như Solberg và cộng sự, Brekke & Solberg, Fiscella, Singha và cộng sự), các nghiên cứu deep learning trên ảnh Sentinel-1 (như Krestenitis và cộng sự), và các bộ lọc đốm hiện đại (Gamma-MAP, SAR-BM3D). Frost, Kuan, Sauvola được nhắc nhưng không có trích dẫn. Ref [4] (một bộ dữ liệu PANGAEA) được dùng để chứng minh cơ chế vật lý, nên thay bằng tài liệu tổng quan thích hợp. Cũng nên làm rõ vai trò của [2] (Zhu et al.) và [11] (Zuenko, "Refined SOS") trong việc tạo bộ dữ liệu.
+• Không có mã nguồn, seed, môi trường, thời gian huấn luyện; bài khó tái lập.
+6. Danh sách chỉnh sửa theo ưu tiên
+1.  Sinh lại toàn bộ bảng/hình từ một lần chạy duy nhất và sửa các mâu thuẫn ở mục 2.1.
+2.  Chia dữ liệu theo cảnh, tách validation, mô tả đầy đủ giao thức huấn luyện; giải thích số 671.
+3.  Thêm baseline hợp lý (Lee + Otsu + area-opening làm mốc chính, CFAR, phân ngưỡng không lưỡng đỉnh, bộ phân loại khác, một mạng phân đoạn nhẹ) và viết lại abstract theo mốc đó.
+4.  Làm lại thí nghiệm cross-sensor hai chiều với baseline không-classifier và mô hình trong miền; hạ giọng kết luận về tính bất biến.
+5.  Xử lý các chế độ R0/R4 (dùng η hoặc thống kê toàn ảnh làm cổng), thảo luận trần Recall của giai đoạn 1, hoặc thêm bước tinh chỉnh ranh giới.
+6.  Thêm khoảng tin cậy, ablation, đường cong PR, bảng phân tầng R0–R4 đầy đủ (kèm FP/ảnh), và đánh giá ở nhiều ngưỡng IoU.
+7.  Chứng minh hoặc bỏ khẳng định về look-alike và edge computing (kèm đo thời gian/bộ nhớ).
+8.  Sửa tiêu đề/đóng góp (bỏ NAG và integral image khỏi danh sách đóng góp chính), ước lượng ENL thay vì cố định L = 4, sửa cấu hình Niblack, và bổ sung tài liệu tham khảo.
+Kết luận: hướng tiếp cận thực dụng và có tiềm năng làm baseline nhẹ, dễ diễn giải cho SOS. Nhưng ở trạng thái hiện tại, độ tin cậy của các con số chính chưa được bảo đảm, và nhiều kết luận (khái quát hóa đa cảm biến, phân biệt look-alike, tối ưu cho edge) vượt quá bằng chứng. Tôi khuyến nghị chấp nhận sau khi chỉnh sửa lớn nếu các điểm 1–4 được giải quyết.

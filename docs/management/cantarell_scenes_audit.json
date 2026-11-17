@@ -1,0 +1,1438 @@
+{
+  "revision": "1b9a62c30a9da9698eb470562aa976f9bd1e8fc3",
+  "script_sha256": "f17132c0616f328a635dcfb06efb20f3fb3e69f16865ff8256bef983b3c86d9f",
+  "csv_receipts": [
+    {
+      "url": "https://raw.githubusercontent.com/Garcia-INPE/oilspill-detection-dataset/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/CSV/Oil_Stats_manual_windows_16bits_800x600.csv",
+      "bytes": 306652,
+      "sha256": "f22ede2086e80000cba29f7d4c661424eba52fb21e050bc78eb87f2104a379b2"
+    }
+  ],
+  "expected_acquisitions": 24,
+  "resolved_acquisitions": 24,
+  "complete": true,
+  "results": [
+    {
+      "publisher_filename": "01 S1A_IW_GRDH_1SDV_20200117T001541_NR_Orb_Cal_TC.tif",
+      "group": "IMG_01",
+      "scene": "S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE",
+      "start_time": "2020-01-17T00:15:41",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.875504,
+                18.537647
+              ],
+              [
+                -90.487671,
+                18.97187
+              ],
+              [
+                -90.780167,
+                20.47893
+              ],
+              [
+                -93.190933,
+                20.048136
+              ],
+              [
+                -92.875504,
+                18.537647
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-01-17T00%3A15%3A40%2B00%3A00&end=2020-01-17T00%3A15%3A42%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200117T001541/asf.json",
+          "sha256": "f486d6e23b600edaac30522da13351ca2a5e23b7137cefaba3232637e6f0302c",
+          "bytes": 5186
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/1/17/IW/DV/S1A_IW_GRDH_1SDV_20200117T001541_20200117T001606_030833_03899B_5AEE/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200117T001541/productInfo.json",
+          "sha256": "9013fcd56420859e65748e45d38a6af212b91e11f28b83825fb7cc569a6264ef",
+          "bytes": 3080
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "02 S1A_IW_GRDH_1SDV_20200210T001540_NR_Orb_Cal_TC.tif",
+      "group": "IMG_02",
+      "scene": "S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C",
+      "start_time": "2020-02-10T00:15:40",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.875343,
+                18.537565
+              ],
+              [
+                -90.487595,
+                18.971697
+              ],
+              [
+                -90.780045,
+                20.478851
+              ],
+              [
+                -93.190735,
+                20.048151
+              ],
+              [
+                -92.875343,
+                18.537565
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/2/10/IW/DV/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-02-10T00%3A15%3A39%2B00%3A00&end=2020-02-10T00%3A15%3A41%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200210T001540/asf.json",
+          "sha256": "734d4b4a84dd03a48334d9fba6d403a8422f001c40c6a99dd7bb02018014ed8f",
+          "bytes": 5188
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/2/10/IW/DV/S1A_IW_GRDH_1SDV_20200210T001540_20200210T001605_031183_0395DE_D14C/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200210T001540/productInfo.json",
+          "sha256": "6443b7ba2f78d246c7baf90d922f144c692d4f628346dc725b815a052d122cd3",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "04 S1A_IW_GRDH_1SDV_20200609T001544_NR_Orb_Cal_TC.tif",
+      "group": "IMG_04",
+      "scene": "S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD",
+      "start_time": "2020-06-09T00:15:44",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.873947,
+                18.537622
+              ],
+              [
+                -90.486572,
+                18.971697
+              ],
+              [
+                -90.779007,
+                20.478851
+              ],
+              [
+                -93.189316,
+                20.04821
+              ],
+              [
+                -92.873947,
+                18.537622
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/9/IW/DV/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-06-09T00%3A15%3A43%2B00%3A00&end=2020-06-09T00%3A15%3A45%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200609T001544/asf.json",
+          "sha256": "d50dc0b6baaf314f6d14951138e337b0ae26f67571d17c6a119564b3f8c710ed",
+          "bytes": 5187
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/9/IW/DV/S1A_IW_GRDH_1SDV_20200609T001544_20200609T001609_032933_03D092_DDFD/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200609T001544/productInfo.json",
+          "sha256": "d862df68f357295e444c405d06d3265c1c037f6e91c3fa653ac292653f4d7657",
+          "bytes": 3080
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "05 S1A_IW_GRDH_1SDV_20200621T001544_NR_Orb_Cal_TC.tif",
+      "group": "IMG_05",
+      "scene": "S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F",
+      "start_time": "2020-06-21T00:15:44",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.874619,
+                18.537653
+              ],
+              [
+                -90.487236,
+                18.971712
+              ],
+              [
+                -90.779655,
+                20.478867
+              ],
+              [
+                -93.189972,
+                20.048243
+              ],
+              [
+                -92.874619,
+                18.537653
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/21/IW/DV/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-06-21T00%3A15%3A43%2B00%3A00&end=2020-06-21T00%3A15%3A45%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200621T001544/asf.json",
+          "sha256": "6c330b7876e9d4926107ceb1af6d41225840df71f09d19a67210ee1eb7194d18",
+          "bytes": 5189
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/21/IW/DV/S1A_IW_GRDH_1SDV_20200621T001544_20200621T001609_033108_03D5E1_330F/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200621T001544/productInfo.json",
+          "sha256": "da081b62e552ead6d25bc400314c519bb371c5bc644f6a6bd71b31b2f2108564",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "06 S1A_IW_GRDH_1SDV_20200715T001545_NR_Orb_Cal_TC.tif",
+      "group": "IMG_06",
+      "scene": "S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22",
+      "start_time": "2020-07-15T00:15:45",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.874596,
+                18.53764
+              ],
+              [
+                -90.487129,
+                18.971766
+              ],
+              [
+                -90.779579,
+                20.478918
+              ],
+              [
+                -93.18998,
+                20.048225
+              ],
+              [
+                -92.874596,
+                18.53764
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/15/IW/DV/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-07-15T00%3A15%3A44%2B00%3A00&end=2020-07-15T00%3A15%3A46%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200715T001545/asf.json",
+          "sha256": "6b5d0003e8ef2d0e432bf6380330260af284fa3a2849c986a0dc0a36f400cc09",
+          "bytes": 5181
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/15/IW/DV/S1A_IW_GRDH_1SDV_20200715T001545_20200715T001610_033458_03E085_0A22/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200715T001545/productInfo.json",
+          "sha256": "7694cca237ab847d2418c73eae758548bd96d1054a68b89432ff855eb5318bf4",
+          "bytes": 3079
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "07 S1A_IW_GRDH_1SDV_20200727T001546_NR_Orb_Cal_TC.tif",
+      "group": "IMG_07",
+      "scene": "S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78",
+      "start_time": "2020-07-27T00:15:46",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.875366,
+                18.537733
+              ],
+              [
+                -90.487991,
+                18.971832
+              ],
+              [
+                -90.780441,
+                20.478987
+              ],
+              [
+                -93.19075,
+                20.048317
+              ],
+              [
+                -92.875366,
+                18.537733
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/27/IW/DV/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-07-27T00%3A15%3A45%2B00%3A00&end=2020-07-27T00%3A15%3A47%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200727T001546/asf.json",
+          "sha256": "e3e4b581c7c6b775720cfab8b6a381e156f974a5e8a9d91ae59703e472abff83",
+          "bytes": 5188
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/27/IW/DV/S1A_IW_GRDH_1SDV_20200727T001546_20200727T001611_033633_03E5E3_9C78/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200727T001546/productInfo.json",
+          "sha256": "2f995cefd7c179b696ffeb5f3d201c0d6f0b25e453b3399e6858cb1d80876c4e",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "test"
+    },
+    {
+      "publisher_filename": "08 S1A_IW_GRDH_1SDV_20200808T001547_NR_Orb_Cal_TC.tif",
+      "group": "IMG_08",
+      "scene": "S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935",
+      "start_time": "2020-08-08T00:15:47",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.874908,
+                18.537739
+              ],
+              [
+                -90.487442,
+                18.971853
+              ],
+              [
+                -90.779892,
+                20.479006
+              ],
+              [
+                -93.190292,
+                20.048323
+              ],
+              [
+                -92.874908,
+                18.537739
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/8/IW/DV/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-08-08T00%3A15%3A46%2B00%3A00&end=2020-08-08T00%3A15%3A48%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200808T001547/asf.json",
+          "sha256": "356cd41c82a84e2f207282b2685c1ef8ab0d0ec6ca4e758eb3b9a5e32c43810e",
+          "bytes": 5189
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/8/IW/DV/S1A_IW_GRDH_1SDV_20200808T001547_20200808T001612_033808_03EB6D_9935/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200808T001547/productInfo.json",
+          "sha256": "f7dd349fdb7356e2cd367f153312de47474205279bad75b3f092359a3ff0ffe5",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "09 S1A_IW_GRDH_1SDV_20200820T001548_NR_Orb_Cal_TC.tif",
+      "group": "IMG_09",
+      "scene": "S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7",
+      "start_time": "2020-08-20T00:15:48",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.873627,
+                18.537745
+              ],
+              [
+                -90.506691,
+                18.968216
+              ],
+              [
+                -90.799316,
+                20.47543
+              ],
+              [
+                -93.188972,
+                20.048349
+              ],
+              [
+                -92.873627,
+                18.537745
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/20/IW/DV/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-08-20T00%3A15%3A47%2B00%3A00&end=2020-08-20T00%3A15%3A49%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200820T001548/asf.json",
+          "sha256": "aa6041c03fb21c57399292f24e4ffc0376138e07aaf126d315892f6f18a0a86c",
+          "bytes": 5186
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/20/IW/DV/S1A_IW_GRDH_1SDV_20200820T001548_20200820T001613_033983_03F18E_09C7/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200820T001548/productInfo.json",
+          "sha256": "7487956692ec556742fc57abb6f3c6caa0db379c8c4692566b8e28258ac98faa",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "10 S1A_IW_GRDH_1SDV_20200901T001548_NR_Orb_Cal_TC.tif",
+      "group": "IMG_10",
+      "scene": "S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128",
+      "start_time": "2020-09-01T00:15:48",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -92.874718,
+                18.537788
+              ],
+              [
+                -90.487343,
+                18.971872
+              ],
+              [
+                -90.779778,
+                20.479027
+              ],
+              [
+                -93.190086,
+                20.048374
+              ],
+              [
+                -92.874718,
+                18.537788
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/1/IW/DV/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1A&processingLevel=GRD_HD&start=2020-09-01T00%3A15%3A47%2B00%3A00&end=2020-09-01T00%3A15%3A49%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200901T001548/asf.json",
+          "sha256": "a2cf38af43e2280eee9c150f4f59301d68f9e60831d5dd88fc779aaf35b1d03d",
+          "bytes": 5188
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/1/IW/DV/S1A_IW_GRDH_1SDV_20200901T001548_20200901T001613_034158_03F7BC_A128/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1A_IW_GRDH_1SDV_20200901T001548/productInfo.json",
+          "sha256": "ca5a9f405207f84bff9d5fdc3bcbad6ff093137e1fd2c28c940c225676f4829b",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "11 S1B_IW_GRDH_1SDV_20200320T120027_NR_Orb_Cal_TC.tif",
+      "group": "IMG_11",
+      "scene": "S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467",
+      "start_time": "2020-03-20T12:00:27",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.917793,
+                18.591488
+              ],
+              [
+                -90.551224,
+                20.345427
+              ],
+              [
+                -92.923599,
+                20.76804
+              ],
+              [
+                -93.263748,
+                19.017973
+              ],
+              [
+                -90.917793,
+                18.591488
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/3/20/IW/DV/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-03-20T12%3A00%3A26%2B00%3A00&end=2020-03-20T12%3A00%3A28%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200320T120027/asf.json",
+          "sha256": "3677e221b917d2400fc81ec39205c7df32aaba34a42f6ef47f4382e8cb5e60c1",
+          "bytes": 2624
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/3/20/IW/DV/S1B_IW_GRDH_1SDV_20200320T120027_20200320T120056_020775_027650_1467/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200320T120027/productInfo.json",
+          "sha256": "21ebbc46f82217336de3923a533538a99c309c7c168d51d0e1c8de2573e0d0bb",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "12 S1B_IW_GRDH_1SDV_20200425T120028_NR_Orb_Cal_TC.tif",
+      "group": "IMG_12",
+      "scene": "S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C",
+      "start_time": "2020-04-25T12:00:28",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.917084,
+                18.591309
+              ],
+              [
+                -90.550484,
+                20.345428
+              ],
+              [
+                -92.923042,
+                20.768091
+              ],
+              [
+                -93.263222,
+                19.017845
+              ],
+              [
+                -90.917084,
+                18.591309
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/4/25/IW/DV/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-04-25T12%3A00%3A27%2B00%3A00&end=2020-04-25T12%3A00%3A29%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200425T120028/asf.json",
+          "sha256": "30501927c9323c8c6a224d4abb5ca4a6dd35a7c4a3fe69d5819f53e8d1affd44",
+          "bytes": 2625
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/4/25/IW/DV/S1B_IW_GRDH_1SDV_20200425T120028_20200425T120057_021300_0286E8_BC4C/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200425T120028/productInfo.json",
+          "sha256": "732e06987176bdce7392b44510fdec4d3518772a7b475d6fc09ae717ed413b94",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "val"
+    },
+    {
+      "publisher_filename": "13 S1B_IW_GRDH_1SDV_20200519T120029_NR_Orb_Cal_TC.tif",
+      "group": "IMG_13",
+      "scene": "S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8",
+      "start_time": "2020-05-19T12:00:29",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916664,
+                18.591364
+              ],
+              [
+                -90.549973,
+                20.346027
+              ],
+              [
+                -92.922447,
+                20.768642
+              ],
+              [
+                -93.262711,
+                19.017855
+              ],
+              [
+                -90.916664,
+                18.591364
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/5/19/IW/DV/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-05-19T12%3A00%3A28%2B00%3A00&end=2020-05-19T12%3A00%3A30%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200519T120029/asf.json",
+          "sha256": "84b374a343a028de7b5360d7c10597a7286fa389a9274dda6fb7630bfdc01d25",
+          "bytes": 2625
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/5/19/IW/DV/S1B_IW_GRDH_1SDV_20200519T120029_20200519T120058_021650_02919F_C9C8/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200519T120029/productInfo.json",
+          "sha256": "1abbb853ea7fef22aa6f849f258997f0bbcb353f48944264d50f8bbcee055f14",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "val"
+    },
+    {
+      "publisher_filename": "14 S1B_IW_GRDH_1SDV_20200612T120030_NR_Orb_Cal_TC.tif",
+      "group": "IMG_14",
+      "scene": "S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2",
+      "start_time": "2020-06-12T12:00:30",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916794,
+                18.591316
+              ],
+              [
+                -90.550117,
+                20.345797
+              ],
+              [
+                -92.922585,
+                20.76844
+              ],
+              [
+                -93.262833,
+                19.017832
+              ],
+              [
+                -90.916794,
+                18.591316
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/12/IW/DV/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-06-12T12%3A00%3A29%2B00%3A00&end=2020-06-12T12%3A00%3A31%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200612T120030/asf.json",
+          "sha256": "8e4e90f56bbe32aef6a4fe4579b8a83f08db72fb44e6ac5eb3cb1683d0d4938f",
+          "bytes": 2624
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/12/IW/DV/S1B_IW_GRDH_1SDV_20200612T120030_20200612T120059_022000_029C10_08E2/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200612T120030/productInfo.json",
+          "sha256": "4d7ece77034a696efe0b08a9a71f9cdbff0c875707c875a193f0ed1c6a3a4437",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "15 S1B_IW_GRDH_1SDV_20200624T120031_NR_Orb_Cal_TC.tif",
+      "group": "IMG_15",
+      "scene": "S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC",
+      "start_time": "2020-06-24T12:00:31",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916718,
+                18.591303
+              ],
+              [
+                -90.550056,
+                20.345785
+              ],
+              [
+                -92.922531,
+                20.768412
+              ],
+              [
+                -93.262764,
+                19.017803
+              ],
+              [
+                -90.916718,
+                18.591303
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/24/IW/DV/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-06-24T12%3A00%3A30%2B00%3A00&end=2020-06-24T12%3A00%3A32%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200624T120031/asf.json",
+          "sha256": "a358eaf682671177262fa6b85aaa24ec6a2fee37e6ad85410a653d267cd8ce65",
+          "bytes": 2625
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/6/24/IW/DV/S1B_IW_GRDH_1SDV_20200624T120031_20200624T120100_022175_02A164_74FC/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200624T120031/productInfo.json",
+          "sha256": "8288851ea32a81c4656c16de08c07a4fe9c49231c70c1d0c90c3bf4618539992",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "val"
+    },
+    {
+      "publisher_filename": "16 S1B_IW_GRDH_1SDV_20200706T120032_NR_Orb_Cal_TC.tif",
+      "group": "IMG_16",
+      "scene": "S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5",
+      "start_time": "2020-07-06T12:00:32",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916855,
+                18.591293
+              ],
+              [
+                -90.550171,
+                20.345959
+              ],
+              [
+                -92.922653,
+                20.768559
+              ],
+              [
+                -93.262901,
+                19.017769
+              ],
+              [
+                -90.916855,
+                18.591293
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/6/IW/DV/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-07-06T12%3A00%3A31%2B00%3A00&end=2020-07-06T12%3A00%3A33%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200706T120032/asf.json",
+          "sha256": "e2ab52991b6bd394872691a1be4709d638c927e1d91151e3ab811a37748eee04",
+          "bytes": 2625
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/6/IW/DV/S1B_IW_GRDH_1SDV_20200706T120032_20200706T120101_022350_02A6BC_9CE5/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200706T120032/productInfo.json",
+          "sha256": "fb17f002b57b253366189bd3e1393114d27e25abda1ec35949a38a5bd54198d8",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "17 S1B_IW_GRDH_1SDV_20200709T001514_NR_Orb_Cal_TC.tif",
+      "group": "IMG_17",
+      "scene": "S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A",
+      "start_time": "2020-07-09T00:15:14",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -93.011208,
+                19.193752
+              ],
+              [
+                -90.655006,
+                19.619242
+              ],
+              [
+                -90.947754,
+                21.126413
+              ],
+              [
+                -93.327362,
+                20.704231
+              ],
+              [
+                -93.011208,
+                19.193752
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/9/IW/DV/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-07-09T00%3A15%3A13%2B00%3A00&end=2020-07-09T00%3A15%3A15%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200709T001514/asf.json",
+          "sha256": "a6ea5c80bbb44e671af04124d17b9f372c625064c8808d0bb2d5a5d94c456759",
+          "bytes": 5188
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/9/IW/DV/S1B_IW_GRDH_1SDV_20200709T001514_20200709T001539_022387_02A7D4_FC7A/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200709T001514/productInfo.json",
+          "sha256": "0543bc978b302680ddcf2a11241c562397778a002f2da74cd1170e679a62aae3",
+          "bytes": 3081
+        }
+      ],
+      "vv_available": true,
+      "split": "test"
+    },
+    {
+      "publisher_filename": "18 S1B_IW_GRDH_1SDV_20200718T120032_NR_Orb_Cal_TC.tif",
+      "group": "IMG_18",
+      "scene": "S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314",
+      "start_time": "2020-07-18T12:00:32",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916779,
+                18.59124
+              ],
+              [
+                -90.550125,
+                20.345724
+              ],
+              [
+                -92.922691,
+                20.76836
+              ],
+              [
+                -93.262917,
+                19.01775
+              ],
+              [
+                -90.916779,
+                18.59124
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/18/IW/DV/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-07-18T12%3A00%3A31%2B00%3A00&end=2020-07-18T12%3A00%3A33%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200718T120032/asf.json",
+          "sha256": "42a1bdbf9d0c846cf85a555f2aee64dd175a4047e64a025567ffba3e232a12aa",
+          "bytes": 2621
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/18/IW/DV/S1B_IW_GRDH_1SDV_20200718T120032_20200718T120101_022525_02AC08_6314/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200718T120032/productInfo.json",
+          "sha256": "2e8811dbe953881424f6c6d5900137af157e1639df82a05be1d9d6508f955f9b",
+          "bytes": 3078
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "19 S1B_IW_GRDH_1SDV_20200721T001515_NR_Orb_Cal_TC.tif",
+      "group": "IMG_19",
+      "scene": "S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143",
+      "start_time": "2020-07-21T00:15:15",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -93.010857,
+                19.193892
+              ],
+              [
+                -90.654747,
+                19.619343
+              ],
+              [
+                -90.947456,
+                21.126425
+              ],
+              [
+                -93.326981,
+                20.704281
+              ],
+              [
+                -93.010857,
+                19.193892
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/21/IW/DV/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-07-21T00%3A15%3A14%2B00%3A00&end=2020-07-21T00%3A15%3A16%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200721T001515/asf.json",
+          "sha256": "0d25a89c3b985b49022a3e13eeb8a28b663bf9147c46e913da023fa24efbe086",
+          "bytes": 5189
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/21/IW/DV/S1B_IW_GRDH_1SDV_20200721T001515_20200721T001540_022562_02AD25_A143/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200721T001515/productInfo.json",
+          "sha256": "c1afbb9f8ae510c8a31ced82178e33a2f1c5ab3cf34a1945a6339ccd4f331032",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "val"
+    },
+    {
+      "publisher_filename": "20 S1B_IW_GRDH_1SDV_20200730T120033_NR_Orb_Cal_TC.tif",
+      "group": "IMG_20",
+      "scene": "S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155",
+      "start_time": "2020-07-30T12:00:33",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.917702,
+                18.591232
+              ],
+              [
+                -90.550995,
+                20.345898
+              ],
+              [
+                -92.92347,
+                20.76853
+              ],
+              [
+                -93.263748,
+                19.01774
+              ],
+              [
+                -90.917702,
+                18.591232
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/30/IW/DV/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-07-30T12%3A00%3A32%2B00%3A00&end=2020-07-30T12%3A00%3A34%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200730T120033/asf.json",
+          "sha256": "eaf1826dc37640fe66abe29cf85b7b906ea02f7a927be714d070f47aec62530e",
+          "bytes": 2622
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/7/30/IW/DV/S1B_IW_GRDH_1SDV_20200730T120033_20200730T120102_022700_02B15C_9155/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200730T120033/productInfo.json",
+          "sha256": "7ffea7b927d3035e27bbcad0e0016780c89ddcf751c16fbca567341029ffd7f2",
+          "bytes": 3079
+        }
+      ],
+      "vv_available": true,
+      "split": "test"
+    },
+    {
+      "publisher_filename": "21 S1B_IW_GRDH_1SDV_20200802T001516_NR_Orb_Cal_TC.tif",
+      "group": "IMG_21",
+      "scene": "S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F",
+      "start_time": "2020-08-02T00:15:16",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -93.011986,
+                19.193918
+              ],
+              [
+                -90.655876,
+                19.61937
+              ],
+              [
+                -90.948586,
+                21.12645
+              ],
+              [
+                -93.32811,
+                20.704308
+              ],
+              [
+                -93.011986,
+                19.193918
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/2/IW/DV/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-08-02T00%3A15%3A15%2B00%3A00&end=2020-08-02T00%3A15%3A17%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200802T001516/asf.json",
+          "sha256": "60ef51696db4342455e9963d7376c9d6ad9c99699a3680685a2d923f6fc49276",
+          "bytes": 5183
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/2/IW/DV/S1B_IW_GRDH_1SDV_20200802T001516_20200802T001541_022737_02B271_B17F/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200802T001516/productInfo.json",
+          "sha256": "2bc59339739dd6df2384451c3cfc28a3b0286ab16a7fe52649cbf628fd5cafac",
+          "bytes": 3078
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "22 S1B_IW_GRDH_1SDV_20200811T120034_NR_Orb_Cal_TC.tif",
+      "group": "IMG_22",
+      "scene": "S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C",
+      "start_time": "2020-08-11T12:00:34",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.917557,
+                18.591251
+              ],
+              [
+                -90.550926,
+                20.345371
+              ],
+              [
+                -92.923386,
+                20.768045
+              ],
+              [
+                -93.263588,
+                19.017797
+              ],
+              [
+                -90.917557,
+                18.591251
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/11/IW/DV/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-08-11T12%3A00%3A33%2B00%3A00&end=2020-08-11T12%3A00%3A35%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200811T120034/asf.json",
+          "sha256": "aec564de6f665ce985973e31d7a063e4e720ba895394e253c69bbb0c7fe8e2bc",
+          "bytes": 2625
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/11/IW/DV/S1B_IW_GRDH_1SDV_20200811T120034_20200811T120103_022875_02B6C6_3E8C/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200811T120034/productInfo.json",
+          "sha256": "e998380328f97a9810d9864cd8c134d77be0dd4448bfa0ca6868f68095d5e45a",
+          "bytes": 3082
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "23 S1B_IW_GRDH_1SDV_20200823T120035_NR_Orb_Cal_TC.tif",
+      "group": "IMG_23",
+      "scene": "S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A",
+      "start_time": "2020-08-23T12:00:35",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916977,
+                18.591202
+              ],
+              [
+                -90.5504,
+                20.345232
+              ],
+              [
+                -92.922859,
+                20.767879
+              ],
+              [
+                -93.263016,
+                19.017723
+              ],
+              [
+                -90.916977,
+                18.591202
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/23/IW/DV/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-08-23T12%3A00%3A34%2B00%3A00&end=2020-08-23T12%3A00%3A36%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200823T120035/asf.json",
+          "sha256": "c0ebff0f3d2a6c141e2aee7ba0f24e8e3e7ca506322a6fb5f308aed26e886f8f",
+          "bytes": 2623
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/8/23/IW/DV/S1B_IW_GRDH_1SDV_20200823T120035_20200823T120104_023050_02BC43_2F2A/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200823T120035/productInfo.json",
+          "sha256": "895b304b40695815ecb649f7bd7d78f0b077876712d32c255a7f9700aaebd99e",
+          "bytes": 3080
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "25 S1B_IW_GRDH_1SDV_20200904T120035_NR_Orb_Cal_TC.tif",
+      "group": "IMG_25",
+      "scene": "S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30",
+      "start_time": "2020-09-04T12:00:35",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -90.916901,
+                18.591137
+              ],
+              [
+                -90.550369,
+                20.345079
+              ],
+              [
+                -92.922928,
+                20.76771
+              ],
+              [
+                -93.263039,
+                19.017639
+              ],
+              [
+                -90.916901,
+                18.591137
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/4/IW/DV/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-09-04T12%3A00%3A34%2B00%3A00&end=2020-09-04T12%3A00%3A36%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200904T120035/asf.json",
+          "sha256": "d2a3b3c0ccb8972abea747a6d71489022582819a94d120c1d7ce44ec919acdd9",
+          "bytes": 2624
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/4/IW/DV/S1B_IW_GRDH_1SDV_20200904T120035_20200904T120104_023225_02C1B5_8D30/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200904T120035/productInfo.json",
+          "sha256": "a257a09a4e6993e4c0e8b6dc840273f576bceda5f5d29fecb5a7883fa0125be6",
+          "bytes": 3080
+        }
+      ],
+      "vv_available": true,
+      "split": "train"
+    },
+    {
+      "publisher_filename": "26 S1B_IW_GRDH_1SDV_20200907T001518_NR_Orb_Cal_TC.tif",
+      "group": "IMG_26",
+      "scene": "S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A",
+      "start_time": "2020-09-07T00:15:18",
+      "footprint": {
+        "type": "MultiPolygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG:8.8.1:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              [
+                -93.011787,
+                19.194078
+              ],
+              [
+                -90.65567,
+                19.619555
+              ],
+              [
+                -90.94841,
+                21.126631
+              ],
+              [
+                -93.327927,
+                20.704464
+              ],
+              [
+                -93.011787,
+                19.194078
+              ]
+            ]
+          ]
+        ]
+      },
+      "polarization": "DV",
+      "base_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/7/IW/DV/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/",
+      "receipts": [
+        {
+          "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1B&processingLevel=GRD_HD&start=2020-09-07T00%3A15%3A17%2B00%3A00&end=2020-09-07T00%3A15%3A19%2B00%3A00&output=geojson",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200907T001518/asf.json",
+          "sha256": "a8dc4f391b37195da8529221a3fd7d088a33f7f36829de6d802e19be21369433",
+          "bytes": 5187
+        },
+        {
+          "url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2020/9/7/IW/DV/S1B_IW_GRDH_1SDV_20200907T001518_20200907T001543_023262_02C2CE_E67A/productInfo.json",
+          "file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/scene_catalog/S1B_IW_GRDH_1SDV_20200907T001518/productInfo.json",
+          "sha256": "307d37ccfa4b45a610959661b4fe04cdd23eb76c9bb08e29f012780660b33781",
+          "bytes": 3079
+        }
+      ],
+      "vv_available": true,
+      "split": "test"
+    }
+  ],
+  "errors": [],
+  "cross_split_full_scene_ids": {},
+  "limits": [
+    "Exact platform/mode/acquisition timestamp plus public product identity; not a pixel-level registration check for every tile.",
+    "Scene IDs distinguish acquisitions, not independent spill events or weather conditions."
+  ]
+}
