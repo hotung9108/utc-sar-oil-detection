@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "candidate_comparisons": 50,
+  "model_pairs": 84,
+  "verified_test_masks": 175,
+  "script_sha256": "3c53623c38ae27091028424f23be657d6b973cd962ff92afdfb7ef2a5b428254",
+  "input_sha256": {
+    "screen.json": "1c7799b0fc2b39b9de813f9f5a96378d1d02732f4248e499d8001db9f60d87cd",
+    "validation.json": "cc38ad18ffcd212713b988ae8b27e24b13595336698480c21066abb53676618e",
+    "selection.json": "cdfa343169408dc4a3b90fd4d03ceebce34653e86211b88573ecff9a768e86ab",
+    "requirements_selection.json": "c099202c0da26af1a1f1c409cdb9302e7a8ca520f3d1ada62ec4928556ed84e5",
+    "evaluation.json": "4a36a22807b4c3cb310b52fe9307709bb309162468d3c804cdf976be751b49c7",
+    "angle_bootstrap.json": "4f5a5114cd6acd67fc7695f47cdc1f2e5e395d7235602cec87ef8e5e148fc830",
+    "angle_bootstrap_filtered.json": "db4e65cb1c4cdd361773dc134fee58c6b1bd6ba2b4d6d52bd2504f95fc3756d2"
+  },
+  "scope": "Reconstructed grids, train-only scalers, winner rules, saved-mask object counts and paired bootstrap; not a new model fit"
+}

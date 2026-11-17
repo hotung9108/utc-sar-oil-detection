@@ -1,0 +1,61 @@
+test_cached_region_metrics_equal_pixel_matching (test_algorithms.AlgorithmTests.test_cached_region_metrics_equal_pixel_matching) ... ok
+test_reference_equivalence_and_edge_cases (test_algorithms.AlgorithmTests.test_reference_equivalence_and_edge_cases) ... ok
+test_same_predictions_have_zero_paired_effect (test_cantarell_evaluation.PhysicalEvaluationTests.test_same_predictions_have_zero_paired_effect) ... ok
+test_unpaired_inputs_rejected (test_cantarell_evaluation.PhysicalEvaluationTests.test_unpaired_inputs_rejected) ... ok
+test_class_cap_and_sample_identity (test_cantarell_training.PhysicalTrainingTests.test_class_cap_and_sample_identity) ... ok
+test_purity_boundaries_and_determinism (test_cantarell_training.PhysicalTrainingTests.test_purity_boundaries_and_determinism) ... ok
+test_score_zero_is_negative_and_background_never_selected (test_cantarell_training.PhysicalTrainingTests.test_score_zero_is_negative_and_background_never_selected) ... ok
+test_test_input_rejected_before_read (test_cantarell_training.PhysicalTrainingTests.test_test_input_rejected_before_read) ... ok
+test_empty_population_is_undefined_not_zero_false_alarms (test_dartis_reporting.DartisReportingTests.test_empty_population_is_undefined_not_zero_false_alarms) ... ok
+test_incomplete_checkpoint_cannot_be_reported_as_complete (test_dartis_reporting.DartisReportingTests.test_incomplete_checkpoint_cannot_be_reported_as_complete) ... ok
+test_pixel_fraction_is_weighted_by_pixels_not_images (test_dartis_reporting.DartisReportingTests.test_pixel_fraction_is_weighted_by_pixels_not_images) ... ok
+test_missing_or_malformed_header_has_conservative_default (test_download_backoff.DownloadBackoffTests.test_missing_or_malformed_header_has_conservative_default) ... ok
+test_retry_after_seconds_and_http_date (test_download_backoff.DownloadBackoffTests.test_retry_after_seconds_and_http_date) ... ok
+test_meteorological_direction_and_north_wrap (test_physical_interpolation.PhysicalInterpolationTests.test_meteorological_direction_and_north_wrap) ... ok
+test_nonuniform_grid_reproduces_bilinear_polynomial_at_edges_and_inside (test_physical_interpolation.PhysicalInterpolationTests.test_nonuniform_grid_reproduces_bilinear_polynomial_at_edges_and_inside) ... ok
+test_out_of_grid_is_rejected (test_physical_interpolation.PhysicalInterpolationTests.test_out_of_grid_is_rejected) ... ok
+test_empty_single_pixel_border_and_noncontiguous_ids (test_qposd_fast_features.GroupedFeatureTests.test_empty_single_pixel_border_and_noncontiguous_ids) ... ok
+test_real_overlap_groups_stay_together_with_minimum_changes (test_qposd_group_split.GroupSplitTests.test_real_overlap_groups_stay_together_with_minimum_changes) ... ok
+test_publisher_colors_and_observed_unknowns (test_qposd_labels.QposdLabelTests.test_publisher_colors_and_observed_unknowns) ... ok
+test_scaled_or_grayscale_masks_rejected (test_qposd_labels.QposdLabelTests.test_scaled_or_grayscale_masks_rejected) ... ok
+test_cardinality_precedes_iou (test_qposd_metrics.QposdMetricTests.test_cardinality_precedes_iou) ... ok
+test_classification_rates_match_manual_counts (test_qposd_metrics.QposdMetricTests.test_classification_rates_match_manual_counts) ... ok
+test_empty_and_threshold_boundary (test_qposd_metrics.QposdMetricTests.test_empty_and_threshold_boundary) ... ok
+test_land_is_negative_and_unknown_is_ignored (test_qposd_metrics.QposdMetricTests.test_land_is_negative_and_unknown_is_ignored) ... ok
+test_merge_cannot_match_two_truth_objects (test_qposd_metrics.QposdMetricTests.test_merge_cannot_match_two_truth_objects) ... ok
+test_population_pools_counts_before_f1 (test_qposd_metrics.QposdMetricTests.test_population_pools_counts_before_f1) ... ok
+test_swapped_classes_are_not_true_positives (test_qposd_metrics.QposdMetricTests.test_swapped_classes_are_not_true_positives) ... ok
+test_constant_or_radiometrically_changed_not_claimed_overlap (test_qposd_overlap.QposdOverlapTests.test_constant_or_radiometrically_changed_not_claimed_overlap) ... ok
+test_finds_offset_and_verifies_entire_overlap (test_qposd_overlap.QposdOverlapTests.test_finds_offset_and_verifies_entire_overlap) ... ok
+test_constant_image_has_no_spurious_regions (test_qposd_pipeline.QposdPipelineTests.test_constant_image_has_no_spurious_regions) ... ok
+test_dark_region_and_library_agreement (test_qposd_pipeline.QposdPipelineTests.test_dark_region_and_library_agreement) ... ok
+test_invalid_physical_input_rejected (test_qposd_pipeline.QposdPipelineTests.test_invalid_physical_input_rejected) ... ok
+test_budget_rejected_before_request (test_qposd_range.RangeReaderTests.test_budget_rejected_before_request) ... ok
+test_full_response_rejected_before_read (test_qposd_range.RangeReaderTests.test_full_response_rejected_before_read) ... ok
+test_seek_and_exact_range (test_qposd_range.RangeReaderTests.test_seek_and_exact_range) ... ok
+test_accepts_only_the_predeclared_validation_winner (test_qposd_test_gate.QposdTestGateTests.test_accepts_only_the_predeclared_validation_winner) ... ok
+test_rejects_missing_validation_image_and_altered_summary (test_qposd_test_gate.QposdTestGateTests.test_rejects_missing_validation_image_and_altered_summary) ... ok
+test_exact_overlap_blocks_different_splits (test_qposd_training.QposdTrainingTests.test_exact_overlap_blocks_different_splits) ... ok
+test_models_share_train_scaling_and_ties_use_order (test_qposd_training.QposdTrainingTests.test_models_share_train_scaling_and_ties_use_order) ... ok
+test_no_exact_overlap_does_not_claim_scene_independence (test_qposd_training.QposdTrainingTests.test_no_exact_overlap_does_not_claim_scene_independence) ... ok
+test_equal_size_corruption_is_detected (test_review_package.PackageTests.test_equal_size_corruption_is_detected) ... ok
+test_unlisted_and_unsafe_files_are_rejected (test_review_package.PackageTests.test_unlisted_and_unsafe_files_are_rejected) ... ok
+test_valid_package_is_not_marked_submission_ready (test_review_package.PackageTests.test_valid_package_is_not_marked_submission_ready) ... ok
+test_adapter_matches_engine_and_zip (test_streamlit_app.StreamlitTests.test_adapter_matches_engine_and_zip) ... ok
+test_invalid_input_and_mismatched_truth (test_streamlit_app.StreamlitTests.test_invalid_input_and_mismatched_truth) ... ok
+test_ui_sample_and_selection_invalidation (test_streamlit_app.StreamlitTests.test_ui_sample_and_selection_invalidation) ... 2026-11-17 09:53:27.381 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_ui_upload_and_navigation (test_streamlit_app.StreamlitTests.test_ui_upload_and_navigation) ... 2026-11-17 09:53:29.346 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_page_renders_result_and_clears_on_sample_change (test_streamlit_qposd.QposdWebTests.test_page_renders_result_and_clears_on_sample_change) ... 2026-11-17 09:53:37.404 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_real_inference_matches_frozen_test_and_export (test_streamlit_qposd.QposdWebTests.test_real_inference_matches_frozen_test_and_export) ... ok
+test_archive_is_excluded_from_test_discovery (test_structure.StructureTests.test_archive_is_excluded_from_test_discovery) ... ok
+test_no_active_legacy_imports (test_structure.StructureTests.test_no_active_legacy_imports) ... ok
+test_schedule_dependencies_and_owners (test_structure.StructureTests.test_schedule_dependencies_and_owners) ... ok
+test_sos_assignment_owners_and_dependencies (test_structure.StructureTests.test_sos_assignment_owners_and_dependencies) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 18.321s
+
+OK

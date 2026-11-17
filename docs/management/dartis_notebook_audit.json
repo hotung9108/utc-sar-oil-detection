@@ -1,0 +1,32 @@
+{
+  "notebook": "notebooks/external/06_dartis_false_alarms.ipynb",
+  "sha256": "0d805e20e1ee8cef511968ce7f6d83c1e034405e9636ff0e2aa29d86d6835f45",
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "errors": 0,
+  "figures": [
+    {
+      "path": ".cache/dartis/notebook-review/figure-1.png",
+      "sha256": "21a9456c4be591e21f11facfe7e7aa4c4ed316b4d78f5b39dabb6e429d40d5e6",
+      "unchanged_from_reviewed_render": false
+    },
+    {
+      "path": ".cache/dartis/notebook-review/figure-2.png",
+      "sha256": "0748bfa543c345e70f78b4e1533de2fb6bb827be81d1734c50fe357372e0dee2",
+      "unchanged_from_reviewed_render": true
+    },
+    {
+      "path": ".cache/dartis/notebook-review/figure-3.png",
+      "sha256": "dadf2c776129c2a10f33f3f4187a4bc09e5e5f2bd2b4b966dc59ec3813a14e5a",
+      "unchanged_from_reviewed_render": true
+    }
+  ],
+  "evaluation_sha256": "7c631987279c78b263f780fd43a2f53a42b791a4121130f68648b9282ceae7fe",
+  "scope": "Full-population no-oil false-alarm diagnostics; three worst examples reproduced, not oil recall/F1 or physical cause classification.",
+  "visual_review_completed": true,
+  "visual_review_note": "Figure 1 reviewed after adding label headroom; figures 2 and 3 byte-identical to visually reviewed prior execution."
+}

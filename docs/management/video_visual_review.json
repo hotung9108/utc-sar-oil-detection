@@ -1,0 +1,77 @@
+{
+  "video_sha256": "010c7ac2c81f0b892124237fbc0b472a5edc0c39343e7cbfef8d523e5dd1da77",
+  "review_date": "2026-11-13",
+  "reviewer": "Codex visual inspection",
+  "scope": "Nine decoded representative frames; not a manual review of every frame",
+  "frames": [
+    {
+      "chapter": 1,
+      "second": 7,
+      "path": ".cache/video/review/chapter-01.png",
+      "sha256": "cea9748304a80b45bf13fc262144cb0980d64de1c8f53831e2f64de4dfd582f9"
+    },
+    {
+      "chapter": 5,
+      "second": 67,
+      "path": ".cache/video/review/chapter-05.png",
+      "sha256": "d0a5d91ad0a0f331383027f9a015e4977203e194495f168568b4fd381bc225ec"
+    },
+    {
+      "chapter": 7,
+      "second": 97,
+      "path": ".cache/video/review/chapter-07.png",
+      "sha256": "f384456c9d430e533e8526bc4d71e1c5b5ee9f677af5813f6985980ca19006df"
+    },
+    {
+      "chapter": 12,
+      "second": 172,
+      "path": ".cache/video/review/chapter-12.png",
+      "sha256": "4b464462e45ef0fc3f3465613672bf567f1ea441f3613c4f32cd28532b848ece"
+    },
+    {
+      "chapter": 16,
+      "second": 232,
+      "path": ".cache/video/review/chapter-16.png",
+      "sha256": "84d19fa43ca2f83cb946bb62eb85411b90cf495e64bc3c631ed6fd075622ba0f"
+    },
+    {
+      "chapter": 18,
+      "second": 262,
+      "path": ".cache/video/review/chapter-18.png",
+      "sha256": "97d484ca8b7a24e7d2b3d28ab5c05ec1eb6267d3223f5271958648c6c3665f57"
+    },
+    {
+      "chapter": 19,
+      "second": 277,
+      "path": ".cache/video/review/chapter-19.png",
+      "sha256": "e58743710ef63f8b98365b8610d304c24ba8cf5e3f61e49288825530ecf0f885"
+    },
+    {
+      "chapter": 21,
+      "second": 307,
+      "path": ".cache/video/review/chapter-21.png",
+      "sha256": "cfe1e642982ce9c49e92514001b42527790769cd40212f16fb90be4c9f90ebde"
+    },
+    {
+      "chapter": 24,
+      "second": 352,
+      "path": ".cache/video/review/chapter-24.png",
+      "sha256": "dd40a746116772e9222cd04de16cc089a2c68dacd48ab86420914977abc28d0b"
+    }
+  ],
+  "findings": [
+    "Vietnamese captions readable, no clipped caption text in reviewed frames",
+    "Ground truth and pixel error panes visible at chapters 5, 16 and 18",
+    "Feature table and decision scores readable at chapter 7",
+    "Chapter 12 explicitly labels the adaptive branch validation-only",
+    "Failure counts visible: chapter 16 TP=0 FP=35 FN=1; chapter 18 TP=0 FP=0 FN=1",
+    "Export status visible in chapter 19; no claim of native file-picker interaction",
+    "Whole-test metrics in chapter 21 distinguished from per-image results",
+    "Chapter 24 launch command readable"
+  ],
+  "passed": true,
+  "limitations": [
+    "Silent automated demonstration; not evidence of student presentation",
+    "Scientific gaps remain as recorded in completion_audit.json"
+  ]
+}
