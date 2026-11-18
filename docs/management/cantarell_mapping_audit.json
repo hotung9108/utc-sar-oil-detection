@@ -1,0 +1,104 @@
+{
+  "source_audit_sha256": "ba2fcaa2d1ab786ae7e4d730eaec30cbeefe5368de4ce5bab268b44884a309eb",
+  "script_sha256": "ce857092b4df5f40ebbace13d95761fbc8176e5c2a8a7b2e8529d07a6723e463",
+  "sample": "IMG_01_TILE_001",
+  "shape": [
+    600,
+    800
+  ],
+  "iterations": 4,
+  "native_line_range": [
+    6601.682703275822,
+    8031.867939606352
+  ],
+  "native_pixel_range": [
+    9618.34732289198,
+    11324.338724582442
+  ],
+  "incidence_range": [
+    37.20442749653164,
+    38.258405416607324
+  ],
+  "numpy_scipy_forward_max_abs_errors": {
+    "latitude": 1.0658141036401503e-14,
+    "longitude": 4.263256414560601e-14,
+    "incidenceAngle": 2.1316282072803006e-14
+  },
+  "scipy_inverse_checks": [
+    {
+      "tile_row_col": [
+        0,
+        0
+      ],
+      "max_abs_native_pixel_error": 3.8198777474462986e-11
+    },
+    {
+      "tile_row_col": [
+        0,
+        400
+      ],
+      "max_abs_native_pixel_error": 1.6370904631912708e-11
+    },
+    {
+      "tile_row_col": [
+        0,
+        799
+      ],
+      "max_abs_native_pixel_error": 9.822542779147625e-11
+    },
+    {
+      "tile_row_col": [
+        300,
+        0
+      ],
+      "max_abs_native_pixel_error": 4.9112713895738125e-11
+    },
+    {
+      "tile_row_col": [
+        300,
+        400
+      ],
+      "max_abs_native_pixel_error": 3.456079866737127e-11
+    },
+    {
+      "tile_row_col": [
+        300,
+        799
+      ],
+      "max_abs_native_pixel_error": 2.0372681319713593e-10
+    },
+    {
+      "tile_row_col": [
+        599,
+        0
+      ],
+      "max_abs_native_pixel_error": 2.546585164964199e-11
+    },
+    {
+      "tile_row_col": [
+        599,
+        400
+      ],
+      "max_abs_native_pixel_error": 3.2741809263825417e-11
+    },
+    {
+      "tile_row_col": [
+        599,
+        799
+      ],
+      "max_abs_native_pixel_error": 3.2741809263825417e-11
+    }
+  ],
+  "roundtrip_max_abs_degrees": {
+    "latitude": 1.0658141036401503e-14,
+    "longitude": 4.263256414560601e-14
+  },
+  "mapping_file": ".cache/cantarell_source/1b9a62c30a9da9698eb470562aa976f9bd1e8fc3/native_mapping.npz",
+  "mapping_sha256": "a458a7602017154eedf033543c84ff5c6e24820f7dbaada905e110dede532106",
+  "limits": [
+    "Bilinear geolocation approximation, not range-Doppler terrain correction.",
+    "Solver agreement measures numerical consistency, not independent geolocation accuracy.",
+    "No native imagery fetched or intensity/polarization match established by this script.",
+    "No detection metrics or claim of calibration benefit."
+  ]
+}

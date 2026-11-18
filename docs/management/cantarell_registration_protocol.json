@@ -1,0 +1,34 @@
+{
+  "purpose": "Validate a fixed image-registration correction on a second tile before any labelled calibration experiment.",
+  "repository_revision": "1b9a62c30a9da9698eb470562aa976f9bd1e8fc3",
+  "development_sample": "IMG_01_TILE_001",
+  "check_sample": "IMG_01_TILE_002",
+  "fixed_shift_row_col": [0.04, -0.88],
+  "frozen_before_check_sample_image_download": true,
+  "scope": "Same acquisition, different tile. Not a new independent Sentinel scene or a detection test.",
+  "inputs": [
+    "Publisher georeferenced float TIFF, pinned by revision and verified Git LFS SHA-256",
+    "Native VV DN blocks, source calibration LUT and geolocation metadata",
+    "No mask or polygon is used to estimate or score the registration shift"
+  ],
+  "procedure": [
+    "Record both TIFF bounding boxes and overlap fraction; do not infer tile independence from filenames.",
+    "Use the existing NumPy bilinear geolocation inversion and sigma0 calibration without changing formulas.",
+    "Compare NumPy integer FFT peak against skimage; report disagreement as failure.",
+    "Apply only the fixed development shift for the transfer result, with order-1 interpolation and no wrapping.",
+    "Report before/after statistics on the interior excluding eight pixels from each border.",
+    "Estimate the check tile shift independently as a diagnostic, without replacing the fixed shift.",
+    "Report every result even if criteria fail; do not tune the fixed shift on the check sample."
+  ],
+  "engineering_checks_not_statistical_theorems": {
+    "max_abs_shift_difference_pixels": 0.25,
+    "fixed_shift_pearson_must_increase": true,
+    "finite_coverage_must_match_before_after": true
+  },
+  "limitations": [
+    "Passing these checks only supports within-acquisition transfer of a registration estimate.",
+    "Image correlation and the chosen 0.25-pixel tolerance do not establish absolute geolocation accuracy.",
+    "Radiometric units, thermal-noise correction and exporter processing history remain separate questions.",
+    "No detection score, algorithm ranking or calibration-benefit claim is authorized by this check alone."
+  ]
+}

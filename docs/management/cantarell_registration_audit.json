@@ -1,0 +1,317 @@
+{
+  "sample": "IMG_01_TILE_001",
+  "native_audit_sha256": "ddbaf477f37583512c8cbffc854db12f513504a61dd9a13703fca55b62f72f90",
+  "script_sha256": "8df5d7d5f205bbb95fa98b20b9f0e9dee59da81f095c02904a9f489127400464",
+  "mask_read": false,
+  "method": "Mean subtraction + Hann window; phase-only FFT correlation; all nine fixed disjoint blocks reported.",
+  "shift_convention": "Row/column shift applied to native resampled image to align with publisher export.",
+  "global": {
+    "numpy_integer_shift": [
+      0.0,
+      -1.0
+    ],
+    "skimage_integer_shift": [
+      0.0,
+      -1.0
+    ],
+    "skimage_subpixel_shift": [
+      0.04,
+      -0.88
+    ],
+    "before_on_interior": {
+      "pixels": 457856,
+      "pearson_correlation": 0.5299390017330935,
+      "rmse_under_db_assumption": 2.545846929669476,
+      "median_moving_minus_reference": 0.47110337562613047
+    },
+    "after_on_interior": {
+      "pixels": 457856,
+      "pearson_correlation": 0.894976624187409,
+      "rmse_under_db_assumption": 1.4511303683292889,
+      "median_moving_minus_reference": 0.4170317423954595
+    }
+  },
+  "local_3x3": [
+    {
+      "grid_row_col": [
+        0,
+        0
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.04,
+        -0.89
+      ],
+      "before_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.5887287115535577,
+        "rmse_under_db_assumption": 2.5577948892193207,
+        "median_moving_minus_reference": 0.460218066813872
+      },
+      "after_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.9103204695094996,
+        "rmse_under_db_assumption": 1.4089974552420934,
+        "median_moving_minus_reference": 0.4005056821465338
+      }
+    },
+    {
+      "grid_row_col": [
+        0,
+        1
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.04,
+        -0.89
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.5359194870104416,
+        "rmse_under_db_assumption": 2.531840044370757,
+        "median_moving_minus_reference": 0.4319611515808468
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.9005905245821337,
+        "rmse_under_db_assumption": 1.3885991387739574,
+        "median_moving_minus_reference": 0.38250905884894415
+      }
+    },
+    {
+      "grid_row_col": [
+        0,
+        2
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.03,
+        -0.87
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.3895143634877297,
+        "rmse_under_db_assumption": 2.497362919335276,
+        "median_moving_minus_reference": 0.4397651737031065
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.8766225673259649,
+        "rmse_under_db_assumption": 1.4056989287368313,
+        "median_moving_minus_reference": 0.3890144515718177
+      }
+    },
+    {
+      "grid_row_col": [
+        1,
+        0
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.04,
+        -0.89
+      ],
+      "before_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.4310075318427031,
+        "rmse_under_db_assumption": 2.543326966763157,
+        "median_moving_minus_reference": 0.48776314265356646
+      },
+      "after_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.8831665520751375,
+        "rmse_under_db_assumption": 1.4468279956088466,
+        "median_moving_minus_reference": 0.4372384705351795
+      }
+    },
+    {
+      "grid_row_col": [
+        1,
+        1
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.04,
+        -0.89
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.6850611796512487,
+        "rmse_under_db_assumption": 2.6220268432359424,
+        "median_moving_minus_reference": 0.5118805652048666
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.9212934809924707,
+        "rmse_under_db_assumption": 1.5356575251915658,
+        "median_moving_minus_reference": 0.4387605793382825
+      }
+    },
+    {
+      "grid_row_col": [
+        1,
+        2
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.03,
+        -0.88
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.577733575670673,
+        "rmse_under_db_assumption": 2.544173805444669,
+        "median_moving_minus_reference": 0.4662664144988984
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.901301250135739,
+        "rmse_under_db_assumption": 1.454685341955954,
+        "median_moving_minus_reference": 0.4191898610921605
+      }
+    },
+    {
+      "grid_row_col": [
+        2,
+        0
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.03,
+        -0.89
+      ],
+      "before_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.38870086279787397,
+        "rmse_under_db_assumption": 2.5496201685672113,
+        "median_moving_minus_reference": 0.5002878269872912
+      },
+      "after_on_interior": {
+        "pixels": 46000,
+        "pearson_correlation": 0.8785591999092748,
+        "rmse_under_db_assumption": 1.4459432652940092,
+        "median_moving_minus_reference": 0.4470457507281367
+      }
+    },
+    {
+      "grid_row_col": [
+        2,
+        1
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.05,
+        -0.87
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.44942169509140967,
+        "rmse_under_db_assumption": 2.525462622931538,
+        "median_moving_minus_reference": 0.47049051476312087
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.8748927382264327,
+        "rmse_under_db_assumption": 1.4742176386106116,
+        "median_moving_minus_reference": 0.41168989698112046
+      }
+    },
+    {
+      "grid_row_col": [
+        2,
+        2
+      ],
+      "numpy_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_integer_shift": [
+        0.0,
+        -1.0
+      ],
+      "skimage_subpixel_shift": [
+        0.03,
+        -0.88
+      ],
+      "before_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.40211347440754586,
+        "rmse_under_db_assumption": 2.5345030064618204,
+        "median_moving_minus_reference": 0.48526399153171873
+      },
+      "after_on_interior": {
+        "pixels": 46184,
+        "pearson_correlation": 0.8714360493106643,
+        "rmse_under_db_assumption": 1.4777671289226066,
+        "median_moving_minus_reference": 0.4484825860755812
+      }
+    }
+  ],
+  "known_translation_check": [
+    -5.0,
+    7.0
+  ],
+  "limits": [
+    "One development sample; no source-scene generalization.",
+    "Subpixel solution is from skimage; only integer peak is independently implemented in NumPy.",
+    "Shift estimation and residual statistics use the same image; descriptive, not held-out validation.",
+    "Image correlation does not verify absolute geolocation, annotation correctness, physical units or polarization.",
+    "No image, label or frozen model is modified. No detection or calibration-benefit claim."
+  ]
+}

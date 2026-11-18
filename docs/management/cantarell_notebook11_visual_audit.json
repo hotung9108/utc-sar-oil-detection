@@ -1,0 +1,16 @@
+{
+  "notebook": "notebooks/external/11_cantarell_physical_candidates.ipynb",
+  "notebook_sha256": "fea1d6c66f9a32defefc04769d72b7a66d8a5335ca64dd07580fc2494e4bcded",
+  "figures": [
+    {
+      "file": ".cache/cantarell_notebook_review/figure_1.png",
+      "sha256": "649cf7fd386716ac329de790fdb554d62a23302de67c89b07add32e3206cd88f"
+    },
+    {
+      "file": ".cache/cantarell_notebook_review/figure_2.png",
+      "sha256": "8badf74acef9a78af6c8361eae7c524aa897f1f9c71c4247a2d56b34a3cdb4c3"
+    }
+  ],
+  "review": "Both rendered notebook figures directly inspected: readable axes/legend, five complete image panels and incidence colorbar, no clipped labels. This is notebook figure review, not Streamlit browser layout verification.",
+  "passed": true
+}

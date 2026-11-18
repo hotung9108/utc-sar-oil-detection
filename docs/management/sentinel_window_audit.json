@@ -1,0 +1,39 @@
+{
+  "scene": "S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0",
+  "source_url": "https://sentinel-s1-l1c.s3.amazonaws.com/GRD/2019/1/5/IW/DV/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/measurement/iw-vv.tiff",
+  "remote_bytes": 626400747,
+  "downloaded_bytes": 1205853,
+  "ranges": [
+    {
+      "offset": 0,
+      "bytes": 16384,
+      "sha256": "4bf5a9cff3d073dfdca6ce0da36425d33722ed7bfcf72237326f6061b1e0b633"
+    },
+    {
+      "offset": 401555943,
+      "bytes": 1189469,
+      "sha256": "12c6e23fc4b363be2f187c4cd081a39673488d88eaba1cdf38c8b25307baad0b"
+    }
+  ],
+  "original_shape": [
+    16725,
+    25721
+  ],
+  "window_origin_line_pixel": [
+    8192,
+    12288
+  ],
+  "tile_shape": [
+    1024,
+    1024
+  ],
+  "tile_dtype": "uint16",
+  "tile_min": 12,
+  "tile_max": 3346,
+  "file": "data/sentinel_metadata/S1B_IW_GRDH_1SDV_20190105T154901_20190105T154926_014361_01AB8D_D7A0/central_vv_dn.npy",
+  "sha256": "2358547d7bc72e0998cab048686ff622365d9fbd2bb6e074e1cf342532ad28a9",
+  "oil_ground_truth_available": false,
+  "sos_patch_mapping_available": false,
+  "calibration_applied": false,
+  "incidence_normalization_applied": false
+}

@@ -1,0 +1,442 @@
+[
+  {
+    "group": "cantarell",
+    "task": "cantarell/analyze_cantarell_failures",
+    "path": "scripts/cantarell/analyze_cantarell_failures.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/audit_cantarell_all",
+    "path": "scripts/cantarell/audit_cantarell_all.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/audit_cantarell_source",
+    "path": "scripts/cantarell/audit_cantarell_source.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/cantarell_experiment_data",
+    "path": "scripts/cantarell/cantarell_experiment_data.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/cantarell_pipeline",
+    "path": "scripts/cantarell/cantarell_pipeline.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/check_cantarell_registration",
+    "path": "scripts/cantarell/check_cantarell_registration.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/check_cantarell_transfer",
+    "path": "scripts/cantarell/check_cantarell_transfer.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/evaluate_cantarell",
+    "path": "scripts/cantarell/evaluate_cantarell.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/fetch_cantarell_native",
+    "path": "scripts/cantarell/fetch_cantarell_native.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/fetch_cantarell_physical_metadata",
+    "path": "scripts/cantarell/fetch_cantarell_physical_metadata.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/fetch_cantarell_wind",
+    "path": "scripts/cantarell/fetch_cantarell_wind.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/freeze_cantarell_data_protocol",
+    "path": "scripts/cantarell/freeze_cantarell_data_protocol.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/freeze_cantarell_model_protocol",
+    "path": "scripts/cantarell/freeze_cantarell_model_protocol.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/map_cantarell_native_grid",
+    "path": "scripts/cantarell/map_cantarell_native_grid.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/prepare_cantarell_physical",
+    "path": "scripts/cantarell/prepare_cantarell_physical.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/report_cantarell_inventory",
+    "path": "scripts/cantarell/report_cantarell_inventory.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/report_cantarell_physical",
+    "path": "scripts/cantarell/report_cantarell_physical.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/resolve_cantarell_scenes",
+    "path": "scripts/cantarell/resolve_cantarell_scenes.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/screen_cantarell",
+    "path": "scripts/cantarell/screen_cantarell.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/select_cantarell_required_filter",
+    "path": "scripts/cantarell/select_cantarell_required_filter.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/train_cantarell",
+    "path": "scripts/cantarell/train_cantarell.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/verify_cantarell_operators",
+    "path": "scripts/cantarell/verify_cantarell_operators.py"
+  },
+  {
+    "group": "cantarell",
+    "task": "cantarell/verify_cantarell_results",
+    "path": "scripts/cantarell/verify_cantarell_results.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/audit_dartis",
+    "path": "scripts/dartis/audit_dartis.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/audit_dartis_geolocation",
+    "path": "scripts/dartis/audit_dartis_geolocation.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/dartis_results",
+    "path": "scripts/dartis/dartis_results.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/download_dartis",
+    "path": "scripts/dartis/download_dartis.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/evaluate_dartis",
+    "path": "scripts/dartis/evaluate_dartis.py"
+  },
+  {
+    "group": "dartis",
+    "task": "dartis/report_dartis",
+    "path": "scripts/dartis/report_dartis.py"
+  },
+  {
+    "group": "desktop",
+    "task": "desktop/demo_engine",
+    "path": "scripts/desktop/demo_engine.py"
+  },
+  {
+    "group": "desktop",
+    "task": "desktop/demo_qt",
+    "path": "scripts/desktop/demo_qt.py"
+  },
+  {
+    "group": "desktop",
+    "task": "desktop/verify_demo_qt",
+    "path": "scripts/desktop/verify_demo_qt.py"
+  },
+  {
+    "group": "notebooks",
+    "task": "notebooks/run_notebooks",
+    "path": "scripts/run_notebooks.py"
+  },
+  {
+    "group": "packaging",
+    "task": "packaging/build_review_package",
+    "path": "scripts/packaging/build_review_package.py"
+  },
+  {
+    "group": "packaging",
+    "task": "packaging/verify_archive",
+    "path": "scripts/packaging/verify_archive.py"
+  },
+  {
+    "group": "packaging",
+    "task": "packaging/verify_package_environment",
+    "path": "scripts/packaging/verify_package_environment.py"
+  },
+  {
+    "group": "packaging",
+    "task": "packaging/verify_review_package",
+    "path": "scripts/packaging/verify_review_package.py"
+  },
+  {
+    "group": "physical",
+    "task": "physical/fetch_scene_wind",
+    "path": "scripts/physical/fetch_scene_wind.py"
+  },
+  {
+    "group": "physical",
+    "task": "physical/fetch_sentinel_metadata",
+    "path": "scripts/physical/fetch_sentinel_metadata.py"
+  },
+  {
+    "group": "physical",
+    "task": "physical/fetch_sentinel_window",
+    "path": "scripts/physical/fetch_sentinel_window.py"
+  },
+  {
+    "group": "physical",
+    "task": "physical/sentinel_calibration_demo",
+    "path": "scripts/physical/sentinel_calibration_demo.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/audit_report_render",
+    "path": "scripts/publishing/audit_report_render.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/build_report",
+    "path": "scripts/publishing/build_report.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/build_slides",
+    "path": "scripts/publishing/build_slides.mjs"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/finalize_slides",
+    "path": "scripts/publishing/finalize_slides.mjs"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/generate_latex_figures",
+    "path": "scripts/publishing/generate_latex_figures.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/import_report_fields",
+    "path": "scripts/publishing/import_report_fields.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/inspect_report_template",
+    "path": "scripts/publishing/inspect_report_template.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/record_demo_video",
+    "path": "scripts/publishing/record_demo_video.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/report_figures",
+    "path": "scripts/publishing/report_figures.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/update_report_fields",
+    "path": "scripts/publishing/update_report_fields.ps1"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/verify_demo_video",
+    "path": "scripts/publishing/verify_demo_video.py"
+  },
+  {
+    "group": "publishing",
+    "task": "publishing/verify_report_sources",
+    "path": "scripts/publishing/verify_report_sources.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/audit_qposd",
+    "path": "scripts/qposd/audit_qposd.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/audit_qposd_objects",
+    "path": "scripts/qposd/audit_qposd_objects.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/audit_qposd_overlap",
+    "path": "scripts/qposd/audit_qposd_overlap.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/audit_qposd_shapes",
+    "path": "scripts/qposd/audit_qposd_shapes.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/benchmark_qposd_features",
+    "path": "scripts/qposd/benchmark_qposd_features.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/evaluate_qposd_test",
+    "path": "scripts/qposd/evaluate_qposd_test.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/extract_qposd_regions",
+    "path": "scripts/qposd/extract_qposd_regions.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/inspect_qposd_features",
+    "path": "scripts/qposd/inspect_qposd_features.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/prepare_qposd_protocol",
+    "path": "scripts/qposd/prepare_qposd_protocol.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/preview_qposd_pairs",
+    "path": "scripts/qposd/preview_qposd_pairs.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/qposd_fast_features",
+    "path": "scripts/qposd/qposd_fast_features.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/qposd_labels",
+    "path": "scripts/qposd/qposd_labels.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/qposd_metrics",
+    "path": "scripts/qposd/qposd_metrics.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/qposd_pipeline",
+    "path": "scripts/qposd/qposd_pipeline.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/report_qposd",
+    "path": "scripts/qposd/report_qposd.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/select_qposd_detection",
+    "path": "scripts/qposd/select_qposd_detection.py"
+  },
+  {
+    "group": "qposd",
+    "task": "qposd/train_qposd_classifiers",
+    "path": "scripts/qposd/train_qposd_classifiers.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/adaptive_experiment",
+    "path": "scripts/sos_experiments/adaptive_experiment.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/analyze_failures",
+    "path": "scripts/sos_experiments/analyze_failures.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/audit_palsar_holdout",
+    "path": "scripts/sos_experiments/audit_palsar_holdout.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/audit_refined_sos",
+    "path": "scripts/sos_experiments/audit_refined_sos.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/evaluate_palsar_holdout",
+    "path": "scripts/sos_experiments/evaluate_palsar_holdout.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/explain_selection",
+    "path": "scripts/sos_experiments/explain_selection.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/report_palsar_holdout",
+    "path": "scripts/sos_experiments/report_palsar_holdout.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/sos",
+    "path": "scripts/sos.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/summarize_results",
+    "path": "scripts/sos_experiments/summarize_results.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/verify_real_data",
+    "path": "scripts/sos_experiments/verify_real_data.py"
+  },
+  {
+    "group": "sos",
+    "task": "sos/worked_example",
+    "path": "scripts/sos_experiments/worked_example.py"
+  },
+  {
+    "group": "validation",
+    "task": "validation/rebuild_evidence",
+    "path": "scripts/validation/rebuild_evidence.py"
+  },
+  {
+    "group": "validation",
+    "task": "validation/verify_outputs",
+    "path": "scripts/validation/verify_outputs.py"
+  },
+  {
+    "group": "web",
+    "task": "web/streamlit_physical",
+    "path": "scripts/web/streamlit_physical.py"
+  },
+  {
+    "group": "web",
+    "task": "web/streamlit_qposd",
+    "path": "scripts/web/streamlit_qposd.py"
+  },
+  {
+    "group": "web",
+    "task": "web/streamlit_service",
+    "path": "scripts/web/streamlit_service.py"
+  },
+  {
+    "group": "web",
+    "task": "web/streamlit_ux",
+    "path": "scripts/web/streamlit_ux.py"
+  },
+  {
+    "group": "web",
+    "task": "web/verify_streamlit_browser",
+    "path": "scripts/web/verify_streamlit_browser.py"
+  }
+]

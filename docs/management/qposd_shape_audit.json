@@ -1,0 +1,966 @@
+{
+  "record": "https://zenodo.org/api/records/19258036",
+  "archive": {
+    "id": "9d2a9949-7505-4585-afba-6b0251487c4a",
+    "key": "QPOSD.zip",
+    "size": 3871940048,
+    "checksum": "md5:876771b06f9ae344bdb1843f98b0a7aa",
+    "links": {
+      "self": "https://zenodo.org/api/records/19258036/files/QPOSD.zip/content"
+    }
+  },
+  "complete": true,
+  "expected_pairs": 41,
+  "checked_pairs": 41,
+  "http_bytes": 687432,
+  "pairs": [
+    {
+      "number": 1,
+      "member": "train_images_9ch/image1.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "df08f165f3fec330099290f4b640d20cc251df1e3c34b741462f7f5ddba49482",
+      "prefix_bytes": 16384,
+      "mask_sha256": "f4ef60fcdc8238d4702e05226bf0c865e82f301adbf894397d0cf8694abe6872",
+      "class_counts": {
+        "sea": 2534417,
+        "oil": 0,
+        "look_alike": 0,
+        "land": 27183
+      }
+    },
+    {
+      "number": 2,
+      "member": "train_images_9ch/image2.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "816e2ba7993071b9de3c57df39f5a0ed00b4a156617658c62fce7b504709959e",
+      "prefix_bytes": 16384,
+      "mask_sha256": "29686af577057038f9ea0ba6044b43c61bd92cc1ff61dcda82d9998cda046b82",
+      "class_counts": {
+        "sea": 2491156,
+        "oil": 70444,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 3,
+      "member": "train_images_9ch/image3.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "2a4206d27a6aa0e7d8a1b4ecdb6e914157691bac90b1dfd18abc37bd273fd962",
+      "prefix_bytes": 16384,
+      "mask_sha256": "8b36b4beaca13af8b0137f9c677ec8899cfbe3f8a1eed982055d64f82ab79644",
+      "class_counts": {
+        "sea": 2138034,
+        "oil": 423566,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 4,
+      "member": "train_images_9ch/image4.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "1d21e362ff5dc6df76a035ec888f1b60c23f1e5b3cac2ac798de59bb5975b6b4",
+      "prefix_bytes": 16384,
+      "mask_sha256": "896b359f5e1a5559c318c3379f84f84d22c67f6de8e96eb128dcfba8d1028f97",
+      "class_counts": {
+        "sea": 765410,
+        "oil": 3441191,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 5,
+      "member": "train_images_9ch/image5.mat",
+      "T_shape": [
+        1026,
+        1026,
+        9
+      ],
+      "mask_shape": [
+        1026,
+        1025
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "a05c7d38b01d1fed4699fc01d726482cb7177b0cf71a5a52345d25ea676c1d7e",
+      "prefix_bytes": 16384,
+      "mask_sha256": "42fe0df2593f2e8d5c51b66cf133ee8ab9a83acafba0ab19c679420f27de13a0",
+      "class_counts": {
+        "sea": 351885,
+        "oil": 560882,
+        "look_alike": 0,
+        "land": 138883
+      }
+    },
+    {
+      "number": 6,
+      "member": "train_images_9ch/image6.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "36a5e4eb397f69374a6ab9f9ecd89d0b1740b3a6e73e129972542899e051a12c",
+      "prefix_bytes": 16384,
+      "mask_sha256": "f8fdcbb8a6d44884185aa6603b9f279364fb76edecbecf7b26d81160078517b9",
+      "class_counts": {
+        "sea": 2505856,
+        "oil": 55744,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 7,
+      "member": "train_images_9ch/image7.mat",
+      "T_shape": [
+        521,
+        521,
+        9
+      ],
+      "mask_shape": [
+        521,
+        520
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "9836da47811797a533b2cdf1f9d1d67a05898885af26d115f3e7336c8842529a",
+      "prefix_bytes": 16384,
+      "mask_sha256": "9cd93cb5eb5128556b34fe5f2155661847c2ec71cbcc75a758abf8b35ab8c6dd",
+      "class_counts": {
+        "sea": 248347,
+        "oil": 0,
+        "look_alike": 0,
+        "land": 22573
+      }
+    },
+    {
+      "number": 8,
+      "member": "train_images_9ch/image8.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "5fdf5fe95408bfd0e7ce0cfdb2b75686fed617025cda7423fbf6c52f6edf58b4",
+      "prefix_bytes": 16384,
+      "mask_sha256": "493fb19bc42f2ff9bb498944a527c87cc1e50475b0be72609c06a053797e2fc5",
+      "class_counts": {
+        "sea": 4135298,
+        "oil": 71303,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 9,
+      "member": "train_images_9ch/image9.mat",
+      "T_shape": [
+        1051,
+        1051,
+        9
+      ],
+      "mask_shape": [
+        1050,
+        1050
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "a38801a1145e653a46f3144036e60b7abb6d203bc97650a80b0e943d062e0721",
+      "prefix_bytes": 16384,
+      "mask_sha256": "e70a7154c3af15f510cda87d5be8d16622a4a1655461d2560f2e29cd51b246a5",
+      "class_counts": {
+        "sea": 488859,
+        "oil": 613641,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 10,
+      "member": "train_images_9ch/image10.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "71d18ea61dbe23baebc9fe8d3afa567a4e182bf93171b656152e981b818f442c",
+      "prefix_bytes": 16384,
+      "mask_sha256": "ea4c333171156633d571fe79cb8705be84bf610469951794cf613f76e387c2d3",
+      "class_counts": {
+        "sea": 3700927,
+        "oil": 505674,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 11,
+      "member": "train_images_9ch/image11.mat",
+      "T_shape": [
+        1051,
+        1051,
+        9
+      ],
+      "mask_shape": [
+        1050,
+        1050
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "589e7b5a6a82d3efd68de30ccfb8dd523bb3560ffb65303c361df3cafaba304c",
+      "prefix_bytes": 16384,
+      "mask_sha256": "e0ca17324d27137cb590a8620098b5a179c2b5d8d68a0b48045728a24e2dd105",
+      "class_counts": {
+        "sea": 474794,
+        "oil": 627706,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 12,
+      "member": "train_images_9ch/image12.mat",
+      "T_shape": [
+        1026,
+        1026,
+        9
+      ],
+      "mask_shape": [
+        1025,
+        1025
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "5a0ca6af2832ab2d037cf9130468d3e379352bafe81039df5fbc3d88523f326a",
+      "prefix_bytes": 16384,
+      "mask_sha256": "45e9984c2de79e35dfb0e3f0c2cdafea990f2a4b21fb2c5e0c89da4ece7cee57",
+      "class_counts": {
+        "sea": 307719,
+        "oil": 742906,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 13,
+      "member": "train_images_9ch/image13.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "3b99223efce46401caa7a9078872697cdbf1cb8ddf68c8c41f07830409563d94",
+      "prefix_bytes": 16384,
+      "mask_sha256": "07f3543c21c413d5d9743252f93c8d39fda3cad2458c9f25435d797cf53c515a",
+      "class_counts": {
+        "sea": 3934375,
+        "oil": 272226,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 14,
+      "member": "train_images_9ch/image14.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "55702293fbffa80511daffff6422c5840391444328dec20ba42841363c7f1351",
+      "prefix_bytes": 16384,
+      "mask_sha256": "908ce8b0f12b91bbb8c153f8f2f99031cc7df4cd9b00ee7bac8fec1ca16633a7",
+      "class_counts": {
+        "sea": 4100065,
+        "oil": 106536,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 15,
+      "member": "train_images_9ch/image15.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "a377ea0aa8f6ae47a01618a84fc682433bd45021b5583202bc27f990b96f79a6",
+      "prefix_bytes": 16384,
+      "mask_sha256": "38c333746150ee0036ef6fd7f878884135e184dfecef39ce8c483dd2a321a1f7",
+      "class_counts": {
+        "sea": 3627568,
+        "oil": 0,
+        "look_alike": 579033,
+        "land": 0
+      }
+    },
+    {
+      "number": 16,
+      "member": "train_images_9ch/image16.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "833a6fa3be9ba5fbb89b7fe8a31f0f93f188a59160a8672bc9191cdb35d5c31c",
+      "prefix_bytes": 16384,
+      "mask_sha256": "6308ca8554822f6c1fae1837009b5e404943723b5a8ab343e61853e04a78284f",
+      "class_counts": {
+        "sea": 1049107,
+        "oil": 13854,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 17,
+      "member": "train_images_9ch/image17.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "72c99f7e274f4979af135063d8962263166b982f3ea686611b373a09bcaba851",
+      "prefix_bytes": 16384,
+      "mask_sha256": "9cf9f83b9c93800fc60abd83187e439a5671e451f185daee1219cc446f05d364",
+      "class_counts": {
+        "sea": 961273,
+        "oil": 101688,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 18,
+      "member": "train_images_9ch/image18.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "d735994383386fd1f9f97914f4f4770d7b29fd3e51758de61592b097aad9eaa9",
+      "prefix_bytes": 16384,
+      "mask_sha256": "dc7e6dfef1340c6815c908b7e9ca7ecc2153c329edd004e31c84d4ed2f62dcc7",
+      "class_counts": {
+        "sea": 992999,
+        "oil": 69962,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 19,
+      "member": "train_images_9ch/image19.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "51f8be6a234581b5897becddee870b94a081b50ae0afb9f7f813a99c456d6c74",
+      "prefix_bytes": 16384,
+      "mask_sha256": "c2ce5b3058ffdf95f65fc85b1902d1038276d36cdccb51adf6a920fafa14b536",
+      "class_counts": {
+        "sea": 830351,
+        "oil": 136098,
+        "look_alike": 0,
+        "land": 96512
+      }
+    },
+    {
+      "number": 20,
+      "member": "train_images_9ch/image20.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "b64cdadb5d6282930e58c5b74201574da999b03e2fa5c3bb10dc63ff52537860",
+      "prefix_bytes": 16384,
+      "mask_sha256": "16ac7fbca7af038df1185dfd11053e342b6d6cbb4405e64b5224b25a23e044e0",
+      "class_counts": {
+        "sea": 952097,
+        "oil": 110864,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 21,
+      "member": "train_images_9ch/image21.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "582a54be13d28002d281cae27713641f3575221c1cf1469da2ced851edb63ae2",
+      "prefix_bytes": 16384,
+      "mask_sha256": "ebe13bf2ebd54ba731933bf82fd00bee8fdf9753add354497c0d1ee5c581ca75",
+      "class_counts": {
+        "sea": 864082,
+        "oil": 73620,
+        "look_alike": 0,
+        "land": 125259
+      }
+    },
+    {
+      "number": 22,
+      "member": "train_images_9ch/image22.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "f1f438e564f3ccd8bcbf1c1faa6bd0cce2fa112a2b4a3b3e23262ca7bcc880b9",
+      "prefix_bytes": 16384,
+      "mask_sha256": "2bc717cbbf150f1079049d45002d1f542509951497628d7155d9eef805c7514c",
+      "class_counts": {
+        "sea": 806803,
+        "oil": 256158,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 23,
+      "member": "train_images_9ch/image23.mat",
+      "T_shape": [
+        1051,
+        1051,
+        9
+      ],
+      "mask_shape": [
+        1050,
+        1050
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "c421856afdf502b23eecd341f4e09fa2618045cabc4c12c339a4d1a2055a1a11",
+      "prefix_bytes": 16384,
+      "mask_sha256": "63ae8de6222c67aec6e8617db4f1c04d48aeaa51d669492efb03c5c3bafbf943",
+      "class_counts": {
+        "sea": 236950,
+        "oil": 0,
+        "look_alike": 846535,
+        "land": 19014
+      }
+    },
+    {
+      "number": 24,
+      "member": "train_images_9ch/image24.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "5cebd57724cbd42503c2eaca73aa434a76f4507d3958d1983bf4e1d35f803747",
+      "prefix_bytes": 16384,
+      "mask_sha256": "5eaacd59b01a78bf37b0504b756f37ecd5b81ef63e945724845e5b4234f7bf46",
+      "class_counts": {
+        "sea": 854584,
+        "oil": 0,
+        "look_alike": 134416,
+        "land": 73961
+      }
+    },
+    {
+      "number": 25,
+      "member": "train_images_9ch/image25.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "5199e9f42511b2c6f94babde40e8f5182c1f5806a2d513ee77dfb458ba2ad3a2",
+      "prefix_bytes": 16384,
+      "mask_sha256": "2318ef0c58357f0529f026047dec1eb31b76e8d33186314c0a7e768b37e73143",
+      "class_counts": {
+        "sea": 725914,
+        "oil": 0,
+        "look_alike": 336930,
+        "land": 0
+      }
+    },
+    {
+      "number": 26,
+      "member": "train_images_9ch/image26.mat",
+      "T_shape": [
+        1551,
+        1551,
+        9
+      ],
+      "mask_shape": [
+        1551,
+        1551
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "94a1c1e33d504ce933704b77a10c3f7fa52d20306024a7bbfe3cc3e9cf53e69e",
+      "prefix_bytes": 16384,
+      "mask_sha256": "b450125daefb43e946f5ecae989e569047962d60597efc49011bb5f2ceca5853",
+      "class_counts": {
+        "sea": 1212721,
+        "oil": 0,
+        "look_alike": 489060,
+        "land": 703331
+      }
+    },
+    {
+      "number": 27,
+      "member": "train_images_9ch/image27.mat",
+      "T_shape": [
+        1051,
+        1051,
+        9
+      ],
+      "mask_shape": [
+        1050,
+        1050
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "87b22368521dd046c1222230a5f02f842b684a6d82cf44d78aeb182403dd0014",
+      "prefix_bytes": 16384,
+      "mask_sha256": "4cda65e207444ab9963a7438596981e3e7cf23290ebaff6cb776da78640f7e3f",
+      "class_counts": {
+        "sea": 527865,
+        "oil": 0,
+        "look_alike": 538908,
+        "land": 35379
+      }
+    },
+    {
+      "number": 28,
+      "member": "train_images_9ch/image28.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "04f2fd7001bba89ea7e700d4deac924b0d7c39f628cf1ece3be0c3a4aa70aadd",
+      "prefix_bytes": 16384,
+      "mask_sha256": "c273fb227de54e714799f21d651b7b06fb6e4c2333c1cf41c0c8bcac081186c8",
+      "class_counts": {
+        "sea": 2056798,
+        "oil": 2149803,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 29,
+      "member": "train_images_9ch/image29.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "8bb5338828b8e5211ab984d261ca63f7f2742f5c4109f05a5c0877863e7f0223",
+      "prefix_bytes": 16384,
+      "mask_sha256": "f7481cd1f63d189caf86fc501f2ea0c817bf8f359a5eec4fb3c2d43a40214513",
+      "class_counts": {
+        "sea": 2428524,
+        "oil": 133075,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 30,
+      "member": "train_images_9ch/image30.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "48db8defa55852d03d307ab902a68b54e3148a77bee96e664f72211752fef501",
+      "prefix_bytes": 16384,
+      "mask_sha256": "a759508af4eda742b67d93cc2a9b6248ee2842be5b403233bb56409e4777c9a8",
+      "class_counts": {
+        "sea": 2378433,
+        "oil": 183167,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 31,
+      "member": "train_images_9ch/image31.mat",
+      "T_shape": [
+        1601,
+        1601,
+        9
+      ],
+      "mask_shape": [
+        1601,
+        1600
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "87014af0829c426add80adfcceb86e19eb7c2c89e4a1b742ecea345481768147",
+      "prefix_bytes": 16384,
+      "mask_sha256": "32429ff7b7e48993c54d8293a7e983fd21f22623d8673f128ecec53a8e741e77",
+      "class_counts": {
+        "sea": 2485553,
+        "oil": 76047,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 32,
+      "member": "train_images_9ch/image32.mat",
+      "T_shape": [
+        2051,
+        2051,
+        9
+      ],
+      "mask_shape": [
+        2051,
+        2051
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "b795516e1884b7cf34f9fff0ef5142a15aeeacd0819c39bc1eb1fc413b3f0255",
+      "prefix_bytes": 16384,
+      "mask_sha256": "d7dad81036c860c21a02e66c8f92cc5b3977784ab4bfb8c73d3c44ef00555136",
+      "class_counts": {
+        "sea": 3320412,
+        "oil": 3,
+        "look_alike": 885177,
+        "land": 0
+      }
+    },
+    {
+      "number": 33,
+      "member": "train_images_9ch/image33.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "9ab3ee732cc0c9d8ac7345406ea0aa7ce2ae9b133f14424f0ef0a1c081293d91",
+      "prefix_bytes": 16384,
+      "mask_sha256": "52ef5c0b8533015e689e7748ab8476e0cd52762d1a527634c25acf68c6a37eb9",
+      "class_counts": {
+        "sea": 756342,
+        "oil": 199664,
+        "look_alike": 0,
+        "land": 106946
+      }
+    },
+    {
+      "number": 34,
+      "member": "train_images_9ch/image34.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "34aeb09424219c8b8913cdf36fd7fd44857be19f327b4b22f7c020bb83cac56e",
+      "prefix_bytes": 16384,
+      "mask_sha256": "ea6a2cb23f978206cdad230d1d8ccee2a1b02cc1bc8860fb38cd08d7112b1901",
+      "class_counts": {
+        "sea": 841328,
+        "oil": 0,
+        "look_alike": 214903,
+        "land": 6728
+      }
+    },
+    {
+      "number": 35,
+      "member": "train_images_9ch/image35.mat",
+      "T_shape": [
+        771,
+        771,
+        9
+      ],
+      "mask_shape": [
+        771,
+        771
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "cb92266d16b5370a6b22945dea03cc226540ea264db4e98f0d821008603d24c6",
+      "prefix_bytes": 16384,
+      "mask_sha256": "dfa7197b6ea243c8554458c0797f6408aff8ff5c0b423b538d39f84f2257b198",
+      "class_counts": {
+        "sea": 285362,
+        "oil": 268274,
+        "look_alike": 0,
+        "land": 40805
+      }
+    },
+    {
+      "number": 36,
+      "member": "train_images_9ch/image36.mat",
+      "T_shape": [
+        1551,
+        1551,
+        9
+      ],
+      "mask_shape": [
+        1551,
+        1551
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "b3f6f34ea340ee231bb4e47e684c9e8661579c17cf1c2f641c71af108fc032cd",
+      "prefix_bytes": 16384,
+      "mask_sha256": "06da92625e852b9a35e3047388ce43d23659179cedd10037973c7210415d6e29",
+      "class_counts": {
+        "sea": 1815249,
+        "oil": 0,
+        "look_alike": 590350,
+        "land": 0
+      }
+    },
+    {
+      "number": 37,
+      "member": "train_images_9ch/image37.mat",
+      "T_shape": [
+        1026,
+        1026,
+        9
+      ],
+      "mask_shape": [
+        1025,
+        1025
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "ecf3ad6f19b01afce376f695d6d2bd143f6ac7c23f1f7990c803379b6a64a43a",
+      "prefix_bytes": 16384,
+      "mask_sha256": "e09d858f76413bf01c5b01ee4bddd2807abb2e9d37a62e9c94eaf1e51dab5776",
+      "class_counts": {
+        "sea": 811793,
+        "oil": 238832,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 38,
+      "member": "train_images_9ch/image38.mat",
+      "T_shape": [
+        1026,
+        1026,
+        9
+      ],
+      "mask_shape": [
+        1025,
+        1025
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "8e5ea22a5cd68ec9269beaa3058d71f343a1f43cb16ef3309e67498f4046f92c",
+      "prefix_bytes": 16384,
+      "mask_sha256": "311c3bd828341e4053c381bd1adbbf91634eaa42378d8cdefc4d10b9a170c6f0",
+      "class_counts": {
+        "sea": 332813,
+        "oil": 717812,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 39,
+      "member": "train_images_9ch/image39.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "c1b7853b302058dcfb0dd039a2e8350ae32d3fb7579a167c6f75ba606a26bcdc",
+      "prefix_bytes": 16384,
+      "mask_sha256": "ae5cabcfa86c09c2547914dcc3bcd27911f40f35ca638b662b5032adf7c788cb",
+      "class_counts": {
+        "sea": 793253,
+        "oil": 269708,
+        "look_alike": 0,
+        "land": 0
+      }
+    },
+    {
+      "number": 40,
+      "member": "train_images_9ch/image40.mat",
+      "T_shape": [
+        521,
+        521,
+        9
+      ],
+      "mask_shape": [
+        521,
+        520
+      ],
+      "spatial_shape_matches": false,
+      "prefix_sha256": "9563d1c3e779d3c76d5a26e1042a121cdf9d03c229d16aebe6da9603b845b327",
+      "prefix_bytes": 16384,
+      "mask_sha256": "98eb1a6ac137f15efd1c39547e4ac45b1aad2daf87b2b801296d8cb792770e10",
+      "class_counts": {
+        "sea": 124383,
+        "oil": 0,
+        "look_alike": 146398,
+        "land": 0
+      }
+    },
+    {
+      "number": 41,
+      "member": "train_images_9ch/image41.mat",
+      "T_shape": [
+        1031,
+        1031,
+        9
+      ],
+      "mask_shape": [
+        1031,
+        1031
+      ],
+      "spatial_shape_matches": true,
+      "prefix_sha256": "366e2e9c455204bf14bf17737d65fd7867acb26697d0817b84f9b3f0f94faaa6",
+      "prefix_bytes": 16384,
+      "mask_sha256": "378916f662bfe5606e11d55da091e96d1576bf6a2a0383b4549cecb491e1f983",
+      "class_counts": {
+        "sea": 890637,
+        "oil": 0,
+        "look_alike": 18671,
+        "land": 153653
+      }
+    }
+  ],
+  "matching_pairs": 24,
+  "mismatching_pairs": 17,
+  "full_mat_crc_verified": false,
+  "pixel_alignment_verified": false,
+  "scope": "Bounded prefix structure screening, not a benchmark eligibility decision or model evaluation"
+}
