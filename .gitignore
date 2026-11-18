@@ -1,58 +1,67 @@
-# Python environments and bytecode
 /.venv/
 /venv/
 /env/
 __pycache__/
 *.py[cod]
-
-# Tooling caches and build outputs
 .pytest_cache/
-.mypy_cache/
 .ruff_cache/
+.mypy_cache/
 .cache/
-.coverage
-.coverage.*
-htmlcov/
-*.egg-info/
+.coverage*
 /build/
 /dist/
-
-# Local credentials, agent sessions and editor settings
+*.egg-info/
 .env
 .env.*
 !.env.example
 /.agents/
 /.vscode/
 /.idea/
-
-# Reproducible experiment outputs
+/.refactor_work/
+/.refactor_stage.py
 /results/*
 !/results/README.md
-
-# Local report workspaces and duplicate PDF export
-/report_overleaf/
-/report_thuat_toan/
-/SO_TAY_THUAT_TOAN_XLA_UTC.pdf
-
-# LaTeX intermediate files; keep sources and published PDFs
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.fdb_latexmk
-*.fls
-*.lof
-*.log
-*.lot
-*.out
-*.run.xml
-*.synctex.gz
-*.toc
-
-# OS and temporary files
+!/results/sos/
+!/results/dartis/
+!/results/physical/
+!/results/qposd/
+!/results/cantarell/
+/results/sos/validation/
+/data/Refined-Deep-SAR/
 .DS_Store
 Thumbs.db
 Desktop.ini
 ~$*
 *.tmp
 *.swp
+
+# LaTeX auxiliary / build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.nav
+*.nlo
+*.nls
+*.out
+*.snm
+*.spl
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.toc
+*.vrb
+
+/data
+# Legacy source and artifacts are deliberately retained, including former ignored exports.

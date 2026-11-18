@@ -1,0 +1,215 @@
+{
+  "scope": "complete prepared-array verification",
+  "script_sha256": "ff775b26a91e3a7624f001bfebd52ce0eb50075900873a5025740cd3f21de5e5",
+  "run_key": "456551cecd9c22caf3ce1bbb6fc4bcc060e73ea582190d33638d3de196cf6e9e",
+  "binding": {
+    "protocol_sha256": "ded8a123ea931167b987e6486ccbe6659219352e3096e6cfddec90a21c695878",
+    "metadata_sha256": "fa9328ceec415d76ccba47a10e5492fd54f053292b37aef09858a4d227145959",
+    "source_hashes": {
+      "prepare_cantarell_physical.py": "3b8931d3560c15be9a0903dcd367e23f25cf81834e353d6a32b297a34211a83c",
+      "map_cantarell_native_grid.py": "ce857092b4df5f40ebbace13d95761fbc8176e5c2a8a7b2e8529d07a6723e463",
+      "check_cantarell_registration.py": "8df5d7d5f205bbb95fa98b20b9f0e9dee59da81f095c02904a9f489127400464",
+      "fetch_sentinel_window.py": "986b42d699b7a7a97d2e8263a5426c2feb902215c1d6e3da8eedaec5224a0e65"
+    },
+    "versions": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "skimage": "0.26.0",
+      "tifffile": "2026.11.8"
+    }
+  },
+  "final_audit_sha256": "ceb1da08a2948182507d5451d404e48f63a0e04216865c6490fe96bbd4bedd54",
+  "processed": 173,
+  "expected": 173,
+  "pending": [],
+  "eligible_counts": {
+    "train": 94,
+    "test": 25,
+    "val": 35
+  },
+  "eligible_scene_counts": {
+    "train": 15,
+    "val": 4,
+    "test": 5
+  },
+  "excluded": [
+    {
+      "sample": "IMG_02_TILE_009",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_04_TILE_009",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_05_TILE_006",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_09_TILE_006",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_10_TILE_006",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_12_TILE_003",
+      "split": "val",
+      "checks": [
+        "pearson"
+      ],
+      "detail": null
+    },
+    {
+      "sample": "IMG_12_TILE_007",
+      "split": "val",
+      "checks": [
+        "pearson"
+      ],
+      "detail": null
+    },
+    {
+      "sample": "IMG_12_TILE_011",
+      "split": "val",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_12_TILE_014",
+      "split": "val",
+      "checks": [
+        "pearson"
+      ],
+      "detail": null
+    },
+    {
+      "sample": "IMG_17_TILE_006",
+      "split": "test",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_19_TILE_009",
+      "split": "val",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_19_TILE_010",
+      "split": "val",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_19_TILE_015",
+      "split": "val",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_19_TILE_019",
+      "split": "val",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_21_TILE_012",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_21_TILE_013",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_21_TILE_014",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_21_TILE_015",
+      "split": "train",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    },
+    {
+      "sample": "IMG_26_TILE_003",
+      "split": "test",
+      "checks": [
+        "metadata_support_or_geolocation"
+      ],
+      "detail": "Outside metadata/interpolation support: latitude"
+    }
+  ],
+  "verified_array_files": 157,
+  "scene_count_gate_passed": true,
+  "eligible_samples_missing_wind": [],
+  "numeric_max_abs_errors": {
+    "latitude": 1.0658141036401503e-14,
+    "longitude": 4.263256414560601e-14,
+    "sigma_lut": 3.410605131648481e-13,
+    "native_angle": 2.1316282072803006e-14,
+    "sample_sigma0": 1.1368683772161603e-13,
+    "sample_gamma0": 4.547473508864641e-13,
+    "sample_incidence_degrees": 2.1316282072803006e-14,
+    "translate_sigma0": 1.1368683772161603e-13,
+    "translate_gamma0": 2.2737367544323206e-13,
+    "translate_incidence_degrees": 2.1316282072803006e-14
+  },
+  "eligible_crop_object_counts": {
+    "full_gt_components": 4187,
+    "cropped_gt_components": 4130,
+    "full_gt_components_completely_outside_crop": 81,
+    "cropped_gt_components_touching_edge": 178
+  },
+  "max_relative_gamma_vs_postresampling_formula": 1.676150729391621e-05,
+  "gamma_formula_note": "Native gamma is computed before spatial resampling; dividing already-resampled sigma by cos(resampled angle) need not be identical.",
+  "data_ready_for_model_protocol": true,
+  "model_protocol_must_be_frozen_separately_before_fitting": true,
+  "no_detection_scores_computed": true
+}

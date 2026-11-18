@@ -1,0 +1,53 @@
+{
+  "script_sha256": "adf5d80f528944d951b9daf7097c2408006d74cee25c48f3ed1f5a7eac79b4ea",
+  "selection": [
+    22,
+    35
+  ],
+  "protocol_sha256": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+  "stride": 64,
+  "patch_size": 5,
+  "inputs": {
+    "22": {
+      "mat_sha256": "ab747cdb3dc39e9d98687e6e8bb32939279bc082383872928935f458a4236fbb",
+      "mask_sha256": "2bc717cbbf150f1079049d45002d1f542509951497628d7155d9eef805c7514c",
+      "published_prefix_matches": true
+    },
+    "35": {
+      "mat_sha256": "bce74b0bdb6e58c0ddc9706e7e30cad4a0354bd6aeb1a793eda6d89e75ac0d54",
+      "mask_sha256": "dfa7197b6ea243c8554458c0797f6408aff8ff5c0b423b538d39f84f2257b198",
+      "published_prefix_matches": true
+    }
+  },
+  "pairs": [
+    {
+      "sampled_nonconstant_patches": 289,
+      "scalar_searches_truncated": 0,
+      "translations": [
+        {
+          "target_minus_source_offset_yx": [
+            -160,
+            -450
+          ],
+          "exact_anchor_patches": 108,
+          "overlap_shape": [
+            771,
+            581
+          ],
+          "overlap_pixels": 447951,
+          "equal_pixels": 447951,
+          "equal_fraction": 1.0,
+          "entire_overlap_exact": true
+        }
+      ],
+      "first": 22,
+      "second": 35,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    }
+  ],
+  "scope": "Exact, unrotated, untranslated-value T11 patch screen with translated overlap verification. No model predictions. Missing matches do not establish independent scenes; non-exact/resampled/unsampled overlap may be missed."
+}

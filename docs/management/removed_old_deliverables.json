@@ -1,0 +1,683 @@
+{
+  "date": "2026-11-18",
+  "reason": "User requested deletion of all old slides, videos and written reports. Scientific results and teaching/source materials retained.",
+  "directories": {
+    "deliverables": 29,
+    "latex": 23,
+    "latex_btl": 40,
+    "docs/report": 16,
+    "legacy/pre_refactor_20261112/docs/report": 30,
+    "legacy/pre_refactor_20261112/docs/slides": 44,
+    "legacy/pre_refactor_20261112/docs/video": 7,
+    ".cache/report": 570,
+    ".cache/report-template-render": 23,
+    ".cache/slides": 21,
+    ".cache/slides-v2": 23,
+    ".cache/slides-v3": 24,
+    ".cache/slides-v4": 24,
+    ".cache/slides-v5": 28,
+    ".cache/video": 65,
+    ".cache/package-review-v1": 19291,
+    ".cache/package-review-v2": 19305,
+    ".cache/package-review-v3": 19320,
+    ".cache/package_check_v4": 19501
+  },
+  "files": [
+    "XLA/main.pdf",
+    "XLA/Thiết kế chưa có tên.pptx"
+  ],
+  "removed_archive_entries": [
+    {
+      "source": "docs/report/assets/clahe_survey.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/clahe_survey.png",
+      "bytes": 100363,
+      "sha256": "ce2249017c249be7803f8b6e8c0db260530b3b957f3f7fc262198af889cae801",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/class_1_00013_clahe.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/class_1_00013_clahe.png",
+      "bytes": 354352,
+      "sha256": "b2a113dd2736b8aa3be69ae82483263dbccefcb890c5bae438fa577f1e591280",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/edge_noise.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/edge_noise.png",
+      "bytes": 66113,
+      "sha256": "56d46baa7acdd05ce1479bfb0fd7ae2197ae45e4cf7a04e39d7c2215b84677c4",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/pipeline.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/pipeline.png",
+      "bytes": 41606,
+      "sha256": "b13df69326f7b480d00b6f4e08a210ba065c52c69bf07d0ae299d3ddab1820d1",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/README.md",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/README.md",
+      "bytes": 606,
+      "sha256": "5edc1c7e5f019229bd07c81344a7857354b01bc83020bdd0a3b976fd3917c723",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/roi_00013.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/roi_00013.png",
+      "bytes": 59814,
+      "sha256": "c107b48ce37b9ca4b943f593b1c0e4e12d41d676c9ba2559a7bd0e923ede496b",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/assets/sea_surface_01_clahe.png",
+      "destination": "legacy/pre_refactor_20261112/docs/report/assets/sea_surface_01_clahe.png",
+      "bytes": 653998,
+      "sha256": "0c956910ff105bed030a4301965dc27a461075c21b2139c9301df7c4c2e1f8f3",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/BAO_CAO_BTL_XLA.docx",
+      "destination": "legacy/pre_refactor_20261112/docs/report/BAO_CAO_BTL_XLA.docx",
+      "bytes": 1280148,
+      "sha256": "5935b92b9c46374d884e430a319b9caea8c182933310f9cd278e6eb4773d376d",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/BAO_CAO_BTL_XLA.pdf",
+      "destination": "legacy/pre_refactor_20261112/docs/report/BAO_CAO_BTL_XLA.pdf",
+      "bytes": 2368345,
+      "sha256": "edbdedc12d3458cab9fa60428a7a20fbce870f6fb24bdca5bd1f2bcafa0457c8",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/checksums.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/checksums.json",
+      "bytes": 1816,
+      "sha256": "968c85acba791b2ba93f57f522d09e70714347731c9855f888b950c059ce8bc5",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_clahe_per_image.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_clahe_per_image.csv",
+      "bytes": 27556,
+      "sha256": "9478ffd17147c3ccffde738f899cfd5e8eba366c80a2c7e9b091c926a916abea",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_clahe_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_clahe_summary.csv",
+      "bytes": 5113,
+      "sha256": "34f5af07d09f63018a90051229dcc0288ab70e34e01aea4f897c182e068a5bfe",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_confusion.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_confusion.json",
+      "bytes": 374,
+      "sha256": "bb3b053624856c96c6428d38c015db7daf8744d3077dc1c28a3c12ae0700ffd7",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_data_inventory.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_data_inventory.json",
+      "bytes": 2855,
+      "sha256": "ed7b2e322181408a628e7cfcb183e2f2a246e1315be4fc674700ae7301f18b8b",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_dataset_per_image.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_dataset_per_image.csv",
+      "bytes": 412501,
+      "sha256": "93fd8e30e240c1ef815c6158182e71a4e024f7f533af74adf91b87352d97e031",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_dataset_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_dataset_summary.csv",
+      "bytes": 674,
+      "sha256": "42f86bd8570342923484dd85b145b4111ac182c4eb0687a40a4dfa5f70732b8f",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_edge_noise_per_image.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_edge_noise_per_image.csv",
+      "bytes": 46428,
+      "sha256": "b018eb4abfb8dea11c8644525f349c2fa35b5167f33c125e0843f21d33b1d4c2",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_edge_noise_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_edge_noise_summary.csv",
+      "bytes": 8209,
+      "sha256": "b72af841c196cfdd67259751d95d5d61ad1f776072cdc0b9d145c05edd5719c1",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_failure_cases_per_image.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_failure_cases_per_image.csv",
+      "bytes": 781,
+      "sha256": "18afe1526670bb77e17e5657e8bd227b414ecbb3e1da2e599fdfc6d8a0941891",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_failure_cases_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_failure_cases_summary.csv",
+      "bytes": 364,
+      "sha256": "5ff7d3454b47ef00c97e9fa6a1893ec811758a49f821f0d3ffb28bc5b23863df",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_filters_per_image.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_filters_per_image.csv",
+      "bytes": 14067,
+      "sha256": "236d0833d0af2dcef4d8c80900dc8737958c292a39830b3d8b91a8832cd10fec",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_filters_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_filters_summary.csv",
+      "bytes": 2545,
+      "sha256": "7be230d6abb574af69d2a1716b2c5adc691a9dc0a4b7bb5564a2c5acff74d4d9",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/reproducible_manifest.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/reproducible_manifest.json",
+      "bytes": 1093,
+      "sha256": "04f167ad47e07db99731b484a589291d9f903bc495c9f9a30dcdaf309a8ba7f9",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/verification_environment.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/verification_environment.json",
+      "bytes": 196,
+      "sha256": "59526f1fe8df276cdf92c8037dc6e0e8886a1849d22177f9fe20b30b879ddf07",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/verification_hand_examples.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/verification_hand_examples.json",
+      "bytes": 1532,
+      "sha256": "0c08e2d8b43166fafbbdb565002b9acb6a9688ec027cd508ffec184a24cdc282",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/verification_per_case.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/verification_per_case.csv",
+      "bytes": 98902,
+      "sha256": "5bc9c2ab6bdb093240438e45c6e64d6a649f247056c24bc3aea55cd28f9497fc",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/evidence/verification_summary.csv",
+      "destination": "legacy/pre_refactor_20261112/docs/report/evidence/verification_summary.csv",
+      "bytes": 3018,
+      "sha256": "98508e34ab2def0cf94bf9f9434852f410c0b2d44d38421f43e76607968a49fb",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/main.tex",
+      "destination": "legacy/pre_refactor_20261112/docs/report/main.tex",
+      "bytes": 72554,
+      "sha256": "2c4e44b2fe8a2cc31a61ed3727b7e64ecf71d772bd18b2289e4342f313d61d8d",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/report_audit.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/report_audit.json",
+      "bytes": 3122,
+      "sha256": "a5e6b606c370a2a447c60fd638fbb5a11505b6629b42f625d27b0af924faebd8",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/report/report_content.json",
+      "destination": "legacy/pre_refactor_20261112/docs/report/report_content.json",
+      "bytes": 96815,
+      "sha256": "66ce126618af3d3620cf378ffd82431ced9657f608de524c59291c820eae1980",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/BAO_VE_BTL_XLA.pdf",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/BAO_VE_BTL_XLA.pdf",
+      "bytes": 239003,
+      "sha256": "b3cf5cb9cf94389f9fab805817614f8b52f6c3334865416ada499ebb3b518d3f",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/BAO_VE_BTL_XLA.pptx",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/BAO_VE_BTL_XLA.pptx",
+      "bytes": 442672,
+      "sha256": "c21f00a4e87bde9b0ec9d3461747e42322b76cff7842caf3a3ab308eb060607b",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/KICH_BAN_BAO_VE.md",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/KICH_BAN_BAO_VE.md",
+      "bytes": 6883,
+      "sha256": "98d7eb6964d4b861439b83670496c24ce7633b7514fd765125b9c4f7bd0e319c",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/render_audit.json",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/render_audit.json",
+      "bytes": 142,
+      "sha256": "6d9f5dd7eb9d731d26bef2454946fa7dc3cce410c32441fafd545d2659606c8e",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/utc_sar_oil_spill_detection_presentation.md",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/utc_sar_oil_spill_detection_presentation.md",
+      "bytes": 25591,
+      "sha256": "523dbad8fed060c3b15b2e6f39a737091305d28294b8eff5e6d6f641ade2c978",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/BAO_VE_BTL_XLA_V2.pdf",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/BAO_VE_BTL_XLA_V2.pdf",
+      "bytes": 407125,
+      "sha256": "4231d51f5213c2518307ed6995488ebe77a8a4b10d682d29b6d9f382501d6835",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/BAO_VE_BTL_XLA_V2.pptx",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/BAO_VE_BTL_XLA_V2.pptx",
+      "bytes": 1085435,
+      "sha256": "31ccad04b646afb3377808862e166900046c481c27cec4794440662287f37ff8",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/giai_thich_speaker_notes.json",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/giai_thich_speaker_notes.json",
+      "bytes": 38787,
+      "sha256": "fa22855aecd8735527b3ae1c0acb59ef02d4c7701df3f18d94fde6d32730bcfa",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/boundary.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/boundary.png",
+      "bytes": 844,
+      "sha256": "d8579800c15333eac01bd3cfac8ffb89ead3b1dc24251aff18a91948b89e6ea3",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/canny.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/canny.png",
+      "bytes": 589,
+      "sha256": "15086cbcb66b0ba70464e7422f5f776f16e41b4c1fc42420b6ba9c461abaf196",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/canny_mag.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/canny_mag.png",
+      "bytes": 17413,
+      "sha256": "22badfd0d524ac0f7411406ee8688a139aa6f2b71210c3b596509f1850507a39",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/canny_nms.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/canny_nms.png",
+      "bytes": 10934,
+      "sha256": "045b94893cf08b213310a3512f20463e3173271097ff57dc3207d710cae393cc",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/clean_mask.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/clean_mask.png",
+      "bytes": 546,
+      "sha256": "c9ad973d533937290e4f2a1543f87523e2cb50f2183eabef41eceda561ca363d",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/closed.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/closed.png",
+      "bytes": 546,
+      "sha256": "c9ad973d533937290e4f2a1543f87523e2cb50f2183eabef41eceda561ca363d",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/contrast_ring.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/contrast_ring.png",
+      "bytes": 8353,
+      "sha256": "25e23d74b6cb4d805a49c0bfbd059effa169e86222796c7d09b75068a42d18d1",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/dark_mask.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/dark_mask.png",
+      "bytes": 553,
+      "sha256": "c5c1dc102e32e49778505e9ddd4ac5f34952d584423b90869252a3aa4e42ec6b",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/detail_enhanced.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/detail_enhanced.png",
+      "bytes": 11952,
+      "sha256": "ee657fb223b028111ca47394c612cb3c29254afa90a92ef39aebb9b55f61b7f5",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/detail_filtered.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/detail_filtered.png",
+      "bytes": 7841,
+      "sha256": "b68fff3b51eef4847948438ed290a5ebe565084f0ee7054badb9611a2b7bc400",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/detail_overlay.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/detail_overlay.png",
+      "bytes": 13518,
+      "sha256": "40a85a9c7604c84f1c32d3280868f1e0e1e4ac0095564b96fda5baea76ce6286",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/detail_raw.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/detail_raw.png",
+      "bytes": 9393,
+      "sha256": "9444a7b1f1624bf3cb214f78f1fc9b4c5b4afcda2f7f70ada385ea7f28d9fad0",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/enhanced.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/enhanced.png",
+      "bytes": 53084,
+      "sha256": "92a7e2d179c5e54fedfab5b1671e1f1b7c8fd064a36dd7dad36b0a97123254a7",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/filtered.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/filtered.png",
+      "bytes": 36536,
+      "sha256": "be68f741334aa3bd5e6b2839d00ef10276dfaf6bc4cac46c780451fc0f6be946",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/manifest.json",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/manifest.json",
+      "bytes": 7766,
+      "sha256": "182a558a5d1981414a470b07bcf4c87c130d42f21856bf1d34b2e465d2e5872f",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/mask.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/mask.png",
+      "bytes": 686,
+      "sha256": "9767db1a84e492d41f787aa6021a84caf19178a494a741e0aff7b299aeaf1469",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/opened.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/opened.png",
+      "bytes": 561,
+      "sha256": "58f4fa0cf9a1fc59c9b0cd4e740febb20608495e15b0f984a3a4a64cb2a43ab8",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/otsu_dark.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/otsu_dark.png",
+      "bytes": 738,
+      "sha256": "97030c4942e2223c8c3d85c6a9ab8145233b83adef1842bb386d16cb3839ae2b",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/overlay.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/overlay.png",
+      "bytes": 59413,
+      "sha256": "d96550f3e60b8c122a11592862ac11cc74981a7483ad26a6c0f6d7cbe9e677fc",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/raw.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/raw.png",
+      "bytes": 44483,
+      "sha256": "35f70bc554d92d232e9f48980a9f55fb2a3e6257802077fe013401fd351edc3c",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/README.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/README.txt",
+      "bytes": 3523,
+      "sha256": "ee2edca06fb9ca3842ce052a4aa54dd1253702571aeeb441d8555bd2aecc9d33",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/sea_overlay.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/sea_overlay.png",
+      "bytes": 135577,
+      "sha256": "0d5579fab668fc6c260645b0f0cc1eeb17e9f1c99b50ea1109d48492c11e5adf",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/sea_raw.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/sea_raw.png",
+      "bytes": 94557,
+      "sha256": "3b4516de22ff4b50a4eff3eef664364cd50d24db0fbfa145eab0b2ba80cf6f5f",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/seg_img.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/seg_img.png",
+      "bytes": 36536,
+      "sha256": "be68f741334aa3bd5e6b2839d00ef10276dfaf6bc4cac46c780451fc0f6be946",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/sharp.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/sharp.png",
+      "bytes": 15120,
+      "sha256": "9ad7f35ddd2573542235ddbc7c867fbd76c166ca995254cb7f254dcb396a0901",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/texture_enhanced.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/texture_enhanced.png",
+      "bytes": 8647,
+      "sha256": "2f7c2158aeea115aded58b69d259a904f9232361190402e8dde07ec17c80a5cb",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/texture_filtered.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/texture_filtered.png",
+      "bytes": 6008,
+      "sha256": "d05d076bdd2595ea86400de00512da531ae834f1045df59deaa5e9af07dfbddd",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/illustrations/texture_raw.png",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/illustrations/texture_raw.png",
+      "bytes": 7297,
+      "sha256": "9e8d3eed2b14db7ed2e01ea01f510166d3b3701e90bb502bb2a7f136add738a8",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/KICH_BAN_THUYET_TRINH_V2.pdf",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/KICH_BAN_THUYET_TRINH_V2.pdf",
+      "bytes": 188714,
+      "sha256": "01916637276ab1695121274c6914ad52dcab7cbb76e06f79a0c92de342215282",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/KICH_BAN_THUYET_TRINH_V2.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/KICH_BAN_THUYET_TRINH_V2.txt",
+      "bytes": 32982,
+      "sha256": "c604dc785e27344a3a4bad46cbae84ba5cc6b4d43c508a7aada203803d6dba53",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/loi_noi_lien_mach.json",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/loi_noi_lien_mach.json",
+      "bytes": 36696,
+      "sha256": "f64f51816678cc50bfeefc8abc5264b1591c37913d8159659ef944ad551ec0a6",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/loi_thuyet_trinh.json",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/loi_thuyet_trinh.json",
+      "bytes": 28242,
+      "sha256": "4ec48545b7aa871c79af74191715873ee8282af0498866bd0bfe8a5b60a69cdb",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/PHAN_BIEN_VA_LUA_CHON_NOTES.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/PHAN_BIEN_VA_LUA_CHON_NOTES.txt",
+      "bytes": 4629,
+      "sha256": "4eff20060ffac71de507f9e58c1805b09b0c1509e830786196ea163c146b095f",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/README.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/README.txt",
+      "bytes": 4160,
+      "sha256": "2951c9c26959528c00816fb58e16d8e91178eac209000e6af42caf7873c359d1",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/SPEAKER_NOTES_DAY_DU.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/SPEAKER_NOTES_DAY_DU.txt",
+      "bytes": 38192,
+      "sha256": "3fb8f9c39a912554b0cb30000e030e61223ef829b841199b93c95cf1a408c563",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/slides/v2/SPEAKER_NOTES_TRUC_QUAN_DE_HIEU.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/slides/v2/SPEAKER_NOTES_TRUC_QUAN_DE_HIEU.txt",
+      "bytes": 34056,
+      "sha256": "97d665c502b5765dad7e3ce96ea70f47b159279f1fe15e7e85cd811c47201cea",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/DEMO_BTL_XLA_V2.srt",
+      "destination": "legacy/pre_refactor_20261112/docs/video/DEMO_BTL_XLA_V2.srt",
+      "bytes": 6469,
+      "sha256": "ac771d9d9a1ede0547cb54d1e86e1001ef9818a276991cb04679c274ee6ab116",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/DEMO_BTL_XLA_V2_6_PHUT.mp4",
+      "destination": "legacy/pre_refactor_20261112/docs/video/DEMO_BTL_XLA_V2_6_PHUT.mp4",
+      "bytes": 11610525,
+      "sha256": "b3479de182687195670cdc135043f495ab1a6b5574e334361dda280bcbe33b08",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/demo_captions.json",
+      "destination": "legacy/pre_refactor_20261112/docs/video/demo_captions.json",
+      "bytes": 5471,
+      "sha256": "cac80127ed8ab4b812600702850ec53829c701d5ce3f6a085ef6ee7beb848623",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/demo_exports/class_1_00013_mask.png",
+      "destination": "legacy/pre_refactor_20261112/docs/video/demo_exports/class_1_00013_mask.png",
+      "bytes": 1331,
+      "sha256": "894cf9741327bb8f89931d9504ff88619bc604fbbf5897f85b4b4731ef183013",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/demo_exports/class_1_00013_result.json",
+      "destination": "legacy/pre_refactor_20261112/docs/video/demo_exports/class_1_00013_result.json",
+      "bytes": 1173,
+      "sha256": "3f974c176811070c949c0166c2d943bd84f93dd5eda1b955d02ea4adf3a192b2",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/LOI_DAN_VA_MOC_THOI_GIAN.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/video/LOI_DAN_VA_MOC_THOI_GIAN.txt",
+      "bytes": 6416,
+      "sha256": "e83d493af7637781ffbdbf3d6f74bcda1ad466feb4236c52a7b3a6fd119b9362",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    },
+    {
+      "source": "docs/video/README.txt",
+      "destination": "legacy/pre_refactor_20261112/docs/video/README.txt",
+      "bytes": 3844,
+      "sha256": "84c4bcdc80451e9b65b439bca5dd4e90a8c437a4e4e9d70b3ef4755b2b102696",
+      "action": "move",
+      "reason": "Snapshot trước khi tổ chức lại Đề 18"
+    }
+  ],
+  "remaining_files": [
+    "deliverables/report/~$o_cao_SAR_SOS_review_v8.docx"
+  ],
+  "remaining_reason": "Word temporary file: access denied; force deletion rejected by automatic policy review."
+}

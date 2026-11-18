@@ -1,0 +1,152 @@
+{
+  "version": 2,
+  "preflight_exit_code": 0,
+  "preflight_message": "All gates passed; no fitting performed.",
+  "old_splits": {
+    "train": [
+      4,
+      8,
+      10,
+      17,
+      19,
+      20,
+      22,
+      26,
+      28,
+      33,
+      34,
+      35,
+      36,
+      41
+    ],
+    "validation": [
+      13,
+      15,
+      16,
+      32,
+      39
+    ],
+    "test": [
+      14,
+      18,
+      21,
+      24,
+      25
+    ]
+  },
+  "new_splits": {
+    "train": [
+      4,
+      8,
+      10,
+      19,
+      20,
+      21,
+      22,
+      26,
+      28,
+      33,
+      34,
+      35,
+      36,
+      41
+    ],
+    "validation": [
+      13,
+      15,
+      16,
+      32,
+      39
+    ],
+    "test": [
+      14,
+      17,
+      18,
+      24,
+      25
+    ]
+  },
+  "images_moved": 2,
+  "feasible_group_assignments": 5880,
+  "shared_feature_comparison": [
+    {
+      "number": 10,
+      "region_rows_equal": true
+    },
+    {
+      "number": 13,
+      "region_rows_equal": true
+    },
+    {
+      "number": 15,
+      "region_rows_equal": true
+    },
+    {
+      "number": 16,
+      "region_rows_equal": true
+    },
+    {
+      "number": 19,
+      "region_rows_equal": true
+    },
+    {
+      "number": 20,
+      "region_rows_equal": true
+    },
+    {
+      "number": 22,
+      "region_rows_equal": true
+    },
+    {
+      "number": 26,
+      "region_rows_equal": true
+    },
+    {
+      "number": 28,
+      "region_rows_equal": true
+    },
+    {
+      "number": 32,
+      "region_rows_equal": true
+    },
+    {
+      "number": 33,
+      "region_rows_equal": true
+    },
+    {
+      "number": 34,
+      "region_rows_equal": true
+    },
+    {
+      "number": 35,
+      "region_rows_equal": true
+    },
+    {
+      "number": 36,
+      "region_rows_equal": true
+    },
+    {
+      "number": 39,
+      "region_rows_equal": true
+    },
+    {
+      "number": 4,
+      "region_rows_equal": true
+    },
+    {
+      "number": 41,
+      "region_rows_equal": true
+    },
+    {
+      "number": 8,
+      "region_rows_equal": true
+    }
+  ],
+  "active_feature_images": 19,
+  "active_regions": 729,
+  "test_scored": false,
+  "classifier_selection_exists": false,
+  "protocol_sha256": "ead2603c6b06574da90201160451ad5e0d5fa71427af1635befcce5601989100",
+  "archived_v1_protocol_sha256": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+  "scope": "Pre-fit leakage correction from exact-overlap evidence. No model performance informed reassignment. Prior label/feature exposure is disclosed in protocol."
+}

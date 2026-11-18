@@ -1,0 +1,26 @@
+{
+  "preflight_command": ".venv/Scripts/python.exe scripts/train_qposd_classifiers.py --preflight-only",
+  "exit_code": 1,
+  "reason": "Exact overlap crosses splits: 21/22; revise groups before fitting",
+  "confirmed_overlap_groups": [
+    [
+      19,
+      20
+    ],
+    [
+      21,
+      22,
+      33,
+      35
+    ]
+  ],
+  "classifier_selection_exists": false,
+  "detection_selection_exists": false,
+  "test_evaluation_exists": false,
+  "inputs_sha256": {
+    "results/qposd/protocol.json": "f19e65542763cafad1acf12b929c2482c6546e2cf474e62582b94970e385aff3",
+    "docs/management/qposd_overlap_all24.json": "d156121bf80a73e0e46485d5c4c97d498d75c19b8a66e4d858713baa78b5fa55",
+    "docs/management/qposd_matched_full_audit.json": "774934220b2b56a8c8689786840714aefa73542d096790d0848e764592ab501c"
+  },
+  "next_step": "Preserve v1 evidence and revise source-image split by connected exact-overlap groups before any fitting or model-based selection."
+}

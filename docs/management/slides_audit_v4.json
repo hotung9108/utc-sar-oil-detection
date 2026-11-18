@@ -1,0 +1,269 @@
+{
+  "status": "review_copy_verified",
+  "submission_ready": false,
+  "file": "deliverables/presentation/SAR_SOS_review_v4.pptx",
+  "sha256": "66dd5c9362d3418dac4b46841c08ef1297a3577bc0d4adca575a3146345a3f96",
+  "slide_count": 21,
+  "visual_review": {
+    "slides_individually_inspected": [
+      14
+    ],
+    "pixel_identical_to_reviewed_v3": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "clipping_or_overlap_observed": false,
+    "method": "Slide 14 reviewed at full resolution; all other slides match reviewed v3 pixels",
+    "render_sha256": {
+      "1": "7ab800350309f526901e5e6fa97110250da0cac4d24d28c8bfed57d97aa97a03",
+      "2": "91abf270f2340f2c734ad4961db78ffca7b261f2d928b8a0bd61b274d01e0cf0",
+      "3": "ffccd71dbd4f904cff5918f061ab1d4a1f45e1f2b4e21dacdf532f393048664c",
+      "4": "6dd84525fc4bcf6ed0350c5590f1d365232b7b082632b6bdb6821fefb835f7e0",
+      "5": "40eef5ecd21999bd2d1914d5f13055cf2daf83105d85e503cf26c5922d0bc8e9",
+      "6": "ed4c26eaee36dfe1a022a067320177b82ee84b606d7cfaffd370c8a6ec4e761e",
+      "7": "dd4f917dfb8ffb872e10881c3e7bca2ff85abb2b830bdc28bfb975b365db61b8",
+      "8": "06e167404aad876f7597d30ed671dfd4debd4251ff4648cb22c82d2d16c29362",
+      "9": "9456128a4d8ef9013ff7538cd020a6a28ffa8d5fd513aecc580d247d4fe9d0b1",
+      "10": "49ec61172edd13118d189dff8a738942a523b4c29be23d10b86c4d40209d929a",
+      "11": "0d1567da0db723fb648150e94fac54eddc1640521471db4ee9db8e64bd3b5476",
+      "12": "8e60b6228de17f0bb714476e1af04267afd5167c73fd6289f9453364e1c3959f",
+      "13": "e52fb0f146e56a48a302086d6ff017da0d5ba0b5cf83546ed898fc041fafce88",
+      "14": "7faf4211ea836e9e19352ddcbb7c93a2a68733ca555878fbd82190a84232f9b3",
+      "15": "25dd8fc40d5e4544c3587c005b5dd8e584d22a4e9a7433b059121fdd13d935fb",
+      "16": "9d3b5a9c02c3f2693a88500a35ad62125b43bc1f4e008e2694c163846922af63",
+      "17": "db3b6710426a807db0069f235f06918814e79dff6c3a1b02b268c0384213578f",
+      "18": "3e5ff2628678f3066295f12f95bd813715334816cb49b1f1120dae1909a08c58",
+      "19": "72a05c61e8d9eb720264a1807bc49a9c0ca56689cbed2871a439ff686e000a1a",
+      "20": "3f2029f026fe5bb92ca094313ac98c87ba459cc4bff8396445cdd76eb7ed5b9d",
+      "21": "a2cd244b75d16c1cce71f9dbee6ddbf115dfcb71d900735d676e037e6dc93caa"
+    }
+  },
+  "finalization": {
+    "schemaVersion": "presentation-finalization.v1",
+    "finalSha256": "66dd5c9362d3418dac4b46841c08ef1297a3577bc0d4adca575a3146345a3f96",
+    "byteCount": 1184151,
+    "packageIntegrity": {
+      "chart_count": 0,
+      "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
+      "finding_count": 0,
+      "findings": [],
+      "notes_parts_skipped": 21,
+      "relationship_part_count": 52,
+      "slide_count": 21,
+      "status": "pass",
+      "exitCode": 0,
+      "findingCount": 0,
+      "warnings": []
+    },
+    "presentationLayout": {
+      "finding_count": 0,
+      "findings": [],
+      "font_policy": {
+        "checked_text_script_count": 194,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Arial"
+        ],
+        "observed_font_use_counts": {
+          "Arial": 194
+        },
+        "passed": true,
+        "performed": true
+      },
+      "slide_count": 21,
+      "slide_size_in": [
+        13.3333,
+        7.5
+      ],
+      "warning_count": 0,
+      "warnings": [],
+      "exitCode": 0,
+      "findingCount": 0,
+      "fontPolicy": {
+        "checked_text_script_count": 194,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Arial"
+        ],
+        "observed_font_use_counts": {
+          "Arial": 194
+        },
+        "passed": true,
+        "performed": true
+      }
+    },
+    "fontSelection": {
+      "basis": "design",
+      "approvedFamilies": [
+        "Arial"
+      ],
+      "scriptFonts": {},
+      "referenceSha256": null,
+      "referenceFontsVerifiedInEncodedText": false,
+      "checked_text_script_count": 194,
+      "native_font_rendering_verified": false,
+      "observed_font_families": [
+        "Arial"
+      ],
+      "observed_font_use_counts": {
+        "Arial": 194
+      },
+      "passed": true,
+      "performed": true
+    },
+    "firstPartyImport": {
+      "performed": true,
+      "passed": true,
+      "slideCount": 21,
+      "sha256": "66dd5c9362d3418dac4b46841c08ef1297a3577bc0d4adca575a3146345a3f96",
+      "runtimeNodeModules": "C:\\Users\\hotung\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules",
+      "nodeExecutable": "C:\\Users\\hotung\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
+    },
+    "nativeTableArithmetic": {
+      "performed": true,
+      "checked_column_count": 0,
+      "checks": [],
+      "claim_boundary": "Displayed-value arithmetic with rounding tolerance; not source-data verification.",
+      "eligible_table_count": 0,
+      "finding_count": 0,
+      "findings": [],
+      "native_table_count": 10,
+      "passed": true,
+      "schema_version": "presentation-native-table-arithmetic.v1",
+      "skipped_tables": [
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 3,
+          "table": 1
+        },
+        {
+          "reason": "no_unambiguous_bottom_total",
+          "slide": 5,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 8,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 10,
+          "table": 1
+        },
+        {
+          "reason": "no_unambiguous_bottom_total",
+          "slide": 11,
+          "table": 1
+        },
+        {
+          "reason": "insufficient_rows",
+          "slide": 12,
+          "table": 1
+        },
+        {
+          "reason": "no_unambiguous_bottom_total",
+          "slide": 13,
+          "table": 1
+        },
+        {
+          "reason": "no_unambiguous_bottom_total",
+          "slide": 14,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 19,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 21,
+          "table": 1
+        }
+      ],
+      "slide_count": 21,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "nativeChartTitles": {
+      "performed": true,
+      "checks": [],
+      "finding_count": 0,
+      "findings": [],
+      "native_chart_count": 0,
+      "native_powerpoint_verified": false,
+      "passed": true,
+      "presentation_sha256": "66dd5c9362d3418dac4b46841c08ef1297a3577bc0d4adca575a3146345a3f96",
+      "schema_version": "presentation-native-chart-titles.v1",
+      "slide_count": 21,
+      "source_text_emitted": false,
+      "unresolved_linked_title_count": 0
+    },
+    "sourceDerivedPolicyFlags": [
+      "--expected-slide-size-emu",
+      "12192000,6858000",
+      "--validate-bullet-geometry",
+      "--validate-heading-fit",
+      "--require-native-table-slide",
+      "3",
+      "--require-native-table-slide",
+      "5",
+      "--require-native-table-slide",
+      "8",
+      "--require-native-table-slide",
+      "10",
+      "--require-native-table-slide",
+      "11",
+      "--require-native-table-slide",
+      "12",
+      "--require-native-table-slide",
+      "13",
+      "--require-native-table-slide",
+      "14",
+      "--require-native-table-slide",
+      "19",
+      "--require-native-table-slide",
+      "21",
+      "--cover-role",
+      "none",
+      "--expected-slide-count",
+      "21",
+      "--approved-font-family",
+      "Arial"
+    ],
+    "nativeChartValidation": {
+      "detectedOwnerSlides": [],
+      "detectedChartCount": 0,
+      "targetApplication": "portable",
+      "sourceChartOwnersExplicitlyDeclared": true,
+      "validatorRan": false,
+      "passed": true
+    }
+  },
+  "native_powerpoint_opened": false,
+  "limits": [
+    "Physical branch not validated against oil labels",
+    "Look-alike cause labels and independent adaptive test missing",
+    "Authentic student contributions and cover metadata pending",
+    "DARTIS false alarms measured; no oil recall/F1 or physical subtype evaluation"
+  ]
+}
